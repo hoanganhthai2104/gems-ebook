@@ -388,44 +388,34 @@
             transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Premium Waterdrop active tab style */
+        /* Premium Waterdrop active tab style — point faces UP */
         .active-tab-waterdrop {
-            position: relative;
-            border-radius: 0% 50% 50% 50% !important;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.14) 0%, rgba(59, 130, 246, 0.18) 50%, rgba(13, 148, 136, 0.10) 100%) !important;
+            border-radius: 50% 50% 50% 0% !important;
+            background: linear-gradient(160deg, #dbeafe 0%, #eff6ff 60%, #e0f2fe 100%) !important;
             color: #2563eb !important;
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.12), 0 2px 6px rgba(37, 99, 235, 0.08), inset 0 1px 1px rgba(255,255,255,0.5);
-            transform: rotate(-45deg) scale(1.08) translateY(-14px) !important;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
+            transform: rotate(45deg) scale(1.1) translateY(-12px) !important;
             transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease, box-shadow 0.3s ease !important;
         }
-        .active-tab-waterdrop::before {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            border-radius: 0% 50% 50% 50%;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(59, 130, 246, 0.04));
-            z-index: -1;
-            opacity: 0.6;
-        }
         .active-tab-waterdrop .material-symbols-outlined {
-            transform: rotate(45deg) !important;
+            transform: rotate(-45deg) !important;
             display: inline-block;
         }
 
         /* Pop-up bounce animation for waterdrop */
         @keyframes waterdropPopUp {
             0% {
-                transform: rotate(-45deg) scale(0.85) translateY(0px);
-                opacity: 0.7;
+                transform: rotate(45deg) scale(0.8) translateY(4px);
+                opacity: 0.5;
             }
             50% {
-                transform: rotate(-45deg) scale(1.15) translateY(-18px);
+                transform: rotate(45deg) scale(1.18) translateY(-16px);
             }
-            75% {
-                transform: rotate(-45deg) scale(1.04) translateY(-12px);
+            70% {
+                transform: rotate(45deg) scale(1.06) translateY(-10px);
             }
             100% {
-                transform: rotate(-45deg) scale(1.08) translateY(-14px);
+                transform: rotate(45deg) scale(1.1) translateY(-12px);
                 opacity: 1;
             }
         }
@@ -1673,7 +1663,7 @@
                     <!-- ============================================== -->
                     <!-- VIEW 5: SÁCH NÓI PLAYER (Audiobook Player)        -->
                     <!-- ============================================== -->
-                    <div id="view-audiobook" class="absolute inset-x-0 top-0 bottom-0 z-[65] bg-[#fbf9f8] text-on-surface flex flex-col hidden overflow-hidden select-none animate-fade-in" style="margin-bottom: 64px;">
+                    <div id="view-audiobook" class="absolute inset-0 z-[65] bg-[#fbf9f8] text-on-surface flex flex-col hidden overflow-hidden select-none animate-fade-in">
                         <!-- Navigation Header -->
                         <header class="relative top-0 w-full bg-[#fbf9f8] border-b border-border-subtle shadow-sm z-50 flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 shrink-0">
                             <button onclick="closeAudiobookPlayer()" aria-label="Go back" class="text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-full p-2">
