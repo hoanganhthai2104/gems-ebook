@@ -227,24 +227,27 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
 
-        /* Hide scrollbars for body and certain views */
+        /* Hide scrollbars globally for body and all scrollable views */
         body::-webkit-scrollbar,
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
+        .no-scrollbar::-webkit-scrollbar,
+        .custom-scrollbar::-webkit-scrollbar,
+        .overflow-y-auto::-webkit-scrollbar,
+        .overflow-x-auto::-webkit-scrollbar,
+        [class*="overflow-y-"]::-webkit-scrollbar,
+        [class*="overflow-x-"]::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
         }
         body,
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        /* Hide scrollbar but keep scroll functionality */
-        .custom-scrollbar {
+        .no-scrollbar,
+        .custom-scrollbar,
+        .overflow-y-auto,
+        .overflow-x-auto,
+        [class*="overflow-y-"],
+        [class*="overflow-x-"] {
             -ms-overflow-style: none !important;
             scrollbar-width: none !important;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            display: none !important;
         }
 
         /* Material Symbols configurations */
@@ -384,6 +387,14 @@
         .flipbook-page {
             transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        /* Premium Waterdrop active tab style */
+        .active-tab-waterdrop {
+            border-radius: 50% 50% 15% 50% !important;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.16) 0%, rgba(13, 148, 136, 0.16) 100%) !important;
+            color: #2563eb !important;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.06);
+        }
     </style>
 </head>
 <body class="bg-slate-100 antialiased h-screen overflow-hidden flex items-center justify-center">
@@ -399,99 +410,96 @@
 
                     <!-- ============================================== -->
                     <div id="view-home" class="view-panel flex-1 flex flex-col overflow-hidden">
-                        <!-- TopAppBar -->
-                        <header class="bg-surface text-primary w-full top-0 sticky border-b border-subtle flex items-center justify-between px-margin-mobile py-stack-sm z-50 shrink-0">
-                            <button onclick="toggleSideMenu()" class="text-primary hover:bg-secondary-container transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
+                        <!-- Top AppBar -->
+                        <header class="bg-white/80 backdrop-blur-md text-primary w-full top-0 sticky border-b border-slate-100 flex items-center justify-between px-margin-mobile py-3 z-50 shrink-0">
+                            <button onclick="toggleSideMenu()" class="text-primary hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
                                 <span class="material-symbols-outlined" data-icon="menu">menu</span>
                             </button>
-                            <h1 class="font-headline-md text-headline-md font-bold tracking-tight">GEMS</h1>
+                            <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">GEMS</h1>
                             <div class="flex items-center gap-2">
-                                <button onclick="showToast('Chưa có thông báo lâm sàng mới.')" class="text-primary hover:bg-secondary-container transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center relative">
+                                <button onclick="showToast('Chưa có thông báo lâm sàng mới.')" class="text-primary hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center relative">
                                     <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
-                                    <span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
-                                </button>
-                                <button onclick="switchTab('library')" class="text-primary hover:bg-secondary-container transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
-                                    <span class="material-symbols-outlined" data-icon="search">search</span>
+                                    <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
                                 </button>
                             </div>
                         </header>
 
                         <!-- Scrollable home content -->
-                        <div class="flex-1 overflow-y-auto pb-24 px-margin-mobile py-stack-lg space-y-stack-lg">
+                        <div class="flex-1 overflow-y-auto pb-24 px-margin-mobile py-6 space-y-6">
                             <!-- Daily Missions -->
-                            <section class="liquid-glass rounded-xl p-4">
+                            <section class="bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.03)] rounded-2xl p-5">
                                 <div class="flex justify-between items-center mb-4">
-                                    <h2 class="font-headline-sm text-headline-sm text-primary-container">Nhiệm vụ hàng ngày</h2>
-                                    <span id="mission-progress-text" class="font-label-md text-label-md text-on-surface-variant">2/3 hoàn thành</span>
+                                    <h2 class="text-sm font-bold text-slate-800">Nhiệm vụ hàng ngày</h2>
+                                    <span id="mission-progress-text" class="text-[10px] font-bold text-slate-400">2/3 hoàn thành</span>
                                 </div>
-                                <div class="w-full bg-surface-variant rounded-full h-2 mb-4">
-                                    <div id="mission-progress-bar" class="bg-primary-container h-2 rounded-full transition-all duration-500" style="width: 66%"></div>
+                                <div class="w-full bg-slate-100 rounded-full h-2 mb-4">
+                                    <div id="mission-progress-bar" class="bg-gradient-to-r from-blue-500 to-teal-400 h-2 rounded-full transition-all duration-500" style="width: 66%"></div>
                                 </div>
-                                <ul class="space-y-2">
+                                <ul class="space-y-3">
                                     <li class="flex items-center gap-3">
-                                        <span class="material-symbols-outlined text-primary-container" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="font-body-md text-body-md line-through text-on-surface-variant">Đọc 15 phút (Đã hoàn thành)</span>
+                                        <span class="material-symbols-outlined text-teal-500 text-[18px] filled-icon" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                        <span class="text-xs text-slate-400 line-through">Đọc 15 phút (Đã hoàn thành)</span>
                                     </li>
                                     <li class="flex items-center gap-3">
-                                        <span class="material-symbols-outlined text-primary-container" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="font-body-md text-body-md line-through text-on-surface-variant">Lưu dấu trang bài viết y văn mới (Đã lưu)</span>
+                                        <span class="material-symbols-outlined text-teal-500 text-[18px] filled-icon" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                        <span class="text-xs text-slate-400 line-through">Lưu dấu trang bài viết y văn mới (Đã lưu)</span>
                                     </li>
                                     <li class="flex items-center justify-between gap-3">
                                         <div class="flex items-center gap-3">
-                                            <span id="mission-quiz-icon" class="material-symbols-outlined text-outline" data-icon="radio_button_unchecked">radio_button_unchecked</span>
-                                            <span id="mission-quiz-text" class="font-body-md text-body-md">Kiểm tra kiến thức</span>
+                                            <span id="mission-quiz-icon" class="material-symbols-outlined text-slate-300 text-[18px]" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+                                            <span id="mission-quiz-text" class="text-xs text-slate-600 font-semibold">Kiểm tra kiến thức</span>
                                         </div>
-                                        <button id="mission-quiz-btn" onclick="openQuizScreen()" class="bg-primary/10 hover:bg-primary/20 text-primary text-[10px] font-bold px-2.5 py-1 rounded">Làm ngay</button>
+                                        <button id="mission-quiz-btn" onclick="openQuizScreen()" class="bg-gradient-to-r from-blue-50 to-teal-50 hover:from-blue-100 hover:to-teal-100 text-blue-600 text-[10px] font-bold px-3 py-1.5 rounded-lg transition-all duration-300 active:scale-95">Làm ngay</button>
                                     </li>
                                 </ul>
                             </section>
 
                             <!-- Continue Reading -->
                             <section>
-                                <h2 class="font-headline-sm text-headline-sm text-primary mb-stack-sm">Tiếp tục đọc</h2>
-                                <div class="liquid-glass rounded-xl p-4 flex gap-4 items-center">
-                                    <div class="gems-book-cover w-20 h-30 shrink-0 shadow-sm border border-border-subtle rounded overflow-hidden" data-book-id="co-the-nguoi"></div>
+                                <h2 class="text-sm font-bold text-slate-800 mb-3">Tiếp tục đọc</h2>
+                                <div class="bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.03)] rounded-2xl p-4 flex gap-4 items-center">
+                                    <div class="gems-book-cover w-16 h-24 shrink-0 shadow-[0_4px_12px_rgba(0,0,0,0.08)] border border-slate-100 rounded-xl overflow-hidden" data-book-id="co-the-nguoi"></div>
                                     <div class="flex-grow">
-                                        <h3 class="font-headline-sm text-headline-sm mb-1">Cơ thể người: Phân tích chi tiết</h3>
-                                        <p class="font-body-sm text-body-sm text-on-surface-variant mb-2">Chương 4: Hệ tuần hoàn</p>
-                                        <div class="flex items-center gap-2 mb-2">
-                                            <div class="w-full bg-surface-variant rounded-full h-1.5 flex-grow">
-                                                <div class="bg-primary-container h-1.5 rounded-full" style="width: 65%"></div>
+                                        <h3 class="text-xs font-bold text-slate-800 line-clamp-1 mb-0.5">Cơ thể người: Phân tích chi tiết</h3>
+                                        <p class="text-[10px] text-slate-400 mb-2">Chương 4: Hệ tuần hoàn</p>
+                                        <div class="flex items-center gap-2 mb-3">
+                                            <div class="w-full bg-slate-100 rounded-full h-1.5 flex-grow">
+                                                <div class="bg-gradient-to-r from-blue-500 to-teal-400 h-1.5 rounded-full" style="width: 65%"></div>
                                             </div>
-                                            <span class="font-label-md text-label-md text-on-surface-variant">65%</span>
+                                            <span class="text-[9px] font-bold text-slate-400">65%</span>
                                         </div>
-                                        <button onclick="openEreaderScreen()" class="bg-primary-container text-on-primary font-label-md text-label-md py-2 px-4 rounded hover:bg-primary transition-colors w-full">Đọc tiếp</button>
+                                        <button onclick="openEreaderScreen()" class="bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-700 hover:to-teal-600 text-white font-bold text-[10px] py-2 px-4 rounded-xl shadow-md shadow-blue-500/10 hover:shadow-lg transition-all w-full active:scale-95 duration-100">Đọc tiếp</button>
                                     </div>
                                 </div>
                             </section>
 
                             <!-- Stats Row -->
                             <section class="grid grid-cols-2 gap-4">
-                                <div class="liquid-glass rounded-xl p-4 flex flex-col items-center justify-center text-center">
-                                    <span class="material-symbols-outlined text-primary-container mb-2 text-3xl" data-icon="local_fire_department">local_fire_department</span>
-                                    <span class="font-headline-sm text-headline-sm text-primary" id="home-streak">5 Ngày</span>
-                                    <span class="font-label-md text-label-md text-on-surface-variant">Chuỗi đọc</span>
+                                <div class="bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.03)] rounded-2xl p-4 flex flex-col items-center justify-center text-center">
+                                    <span class="material-symbols-outlined text-orange-500 mb-2 text-2xl" data-icon="local_fire_department">local_fire_department</span>
+                                    <span class="text-sm font-extrabold text-slate-850" id="home-streak">5 Ngày</span>
+                                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Chuỗi đọc</span>
                                 </div>
-                                <div class="liquid-glass rounded-xl p-4 flex flex-col items-center justify-center text-center">
-                                    <span class="material-symbols-outlined text-primary-container mb-2 text-3xl" data-icon="menu_book">menu_book</span>
-                                    <span class="font-headline-sm text-headline-sm text-primary" id="home-pages-read">120 trang</span>
-                                    <span class="font-label-md text-label-md text-on-surface-variant">Trang đã đọc</span>
+                                <div class="bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.03)] rounded-2xl p-4 flex flex-col items-center justify-center text-center">
+                                    <span class="material-symbols-outlined text-teal-500 mb-2 text-2xl" data-icon="menu_book">menu_book</span>
+                                    <span class="text-sm font-extrabold text-slate-850" id="home-pages-read">120 trang</span>
+                                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Trang đã đọc</span>
                                 </div>
                             </section>
 
                             <!-- Recommendations -->
                             <section class="pb-4">
-                                <h2 class="font-headline-sm text-headline-sm text-primary mb-stack-sm">Dành cho bạn</h2>
+                                <h2 class="text-sm font-bold text-slate-800 mb-3">Dành cho bạn</h2>
                                 <div class="grid grid-cols-2 gap-4">
                                     <!-- Book 1 -->
-                                    <div onclick="openBookDetails('thankinh')" class="liquid-glass rounded-xl p-3 flex flex-col items-center cursor-pointer hover:shadow-md transition-shadow">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded shadow-sm border border-border-subtle mb-2 overflow-hidden" data-book-id="thankinh"></div>
-                                        <h4 class="font-label-md text-label-md text-center line-clamp-2">Thần kinh học cơ bản</h4>
+                                    <div onclick="openBookDetails('thankinh')" class="bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.03)] rounded-2xl p-3 flex flex-col items-center cursor-pointer hover:shadow-md transition-shadow">
+                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 mb-2 overflow-hidden" data-book-id="thankinh"></div>
+                                        <h4 class="text-[10px] font-bold text-center text-slate-700 line-clamp-1">Thần kinh học cơ bản</h4>
                                     </div>
                                     <!-- Book 2 -->
-                                    <div onclick="openBookDetails('ditruyen')" class="liquid-glass rounded-xl p-3 flex flex-col items-center cursor-pointer hover:shadow-md transition-shadow">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded shadow-sm border border-border-subtle mb-2 overflow-hidden" data-book-id="ditruyen"></div>
-                                        <h4 class="font-label-md text-label-md text-center line-clamp-2">Di truyền học y khoa</h4>
+                                    <div onclick="openBookDetails('ditruyen')" class="bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.03)] rounded-2xl p-3 flex flex-col items-center cursor-pointer hover:shadow-md transition-shadow">
+                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 mb-2 overflow-hidden" data-book-id="ditruyen"></div>
+                                        <h4 class="text-[10px] font-bold text-center text-slate-700 line-clamp-1">Di truyền học y khoa</h4>
                                     </div>
                                 </div>
                             </section>
@@ -665,76 +673,172 @@
                             <div class="space-y-6">
                                 <!-- Section: Dược liệu học -->
                                 <section class="px-4">
-                                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Dược liệu học</h3>
+                                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Dược liệu học</h3>
                                     <div class="flex gap-3 overflow-x-auto custom-scrollbar pb-2">
                                         <!-- Book 1 -->
                                         <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('thaoduoc')">
-                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="thaoduoc"></div>
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="thaoduoc"></div>
                                             <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Cẩm nang Thảo dược</h4>
                                             <p class="text-[9px] text-slate-400 mt-0.5">GS. TS. Nguyễn Văn Anh</p>
                                         </div>
                                         <!-- Book 2 -->
                                         <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('nhansam')">
-                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="nhansam"></div>
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="nhansam"></div>
                                             <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Nhân Sâm y học</h4>
                                             <p class="text-[9px] text-slate-400 mt-0.5">PGS. Lê Thị Hoa</p>
+                                        </div>
+                                        <!-- Book 3 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('trathaomoc')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="trathaomoc"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Trà Thảo Mộc</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">Lê Minh</p>
+                                        </div>
+                                        <!-- Book 4 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('baoche')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="baoche"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Kỹ Thuật Bào Chế</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">GS. TS. Nguyễn Văn Anh</p>
+                                        </div>
+                                        <!-- Book 5 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('dongydieuphuong')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="dongydieuphuong"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Đông Y Diệu Phương</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">PGS. TS. Hoàng Tích Huyền</p>
+                                        </div>
+                                        <!-- Book 6 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('namduocthanhieu')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="namduocthanhieu"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Nam Dược Thần Hiệu</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">Tuệ Tĩnh</p>
                                         </div>
                                     </div>
                                 </section>
 
                                 <!-- Section: Giải phẫu học -->
                                 <section class="px-4">
-                                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Giải phẫu học</h3>
+                                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Giải phẫu học</h3>
                                     <div class="flex gap-3 overflow-x-auto custom-scrollbar pb-2">
                                         <!-- Book 1 -->
                                         <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('giaiphau')">
-                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="giaiphau"></div>
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="giaiphau"></div>
                                             <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Giải phẫu đại cương</h4>
                                             <p class="text-[9px] text-slate-400 mt-0.5">BS. Trần Minh Đức</p>
                                         </div>
                                         <!-- Book 2 -->
                                         <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('cohoc')">
-                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="cohoc"></div>
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="cohoc"></div>
                                             <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Cơ học vận động</h4>
                                             <p class="text-[9px] text-slate-400 mt-0.5">TS. Phạm Quốc Hùng</p>
+                                        </div>
+                                        <!-- Book 3 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('co-the-nguoi')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="co-the-nguoi"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Cơ thể người</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">PGS. TS. Lê Thu</p>
+                                        </div>
+                                        <!-- Book 4 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('xuongkhop')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="xuongkhop"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Giải phẫu xương khớp</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">BS. Nguyễn Minh Tuấn</p>
+                                        </div>
+                                        <!-- Book 5 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('giaiphauthanhinh')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="giaiphauthanhinh"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">GP Hệ Thần Kinh</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">GS. Trịnh Bình</p>
+                                        </div>
+                                        <!-- Book 6 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('atlasgiaiphau')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="atlasgiaiphau"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Atlas Giải Phẫu</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">BS. Nguyễn Quang Quyền</p>
                                         </div>
                                     </div>
                                 </section>
 
                                 <!-- Section: Thần kinh học -->
                                 <section class="px-4">
-                                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Thần kinh học</h3>
+                                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Thần kinh học</h3>
                                     <div class="flex gap-3 overflow-x-auto custom-scrollbar pb-2">
                                         <!-- Book 1 -->
                                         <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('thankinh')">
-                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="thankinh"></div>
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="thankinh"></div>
                                             <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Thần kinh học cơ bản</h4>
                                             <p class="text-[9px] text-slate-400 mt-0.5">GEMS Academic</p>
                                         </div>
                                         <!-- Book 2 -->
                                         <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('tamly')">
-                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="tamly"></div>
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="tamly"></div>
                                             <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Tâm lý học lâm sàng</h4>
                                             <p class="text-[9px] text-slate-400 mt-0.5">ThS. Ngô Anh Tuấn</p>
+                                        </div>
+                                        <!-- Book 3 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('sinhlythankinh')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="sinhlythankinh"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Sinh lý thần kinh</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">GS. Phạm Hoàng Nam</p>
+                                        </div>
+                                        <!-- Book 4 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('naobo')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="naobo"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Não bộ và Hành vi</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">TS. Đỗ Quyên</p>
+                                        </div>
+                                        <!-- Book 5 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('benhthanhinh')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="benhthanhinh"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Bệnh học Thần kinh</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">PGS. TS. Nguyễn Chương</p>
+                                        </div>
+                                        <!-- Book 6 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('taibienmachmau')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="taibienmachmau"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Tai biến mạch não</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">GS. Lê Đức Hinh</p>
                                         </div>
                                     </div>
                                 </section>
 
                                 <!-- Section: Di truyền học -->
                                 <section class="px-4">
-                                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Di truyền học</h3>
+                                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Di truyền học</h3>
                                     <div class="flex gap-3 overflow-x-auto custom-scrollbar pb-2">
                                         <!-- Book 1 -->
                                         <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('ditruyen')">
-                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="ditruyen"></div>
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="ditruyen"></div>
                                             <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Di truyền học y khoa</h4>
                                             <p class="text-[9px] text-slate-400 mt-0.5">PGS. TS. Trần Hải</p>
                                         </div>
                                         <!-- Book 2 -->
                                         <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('genkhoa')">
-                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="genkhoa"></div>
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="genkhoa"></div>
                                             <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Gen và bệnh học</h4>
                                             <p class="text-[9px] text-slate-400 mt-0.5">TS. Vũ Thị Lan</p>
+                                        </div>
+                                        <!-- Book 3 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('ditruyenphantu')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="ditruyenphantu"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Di truyền phân tử</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">PGS. Lê Huy</p>
+                                        </div>
+                                        <!-- Book 4 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('dotbiengene')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="dotbiengene"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Đột biến Gene lâm sàng</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">TS. Nguyễn Thị Trang</p>
+                                        </div>
+                                        <!-- Book 5 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('ditruyentebao')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="ditruyentebao"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Di truyền tế bào</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">GS. Phan Cự Nhân</p>
+                                        </div>
+                                        <!-- Book 6 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('kythuatditruyen')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="kythuatditruyen"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Kỹ thuật Di truyền</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">PGS. TS. Đinh Đoàn Long</p>
                                         </div>
                                     </div>
                                 </section>
@@ -1509,21 +1613,27 @@
                 </div>
 
                 <!-- Bottom System Navigation Bar -->
-                <nav id="app-bottom-nav" class="bg-surface text-slate-650 shrink-0 border-t border-border-subtle flex justify-around items-center h-16 z-40">
+                <nav id="app-bottom-nav" class="bg-white/80 backdrop-blur-md text-slate-500 shrink-0 border-t border-slate-100 flex justify-around items-center h-16 z-40">
                     <!-- Home btn -->
-                    <button onclick="switchTab('home')" id="tab-home" class="flex flex-col items-center justify-center bg-brand-blue/10 text-brand-blue rounded-xl px-4 py-1.5 active:scale-90 transition-transform">
-                        <span class="material-symbols-outlined text-lg filled-icon">home</span>
-                        <span class="text-[9px] mt-0.5 font-bold">Trang chủ</span>
+                    <button onclick="switchTab('home')" id="tab-home" class="flex flex-col items-center justify-center w-20 active:scale-95 transition-all duration-300">
+                        <div class="nav-icon-wrapper flex items-center justify-center w-11 h-11 transition-all duration-300">
+                            <span class="material-symbols-outlined text-lg">home</span>
+                        </div>
+                        <span class="nav-label text-[9px] mt-0.5 font-bold transition-all duration-300">Trang chủ</span>
                     </button>
                     <!-- Library btn -->
-                    <button onclick="switchTab('library')" id="tab-library" class="flex flex-col items-center justify-center px-4 py-1 hover:text-brand-blue active:scale-90 transition-transform">
-                        <span class="material-symbols-outlined text-lg">library_books</span>
-                        <span class="text-[9px] mt-0.5 font-bold">Thư viện</span>
+                    <button onclick="switchTab('library')" id="tab-library" class="flex flex-col items-center justify-center w-20 active:scale-95 transition-all duration-300">
+                        <div class="nav-icon-wrapper flex items-center justify-center w-11 h-11 transition-all duration-300">
+                            <span class="material-symbols-outlined text-lg">library_books</span>
+                        </div>
+                        <span class="nav-label text-[9px] mt-0.5 font-bold transition-all duration-300">Thư viện</span>
                     </button>
                     <!-- Profile btn -->
-                    <button onclick="switchTab('profile')" id="tab-profile" class="flex flex-col items-center justify-center px-4 py-1 hover:text-brand-blue active:scale-90 transition-transform">
-                        <span class="material-symbols-outlined text-lg">person</span>
-                        <span class="text-[9px] mt-0.5 font-bold">Tôi</span>
+                    <button onclick="switchTab('profile')" id="tab-profile" class="flex flex-col items-center justify-center w-20 active:scale-95 transition-all duration-300">
+                        <div class="nav-icon-wrapper flex items-center justify-center w-11 h-11 transition-all duration-300">
+                            <span class="material-symbols-outlined text-lg">person</span>
+                        </div>
+                        <span class="nav-label text-[9px] mt-0.5 font-bold transition-all duration-300">Tôi</span>
                     </button>
                 </nav>
 
@@ -1693,6 +1803,118 @@
                     reads: '3.7k',
                     cover: '/covers/ditruyen.png',
                     desc: 'Nghiên cứu ADN, đột biến gene di truyền sinh học tế bào gốc. Định hướng y học cá nhân hóa dựa trên hệ gene biểu thị của từng cá thể bệnh nhân.'
+                },
+                xuongkhop: {
+                    title: 'Giải phẫu hệ xương khớp',
+                    author: 'BS. Nguyễn Minh Tuấn',
+                    rating: '4.7',
+                    reads: '3.1k',
+                    cover: '/covers/cothe.png',
+                    desc: 'Phân tích cơ xương khớp lâm sàng và các bệnh lý về thoái hóa khớp ở người trưởng thành.'
+                },
+                sinhlythankinh: {
+                    title: 'Sinh lý học Thần kinh',
+                    author: 'GS. Phạm Hoàng Nam',
+                    rating: '4.8',
+                    reads: '2.5k',
+                    cover: '/covers/thankinh.png',
+                    desc: 'Cơ chế dẫn truyền xung điện thần kinh và các phản xạ không điều kiện của con người.'
+                },
+                naobo: {
+                    title: 'Não bộ và Hành vi',
+                    author: 'TS. Đỗ Quyên',
+                    rating: '4.6',
+                    reads: '1.8k',
+                    cover: '/covers/thankinh.png',
+                    desc: 'Nghiên cứu về mối liên hệ giữa các thùy não bộ và hành vi tâm lý của bệnh nhân tâm thần.'
+                },
+                ditruyenphantu: {
+                    title: 'Di truyền học phân tử',
+                    author: 'PGS. Lê Huy',
+                    rating: '4.7',
+                    reads: '2.9k',
+                    cover: '/covers/ditruyen.png',
+                    desc: 'Cấu trúc ADN và ARN, cơ chế nhân đôi, phiên mã và dịch mã sinh học phân tử tế bào.'
+                },
+                dotbiengene: {
+                    title: 'Đột biến Gene lâm sàng',
+                    author: 'TS. Nguyễn Thị Trang',
+                    rating: '4.9',
+                    reads: '3.5k',
+                    cover: '/covers/ditruyen.png',
+                    desc: 'Các dạng đột biến cấu trúc nhiễm sắc thể gây ra các hội chứng bệnh lý hiếm gặp trên lâm sàng.'
+                },
+                baoche: {
+                    title: 'Kỹ Thuật Bào Chế Dược Liệu',
+                    author: 'GS. TS. Nguyễn Văn Anh',
+                    rating: '4.8',
+                    reads: '6.2k',
+                    cover: '/covers/thaoduoc.png',
+                    desc: 'Hướng dẫn chi tiết phương pháp sao tẩm, chưng cất và bào chế các loại cao thảo dược quý Đông y.'
+                },
+                dongydieuphuong: {
+                    title: 'Đông Y Diệu Phương',
+                    author: 'PGS. TS. Hoàng Tích Huyền',
+                    rating: '4.8',
+                    reads: '4.1k',
+                    cover: '/covers/thaoduoc.png',
+                    desc: 'Tổng hợp các bài thuốc bí truyền từ cung đình đến dân gian, kết hợp chẩn trị y học hiện đại và phân tích dược lý sinh hóa học.'
+                },
+                namduocthanhieu: {
+                    title: 'Nam Dược Thần Hiệu',
+                    author: 'Tuệ Tĩnh',
+                    rating: '4.9',
+                    reads: '15.6k',
+                    cover: '/covers/nhansam.png',
+                    desc: 'Tác phẩm y học kinh điển của thiền sư Tuệ Tĩnh về các vị thuốc nam bản địa trị bệnh cho người Việt theo phương châm Nam dược trị Nam nhân.'
+                },
+                giaiphauthanhinh: {
+                    title: 'Giải phẫu hệ thần kinh',
+                    author: 'GS. Trịnh Bình',
+                    rating: '4.7',
+                    reads: '5.2k',
+                    cover: '/covers/cothe.png',
+                    desc: 'Khảo sát cấu trúc chi tiết của tủy sống, não bộ, hệ thần kinh ngoại vi và các bó dẫn truyền vận động cảm giác chính.'
+                },
+                atlasgiaiphau: {
+                    title: 'Atlas Giải Phẫu Cơ Thể Người',
+                    author: 'BS. Nguyễn Quang Quyền',
+                    rating: '4.9',
+                    reads: '21.4k',
+                    cover: '/covers/giaiphau.png',
+                    desc: 'Tập bản đồ giải phẫu đầy đủ nhất của Việt Nam, cung cấp cái nhìn trực quan và thuật ngữ chuẩn hóa phục vụ học tập nghiên cứu y khoa.'
+                },
+                benhthanhinh: {
+                    title: 'Bệnh học Thần kinh lâm sàng',
+                    author: 'PGS. TS. Nguyễn Chương',
+                    rating: '4.8',
+                    reads: '3.9k',
+                    cover: '/covers/thankinh.png',
+                    desc: 'Chẩn đoán và điều trị các bệnh lý thần kinh thường gặp như động kinh, đau nửa đầu, bệnh thần kinh ngoại biên và nhược cơ.'
+                },
+                taibienmachmau: {
+                    title: 'Tai biến mạch máu não',
+                    author: 'GS. Lê Đức Hinh',
+                    rating: '4.8',
+                    reads: '6.7k',
+                    cover: '/covers/thankinh.png',
+                    desc: 'Hướng dẫn chẩn đoán nhanh đột quỵ, điều trị cấp cứu nội khoa và các liệu pháp phục hồi chức năng sau tai biến.'
+                },
+                ditruyentebao: {
+                    title: 'Di truyền tế bào học',
+                    author: 'GS. Phan Cự Nhân',
+                    rating: '4.6',
+                    reads: '2.3k',
+                    cover: '/covers/ditruyen.png',
+                    desc: 'Khảo sát nhiễm sắc thể, phân bào và các bất thường NST liên quan đến dị tật bẩm sinh và ung thư di truyền.'
+                },
+                kythuatditruyen: {
+                    title: 'Kỹ thuật di truyền hiện đại',
+                    author: 'PGS. TS. Đinh Đoàn Long',
+                    rating: '4.8',
+                    reads: '4.8k',
+                    cover: '/covers/ditruyen.png',
+                    desc: 'Các công nghệ cốt lõi trong thao tác gen như PCR, giải trình tự thế hệ mới (NGS) và công nghệ CRISPR-Cas9 chỉnh sửa gen.'
                 }
             },
             currentBookId: 'thaoduoc',
@@ -1719,7 +1941,20 @@
                 'thankinh': '/covers/thankinh.png',
                 'ditruyen': '/covers/ditruyen.png',
                 'baoche': '/covers/thaoduoc.png',
-                'lichsu': '/covers/trathaomoc.png'
+                'lichsu': '/covers/trathaomoc.png',
+                'xuongkhop': '/covers/cothe.png',
+                'sinhlythankinh': '/covers/thankinh.png',
+                'naobo': '/covers/thankinh.png',
+                'ditruyenphantu': '/covers/ditruyen.png',
+                'dotbiengene': '/covers/ditruyen.png',
+                'dongydieuphuong': '/covers/thaoduoc.png',
+                'namduocthanhieu': '/covers/nhansam.png',
+                'giaiphauthanhinh': '/covers/cothe.png',
+                'atlasgiaiphau': '/covers/giaiphau.png',
+                'benhthanhinh': '/covers/thankinh.png',
+                'taibienmachmau': '/covers/thankinh.png',
+                'ditruyentebao': '/covers/ditruyen.png',
+                'kythuatditruyen': '/covers/ditruyen.png'
             };
             return coverURLs[bookId] || coverURLs['thaoduoc'];
         }
@@ -2016,12 +2251,32 @@
             tabs.forEach(t => {
                 const btn = document.getElementById(`tab-${t}`);
                 if (btn) {
+                    const wrapper = btn.querySelector('.nav-icon-wrapper');
+                    const label = btn.querySelector('.nav-label');
+                    const icon = btn.querySelector('.material-symbols-outlined');
+                    
                     if (t === tabName) {
-                        btn.className = "flex flex-col items-center justify-center bg-brand-blue/10 text-brand-blue rounded-xl px-4 py-1.5 active:scale-90 transition-transform";
-                        btn.querySelector('.material-symbols-outlined').classList.add('filled-icon');
+                        if (wrapper) {
+                            wrapper.className = "nav-icon-wrapper flex items-center justify-center w-11 h-11 active-tab-waterdrop transition-all duration-300";
+                        }
+                        if (icon) {
+                            icon.classList.add('filled-icon', 'text-[24px]');
+                            icon.classList.remove('text-lg');
+                        }
+                        if (label) {
+                            label.className = "nav-label text-[9px] mt-0.5 font-bold text-blue-600 transition-all duration-300";
+                        }
                     } else {
-                        btn.className = "flex flex-col items-center justify-center px-4 py-1 hover:text-brand-blue active:scale-90 transition-transform";
-                        btn.querySelector('.material-symbols-outlined').classList.remove('filled-icon');
+                        if (wrapper) {
+                            wrapper.className = "nav-icon-wrapper flex items-center justify-center w-11 h-11 text-slate-400 hover:bg-slate-100/50 rounded-full transition-all duration-300";
+                        }
+                        if (icon) {
+                            icon.classList.remove('filled-icon', 'text-[24px]');
+                            icon.classList.add('text-lg');
+                        }
+                        if (label) {
+                            label.className = "nav-label text-[9px] mt-0.5 font-bold text-slate-400 transition-all duration-300";
+                        }
                     }
                 }
             });
@@ -3070,6 +3325,7 @@
             renderStandaloneQuiz();
             renderAllBookCovers();
             initDragToScroll();
+            switchTab('home');
         });
     </script>
 </body>
