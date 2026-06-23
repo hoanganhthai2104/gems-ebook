@@ -733,43 +733,7 @@
                                 </div>
                             </section>
 
-                            <!-- Health Wheel (Interactive SVG) -->
-                            <section class="px-4 mb-8">
-                                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Vòng tròn Y khoa</h3>
-                                <div class="flex justify-center">
-                                    <svg viewBox="0 0 200 200" width="180" height="180" class="drop-shadow-lg">
-                                        <!-- Dược liệu segment (top-right) -->
-                                        <path id="segment-duoclieu" d="M100,100 L100,10 A90,90 0 0,1 190,100 Z" 
-                                            fill="#10b981" fill-opacity="0.7" stroke="white" stroke-width="2" 
-                                            class="cursor-pointer hover:fill-opacity-100 transition-all duration-300"
-                                            onclick="filterByWheel('duoclieu')"/>
-                                        <!-- Giải phẫu segment (bottom-right) -->
-                                        <path id="segment-giaiphau" d="M100,100 L190,100 A90,90 0 0,1 100,190 Z" 
-                                            fill="#3b82f6" fill-opacity="0.7" stroke="white" stroke-width="2" 
-                                            class="cursor-pointer hover:fill-opacity-100 transition-all duration-300"
-                                            onclick="filterByWheel('giaiphau')"/>
-                                        <!-- Thần kinh segment (bottom-left) -->
-                                        <path id="segment-thankinh" d="M100,100 L100,190 A90,90 0 0,1 10,100 Z" 
-                                            fill="#8b5cf6" fill-opacity="0.7" stroke="white" stroke-width="2" 
-                                            class="cursor-pointer hover:fill-opacity-100 transition-all duration-300"
-                                            onclick="filterByWheel('thankinh')"/>
-                                        <!-- Di truyền segment (top-left) -->
-                                        <path id="segment-ditruyen" d="M100,100 L10,100 A90,90 0 0,1 100,10 Z" 
-                                            fill="#f59e0b" fill-opacity="0.7" stroke="white" stroke-width="2" 
-                                            class="cursor-pointer hover:fill-opacity-100 transition-all duration-300"
-                                            onclick="filterByWheel('ditruyen')"/>
-                                        <!-- Center circle -->
-                                        <circle cx="100" cy="100" r="30" fill="white" stroke="#e5e7eb" stroke-width="1"/>
-                                        <text x="100" y="96" text-anchor="middle" class="text-[8px] font-bold fill-brand-blue" style="font-size:8px; font-weight:700; fill:#1565C0;">GEMS</text>
-                                        <text x="100" y="108" text-anchor="middle" class="text-[6px] fill-slate-400" style="font-size:6px; fill:#94a3b8;">Y KHOA</text>
-                                        <!-- Labels -->
-                                        <text x="148" y="55" text-anchor="middle" style="font-size:7px; font-weight:600; fill:#065f46;">Dược liệu</text>
-                                        <text x="152" y="152" text-anchor="middle" style="font-size:7px; font-weight:600; fill:#1e40af;">Giải phẫu</text>
-                                        <text x="50" y="152" text-anchor="middle" style="font-size:7px; font-weight:600; fill:#5b21b6;">Thần kinh</text>
-                                        <text x="50" y="55" text-anchor="middle" style="font-size:7px; font-weight:600; fill:#92400e;">Di truyền</text>
-                                    </svg>
-                                </div>
-                            </section>
+
                         </div>
                     </div>
 
@@ -884,13 +848,9 @@
                     <!-- ============================================== -->
                     <!-- VIEW 4: CHI TIẾT SÁCH (Book Detail Screen)       -->
                     <!-- ============================================== -->
-                    <div id="view-book-detail" class="absolute inset-0 z-[60] bg-gradient-to-br from-surface-off-white via-surface-container-low to-primary-fixed-dim/30 text-on-surface flex flex-col hidden overflow-hidden select-none">
-                        <!-- Abstract background blobs for glassmorphism effect -->
-                        <div class="absolute top-20 left-0 w-72 h-72 bg-primary-fixed/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 pointer-events-none z-0"></div>
-                        <div class="absolute bottom-40 right-0 w-96 h-96 bg-secondary-fixed/50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 pointer-events-none z-0"></div>
-
+                    <div id="view-book-detail" class="absolute inset-0 z-[60] bg-[#fbf9f8] text-on-surface flex flex-col hidden overflow-hidden select-none">
                         <!-- Navigation Header -->
-                        <header class="relative top-0 w-full bg-surface-bright/70 backdrop-blur-xl border-b border-white/50 shadow-sm z-50 flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 shrink-0">
+                        <header class="relative top-0 w-full bg-[#fbf9f8] border-b border-border-subtle shadow-sm z-50 flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 shrink-0">
                             <button onclick="closeBookDetails()" aria-label="Go back" class="text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-full p-2">
                                 <span class="material-symbols-outlined">arrow_back</span>
                             </button>
@@ -926,7 +886,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="w-full flex flex-col gap-3 bg-white/40 backdrop-blur-lg border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.05)] rounded-2xl p-4">
+                                <div class="w-full flex flex-col gap-3 bg-white border border-border-subtle shadow-sm rounded-2xl p-4">
                                     <button onclick="openEreaderScreen()" class="w-full bg-primary/90 backdrop-blur-md text-on-primary font-headline-sm text-headline-sm py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm border border-white/20 active:scale-95 duration-100 font-bold text-xs">
                                         <span class="material-symbols-outlined filled">menu_book</span> Đọc ngay
                                     </button>
@@ -950,7 +910,7 @@
                             <!-- Author Section -->
                             <section>
                                 <h3 class="font-headline-md text-headline-md text-on-surface mb-3 text-sm font-bold">Về tác giả</h3>
-                                <div onclick="openAuthorProfile()" class="bg-white/40 backdrop-blur-xl border border-white/60 rounded-2xl p-4 flex items-center gap-4 shadow-[0_8px_32px_rgba(0,0,0,0.04)] hover:shadow-lg transition-shadow cursor-pointer">
+                                <div onclick="openAuthorProfile()" class="bg-white border border-border-subtle rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
                                     <img id="detail-author-avatar" alt="Author avatar" class="w-14 h-14 rounded-full object-cover border border-white/80 shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYYfUOY4ohiAvVl30o7RMcJAjLF2LIySm4WY-VlEM-lH83J_wlRC1ukHLc75-ewYF_Dh6TfWCT9fKT8u1FPgu3AbTqzSLlJRQS_Zfkpoi-2sGi_oVjo2lp7byQipzEgxwUrFuB7HjKOg5hKZJUvqZhAABDWcu4JXS2zETY4w_yIBtEnffKy8Ff_Z_YPQjMruJE7lhoWl3jjG8shZY9csIu7PCyyr_ucM237VPaBrz8dBPaTp7ewdOqoytgC_aaUUZSAtc_XeweTYA"/>
                                     <div class="flex-1 min-w-0">
                                         <h4 class="font-headline-sm text-headline-sm text-on-surface font-bold text-xs" id="detail-author-name">GS. TS. Nguyễn Văn Anh</h4>
@@ -961,7 +921,7 @@
                             </section>
 
                             <!-- Related Books -->
-                            <section class="bg-white/30 backdrop-blur-xl border border-white/55 rounded-3xl p-4 shadow-[0_8px_32px_rgba(0,0,0,0.04)]">
+                            <section class="bg-white border border-border-subtle rounded-3xl p-4 shadow-sm">
                                 <div class="flex items-center justify-between mb-3">
                                     <h3 class="font-headline-md text-headline-md text-on-surface text-sm font-bold">Sách cùng thể loại</h3>
                                     <button onclick="switchTab('library')" class="text-primary font-body-sm text-body-sm hover:underline text-xs font-semibold">Xem tất cả</button>
@@ -969,7 +929,7 @@
                                 <div class="grid grid-cols-2 gap-4">
                                     <!-- Book 1 -->
                                     <div class="flex flex-col cursor-pointer group" onclick="openBookDetails('trathaomoc')">
-                                        <div class="aspect-[2/3] bg-white/50 backdrop-blur-md rounded-xl border border-white/60 overflow-hidden mb-2 relative shadow-sm">
+                                        <div class="aspect-[2/3] bg-slate-50 rounded-xl border border-border-subtle overflow-hidden mb-2 relative shadow-sm">
                                             <div class="gems-book-cover w-full h-full group-hover:scale-105 transition-transform duration-300" data-book-id="trathaomoc"></div>
                                         </div>
                                         <h4 class="font-body-md text-body-md font-bold text-on-surface truncate text-xs">Trà Thảo Mộc</h4>
@@ -977,7 +937,7 @@
                                     </div>
                                     <!-- Book 2 -->
                                     <div class="flex flex-col cursor-pointer group" onclick="openBookDetails('thucduong')">
-                                        <div class="aspect-[2/3] bg-white/50 backdrop-blur-md rounded-xl border border-white/60 overflow-hidden mb-2 relative shadow-sm">
+                                        <div class="aspect-[2/3] bg-slate-50 rounded-xl border border-border-subtle overflow-hidden mb-2 relative shadow-sm">
                                             <div class="gems-book-cover w-full h-full group-hover:scale-105 transition-transform duration-300" data-book-id="thucduong"></div>
                                         </div>
                                         <h4 class="font-body-md text-body-md font-bold text-on-surface truncate text-xs font-bold">Thực Dưỡng Toàn Diện</h4>
@@ -994,7 +954,7 @@
                                         <span class="material-symbols-outlined text-[18px]">edit_square</span> Viết đánh giá
                                     </button>
                                 </div>
-                                <div class="bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.04)] rounded-3xl p-4 mb-4 flex items-center gap-6">
+                                <div class="bg-white border border-border-subtle shadow-sm rounded-3xl p-4 mb-4 flex items-center gap-6">
                                     <div class="text-center flex-shrink-0">
                                         <div class="font-headline-lg text-headline-lg font-bold text-primary text-3xl mb-1">4.8</div>
                                         <div class="flex items-center justify-center gap-0.5 mb-1 text-yellow-500">
@@ -2160,10 +2120,14 @@
             }
 
             document.getElementById('view-book-detail').classList.remove('hidden');
+            document.getElementById('app-bottom-nav').classList.add('hidden');
         }
 
         function closeBookDetails() {
             document.getElementById('view-book-detail').classList.add('hidden');
+            if (appState.activeTab !== 'reader' && appState.activeTab !== 'quiz') {
+                document.getElementById('app-bottom-nav').classList.remove('hidden');
+            }
         }
 
         function addToLibraryState() {
@@ -2220,7 +2184,8 @@
 
         function closeEreaderScreen() {
             document.getElementById('view-reader').classList.add('hidden');
-            if (appState.activeTab !== 'reader' && appState.activeTab !== 'quiz') {
+            const isBookDetailOpen = !document.getElementById('view-book-detail').classList.contains('hidden');
+            if (!isBookDetailOpen && appState.activeTab !== 'reader' && appState.activeTab !== 'quiz') {
                 document.getElementById('app-bottom-nav').classList.remove('hidden');
             }
         }
