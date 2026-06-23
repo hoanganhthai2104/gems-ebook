@@ -1031,9 +1031,16 @@
                                     </div>
                                 </div>
                                 <div class="w-full flex flex-col gap-3 bg-white border border-border-subtle shadow-sm rounded-2xl p-4">
-                                    <button onclick="openEreaderScreen()" class="w-full bg-primary/90 backdrop-blur-md text-on-primary font-headline-sm text-headline-sm py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm border border-white/20 active:scale-95 duration-100 font-bold text-xs">
-                                        <span class="material-symbols-outlined filled">menu_book</span> Đọc ngay
-                                    </button>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <!-- Ebook Button -->
+                                        <button onclick="openEreaderScreen()" class="bg-primary text-on-primary py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-primary-container transition-colors shadow-sm border border-white/20 active:scale-95 duration-100 font-bold text-xs">
+                                            <span class="material-symbols-outlined text-sm">menu_book</span> Sách Ebook
+                                        </button>
+                                        <!-- Audiobook Button -->
+                                        <button onclick="openAudiobookPlayer()" class="bg-white border border-slate-200 text-slate-650 py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors shadow-sm active:scale-95 duration-100 font-bold text-xs">
+                                            <span class="material-symbols-outlined text-sm">headphones</span> Sách nói
+                                        </button>
+                                    </div>
                                     <button id="btn-library-add" onclick="addToLibraryState()" class="w-full bg-white/50 backdrop-blur-md border border-white/60 text-primary font-headline-sm text-headline-sm py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-white/70 transition-colors shadow-sm active:scale-95 duration-100 font-bold text-xs">
                                         <span class="material-symbols-outlined">library_add</span> Thêm vào thư viện
                                     </button>
@@ -1623,6 +1630,123 @@
                         <!-- Scrollable list of books -->
                         <div class="flex-grow overflow-y-auto px-margin-mobile py-stack-lg space-y-4" id="profile-sublist-content">
                             <!-- Dynamic Book Items -->
+                        </div>
+                    </div>
+
+                    <!-- ============================================== -->
+                    <!-- VIEW 5: SÁCH NÓI PLAYER (Audiobook Player)        -->
+                    <!-- ============================================== -->
+                    <div id="view-audiobook" class="absolute inset-x-0 top-0 bottom-16 z-[65] bg-[#fbf9f8] text-on-surface flex flex-col hidden overflow-hidden select-none animate-fade-in">
+                        <!-- Navigation Header -->
+                        <header class="relative top-0 w-full bg-[#fbf9f8] border-b border-border-subtle shadow-sm z-50 flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 shrink-0">
+                            <button onclick="closeAudiobookPlayer()" aria-label="Go back" class="text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-full p-2">
+                                <span class="material-symbols-outlined">expand_more</span>
+                            </button>
+                            <h1 class="font-headline-sm text-headline-sm font-bold text-primary">Đang phát</h1>
+                            <button onclick="showToast('Thêm tùy chọn sách nói.')" aria-label="More options" class="text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-full p-2">
+                                <span class="material-symbols-outlined">more_vert</span>
+                            </button>
+                        </header>
+
+                        <!-- Player Main Content -->
+                        <div class="flex-grow overflow-y-auto pb-6 px-margin-mobile flex flex-col items-center justify-between py-6 space-y-6">
+                            
+                            <!-- Cover Art Mockup Container -->
+                            <div class="flex-grow flex items-center justify-center w-full max-w-[280px] aspect-square my-auto">
+                                <!-- Smartphone mockup wrapper -->
+                                <div class="relative w-48 aspect-[2/3] bg-neutral-900 rounded-[2.5rem] shadow-[0_15px_40px_rgba(0,0,0,0.15)] border-4 border-slate-350 p-2 overflow-hidden flex flex-col items-center justify-center">
+                                    <!-- iPhone notch/bezel details -->
+                                    <div class="absolute top-2 w-16 h-3 bg-neutral-950 rounded-full z-20"></div>
+                                    <!-- Speaker screen content -->
+                                    <div class="w-full h-full rounded-[2rem] overflow-hidden bg-white relative flex flex-col z-10">
+                                        <div id="audio-cover" class="w-full h-full">
+                                            <!-- Dynamically filled with book cover -->
+                                        </div>
+                                    </div>
+                                    <!-- Bottom home bar line -->
+                                    <div class="absolute bottom-1 w-16 h-1 bg-slate-400/80 rounded-full z-20"></div>
+                                </div>
+                            </div>
+
+                            <!-- Title & Author -->
+                            <div class="text-center w-full px-4">
+                                <h2 id="audio-title" class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-1 drop-shadow-sm leading-tight text-base font-bold truncate">Cẩm nang Thảo dược Quý Phương Đông</h2>
+                                <p id="audio-author" class="font-body-lg text-body-lg text-on-surface-variant text-xs text-slate-500">GS. TS. Nguyễn Văn Anh</p>
+                            </div>
+
+                            <!-- Player Controls Box (white rounded card) -->
+                            <div class="w-full bg-white border border-border-subtle shadow-sm rounded-3xl p-5 space-y-5">
+                                <!-- Progress bar & Timers -->
+                                <div class="space-y-2">
+                                    <div id="audio-progress-bar" class="w-full h-1.5 bg-slate-100 rounded-full cursor-pointer relative" onclick="seekAudio(event)">
+                                        <div id="audio-progress-fill" class="absolute left-0 top-0 h-full bg-primary rounded-full" style="width: 32.3%"></div>
+                                        <div id="audio-progress-thumb" class="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-primary rounded-full shadow-md border-2 border-white -ml-1.75" style="left: 32.3%"></div>
+                                    </div>
+                                    <div class="flex justify-between items-center text-[10px] text-slate-400 font-bold px-1">
+                                        <span id="audio-time-current">14:32</span>
+                                        <span id="audio-time-duration">45:00</span>
+                                    </div>
+                                </div>
+
+                                <!-- Control Buttons -->
+                                <div class="flex items-center justify-around w-full max-w-[260px] mx-auto">
+                                    <!-- Skip Previous -->
+                                    <button onclick="changeAudioChapter(-1)" class="text-slate-650 hover:text-primary transition-colors p-2 active:scale-90 duration-700">
+                                        <span class="material-symbols-outlined text-[24px] font-bold">skip_previous</span>
+                                    </button>
+                                    <!-- Rewind 10s -->
+                                    <button onclick="skipAudioTime(-10)" class="text-slate-650 hover:text-primary transition-colors p-2 active:scale-90 duration-700">
+                                        <span class="material-symbols-outlined text-[24px]">replay_10</span>
+                                    </button>
+                                    <!-- Play/Pause Circular Toggle -->
+                                    <button id="btn-audio-play" onclick="toggleAudioPlayback()" class="w-14 h-14 bg-primary text-white rounded-2xl flex items-center justify-center shadow-[0_4px_12px_rgba(0,66,117,0.3)] hover:bg-primary-container active:scale-95 duration-100 transition-all">
+                                        <span id="icon-audio-play" class="material-symbols-outlined text-[28px] filled-icon">pause</span>
+                                    </button>
+                                    <!-- Fast Forward 10s -->
+                                    <button onclick="skipAudioTime(10)" class="text-slate-650 hover:text-primary transition-colors p-2 active:scale-90 duration-700">
+                                        <span class="material-symbols-outlined text-[24px]">forward_10</span>
+                                    </button>
+                                    <!-- Skip Next -->
+                                    <button onclick="changeAudioChapter(1)" class="text-slate-650 hover:text-primary transition-colors p-2 active:scale-90 duration-700">
+                                        <span class="material-symbols-outlined text-[24px] font-bold">skip_next</span>
+                                    </button>
+                                </div>
+
+                                <div class="h-[1px] bg-slate-100 w-full"></div>
+
+                                <!-- Speed, Chapter List, Sleep Timer Actions -->
+                                <div class="flex items-center justify-between px-1">
+                                    <!-- Speed Selector -->
+                                    <button id="btn-audio-speed" onclick="toggleAudioSpeed()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-bold px-3 py-2 rounded-lg transition-colors flex items-center justify-center min-w-[56px] active:scale-95 duration-100">
+                                        1.25x
+                                    </button>
+                                    <!-- Chapters Trigger -->
+                                    <button onclick="toggleAudioChapters()" class="flex items-center gap-1.5 border border-slate-200 hover:bg-slate-50 text-slate-700 text-[10px] font-bold px-4 py-2 rounded-xl transition-colors active:scale-95 duration-100">
+                                        <span class="material-symbols-outlined text-sm">list</span> Danh sách chương
+                                    </button>
+                                    <!-- Sleep Timer Trigger -->
+                                    <button id="btn-audio-timer" onclick="toggleAudioSleepTimer()" class="text-slate-650 hover:text-primary transition-colors p-2 active:scale-95 duration-100 flex items-center justify-center">
+                                        <span id="icon-audio-timer" class="material-symbols-outlined text-[18px]">timer</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Chapters Bottom Sheet Menu Overlay -->
+                        <div id="audio-chapters-sheet" class="absolute inset-x-0 bottom-0 bg-white rounded-t-[2rem] border-t border-slate-200 z-[70] shadow-[0_-8px_32px_rgba(0,0,0,0.12)] flex flex-col hidden transform translate-y-full transition-all duration-300">
+                            <!-- Drag handle line -->
+                            <div class="w-12 h-1 bg-slate-250 rounded-full mx-auto my-3 cursor-pointer" onclick="toggleAudioChapters()"></div>
+                            <div class="px-5 pb-3 flex items-center justify-between border-b border-slate-100">
+                                <h3 class="text-sm font-bold text-slate-800">Danh sách chương</h3>
+                                <button onclick="toggleAudioChapters()" class="text-slate-400 hover:text-slate-600">
+                                    <span class="material-symbols-outlined text-[18px]">close</span>
+                                </button>
+                            </div>
+                            <!-- Chapters list container -->
+                            <div id="audio-chapters-list" class="flex-grow overflow-y-auto max-h-[300px] p-2 space-y-1">
+                                <!-- Programmatically populated chapters -->
+                            </div>
                         </div>
                     </div>
 
@@ -2253,6 +2377,7 @@
             closeAuthorProfile();
             closeEreaderScreen();
             closeQuizScreen();
+            closeAudiobookPlayer();
 
             // Panels show/hide
             document.querySelectorAll('.view-panel').forEach(panel => {
@@ -2441,6 +2566,12 @@
 
         // E-reader view screen opening
         function openEreaderScreen() {
+            // Pause audiobook if playing
+            if (audiobookState.isPlaying) {
+                stopAudioTicker();
+                audiobookState.isPlaying = false;
+                updateAudioPlayerUI();
+            }
             const book = appState.bookData[appState.currentBookId];
             if (book) {
                 document.getElementById('reader-book-title').innerText = book.title;
@@ -3444,6 +3575,267 @@
 
         function closeProfileSublist() {
             document.getElementById('view-profile-sublist').classList.add('hidden');
+        }
+
+        // --- GEMS Audiobook Player Simulation Logic ---
+        
+        let audioInterval = null;
+        let sleepTimerId = null;
+        let sleepTimerSecs = 0;
+
+        const audiobookState = {
+            isPlaying: false,
+            currentTime: 872, // 14:32
+            duration: 2700,   // 45:00
+            speed: 1.25,
+            currentChapterIdx: 0,
+            chapters: [
+                { title: "Chương 1: Nguồn gốc và lịch sử thảo dược", durationSecs: 900 },
+                { title: "Chương 2: Các nhóm hợp chất Saponin", durationSecs: 900 },
+                { title: "Chương 3: Nghiên cứu thực nghiệm lâm sàng", durationSecs: 900 },
+                { title: "Chương 4: Quy trình bào chế dược liệu", durationSecs: 1000 },
+            ]
+        };
+
+        function formatAudioTime(secs) {
+            const m = Math.floor(secs / 60);
+            const s = Math.floor(secs % 60);
+            return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        }
+
+        function openAudiobookPlayer() {
+            const bookId = appState.currentBookId || 'thaoduoc';
+            const book = appState.bookData[bookId];
+            if (!book) return;
+
+            // Populate metadata
+            document.getElementById('audio-title').innerText = book.title;
+            document.getElementById('audio-author').innerText = book.author;
+            document.getElementById('audio-cover').innerHTML = `<img src="${getBookCoverURL(bookId)}" class="w-full h-full object-cover rounded-2xl" alt="${book.title}" />`;
+
+            // Reset or maintain audio time based on book
+            // For 'thaoduoc' (Cẩm nang Thảo dược), let's keep the user's mockup time 14:32 / 45:00
+            if (bookId === 'thaoduoc') {
+                audiobookState.duration = 2700; // 45:00
+                if (audiobookState.currentTime === 0) {
+                    audiobookState.currentTime = 872; // 14:32
+                }
+            } else {
+                audiobookState.duration = 1800; // 30:00 default
+                audiobookState.currentTime = 0;
+            }
+
+            audiobookState.currentChapterIdx = 0;
+            updateAudioPlayerUI();
+            renderAudioChapters();
+
+            // Open screen
+            document.getElementById('view-audiobook').classList.remove('hidden');
+        }
+
+        function closeAudiobookPlayer() {
+            document.getElementById('view-audiobook').classList.add('hidden');
+            // Close chapters sheet if open
+            document.getElementById('audio-chapters-sheet').classList.add('translate-y-full');
+            document.getElementById('audio-chapters-sheet').classList.add('hidden');
+            // Stop ticker if playing when collapsing
+            if (audiobookState.isPlaying) {
+                stopAudioTicker();
+                audiobookState.isPlaying = false;
+                updateAudioPlayerUI();
+            }
+        }
+
+        function updateAudioPlayerUI() {
+            const currentFormatted = formatAudioTime(audiobookState.currentTime);
+            const durationFormatted = formatAudioTime(audiobookState.duration);
+            
+            document.getElementById('audio-time-current').innerText = currentFormatted;
+            document.getElementById('audio-time-duration').innerText = durationFormatted;
+
+            // Progress bar percentages
+            const percent = (audiobookState.currentTime / audiobookState.duration) * 100;
+            document.getElementById('audio-progress-fill').style.width = `${percent}%`;
+            document.getElementById('audio-progress-thumb').style.left = `${percent}%`;
+
+            // Play/Pause button
+            const playIcon = document.getElementById('icon-audio-play');
+            if (audiobookState.isPlaying) {
+                playIcon.innerText = 'pause';
+            } else {
+                playIcon.innerText = 'play_arrow';
+            }
+
+            // Speed
+            document.getElementById('btn-audio-speed').innerText = `${audiobookState.speed.toFixed(2).replace('.00', '')}x`;
+            
+            // Highlight current chapter in bottom sheet list
+            const items = document.querySelectorAll('.audio-chapter-item');
+            items.forEach((item, idx) => {
+                if (idx === audiobookState.currentChapterIdx) {
+                    item.classList.add('bg-primary/5', 'border-primary/20', 'text-primary');
+                    item.classList.remove('bg-white', 'border-slate-100');
+                } else {
+                    item.classList.remove('bg-primary/5', 'border-primary/20', 'text-primary');
+                    item.classList.add('bg-white', 'border-slate-100');
+                }
+            });
+        }
+
+        function toggleAudioPlayback() {
+            audiobookState.isPlaying = !audiobookState.isPlaying;
+            if (audiobookState.isPlaying) {
+                startAudioTicker();
+                showToast("Đang phát sách nói...", "success");
+            } else {
+                stopAudioTicker();
+                showToast("Đã tạm dừng sách nói.");
+            }
+            updateAudioPlayerUI();
+        }
+
+        function startAudioTicker() {
+            if (audioInterval) clearInterval(audioInterval);
+            audioInterval = setInterval(() => {
+                // Advance time based on rate
+                audiobookState.currentTime += audiobookState.speed;
+                if (audiobookState.currentTime >= audiobookState.duration) {
+                    audiobookState.currentTime = audiobookState.duration;
+                    audiobookState.isPlaying = false;
+                    stopAudioTicker();
+                    showToast("Đã phát hết cuốn sách nói này.");
+                }
+                updateAudioPlayerUI();
+            }, 1000);
+        }
+
+        function stopAudioTicker() {
+            if (audioInterval) {
+                clearInterval(audioInterval);
+                audioInterval = null;
+            }
+        }
+
+        function skipAudioTime(secs) {
+            audiobookState.currentTime += secs;
+            if (audiobookState.currentTime < 0) audiobookState.currentTime = 0;
+            if (audiobookState.currentTime > audiobookState.duration) audiobookState.currentTime = audiobookState.duration;
+            updateAudioPlayerUI();
+            showToast(secs > 0 ? "Tua nhanh 10 giây." : "Tua lại 10 giây.");
+        }
+
+        function seekAudio(event) {
+            const bar = document.getElementById('audio-progress-bar');
+            const rect = bar.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            const width = rect.width;
+            let percent = clickX / width;
+            if (percent < 0) percent = 0;
+            if (percent > 1) percent = 1;
+            
+            audiobookState.currentTime = percent * audiobookState.duration;
+            updateAudioPlayerUI();
+        }
+
+        function changeAudioChapter(dir) {
+            let nextIdx = audiobookState.currentChapterIdx + dir;
+            if (nextIdx >= 0 && nextIdx < audiobookState.chapters.length) {
+                selectAudioChapter(nextIdx);
+                showToast(`Đã chuyển sang ${audiobookState.chapters[nextIdx].title}`);
+            } else {
+                showToast("Không có chương tiếp theo.");
+            }
+        }
+
+        function selectAudioChapter(idx) {
+            audiobookState.currentChapterIdx = idx;
+            // Place playback time to the simulated start of the chapter
+            let startSec = 0;
+            for (let i = 0; i < idx; i++) {
+                startSec += audiobookState.chapters[i].durationSecs;
+            }
+            audiobookState.currentTime = startSec;
+            if (audiobookState.currentTime > audiobookState.duration) {
+                audiobookState.currentTime = audiobookState.duration;
+            }
+            updateAudioPlayerUI();
+        }
+
+        function toggleAudioSpeed() {
+            const speeds = [1.0, 1.25, 1.5, 2.0];
+            let currentIdx = speeds.indexOf(audiobookState.speed);
+            let nextIdx = (currentIdx + 1) % speeds.length;
+            audiobookState.speed = speeds[nextIdx];
+            updateAudioPlayerUI();
+            
+            // If playing, restart ticker to apply speed immediately (though setInterval is 1s, speed adds value)
+            if (audiobookState.isPlaying) {
+                startAudioTicker();
+            }
+            showToast(`Tốc độ phát: ${audiobookState.speed}x`);
+        }
+
+        function toggleAudioChapters() {
+            const sheet = document.getElementById('audio-chapters-sheet');
+            const isHidden = sheet.classList.contains('hidden');
+            if (isHidden) {
+                sheet.classList.remove('hidden');
+                setTimeout(() => {
+                    sheet.classList.remove('translate-y-full');
+                }, 50);
+            } else {
+                sheet.classList.add('translate-y-full');
+                setTimeout(() => {
+                    sheet.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        function renderAudioChapters() {
+            const listContainer = document.getElementById('audio-chapters-list');
+            listContainer.innerHTML = audiobookState.chapters.map((ch, idx) => {
+                const durStr = formatAudioTime(ch.durationSecs);
+                return `
+                    <div onclick="selectAudioChapter(${idx}); toggleAudioChapters();" class="audio-chapter-item flex justify-between items-center p-3 bg-white border border-slate-100 rounded-xl cursor-pointer hover:bg-slate-50 transition-all">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px] text-slate-400">headphones</span>
+                            <span class="text-xs font-bold text-slate-700">${ch.title}</span>
+                        </div>
+                        <span class="text-[10px] text-slate-450 font-bold">${durStr}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleAudioSleepTimer() {
+            const timerBtn = document.getElementById('btn-audio-timer');
+            const timerIcon = document.getElementById('icon-audio-timer');
+            
+            if (sleepTimerId) {
+                // Clear active timer
+                clearTimeout(sleepTimerId);
+                sleepTimerId = null;
+                timerBtn.classList.remove('text-primary');
+                timerBtn.classList.add('text-slate-655');
+                timerIcon.innerText = 'timer';
+                showToast("Đã tắt hẹn giờ ngủ.");
+            } else {
+                // Set 15s timer for simulation demo
+                showToast("Hẹn giờ tắt sau 15 giây (bản demo).", "success");
+                timerBtn.classList.add('text-primary');
+                timerIcon.innerText = 'timer_3';
+                
+                sleepTimerId = setTimeout(() => {
+                    if (audiobookState.isPlaying) {
+                        toggleAudioPlayback(); // pause audio
+                    }
+                    sleepTimerId = null;
+                    timerBtn.classList.remove('text-primary');
+                    timerBtn.classList.add('text-slate-655');
+                    timerIcon.innerText = 'timer';
+                    showToast("Đã tự động tạm dừng sách nói (Hẹn giờ ngủ).");
+                }, 15000);
+            }
         }
 
         // Initialize default chapter and standalone quiz on page load
