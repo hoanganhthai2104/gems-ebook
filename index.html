@@ -1018,13 +1018,9 @@
                     <!-- ============================================== -->
                     <!-- VIEW 5: HỒ SƠ TÁC GIẢ (Author Profile)          -->
                     <!-- ============================================== -->
-                    <div id="view-author-profile" class="absolute inset-0 z-[70] bg-gradient-to-br from-background via-surface-container-low to-secondary-container/20 text-on-background flex flex-col hidden overflow-hidden select-none">
-                        <!-- Abstract background blobs for glassmorphism effect -->
-                        <div class="absolute top-20 left-0 w-72 h-72 bg-primary-fixed/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 pointer-events-none z-0"></div>
-                        <div class="absolute bottom-40 right-0 w-96 h-96 bg-secondary-fixed/50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 pointer-events-none z-0"></div>
-
+                    <div id="view-author-profile" class="absolute inset-0 z-[70] bg-[#fbf9f8] text-on-background flex flex-col hidden overflow-hidden select-none">
                         <!-- TopAppBar -->
-                        <header class="relative top-0 w-full bg-white/60 backdrop-blur-lg flex items-center justify-between px-margin-mobile h-16 z-50 border-b border-white/30 shadow-sm shrink-0">
+                        <header class="relative top-0 w-full bg-[#fbf9f8] flex items-center justify-between px-margin-mobile h-16 z-50 border-b border-border-subtle shadow-sm shrink-0">
                             <button onclick="closeAuthorProfile()" class="text-on-surface-variant hover:bg-surface-container-low/50 p-2 rounded-full transition-colors cursor-pointer active:opacity-70 flex items-center justify-center">
                                 <span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
                             </button>
@@ -1039,8 +1035,7 @@
                             <!-- Profile Header Section -->
                             <section class="flex flex-col items-center text-center space-y-stack-md relative mt-4">
                                 <div class="relative inline-block z-0">
-                                    <div class="absolute inset-0 bg-gradient-to-tr from-primary/30 to-secondary/30 rounded-full blur-2xl opacity-70 transform scale-150 -z-10 mix-blend-multiply"></div>
-                                    <div class="w-32 h-32 rounded-full border-4 border-white/60 overflow-hidden shadow-lg relative z-10 backdrop-blur-sm">
+                                    <div class="w-32 h-32 rounded-full border-4 border-white overflow-hidden shadow-lg relative z-10 bg-white">
                                         <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYYfUOY4ohiAvVl30o7RMcJAjLF2LIySm4WY-VlEM-lH83J_wlRC1ukHLc75-ewYF_Dh6TfWCT9fKT8u1FPgu3AbTqzSLlJRQS_Zfkpoi-2sGi_oVjo2lp7byQipzEgxwUrFuB7HjKOg5hKZJUvqZhAABDWcu4JXS2zETY4w_yIBtEnffKy8Ff_Z_YPQjMruJE7lhoWl3jjG8shZY9csIu7PCyyr_ucM237VPaBrz8dBPaTp7ewdOqoytgC_aaUUZSAtc_XeweTYA" alt="GS. TS. Nguyễn Văn Anh"/>
                                     </div>
                                     <div class="absolute bottom-0 right-0 bg-primary/90 backdrop-blur-md text-on-primary rounded-full p-1 border-2 border-white/50 flex items-center justify-center shadow-lg z-20">
@@ -1053,18 +1048,14 @@
                                     <p class="font-body-md text-body-md text-on-surface-variant text-[11px] mt-1 text-slate-500">Học viện Quân y & Viện Dược liệu Trung ương</p>
                                 </div>
                                 <div class="flex gap-gutter w-full max-w-sm justify-center mt-stack-sm relative z-10 pt-2">
-                                    <button id="btn-follow-author" onclick="followAuthorState()" class="flex-1 bg-primary/70 backdrop-blur-md text-on-primary py-3 px-6 rounded-xl border border-white/30 flex items-center justify-center gap-2 hover:bg-primary/80 transition-all shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] text-xs font-bold active:scale-95 duration-100">
+                                    <button id="btn-follow-author" onclick="followAuthorState()" class="flex-1 bg-primary text-on-primary py-3 px-6 rounded-xl flex items-center justify-center gap-2 hover:bg-primary-container hover:text-on-primary-container transition-all shadow-sm text-xs font-bold active:scale-95 duration-100">
                                         <span class="material-symbols-outlined text-sm" data-icon="person_add">person_add</span> Theo dõi (<span id="author-followers">1.2k</span>)
-                                    </button>
-                                    <button onclick="showToast('Đang tạo tin nhắn tới Giáo sư...')" class="bg-white/40 backdrop-blur-md border border-white/50 text-primary py-3 px-4 rounded-xl flex items-center justify-center hover:bg-white/50 transition-all shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] active:scale-95 duration-100">
-                                        <span class="material-symbols-outlined text-sm" data-icon="mail">mail</span>
                                     </button>
                                 </div>
                             </section>
 
                             <!-- Biography Section -->
-                            <section class="bg-white/40 backdrop-blur-xl border border-white/50 rounded-2xl p-6 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] relative overflow-hidden">
-                                <div class="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent pointer-events-none"></div>
+                            <section class="bg-white border border-border-subtle rounded-2xl p-6 shadow-sm relative overflow-hidden">
                                 <div class="relative z-10 space-y-stack-md">
                                     <h3 class="font-headline-sm text-headline-sm text-primary flex items-center gap-2 text-xs font-bold">
                                         <span class="material-symbols-outlined text-sm" data-icon="menu_book">menu_book</span> Tiểu sử
@@ -1101,7 +1092,7 @@
                             <section class="space-y-stack-md">
                                 <h3 class="font-headline-sm text-headline-sm text-on-background text-xs font-bold">Thành tựu & Giải thưởng</h3>
                                 <div class="space-y-stack-sm mt-2">
-                                    <div class="bg-white/40 backdrop-blur-xl border border-white/50 rounded-2xl p-4 flex items-center gap-4 shadow-sm">
+                                    <div class="bg-white border border-border-subtle rounded-2xl p-4 flex items-center gap-4 shadow-sm">
                                         <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
                                             <span class="material-symbols-outlined text-lg" data-icon="military_tech">military_tech</span>
                                         </div>
@@ -1110,7 +1101,7 @@
                                             <p class="font-body-sm text-body-sm text-on-surface-variant text-[10px] text-slate-500">Trao tặng bởi Văn phòng Chủ tịch nước - 2021</p>
                                         </div>
                                     </div>
-                                    <div class="bg-white/40 backdrop-blur-xl border border-white/50 rounded-2xl p-4 flex items-center gap-4 shadow-sm mt-2">
+                                    <div class="bg-white border border-border-subtle rounded-2xl p-4 flex items-center gap-4 shadow-sm mt-2">
                                         <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
                                             <span class="material-symbols-outlined text-lg" data-icon="workspace_premium">workspace_premium</span>
                                         </div>
