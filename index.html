@@ -661,77 +661,84 @@
                                 </div>
                             </section>
 
-                            <!-- Category Filter Pills -->
-                            <section class="px-4 mb-4">
-                                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Phân loại chuyên khoa</h3>
-                                <div class="flex gap-2 overflow-x-auto custom-scrollbar pb-2">
-                                    <button id="pill-all" onclick="filterCategory('all')" class="pill-btn font-bold text-xs px-4 py-2 rounded-full bg-brand-blue text-white shadow-sm flex-shrink-0 transition-all">Tất cả</button>
-                                    <button id="pill-duoclieu" onclick="filterCategory('duoclieu')" class="pill-btn font-bold text-xs px-4 py-2 rounded-full bg-white text-slate-650 border border-gray-250 flex-shrink-0 transition-all hover:border-brand-blue hover:text-brand-blue">Dược liệu</button>
-                                    <button id="pill-giaiphau" onclick="filterCategory('giaiphau')" class="pill-btn font-bold text-xs px-4 py-2 rounded-full bg-white text-slate-650 border border-gray-250 flex-shrink-0 transition-all hover:border-brand-blue hover:text-brand-blue">Giải phẫu</button>
-                                    <button id="pill-thankinh" onclick="filterCategory('thankinh')" class="pill-btn font-bold text-xs px-4 py-2 rounded-full bg-white text-slate-650 border border-gray-250 flex-shrink-0 transition-all hover:border-brand-blue hover:text-brand-blue">Thần kinh</button>
-                                    <button id="pill-ditruyen" onclick="filterCategory('ditruyen')" class="pill-btn font-bold text-xs px-4 py-2 rounded-full bg-white text-slate-650 border border-gray-250 flex-shrink-0 transition-all hover:border-brand-blue hover:text-brand-blue">Di truyền</button>
-                                </div>
-                            </section>
+                            <!-- Netflix-style Category Shelves -->
+                            <div class="space-y-6">
+                                <!-- Section: Dược liệu học -->
+                                <section class="px-4">
+                                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Dược liệu học</h3>
+                                    <div class="flex gap-3 overflow-x-auto custom-scrollbar pb-2">
+                                        <!-- Book 1 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('thaoduoc')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="thaoduoc"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Cẩm nang Thảo dược</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">GS. TS. Nguyễn Văn Anh</p>
+                                        </div>
+                                        <!-- Book 2 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('nhansam')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="nhansam"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Nhân Sâm y học</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">PGS. Lê Thị Hoa</p>
+                                        </div>
+                                    </div>
+                                </section>
 
-                            <!-- Filter Banner (hidden by default) -->
-                            <div id="filter-banner" class="hidden mx-4 mb-4 bg-brand-blue/10 border border-brand-blue/20 rounded-xl p-3 flex items-center justify-between">
-                                <div class="flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-brand-blue text-sm">filter_list</span>
-                                    <span class="text-xs font-bold text-brand-blue">Đang lọc: <span id="filtered-category-name">Dược liệu học</span></span>
-                                </div>
-                                <button onclick="resetFilters()" class="text-[10px] text-brand-blue font-bold hover:underline">Xóa lọc</button>
+                                <!-- Section: Giải phẫu học -->
+                                <section class="px-4">
+                                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Giải phẫu học</h3>
+                                    <div class="flex gap-3 overflow-x-auto custom-scrollbar pb-2">
+                                        <!-- Book 1 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('giaiphau')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="giaiphau"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Giải phẫu đại cương</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">BS. Trần Minh Đức</p>
+                                        </div>
+                                        <!-- Book 2 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('cohoc')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="cohoc"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Cơ học vận động</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">TS. Phạm Quốc Hùng</p>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- Section: Thần kinh học -->
+                                <section class="px-4">
+                                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Thần kinh học</h3>
+                                    <div class="flex gap-3 overflow-x-auto custom-scrollbar pb-2">
+                                        <!-- Book 1 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('thankinh')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="thankinh"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Thần kinh học cơ bản</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">GEMS Academic</p>
+                                        </div>
+                                        <!-- Book 2 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('tamly')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="tamly"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Tâm lý học lâm sàng</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">ThS. Ngô Anh Tuấn</p>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- Section: Di truyền học -->
+                                <section class="px-4">
+                                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Di truyền học</h3>
+                                    <div class="flex gap-3 overflow-x-auto custom-scrollbar pb-2">
+                                        <!-- Book 1 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('ditruyen')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="ditruyen"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Di truyền học y khoa</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">PGS. TS. Trần Hải</p>
+                                        </div>
+                                        <!-- Book 2 -->
+                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('genkhoa')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="genkhoa"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Gen và bệnh học</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5">TS. Vũ Thị Lan</p>
+                                        </div>
+                                    </div>
+                                </section>
                             </div>
-
-                            <!-- Book Grid (Filterable by Category) -->
-                            <section class="px-4 mb-6">
-                                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Tất cả sách</h3>
-                                <div class="grid grid-cols-3 gap-3">
-                                    <!-- Dược liệu books -->
-                                    <div class="book-item cursor-pointer transition-all duration-300" data-cat="duoclieu" onclick="openBookDetails('thaoduoc')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="thaoduoc"></div>
-                                        <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Cẩm nang Thảo dược</h4>
-                                        <p class="text-[9px] text-slate-400 mt-0.5">GS. TS. Nguyễn Văn Anh</p>
-                                    </div>
-                                    <div class="book-item cursor-pointer transition-all duration-300" data-cat="duoclieu" onclick="openBookDetails('nhansam')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="nhansam"></div>
-                                        <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Nhân Sâm y học</h4>
-                                        <p class="text-[9px] text-slate-400 mt-0.5">PGS. Lê Thị Hoa</p>
-                                    </div>
-                                    <!-- Giải phẫu books -->
-                                    <div class="book-item cursor-pointer transition-all duration-300" data-cat="giaiphau" onclick="openBookDetails('giaiphau')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="giaiphau"></div>
-                                        <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Giải phẫu đại cương</h4>
-                                        <p class="text-[9px] text-slate-400 mt-0.5">BS. Trần Minh Đức</p>
-                                    </div>
-                                    <div class="book-item cursor-pointer transition-all duration-300" data-cat="giaiphau" onclick="openBookDetails('cohoc')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="cohoc"></div>
-                                        <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Cơ học vận động</h4>
-                                        <p class="text-[9px] text-slate-400 mt-0.5">TS. Phạm Quốc Hùng</p>
-                                    </div>
-                                    <!-- Thần kinh books -->
-                                    <div class="book-item cursor-pointer transition-all duration-300" data-cat="thankinh" onclick="openBookDetails('thankinh')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="thankinh"></div>
-                                        <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Thần kinh học cơ bản</h4>
-                                        <p class="text-[9px] text-slate-400 mt-0.5">GEMS Academic</p>
-                                    </div>
-                                    <div class="book-item cursor-pointer transition-all duration-300" data-cat="thankinh" onclick="openBookDetails('tamly')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="tamly"></div>
-                                        <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Tâm lý học lâm sàng</h4>
-                                        <p class="text-[9px] text-slate-400 mt-0.5">ThS. Ngô Anh Tuấn</p>
-                                    </div>
-                                    <!-- Di truyền books -->
-                                    <div class="book-item cursor-pointer transition-all duration-300" data-cat="ditruyen" onclick="openBookDetails('ditruyen')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="ditruyen"></div>
-                                        <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Di truyền học y khoa</h4>
-                                        <p class="text-[9px] text-slate-400 mt-0.5">PGS. TS. Trần Hải</p>
-                                    </div>
-                                    <div class="book-item cursor-pointer transition-all duration-300" data-cat="ditruyen" onclick="openBookDetails('genkhoa')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="genkhoa"></div>
-                                        <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Gen và bệnh học</h4>
-                                        <p class="text-[9px] text-slate-400 mt-0.5">TS. Vũ Thị Lan</p>
-                                    </div>
-                                </div>
-                            </section>
 
 
                         </div>
