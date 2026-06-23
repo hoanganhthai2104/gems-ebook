@@ -390,10 +390,42 @@
 
         /* Premium Waterdrop active tab style */
         .active-tab-waterdrop {
-            border-radius: 50% 50% 15% 50% !important;
+            border-radius: 0% 50% 50% 50% !important;
             background: linear-gradient(135deg, rgba(37, 99, 235, 0.16) 0%, rgba(13, 148, 136, 0.16) 100%) !important;
             color: #2563eb !important;
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.06);
+            transform: rotate(-45deg) scale(1.05) !important;
+        }
+        .active-tab-waterdrop .material-symbols-outlined {
+            transform: rotate(45deg) !important;
+            display: inline-block;
+        }
+
+        /* Scroll mode styles */
+        #flipbook-container.scroll-mode {
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto !important;
+            height: 100%;
+        }
+        #flipbook-container.scroll-mode .flipbook-page {
+            position: relative !important;
+            transform: none !important;
+            height: auto !important;
+            min-height: 100% !important;
+            flex-shrink: 0;
+            border-bottom: 8px solid rgba(0, 0, 0, 0.05);
+        }
+        #flipbook-container.scroll-mode .page-container {
+            height: auto !important;
+            min-height: 100% !important;
+        }
+        /* Hide tap zones and side buttons in scroll mode */
+        #flipbook-container.scroll-mode ~ #tap-zone-prev,
+        #flipbook-container.scroll-mode ~ #tap-zone-next,
+        #flipbook-container.scroll-mode ~ #flip-prev-btn,
+        #flipbook-container.scroll-mode ~ #flip-next-btn {
+            display: none !important;
         }
     </style>
 </head>
@@ -425,7 +457,7 @@
                         </header>
 
                         <!-- Scrollable home content -->
-                        <div class="flex-1 overflow-y-auto pb-24 px-margin-mobile py-6 space-y-6">
+                        <div class="flex-1 overflow-y-auto pb-6 px-margin-mobile py-6 space-y-6">
                             <!-- Daily Missions -->
                             <section class="bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.03)] rounded-2xl p-5">
                                 <div class="flex justify-between items-center mb-4">
@@ -509,24 +541,25 @@
                     <!-- ============================================== -->
                     <!-- VIEW 2: THƯ VIỆN (Library Screen)              -->
                     <!-- ============================================== -->
-                    <div id="view-library" class="view-panel flex-1 flex flex-col overflow-hidden hidden bg-surface-off-white/40">
+                    <div id="view-library" class="view-panel flex-1 flex flex-col overflow-hidden hidden bg-white">
                         <!-- Top Nav -->
-                        <nav class="sticky top-0 z-30 flex items-center justify-between px-4 py-3 bg-white border-b border-gray-200 shrink-0 shadow-sm">
-                            <h2 class="font-sans text-base font-bold text-brand-blue">Thư Viện GEMS</h2>
-                            <div class="flex gap-2">
-                                <button onclick="showToast('Chức năng tìm kiếm sách.')" class="text-slate-650 p-2 hover:bg-slate-100 rounded-full transition-colors">
-                                    <span class="material-symbols-outlined text-lg">search</span>
+                        <header class="bg-white/80 backdrop-blur-md w-full top-0 sticky border-b border-slate-100 flex items-center justify-between px-margin-mobile py-3 z-40 shrink-0">
+                            <div class="w-8"></div>
+                            <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">GEMS</h1>
+                            <div class="flex items-center gap-1">
+                                <button onclick="showToast('Chức năng tìm kiếm sách.')" class="text-primary hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-xl">search</span>
                                 </button>
-                                <button onclick="resetFilters()" class="text-slate-650 p-2 hover:bg-slate-100 rounded-full transition-colors" title="Bỏ lọc">
-                                    <span class="material-symbols-outlined text-lg">filter_alt_off</span>
+                                <button onclick="resetFilters()" class="text-primary hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center" title="Bỏ lọc">
+                                    <span class="material-symbols-outlined text-xl">filter_alt_off</span>
                                 </button>
                             </div>
-                        </nav>
-
-                        <div class="flex-1 overflow-y-auto pb-20">
+                        </header>
+ 
+                        <div class="flex-1 overflow-y-auto pb-6">
                             <!-- 3D Flip Book Carousel -->
-                            <section class="py-4 px-4 bg-gradient-to-b from-brand-blue/5 to-transparent">
-                                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Sách Nổi Bật (3D Carousel)</h3>
+                            <section class="py-4 px-4 bg-gradient-to-b from-blue-50/10 to-transparent">
+                                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Sách Nổi Bật</h3>
                                 
                                 <div class="carousel-container flex items-center justify-center">
                                     <!-- Carousel Card 1 (Dược liệu) -->
@@ -542,29 +575,29 @@
                                         <div class="gems-book-cover w-full h-full" data-book-id="thucduong"></div>
                                     </div>
                                 </div>
-                                <div class="flex justify-center gap-4 mt-2">
-                                    <button onclick="rotateCarousel(-1)" class="w-7 h-7 rounded-full bg-white border border-slate-200 flex items-center justify-center shadow-sm active:scale-95">
-                                        <span class="material-symbols-outlined text-xs">chevron_left</span>
+                                <div class="flex justify-center gap-4 mt-3">
+                                    <button onclick="rotateCarousel(-1)" class="w-8 h-8 rounded-full bg-white border border-slate-100 flex items-center justify-center shadow-sm active:scale-95 hover:bg-slate-50 transition-all text-slate-600">
+                                        <span class="material-symbols-outlined text-sm">chevron_left</span>
                                     </button>
-                                    <button onclick="rotateCarousel(1)" class="w-7 h-7 rounded-full bg-brand-blue text-white flex items-center justify-center shadow-sm active:scale-95">
-                                        <span class="material-symbols-outlined text-xs">chevron_right</span>
+                                    <button onclick="rotateCarousel(1)" class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-600 to-teal-500 text-white flex items-center justify-center shadow-md active:scale-95 hover:shadow-lg transition-all">
+                                        <span class="material-symbols-outlined text-sm">chevron_right</span>
                                     </button>
                                 </div>
                             </section>
 
                             <!-- Section: Tiếp tục đọc -->
                             <section class="px-4 mb-6">
-                                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Tiếp tục đọc</h3>
+                                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Tiếp tục đọc</h3>
                                 <div class="flex gap-4 overflow-x-auto custom-scrollbar pb-2 pr-4">
                                     
                                     <!-- Book 1 (Cơ thể người) -->
-                                    <div class="flex-shrink-0 w-64 bg-white rounded-xl border border-border-subtle p-3 flex gap-3 cursor-pointer shadow-sm hover:shadow-md transition-all animate-fade-in" onclick="openBookDetails('co-the-nguoi')">
-                                        <div class="gems-book-cover w-16 h-24 shrink-0 rounded shadow-sm border border-border-subtle overflow-hidden" data-book-id="co-the-nguoi"></div>
+                                    <div class="flex-shrink-0 w-64 bg-white rounded-2xl border border-slate-100 p-3 flex gap-3 cursor-pointer shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:shadow-md transition-all duration-300 animate-fade-in" onclick="openBookDetails('co-the-nguoi')">
+                                        <div class="gems-book-cover w-16 h-24 shrink-0 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.08)] border border-slate-100 overflow-hidden" data-book-id="co-the-nguoi"></div>
                                         <div class="flex-grow flex flex-col justify-between">
                                             <div>
                                                 <h4 class="text-xs font-bold text-slate-800 line-clamp-1">Cơ thể người: Phân tích chi tiết</h4>
                                                 <p class="text-[9px] text-slate-400 mt-0.5">PGS. TS. Lê Thu</p>
-                                                <p class="text-[8px] text-brand-blue font-semibold mt-1">Chương 4: Hệ tuần hoàn</p>
+                                                <p class="text-[8px] text-blue-600 font-semibold mt-1">Chương 4: Hệ tuần hoàn</p>
                                             </div>
                                             <div class="space-y-1">
                                                 <div class="flex justify-between items-center text-[8px] text-slate-500 font-bold">
@@ -572,20 +605,20 @@
                                                     <span>65%</span>
                                                 </div>
                                                 <div class="w-full bg-slate-100 rounded-full h-1">
-                                                    <div class="bg-primary h-1 rounded-full" style="width: 65%"></div>
+                                                    <div class="bg-gradient-to-r from-blue-500 to-teal-400 h-1 rounded-full" style="width: 65%"></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
+ 
                                     <!-- Book 2 (Thảo dược) -->
-                                    <div class="flex-shrink-0 w-64 bg-white rounded-xl border border-border-subtle p-3 flex gap-3 cursor-pointer shadow-sm hover:shadow-md transition-all animate-fade-in" onclick="openBookDetails('thaoduoc')">
-                                        <div class="gems-book-cover w-16 h-24 shrink-0 rounded shadow-sm border border-border-subtle overflow-hidden" data-book-id="thaoduoc"></div>
+                                    <div class="flex-shrink-0 w-64 bg-white rounded-2xl border border-slate-100 p-3 flex gap-3 cursor-pointer shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:shadow-md transition-all duration-300 animate-fade-in" onclick="openBookDetails('thaoduoc')">
+                                        <div class="gems-book-cover w-16 h-24 shrink-0 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.08)] border border-slate-100 overflow-hidden" data-book-id="thaoduoc"></div>
                                         <div class="flex-grow flex flex-col justify-between">
                                             <div>
                                                 <h4 class="text-xs font-bold text-slate-800 line-clamp-1">Cẩm nang Thảo dược</h4>
                                                 <p class="text-[9px] text-slate-400 mt-0.5">GS. TS. Nguyễn Văn Anh</p>
-                                                <p class="text-[8px] text-brand-blue font-semibold mt-1">Chương 4: Tam Thất</p>
+                                                <p class="text-[8px] text-blue-600 font-semibold mt-1">Chương 4: Tam Thất</p>
                                             </div>
                                             <div class="space-y-1">
                                                 <div class="flex justify-between items-center text-[8px] text-slate-500 font-bold">
@@ -593,18 +626,18 @@
                                                     <span>12%</span>
                                                 </div>
                                                 <div class="w-full bg-slate-100 rounded-full h-1">
-                                                    <div class="bg-primary h-1 rounded-full" style="width: 12%"></div>
+                                                    <div class="bg-gradient-to-r from-blue-500 to-teal-400 h-1 rounded-full" style="width: 12%"></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
+ 
                                 </div>
                             </section>
-
+ 
                             <!-- Section: Dành cho bạn -->
                             <section class="px-4 mb-4">
-                                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Dành cho bạn</h3>
+                                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Dành cho bạn</h3>
                                 <div class="flex gap-3 overflow-x-auto custom-scrollbar pb-2">
                                     <!-- Book 1 -->
                                     <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('thaoduoc')">
@@ -894,7 +927,7 @@
 
                             <!-- Settings Menu list (Bento-style layout) -->
                             <section class="grid grid-cols-1 gap-stack-md">
-                                <button onclick="showToast('Chức năng hiển thị sách đã mua.')" class="flex items-center p-stack-md glass-card rounded-2xl hover:bg-gray-50 transition-all duration-300 text-left group">
+                                <button onclick="openProfileSublist('purchased')" class="flex items-center p-stack-md glass-card rounded-2xl hover:bg-gray-50 transition-all duration-300 text-left group">
                                     <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-stack-md group-hover:bg-primary/20 transition-colors border border-white/50 flex-shrink-0">
                                         <span class="material-symbols-outlined text-primary text-xl" data-icon="shopping_bag">shopping_bag</span>
                                     </div>
@@ -904,7 +937,7 @@
                                     </div>
                                 </button>
 
-                                <button onclick="showToast('Chức năng lưu sách yêu thích.')" class="flex items-center p-stack-md glass-card rounded-2xl hover:bg-gray-50 transition-all duration-300 text-left group">
+                                <button onclick="openProfileSublist('favorite')" class="flex items-center p-stack-md glass-card rounded-2xl hover:bg-gray-50 transition-all duration-300 text-left group">
                                     <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-stack-md group-hover:bg-primary/20 transition-colors border border-white/50 flex-shrink-0">
                                         <span class="material-symbols-outlined text-primary text-xl" data-icon="favorite">favorite</span>
                                     </div>
@@ -914,7 +947,7 @@
                                     </div>
                                 </button>
 
-                                <button onclick="showToast('Xem lịch sử đọc bài.')" class="flex items-center p-stack-md glass-card rounded-2xl hover:bg-gray-50 transition-all duration-300 text-left group">
+                                <button onclick="openProfileSublist('history')" class="flex items-center p-stack-md glass-card rounded-2xl hover:bg-gray-50 transition-all duration-300 text-left group">
                                     <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-stack-md group-hover:bg-primary/20 transition-colors border border-white/50 flex-shrink-0">
                                         <span class="material-symbols-outlined text-primary text-xl" data-icon="history">history</span>
                                     </div>
@@ -1427,7 +1460,7 @@
                                     </svg>
                                     <span class="text-[10px]">Độ sáng</span>
                                 </button>
-                                <button onclick="showToast('Chế độ cuộn đọc.')" class="flex flex-col items-center space-y-1 text-gray-500 hover:text-green-700">
+                                <button id="btn-scroll-mode" onclick="toggleScrollMode()" class="flex flex-col items-center space-y-1 text-gray-500 hover:text-green-700">
                                     <svg class="h-6 w-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
                                     </svg>
@@ -1517,9 +1550,6 @@
                         </div>
                     </div>
 
-                    <!-- ============================================== -->
-                    <!-- VIEW 7: TRẮC NGHIỆM / QUIZ (Knowledge check)    -->
-                    <!-- ============================================== -->
                     <div id="view-quiz" class="absolute inset-0 z-[70] bg-white flex flex-col hidden overflow-hidden">
                         <!-- Top App Bar -->
                         <header class="bg-surface w-full top-0 sticky z-40 border-b border-subtle flex items-center justify-between px-margin-mobile py-stack-sm shrink-0">
@@ -1531,7 +1561,7 @@
                         </header>
 
                         <!-- Main Content Canvas -->
-                        <div class="flex-grow overflow-y-auto px-margin-mobile py-stack-lg max-w-3xl mx-auto w-full pb-24">
+                        <div class="flex-grow overflow-y-auto px-margin-mobile py-stack-lg max-w-3xl mx-auto w-full">
                             <!-- Progress Indicator -->
                             <div class="flex items-center justify-between mb-stack-md">
                                 <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Câu 3/5</span>
@@ -1554,59 +1584,45 @@
                                 </p>
                             </div>
                             <!-- Answer Choices -->
-                            <div class="space-y-stack-md flex-grow mb-6" id="quiz-choices-box">
-                                <!-- Option A -->
-                                <label onclick="selectQuizOption(0, event)" class="quiz-option liquid-glass rounded-xl p-stack-md cursor-pointer flex items-start gap-stack-sm group relative overflow-hidden transition-all" data-idx="0">
-                                    <input class="mt-1 text-primary-container focus:ring-primary-container border-outline w-5 h-5 flex-shrink-0" name="quiz_q3" type="radio"/>
-                                    <div class="flex-col">
-                                        <span class="block font-body-md text-body-md text-on-surface font-medium mb-1">A. Tăng cường co bóp cơ trơn</span>
-                                        <span class="block font-body-sm text-body-sm text-on-surface-variant">Làm giảm lưu lượng máu ngoại vi đột ngột.</span>
-                                    </div>
-                                </label>
-                                <!-- Option B -->
-                                <label onclick="selectQuizOption(1, event)" class="quiz-option liquid-glass rounded-xl p-stack-md cursor-pointer flex items-start gap-stack-sm group relative overflow-hidden transition-all" data-idx="1">
-                                    <input class="mt-1 text-primary-container focus:ring-primary-container border-outline w-5 h-5 flex-shrink-0" name="quiz_q3" type="radio"/>
-                                    <div class="flex-col">
-                                        <span class="block font-body-md text-body-md text-on-surface font-medium mb-1">B. Ức chế kết tập tiểu cầu</span>
-                                        <span class="block font-body-sm text-body-sm text-on-surface-variant">Ngăn chặn sự hình thành huyết khối cục bộ.</span>
-                                    </div>
-                                </label>
-                                <!-- Option C (Correct Answer) -->
-                                <label onclick="selectQuizOption(2, event)" class="quiz-option liquid-glass rounded-xl p-stack-md cursor-pointer flex items-start gap-stack-sm group relative overflow-hidden transition-all" data-idx="2">
-                                    <input class="mt-1 text-primary-container focus:ring-primary-container border-outline w-5 h-5 flex-shrink-0" name="quiz_q3" type="radio"/>
-                                    <div class="flex-col">
-                                        <span class="block font-body-md text-body-md text-on-surface font-medium mb-1">C. Rút ngắn thời gian đông máu và prothrombin</span>
-                                        <span class="block font-body-sm text-body-sm text-on-surface-variant">Đồng thời hoạt huyết tán ứ nhờ saponin nhóm Rb.</span>
-                                    </div>
-                                </label>
-                                <!-- Option D -->
-                                <label onclick="selectQuizOption(3, event)" class="quiz-option liquid-glass rounded-xl p-stack-md cursor-pointer flex items-start gap-stack-sm group relative overflow-hidden transition-all" data-idx="3">
-                                    <input class="mt-1 text-primary-container focus:ring-primary-container border-outline w-5 h-5 flex-shrink-0" name="quiz_q3" type="radio"/>
-                                    <div class="flex-col">
-                                        <span class="block font-body-md text-body-md text-on-surface font-medium mb-1">D. Kích thích tủy xương</span>
-                                        <span class="block font-body-sm text-body-sm text-on-surface-variant">Sản sinh hồng cầu mới với tốc độ cao.</span>
-                                    </div>
-                                </label>
+                            <div class="space-y-stack-md mb-6" id="quiz-choices-box">
+                                <!-- Dynamic Options -->
                             </div>
                             
                             <!-- Success Feedback Panel -->
                             <div id="quiz-feedback-panel" class="hidden bg-emerald-50 border border-emerald-250 rounded-xl p-4 text-xs text-emerald-800 space-y-2 mb-6">
                                 <h4 class="font-bold flex items-center gap-2"><span class="material-symbols-outlined text-sm">check_circle</span> Chúc mừng, đáp án chính xác!</h4>
-                                <p class="text-slate-650 leading-relaxed text-[11px]">
+                                <p class="text-slate-655 leading-relaxed text-[11px]">
                                     Saponin nhóm Rb trong Tam Thất giúp thúc đẩy quá trình đông máu cục bộ nhanh chóng để bảo vệ cơ thể, trong khi tính năng hoạt huyết giúp làm tan các cục máu đông nội mạch cũ để tránh huyết khối tắc mạch. Bạn được cộng +15 GEMS xu!
                                 </p>
                             </div>
+                        </div>
 
-                            <!-- Action button -->
-                            <div class="flex flex-col items-center mt-auto pb-stack-lg">
-                                <button onclick="checkQuizResult()" id="btn-submit-quiz" class="w-full md:w-auto bg-primary-container text-on-primary font-body-md text-body-md font-medium py-3 px-8 rounded-lg shadow-sm hover:bg-primary transition-colors active:scale-95 duration-100 mb-stack-md">
-                                    Kiểm tra
-                                </button>
-                                <div class="text-center font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-sm text-tertiary">lightbulb</span>
-                                    <p>Nhớ lại tác dụng hai mặt "chỉ huyết" và "hoạt huyết" của Tam Thất.</p>
-                                </div>
+                        <!-- Sticky Footer Action Button -->
+                        <div class="p-4 bg-white border-t border-slate-100 flex flex-col items-center shrink-0 shadow-md">
+                            <button onclick="checkQuizResult()" id="btn-submit-quiz" class="w-full bg-primary-container text-on-primary font-body-md text-body-md font-medium py-3 px-8 rounded-lg shadow-sm hover:bg-primary transition-colors active:scale-95 duration-100 mb-2">
+                                Kiểm tra
+                            </button>
+                            <div class="text-center font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm text-tertiary">lightbulb</span>
+                                <p>Nhớ lại tác dụng hai mặt "chỉ huyết" và "hoạt huyết" của Tam Thất.</p>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Subsection Overlay -->
+                    <div id="view-profile-sublist" class="absolute inset-0 z-[75] bg-[#fbf9f8] text-on-surface flex flex-col hidden overflow-hidden select-none animate-fade-in">
+                        <!-- Top App Bar -->
+                        <header class="bg-surface w-full top-0 sticky z-45 border-b border-subtle flex items-center justify-between px-margin-mobile py-stack-sm shrink-0">
+                            <button onclick="closeProfileSublist()" class="text-primary hover:bg-secondary-container transition-colors p-2 rounded-full active:scale-95 duration-100 flex items-center justify-center">
+                                <span class="material-symbols-outlined">arrow_back</span>
+                            </button>
+                            <h1 id="profile-sublist-title" class="font-headline-sm text-headline-sm text-primary">Danh sách</h1>
+                            <div class="w-10"></div> <!-- Spacer for centering -->
+                        </header>
+                        
+                        <!-- Scrollable list of books -->
+                        <div class="flex-grow overflow-y-auto px-margin-mobile py-stack-lg space-y-4" id="profile-sublist-content">
+                            <!-- Dynamic Book Items -->
                         </div>
                     </div>
 
@@ -1927,7 +1943,8 @@
             readerCurrentPage: 0,
             quizStep: 0,
             coinsAwarded: false,
-            currentChapter: 'tamthat'
+            currentChapter: 'tamthat',
+            readerScrollMode: false
         };
 
         // --- GEMS E-Book Covers & Horizontal Drag Scroll Helpers ---
@@ -3317,6 +3334,116 @@
                 showToast("Đã lưu ghi chú thành công.", "success");
                 highlightText('yellow');
             }
+        }
+
+        // 1. Focus Mode Exit Gesture
+        document.getElementById('reader-viewport').addEventListener('click', (e) => {
+            if (e.target.closest('button, a, input, [onclick], .medical-glossary-term, #selection-toolbar, #tap-zone-prev, #tap-zone-next')) {
+                return;
+            }
+            if (window.getSelection() && window.getSelection().toString().trim()) {
+                return;
+            }
+            toggleImmersiveMode();
+        });
+
+        // 2. Scroll Reading Mode
+        function toggleScrollMode() {
+            appState.readerScrollMode = !appState.readerScrollMode;
+            const container = document.getElementById('flipbook-container');
+            const btn = document.getElementById('btn-scroll-mode');
+            const pages = document.querySelectorAll('.flipbook-page');
+            
+            if (appState.readerScrollMode) {
+                container.classList.add('scroll-mode');
+                if (btn) {
+                    btn.classList.add('text-green-700');
+                    btn.classList.remove('text-gray-500');
+                }
+                pages.forEach(page => {
+                    page.style.transform = 'none';
+                    const article = page.querySelector('article');
+                    if (article) {
+                        article.classList.remove('overflow-y-auto');
+                        article.classList.add('overflow-y-visible');
+                    }
+                });
+                showToast("Đã bật chế độ cuộn đọc.", "success");
+            } else {
+                container.classList.remove('scroll-mode');
+                if (btn) {
+                    btn.classList.remove('text-green-700');
+                    btn.classList.add('text-gray-500');
+                }
+                pages.forEach(page => {
+                    const article = page.querySelector('article');
+                    if (article) {
+                        article.classList.remove('overflow-y-visible');
+                        article.classList.add('overflow-y-auto');
+                    }
+                });
+                flipPage(0);
+                showToast("Đã tắt chế độ cuộn đọc.");
+            }
+        }
+
+        // 3. Profile Sub-feature views
+        function openProfileSublist(type) {
+            const titleEl = document.getElementById('profile-sublist-title');
+            const contentEl = document.getElementById('profile-sublist-content');
+            
+            let title = "";
+            let books = [];
+            
+            if (type === 'purchased') {
+                title = "Sách đã mua";
+                books = ['thaoduoc', 'co-the-nguoi', 'trathaomoc'];
+            } else if (type === 'favorite') {
+                title = "Sách yêu thích";
+                books = ['thankinh', 'ditruyen', 'thucduong'];
+            } else if (type === 'history') {
+                title = "Lịch sử đọc";
+                books = ['co-the-nguoi', 'thaoduoc'];
+            }
+            
+            titleEl.innerText = title;
+            
+            if (books.length === 0) {
+                contentEl.innerHTML = `
+                    <div class="flex flex-col items-center justify-center h-64 text-center text-slate-400 space-y-2">
+                        <span class="material-symbols-outlined text-4xl">folder_open</span>
+                        <p class="text-xs">Chưa có dữ liệu sách trong mục này.</p>
+                    </div>
+                `;
+            } else {
+                contentEl.innerHTML = books.map(bookId => {
+                    const book = appState.bookData[bookId];
+                    if (!book) return '';
+                    return `
+                        <div onclick="openBookDetails('${bookId}'); closeProfileSublist();" class="flex gap-4 p-4 bg-white border border-slate-100 shadow-sm rounded-2xl cursor-pointer hover:shadow-md transition-all duration-300">
+                            <div class="gems-book-cover w-16 h-24 shrink-0 shadow-md border border-slate-150 rounded-xl overflow-hidden">
+                                <img src="${getBookCoverURL(bookId)}" class="w-full h-full object-cover" alt="${book.title}" />
+                            </div>
+                            <div class="flex-grow flex flex-col justify-center">
+                                <h3 class="text-sm font-bold text-slate-800 line-clamp-1">${book.title}</h3>
+                                <p class="text-xs text-slate-450 mt-1">${book.author}</p>
+                                <div class="flex items-center gap-2 mt-2">
+                                    <span class="text-[10px] bg-slate-100 text-slate-655 font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[10px] filled-icon text-yellow-500">star</span> ${book.rating}
+                                    </span>
+                                    <span class="text-[10px] text-slate-400 font-medium">${book.reads} lượt đọc</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+            
+            document.getElementById('view-profile-sublist').classList.remove('hidden');
+        }
+
+        function closeProfileSublist() {
+            document.getElementById('view-profile-sublist').classList.add('hidden');
         }
 
         // Initialize default chapter and standalone quiz on page load
