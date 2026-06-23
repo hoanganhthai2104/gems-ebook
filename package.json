@@ -1,0 +1,20 @@
+{
+  "name": "gems-medical-e-reader",
+  "version": "1.0.0",
+  "description": "GEMS Medical E-Reader - Ứng dụng đọc sách y khoa trực tuyến",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "gems",
+    "medical",
+    "ereader",
+    "ebook",
+    "y-khoa",
+    "vietnamese"
+  ],
+  "author": "GEMS Group",
+  "license": "ISC"
+}
