@@ -2032,7 +2032,7 @@
                     author: 'Tuệ Tĩnh',
                     rating: '4.9',
                     reads: '15.6k',
-                    cover: '/covers/nhansam.png',
+                    cover: '/covers/thaoduoc.png',
                     desc: 'Tác phẩm y học kinh điển của thiền sư Tuệ Tĩnh về các vị thuốc nam bản địa trị bệnh cho người Việt theo phương châm Nam dược trị Nam nhân.'
                 },
                 giaiphauthanhinh: {
@@ -2048,7 +2048,7 @@
                     author: 'BS. Nguyễn Quang Quyền',
                     rating: '4.9',
                     reads: '21.4k',
-                    cover: '/covers/giaiphau.png',
+                    cover: '/covers/cothe.png',
                     desc: 'Tập bản đồ giải phẫu đầy đủ nhất của Việt Nam, cung cấp cái nhìn trực quan và thuật ngữ chuẩn hóa phục vụ học tập nghiên cứu y khoa.'
                 },
                 benhthanhinh: {
@@ -2082,6 +2082,30 @@
                     reads: '4.8k',
                     cover: '/covers/ditruyen.png',
                     desc: 'Các công nghệ cốt lõi trong thao tác gen như PCR, giải trình tự thế hệ mới (NGS) và công nghệ CRISPR-Cas9 chỉnh sửa gen.'
+                },
+                nhansam: {
+                    title: 'Nhân Sâm: Đại Bổ Nguyên Khí',
+                    author: 'GS. TS. Nguyễn Văn Anh',
+                    rating: '4.9',
+                    reads: '10.2k',
+                    cover: '/covers/thaoduoc.png',
+                    desc: 'Nghiên cứu toàn diện về Nhân Sâm (Panax ginseng) và các hợp chất ginsenoside có tác dụng đại bổ nguyên khí, ích huyết, sinh tân, an thần trong y học cổ truyền.'
+                },
+                tamly: {
+                    title: 'Tâm lý học lâm sàng',
+                    author: 'ThS. Ngô Anh Tuấn',
+                    rating: '4.7',
+                    reads: '3.8k',
+                    cover: '/covers/thankinh.png',
+                    desc: 'Giáo trình tâm lý học lâm sàng ứng dụng trong thực hành y khoa, chẩn đoán các rối loạn tâm thần, trầm cảm và liệu pháp tâm lý trị liệu.'
+                },
+                genkhoa: {
+                    title: 'Gen và bệnh học',
+                    author: 'TS. Vũ Thị Lan',
+                    rating: '4.7',
+                    reads: '2.6k',
+                    cover: '/covers/ditruyen.png',
+                    desc: 'Mối liên hệ giữa biến thể gen và các bệnh lý phổ biến, phân tích GWAS và ứng dụng di truyền dược lý trong điều trị cá thể hóa.'
                 }
             },
             currentBookId: 'thaoduoc',
@@ -2116,13 +2140,16 @@
                 'ditruyenphantu': '/covers/ditruyen.png',
                 'dotbiengene': '/covers/ditruyen.png',
                 'dongydieuphuong': '/covers/thaoduoc.png',
-                'namduocthanhieu': '/covers/nhansam.png',
+                'namduocthanhieu': '/covers/thaoduoc.png',
                 'giaiphauthanhinh': '/covers/cothe.png',
-                'atlasgiaiphau': '/covers/giaiphau.png',
+                'atlasgiaiphau': '/covers/cothe.png',
                 'benhthanhinh': '/covers/thankinh.png',
                 'taibienmachmau': '/covers/thankinh.png',
                 'ditruyentebao': '/covers/ditruyen.png',
-                'kythuatditruyen': '/covers/ditruyen.png'
+                'kythuatditruyen': '/covers/ditruyen.png',
+                'nhansam': '/covers/thaoduoc.png',
+                'tamly': '/covers/thankinh.png',
+                'genkhoa': '/covers/ditruyen.png'
             };
             return coverURLs[bookId] || coverURLs['thaoduoc'];
         }
