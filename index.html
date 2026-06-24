@@ -388,44 +388,52 @@
             transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Premium Waterdrop active tab style — point faces UP */
-        .active-tab-waterdrop {
-            border-radius: 50% 50% 50% 0% !important;
-            background: linear-gradient(160deg, #dbeafe 0%, #eff6ff 60%, #e0f2fe 100%) !important;
+        /* Premium Circle active tab style */
+        .active-tab-circle {
+            border-radius: 50% !important;
+            background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%) !important;
             color: #2563eb !important;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
-            transform: rotate(45deg) scale(1.1) translateY(-12px) !important;
-            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease, box-shadow 0.3s ease !important;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.18);
+            transform: translateY(-2px) scale(1.08) !important;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.25s ease, box-shadow 0.25s ease !important;
         }
-        .active-tab-waterdrop .material-symbols-outlined {
-            transform: rotate(-45deg) !important;
-            display: inline-block;
+        .active-tab-circle .material-symbols-outlined {
+            transform: none !important;
         }
 
-        /* Pop-up bounce animation for waterdrop */
-        @keyframes waterdropPopUp {
-            0% {
-                transform: rotate(45deg) scale(0.8) translateY(4px);
-                opacity: 0.5;
-            }
-            50% {
-                transform: rotate(45deg) scale(1.18) translateY(-16px);
-            }
-            70% {
-                transform: rotate(45deg) scale(1.06) translateY(-10px);
-            }
-            100% {
-                transform: rotate(45deg) scale(1.1) translateY(-12px);
-                opacity: 1;
-            }
+        /* Circle pop animation */
+        @keyframes circlePopUp {
+            0% { transform: translateY(0) scale(0.85); opacity: 0.6; }
+            60% { transform: translateY(-4px) scale(1.12); }
+            100% { transform: translateY(-2px) scale(1.08); opacity: 1; }
         }
-        .waterdrop-animate {
-            animation: waterdropPopUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+        .circle-animate {
+            animation: circlePopUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+        }
+
+        /* Badge pop animation */
+        @keyframes badgePop {
+            0% { transform: scale(0.5) rotate(-8deg); opacity: 0; }
+            60% { transform: scale(1.15) rotate(3deg); opacity: 1; }
+            80% { transform: scale(0.95) rotate(-1deg); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
         }
 
         /* Inactive tab: smooth return */
         .nav-icon-wrapper {
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, box-shadow 0.3s ease, border-radius 0.3s ease !important;
+        }
+
+        /* Global card lift hover effect */
+        .card-lift {
+            transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease;
+        }
+        .card-lift:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,90,156,0.06) !important;
+        }
+        .card-lift:active {
+            transform: translateY(-1px) scale(0.98);
         }
 
         /* Scroll mode styles */
@@ -485,80 +493,172 @@
 
                         <!-- Scrollable home content -->
                         <div class="flex-1 overflow-y-auto pb-6 px-margin-mobile py-6 space-y-6">
-                            <!-- Daily Missions -->
-                            <section class="bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.03)] rounded-2xl p-5">
-                                <div class="flex justify-between items-center mb-4">
-                                    <h2 class="text-sm font-bold text-slate-800">Nhiệm vụ hàng ngày</h2>
-                                    <span id="mission-progress-text" class="text-[10px] font-bold text-slate-400">2/3 hoàn thành</span>
-                                </div>
-                                <div class="w-full bg-slate-100 rounded-full h-2 mb-4">
-                                    <div id="mission-progress-bar" class="bg-gradient-to-r from-blue-500 to-teal-400 h-2 rounded-full transition-all duration-500" style="width: 66%"></div>
-                                </div>
-                                <ul class="space-y-3">
-                                    <li class="flex items-center gap-3">
-                                        <span class="material-symbols-outlined text-teal-500 text-[18px] filled-icon" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="text-xs text-slate-400 line-through">Đọc 15 phút (Đã hoàn thành)</span>
-                                    </li>
-                                    <li class="flex items-center gap-3">
-                                        <span class="material-symbols-outlined text-teal-500 text-[18px] filled-icon" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="text-xs text-slate-400 line-through">Lưu dấu trang bài viết y văn mới (Đã lưu)</span>
-                                    </li>
-                                    <li class="flex items-center justify-between gap-3">
-                                        <div class="flex items-center gap-3">
-                                            <span id="mission-quiz-icon" class="material-symbols-outlined text-slate-300 text-[18px]" data-icon="radio_button_unchecked">radio_button_unchecked</span>
-                                            <span id="mission-quiz-text" class="text-xs text-slate-600 font-semibold">Kiểm tra kiến thức</span>
-                                        </div>
-                                        <button id="mission-quiz-btn" onclick="openQuizScreen()" class="bg-gradient-to-r from-blue-50 to-teal-50 hover:from-blue-100 hover:to-teal-100 text-blue-600 text-[10px] font-bold px-3 py-1.5 rounded-lg transition-all duration-300 active:scale-95">Làm ngay</button>
-                                    </li>
-                                </ul>
-                            </section>
+                            <!-- Greeting Section -->
+                            <div class="pb-2">
+                                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Chào buổi sáng</p>
+                                <h2 class="text-xl font-black text-blue-900 leading-tight">Nguyễn Văn A</h2>
+                            </div>
 
-                            <!-- Continue Reading -->
-                            <section>
-                                <h2 class="text-sm font-bold text-slate-800 mb-3">Tiếp tục đọc</h2>
-                                <div class="bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.03)] rounded-2xl p-4 flex gap-4 items-center">
-                                    <div class="gems-book-cover w-16 h-24 shrink-0 shadow-[0_4px_12px_rgba(0,0,0,0.08)] border border-slate-100 rounded-xl overflow-hidden" data-book-id="co-the-nguoi"></div>
-                                    <div class="flex-grow">
-                                        <h3 class="text-xs font-bold text-slate-800 line-clamp-1 mb-0.5">Cơ thể người: Phân tích chi tiết</h3>
-                                        <p class="text-[10px] text-slate-400 mb-2">Chương 4: Hệ tuần hoàn</p>
-                                        <div class="flex items-center gap-2 mb-3">
-                                            <div class="w-full bg-slate-100 rounded-full h-1.5 flex-grow">
-                                                <div class="bg-gradient-to-r from-blue-500 to-teal-400 h-1.5 rounded-full" style="width: 65%"></div>
-                                            </div>
-                                            <span class="text-[9px] font-bold text-slate-400">65%</span>
+                            <!-- Stats Row (Streak and Pages Read) -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="card-lift bg-white border border-slate-100/80 shadow-[0_8px_30px_rgb(0,0,0,0.02)] rounded-2xl p-4 flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-orange-500 shrink-0">
+                                        <span class="material-symbols-outlined font-bold">local_fire_department</span>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <span class="block text-sm font-extrabold text-slate-800" id="home-streak">5 Ngày</span>
+                                        <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Chuỗi đọc</span>
+                                    </div>
+                                </div>
+                                <div class="card-lift bg-white border border-slate-100/80 shadow-[0_8px_30px_rgb(0,0,0,0.02)] rounded-2xl p-4 flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-500 shrink-0">
+                                        <span class="material-symbols-outlined font-bold">menu_book</span>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <span class="block text-sm font-extrabold text-slate-800" id="home-pages-read">120 trang</span>
+                                        <span class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Trang đã đọc</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Daily Missions -->
+                            <section class="space-y-3">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-blue-600 text-lg">task_alt</span>
+                                    <h2 class="text-sm font-bold text-slate-800">Nhiệm vụ hôm nay</h2>
+                                    <span id="mission-badge-container" class="ml-auto"></span>
+                                </div>
+                                <div class="card-lift bg-white border border-slate-100/80 shadow-[0_8px_30px_rgb(0,0,0,0.02)] rounded-3xl p-4 space-y-3">
+                                    <!-- Mission 1 -->
+                                    <div class="flex items-center gap-4 bg-slate-50/50 border border-slate-100/50 p-3 rounded-2xl">
+                                        <div class="w-10 h-10 rounded-full border-2 border-teal-500 bg-teal-50/50 flex items-center justify-center shrink-0">
+                                            <span class="material-symbols-outlined text-teal-600 text-base filled-icon" style="font-variation-settings:'FILL' 1">check_circle</span>
                                         </div>
-                                        <button onclick="openEreaderScreen()" class="bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-700 hover:to-teal-600 text-white font-bold text-[10px] py-2 px-4 rounded-xl shadow-md shadow-blue-500/10 hover:shadow-lg transition-all w-full active:scale-95 duration-100">Đọc tiếp</button>
+                                        <div class="flex-grow min-w-0 flex items-center gap-2">
+                                            <h3 class="text-xs font-bold text-slate-800">Đọc 15 phút <span class="text-[10px] text-teal-600 font-bold ml-1.5">• Hoàn thành</span></h3>
+                                            <span class="inline-flex items-center justify-center bg-gradient-to-br from-amber-400 to-yellow-500 text-white rounded-full shadow-sm ml-auto shrink-0" style="width:20px;height:20px">
+                                                <span class="material-symbols-outlined filled-icon" style="font-size:13px;font-variation-settings:'FILL' 1">military_tech</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!-- Mission 2 -->
+                                    <div id="mission-quiz-item" class="flex items-center gap-4 bg-slate-50/50 border border-slate-100/50 p-3 rounded-2xl">
+                                        <div id="mission-quiz-circle" class="w-10 h-10 rounded-full border-2 border-blue-500 flex items-center justify-center shrink-0">
+                                            <span id="mission-quiz-progress" class="text-[10px] font-bold text-blue-600">2/5</span>
+                                        </div>
+                                        <div class="flex-grow min-w-0 flex items-center justify-between gap-2">
+                                            <h3 class="text-xs font-bold text-slate-800">Trả lời 5 câu hỏi <span id="mission-quiz-status" class="text-[10px] text-blue-500 font-bold ml-1.5">• Đang tiến hành</span></h3>
+                                            <button id="mission-quiz-btn" onclick="openQuizScreen()" class="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white text-[9px] font-bold px-2.5 py-1.5 rounded-lg transition-all duration-300 active:scale-95 shrink-0 shadow-sm">Làm ngay</button>
+                                        </div>
+                                    </div>
+                                    <!-- Mission 3 -->
+                                    <div id="mission-note-item" class="flex items-center gap-4 bg-slate-50/50 border border-slate-100/50 p-3 rounded-2xl">
+                                        <div id="mission-note-circle" class="w-10 h-10 rounded-full border-2 border-slate-200 flex items-center justify-center shrink-0">
+                                            <span id="mission-note-progress" class="text-[10px] font-bold text-slate-400">0/1</span>
+                                        </div>
+                                        <div class="flex-grow min-w-0">
+                                            <h3 class="text-xs font-bold text-slate-500">Ghi chú 1 thuật ngữ <span id="mission-note-status" class="text-[10px] text-slate-400 font-bold ml-1.5">• Chưa bắt đầu</span></h3>
+                                        </div>
                                     </div>
                                 </div>
                             </section>
 
-                            <!-- Stats Row -->
-                            <section class="grid grid-cols-2 gap-4">
-                                <div class="bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.03)] rounded-2xl p-4 flex flex-col items-center justify-center text-center">
-                                    <span class="material-symbols-outlined text-orange-500 mb-2 text-2xl" data-icon="local_fire_department">local_fire_department</span>
-                                    <span class="text-sm font-extrabold text-slate-850" id="home-streak">5 Ngày</span>
-                                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Chuỗi đọc</span>
+                            <!-- Continue Reading -->
+                            <section>
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span class="material-symbols-outlined text-blue-600 text-lg">menu_book</span>
+                                    <h2 class="text-sm font-bold text-slate-800">Đang đọc</h2>
                                 </div>
-                                <div class="bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.03)] rounded-2xl p-4 flex flex-col items-center justify-center text-center">
-                                    <span class="material-symbols-outlined text-teal-500 mb-2 text-2xl" data-icon="menu_book">menu_book</span>
-                                    <span class="text-sm font-extrabold text-slate-850" id="home-pages-read">120 trang</span>
-                                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Trang đã đọc</span>
+                                <div class="card-lift bg-white border border-slate-100/80 shadow-[0_8px_30px_rgb(0,0,0,0.02)] rounded-3xl p-5">
+                                    <div class="flex gap-4 items-center mb-4">
+                                        <div class="gems-book-cover w-20 h-28 shrink-0 shadow-[0_4px_16px_rgba(0,0,0,0.08)] border border-slate-100 rounded-xl overflow-hidden" data-book-id="chandoanykhoa"></div>
+                                        <div class="flex-grow min-w-0">
+                                            <h3 class="text-xs font-black text-slate-850 line-clamp-1">Cẩm nang Chẩn đoán Y khoa</h3>
+                                            <p class="text-[10px] text-slate-400 font-semibold mt-1">Chương 4: Hệ Tuần Hoàn</p>
+                                            <div class="mt-4">
+                                                <div class="flex items-center justify-between text-[9px] font-bold text-slate-400 mb-1.5">
+                                                    <span>Tiến độ</span>
+                                                    <span>45%</span>
+                                                </div>
+                                                <div class="w-full bg-slate-100 rounded-full h-2">
+                                                    <div class="bg-gradient-to-r from-blue-500 to-teal-400 h-2 rounded-full" style="width: 45%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 pt-1">
+                                        <button onclick="openBookDetails('chandoanykhoa')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-3 rounded-2xl shadow-md shadow-blue-500/10 hover:shadow-lg transition-all active:scale-95 duration-100">Tiếp tục đọc</button>
+                                        <button onclick="showToast('AI: Đang tổng hợp sơ đồ hệ tuần hoàn...')" class="bg-teal-50 hover:bg-teal-100 text-teal-700 font-bold text-xs py-3 rounded-2xl flex items-center justify-center gap-1.5 active:scale-95 duration-100 transition-all">
+                                            <span class="material-symbols-outlined text-sm filled-icon" style="font-variation-settings:'FILL' 1">auto_awesome</span> Tóm tắt AI
+                                        </button>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Quick Explore -->
+                            <section class="space-y-3">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-blue-600 text-lg">explore</span>
+                                    <h2 class="text-sm font-bold text-slate-800">Khám phá nhanh</h2>
+                                </div>
+                                <div class="space-y-2.5">
+                                    <div onclick="openDictionary()" class="card-lift bg-white border border-slate-100/80 shadow-[0_8px_30px_rgb(0,0,0,0.02)] rounded-2xl p-4 flex items-center justify-between cursor-pointer group">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600 group-hover:scale-105 transition-transform">
+                                                <span class="material-symbols-outlined text-lg">translate</span>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-xs font-bold text-slate-800">Từ điển Y khoa</h3>
+                                                <p class="text-[9px] text-slate-400 font-semibold mt-0.5">Tra cứu nhanh thuật ngữ</p>
+                                            </div>
+                                        </div>
+                                        <span class="material-symbols-outlined text-slate-400 text-sm group-hover:translate-x-1 transition-transform duration-200">chevron_right</span>
+                                    </div>
+                                    <div onclick="openQuizScreen()" class="card-lift bg-white border border-slate-100/80 shadow-[0_8px_30px_rgb(0,0,0,0.02)] rounded-2xl p-4 flex items-center justify-between cursor-pointer group">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-orange-500 group-hover:scale-105 transition-transform">
+                                                <span class="material-symbols-outlined text-lg">quiz</span>
+                                            </div>
+                                            <div>
+                                                <h3 class="text-xs font-bold text-slate-800">Trắc nghiệm kiến thức</h3>
+                                                <p class="text-[9px] text-slate-400 font-semibold mt-0.5">Ôn tập bài học</p>
+                                            </div>
+                                        </div>
+                                        <span class="material-symbols-outlined text-slate-400 text-sm group-hover:translate-x-1 transition-transform duration-200">chevron_right</span>
+                                    </div>
                                 </div>
                             </section>
 
                             <!-- Recommendations -->
                             <section class="pb-4">
-                                <h2 class="text-sm font-bold text-slate-800 mb-3">Dành cho bạn</h2>
+                                <div class="flex items-center gap-2 mb-3.5">
+                                    <span class="material-symbols-outlined text-blue-600 text-lg">thumb_up</span>
+                                    <h2 class="text-sm font-bold text-slate-800">Dành cho bạn</h2>
+                                </div>
                                 <div class="grid grid-cols-2 gap-4">
                                     <!-- Book 1 -->
-                                    <div onclick="openBookDetails('thankinh')" class="bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.03)] rounded-2xl p-3 flex flex-col items-center cursor-pointer hover:shadow-md transition-shadow">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 mb-2 overflow-hidden" data-book-id="thankinh"></div>
-                                        <h4 class="text-[10px] font-bold text-center text-slate-700 line-clamp-1">Thần kinh học cơ bản</h4>
+                                    <div onclick="openBookDetails('lamsangnoikhoa')" class="card-lift bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.02)] rounded-3xl p-3 flex flex-col cursor-pointer relative overflow-hidden group">
+                                        <span class="absolute top-2 left-2 z-10 bg-red-500 text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-md shadow-sm">Mới</span>
+                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 mb-3 overflow-hidden group-hover:scale-[1.02] transition-transform duration-300" data-book-id="lamsangnoikhoa"></div>
+                                        <div class="px-1 min-w-0">
+                                            <div class="flex items-center gap-1 text-[9px] text-yellow-500 mb-1 font-bold">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8
+                                            </div>
+                                            <h4 class="text-[10px] font-black text-slate-800 truncate leading-snug">Sổ tay Lâm sàng Nội khoa</h4>
+                                            <p class="text-[9px] text-slate-400 truncate mt-0.5">Dành cho Bác sĩ nội khoa</p>
+                                        </div>
                                     </div>
                                     <!-- Book 2 -->
-                                    <div onclick="openBookDetails('ditruyen')" class="bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.03)] rounded-2xl p-3 flex flex-col items-center cursor-pointer hover:shadow-md transition-shadow">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 mb-2 overflow-hidden" data-book-id="ditruyen"></div>
-                                        <h4 class="text-[10px] font-bold text-center text-slate-700 line-clamp-1">Di truyền học y khoa</h4>
+                                    <div onclick="openBookDetails('capnhatyvan')" class="card-lift bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.02)] rounded-3xl p-3 flex flex-col cursor-pointer relative overflow-hidden group">
+                                        <span class="absolute top-2 left-2 z-10 bg-[#8c5a2c] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-md shadow-sm">Hot</span>
+                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 mb-3 overflow-hidden group-hover:scale-[1.02] transition-transform duration-300" data-book-id="capnhatyvan"></div>
+                                        <div class="px-1 min-w-0">
+                                            <div class="flex items-center gap-1 text-[9px] text-yellow-500 mb-1 font-bold">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.9
+                                            </div>
+                                            <h4 class="text-[10px] font-black text-slate-800 truncate leading-snug">Cập nhật Y văn 2024</h4>
+                                            <p class="text-[9px] text-slate-400 truncate mt-0.5">Y văn mới</p>
+                                        </div>
                                     </div>
                                 </div>
                             </section>
@@ -614,11 +714,11 @@
 
                             <!-- Section: Tiếp tục đọc -->
                             <section class="px-4 mb-6">
-                                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Tiếp tục đọc</h3>
+                                <h3 class="text-xs font-bold text-slate-800 uppercase tracking-widest mb-3">Tiếp tục đọc</h3>
                                 <div class="flex gap-4 overflow-x-auto custom-scrollbar pb-2 pr-4">
                                     
                                     <!-- Book 1 (Cơ thể người) -->
-                                    <div class="flex-shrink-0 w-64 bg-white rounded-2xl border border-slate-100 p-3 flex gap-3 cursor-pointer shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:shadow-md transition-all duration-300 animate-fade-in" onclick="openBookDetails('co-the-nguoi')">
+                                    <div class="card-lift flex-shrink-0 w-64 bg-white rounded-2xl border border-slate-100 p-3 flex gap-3 cursor-pointer shadow-[0_8px_30px_rgb(0,0,0,0.03)]" onclick="openBookDetails('co-the-nguoi')">
                                         <div class="gems-book-cover w-16 h-24 shrink-0 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.08)] border border-slate-100 overflow-hidden" data-book-id="co-the-nguoi"></div>
                                         <div class="flex-grow flex flex-col justify-between">
                                             <div>
@@ -639,7 +739,7 @@
                                     </div>
  
                                     <!-- Book 2 (Thảo dược) -->
-                                    <div class="flex-shrink-0 w-64 bg-white rounded-2xl border border-slate-100 p-3 flex gap-3 cursor-pointer shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:shadow-md transition-all duration-300 animate-fade-in" onclick="openBookDetails('thaoduoc')">
+                                    <div class="card-lift flex-shrink-0 w-64 bg-white rounded-2xl border border-slate-100 p-3 flex gap-3 cursor-pointer shadow-[0_8px_30px_rgb(0,0,0,0.03)]" onclick="openBookDetails('thaoduoc')">
                                         <div class="gems-book-cover w-16 h-24 shrink-0 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.08)] border border-slate-100 overflow-hidden" data-book-id="thaoduoc"></div>
                                         <div class="flex-grow flex flex-col justify-between">
                                             <div>
@@ -664,7 +764,7 @@
  
                             <!-- Section: Dành cho bạn -->
                             <section class="px-4 mb-4">
-                                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Dành cho bạn</h3>
+                                <h3 class="text-xs font-bold text-slate-800 uppercase tracking-widest mb-3">Dành cho bạn</h3>
                                 <div class="flex gap-3 overflow-x-auto custom-scrollbar pb-2">
                                     <!-- Book 1 -->
                                     <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('thaoduoc')">
@@ -733,7 +833,7 @@
                             <div class="space-y-6">
                                 <!-- Section: Dược liệu học -->
                                 <section class="px-4">
-                                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Dược liệu học</h3>
+                                    <h3 class="text-xs font-bold text-slate-800 uppercase tracking-widest mb-3">Dược liệu học</h3>
                                     <div class="flex gap-3 overflow-x-auto custom-scrollbar pb-2">
                                         <!-- Book 1 -->
                                         <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('thaoduoc')">
@@ -937,7 +1037,7 @@
                             </section>
 
                             <!-- GEMS Xu (Coins) -->
-                            <section class="glass-card rounded-2xl p-4 flex items-center justify-between">
+                            <section class="card-lift glass-card rounded-2xl p-4 flex items-center justify-between">
                                 <div class="flex items-center gap-3">
                                     <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center border border-yellow-200 flex-shrink-0">
                                         <span class="material-symbols-outlined text-yellow-600 text-xl filled-icon">toll</span>
@@ -954,7 +1054,7 @@
 
                             <!-- Settings Menu list (Bento-style layout) -->
                             <section class="grid grid-cols-1 gap-stack-md">
-                                <button onclick="openProfileSublist('purchased')" class="flex items-center p-stack-md glass-card rounded-2xl hover:bg-gray-50 transition-all duration-300 text-left group">
+                                <button onclick="openProfileSublist('purchased')" class="card-lift flex items-center p-stack-md glass-card rounded-2xl hover:bg-gray-50 transition-all duration-300 text-left group">
                                     <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-stack-md group-hover:bg-primary/20 transition-colors border border-white/50 flex-shrink-0">
                                         <span class="material-symbols-outlined text-primary text-xl" data-icon="shopping_bag">shopping_bag</span>
                                     </div>
@@ -964,7 +1064,7 @@
                                     </div>
                                 </button>
 
-                                <button onclick="openProfileSublist('favorite')" class="flex items-center p-stack-md glass-card rounded-2xl hover:bg-gray-50 transition-all duration-300 text-left group">
+                                <button onclick="openProfileSublist('favorite')" class="card-lift flex items-center p-stack-md glass-card rounded-2xl hover:bg-gray-50 transition-all duration-300 text-left group">
                                     <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-stack-md group-hover:bg-primary/20 transition-colors border border-white/50 flex-shrink-0">
                                         <span class="material-symbols-outlined text-primary text-xl" data-icon="favorite">favorite</span>
                                     </div>
@@ -974,7 +1074,7 @@
                                     </div>
                                 </button>
 
-                                <button onclick="openProfileSublist('history')" class="flex items-center p-stack-md glass-card rounded-2xl hover:bg-gray-50 transition-all duration-300 text-left group">
+                                <button onclick="openProfileSublist('history')" class="card-lift flex items-center p-stack-md glass-card rounded-2xl hover:bg-gray-50 transition-all duration-300 text-left group">
                                     <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-stack-md group-hover:bg-primary/20 transition-colors border border-white/50 flex-shrink-0">
                                         <span class="material-symbols-outlined text-primary text-xl" data-icon="history">history</span>
                                     </div>
@@ -984,7 +1084,7 @@
                                     </div>
                                 </button>
 
-                                <button onclick="showToast('Đang mở cài đặt bảo mật.')" class="flex items-center p-stack-md glass-card rounded-2xl hover:bg-gray-50 transition-all duration-300 text-left group">
+                                <button onclick="showToast('Đang mở cài đặt bảo mật.')" class="card-lift flex items-center p-stack-md glass-card rounded-2xl hover:bg-gray-50 transition-all duration-300 text-left group">
                                     <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-stack-md group-hover:bg-primary/20 transition-colors border border-white/50 flex-shrink-0">
                                         <span class="material-symbols-outlined text-primary text-xl" data-icon="manage_accounts">manage_accounts</span>
                                     </div>
@@ -1584,7 +1684,220 @@
                         </div>
                     </div>
 
+
+                    <!-- ============================================== -->
+                    <!-- VIEW: TỪ ĐIỂN Y KHOA (Medical Dictionary)      -->
+                    <!-- ============================================== -->
+                    <div id="view-dictionary" class="absolute inset-0 z-[68] bg-white flex flex-col hidden overflow-hidden">
+                        <!-- Header (Blue theme) -->
+                        <header class="bg-gradient-to-r from-blue-600 to-blue-700 w-full top-0 sticky flex items-center justify-between px-4 py-3 z-50 shrink-0 shadow-sm">
+                            <button onclick="closeDictionary()" class="text-white/80 hover:text-white hover:bg-white/10 transition-colors p-2 rounded-full active:scale-95 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-lg">arrow_back</span>
+                            </button>
+                            <h1 class="font-sans text-base font-black text-white tracking-tight">Từ điển Y khoa</h1>
+                            <div class="w-10"></div>
+                        </header>
+
+                        <!-- Search Bar -->
+                        <div class="px-4 pt-4 pb-2 shrink-0">
+                            <div class="flex items-center gap-2 bg-slate-100 rounded-2xl px-4 py-2.5">
+                                <span class="material-symbols-outlined text-slate-400 text-lg">search</span>
+                                <input id="dict-search-input" type="text" placeholder="Tìm kiếm thuật ngữ, bệnh lý..." 
+                                    class="bg-transparent flex-1 text-xs text-slate-700 placeholder:text-slate-400 outline-none font-medium"
+                                    oninput="filterDictionary(this.value)">
+                            </div>
+                        </div>
+
+                        <!-- Filter Tabs -->
+                        <div class="px-4 pb-3 flex gap-2 shrink-0">
+                            <button onclick="setDictFilter('all')" id="dict-filter-all" class="bg-slate-900 text-white text-[10px] font-bold px-3 py-1.5 rounded-full transition-all">Tất cả</button>
+                            <button onclick="setDictFilter('thuatngu')" id="dict-filter-thuatngu" class="bg-slate-100 text-slate-600 text-[10px] font-bold px-3 py-1.5 rounded-full transition-all hover:bg-slate-200">Thuật ngữ</button>
+                            <button onclick="setDictFilter('duoclieu')" id="dict-filter-duoclieu" class="bg-slate-100 text-slate-600 text-[10px] font-bold px-3 py-1.5 rounded-full transition-all hover:bg-slate-200">Dược liệu</button>
+                            <button onclick="setDictFilter('benhly')" id="dict-filter-benhly" class="bg-slate-100 text-slate-600 text-[10px] font-bold px-3 py-1.5 rounded-full transition-all hover:bg-slate-200">Bệnh lý</button>
+                        </div>
+
+                        <!-- Dictionary Word List -->
+                        <div id="dict-list" class="flex-1 overflow-y-auto px-4 pb-24 space-y-4">
+                            <!-- Group A -->
+                            <div class="dict-group" data-letter="A">
+                                <h2 class="text-base font-black text-blue-900 mb-2 pt-1">A</h2>
+                                <div class="space-y-2">
+                                    <div class="card-lift bg-white border border-slate-100 rounded-2xl p-4 cursor-pointer" onclick="openDictionaryTerm('Aneurysm','Bệnh lý','benhly','Phình động mạch. Tình trạng phình to bất thường của một đoạn động mạch do thành mạch yếu, có thể gây vỡ và xuất huyết nguy hiểm.','Nguy cơ: tăng huyết áp, hút thuốc lá. Điều trị: phẫu thuật hoặc can thiệp nội mạch.')">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <span class="text-sm font-black text-slate-900">Aneurysm</span>
+                                            <span class="bg-red-100 text-red-600 text-[8px] font-extrabold px-2 py-0.5 rounded-md shrink-0">Bệnh lý</span>
+                                        </div>
+                                        <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Chứng phình động mạch. Tình trạng phình to bất thường của một đoạn động mạch d...</p>
+                                    </div>
+                                    <div class="card-lift bg-white border border-slate-100 rounded-2xl p-4 cursor-pointer" onclick="openDictionaryTerm('Anterior','Giải phẫu','giaiphau','Phía trước. Thuật ngữ chỉ vị trí nằm ở phía trước của cơ thể hoặc một cơ quan.','Ví dụ: anterior cruciate ligament (dây chằng chéo trước), anterior chamber (tiền phòng).')">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <span class="text-sm font-black text-slate-900">Anterior</span>
+                                            <span class="bg-orange-100 text-orange-600 text-[8px] font-extrabold px-2 py-0.5 rounded-md shrink-0">Giải phẫu</span>
+                                        </div>
+                                        <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Phía trước. Thuật ngữ chỉ vị trí nằm ở phía trước của cơ thể hoặc một cơ quan.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Group B -->
+                            <div class="dict-group" data-letter="B">
+                                <h2 class="text-base font-black text-blue-900 mb-2 pt-1">B</h2>
+                                <div class="space-y-2">
+                                    <div class="card-lift bg-white border border-slate-100 rounded-2xl p-4 cursor-pointer" onclick="openDictionaryTerm('Biopsy','Thuật ngữ','thuatngu','Sinh thiết. Lấy một mẫu mô nhỏ từ cơ thể người bệnh để kiểm tra dưới kính hiển vi.','Các loại: sinh thiết kim nhỏ, sinh thiết lõi, sinh thiết mổ mở. Thường dùng để chẩn đoán ung thư.')">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <span class="text-sm font-black text-slate-900">Biopsy</span>
+                                            <span class="bg-blue-100 text-blue-600 text-[8px] font-extrabold px-2 py-0.5 rounded-md shrink-0">Thuật ngữ</span>
+                                        </div>
+                                        <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Sinh thiết. Lấy một mẫu mô nhỏ từ cơ thể người bệnh để kiểm tra dưới kính hiển vi.</p>
+                                    </div>
+                                    <div class="card-lift bg-white border border-slate-100 rounded-2xl p-4 cursor-pointer" onclick="openDictionaryTerm('Bradycardia','Bệnh lý','benhly','Nhịp tim chậm. Nhịp tim đổi dưới mức bình thường (thường dưới 60 nhịp/phút ở người lớn).','Triệu chứng: mệt mỏi, chóng mặt, khó thở. Điều trị: máy tạo nhịp tim trong trường hợp nặng.')">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <span class="text-sm font-black text-slate-900">Bradycardia</span>
+                                            <span class="bg-red-100 text-red-600 text-[8px] font-extrabold px-2 py-0.5 rounded-md shrink-0">Bệnh lý</span>
+                                        </div>
+                                        <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Nhịp tim chậm. Nhịp tim đổi dưới mức bình thường (thường dưới 60 nhịp/phút ở người...</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Group C -->
+                            <div class="dict-group" data-letter="C">
+                                <h2 class="text-base font-black text-blue-900 mb-2 pt-1">C</h2>
+                                <div class="space-y-2">
+                                    <div class="card-lift bg-white border border-slate-100 rounded-2xl p-4 cursor-pointer" onclick="openDictionaryTerm('Cerebellum','Giải phẫu','giaiphau','Tiểu não. Phần của não nằm ở phía sau đầu, chịu trách nhiệm phối hợp các cử động cơ thể và giữ thăng bằng.','Tổn thương tiểu não gây mất điều phối (ataxia). Liên quan đến kỹ năng vận động và học tập.')">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <span class="text-sm font-black text-slate-900">Cerebellum</span>
+                                            <span class="bg-orange-100 text-orange-600 text-[8px] font-extrabold px-2 py-0.5 rounded-md shrink-0">Giải phẫu</span>
+                                        </div>
+                                        <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Tiểu não. Phần của não nằm ở phía sau đầu, chịu trách nhiệm phối hợp các cử động cơ...</p>
+                                    </div>
+                                    <div class="card-lift bg-white border border-slate-100 rounded-2xl p-4 cursor-pointer" onclick="openDictionaryTerm('Cholesterol','Dược liệu','duoclieu','Chất béo tự nhiên trong cơ thể, cần thiết cho sản xuất hormone và màng tế bào.','LDL (xấu) > 130 mg/dL là nguy cơ. HDL (tốt) > 60 mg/dL bảo vệ tim mạch. Statin thường dùng để hạ cholesterol.')">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <span class="text-sm font-black text-slate-900">Cholesterol</span>
+                                            <span class="bg-teal-100 text-teal-600 text-[8px] font-extrabold px-2 py-0.5 rounded-md shrink-0">Dược liệu</span>
+                                        </div>
+                                        <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Chất béo tự nhiên trong cơ thể, cần thiết cho sản xuất hormone và màng tế bào.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Group D -->
+                            <div class="dict-group" data-letter="D">
+                                <h2 class="text-base font-black text-blue-900 mb-2 pt-1">D</h2>
+                                <div class="space-y-2">
+                                    <div class="card-lift bg-white border border-slate-100 rounded-2xl p-4 cursor-pointer" onclick="openDictionaryTerm('Dyspnea','Bệnh lý','benhly','Khó thở. Cảm giác khó thở hoặc thiếu không khí, là triệu chứng phổ biến của nhiều bệnh tim phổi.','Nguyên nhân: suy tim, COPD, hen suyễn, thiếu máu. Cần đánh giá ngay khi xuất hiện đột ngột.')">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <span class="text-sm font-black text-slate-900">Dyspnea</span>
+                                            <span class="bg-red-100 text-red-600 text-[8px] font-extrabold px-2 py-0.5 rounded-md shrink-0">Bệnh lý</span>
+                                        </div>
+                                        <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Khó thở. Cảm giác khó thở hoặc thiếu không khí, là triệu chứng phổ biến của nhiều bệnh...</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Group E -->
+                            <div class="dict-group" data-letter="E">
+                                <h2 class="text-base font-black text-blue-900 mb-2 pt-1">E</h2>
+                                <div class="space-y-2">
+                                    <div class="card-lift bg-white border border-slate-100 rounded-2xl p-4 cursor-pointer" onclick="openDictionaryTerm('Edema','Bệnh lý','benhly','Phù nề. Sự tích tụ bất thường của dịch trong mô cơ thể, gây sưng phù.','Phù chân thường gặp trong suy tim, suy thận, xơ gan. Phù phổi là cấp cứu.')">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <span class="text-sm font-black text-slate-900">Edema</span>
+                                            <span class="bg-red-100 text-red-600 text-[8px] font-extrabold px-2 py-0.5 rounded-md shrink-0">Bệnh lý</span>
+                                        </div>
+                                        <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Phù nề. Sự tích tụ bất thường của dịch trong mô cơ thể, gây sưng phù.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Term Detail Full-Page View (slides in) -->
+                        <div id="view-dict-term" class="hidden absolute inset-0 z-[80] bg-white flex flex-col overflow-hidden">
+                            <!-- Header -->
+                            <header class="bg-white/90 backdrop-blur-md w-full top-0 sticky border-b border-slate-100 flex items-center justify-between px-4 py-3 z-50 shrink-0">
+                                <button onclick="closeDictionaryTerm()" class="text-slate-600 hover:bg-slate-100 transition-colors p-2 rounded-full active:scale-95 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-lg">arrow_back</span>
+                                </button>
+                                <h1 class="font-sans text-sm font-black text-slate-800 tracking-tight">Chi tiết thuật ngữ</h1>
+                                <button onclick="showToast('Đang phát âm...')" class="text-blue-600 hover:bg-blue-50 p-2 rounded-full active:scale-95 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-lg">volume_up</span>
+                                </button>
+                            </header>
+                            <!-- Scrollable Content -->
+                            <div class="flex-1 overflow-y-auto pb-24">
+                                <!-- Term hero -->
+                                <div class="px-5 pt-5 pb-4 border-b border-slate-100">
+                                    <div class="flex items-center gap-3">
+                                        <div class="flex-1">
+                                            <h2 id="dict-term-title" class="text-2xl font-black text-slate-900 leading-tight"></h2>
+                                            <div class="flex items-center gap-2 mt-1.5">
+                                                <span id="dict-term-badge" class="inline-block text-[9px] font-extrabold px-2 py-0.5 rounded-md"></span>
+                                                <span class="text-slate-300">•</span>
+                                                <button onclick="showToast('Đang phát âm...')" class="text-[10px] text-blue-500 font-bold flex items-center gap-1">
+                                                    <span class="material-symbols-outlined filled-icon" style="font-size:12px">volume_up</span>
+                                                    /ˈɛnjʊərɪzəm/
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Content sections -->
+                                <div class="px-5 pt-4 space-y-5">
+                                    <!-- Định nghĩa -->
+                                    <div>
+                                        <h3 class="text-xs font-black text-slate-900 uppercase tracking-widest mb-2">Định nghĩa</h3>
+                                        <p id="dict-term-def" class="text-sm text-slate-700 leading-relaxed"></p>
+                                    </div>
+                                    <!-- Image placeholder -->
+                                    <div id="dict-term-img-wrap" class="rounded-2xl overflow-hidden border border-slate-100 bg-blue-50 flex items-center justify-center" style="height:160px">
+                                        <div class="text-center text-slate-400 space-y-1">
+                                            <span class="material-symbols-outlined text-3xl text-blue-300">image</span>
+                                            <p class="text-[10px] font-semibold">Sơ đồ minh họa</p>
+                                        </div>
+                                    </div>
+                                    <!-- Triệu chứng -->
+                                    <div>
+                                        <h3 class="text-xs font-black text-slate-900 uppercase tracking-widest mb-2">Triệu chứng</h3>
+                                        <div id="dict-term-symptoms" class="space-y-1.5"></div>
+                                    </div>
+                                    <!-- Chẩn đoán -->
+                                    <div>
+                                        <h3 class="text-xs font-black text-slate-900 uppercase tracking-widest mb-2">Chẩn đoán</h3>
+                                        <div id="dict-term-diagnosis" class="space-y-2"></div>
+                                    </div>
+                                    <!-- Nguyên nhân -->
+                                    <div>
+                                        <h3 class="text-xs font-black text-slate-900 uppercase tracking-widest mb-2">Nguyên nhân</h3>
+                                        <div id="dict-term-causes" class="space-y-1.5"></div>
+                                    </div>
+                                    <!-- Điều trị -->
+                                    <div>
+                                        <h3 class="text-xs font-black text-slate-900 uppercase tracking-widest mb-2">Điều trị</h3>
+                                        <p id="dict-term-clinical" class="text-sm text-slate-700 leading-relaxed"></p>
+                                    </div>
+                                    <!-- Tài liệu -->
+                                    <div class="pb-4">
+                                        <h3 class="text-xs font-black text-slate-900 uppercase tracking-widest mb-2">Tài liệu liên quan</h3>
+                                        <div class="card-lift bg-blue-50 border border-blue-100 rounded-2xl p-3 flex items-center gap-3 cursor-pointer" onclick="showToast('Mở tài liệu...')">
+                                            <div class="w-12 h-16 bg-white rounded-xl border border-blue-100 shrink-0 flex items-center justify-center">
+                                                <span class="material-symbols-outlined text-blue-400 text-xl">menu_book</span>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <p class="text-xs font-bold text-slate-800 line-clamp-1">Cẩm nang Chẩn đoán Y khoa</p>
+                                                <p class="text-[10px] text-slate-500 mt-0.5">Chương 5: Bệnh lý máu nâu</p>
+                                            </div>
+                                            <span class="material-symbols-outlined text-slate-400 text-sm">chevron_right</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Bottom action -->
+                            <div class="absolute bottom-0 left-0 right-0 px-5 pb-6 pt-3 bg-white border-t border-slate-100">
+                                <button onclick="showToast('Đã lưu vào ghi chú y khoa!')" class="w-full bg-gradient-to-r from-blue-600 to-teal-500 text-white font-bold text-xs py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95 transition-all">
+                                    <span class="material-symbols-outlined text-sm filled-icon" style="font-variation-settings:'FILL' 1">bookmark_add</span>
+                                    Lưu vào ghi chú
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     <div id="view-quiz" class="absolute inset-0 z-[70] bg-white flex flex-col hidden overflow-hidden">
+
                         <!-- Top App Bar -->
                         <header class="bg-surface w-full top-0 sticky z-40 border-b border-subtle flex items-center justify-between px-margin-mobile py-stack-sm shrink-0">
                             <button onclick="closeQuizScreen()" class="text-primary hover:bg-secondary-container transition-colors p-2 rounded-full active:scale-95 duration-100 flex items-center justify-center">
@@ -1780,7 +2093,8 @@
                 </div>
 
                 <!-- Bottom System Navigation Bar -->
-                <nav id="app-bottom-nav" class="relative bg-white/95 backdrop-blur-xl text-slate-500 shrink-0 border-t border-slate-100/80 flex justify-around items-center h-16 z-40 overflow-visible">
+                <nav id="app-bottom-nav" class="relative bg-white/95 backdrop-blur-xl text-slate-500 shrink-0 border-t border-slate-100/80 flex justify-center items-center h-16 z-40 overflow-visible w-full">
+                    <div class="flex justify-around items-center w-full max-w-[430px]">
                     <!-- Home btn -->
                     <button onclick="switchTab('home')" id="tab-home" class="flex flex-col items-center justify-center w-20 transition-all duration-300 pt-1">
                         <div class="nav-icon-wrapper flex items-center justify-center w-11 h-11 transition-all duration-300">
@@ -1802,6 +2116,7 @@
                         </div>
                         <span class="nav-label text-[9px] mt-0.5 font-bold transition-all duration-300">Tôi</span>
                     </button>
+                    </div>
                 </nav>
 
                 <!-- SIDE MENU DRAWER OVERLAY (Side menu for phone notch wrapper) -->
@@ -1917,12 +2232,37 @@
             pagesReadCount: 120,
             userCoins: 2450,
             quizCompleted: false,
+            mission3Completed: false,
             followersCount: 1240,
             followingAuthor: false,
             bookInLibrary: false,
             selectedQuizOption: -1,
             activeTab: 'home',
             bookData: {
+                chandoanykhoa: {
+                    title: 'Cẩm nang Chẩn đoán Y khoa',
+                    author: 'GEMS Academic',
+                    rating: '4.8',
+                    reads: '15.6k',
+                    cover: '/covers/chandoanykhoa.png',
+                    desc: 'Sách cẩm nang chẩn đoán y khoa lâm sàng toàn diện, cung cấp các quy trình chẩn đoán từ triệu chứng đến bệnh lý chi tiết hệ tuần hoàn và các cơ quan.'
+                },
+                lamsangnoikhoa: {
+                    title: 'Sổ tay Lâm sàng Nội khoa',
+                    author: 'BS. Nguyễn Văn A',
+                    rating: '4.8',
+                    reads: '8.9k',
+                    cover: '/covers/lamsangnoikhoa.png',
+                    desc: 'Sổ tay hướng dẫn chi tiết lâm sàng nội khoa dành cho các bác sĩ và sinh viên thực tập.'
+                },
+                capnhatyvan: {
+                    title: 'Cập nhật Y văn 2024',
+                    author: 'GS. TS. Lê Thu',
+                    rating: '4.9',
+                    reads: '11.2k',
+                    cover: '/covers/capnhatyvan.png',
+                    desc: 'Tập hợp các nghiên cứu y khoa, hướng dẫn điều trị mới nhất được cập nhật trong năm 2024.'
+                },
                 thaoduoc: {
                     title: 'Cẩm nang Thảo dược Quý Phương Đông',
                     author: 'GS. TS. Nguyễn Văn Anh',
@@ -2126,6 +2466,9 @@
 
         function getBookCoverURL(bookId) {
             const coverURLs = {
+                'chandoanykhoa': '/covers/chandoanykhoa.png',
+                'lamsangnoikhoa': '/covers/lamsangnoikhoa.png',
+                'capnhatyvan': '/covers/capnhatyvan.png',
                 'thaoduoc': '/covers/thaoduoc.png',
                 'trathaomoc': '/covers/trathaomoc.png',
                 'thucduong': '/covers/thucduong.png',
@@ -2453,14 +2796,14 @@
                     
                     if (t === tabName) {
                         if (wrapper) {
-                            wrapper.className = "nav-icon-wrapper flex items-center justify-center w-11 h-11 active-tab-waterdrop waterdrop-animate transition-all duration-300";
+                            wrapper.className = "nav-icon-wrapper flex items-center justify-center w-11 h-11 active-tab-circle circle-animate transition-all duration-300";
                         }
                         if (icon) {
-                            icon.classList.add('filled-icon', 'text-[24px]');
+                            icon.classList.add('filled-icon', 'text-[22px]');
                             icon.classList.remove('text-lg');
                         }
                         if (label) {
-                            label.className = "nav-label text-[9px] mt-1.5 font-bold text-blue-600 transition-all duration-300";
+                            label.className = "nav-label text-[9px] mt-0.5 font-bold text-blue-600 transition-all duration-300";
                         }
                     } else {
                         if (wrapper) {
@@ -3006,25 +3349,22 @@
                     }
 
                     // Update Daily Mission
-                    const quizIcon = document.getElementById('mission-quiz-icon');
-                    const quizItem = document.getElementById('mission-quiz-item');
-                    const quizBtn = document.getElementById('mission-quiz-btn');
+                    const borderCircle = document.getElementById('mission-quiz-circle');
+                    if (borderCircle) {
+                        borderCircle.className = "w-10 h-10 rounded-full border-2 border-teal-500 bg-teal-50/50 flex items-center justify-center shrink-0";
+                        borderCircle.innerHTML = '<span class="material-symbols-outlined text-teal-655 text-sm font-extrabold">check</span>';
+                    }
                     
-                    if (quizIcon) {
-                        quizIcon.className = "material-symbols-outlined text-brand-blue filled-icon text-[18px]";
-                        quizIcon.innerText = "check_circle";
+                    const qStatus = document.getElementById('mission-quiz-status');
+                    if (qStatus) {
+                        qStatus.innerText = "• Hoàn thành";
+                        qStatus.className = "text-[10px] font-bold text-teal-600 ml-1.5";
                     }
-                    if (quizItem) {
-                        const textEl = quizItem.querySelector('#mission-quiz-text');
-                        if (textEl) textEl.classList.add('line-through', 'text-slate-400');
-                    }
-                    if (quizBtn) quizBtn.remove();
+                    
+                    const qBtn = document.getElementById('mission-quiz-btn');
+                    if (qBtn) qBtn.remove();
 
-                    // Update Progress bar 66% -> 100%
-                    const progText = document.getElementById('mission-progress-text');
-                    if (progText) progText.innerText = "3/3 hoàn thành";
-                    const progBar = document.getElementById('mission-progress-bar');
-                    if (progBar) progBar.style.width = "100%";
+                    checkAllMissionsCompleted();
                 } else {
                     showToast("Chính xác! Chọn 'Câu tiếp theo' để tiếp tục.", "success");
                     submitBtn.innerText = "Câu tiếp theo";
@@ -3039,7 +3379,62 @@
             }
         }
 
+        function updateHomeQuizProgress() {
+            const step = appState.quizStep;
+            const progProgress = document.getElementById('mission-quiz-progress');
+            if (progProgress) {
+                if (appState.quizCompleted) {
+                    progProgress.innerText = "5/5";
+                } else {
+                    progProgress.innerText = `${step + 1}/5`;
+                }
+            }
+        }
+
+        function updateMissionNoteUI() {
+            const borderCircle = document.getElementById('mission-note-circle');
+            if (borderCircle) {
+                borderCircle.className = "w-10 h-10 rounded-full border-2 border-teal-500 bg-teal-50/50 flex items-center justify-center shrink-0";
+                borderCircle.innerHTML = '<span class="material-symbols-outlined text-teal-655 text-sm font-extrabold">check</span>';
+            }
+            const noteStatus = document.getElementById('mission-note-status');
+            if (noteStatus) {
+                noteStatus.innerText = "• Hoàn thành";
+                noteStatus.className = "text-[10px] font-bold text-teal-600 ml-1.5";
+            }
+            const noteItem = document.getElementById('mission-note-item');
+            if (noteItem) {
+                const h3 = noteItem.querySelector('h3');
+                if (h3) {
+                    h3.className = "text-xs font-bold text-slate-800";
+                }
+            }
+        }
+
+        function checkAllMissionsCompleted() {
+            if (appState.quizCompleted && appState.mission3Completed) {
+                const badgeContainer = document.getElementById('mission-badge-container');
+                if (badgeContainer) {
+                    badgeContainer.innerHTML = `
+                        <span class="inline-flex items-center gap-1.5 bg-gradient-to-r from-yellow-400 to-amber-500 text-white font-extrabold px-3 py-1.5 rounded-full text-[9px] shadow-lg shadow-amber-200/60" style="animation: badgePop 0.4s cubic-bezier(0.34,1.56,0.64,1) both">
+                            <span class="material-symbols-outlined filled-icon" style="font-size:14px;font-variation-settings:'FILL' 1">military_tech</span>
+                            Huy hiệu Độc giả
+                        </span>`;
+                }
+                showToast("Xuất sắc! Bạn đã hoàn thành tất cả nhiệm vụ và nhận Huy hiệu Độc giả hôm nay! 🏅", "success");
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 120,
+                        spread: 80,
+                        origin: { y: 0.55 },
+                        colors: ['#f59e0b', '#fbbf24', '#fcd34d', '#10b981', '#3b82f6']
+                    });
+                }
+            }
+        }
+
         function renderStandaloneQuiz() {
+            updateHomeQuizProgress();
             const step = appState.quizStep;
             const questionData = quizQuestions[step];
             
@@ -3084,6 +3479,7 @@
         }
 
         function renderEmbeddedQuiz() {
+            updateHomeQuizProgress();
             const container = document.getElementById('quiz-container');
             if (!container) return;
             
@@ -3518,6 +3914,10 @@
             if (note.trim()) {
                 showToast("Đã lưu ghi chú thành công.", "success");
                 highlightText('yellow');
+                
+                appState.mission3Completed = true;
+                updateMissionNoteUI();
+                checkAllMissionsCompleted();
             }
         }
 
@@ -3900,6 +4300,116 @@
             initDragToScroll();
             switchTab('home');
         });
+        // =============================================
+        // MEDICAL DICTIONARY FUNCTIONS
+        // =============================================
+        let dictCurrentFilter = 'all';
+
+        function openDictionary() {
+            const view = document.getElementById('view-dictionary');
+            if (view) {
+                view.classList.remove('hidden');
+                const inp = document.getElementById('dict-search-input');
+                if (inp) inp.value = '';
+                filterDictionary('');
+                setDictFilter('all');
+            }
+        }
+
+        function closeDictionary() {
+            const view = document.getElementById('view-dictionary');
+            if (view) view.classList.add('hidden');
+            closeDictionaryTerm();
+        }
+
+        function openDictionaryTerm(title, badgeLabel, badgeType, definition, clinical) {
+            document.getElementById('dict-term-title').textContent = title;
+            document.getElementById('dict-term-def').textContent = definition;
+            document.getElementById('dict-term-clinical').textContent = clinical;
+
+            const badge = document.getElementById('dict-term-badge');
+            badge.textContent = badgeLabel;
+            const colorMap = { benhly:'bg-red-100 text-red-600', giaiphau:'bg-orange-100 text-orange-600', thuatngu:'bg-blue-100 text-blue-600', duoclieu:'bg-teal-100 text-teal-600' };
+            badge.className = `inline-block text-[9px] font-extrabold px-2 py-0.5 rounded-md ${colorMap[badgeType] || 'bg-slate-100 text-slate-600'}`;
+
+            // Enrich symptoms list per term type
+            const termData = {
+                'Aneurysm': {
+                    symptoms: ['Hầu hết không có triệu chứng cho đến khi phình lớn vỡ.','Thường gặp: Đau đột ngột, tụ huyết áp, sốc.'],
+                    diagnosis: [{ label: 'CT Scan', desc: 'Xác định kích thước và vị trí chính xác của tú phình.' }, { label: 'MRI', desc: 'Cung cấp hình ảnh chi tiết về cấu trúc mạch máu.' }, { label: 'Siêu âm', desc: 'Phương pháp nhanh chóng để tầm soát sau đó thềm sát.' }],
+                    causes: ['Cao huyết áp lâu dài làm yếu thành mạch.','Xơ vữa động mạch (mảng bám) làm tổn thương.','Các yếu tố di truyền hoặc bẩm sinh.']
+                },
+                'Bradycardia': {
+                    symptoms: ['Mệt mỏi, lười biếng không rõ lý do.','Chóng mặt, có thể ngã đột ngột.','Khó thở khi gắng sức.'],
+                    diagnosis: [{ label: 'Điện tâm đồ (ECG)', desc: 'Xác định tần số và nhịp điện của tim.' }, { label: 'Holter 24h', desc: 'Theo dõi nhịp tim liên tục trong 24 giờ.' }],
+                    causes: ['Rối loạn điện giải: thiếu kali, canxi.','Thuốc: beta-blocker, digoxin.','Bệnh nút xoang.']
+                }
+            };
+            const data = termData[title] || {
+                symptoms: ['Tham khảo tài liệu chuyên khoa để biết triệu chứng chi tiết.'],
+                diagnosis: [{ label: 'Khám lâm sàng', desc: 'Cần bác sĩ chuyên khoa thăm khám để chẩn đoán chính xác.' }],
+                causes: [clinical]
+            };
+
+            // Render symptoms
+            const symptomsEl = document.getElementById('dict-term-symptoms');
+            symptomsEl.innerHTML = data.symptoms.map(s =>
+                `<div class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 mt-1.5"></span><p class="text-sm text-slate-700">${s}</p></div>`
+            ).join('');
+
+            // Render diagnosis
+            const diagEl = document.getElementById('dict-term-diagnosis');
+            diagEl.innerHTML = data.diagnosis.map(d =>
+                `<div class="bg-slate-50 rounded-xl p-3"><p class="text-xs font-bold text-slate-800">${d.label}</p><p class="text-[11px] text-slate-500 mt-0.5">${d.desc}</p></div>`
+            ).join('');
+
+            // Render causes
+            const causesEl = document.getElementById('dict-term-causes');
+            causesEl.innerHTML = data.causes.map(c =>
+                `<div class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-red-400 shrink-0 mt-1.5"></span><p class="text-sm text-slate-700">${c}</p></div>`
+            ).join('');
+
+            document.getElementById('view-dict-term').classList.remove('hidden');
+        }
+
+        function closeDictionaryTerm() {
+            const view = document.getElementById('view-dict-term');
+            if (view) view.classList.add('hidden');
+        }
+
+
+        function setDictFilter(filter) {
+            dictCurrentFilter = filter;
+            ['all','thuatngu','duoclieu','benhly'].forEach(f => {
+                const btn = document.getElementById(`dict-filter-${f}`);
+                if (!btn) return;
+                btn.className = f === filter
+                    ? 'bg-slate-900 text-white text-[10px] font-bold px-3 py-1.5 rounded-full transition-all'
+                    : 'bg-slate-100 text-slate-600 text-[10px] font-bold px-3 py-1.5 rounded-full transition-all hover:bg-slate-200';
+            });
+            filterDictionary(document.getElementById('dict-search-input')?.value || '');
+        }
+
+        function filterDictionary(query) {
+            const q = query.toLowerCase().trim();
+            document.querySelectorAll('#dict-list .dict-group').forEach(group => {
+                const cards = group.querySelectorAll('[onclick^="openDictionaryTerm"]');
+                let groupVisible = false;
+                cards.forEach(card => {
+                    const onclick = card.getAttribute('onclick') || '';
+                    const termEl = card.querySelector('.text-sm.font-black') || card.querySelector('span.text-sm');
+                    const termName = termEl ? termEl.textContent.toLowerCase() : '';
+                    const descEl = card.querySelector('p');
+                    const desc = descEl ? descEl.textContent.toLowerCase() : '';
+                    const typeMatch = dictCurrentFilter === 'all' || onclick.includes(`'${dictCurrentFilter}'`);
+                    const searchMatch = !q || termName.includes(q) || desc.includes(q);
+                    card.style.display = (typeMatch && searchMatch) ? '' : 'none';
+                    if (typeMatch && searchMatch) groupVisible = true;
+                });
+                group.style.display = groupVisible ? '' : 'none';
+            });
+        }
     </script>
+
 </body>
 </html>
