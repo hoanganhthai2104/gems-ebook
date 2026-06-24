@@ -3,16 +3,16 @@ const fs = require('fs');
 const path = require('path');
 
 const mimeTypes = {
-    '.html': 'text/html',
-    '.css': 'text/css',
-    '.js': 'text/javascript',
-    '.json': 'application/json',
+    '.html': 'text/html; charset=utf-8',
+    '.css': 'text/css; charset=utf-8',
+    '.js': 'text/javascript; charset=utf-8',
+    '.json': 'application/json; charset=utf-8',
     '.png': 'image/png',
     '.jpg': 'image/jpeg',
     '.gif': 'image/gif',
     '.svg': 'image/svg+xml',
     '.ico': 'image/x-icon',
-    '.md': 'text/markdown'
+    '.md': 'text/markdown; charset=utf-8'
 };
 
 const server = http.createServer((req, res) => {
@@ -23,7 +23,7 @@ const server = http.createServer((req, res) => {
     const workspacePath = path.resolve(__dirname);
     
     if (!absolutePath.startsWith(workspacePath)) {
-        res.writeHead(403, { 'Content-Type': 'text/plain' });
+        res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' });
         res.end('Forbidden');
         return;
     }
@@ -33,7 +33,7 @@ const server = http.createServer((req, res) => {
             // Fallback to index.html for SPA routing if file not found
             fs.readFile(path.join(workspacePath, 'index.html'), (err, data) => {
                 if (err) {
-                    res.writeHead(500, { 'Content-Type': 'text/plain' });
+                    res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
                     res.end('Internal Server Error');
                 } else {
                     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
@@ -48,7 +48,7 @@ const server = http.createServer((req, res) => {
 
         fs.readFile(absolutePath, (err, data) => {
             if (err) {
-                res.writeHead(500, { 'Content-Type': 'text/plain' });
+                res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
                 res.end('Internal Server Error');
             } else {
                 res.writeHead(200, { 'Content-Type': contentType });
@@ -76,4 +76,4 @@ function startServer(port) {
     });
 }
 
-startServer(8080);
+startServer(8081);

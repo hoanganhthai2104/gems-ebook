@@ -662,6 +662,52 @@
                                     </div>
                                 </div>
                             </section>
+
+                            <!-- Section: Tin tức & Blog -->
+                            <section class="pb-6">
+                                <div class="flex items-center justify-between mb-3.5">
+                                    <div class="flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-blue-600 text-lg">article</span>
+                                        <h2 class="text-sm font-bold text-slate-800 font-sans">Tin tức &amp; Blog</h2>
+                                    </div>
+                                    <button onclick="openBlogView()" class="text-[10px] font-bold text-blue-500 flex items-center gap-0.5 transition-colors hover:text-blue-700">
+                                        Xem thêm <span class="material-symbols-outlined text-[10px] font-bold">chevron_right</span>
+                                    </button>
+                                </div>
+                                <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 pb-2">
+                                    <!-- Card 1 -->
+                                    <div class="relative w-40 h-24 shrink-0 snap-start rounded-2xl overflow-hidden shadow-[0_4px_10px_rgba(0,0,0,0.04)] border border-slate-100/80 cursor-pointer group active:scale-[0.99] transition-all" onclick="openBlogView()">
+                                        <img src="/covers/hospital_corridor.png" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500 pointer-events-none select-none" alt="News Image 1" draggable="false">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+                                        <span class="absolute top-2 left-2 bg-[#e94560] text-white text-[6px] font-black uppercase px-1.5 py-0.5 rounded shadow-sm">HOT</span>
+                                        <span class="absolute top-2 right-2 text-[6px] font-bold bg-white/20 text-white px-1.5 py-0.5 rounded-full backdrop-blur-sm">Lâm sàng</span>
+                                        <div class="absolute bottom-2 left-2 right-2 text-white">
+                                            <span class="text-[6.5px] font-bold text-white/70 uppercase tracking-wider">3 giờ trước</span>
+                                            <h4 class="text-[8.5px] font-black leading-tight line-clamp-2 mt-0.5">Cập nhật hướng dẫn điều trị tim mạch 2024: Những thay đổi quan trọng</h4>
+                                        </div>
+                                    </div>
+                                    <!-- Card 2 -->
+                                    <div class="relative w-40 h-24 shrink-0 snap-start rounded-2xl overflow-hidden shadow-[0_4px_10px_rgba(0,0,0,0.04)] border border-slate-100/80 cursor-pointer group active:scale-[0.99] transition-all" onclick="openBlogView()">
+                                        <img src="/covers/immunotherapy_lab.png" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500 pointer-events-none select-none" alt="News Image 2" draggable="false">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+                                        <span class="absolute top-2 right-2 text-[6px] font-bold bg-white/20 text-white px-1.5 py-0.5 rounded-full backdrop-blur-sm">Nghiên cứu</span>
+                                        <div class="absolute bottom-2 left-2 right-2 text-white">
+                                            <span class="text-[6.5px] font-bold text-white/70 uppercase tracking-wider">5 phút trước</span>
+                                            <h4 class="text-[8.5px] font-black leading-tight line-clamp-2 mt-0.5">Đột phá trong điều trị miễn dịch cho bệnh nhân ung thư phổi giai đoạn cuối</h4>
+                                        </div>
+                                    </div>
+                                    <!-- Card 3 -->
+                                    <div class="relative w-40 h-24 shrink-0 snap-start rounded-2xl overflow-hidden shadow-[0_4px_10px_rgba(0,0,0,0.04)] border border-slate-100/80 cursor-pointer group active:scale-[0.99] transition-all" onclick="openBlogView()">
+                                        <img src="/covers/digital_health_data.png" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500 pointer-events-none select-none" alt="News Image 3" draggable="false">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+                                        <span class="absolute top-2 right-2 text-[6px] font-bold bg-white/20 text-white px-1.5 py-0.5 rounded-full backdrop-blur-sm">Tin y tế</span>
+                                        <div class="absolute bottom-2 left-2 right-2 text-white">
+                                            <span class="text-[6.5px] font-bold text-white/70 uppercase tracking-wider">1 giờ trước</span>
+                                            <h4 class="text-[8.5px] font-black leading-tight line-clamp-2 mt-0.5">Bộ Y tế ban hành quy định mới về quản lý dữ liệu y tế điện tử toàn quốc</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
                         </div>
                     </div>
 
@@ -672,19 +718,36 @@
                         <!-- Top Nav -->
                         <header class="bg-white/80 backdrop-blur-md w-full top-0 sticky border-b border-slate-100 flex items-center justify-between px-margin-mobile py-3 z-40 shrink-0">
                             <div class="w-8"></div>
-                            <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">GEMS</h1>
+                            <h1 id="library-header-title" class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">GEMS</h1>
                             <div class="flex items-center gap-1">
-                                <button onclick="showToast('Chức năng tìm kiếm sách.')" class="text-primary hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
+                                <button id="library-header-search" onclick="showToast('Chức năng tìm kiếm sách.')" class="text-primary hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
                                     <span class="material-symbols-outlined text-xl">search</span>
                                 </button>
-                                <button onclick="resetFilters()" class="text-primary hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center" title="Bỏ lọc">
+                                <button id="library-header-filter" onclick="resetFilters()" class="text-primary hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center font-bold" title="Bỏ lọc">
                                     <span class="material-symbols-outlined text-xl">filter_alt_off</span>
                                 </button>
                             </div>
                         </header>
- 
-                        <div class="flex-1 overflow-y-auto pb-6">
-                            <!-- 3D Flip Book Carousel -->
+
+                        <!-- Segment Control (Ebook / Audiobook) -->
+                        <div class="px-margin-mobile py-2 bg-white border-b border-slate-100 shrink-0">
+                            <div class="bg-slate-100 p-1 flex rounded-2xl border border-slate-200/50">
+                                <button id="lib-tab-ebook" onclick="switchLibrarySubTab('ebook')" class="w-1/2 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 bg-white text-blue-600 shadow-sm">
+                                    Ebook
+                                </button>
+                                <button id="lib-tab-audio" onclick="switchLibrarySubTab('audiobook')" class="w-1/2 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700">
+                                    Audiobook
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Sliding Container -->
+                        <div class="flex-grow overflow-hidden relative">
+                            <div id="library-slides-wrapper" class="flex h-full w-[200%] transition-transform duration-300 ease-out">
+                                
+                                <!-- Slide 1: Ebook Library -->
+                                <div class="w-1/2 shrink-0 h-full overflow-y-auto pb-6">
+                                    <!-- 3D Flip Book Carousel -->
                             <section class="py-4 px-4 bg-gradient-to-b from-blue-50/10 to-transparent">
                                 <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Sách Nổi Bật</h3>
                                 
@@ -988,12 +1051,6 @@
                                             <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Đột biến Gene lâm sàng</h4>
                                             <p class="text-[9px] text-slate-400 mt-0.5">TS. Nguyễn Thị Trang</p>
                                         </div>
-                                        <!-- Book 5 -->
-                                        <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('ditruyentebao')">
-                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="ditruyentebao"></div>
-                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2">Di truyền tế bào</h4>
-                                            <p class="text-[9px] text-slate-400 mt-0.5">GS. Phan Cự Nhân</p>
-                                        </div>
                                         <!-- Book 6 -->
                                         <div class="flex-shrink-0 w-28 cursor-pointer" onclick="openBookDetails('kythuatditruyen')">
                                             <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="kythuatditruyen"></div>
@@ -1002,16 +1059,391 @@
                                         </div>
                                     </div>
                                 </section>
+                                </div>
+                                </div>
+                                
+                                <!-- Slide 2: Audiobook Library -->
+                                <div class="w-1/2 shrink-0 h-full overflow-y-auto pb-6 relative bg-slate-50">
+<!-- Featured Section Carousel -->
+                                    <section class="px-margin-mobile pt-4 pb-2 relative">
+                                        <div id="audiobook-featured-carousel" class="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 w-full" onscroll="updateAudiobookLibraryDots()">
+                                            <!-- Slide 1 -->
+                                            <div class="relative w-full shrink-0 snap-start aspect-[16/10] rounded-3xl overflow-hidden shadow-md cursor-pointer group active:scale-[0.99] transition-all" onclick="openAudiobookPlayer('thankinhhoc')">
+                                                <img src="/covers/brain_cover.png" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" alt="Featured Brain Cover">
+                                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                                                <span class="absolute top-4 left-4 bg-[#005a9c] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-md shadow">Sách nói lâm sàng nổi bật</span>
+                                                <div class="absolute bottom-4 left-4 right-16 text-white">
+                                                    <h3 class="text-sm font-black leading-snug drop-shadow-sm">Thần kinh học &amp; Chức năng Nhận thức Nâng cao</h3>
+                                                    <p class="text-[9px] text-slate-350 mt-1">Dr. Sarah Jenkins • 14h 30m</p>
+                                                </div>
+                                                <button class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-[#005a9c] flex items-center justify-center text-white shadow-lg shrink-0 active:scale-90 transition-transform">
+                                                    <span class="material-symbols-outlined text-lg filled-icon">play_arrow</span>
+                                                </button>
+                                            </div>
+                                            <!-- Slide 2 -->
+                                            <div class="relative w-full shrink-0 snap-start aspect-[16/10] rounded-3xl overflow-hidden shadow-md cursor-pointer group active:scale-[0.99] transition-all" onclick="openAudiobookPlayer('thaoduoc')">
+                                                <img src="/covers/thaoduoc.png" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" alt="Featured Herb Cover">
+                                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                                                <span class="absolute top-4 left-4 bg-[#005a9c] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-md shadow">Sách nói lâm sàng nổi bật</span>
+                                                <div class="absolute bottom-4 left-4 right-16 text-white">
+                                                    <h3 class="text-sm font-black leading-snug drop-shadow-sm">Cẩm nang Thảo dược</h3>
+                                                    <p class="text-[9px] text-slate-350 mt-1">GS. TS. Nguyễn Văn Anh • 45:00</p>
+                                                </div>
+                                                <button class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-[#005a9c] flex items-center justify-center text-white shadow-lg shrink-0 active:scale-90 transition-transform">
+                                                    <span class="material-symbols-outlined text-lg filled-icon">play_arrow</span>
+                                                </button>
+                                            </div>
+                                            <!-- Slide 3 -->
+                                            <div class="relative w-full shrink-0 snap-start aspect-[16/10] rounded-3xl overflow-hidden shadow-md cursor-pointer group active:scale-[0.99] transition-all" onclick="openAudiobookPlayer('lamsangnoikhoa')">
+                                                <img src="/covers/lamsangnoikhoa.png" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" alt="Featured Medicine Cover">
+                                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                                                <span class="absolute top-4 left-4 bg-[#005a9c] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-md shadow">Sách nói lâm sàng nổi bật</span>
+                                                <div class="absolute bottom-4 left-4 right-16 text-white">
+                                                    <h3 class="text-sm font-black leading-snug drop-shadow-sm">Sinh lý bệnh Tim mạch</h3>
+                                                    <p class="text-[9px] text-slate-350 mt-1">Dr. Elena Rostova • 11h 45m</p>
+                                                </div>
+                                                <button class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-[#005a9c] flex items-center justify-center text-white shadow-lg shrink-0 active:scale-90 transition-transform">
+                                                    <span class="material-symbols-outlined text-lg filled-icon">play_arrow</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <div class="flex justify-center gap-1.5 mb-4">
+                                        <span class="audio-featured-dot w-1.5 h-1.5 rounded-full bg-[#005a9c] transition-all duration-300"></span>
+                                        <span class="audio-featured-dot w-1.5 h-1.5 rounded-full bg-slate-200 transition-all duration-300"></span>
+                                        <span class="audio-featured-dot w-1.5 h-1.5 rounded-full bg-slate-200 transition-all duration-300"></span>
+                                    </div>
+
+                                    <!-- Category Filter Pills -->
+                                    <div class="flex items-center gap-2 overflow-x-auto scrollbar-none px-margin-mobile py-2 shrink-0">
+                                        <button onclick="filterAudiobookLibraryCategory('all', this)" class="audio-filter-pill px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-[#005a9c] text-white">Tất cả</button>
+                                        <button onclick="filterAudiobookLibraryCategory('tim-mach', this)" class="audio-filter-pill px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Tim mạch</button>
+                                        <button onclick="filterAudiobookLibraryCategory('than-kinh', this)" class="audio-filter-pill px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Thần kinh</button>
+                                        <button onclick="filterAudiobookLibraryCategory('nhi-khoa', this)" class="audio-filter-pill px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Nhi khoa</button>
+                                    </div>
+
+                                    <!-- Mới nhất -->
+                                    <div class="flex items-center justify-between px-margin-mobile mb-3 mt-4">
+                                        <h3 class="text-sm font-bold text-slate-800">Mới nhất</h3>
+                                        <span class="material-symbols-outlined text-blue-500 text-sm font-bold">chevron_right</span>
+                                    </div>
+                                    <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 px-margin-mobile pb-2">
+                                        <!-- Card 1 -->
+                                        <div onclick="openAudiobookPlayer('thankinh')" data-category="than-kinh" class="audio-card-item w-36 shrink-0 snap-start flex flex-col group cursor-pointer">
+                                            <div class="w-full aspect-[3/4] rounded-2xl overflow-hidden border border-slate-100 shadow-sm relative mb-2">
+                                                <img src="/covers/thankinh.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Miễn dịch học Nâng cao">
+                                            </div>
+                                            <h4 class="text-[11px] font-black text-slate-800 leading-snug line-clamp-2">Miễn dịch học Nâng cao</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5 truncate">Dr. Michael Chen</p>
+                                            <div class="flex items-center justify-between text-[9px] text-slate-500 mt-1 font-semibold">
+                                                <div class="flex items-center gap-0.5 text-slate-400">
+                                                    <span class="material-symbols-outlined text-[10px]">schedule</span> 8h 15m
+                                                </div>
+                                                <div class="flex items-center gap-0.5 text-yellow-500 font-bold">
+                                                    <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Card 2 -->
+                                        <div onclick="openAudiobookPlayer('lamsangnoikhoa')" data-category="tim-mach" class="audio-card-item w-36 shrink-0 snap-start flex flex-col group cursor-pointer">
+                                            <div class="w-full aspect-[3/4] rounded-2xl overflow-hidden border border-slate-100 shadow-sm relative mb-2">
+                                                <img src="/covers/lamsangnoikhoa.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Sinh lý bệnh Tim mạch">
+                                            </div>
+                                            <h4 class="text-[11px] font-black text-slate-800 leading-snug line-clamp-2">Sinh lý bệnh Tim mạch</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5 truncate">Dr. Elena Rostova</p>
+                                            <div class="flex items-center justify-between text-[9px] text-slate-500 mt-1 font-semibold">
+                                                <div class="flex items-center gap-0.5 text-slate-400">
+                                                    <span class="material-symbols-outlined text-[10px]">schedule</span> 11h 45m
+                                                </div>
+                                                <div class="flex items-center gap-0.5 text-yellow-500 font-bold">
+                                                    <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.9
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Card 3 -->
+                                        <div onclick="openAudiobookPlayer('capnhatyvan')" data-category="all" class="audio-card-item w-36 shrink-0 snap-start flex flex-col group cursor-pointer">
+                                            <div class="w-full aspect-[3/4] rounded-2xl overflow-hidden border border-slate-100 shadow-sm relative mb-2">
+                                                <img src="/covers/capnhatyvan.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Dược lý Lâm sàng">
+                                            </div>
+                                            <h4 class="text-[11px] font-black text-slate-800 leading-snug line-clamp-2">Dược lý Lâm sàng</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5 truncate">Dr. Robert H.</p>
+                                            <div class="flex items-center justify-between text-[9px] text-slate-500 mt-1 font-semibold">
+                                                <div class="flex items-center gap-0.5 text-slate-400">
+                                                    <span class="material-symbols-outlined text-[10px]">schedule</span> 9h 20m
+                                                </div>
+                                                <div class="flex items-center gap-0.5 text-yellow-500 font-bold">
+                                                    <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.7
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Podcast Y khoa -->
+                                    <div class="flex items-center justify-between px-margin-mobile mb-3 mt-5">
+                                        <h3 class="text-sm font-bold text-slate-800">Podcast Y khoa</h3>
+                                        <span class="material-symbols-outlined text-blue-500 text-sm font-bold">chevron_right</span>
+                                    </div>
+                                    <div class="px-margin-mobile space-y-3 pb-8">
+                                        <!-- Podcast Item 1 -->
+                                        <div onclick="showToast('Đang phát podcast: The Clinical Update')" class="flex items-center gap-3 bg-white p-3 rounded-2xl border border-slate-100 cursor-pointer shadow-sm hover:shadow active:scale-[0.99] transition-all">
+                                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shrink-0 text-white shadow-sm">
+                                                <span class="material-symbols-outlined text-xl">mic</span>
+                                            </div>
+                                            <div class="flex-grow min-w-0">
+                                                <h4 class="text-xs font-bold text-slate-800 truncate">The Clinical Update: Q3</h4>
+                                                <p class="text-[9px] text-slate-400 truncate mt-0.5">Journal of Advanced Medicine</p>
+                                                <p class="text-[8px] text-blue-600 font-extrabold uppercase mt-1">Ep. 42 • 45 min</p>
+                                            </div>
+                                            <button class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 shrink-0 hover:bg-slate-200 active:scale-90 transition-transform">
+                                                <span class="material-symbols-outlined text-base">play_arrow</span>
+                                            </button>
+                                        </div>
+                                        <!-- Podcast Item 2 -->
+                                        <div onclick="showToast('Đang phát podcast: Genomics & Precision Medicine')" class="flex items-center gap-3 bg-white p-3 rounded-2xl border border-slate-100 cursor-pointer shadow-sm hover:shadow active:scale-[0.99] transition-all">
+                                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-400 to-emerald-500 flex items-center justify-center shrink-0 text-white shadow-sm">
+                                                <span class="material-symbols-outlined text-xl">dna</span>
+                                            </div>
+                                            <div class="flex-grow min-w-0">
+                                                <h4 class="text-xs font-bold text-slate-800 truncate">Genomics &amp; Precision Medicine</h4>
+                                                <p class="text-[9px] text-slate-400 truncate mt-0.5">Dr. Alan Turing Institute</p>
+                                                <p class="text-[8px] text-teal-600 font-extrabold uppercase mt-1">Ep. 18 • 1h 10m</p>
+                                            </div>
+                                            <button class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 shrink-0 hover:bg-slate-200 active:scale-90 transition-transform">
+                                                <span class="material-symbols-outlined text-base">play_arrow</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIEW: TIN TỨC & BLOG ĐẦY ĐỦ (Full Blog View) -->
+                    <!-- ============================================== -->
+                    <div id="view-news-blog" class="view-panel flex-1 flex flex-col overflow-hidden hidden bg-white">
+                        <!-- Top Header -->
+                        <header class="w-full top-0 sticky bg-white border-b border-slate-100 flex items-center justify-between px-margin-mobile py-stack-sm z-40 shrink-0">
+                            <div class="flex items-center gap-2">
+                                <button onclick="closeBlogView()" aria-label="Go back" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-xl">arrow_back</span>
+                                </button>
+                                <h1 class="font-sans text-base font-black text-slate-800">Tin tức &amp; Blog</h1>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="showToast('Chức năng tìm kiếm bài viết.')" class="text-slate-600 hover:bg-slate-100 p-2 rounded-full flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-xl">search</span>
+                                </button>
+                                <div onclick="switchTab('profile')" class="w-7 h-7 rounded-full bg-slate-200 overflow-hidden cursor-pointer">
+                                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDukQFzr3PWFF7kmutydSfDVyz4GMxa3ufjeHJ19GZ-UOa6KBEttzfKxOA1YiwCxFtQ_yPXUdHsOJWbeZmutVifcsEhZssstgB2p9zA-50TafI8uFygmQBaN5ZX3rzoQyuKpSglTWX0I531u59ZTDsdVcQqJS_13RGRo1_jIcKRy_oDCYN0aZKbvJaTT1rrOPMtZieGtf4iZ_Ylz01tnixte4OP4ecOb-AE2owv9wMVS2Qau4YMQ-sDwHhTUTVEkWOduU7dx9eEZqw" class="w-full h-full object-cover" alt="User avatar">
+                                </div>
+                            </div>
+                        </header>
+
+                        <!-- Categories / Pills -->
+                        <div class="flex items-center gap-2 overflow-x-auto scrollbar-none px-margin-mobile py-3 shrink-0 bg-white">
+                            <button onclick="filterBlogCategory('all', this)" class="blog-filter-pill px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-[#005a9c] text-white">Tất cả</button>
+                            <button onclick="filterBlogCategory('tin-y-te', this)" class="blog-filter-pill px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Tin y tế</button>
+                            <button onclick="filterBlogCategory('nghien-cuu', this)" class="blog-filter-pill px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Nghiên cứu</button>
+                            <button onclick="filterBlogCategory('lam-sang', this)" class="blog-filter-pill px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Lâm sàng</button>
+                        </div>
+
+                        <!-- Scrollable content -->
+                        <div class="flex-grow overflow-y-auto px-margin-mobile pb-6 space-y-6">
+                            <!-- Featured Articles Carousel -->
+                            <div class="relative">
+                                <div id="blog-carousel-container" class="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 w-full" onscroll="updateBlogCarouselDots()">
+                                    <!-- Slide 1: Tim mạch -->
+                                    <div class="w-full shrink-0 snap-start flex flex-col cursor-pointer blog-slide-item" data-category="lam-sang" onclick="showToast('Đang mở bài viết: Cập nhật hướng dẫn điều trị tim mạch 2024')">
+                                        <img src="/covers/hospital_corridor.png" class="w-full h-44 rounded-2xl object-cover mb-3 shadow-sm" alt="Featured Cardiac">
+                                        <div class="flex items-center gap-1.5 text-[10px] font-bold text-blue-600 uppercase tracking-wider">
+                                            <span>Lâm sàng</span>
+                                            <span>•</span>
+                                            <span>2 giờ trước</span>
+                                        </div>
+                                        <h3 class="text-sm font-black text-slate-800 leading-snug mt-1">Cập nhật hướng dẫn điều trị tim mạch 2024: Những thay đổi quan trọng</h3>
+                                        <p class="text-xs text-slate-500 leading-normal mt-1 line-clamp-2">Những thay đổi quan trọng trong phác đồ điều trị suy tim và nhồi máu cơ tim cấp theo Hiệp hội Tim mạch...</p>
+                                    </div>
+                                    <!-- Slide 2: Điều trị miễn dịch -->
+                                    <div class="w-full shrink-0 snap-start flex flex-col cursor-pointer blog-slide-item" data-category="nghien-cuu" onclick="showToast('Đang mở bài viết: Đột phá trong điều trị miễn dịch ung thư phổi')">
+                                        <img src="/covers/immunotherapy_lab.png" class="w-full h-44 rounded-2xl object-cover mb-3 shadow-sm" alt="Featured Immunotherapy">
+                                        <div class="flex items-center gap-1.5 text-[10px] font-bold text-blue-600 uppercase tracking-wider">
+                                            <span>Nghiên cứu</span>
+                                            <span>•</span>
+                                            <span>5 phút trước</span>
+                                        </div>
+                                        <h3 class="text-sm font-black text-slate-800 leading-snug mt-1">Đột phá trong điều trị miễn dịch cho bệnh nhân ung thư phổi giai đoạn cuối</h3>
+                                        <p class="text-xs text-slate-500 leading-normal mt-1 line-clamp-2">Nghiên cứu lâm sàng giai đoạn 3 cho thấy tỷ lệ đáp ứng tích cực tăng vượt trội so với phương pháp thông thường...</p>
+                                    </div>
+                                    <!-- Slide 3: Dữ liệu y tế -->
+                                    <div class="w-full shrink-0 snap-start flex flex-col cursor-pointer blog-slide-item" data-category="tin-y-te" onclick="showToast('Đang mở bài viết: Quy định mới về quản lý dữ liệu y tế điện tử')">
+                                        <img src="/covers/digital_health_data.png" class="w-full h-44 rounded-2xl object-cover mb-3 shadow-sm" alt="Featured Health Data">
+                                        <div class="flex items-center gap-1.5 text-[10px] font-bold text-blue-600 uppercase tracking-wider">
+                                            <span>Tin y tế</span>
+                                            <span>•</span>
+                                            <span>1 giờ trước</span>
+                                        </div>
+                                        <h3 class="text-sm font-black text-slate-800 leading-snug mt-1">Bộ Y tế ban hành quy định mới về quản lý dữ liệu y tế điện tử toàn quốc</h3>
+                                        <p class="text-xs text-slate-500 leading-normal mt-1 line-clamp-2">Quyết định nhằm đồng bộ hóa hồ sơ bệnh án điện tử tại tất cả các bệnh viện tuyến trung ương...</p>
+                                    </div>
+                                </div>
+                                <!-- Dots Indicator -->
+                                <div class="flex justify-center gap-1.5 mt-3">
+                                    <span class="blog-carousel-dot w-1.5 h-1.5 rounded-full bg-primary transition-all duration-300"></span>
+                                    <span class="blog-carousel-dot w-1.5 h-1.5 rounded-full bg-slate-200 transition-all duration-300"></span>
+                                    <span class="blog-carousel-dot w-1.5 h-1.5 rounded-full bg-slate-200 transition-all duration-300"></span>
+                                </div>
                             </div>
 
+                            <!-- Dành cho bạn -->
+                            <div class="space-y-4">
+                                <h3 class="font-headline-md text-headline-md text-slate-800 text-sm font-bold">Dành cho bạn</h3>
+                                <div class="space-y-3">
+                                    <!-- Item 1 -->
+                                    <div onclick="showToast('Đang mở bài viết: Đột phá trong điều trị miễn dịch ung thư phổi')" data-category="nghien-cuu" class="blog-list-item flex items-center gap-4 bg-white border border-slate-100 p-3 rounded-2xl cursor-pointer shadow-sm hover:shadow active:scale-[0.99] transition-all">
+                                        <div class="flex-grow min-w-0">
+                                            <div class="flex items-center gap-1 text-[9px] text-slate-400 font-bold uppercase">
+                                                <span class="text-blue-600 font-extrabold">Nghiên cứu</span>
+                                                <span>•</span>
+                                                <span>5 phút trước</span>
+                                            </div>
+                                            <h4 class="text-xs font-bold text-slate-800 leading-snug line-clamp-2 mt-1">Đột phá trong điều trị miễn dịch cho bệnh nhân ung thư phổi giai đoạn cuối</h4>
+                                        </div>
+                                        <img src="/covers/immunotherapy_lab.png" class="w-20 h-20 rounded-xl object-cover shrink-0" alt="News Thumbnail 1">
+                                    </div>
+                                    <!-- Item 2 -->
+                                    <div onclick="showToast('Đang mở bài viết: Quy định mới về quản lý dữ liệu y tế điện tử')" data-category="tin-y-te" class="blog-list-item flex items-center gap-4 bg-white border border-slate-100 p-3 rounded-2xl cursor-pointer shadow-sm hover:shadow active:scale-[0.99] transition-all">
+                                        <div class="flex-grow min-w-0">
+                                            <div class="flex items-center gap-1 text-[9px] text-slate-400 font-bold uppercase">
+                                                <span class="text-emerald-600 font-extrabold">Tin y tế</span>
+                                                <span>•</span>
+                                                <span>1 giờ trước</span>
+                                            </div>
+                                            <h4 class="text-xs font-bold text-slate-800 leading-snug line-clamp-2 mt-1">Bộ Y tế ban hành quy định mới về quản lý dữ liệu y tế điện tử toàn quốc</h4>
+                                        </div>
+                                        <img src="/covers/digital_health_data.png" class="w-20 h-20 rounded-xl object-cover shrink-0" alt="News Thumbnail 2">
+                                    </div>
+                                </div>
+                            </div>
 
+                            <!-- Xem thêm -->
+                            <div class="flex justify-center pt-2">
+                                <button onclick="showToast('Đang tải thêm tin tức...')" class="text-xs font-bold text-blue-500 hover:underline">Xem thêm tin khác</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ============================================== -->
+                    <!-- VIEW: MỤC LỤC CHI TIẾT (Timeline Book TOC View) -->
+                    <!-- ============================================== -->
+                    <div id="view-book-toc" class="view-panel flex-1 flex flex-col overflow-hidden hidden bg-slate-50">
+                        <!-- Top Header -->
+                        <header class="bg-white/80 backdrop-blur-md text-primary w-full top-0 sticky border-b border-slate-100 flex items-center justify-between px-margin-mobile py-3 z-50 shrink-0">
+                            <button onclick="toggleSideMenu()" class="text-primary hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
+                                <span class="material-symbols-outlined">menu</span>
+                            </button>
+                            <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">GEMS</h1>
+                            <button onclick="showToast('Chức năng tìm kiếm.')" class="text-primary hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
+                                <span class="material-symbols-outlined">search</span>
+                            </button>
+                        </header>
+
+                        <!-- Scrollable Timeline Content -->
+                        <div class="flex-1 overflow-y-auto px-6 py-6 pb-24 space-y-6">
+                            <!-- Book Header Information -->
+                            <div class="space-y-2">
+                                <h2 class="text-xl font-black text-blue-900 leading-tight">Cẩm nang Chẩn đoán Y khoa</h2>
+                                <p class="text-xs text-slate-500 leading-relaxed">
+                                    Mục lục chi tiết &amp; Tiến trình đọc sách của bạn. Hoàn thành các chương để nắm vững kiến thức lâm sàng.
+                                </p>
+                                <div class="inline-flex items-center gap-1.5 bg-[#f0eded] text-[#091f21] px-3.5 py-1.5 rounded-full text-xs font-bold mt-1">
+                                    <span class="material-symbols-outlined text-sm font-bold filled-icon" style="font-variation-settings: 'FILL' 1">pie_chart</span>
+                                    <span>Đã hoàn thành 2/5 chương</span>
+                                </div>
+                            </div>
+
+                            <!-- Timeline list -->
+                            <div class="relative border-l-2 border-slate-200 ml-3.5 pl-6 py-2 space-y-8">
+                                
+                                <!-- Timeline Node 1 (Completed) -->
+                                <div class="relative cursor-pointer animate-fade-in" onclick="readTOCChapter('tongquan')">
+                                    <!-- Line indicator circle -->
+                                    <div class="absolute left-0 -translate-x-[29px] top-1.5 w-6 h-6 rounded-full bg-blue-600 border-2 border-white flex items-center justify-center text-white shadow-sm">
+                                        <span class="material-symbols-outlined text-[14px] font-bold">check</span>
+                                    </div>
+                                    <div class="space-y-0.5">
+                                        <h3 class="text-xs font-bold text-slate-800">Chương 1: Tổng quan</h3>
+                                        <p class="text-[10px] text-slate-500">Các nguyên tắc cơ bản và cấu trúc giải phẫu.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Timeline Node 2 (Completed) -->
+                                <div class="relative cursor-pointer animate-fade-in" onclick="readTOCChapter('hetuanhoan')">
+                                    <!-- Line indicator circle -->
+                                    <div class="absolute left-0 -translate-x-[29px] top-1.5 w-6 h-6 rounded-full bg-blue-600 border-2 border-white flex items-center justify-center text-white shadow-sm">
+                                        <span class="material-symbols-outlined text-[14px] font-bold">check</span>
+                                    </div>
+                                    <div class="space-y-0.5">
+                                        <h3 class="text-xs font-bold text-slate-800">Chương 2: Hệ tuần hoàn</h3>
+                                        <p class="text-[10px] text-slate-500">Chu kỳ tim, tâm thu, tâm trương và huyết động học.</p>
+                                        <span class="text-[8px] font-black text-blue-600 tracking-wider uppercase block mt-1">ĐÃ HOÀN THÀNH</span>
+                                    </div>
+                                </div>
+
+                                <!-- Timeline Node 3 (Active Card) -->
+                                <div class="relative animate-fade-in">
+                                    <!-- Line indicator circle -->
+                                    <div class="absolute left-0 -translate-x-[30px] top-4 w-7 h-7 rounded-full bg-white border-2 border-blue-600 flex items-center justify-center text-blue-600 shadow-sm">
+                                        <span class="material-symbols-outlined text-[16px] font-bold">play_arrow</span>
+                                    </div>
+                                    <!-- Card Content -->
+                                    <div class="bg-white border-2 border-blue-600 rounded-2xl p-4 shadow-[0_4px_16px_rgba(0,90,156,0.06)] space-y-1">
+                                        <span class="inline-block bg-[#d2e4ff] text-[#00487f] text-[9px] font-black uppercase px-2 py-0.5 rounded-md">ĐANG ĐỌC</span>
+                                        <h3 class="text-xs font-black text-slate-900 mt-1">Chương 3: Diễn giải ECG</h3>
+                                        <p class="text-[10px] text-slate-650 leading-relaxed">Nắm vững kiến thức cơ bản về điện tâm đồ 12 chuyển đạo.</p>
+                                        <button onclick="readTOCChapter('ecg')" class="inline-flex items-center gap-1 text-blue-600 text-[10px] font-extrabold mt-2 hover:underline transition-all">
+                                            TIẾP TỤC ĐỌC <span class="material-symbols-outlined text-xs font-bold">arrow_forward</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Timeline Node 4 (Locked) -->
+                                <div class="relative opacity-60 cursor-not-allowed" onclick="showToast('Bạn cần hoàn thành Chương 3 để mở khóa chương học này.', 'warning')">
+                                    <!-- Line indicator circle -->
+                                    <div class="absolute left-0 -translate-x-[29px] top-1.5 w-6 h-6 rounded-full bg-slate-200 border-2 border-white flex items-center justify-center text-slate-400 shadow-sm">
+                                        <span class="material-symbols-outlined text-[14px]">lock</span>
+                                    </div>
+                                    <div class="space-y-0.5">
+                                        <h3 class="text-xs font-bold text-slate-400">Chương 4: Rối loạn nhịp tim</h3>
+                                        <p class="text-[10px] text-slate-350">Nhận diện Rung nhĩ, Nhịp nhanh thất và các khối dẫn truyền.</p>
+                                        <span class="text-[8px] font-semibold text-slate-400 flex items-center gap-1 mt-1">
+                                            <span class="material-symbols-outlined text-[10px]">info</span> Yêu cầu: Hoàn thành Chương 3
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Timeline Node 5 (End Medal Card) -->
+                                <div class="relative opacity-60 cursor-not-allowed" onclick="showToast('Hãy hoàn thành quyển sách để nhận chứng chỉ.', 'warning')">
+                                    <!-- Line indicator circle -->
+                                    <div class="absolute left-0 -translate-x-[29px] top-1.5 w-6 h-6 rounded-full bg-slate-200 border-2 border-white flex items-center justify-center text-slate-400 shadow-sm">
+                                        <span class="material-symbols-outlined text-[14px]">workspace_premium</span>
+                                    </div>
+                                    <div class="bg-slate-50 border border-slate-200/60 rounded-2xl p-4 space-y-1">
+                                        <h3 class="text-xs font-bold text-slate-500">Hoàn thành quyển sách</h3>
+                                        <p class="text-[10px] text-slate-400 leading-relaxed">
+                                            Hoàn thành bài kiểm tra cuối cùng để nhận chứng chỉ xác thực kiến thức lâm sàng.
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
 
                     <!-- ============================================== -->
                     <!-- VIEW 3: HỒ SƠ CÁ NHÂN (User Profile Screen)   -->
                     <!-- ============================================== -->
-                    <div id="view-profile" class="view-panel flex-grow flex flex-col overflow-hidden hidden bg-white">
+                    <div id="view-profile" class="view-panel flex-1 flex flex-col overflow-hidden hidden bg-white">
                         <!-- Top Header -->
                         <header class="w-full top-0 sticky bg-white/80 backdrop-blur-md border-b border-gray-100 flex items-center justify-between px-margin-mobile py-stack-sm z-40 shrink-0">
                             <div class="flex items-center hover:bg-secondary-container/50 transition-colors active:scale-95 duration-100 p-2 rounded cursor-pointer text-on-surface-variant" onclick="showToast('Đang hiển thị bệnh án cá nhân.')">
@@ -1571,34 +2003,22 @@
                                 <span class="text-[10px] text-gray-400 font-bold">Trang 42</span>
                             </div>
                             <!-- Navigation Icons -->
-                            <div class="grid grid-cols-5 pb-6 pt-2">
-                                <button onclick="toggleTOCSheet()" class="flex flex-col items-center space-y-1 text-gray-500 hover:text-green-700">
-                                    <svg class="h-6 w-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                                    </svg>
-                                    <span class="text-[10px]">Mục lục</span>
+                            <div class="grid grid-cols-4 pb-6 pt-2">
+                                <button onclick="openBookTOC()" class="flex flex-col items-center space-y-1 text-slate-750 hover:text-blue-700 transition-colors">
+                                    <span class="material-symbols-outlined text-2xl">format_list_bulleted</span>
+                                    <span class="text-[9px] font-bold tracking-wider">MỤC LỤC</span>
                                 </button>
-                                <button onclick="toggleKindleSettings(event)" class="flex flex-col items-center space-y-1 text-green-700">
-                                    <svg class="h-6 w-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path d="M3 5h4M3 10h4M3 15h4m10-10h-4m4 5h-4m4 5h-4M7 5l4 4-4 4" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
-                                    </svg>
-                                    <span class="text-[10px] font-medium">Cài đặt</span>
+                                <button onclick="toggleKindleSettings(event)" class="flex flex-col items-center space-y-1 text-slate-750 hover:text-blue-700 transition-colors">
+                                    <span class="material-symbols-outlined text-2xl">settings</span>
+                                    <span class="text-[9px] font-bold tracking-wider">CÀI ĐẶT</span>
                                 </button>
-                                <button onclick="toggleFocusMode()" class="flex flex-col items-center space-y-1 text-gray-500 hover:text-green-700">
+                                <button onclick="toggleFocusMode()" class="flex flex-col items-center space-y-1 text-slate-750 hover:text-blue-700 transition-colors">
                                     <span class="material-symbols-outlined text-2xl" id="btn-focus-icon">visibility</span>
-                                    <span class="text-[10px]" id="btn-focus-text">Tập trung</span>
+                                    <span class="text-[9px] font-bold tracking-wider" id="btn-focus-text">TẬP TRUNG</span>
                                 </button>
-                                <button onclick="toggleKindleSettings(event)" class="flex flex-col items-center space-y-1 text-gray-500 hover:text-green-700">
-                                    <svg class="h-6 w-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                                    </svg>
-                                    <span class="text-[10px]">Độ sáng</span>
-                                </button>
-                                <button id="btn-scroll-mode" onclick="toggleScrollMode()" class="flex flex-col items-center space-y-1 text-gray-500 hover:text-green-700">
-                                    <svg class="h-6 w-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                                    </svg>
-                                    <span class="text-[10px]">Cuộn đọc</span>
+                                <button onclick="openAudiobookPlayer(appState.currentBookId)" class="flex flex-col items-center space-y-1 text-slate-750 hover:text-blue-700 transition-colors">
+                                    <span class="material-symbols-outlined text-2xl">headphones</span>
+                                    <span class="text-[9px] font-bold tracking-wider">AUDIO</span>
                                 </button>
                             </div>
                         </footer>
@@ -2317,18 +2737,18 @@
                     desc: 'Sách cẩm nang chẩn đoán y khoa lâm sàng toàn diện, cung cấp các quy trình chẩn đoán từ triệu chứng đến bệnh lý chi tiết hệ tuần hoàn và các cơ quan.'
                 },
                 lamsangnoikhoa: {
-                    title: 'Sổ tay Lâm sàng Nội khoa',
-                    author: 'BS. Nguyễn Văn A',
-                    rating: '4.8',
-                    reads: '8.9k',
+                    title: 'Sinh lý bệnh Tim mạch',
+                    author: 'Dr. Elena Rostova',
+                    rating: '4.9',
+                    reads: '11.4k',
                     cover: '/covers/lamsangnoikhoa.png',
                     desc: 'Sổ tay hướng dẫn chi tiết lâm sàng nội khoa dành cho các bác sĩ và sinh viên thực tập.'
                 },
                 capnhatyvan: {
-                    title: 'Cập nhật Y văn 2024',
-                    author: 'GS. TS. Lê Thu',
-                    rating: '4.9',
-                    reads: '11.2k',
+                    title: 'Dược lý Lâm sàng',
+                    author: 'Dr. Robert H.',
+                    rating: '4.7',
+                    reads: '9.2k',
                     cover: '/covers/capnhatyvan.png',
                     desc: 'Tập hợp các nghiên cứu y khoa, hướng dẫn điều trị mới nhất được cập nhật trong năm 2024.'
                 },
@@ -2365,12 +2785,20 @@
                     desc: 'Cẩm nang sơ đồ giải phẫu đầy đủ với tỷ lệ hình minh họa sinh động. Phân tích chi tiết các hệ tuần hoàn, hệ hô hấp, cơ xương khớp giúp nâng cao kỹ năng thực hành.'
                 },
                 thankinh: {
-                    title: 'Thần kinh học cơ bản',
-                    author: 'GEMS Academic',
-                    rating: '4.9',
-                    reads: '4.3k',
+                    title: 'Miễn dịch học Nâng cao',
+                    author: 'Dr. Michael Chen',
+                    rating: '4.8',
+                    reads: '8.9k',
                     cover: '/covers/thankinh.png',
-                    desc: 'Giáo trình cốt lõi hệ thần kinh, liên kết xung điện não và các bệnh lý suy nhược thần kinh trung ương, mất trí nhớ lâm sàng ở người cao tuổi hiện nay.'
+                    desc: 'Nghiên cứu cốt lõi về cơ chế miễn dịch tự nhiên và tế bào chất kháng thể phòng ngừa các bệnh tự miễn y khoa.'
+                },
+                thankinhhoc: {
+                    title: 'Thần kinh học & Chức năng Nhận thức Nâng cao',
+                    author: 'Dr. Sarah Jenkins',
+                    rating: '4.9',
+                    reads: '14.5k',
+                    cover: '/covers/brain_cover.png',
+                    desc: 'Nghiên cứu nâng cao về thần kinh học, các trung khu chức năng não bộ và ứng dụng phục hồi chức năng nhận thức lâm sàng.'
                 },
                 ditruyen: {
                     title: 'Di truyền học y khoa',
@@ -2571,21 +2999,26 @@
                 const bookId = container.getAttribute('data-book-id');
                 if (bookId) {
                     const url = getBookCoverURL(bookId);
-                    container.innerHTML = `<img src="${url}" class="w-full h-full object-cover" alt="${bookId}" />`;
+                    container.innerHTML = `<img src="${url}" class="w-full h-full object-cover pointer-events-none select-none" alt="${bookId}" draggable="false" />`;
                 }
             });
         }
 
         function initDragToScroll() {
-            document.querySelectorAll('.custom-scrollbar').forEach(slider => {
+            document.querySelectorAll('.overflow-x-auto, .custom-scrollbar, .scrollbar-none').forEach(slider => {
                 let isDown = false;
                 let startX;
+                let startY;
                 let scrollLeft;
+                let isDragging = false;
 
                 slider.addEventListener('mousedown', (e) => {
+                    if (e.button !== 0) return;
                     isDown = true;
+                    isDragging = false;
                     slider.classList.add('cursor-grabbing');
                     startX = e.pageX - slider.offsetLeft;
+                    startY = e.pageY - slider.offsetTop;
                     scrollLeft = slider.scrollLeft;
                 });
                 
@@ -2601,11 +3034,28 @@
                 
                 slider.addEventListener('mousemove', (e) => {
                     if(!isDown) return;
-                    e.preventDefault();
                     const x = e.pageX - slider.offsetLeft;
-                    const walk = (x - startX) * 2; // scroll speed multiplier
-                    slider.scrollLeft = scrollLeft - walk;
+                    const y = e.pageY - slider.offsetTop;
+                    const walkX = (x - startX);
+                    const walkY = (y - startY);
+                    
+                    if (Math.abs(walkX) > 6 || Math.abs(walkY) > 6) {
+                        isDragging = true;
+                    }
+                    
+                    if (isDragging) {
+                        e.preventDefault();
+                        slider.scrollLeft = scrollLeft - walkX * 1.5;
+                    }
                 });
+
+                slider.addEventListener('click', (e) => {
+                    if (isDragging) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        isDragging = false;
+                    }
+                }, true);
             });
         }
 
@@ -2673,6 +3123,188 @@
         ];
 
         const bookChapters = {
+            tongquan: {
+                title: "Chương 1: Tổng quan",
+                meta: "Chẩn đoán y khoa • Chương 1",
+                pages: [
+                    `
+                    <header class="mb-6">
+                        <span class="text-[11px] font-bold text-blue-700 uppercase tracking-widest">Chẩn đoán Y khoa</span>
+                        <h2 class="text-3xl serif-title mt-2 leading-tight text-[#1a2e35]">
+                            Khái niệm giải phẫu học lâm sàng cơ bản
+                        </h2>
+                        <div class="w-full h-px bg-gray-300 mt-6 opacity-50"></div>
+                    </header>
+                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
+                        <p>
+                            Giải phẫu học lâm sàng là nền tảng cốt lõi của mọi chẩn đoán và điều trị y khoa. Việc nắm vững cấu trúc cơ thể người dưới lăng kính lâm sàng giúp bác sĩ xác định chính xác các điểm mốc giải phẫu.
+                        </p>
+                        <p>
+                            Từ đó, các kỹ năng khám thực thể như sờ, gõ, nghe, khám hệ cơ xương và xác định vị trí tổn thương nội tạng sẽ được thực hiện một cách chuẩn xác nhất.
+                        </p>
+                    </div>
+                    `,
+                    `
+                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
+                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Các mặt phẳng giải phẫu chính</h3>
+                        <p>
+                            Để định vị và mô tả vị trí các cơ quan, y học sử dụng ba mặt phẳng giải phẫu quy chiếu tiêu chuẩn:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li><strong>Mặt phẳng đứng dọc (Sagittal plane):</strong> Chia cơ thể thành hai nửa trái và phải.</li>
+                            <li><strong>Mặt phẳng đứng ngang (Coronal plane):</strong> Chia cơ thể thành phần trước (anterior) và phần sau (posterior).</li>
+                            <li><strong>Mặt phẳng ngang (Transverse plane):</strong> Chia cơ thể thành phần trên (superior) và phần dưới (inferior).</li>
+                        </ul>
+                    </div>
+                    `,
+                    `
+                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
+                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Các hệ thống cơ quan cốt lõi</h3>
+                        <p>
+                            Cơ thể người được cấu thành bởi 11 hệ thống cơ quan hoạt động phối hợp chặt chẽ. Trong đó, hệ tuần hoàn, hệ hô hấp và hệ thần kinh là các hệ thống quan trọng nhất quyết định sự sống của bệnh nhân trong các tình huống cấp cứu lâm sàng.
+                        </p>
+                        <p>
+                            Việc thăm khám lâm sàng luôn bắt đầu bằng việc đánh giá sơ bộ các hệ thống này thông qua dấu hiệu sinh tồn.
+                        </p>
+                    </div>
+                    `,
+                    `
+                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
+                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Ứng dụng trong Chẩn đoán Hình ảnh</h3>
+                        <p>
+                            Kiến thức giải phẫu giúp diễn giải chính xác các phim chụp X-quang, cắt lớp vi tính (CT Scan), và cộng hưởng từ (MRI). Bác sĩ lâm sàng phải đối chiếu các mốc giải phẫu trên cơ thể bệnh nhân với hình ảnh phim chụp để phát hiện những bất thường cấu trúc.
+                        </p>
+                    </div>
+                    `,
+                    `
+                    <div class="h-full overflow-y-auto bg-white px-5 py-6" id="quiz-container">
+                        <!-- Chapter Completed screen will render here -->
+                    </div>
+                    `
+                ]
+            },
+            hetuanhoan: {
+                title: "Chương 2: Hệ tuần hoàn",
+                meta: "Chẩn đoán y khoa • Chương 2",
+                pages: [
+                    `
+                    <header class="mb-6">
+                        <span class="text-[11px] font-bold text-blue-700 uppercase tracking-widest">Chẩn đoán Y khoa</span>
+                        <h2 class="text-3xl serif-title mt-2 leading-tight text-[#1a2e35]">
+                            Giải phẫu tim mạch &amp; Huyết động học
+                        </h2>
+                        <div class="w-full h-px bg-gray-300 mt-6 opacity-50"></div>
+                    </header>
+                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
+                        <p>
+                            Tim là một bơm cơ học rỗng gồm bốn buồng: hai tâm nhĩ ở trên và hai tâm thất ở dưới. Hệ tuần hoàn chia làm hai vòng tuần hoàn lớn (tuần hoàn hệ thống) và tuần hoàn nhỏ (tuần hoàn phổi).
+                        </p>
+                        <p>
+                            Sự co bóp nhịp nhàng của cơ tim được điều khiển bởi hệ thống dẫn truyền tự động chuyên biệt trong tim.
+                        </p>
+                    </div>
+                    `,
+                    `
+                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
+                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Hệ thống dẫn truyền tim</h3>
+                        <p>
+                            Hệ thống dẫn truyền điện học của tim bao gồm:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li><strong>Nút xoang (SA node):</strong> Nút chủ nhịp tự nhiên của tim, nằm ở tâm nhĩ phải.</li>
+                            <li><strong>Nút nhĩ thất (AV node):</strong> Làm chậm xung động điện để tâm nhĩ kịp tống máu xuống thất.</li>
+                            <li><strong>Bó His và mạng Purkinje:</strong> Dẫn truyền nhanh xung động điện khắp cơ tâm thất để co bóp đồng bộ.</li>
+                        </ul>
+                    </div>
+                    `,
+                    `
+                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
+                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Chu kỳ tim &amp; Huyết động học</h3>
+                        <p>
+                            Một chu kỳ tim tiêu chuẩn gồm pha tâm thu (co bóp, tống máu) và pha tâm trương (giãn cơ, đổ đầy máu).
+                        </p>
+                        <p>
+                            Các thông số huyết động học cốt lõi bao gồm huyết áp động mạch (tâm thu/tâm trương), cung lượng tim (Cardiac Output) và sức cản mạch ngoại biên.
+                        </p>
+                    </div>
+                    `,
+                    `
+                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
+                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Sinh lý bệnh mạch vành</h3>
+                        <p>
+                            Bệnh mạch vành xảy ra khi các mảng xơ vữa làm hẹp lòng động mạch vành, làm giảm lưu lượng máu nuôi cơ tim, dẫn đến thiếu máu cơ tim cục bộ hoặc nhồi máu cơ tim cấp nguy hiểm đến tính mạng.
+                        </p>
+                    </div>
+                    `,
+                    `
+                    <div class="h-full overflow-y-auto bg-white px-5 py-6" id="quiz-container">
+                        <!-- Chapter Completed screen will render here -->
+                    </div>
+                    `
+                ]
+            },
+            ecg: {
+                title: "Chương 3: Diễn giải ECG",
+                meta: "Chẩn đoán y khoa • Chương 3",
+                pages: [
+                    `
+                    <header class="mb-6">
+                        <span class="text-[11px] font-bold text-blue-700 uppercase tracking-widest">Chẩn đoán Y khoa</span>
+                        <h2 class="text-3xl serif-title mt-2 leading-tight text-[#1a2e35]">
+                            Nguyên lý Điện tâm đồ lâm sàng (ECG)
+                        </h2>
+                        <div class="w-full h-px bg-gray-300 mt-6 opacity-50"></div>
+                    </header>
+                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
+                        <p>
+                            Điện tâm đồ (ECG) là đồ thị ghi lại các biến thiên của dòng điện do tim phát ra trong quá trình hoạt động co bóp. Đây là công cụ chẩn đoán không xâm lấn cực kỳ quan trọng để phát hiện rối loạn nhịp tim và thiếu máu cơ tim.
+                        </p>
+                        <p>
+                            Một bản ghi điện tâm đồ chuẩn gồm 12 chuyển đạo: 3 chuyển đạo song cực chi (I, II, III), 3 chuyển đạo đơn cực chi tăng cường (aVR, aVL, aVF) và 6 chuyển đạo trước tim (V1 đến V6).
+                        </p>
+                    </div>
+                    `,
+                    `
+                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
+                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Các sóng điện tim cơ bản</h3>
+                        <p>
+                            Phân tích một chu kỳ ECG chuẩn bao gồm:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li><strong>Sóng P:</strong> Biểu thị quá trình khử cực của tâm nhĩ.</li>
+                            <li><strong>Phức bộ QRS:</strong> Khử cực của hai tâm thất (co bóp thất).</li>
+                            <li><strong>Sóng T:</strong> Tái cực của tâm thất (thất giãn ra phục hồi điện tích).</li>
+                            <li><strong>Khoảng PR và QT:</strong> Đánh giá thời gian dẫn truyền nhĩ thất và thời gian hoạt động điện thất.</li>
+                        </ul>
+                    </div>
+                    `,
+                    `
+                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
+                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Phân tích nhịp tim trên ECG</h3>
+                        <p>
+                            Nhịp xoang bình thường được đặc trưng bởi sóng P đi trước mỗi phức bộ QRS, khoảng PR đều đặn và tần số tim từ 60 đến 100 chu kỳ/phút. Các rối loạn nhịp xoang bao gồm nhịp xoang nhanh (>100 bpm) hoặc nhịp xoang chậm (<60 bpm).
+                        </p>
+                    </div>
+                    `,
+                    `
+                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
+                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Nhận diện thiếu máu cơ tim cấp</h3>
+                        <p>
+                            Thiếu máu cơ tim và nhồi máu cơ tim cấp thể hiện rõ nét qua sự thay đổi đoạn ST và sóng T trên ECG:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li><strong>ST chênh lên (ST Elevation):</strong> Dấu hiệu của nhồi máu cơ tim xuyên thành cấp tính (STEMI).</li>
+                            <li><strong>ST chênh xuống hoặc sóng T âm:</strong> Thiếu máu cơ tim dưới nội tâm mạc.</li>
+                        </ul>
+                    </div>
+                    `,
+                    `
+                    <div class="h-full overflow-y-auto bg-white px-5 py-6" id="quiz-container">
+                        <!-- Chapter Completed screen will render here -->
+                    </div>
+                    `
+                ]
+            },
             tamthat: {
                 title: "Bài thuốc từ Tam Thất",
                 meta: "Dược liệu học • Chương 4",
@@ -2846,6 +3478,7 @@
             closeAudiobookPlayer();
             closeDictionary();
             closeKnowledgeDetails();
+            closeBlogView();
 
             // Panels show/hide
             document.querySelectorAll('.view-panel').forEach(panel => {
@@ -2858,6 +3491,7 @@
 
             // Tabs button CSS highlight styling
             const tabs = ['home', 'library', 'profile'];
+            const highlightTab = (tabName === 'book-toc') ? 'library' : tabName;
             tabs.forEach(t => {
                 const btn = document.getElementById(`tab-${t}`);
                 if (btn) {
@@ -2865,7 +3499,7 @@
                     const label = btn.querySelector('.nav-label');
                     const icon = btn.querySelector('.material-symbols-outlined');
                     
-                    if (t === tabName) {
+                    if (t === highlightTab) {
                         if (wrapper) {
                             wrapper.className = "nav-icon-wrapper flex items-center justify-center w-11 h-11 active-tab-circle circle-animate transition-all duration-300";
                         }
@@ -3040,10 +3674,22 @@
                 audiobookState.isPlaying = false;
                 updateAudioPlayerUI();
             }
-            const book = appState.bookData[appState.currentBookId];
-            if (book) {
-                document.getElementById('reader-book-title').innerText = book.title;
+            
+            // Ensure appropriate chapter is loaded based on current book
+            if (appState.currentBookId === 'chandoanykhoa') {
+                if (appState.currentChapter !== 'tongquan' && appState.currentChapter !== 'hetuanhoan' && appState.currentChapter !== 'ecg') {
+                    loadChapter('ecg');
+                } else {
+                    loadChapter(appState.currentChapter);
+                }
+            } else {
+                if (appState.currentChapter === 'tongquan' || appState.currentChapter === 'hetuanhoan' || appState.currentChapter === 'ecg') {
+                    loadChapter('tamthat');
+                } else {
+                    loadChapter(appState.currentChapter);
+                }
             }
+
             document.getElementById('view-reader').classList.remove('hidden');
             document.getElementById('app-bottom-nav').classList.add('hidden');
             
@@ -3056,9 +3702,19 @@
         function closeEreaderScreen() {
             document.getElementById('view-reader').classList.add('hidden');
             const isBookDetailOpen = !document.getElementById('view-book-detail').classList.contains('hidden');
-            if (!isBookDetailOpen && appState.activeTab !== 'reader' && appState.activeTab !== 'quiz') {
+            if (!isBookDetailOpen && appState.activeTab !== 'reader' && appState.activeTab !== 'quiz' && appState.activeTab !== 'book-toc') {
                 document.getElementById('app-bottom-nav').classList.remove('hidden');
             }
+        }
+
+        function openBookTOC() {
+            switchTab('book-toc');
+        }
+
+        function readTOCChapter(chapterId) {
+            appState.currentBookId = 'chandoanykhoa';
+            openEreaderScreen();
+            loadChapter(chapterId);
         }
 
         function toggleBookmarkState() {
@@ -3669,6 +4325,32 @@
             
             if (chapterId === 'tamthat') {
                 renderEmbeddedQuiz();
+            } else if (chapterId === 'tongquan' || chapterId === 'hetuanhoan' || chapterId === 'ecg') {
+                const quizCont = document.getElementById('quiz-container');
+                if (quizCont) {
+                    let nextChap = chapterId === 'tongquan' ? 'hetuanhoan' : (chapterId === 'hetuanhoan' ? 'ecg' : null);
+                    let chapName = chapterId === 'tongquan' ? 'Chương 1: Tổng quan' : (chapterId === 'hetuanhoan' ? 'Chương 2: Hệ tuần hoàn' : 'Chương 3: Diễn giải ECG');
+                    let nextChapName = chapterId === 'tongquan' ? 'Chương 2: Hệ tuần hoàn' : 'Chương 3: Diễn giải ECG';
+                    
+                    quizCont.innerHTML = `
+                        <div class="flex flex-col items-center justify-center h-full text-center p-6 space-y-6 animate-fade-in">
+                            <span class="material-symbols-outlined text-6xl text-emerald-600 filled-icon animate-bounce">check_circle</span>
+                            <h3 class="font-headline-md text-headline-md text-slate-800 text-lg font-bold">Chương học đã hoàn thành!</h3>
+                            <p class="text-xs text-slate-500 max-w-xs">
+                                Chúc mừng bạn đã đọc xong và hoàn thành tất cả các nội dung của ${chapName}.
+                            </p>
+                            ${nextChap ? `
+                            <button onclick="readTOCChapter('${nextChap}')" class="w-full bg-brand-blue hover:bg-brand-blue-dark text-white font-bold py-3 px-6 rounded-xl transition-all active:scale-95 shadow-md flex items-center justify-center gap-2 text-xs">
+                                <span class="material-symbols-outlined text-xs">arrow_forward</span> Tiếp tục sang ${nextChapName}
+                            </button>
+                            ` : `
+                            <button onclick="closeEreaderScreen(); openBookTOC();" class="w-full bg-brand-blue hover:bg-brand-blue-dark text-white font-bold py-3 px-6 rounded-xl transition-all active:scale-95 shadow-md text-xs">
+                                Quay lại Mục lục tiến trình
+                            </button>
+                            `}
+                        </div>
+                    `;
+                }
             } else {
                 const quizCont = document.getElementById('quiz-container');
                 if (quizCont) {
@@ -4128,28 +4810,57 @@
             return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
         }
 
-        function openAudiobookPlayer() {
-            const bookId = appState.currentBookId || 'thaoduoc';
-            const book = appState.bookData[bookId];
+        function openAudiobookPlayer(bookId) {
+            if (!document.getElementById('view-reader').classList.contains('hidden')) {
+                closeEreaderScreen();
+            }
+            if (bookId) {
+                appState.currentBookId = bookId;
+            }
+            const activeBookId = appState.currentBookId || 'thaoduoc';
+            const book = appState.bookData[activeBookId];
             if (!book) return;
 
             // Populate metadata
             document.getElementById('audio-title').innerText = book.title;
             document.getElementById('audio-author').innerText = book.author;
-            document.getElementById('audio-cover').innerHTML = `<img src="${getBookCoverURL(bookId)}" class="w-full h-full object-cover rounded-2xl" alt="${book.title}" />`;
+            document.getElementById('audio-cover').innerHTML = `<img src="${getBookCoverURL(activeBookId)}" class="w-full h-full object-cover rounded-2xl" alt="${book.title}" />`;
 
-            // Reset or maintain audio time based on book
-            // For 'thaoduoc' (Cẩm nang Thảo dược), let's keep the user's mockup time 14:32 / 45:00
-            if (bookId === 'thaoduoc') {
-                audiobookState.duration = 2700; // 45:00
-                if (audiobookState.currentTime === 0) {
-                    audiobookState.currentTime = 872; // 14:32
+            // Reset chapters dynamic data based on book
+            if (activeBookId === 'thaoduoc') {
+                audiobookState.chapters = [
+                    { title: "Chương 1: Nguồn gốc và lịch sử thảo dược", durationSecs: 900 },
+                    { title: "Chương 2: Các nhóm hợp chất Saponin", durationSecs: 900 },
+                    { title: "Chương 3: Nghiên cứu thực nghiệm lâm sàng", durationSecs: 900 },
+                    { title: "Chương 4: Quy trình bào chế dược liệu", durationSecs: 1000 },
+                ];
+                if (audiobookState.currentTime === 0 || audiobookState.currentTime === 872) {
+                    audiobookState.currentTime = 872; // 14:32 demo default
                 }
+            } else if (activeBookId === 'co-the-nguoi' || activeBookId === 'cothe') {
+                audiobookState.chapters = [
+                    { title: "Chương 1: Giải phẫu hệ xương khớp", durationSecs: 600 },
+                    { title: "Chương 2: Phân tích hệ tuần hoàn", durationSecs: 600 },
+                    { title: "Chương 3: Cấu tạo hệ thần kinh trung ương", durationSecs: 600 }
+                ];
+                audiobookState.currentTime = 0;
+            } else if (activeBookId === 'thankinh') {
+                audiobookState.chapters = [
+                    { title: "Chương 1: Cấu trúc của Neuron", durationSecs: 600 },
+                    { title: "Chương 2: Xung động thần kinh và chất truyền dẫn", durationSecs: 600 },
+                    { title: "Chương 3: Các trung khu vận động", durationSecs: 600 }
+                ];
+                audiobookState.currentTime = 0;
             } else {
-                audiobookState.duration = 1800; // 30:00 default
+                audiobookState.chapters = [
+                    { title: "Chương 1: Giới thiệu nội dung sách nói", durationSecs: 600 },
+                    { title: "Chương 2: Nội dung chính lâm sàng", durationSecs: 600 },
+                    { title: "Chương 3: Tóm tắt bài học", durationSecs: 600 }
+                ];
                 audiobookState.currentTime = 0;
             }
 
+            audiobookState.duration = audiobookState.chapters.reduce((sum, ch) => sum + ch.durationSecs, 0);
             audiobookState.currentChapterIdx = 0;
             updateAudioPlayerUI();
             renderAudioChapters();
@@ -4869,6 +5580,155 @@
             filterDictionary(document.getElementById('dict-search-input')?.value || '');
         }
 
+
+        // GEMS Restructured Library & News Blog Helpers
+        function switchLibrarySubTab(tab) {
+            const wrapper = document.getElementById('library-slides-wrapper');
+            const tabEbook = document.getElementById('lib-tab-ebook');
+            const tabAudio = document.getElementById('lib-tab-audio');
+            const searchBtn = document.getElementById('library-header-search');
+            const filterBtn = document.getElementById('library-header-filter');
+            const titleEl = document.getElementById('library-header-title');
+            
+            if (!wrapper || !tabEbook || !tabAudio) return;
+            
+            if (tab === 'ebook') {
+                wrapper.style.transform = 'translateX(0)';
+                tabEbook.className = "w-1/2 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 bg-white text-blue-600 shadow-sm";
+                tabAudio.className = "w-1/2 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700";
+                if (titleEl) {
+                    titleEl.innerText = "GEMS";
+                    titleEl.className = "font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent";
+                }
+                if (searchBtn) searchBtn.classList.remove('hidden');
+                if (filterBtn) filterBtn.classList.remove('hidden');
+            } else {
+                wrapper.style.transform = 'translateX(-50%)';
+                tabEbook.className = "w-1/2 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700";
+                tabAudio.className = "w-1/2 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 bg-white text-blue-600 shadow-sm";
+                if (titleEl) {
+                    titleEl.innerText = "Sách nói";
+                    titleEl.className = "font-sans text-xl font-black tracking-tight text-blue-900";
+                }
+                if (searchBtn) searchBtn.classList.remove('hidden');
+                if (filterBtn) filterBtn.classList.add('hidden');
+            }
+        }
+
+        function openBlogView() {
+            closeBookDetails();
+            closeAuthorProfile();
+            closeEreaderScreen();
+            closeQuizScreen();
+            closeAudiobookPlayer();
+            closeDictionary();
+            closeKnowledgeDetails();
+
+            // Hide other panels
+            document.querySelectorAll('.view-panel').forEach(panel => {
+                panel.classList.add('hidden');
+            });
+            // Show blog view
+            const blogView = document.getElementById('view-news-blog');
+            if (blogView) {
+                blogView.classList.remove('hidden');
+                // Trigger scroll position calculation for slide indicator dots
+                setTimeout(updateBlogCarouselDots, 100);
+            }
+        }
+
+        function closeBlogView() {
+            const blogView = document.getElementById('view-news-blog');
+            if (blogView) blogView.classList.add('hidden');
+            const homeView = document.getElementById('view-home');
+            if (homeView) homeView.classList.remove('hidden');
+        }
+
+        function filterBlogCategory(category, buttonEl) {
+            document.querySelectorAll('.blog-filter-pill').forEach(btn => {
+                btn.className = "blog-filter-pill px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200";
+            });
+            buttonEl.className = "blog-filter-pill px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-[#005a9c] text-white";
+
+            const slides = document.querySelectorAll('.blog-slide-item');
+            slides.forEach(slide => {
+                if (category === 'all' || slide.dataset.category === category) {
+                    slide.classList.remove('hidden');
+                } else {
+                    slide.classList.add('hidden');
+                }
+            });
+
+            const items = document.querySelectorAll('.blog-list-item');
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            const container = document.getElementById('blog-carousel-container');
+            if (container) {
+                container.scrollLeft = 0;
+            }
+            updateBlogCarouselDots();
+            showToast(`Đã lọc danh mục: ${buttonEl.innerText}`);
+        }
+
+        function updateBlogCarouselDots() {
+            const container = document.getElementById('blog-carousel-container');
+            if (!container) return;
+            const visibleSlides = Array.from(document.querySelectorAll('.blog-slide-item')).filter(s => !s.classList.contains('hidden'));
+            const dotsContainer = container.nextElementSibling;
+            if (!dotsContainer) return;
+            
+            dotsContainer.innerHTML = visibleSlides.map(() => {
+                return '<span class="blog-carousel-dot w-1.5 h-1.5 rounded-full bg-slate-200 transition-all duration-300"></span>';
+            }).join('');
+
+            const index = Math.round(container.scrollLeft / container.clientWidth);
+            const dots = dotsContainer.querySelectorAll('.blog-carousel-dot');
+            if (dots[index]) {
+                dots[index].className = "blog-carousel-dot w-1.5 h-1.5 rounded-full bg-[#005a9c] transition-all duration-300";
+            }
+        }
+
+        function filterAudiobookLibraryCategory(category, buttonEl) {
+            document.querySelectorAll('.audio-filter-pill').forEach(btn => {
+                btn.className = "audio-filter-pill px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200";
+            });
+            buttonEl.className = "audio-filter-pill px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-[#005a9c] text-white";
+
+            const cards = document.querySelectorAll('.audio-card-item');
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            showToast(`Đã lọc danh mục: ${buttonEl.innerText}`);
+        }
+
+        function updateAudiobookLibraryDots() {
+            const container = document.getElementById('audiobook-featured-carousel');
+            if (!container) return;
+            const visibleSlides = Array.from(container.querySelectorAll('.snap-start'));
+            const dotsContainer = container.parentElement.nextElementSibling;
+            if (!dotsContainer) return;
+            
+            dotsContainer.innerHTML = visibleSlides.map(() => {
+                return '<span class="audio-featured-dot w-1.5 h-1.5 rounded-full bg-slate-200 transition-all duration-300"></span>';
+            }).join('');
+
+            const index = Math.round(container.scrollLeft / container.clientWidth);
+            const dots = dotsContainer.querySelectorAll('.audio-featured-dot');
+            if (dots[index]) {
+                dots[index].className = "audio-featured-dot w-1.5 h-1.5 rounded-full bg-[#005a9c] transition-all duration-300";
+            }
+        }
+    
         function filterDictionary(query) {
             const q = query.toLowerCase().trim();
             document.querySelectorAll('#dict-list .dict-group').forEach(group => {
