@@ -24,7 +24,7 @@
                 extend: {
                     colors: {
                         "brand-blue": "#005A9C",
-                        "brand-blue-dark": "#004275",
+                        "brand-blue-dark": "#003D66",
                         "surface-off-white": "#F8F9FA",
                         "border-subtle": "#E5E7EB",
                         "highlight-cyan": "#E0F7FA",
@@ -33,11 +33,25 @@
                         "surface-dim": "#dcd9d9",
                         "on-surface": "#1b1c1c",
                         "on-surface-variant": "#414750",
-                        "primary-container": "#005a9c",
+                        "primary-container": "#003D66",
                         "secondary-container": "#d0e7ea",
                         "on-secondary-container": "#53686b",
                         "inverse-surface": "#303030",
                         "error": "#ba1a1a",
+                        
+                        // Custom Blue Override to synchronize all blue-x colors with Brand Blue
+                        blue: {
+                            50: "#f0f7fc",
+                            100: "#e0eff9",
+                            200: "#b9daf3",
+                            300: "#7cc0eb",
+                            400: "#39a2df",
+                            500: "#005A9C",
+                            600: "#004b82",
+                            700: "#003c68",
+                            800: "#002d4f",
+                            900: "#001525",
+                        },
                         
                         // Mockups colors
                         "surface-variant": "#e4e2e1",
@@ -67,7 +81,7 @@
                         "tertiary-fixed": "#ffdcc7",
                         "on-tertiary": "#ffffff",
                         "tertiary-container": "#8d4401",
-                        "primary": "#004275",
+                        "primary": "#005A9C",
                         "on-secondary-fixed-variant": "#364a4d",
                         "on-tertiary-fixed": "#311300",
                         "tertiary": "#6a3100",
@@ -391,9 +405,9 @@
         /* Premium Circle active tab style */
         .active-tab-circle {
             border-radius: 50% !important;
-            background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%) !important;
-            color: #2563eb !important;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.18);
+            background: linear-gradient(135deg, #f0f7fc 0%, #e0eff9 100%) !important;
+            color: #005A9C !important;
+            box-shadow: 0 4px 14px rgba(0, 90, 156, 0.18);
             transform: translateY(-2px) scale(1.08) !important;
             transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.25s ease, box-shadow 0.25s ease !important;
         }
@@ -432,6 +446,11 @@
             transform: translateY(-3px);
             box-shadow: 0 12px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,90,156,0.06) !important;
             background-color: #f1f5f9 !important;
+        }
+        .card-lift.glass-card-error:hover {
+            background-color: rgba(254, 226, 226, 0.9) !important;
+            border-color: rgba(252, 165, 165, 0.8) !important;
+            box-shadow: 0 12px 32px rgba(186, 26, 26, 0.10), 0 2px 8px rgba(186, 26, 26, 0.06) !important;
         }
         .card-lift:active {
             transform: translateY(-1px) scale(0.98);
@@ -524,76 +543,91 @@
                                 </div>
                             </div>
 
-                            <!-- Daily Missions -->
-                            <section class="space-y-3">
-                                <div class="flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-blue-600 text-lg">task_alt</span>
-                                    <h2 class="text-sm font-bold text-slate-800">Nhiệm vụ hôm nay</h2>
-                                    <span id="mission-badge-container" class="ml-auto"></span>
-                                </div>
-                                <div class="card-lift bg-white border border-slate-100/80 shadow-[0_8px_30px_rgb(0,0,0,0.02)] rounded-3xl p-4 space-y-3">
-                                    <!-- Mission 1 -->
-                                    <div class="flex items-center gap-4 bg-slate-50/50 border border-slate-100/50 p-3 rounded-2xl">
-                                        <div class="w-10 h-10 rounded-full border-2 border-teal-500 bg-teal-50/50 flex items-center justify-center shrink-0">
-                                            <span class="material-symbols-outlined text-teal-600 text-base filled-icon" style="font-variation-settings:'FILL' 1">check_circle</span>
-                                        </div>
-                                        <div class="flex-grow min-w-0 flex items-center gap-2">
-                                            <h3 class="text-xs font-bold text-slate-800">Đọc 15 phút <span class="text-[10px] text-teal-600 font-bold ml-1.5">• Hoàn thành</span></h3>
-                                            <span class="inline-flex items-center justify-center bg-gradient-to-br from-amber-400 to-yellow-500 text-white rounded-full shadow-sm ml-auto shrink-0" style="width:20px;height:20px">
-                                                <span class="material-symbols-outlined filled-icon" style="font-size:13px;font-variation-settings:'FILL' 1">military_tech</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <!-- Mission 2 -->
-                                    <div id="mission-quiz-item" class="flex items-center gap-4 bg-slate-50/50 border border-slate-100/50 p-3 rounded-2xl">
-                                        <div id="mission-quiz-circle" class="w-10 h-10 rounded-full border-2 border-blue-500 flex items-center justify-center shrink-0 bg-blue-50/30">
-                                            <span id="mission-quiz-progress" class="text-[10px] font-bold text-blue-600">3/5</span>
-                                        </div>
-                                        <div class="flex-grow min-w-0 flex items-center justify-between gap-2">
-                                            <h3 class="text-xs font-bold text-slate-800">Trả lời 5 câu hỏi <span id="mission-quiz-status" class="text-[10px] text-blue-500 font-bold ml-1.5">• Đang tiến hành</span></h3>
-                                            <button id="mission-quiz-btn" onclick="openKnowledgeExperience()" class="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white text-[9px] font-bold px-2.5 py-1.5 rounded-lg transition-all duration-300 active:scale-95 shrink-0 shadow-sm">Làm ngay</button>
-                                        </div>
-                                    </div>
-                                    <!-- Mission 3 -->
-                                    <div id="mission-note-item" class="flex items-center gap-4 bg-slate-50/50 border border-slate-100/50 p-3 rounded-2xl">
-                                        <div id="mission-note-circle" class="w-10 h-10 rounded-full border-2 border-blue-500 flex items-center justify-center shrink-0 bg-blue-50/30">
-                                            <span id="mission-note-progress" class="text-[10px] font-bold text-blue-600">4/5</span>
-                                        </div>
-                                        <div class="flex-grow min-w-0 flex items-center justify-between gap-2">
-                                            <h3 class="text-xs font-bold text-slate-800">Tra cứu 5 thuật ngữ <span id="mission-note-status" class="text-[10px] text-blue-500 font-bold ml-1.5">• Đang tiến hành</span></h3>
-                                            <button id="mission-lookup-btn" onclick="openDictionary()" class="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white text-[9px] font-bold px-2.5 py-1.5 rounded-lg transition-all duration-300 active:scale-95 shrink-0 shadow-sm">Làm ngay</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
+                             <!-- Daily Missions -->
+                             <section class="space-y-3">
+                                 <div class="flex items-center gap-2">
+                                     <span class="material-symbols-outlined text-blue-600 text-lg">task_alt</span>
+                                     <h2 class="text-sm font-bold text-slate-800">Nhiệm vụ hôm nay</h2>
+                                     <span id="mission-badge-container" class="ml-auto"></span>
+                                 </div>
+                                 <div class="bg-white border border-slate-100/80 shadow-[0_8px_30px_rgb(0,0,0,0.02)] rounded-3xl p-4 space-y-3">
+                                     <!-- Mission 1 -->
+                                     <div class="card-lift flex items-center gap-4 bg-slate-50/50 border border-slate-100/50 p-3 rounded-2xl cursor-pointer">
+                                         <div class="w-10 h-10 rounded-full border-2 border-teal-500 bg-teal-50/50 flex items-center justify-center shrink-0">
+                                             <span class="material-symbols-outlined text-teal-600 text-sm font-extrabold">check</span>
+                                         </div>
+                                         <div class="flex-grow min-w-0 flex items-center justify-between gap-2">
+                                             <div class="min-w-0">
+                                                 <h3 class="text-xs font-bold text-slate-800">Đọc 15 phút</h3>
+                                                 <div class="flex items-center gap-1 mt-0.5">
+                                                     <span class="text-[10px] font-bold text-teal-600">Hoàn thành</span>
+                                                 </div>
+                                             </div>
+                                             <span class="inline-flex items-center justify-center bg-gradient-to-br from-amber-400 to-yellow-500 text-white rounded-full shadow-sm ml-auto shrink-0" style="width:20px;height:20px">
+                                                 <span class="material-symbols-outlined filled-icon" style="font-size:13px;font-variation-settings:'FILL' 1">military_tech</span>
+                                             </span>
+                                         </div>
+                                     </div>
+                                     <!-- Mission 2 -->
+                                     <div id="mission-quiz-item" class="card-lift flex items-center gap-4 bg-slate-50/50 border border-slate-100/50 p-3 rounded-2xl cursor-pointer">
+                                         <div id="mission-quiz-circle" class="w-10 h-10 rounded-full border-2 border-blue-500 flex items-center justify-center shrink-0 bg-blue-50/30">
+                                             <span id="mission-quiz-progress" class="text-xs font-bold text-blue-600">3/5</span>
+                                         </div>
+                                         <div class="flex-grow min-w-0 flex items-center justify-between gap-2">
+                                             <div class="min-w-0">
+                                                 <h3 class="text-xs font-bold text-slate-800">Hoàn thành bài kiểm tra chương 4</h3>
+                                                 <div class="flex items-center gap-1 mt-0.5">
+                                                     <span id="mission-quiz-status" class="text-[10px] font-bold text-blue-500">Đang tiến hành</span>
+                                                 </div>
+                                             </div>
+                                             <button id="mission-quiz-btn" onclick="openKnowledgeExperience()" class="bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-xl transition-all duration-300 active:scale-95 shrink-0 shadow-sm ml-auto">Làm ngay</button>
+                                         </div>
+                                     </div>
+                                     <!-- Mission 3 -->
+                                     <div id="mission-note-item" class="card-lift flex items-center gap-4 bg-slate-50/50 border border-slate-100/50 p-3 rounded-2xl cursor-pointer">
+                                         <div id="mission-note-circle" class="w-10 h-10 rounded-full border-2 border-blue-500 flex items-center justify-center shrink-0 bg-blue-50/30">
+                                             <span id="mission-note-progress" class="text-xs font-bold text-blue-600">4/5</span>
+                                         </div>
+                                         <div class="flex-grow min-w-0 flex items-center justify-between gap-2">
+                                             <div class="min-w-0">
+                                                 <h3 class="text-xs font-bold text-slate-800">Tra cứu 5 thuật ngữ</h3>
+                                                 <div class="flex items-center gap-1 mt-0.5">
+                                                     <span id="mission-note-status" class="text-[10px] font-bold text-blue-500">Đang tiến hành</span>
+                                                 </div>
+                                             </div>
+                                             <button id="mission-lookup-btn" onclick="openDictionary()" class="bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-xl transition-all duration-300 active:scale-95 shrink-0 shadow-sm ml-auto">Làm ngay</button>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </section>
 
                             <!-- Continue Reading -->
                             <section>
                                 <div class="flex items-center gap-2 mb-3">
-                                    <span class="material-symbols-outlined text-blue-600 text-lg">menu_book</span>
-                                    <h2 class="text-sm font-bold text-slate-800">Đang đọc</h2>
+                                     <span class="material-symbols-outlined text-primary text-lg">menu_book</span>
+                                     <h2 class="text-sm font-bold text-slate-800">Đang đọc</h2>
                                 </div>
                                 <div class="card-lift bg-white border border-slate-100/80 shadow-[0_8px_30px_rgb(0,0,0,0.02)] rounded-3xl p-5">
                                     <div class="flex gap-4 items-center mb-4">
                                         <div class="gems-book-cover w-20 h-28 shrink-0 shadow-[0_4px_16px_rgba(0,0,0,0.08)] border border-slate-100 rounded-xl overflow-hidden" data-book-id="chandoanykhoa"></div>
                                         <div class="flex-grow min-w-0">
-                                            <h3 class="text-xs font-black text-slate-850 line-clamp-1">Cẩm nang Chẩn đoán Y khoa</h3>
-                                            <p class="text-[10px] text-slate-400 font-semibold mt-1">Chương 4: Hệ Tuần Hoàn</p>
+                                            <h3 class="text-sm font-bold text-slate-800 line-clamp-1">Cẩm nang Chẩn đoán Y khoa</h3>
+                                            <p class="text-xs text-slate-400 font-semibold mt-1">Chương 4: Hệ Tuần Hoàn</p>
                                             <div class="mt-4">
-                                                <div class="flex items-center justify-between text-[9px] font-bold text-slate-400 mb-1.5">
+                                                <div class="flex items-center justify-between text-[10px] font-bold text-slate-400 mb-1.5">
                                                     <span>Tiến độ</span>
                                                     <span>45%</span>
                                                 </div>
                                                 <div class="w-full bg-slate-100 rounded-full h-2">
-                                                    <div class="bg-gradient-to-r from-blue-500 to-teal-400 h-2 rounded-full" style="width: 45%"></div>
+                                                    <div class="bg-gradient-to-r from-primary to-teal-400 h-2 rounded-full" style="width: 45%"></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-2 gap-3 pt-1">
-                                        <button onclick="openBookDetails('chandoanykhoa')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-3 rounded-2xl shadow-md shadow-blue-500/10 hover:shadow-lg transition-all active:scale-95 duration-100">Tiếp tục đọc</button>
-                                        <button onclick="showToast('AI: Đang tổng hợp sơ đồ hệ tuần hoàn...')" class="bg-teal-50 hover:bg-teal-100 text-teal-700 font-bold text-xs py-3 rounded-2xl flex items-center justify-center gap-1.5 active:scale-95 duration-100 transition-all">
-                                            <span class="material-symbols-outlined text-sm filled-icon" style="font-variation-settings:'FILL' 1">auto_awesome</span> Tóm tắt AI
+                                        <button onclick="openBookDetails('chandoanykhoa')" class="bg-primary hover:bg-primary-container text-white font-bold text-xs py-2 rounded-xl shadow-md shadow-primary/10 hover:shadow-lg transition-all active:scale-95 duration-100">Tiếp tục đọc</button>
+                                        <button onclick="openAISummaryModal()" class="bg-teal-50 hover:bg-teal-100 text-teal-700 font-bold text-xs py-2 rounded-xl flex items-center justify-center gap-1.5 active:scale-95 duration-100 transition-all">
+                                            <span class="material-symbols-outlined text-xs filled-icon" style="font-variation-settings:'FILL' 1">auto_awesome</span> Tóm tắt AI
                                         </button>
                                     </div>
                                 </div>
@@ -1231,7 +1265,7 @@
                                                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                                                 <span class="absolute top-4 left-4 bg-[#005a9c] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-md shadow">Sách nói lâm sàng nổi bật</span>
                                                 <div class="absolute bottom-4 left-4 right-16 text-white">
-                                                    <h3 class="text-sm font-black leading-snug drop-shadow-sm">Thần kinh học &amp; Chức năng Nhận thức Nâng cao</h3>
+                                                    <h3 class="text-xs font-bold leading-snug drop-shadow-sm">Thần kinh học &amp; Chức năng Nhận thức Nâng cao</h3>
                                                     <p class="text-[9px] text-slate-350 mt-1">Dr. Sarah Jenkins • 14h 30m</p>
                                                 </div>
                                                 <button class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-[#005a9c] flex items-center justify-center text-white shadow-lg shrink-0 active:scale-90 transition-transform">
@@ -1244,7 +1278,7 @@
                                                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                                                 <span class="absolute top-4 left-4 bg-[#005a9c] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-md shadow">Sách nói lâm sàng nổi bật</span>
                                                 <div class="absolute bottom-4 left-4 right-16 text-white">
-                                                    <h3 class="text-sm font-black leading-snug drop-shadow-sm">Cẩm nang Thảo dược</h3>
+                                                    <h3 class="text-xs font-bold leading-snug drop-shadow-sm">Cẩm nang Thảo dược</h3>
                                                     <p class="text-[9px] text-slate-350 mt-1">GS. TS. Nguyễn Văn Anh • 45:00</p>
                                                 </div>
                                                 <button class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-[#005a9c] flex items-center justify-center text-white shadow-lg shrink-0 active:scale-90 transition-transform">
@@ -1257,7 +1291,7 @@
                                                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                                                 <span class="absolute top-4 left-4 bg-[#005a9c] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-md shadow">Sách nói lâm sàng nổi bật</span>
                                                 <div class="absolute bottom-4 left-4 right-16 text-white">
-                                                    <h3 class="text-sm font-black leading-snug drop-shadow-sm">Sinh lý bệnh Tim mạch</h3>
+                                                    <h3 class="text-xs font-bold leading-snug drop-shadow-sm">Sinh lý bệnh Tim mạch</h3>
                                                     <p class="text-[9px] text-slate-350 mt-1">Dr. Elena Rostova • 11h 45m</p>
                                                 </div>
                                                 <button class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-[#005a9c] flex items-center justify-center text-white shadow-lg shrink-0 active:scale-90 transition-transform">
@@ -1452,7 +1486,7 @@
 
                             <!-- Dành cho bạn -->
                             <div class="space-y-4">
-                                <h3 class="font-headline-md text-headline-md text-slate-800 text-sm font-bold">Dành cho bạn</h3>
+                                <h3 class="text-sm font-bold text-slate-800">Dành cho bạn</h3>
                                 <div class="space-y-3">
                                     <!-- Item 1 -->
                                     <div onclick="showToast('Đang mở bài viết: Đột phá trong điều trị miễn dịch ung thư phổi')" data-category="nghien-cuu" class="card-lift blog-list-item flex items-center gap-4 bg-white border border-slate-100 p-3 rounded-2xl cursor-pointer shadow-sm hover:shadow active:scale-[0.99] transition-all">
@@ -1625,7 +1659,7 @@
                                 <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-white mb-stack-md shadow-lg ring-4 ring-gray-100 flex-shrink-0">
                                     <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDukQFzr3PWFF7kmutydSfDVyz4GMxa3ufjeHJ19GZ-UOa6KBEttzfKxOA1YiwCxFtQ_yPXUdHsOJWbeZmutVifcsEhZssstgB2p9zA-50TafI8uFygmQBaN5ZX3rzoQyuKpSglTWX0I531u59ZTDsdVcQqJS_13RGRo1_jIcKRy_oDCYN0aZKbvJaTT1rrOPMtZieGtf4iZ_Ylz01tnixte4OP4ecOb-AE2owv9wMVS2Qau4YMQ-sDwHhTUTVEkWOduU7dx9eEZqw" alt="Nguyễn Văn A"/>
                                 </div>
-                                <h2 class="font-headline-sm text-headline-sm text-on-surface mb-stack-sm mt-2 font-bold text-center">Nguyễn Văn A</h2>
+                                <h2 class="text-base font-bold text-on-surface mb-stack-sm mt-2 text-center">Nguyễn Văn A</h2>
                                 <div class="bg-primary/90 backdrop-blur-sm text-white px-4 py-1.5 rounded-full font-label-md text-label-md shadow-sm border border-white/20 mt-1">
                                     Độc giả chuyên nghiệp
                                 </div>
@@ -1654,7 +1688,7 @@
                                         <span class="material-symbols-outlined text-primary text-xl" data-icon="shopping_bag">shopping_bag</span>
                                     </div>
                                     <div>
-                                        <h3 class="font-headline-sm text-headline-sm text-on-surface text-sm font-bold">Sách đã mua</h3>
+                                        <h3 class="text-sm font-bold text-on-surface">Sách đã mua</h3>
                                         <p class="font-body-sm text-body-sm text-on-surface-variant text-xs mt-0.5">Quản lý thư viện cá nhân</p>
                                     </div>
                                 </button>
@@ -1664,7 +1698,7 @@
                                         <span class="material-symbols-outlined text-primary text-xl" data-icon="favorite">favorite</span>
                                     </div>
                                     <div>
-                                        <h3 class="font-headline-sm text-headline-sm text-on-surface text-sm font-bold">Sách yêu thích</h3>
+                                        <h3 class="text-sm font-bold text-on-surface">Sách yêu thích</h3>
                                         <p class="font-body-sm text-body-sm text-on-surface-variant text-xs mt-0.5">Danh sách dấu trang y khoa</p>
                                     </div>
                                 </button>
@@ -1674,7 +1708,7 @@
                                         <span class="material-symbols-outlined text-primary text-xl" data-icon="history">history</span>
                                     </div>
                                     <div>
-                                        <h3 class="font-headline-sm text-headline-sm text-on-surface text-sm font-bold">Lịch sử đọc</h3>
+                                        <h3 class="text-sm font-bold text-on-surface">Lịch sử đọc</h3>
                                         <p class="font-body-sm text-body-sm text-on-surface-variant text-xs mt-0.5">Tiếp tục nghiên cứu</p>
                                     </div>
                                 </button>
@@ -1684,7 +1718,7 @@
                                         <span class="material-symbols-outlined text-primary text-xl" data-icon="menu_book">menu_book</span>
                                     </div>
                                     <div>
-                                        <h3 class="font-headline-sm text-headline-sm text-on-surface text-sm font-bold">Thói quen đọc</h3>
+                                        <h3 class="text-sm font-bold text-on-surface">Thói quen đọc</h3>
                                         <p class="font-body-sm text-body-sm text-on-surface-variant text-xs mt-0.5">Phân tích học tập và mục tiêu</p>
                                     </div>
                                 </button>
@@ -1694,27 +1728,27 @@
                                         <span class="material-symbols-outlined text-primary text-xl" data-icon="manage_accounts">manage_accounts</span>
                                     </div>
                                     <div>
-                                        <h3 class="font-headline-sm text-headline-sm text-on-surface text-sm font-bold">Cài đặt tài khoản</h3>
+                                        <h3 class="text-sm font-bold text-on-surface">Cài đặt tài khoản</h3>
                                         <p class="font-body-sm text-body-sm text-on-surface-variant text-xs mt-0.5">Bảo mật và thông báo</p>
                                     </div>
                                 </button>
 
-                                <button onclick="showToast('Trợ giúp kỹ thuật.')" class="flex items-center p-stack-md glass-card rounded-2xl hover:bg-gray-50 transition-all duration-300 text-left group">
+                                <button onclick="showToast('Trợ giúp kỹ thuật.')" class="card-lift flex items-center p-stack-md glass-card rounded-2xl hover:bg-gray-50 transition-all duration-300 text-left group">
                                     <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-stack-md group-hover:bg-primary/20 transition-colors border border-white/50 flex-shrink-0">
                                         <span class="material-symbols-outlined text-primary text-xl" data-icon="help">help</span>
                                     </div>
                                     <div>
-                                        <h3 class="font-headline-sm text-headline-sm text-on-surface text-sm font-bold">Hỗ trợ</h3>
+                                        <h3 class="text-sm font-bold text-on-surface">Hỗ trợ</h3>
                                         <p class="font-body-sm text-body-sm text-on-surface-variant text-xs mt-0.5">Trợ giúp kỹ thuật</p>
                                     </div>
                                 </button>
 
-                                <button onclick="logoutApp()" class="flex items-center p-stack-md glass-card-error rounded-2xl hover:bg-error/10 transition-all duration-300 text-left group">
+                                <button onclick="logoutApp()" class="card-lift flex items-center p-stack-md glass-card-error rounded-2xl hover:bg-error/10 transition-all duration-300 text-left group">
                                     <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center mr-stack-md group-hover:bg-white/80 transition-colors border border-white/50 shadow-sm flex-shrink-0">
                                         <span class="material-symbols-outlined text-error text-xl" data-icon="logout">logout</span>
                                     </div>
                                     <div>
-                                        <h3 class="font-headline-sm text-headline-sm text-error text-sm font-bold">Đăng xuất</h3>
+                                        <h3 class="text-sm font-bold text-error">Đăng xuất</h3>
                                     </div>
                                 </button>
                             </section>
@@ -1748,7 +1782,7 @@
                                     <div id="detail-cover" class="w-full h-full"></div>
                                 </div>
                                 <div class="text-center w-full mb-6">
-                                    <h2 id="detail-title" class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-2 drop-shadow-sm leading-tight text-lg font-bold">Cẩm nang Thảo dược Quý Phương Đông</h2>
+                                    <h2 id="detail-title" class="text-lg font-black text-primary mb-2 drop-shadow-sm leading-tight text-center">Cẩm nang Thảo dược Quý Phương Đông</h2>
                                     <p id="detail-author" class="font-body-lg text-body-lg text-on-surface-variant mb-4 cursor-pointer hover:underline text-xs" onclick="openAuthorProfile()">GS. TS. Nguyễn Văn Anh</p>
                                     <div class="flex items-center justify-center gap-4 font-body-sm text-body-sm text-on-surface-variant text-[11px]">
                                         <div class="flex items-center gap-0.5 text-yellow-500">
@@ -1769,15 +1803,15 @@
                                 <div class="w-full flex flex-col gap-3 bg-white border border-border-subtle shadow-sm rounded-2xl p-4">
                                     <div class="grid grid-cols-2 gap-3">
                                         <!-- Ebook Button -->
-                                        <button onclick="openEreaderScreen()" class="bg-primary text-on-primary py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-primary-container transition-colors shadow-sm border border-white/20 active:scale-95 duration-100 font-bold text-xs">
+                                        <button onclick="openEreaderScreen()" class="bg-primary text-on-primary py-2.5 rounded-xl flex items-center justify-center gap-2 hover:bg-primary-container transition-colors shadow-sm border border-white/20 active:scale-95 duration-100 font-bold text-xs">
                                             <span class="material-symbols-outlined text-sm">menu_book</span> Sách Ebook
                                         </button>
                                         <!-- Audiobook Button -->
-                                        <button onclick="openAudiobookPlayer()" class="bg-white border border-slate-200 text-slate-650 py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors shadow-sm active:scale-95 duration-100 font-bold text-xs">
+                                        <button onclick="openAudiobookPlayer()" class="bg-white border border-slate-200 text-slate-650 py-2.5 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors shadow-sm active:scale-95 duration-100 font-bold text-xs">
                                             <span class="material-symbols-outlined text-sm">headphones</span> Sách nói
                                         </button>
                                     </div>
-                                    <button id="btn-library-add" onclick="addToLibraryState()" class="w-full bg-white/50 backdrop-blur-md border border-white/60 text-primary font-headline-sm text-headline-sm py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-white/70 transition-colors shadow-sm active:scale-95 duration-100 font-bold text-xs">
+                                    <button id="btn-library-add" onclick="addToLibraryState()" class="w-full bg-white border border-primary/25 text-primary hover:bg-primary/5 py-2.5 rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm active:scale-95 duration-100 font-bold text-xs">
                                         <span class="material-symbols-outlined">library_add</span> Thêm vào thư viện
                                     </button>
                                 </div>
@@ -1785,7 +1819,7 @@
                             
                             <!-- Summary Section -->
                             <section>
-                                <h3 class="font-headline-md text-headline-md text-on-surface mb-2 text-sm font-bold">Tóm tắt nội dung</h3>
+                                <h3 class="text-sm font-bold text-on-surface mb-2">Tóm tắt nội dung</h3>
                                 <p id="detail-desc" class="font-reading-content text-reading-content text-on-surface-variant line-clamp-4 text-xs leading-relaxed text-slate-600">
                                     Cuốn sách là kết tinh của hơn 30 năm nghiên cứu thực địa về các loài thảo dược quý tại vùng núi phía Bắc Việt Nam. Tác phẩm không chỉ cung cấp kiến thức về nhận dạng, công dụng mà còn hướng dẫn chi tiết cách bào chế các phương thuốc dân gian hiệu quả cho sức khỏe hiện đại. Nghiên cứu sâu rộng về các hợp chất sinh học hoạt tính được phân tích qua lăng kính y học cổ truyền kết hợp y học hiện đại, tạo nên một tài liệu tham khảo giá trị cho cả sinh viên y khoa và bác sĩ lâm sàng.
                                 </p>
@@ -1796,11 +1830,11 @@
 
                             <!-- Author Section -->
                             <section>
-                                <h3 class="font-headline-md text-headline-md text-on-surface mb-3 text-sm font-bold">Về tác giả</h3>
+                                <h3 class="text-sm font-bold text-on-surface mb-3">Về tác giả</h3>
                                 <div onclick="openAuthorProfile()" class="bg-white border border-border-subtle rounded-2xl p-4 flex items-center gap-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
                                     <img id="detail-author-avatar" alt="Author avatar" class="w-14 h-14 rounded-full object-cover border border-white/80 shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYYfUOY4ohiAvVl30o7RMcJAjLF2LIySm4WY-VlEM-lH83J_wlRC1ukHLc75-ewYF_Dh6TfWCT9fKT8u1FPgu3AbTqzSLlJRQS_Zfkpoi-2sGi_oVjo2lp7byQipzEgxwUrFuB7HjKOg5hKZJUvqZhAABDWcu4JXS2zETY4w_yIBtEnffKy8Ff_Z_YPQjMruJE7lhoWl3jjG8shZY9csIu7PCyyr_ucM237VPaBrz8dBPaTp7ewdOqoytgC_aaUUZSAtc_XeweTYA"/>
                                     <div class="flex-1 min-w-0">
-                                        <h4 class="font-headline-sm text-headline-sm text-on-surface font-bold text-xs" id="detail-author-name">GS. TS. Nguyễn Văn Anh</h4>
+                                        <h4 class="text-xs font-bold text-on-surface" id="detail-author-name">GS. TS. Nguyễn Văn Anh</h4>
                                         <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 text-[10px] leading-normal text-slate-500">Chuyên gia đầu ngành về Y học Cổ truyền với nhiều công trình nghiên cứu được công bố quốc tế.</p>
                                     </div>
                                     <span class="material-symbols-outlined text-on-surface-variant text-sm">chevron_right</span>
@@ -1810,12 +1844,12 @@
                             <!-- Related Books -->
                             <section class="bg-white border border-border-subtle rounded-3xl p-4 shadow-sm">
                                 <div class="flex items-center justify-between mb-3">
-                                    <h3 class="font-headline-md text-headline-md text-on-surface text-sm font-bold">Sách cùng thể loại</h3>
+                                    <h3 class="text-sm font-bold text-on-surface">Sách cùng thể loại</h3>
                                     <button onclick="switchTab('library')" class="text-primary font-body-sm text-body-sm hover:underline text-xs font-semibold">Xem tất cả</button>
                                 </div>
                                 <div class="grid grid-cols-2 gap-4">
                                     <!-- Book 1 -->
-                                    <div class="flex flex-col cursor-pointer group" onclick="openBookDetails('trathaomoc')">
+                                    <div class="card-lift bg-white border border-slate-100/50 p-2.5 rounded-2xl flex flex-col cursor-pointer group shadow-sm" onclick="openBookDetails('trathaomoc')">
                                         <div class="aspect-[2/3] bg-slate-50 rounded-xl border border-border-subtle overflow-hidden mb-2 relative shadow-sm">
                                             <div class="gems-book-cover w-full h-full group-hover:scale-105 transition-transform duration-300" data-book-id="trathaomoc"></div>
                                         </div>
@@ -1823,7 +1857,7 @@
                                         <p class="font-body-sm text-body-sm text-on-surface-variant truncate text-[10px]">Lê Minh</p>
                                     </div>
                                     <!-- Book 2 -->
-                                    <div class="flex flex-col cursor-pointer group" onclick="openBookDetails('thucduong')">
+                                    <div class="card-lift bg-white border border-slate-100/50 p-2.5 rounded-2xl flex flex-col cursor-pointer group shadow-sm" onclick="openBookDetails('thucduong')">
                                         <div class="aspect-[2/3] bg-slate-50 rounded-xl border border-border-subtle overflow-hidden mb-2 relative shadow-sm">
                                             <div class="gems-book-cover w-full h-full group-hover:scale-105 transition-transform duration-300" data-book-id="thucduong"></div>
                                         </div>
@@ -1836,7 +1870,7 @@
                             <!-- Reviews Section -->
                             <section class="pb-6">
                                 <div class="flex items-center justify-between mb-3">
-                                    <h3 class="font-headline-md text-headline-md text-on-surface text-sm font-bold">Đánh giá & Nhận xét</h3>
+                                    <h3 class="text-sm font-bold text-on-surface">Đánh giá & Nhận xét</h3>
                                     <button class="text-primary font-body-sm text-body-sm flex items-center gap-1 hover:underline text-xs font-semibold" onclick="showToast('Chức năng viết nhận xét.')">
                                         <span class="material-symbols-outlined text-[18px]">edit_square</span> Viết đánh giá
                                     </button>
@@ -1927,8 +1961,8 @@
                                     </div>
                                 </div>
                                 <div class="space-y-stack-sm relative z-10 mt-3">
-                                    <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background drop-shadow-sm font-bold text-lg">GS. TS. Nguyễn Văn Anh</h2>
-                                    <p class="font-headline-sm text-headline-sm text-primary drop-shadow-sm text-xs font-semibold">Chuyên gia Y học Cổ truyền</p>
+                                    <h2 class="text-base font-black text-on-background drop-shadow-sm">GS. TS. Nguyễn Văn Anh</h2>
+                                    <p class="text-xs font-semibold text-primary drop-shadow-sm">Chuyên gia Y học Cổ truyền</p>
                                     <p class="font-body-md text-body-md text-on-surface-variant text-[11px] mt-1 text-slate-500">Học viện Quân y & Viện Dược liệu Trung ương</p>
                                 </div>
                                 <div class="flex gap-gutter w-full max-w-sm justify-center mt-stack-sm relative z-10 pt-2">
@@ -1941,7 +1975,7 @@
                             <!-- Biography Section -->
                             <section class="bg-white border border-border-subtle rounded-2xl p-6 shadow-sm relative overflow-hidden">
                                 <div class="relative z-10 space-y-stack-md">
-                                    <h3 class="font-headline-sm text-headline-sm text-primary flex items-center gap-2 text-xs font-bold">
+                                    <h3 class="text-xs font-bold text-primary flex items-center gap-2">
                                         <span class="material-symbols-outlined text-sm" data-icon="menu_book">menu_book</span> Tiểu sử
                                     </h3>
                                     <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed text-xs text-slate-600 mt-2">
@@ -1952,7 +1986,7 @@
 
                             <!-- Works Published Section -->
                             <section class="space-y-stack-md">
-                                <h3 class="font-headline-sm text-headline-sm text-on-background text-xs font-bold">Tác phẩm đã xuất bản</h3>
+                                <h3 class="text-xs font-bold text-on-background">Tác phẩm đã xuất bản</h3>
                                 <div class="flex gap-gutter overflow-x-auto custom-scrollbar pb-2 pt-2">
                                     <!-- Book 1 -->
                                     <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('thaoduoc')">
@@ -1974,7 +2008,7 @@
 
                             <!-- Achievements & Awards Section -->
                             <section class="space-y-stack-md">
-                                <h3 class="font-headline-sm text-headline-sm text-on-background text-xs font-bold">Thành tựu & Giải thưởng</h3>
+                                <h3 class="text-xs font-bold text-on-background">Thành tựu & Giải thưởng</h3>
                                 <div class="space-y-stack-sm mt-2">
                                     <div class="bg-white border border-border-subtle rounded-2xl p-4 flex items-center gap-4 shadow-sm">
                                         <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
@@ -3095,13 +3129,13 @@
 
                             <!-- Title & Author & Current Chapter (Small chapter indicator) -->
                             <div class="text-center w-full px-4 space-y-2">
-                                <h2 id="audio-title" class="font-headline-lg-mobile text-headline-lg-mobile text-primary leading-tight text-base font-bold truncate">Cẩm nang Thảo dược Quý Phương Đông</h2>
-                                <p id="audio-author" class="font-body-lg text-body-lg text-on-surface-variant text-xs text-slate-500">GS. TS. Nguyễn Văn Anh</p>
+                                <h2 id="audio-title" class="text-base font-bold text-primary leading-tight truncate">Cẩm nang Thảo dược Quý Phương Đông</h2>
+                                <p id="audio-author" class="text-xs text-slate-500 font-medium">GS. TS. Nguyễn Văn Anh</p>
                                 <!-- Clicking this small chapter section/pill opens the popup -->
                                 <div class="pt-1">
                                     <div onclick="toggleAudioChapters()" class="inline-flex items-center gap-1.5 bg-blue-50 border border-blue-100 rounded-full px-3.5 py-1 shadow-sm cursor-pointer hover:bg-blue-100 transition-colors active:scale-95 duration-100">
                                         <span class="material-symbols-outlined text-[12px] text-blue-600 filled-icon" style="font-variation-settings: 'FILL' 1">play_circle</span>
-                                        <span id="audio-current-chapter-title" class="text-[9.5px] font-black text-blue-700 uppercase tracking-wider">Đang phát: Chương 1</span>
+                                        <span id="audio-current-chapter-title" class="text-[10px] font-bold text-blue-700 uppercase tracking-wider">Đang phát: Chương 1</span>
                                     </div>
                                 </div>
                             </div>
@@ -3315,6 +3349,81 @@
                     <footer class="text-center text-[10px] text-slate-450 font-medium">
                         Cẩm nang thảo dược GEMS • Bản quyền độ phân giải cao y văn.
                     </footer>
+                </div>
+
+                <!-- AI SUMMARY MODAL OVERLAY -->
+                <div id="ai-summary-modal" class="hidden absolute inset-0 bg-black/60 backdrop-blur-sm z-[230] flex items-center justify-center p-4" onclick="closeAISummaryModal()">
+                    <div class="bg-white w-full max-w-[360px] rounded-3xl overflow-hidden shadow-2xl transition-all duration-300 transform scale-95 opacity-0 border border-slate-100" onclick="event.stopPropagation()">
+                        <!-- Top drag handle / decoration -->
+                        <div class="flex justify-center pt-3 pb-1">
+                            <div class="w-10 h-1 bg-slate-200 rounded-full"></div>
+                        </div>
+                        
+                        <header class="px-5 py-3 flex items-center justify-between border-b border-slate-100">
+                            <div class="flex items-center gap-2">
+                                <div class="w-7 h-7 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600">
+                                    <span class="material-symbols-outlined text-base filled-icon" style="font-variation-settings:'FILL' 1">auto_awesome</span>
+                                </div>
+                                <h3 class="font-sans text-xs font-extrabold text-slate-800 uppercase tracking-wider">Tóm tắt chương bằng AI</h3>
+                            </div>
+                            <button onclick="closeAISummaryModal()" class="text-slate-400 hover:bg-slate-150 hover:text-slate-650 p-1 rounded-full flex items-center justify-center transition-colors">
+                                <span class="material-symbols-outlined text-lg">close</span>
+                            </button>
+                        </header>
+                        
+                        <div class="p-5 space-y-4 max-h-[380px] overflow-y-auto">
+                            <div>
+                                <span class="text-[9px] font-black text-sky-600 uppercase tracking-widest block mb-0.5">CHƯƠNG 12</span>
+                                <h4 class="text-base font-extrabold text-slate-900 leading-tight">Pharmacokinetics of Anticoagulants</h4>
+                            </div>
+                            
+                            <div class="space-y-3.5 pt-1">
+                                <!-- Point 1 -->
+                                <div class="flex items-start gap-3">
+                                    <div class="w-5 h-5 rounded-full border border-sky-200 bg-sky-50 flex items-center justify-center shrink-0 mt-0.5">
+                                        <span class="material-symbols-outlined text-[10px] text-sky-600 font-extrabold">check</span>
+                                    </div>
+                                    <div class="text-[11px] text-slate-600 leading-relaxed font-semibold">
+                                        <strong class="text-slate-800 font-bold">Cơ chế Heparin:</strong> Liên kết với antithrombin III, thúc đẩy hoạt động của nó lên gấp 1000 lần để ức chế thrombin (Yếu tố IIa) và Yếu tố Xa.
+                                    </div>
+                                </div>
+                                <!-- Point 2 -->
+                                <div class="flex items-start gap-3">
+                                    <div class="w-5 h-5 rounded-full border border-sky-200 bg-sky-50 flex items-center justify-center shrink-0 mt-0.5">
+                                        <span class="material-symbols-outlined text-[10px] text-sky-600 font-extrabold">check</span>
+                                    </div>
+                                    <div class="text-[11px] text-slate-600 leading-relaxed font-semibold">
+                                        <strong class="text-slate-800 font-bold">Tác động Warfarin:</strong> Ức chế VKORC1, làm cạn kiệt nguồn dự trữ vitamin K chức năng và giảm tổng hợp các yếu tố đông máu II, VII, IX, và X.
+                                    </div>
+                                </div>
+                                <!-- Point 3 -->
+                                <div class="flex items-start gap-3">
+                                    <div class="w-5 h-5 rounded-full border border-sky-200 bg-sky-50 flex items-center justify-center shrink-0 mt-0.5">
+                                        <span class="material-symbols-outlined text-[10px] text-sky-600 font-extrabold">check</span>
+                                    </div>
+                                    <div class="text-[11px] text-slate-600 leading-relaxed font-semibold">
+                                        <strong class="text-slate-800 font-bold">Ưu điểm DOACs:</strong> Các thuốc chống đông máu đường uống trực tiếp cung cấp dược động học có thể dự đoán được mà không cần theo dõi INR thường xuyên như Warfarin.
+                                    </div>
+                                </div>
+                                <!-- Point 4 -->
+                                <div class="flex items-start gap-3">
+                                    <div class="w-5 h-5 rounded-full border border-sky-200 bg-sky-50 flex items-center justify-center shrink-0 mt-0.5">
+                                        <span class="material-symbols-outlined text-[10px] text-sky-600 font-extrabold">check</span>
+                                    </div>
+                                    <div class="text-[11px] text-slate-600 leading-relaxed font-semibold">
+                                        <strong class="text-slate-800 font-bold">Chỉ định theo dõi:</strong> Theo dõi aPTT là cần thiết đối với Heparin chưa phân đoạn, trong khi LMWH và DOACs thường không yêu cầu theo dõi định kỳ.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="px-5 pb-5 pt-2 flex gap-3">
+                            <button onclick="closeAISummaryModal()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs py-2.5 rounded-xl transition-all active:scale-95 duration-100">Đóng</button>
+                            <button onclick="copySummaryText()" class="bg-brand-blue hover:bg-brand-blue-dark text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-all active:scale-95 duration-100 flex items-center justify-center gap-1">
+                                <span class="material-symbols-outlined text-xs">content_copy</span> Sao chép
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- TABLE OF CONTENTS SHEET -->
@@ -4534,6 +4643,49 @@
             document.getElementById('highres-viewer-modal').classList.add('hidden');
         }
 
+        // AI Summary Modal Handlers
+        function openAISummaryModal() {
+            const modal = document.getElementById('ai-summary-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                // Force layout reflow
+                void modal.offsetWidth;
+                const dialog = modal.querySelector('div');
+                if (dialog) {
+                    dialog.classList.remove('scale-95', 'opacity-0');
+                    dialog.classList.add('scale-100', 'opacity-100');
+                }
+            }
+        }
+
+        function closeAISummaryModal() {
+            const modal = document.getElementById('ai-summary-modal');
+            if (modal) {
+                const dialog = modal.querySelector('div');
+                if (dialog) {
+                    dialog.classList.remove('scale-100', 'opacity-100');
+                    dialog.classList.add('scale-95', 'opacity-0');
+                }
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 200);
+            }
+        }
+
+        function copySummaryText() {
+            const textToCopy = `Tóm tắt chương bằng AI: Pharmacokinetics of Anticoagulants\n\n` +
+                `- Cơ chế Heparin: Liên kết với antithrombin III, thúc đẩy hoạt động của nó lên gấp 1000 lần để ức chế thrombin (Yếu tố IIa) và Yếu tố Xa.\n` +
+                `- Tác động Warfarin: Ức chế VKORC1, làm cạn kiệt nguồn dự trữ vitamin K chức năng và giảm tổng hợp các yếu tố đông máu II, VII, IX, và X.\n` +
+                `- Ưu điểm DOACs: Các thuốc chống đông máu đường uống trực tiếp cung cấp dược động học có thể dự đoán được mà không cần theo dõi INR thường xuyên như Warfarin.\n` +
+                `- Chỉ định theo dõi: Theo dõi aPTT là cần thiết đối với Heparin chưa phân đoạn, trong khi LMWH và DOACs thường không yêu cầu theo dõi định kỳ.`;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showToast("Đã sao chép nội dung tóm tắt.", "success");
+            }).catch(() => {
+                showToast("Không thể sao chép.", "warning");
+            });
+        }
+
         // AI Assistant chat logic
         function toggleAIPanel(event) {
             event.stopPropagation();
@@ -4852,7 +5004,7 @@
                 container.innerHTML = `
                     <div class="flex flex-col items-center justify-center h-full text-center p-6 space-y-6">
                         <span class="material-symbols-outlined text-6xl text-emerald-600 filled-icon animate-bounce">check_circle</span>
-                        <h3 class="font-headline-md text-headline-md text-slate-800 text-lg font-bold">Chương học đã hoàn thành!</h3>
+                        <h3 class="text-lg font-bold text-slate-800">Chương học đã hoàn thành!</h3>
                         <p class="text-xs text-slate-500 max-w-xs">
                             Chúc mừng bạn đã trả lời đúng tất cả 5 câu hỏi ôn tập của Chương 4: Tam Thất. Bạn đã sẵn sàng khám phá chương tiếp theo.
                         </p>
@@ -4972,7 +5124,7 @@
                     quizCont.innerHTML = `
                         <div class="flex flex-col items-center justify-center h-full text-center p-6 space-y-6 animate-fade-in">
                             <span class="material-symbols-outlined text-6xl text-emerald-600 filled-icon animate-bounce">check_circle</span>
-                            <h3 class="font-headline-md text-headline-md text-slate-800 text-lg font-bold">Chương học đã hoàn thành!</h3>
+                            <h3 class="text-lg font-bold text-slate-800">Chương học đã hoàn thành!</h3>
                             <p class="text-xs text-slate-500 max-w-xs">
                                 Chúc mừng bạn đã đọc xong và hoàn thành tất cả các nội dung của ${chapName}.
                             </p>
@@ -4994,7 +5146,7 @@
                     quizCont.innerHTML = `
                         <div class="flex flex-col items-center justify-center h-full text-center p-6 space-y-6">
                             <span class="material-symbols-outlined text-6xl text-brand-blue filled-icon animate-pulse">workspace_premium</span>
-                            <h3 class="font-headline-md text-headline-md text-slate-800 text-lg font-bold">Bạn đã đọc hết chương 5!</h3>
+                            <h3 class="text-lg font-bold text-slate-800">Bạn đã đọc hết chương 5!</h3>
                             <p class="text-xs text-slate-500 max-w-xs">
                                 Nhân Sâm là chương học cuối cùng của quyển Cẩm nang Thảo dược Quý Phương Đông trong giả lập này. Cảm ơn bạn đã đồng hành y khoa!
                             </p>
@@ -6321,24 +6473,24 @@
             // 1. UPDATE HOMEPAGE MISSION 2 (QUIZ)
             const hpQuizCircle = document.getElementById('mission-quiz-circle');
             const hpQuizStatus = document.getElementById('mission-quiz-status');
-            const hpQuizBtn = document.getElementById('mission-quiz-btn');
             const hpQuizItem = document.getElementById('mission-quiz-item');
+            const hpQuizBtn = document.getElementById('mission-quiz-btn');
 
-            if (appState.quizCompleted) {
+            const quizCompleted = appState.quizStep >= 5;
+            if (quizCompleted) {
                 if (hpQuizCircle) {
                     hpQuizCircle.className = "w-10 h-10 rounded-full border-2 border-teal-500 bg-teal-50/50 flex items-center justify-center shrink-0";
-                    hpQuizCircle.innerHTML = '<span class="material-symbols-outlined text-teal-605 text-sm font-extrabold">check</span>';
+                    hpQuizCircle.innerHTML = '<span class="material-symbols-outlined text-teal-600 text-sm font-extrabold">check</span>';
                 }
                 if (hpQuizStatus) {
-                    hpQuizStatus.innerText = "• Hoàn thành";
-                    hpQuizStatus.className = "text-[10px] font-bold text-teal-600 ml-1.5";
+                    hpQuizStatus.innerText = "Hoàn thành";
+                    hpQuizStatus.className = "text-[9px] font-bold text-teal-600";
                 }
                 if (hpQuizBtn) hpQuizBtn.classList.add('hidden');
                 if (hpQuizItem) {
                     const h3 = hpQuizItem.querySelector('h3');
                     if (h3) {
-                        h3.innerHTML = 'Hoàn thành bài kiểm tra chương 4 <span class="text-[10px] text-teal-600 font-bold ml-1.5">• Hoàn thành</span>';
-                        h3.className = "text-xs font-bold text-slate-800";
+                        h3.innerText = 'Hoàn thành bài kiểm tra chương 4';
                     }
                 }
             } else {
@@ -6347,19 +6499,16 @@
                     hpQuizCircle.innerHTML = `<span class="text-[10px] font-bold text-blue-600">${appState.quizStep}/5</span>`;
                 }
                 if (hpQuizStatus) {
-                    const statusText = appState.quizStep > 0 ? "• Đang tiến hành" : "• Chưa bắt đầu";
+                    const statusText = appState.quizStep > 0 ? "Đang tiến hành" : "Chưa bắt đầu";
                     const statusColor = appState.quizStep > 0 ? "text-blue-500" : "text-slate-400";
                     hpQuizStatus.innerText = statusText;
-                    hpQuizStatus.className = `text-[10px] font-bold ${statusColor} ml-1.5`;
+                    hpQuizStatus.className = `text-[9px] font-bold ${statusColor}`;
                 }
                 if (hpQuizBtn) hpQuizBtn.classList.remove('hidden');
                 if (hpQuizItem) {
                     const h3 = hpQuizItem.querySelector('h3');
                     if (h3) {
-                        const statusText = appState.quizStep > 0 ? "• Đang tiến hành" : "• Chưa bắt đầu";
-                        const statusColor = appState.quizStep > 0 ? "text-blue-500" : "text-slate-400";
-                        h3.innerHTML = `Hoàn thành bài kiểm tra chương 4 <span class="text-[10px] ${statusColor} font-bold ml-1.5">${statusText}</span>`;
-                        h3.className = "text-xs font-bold text-slate-800";
+                        h3.innerText = 'Hoàn thành bài kiểm tra chương 4';
                     }
                 }
             }
@@ -6374,18 +6523,17 @@
             if (lookupCompleted) {
                 if (hpLookupCircle) {
                     hpLookupCircle.className = "w-10 h-10 rounded-full border-2 border-teal-500 bg-teal-50/50 flex items-center justify-center shrink-0";
-                    hpLookupCircle.innerHTML = '<span class="material-symbols-outlined text-teal-605 text-sm font-extrabold">check</span>';
+                    hpLookupCircle.innerHTML = '<span class="material-symbols-outlined text-teal-600 text-sm font-extrabold">check</span>';
                 }
                 if (hpLookupStatus) {
-                    hpLookupStatus.innerText = "• Hoàn thành";
-                    hpLookupStatus.className = "text-[10px] font-bold text-teal-600 ml-1.5";
+                    hpLookupStatus.innerText = "Hoàn thành";
+                    hpLookupStatus.className = "text-[9px] font-bold text-teal-600";
                 }
                 if (hpLookupBtn) hpLookupBtn.classList.add('hidden');
                 if (hpLookupItem) {
                     const h3 = hpLookupItem.querySelector('h3');
                     if (h3) {
-                        h3.innerHTML = 'Tra cứu 5 thuật ngữ <span class="text-[10px] text-teal-600 font-bold ml-1.5">• Hoàn thành</span>';
-                        h3.className = "text-xs font-bold text-slate-800";
+                        h3.innerText = 'Tra cứu 5 thuật ngữ';
                     }
                 }
             } else {
@@ -6394,19 +6542,16 @@
                     hpLookupCircle.innerHTML = `<span class="text-[10px] font-bold text-blue-600">${appState.lookupCount}/5</span>`;
                 }
                 if (hpLookupStatus) {
-                    const statusText = appState.lookupCount > 0 ? "• Đang tiến hành" : "• Chưa bắt đầu";
+                    const statusText = appState.lookupCount > 0 ? "Đang tiến hành" : "Chưa bắt đầu";
                     const statusColor = appState.lookupCount > 0 ? "text-blue-500" : "text-slate-400";
                     hpLookupStatus.innerText = statusText;
-                    hpLookupStatus.className = `text-[10px] font-bold ${statusColor} ml-1.5`;
+                    hpLookupStatus.className = `text-[9px] font-bold ${statusColor}`;
                 }
                 if (hpLookupBtn) hpLookupBtn.classList.remove('hidden');
                 if (hpLookupItem) {
                     const h3 = hpLookupItem.querySelector('h3');
                     if (h3) {
-                        const statusText = appState.lookupCount > 0 ? "• Đang tiến hành" : "• Chưa bắt đầu";
-                        const statusColor = appState.lookupCount > 0 ? "text-blue-500" : "text-slate-400";
-                        h3.innerHTML = `Tra cứu 5 thuật ngữ <span class="text-[10px] ${statusColor} font-bold ml-1.5">${statusText}</span>`;
-                        h3.className = "text-xs font-bold text-slate-800";
+                        h3.innerText = 'Tra cứu 5 thuật ngữ';
                     }
                 }
             }
