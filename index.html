@@ -140,6 +140,17 @@
     </script>
 
     <style>
+        .ra-word {
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+        .ra-word-active {
+            background-color: #e0f7fa !important;
+            color: #005a9c !important;
+            border-radius: 4px;
+            padding: 1px 3px;
+            box-shadow: 0 0 8px rgba(0, 90, 156, 0.35);
+            font-weight: bold;
+        }
         :root {
             --surface-color: #fbf9f8;
             --page-bg: #f3efdf;
@@ -1259,44 +1270,63 @@
 <!-- Featured Section Carousel -->
                                     <section class="px-margin-mobile pt-4 pb-2 relative">
                                         <div id="audiobook-featured-carousel" class="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 w-full" onscroll="updateAudiobookLibraryDots()">
-                                            <!-- Slide 1 -->
+                                            <!-- Slide 1: Thần kinh học -->
                                             <div class="relative w-full shrink-0 snap-start aspect-[16/10] rounded-3xl overflow-hidden shadow-md cursor-pointer group active:scale-[0.99] transition-all" onclick="openAudiobookPlayer('thankinhhoc')">
-                                                <img src="/covers/brain_cover.png" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" alt="Featured Brain Cover">
-                                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                                                <span class="absolute top-4 left-4 bg-[#005a9c] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-md shadow">Sách nói lâm sàng nổi bật</span>
-                                                <div class="absolute bottom-4 left-4 right-16 text-white">
+                                                <!-- Gradient background matching neural/science vibe -->
+                                                <div class="absolute inset-0" style="background: linear-gradient(135deg, #0a0e2e 0%, #1a237e 50%, #283593 100%);"></div>
+                                                <!-- Subtle grid pattern overlay -->
+                                                <div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(255,255,255,0.15) 29px), repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(255,255,255,0.15) 29px);"></div>
+                                                <!-- Book cover floating right -->
+                                                <div class="absolute right-6 top-1/2 -translate-y-1/2 h-[80%] aspect-[3/4] rounded-lg overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.5)] ring-1 ring-white/10 group-hover:scale-105 transition-transform duration-500">
+                                                    <img src="/covers/thankinh.png" class="w-full h-full object-cover" alt="Thần kinh học">
+                                                </div>
+                                                <!-- Text left side -->
+                                                <div class="absolute left-4 top-4">
+                                                    <span class="bg-[#005a9c] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-md shadow">Sách nói lâm sàng nổi bật</span>
+                                                </div>
+                                                <div class="absolute left-4 bottom-4 right-32 text-white">
                                                     <h3 class="text-xs font-bold leading-snug drop-shadow-sm">Thần kinh học &amp; Chức năng Nhận thức Nâng cao</h3>
-                                                    <p class="text-[9px] text-slate-350 mt-1">Dr. Sarah Jenkins • 14h 30m</p>
+                                                    <p class="text-[9px] text-blue-200 mt-1">Dr. Sarah Jenkins • 14h 30m</p>
+                                                    <button class="mt-2 inline-flex items-center gap-1 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white text-[9px] font-bold px-3 py-1 rounded-full transition-all">
+                                                        <span class="material-symbols-outlined text-[10px] filled-icon">play_arrow</span> Phát ngay
+                                                    </button>
                                                 </div>
-                                                <button class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-[#005a9c] flex items-center justify-center text-white shadow-lg shrink-0 active:scale-90 transition-transform">
-                                                    <span class="material-symbols-outlined text-lg filled-icon">play_arrow</span>
-                                                </button>
                                             </div>
-                                            <!-- Slide 2 -->
+                                            <!-- Slide 2: Thảo dược -->
                                             <div class="relative w-full shrink-0 snap-start aspect-[16/10] rounded-3xl overflow-hidden shadow-md cursor-pointer group active:scale-[0.99] transition-all" onclick="openAudiobookPlayer('thaoduoc')">
-                                                <img src="/covers/thaoduoc.png" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" alt="Featured Herb Cover">
-                                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                                                <span class="absolute top-4 left-4 bg-[#005a9c] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-md shadow">Sách nói lâm sàng nổi bật</span>
-                                                <div class="absolute bottom-4 left-4 right-16 text-white">
-                                                    <h3 class="text-xs font-bold leading-snug drop-shadow-sm">Cẩm nang Thảo dược</h3>
-                                                    <p class="text-[9px] text-slate-350 mt-1">GS. TS. Nguyễn Văn Anh • 45:00</p>
+                                                <div class="absolute inset-0" style="background: linear-gradient(135deg, #0d2818 0%, #1b5e20 50%, #2e7d32 100%);"></div>
+                                                <div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(255,255,255,0.15) 29px), repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(255,255,255,0.15) 29px);"></div>
+                                                <div class="absolute right-6 top-1/2 -translate-y-1/2 h-[80%] aspect-[3/4] rounded-lg overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.5)] ring-1 ring-white/10 group-hover:scale-105 transition-transform duration-500">
+                                                    <img src="/covers/thaoduoc.png" class="w-full h-full object-cover" alt="Thảo dược">
                                                 </div>
-                                                <button class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-[#005a9c] flex items-center justify-center text-white shadow-lg shrink-0 active:scale-90 transition-transform">
-                                                    <span class="material-symbols-outlined text-lg filled-icon">play_arrow</span>
-                                                </button>
+                                                <div class="absolute left-4 top-4">
+                                                    <span class="bg-[#005a9c] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-md shadow">Sách nói lâm sàng nổi bật</span>
+                                                </div>
+                                                <div class="absolute left-4 bottom-4 right-32 text-white">
+                                                    <h3 class="text-xs font-bold leading-snug drop-shadow-sm">Cẩm nang Thảo dược Quý Phương Đông</h3>
+                                                    <p class="text-[9px] text-green-200 mt-1">GS. TS. Nguyễn Văn Anh • 45:00</p>
+                                                    <button class="mt-2 inline-flex items-center gap-1 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white text-[9px] font-bold px-3 py-1 rounded-full transition-all">
+                                                        <span class="material-symbols-outlined text-[10px] filled-icon">play_arrow</span> Phát ngay
+                                                    </button>
+                                                </div>
                                             </div>
-                                            <!-- Slide 3 -->
+                                            <!-- Slide 3: Lâm sàng Nội khoa -->
                                             <div class="relative w-full shrink-0 snap-start aspect-[16/10] rounded-3xl overflow-hidden shadow-md cursor-pointer group active:scale-[0.99] transition-all" onclick="openAudiobookPlayer('lamsangnoikhoa')">
-                                                <img src="/covers/lamsangnoikhoa.png" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" alt="Featured Medicine Cover">
-                                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                                                <span class="absolute top-4 left-4 bg-[#005a9c] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-md shadow">Sách nói lâm sàng nổi bật</span>
-                                                <div class="absolute bottom-4 left-4 right-16 text-white">
-                                                    <h3 class="text-xs font-bold leading-snug drop-shadow-sm">Sinh lý bệnh Tim mạch</h3>
-                                                    <p class="text-[9px] text-slate-350 mt-1">Dr. Elena Rostova • 11h 45m</p>
+                                                <div class="absolute inset-0" style="background: linear-gradient(135deg, #0a1929 0%, #0d47a1 50%, #1565c0 100%);"></div>
+                                                <div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(255,255,255,0.15) 29px), repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(255,255,255,0.15) 29px);"></div>
+                                                <div class="absolute right-6 top-1/2 -translate-y-1/2 h-[80%] aspect-[3/4] rounded-lg overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.5)] ring-1 ring-white/10 group-hover:scale-105 transition-transform duration-500">
+                                                    <img src="/covers/lamsangnoikhoa.png" class="w-full h-full object-cover" alt="Lâm sàng Nội khoa">
                                                 </div>
-                                                <button class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-[#005a9c] flex items-center justify-center text-white shadow-lg shrink-0 active:scale-90 transition-transform">
-                                                    <span class="material-symbols-outlined text-lg filled-icon">play_arrow</span>
-                                                </button>
+                                                <div class="absolute left-4 top-4">
+                                                    <span class="bg-[#005a9c] text-white text-[8px] font-black uppercase px-2 py-0.5 rounded-md shadow">Sách nói lâm sàng nổi bật</span>
+                                                </div>
+                                                <div class="absolute left-4 bottom-4 right-32 text-white">
+                                                    <h3 class="text-xs font-bold leading-snug drop-shadow-sm">Sinh lý bệnh Tim mạch</h3>
+                                                    <p class="text-[9px] text-blue-200 mt-1">Dr. Elena Rostova • 11h 45m</p>
+                                                    <button class="mt-2 inline-flex items-center gap-1 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white text-[9px] font-bold px-3 py-1 rounded-full transition-all">
+                                                        <span class="material-symbols-outlined text-[10px] filled-icon">play_arrow</span> Phát ngay
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </section>
@@ -1319,53 +1349,78 @@
                                         <h3 class="text-sm font-bold text-slate-800">Mới nhất</h3>
                                         <span class="material-symbols-outlined text-blue-500 text-sm font-bold">chevron_right</span>
                                     </div>
-                                    <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 px-margin-mobile pb-2">
+                                    <!-- Mới nhất: horizontal scroll ~3.5 cards visible -->
+                                    <div class="flex overflow-x-auto snap-x scrollbar-none gap-3 px-4 pb-2 scroll-pl-4">
                                         <!-- Card 1 -->
-                                        <div onclick="openAudiobookPlayer('thankinh')" data-category="than-kinh" class="card-lift audio-card-item w-36 shrink-0 snap-start flex flex-col group cursor-pointer p-1 rounded-2xl transition-all duration-300">
-                                            <div class="w-full aspect-[3/4] rounded-2xl overflow-hidden border border-slate-100 shadow-sm relative mb-2">
-                                                <img src="/covers/thankinh.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Miễn dịch học Nâng cao">
+                                        <div onclick="openAudiobookPlayer('thankinh')" data-category="than-kinh" class="card-lift audio-card-item w-[28%] shrink-0 snap-start flex flex-col group cursor-pointer transition-all duration-300">
+                                            <div class="w-full aspect-[2/3] rounded-xl overflow-hidden border border-slate-100 shadow-sm mb-1.5 group-hover:scale-[1.02] transition-transform duration-300">
+                                                <img src="/covers/thankinh.png" class="w-full h-full object-cover" alt="Thần kinh học cơ bản">
                                             </div>
-                                            <h4 class="text-[11px] font-black text-slate-800 leading-snug line-clamp-2">Miễn dịch học Nâng cao</h4>
+                                            <h4 class="text-[10px] font-black text-slate-800 leading-snug line-clamp-2">Thần kinh học cơ bản</h4>
                                             <p class="text-[9px] text-slate-400 mt-0.5 truncate">Dr. Michael Chen</p>
                                             <div class="flex items-center justify-between text-[9px] text-slate-500 mt-1 font-semibold">
-                                                <div class="flex items-center gap-0.5 text-slate-400">
-                                                    <span class="material-symbols-outlined text-[10px]">schedule</span> 8h 15m
-                                                </div>
-                                                <div class="flex items-center gap-0.5 text-yellow-500 font-bold">
-                                                    <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8
-                                                </div>
+                                                <div class="flex items-center gap-0.5 text-slate-400"><span class="material-symbols-outlined text-[10px]">schedule</span> 8h 15m</div>
+                                                <div class="flex items-center gap-0.5 text-yellow-500 font-bold"><span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8</div>
                                             </div>
                                         </div>
                                         <!-- Card 2 -->
-                                        <div onclick="openAudiobookPlayer('lamsangnoikhoa')" data-category="tim-mach" class="card-lift audio-card-item w-36 shrink-0 snap-start flex flex-col group cursor-pointer p-1 rounded-2xl transition-all duration-300">
-                                            <div class="w-full aspect-[3/4] rounded-2xl overflow-hidden border border-slate-100 shadow-sm relative mb-2">
-                                                <img src="/covers/lamsangnoikhoa.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Sinh lý bệnh Tim mạch">
+                                        <div onclick="openAudiobookPlayer('lamsangnoikhoa')" data-category="tim-mach" class="card-lift audio-card-item w-[28%] shrink-0 snap-start flex flex-col group cursor-pointer transition-all duration-300">
+                                            <div class="w-full aspect-[2/3] rounded-xl overflow-hidden border border-slate-100 shadow-sm mb-1.5 group-hover:scale-[1.02] transition-transform duration-300">
+                                                <img src="/covers/lamsangnoikhoa.png" class="w-full h-full object-cover" alt="Lâm sàng Nội khoa">
                                             </div>
-                                            <h4 class="text-[11px] font-black text-slate-800 leading-snug line-clamp-2">Sinh lý bệnh Tim mạch</h4>
+                                            <h4 class="text-[10px] font-black text-slate-800 leading-snug line-clamp-2">Lâm sàng Nội khoa</h4>
                                             <p class="text-[9px] text-slate-400 mt-0.5 truncate">Dr. Elena Rostova</p>
                                             <div class="flex items-center justify-between text-[9px] text-slate-500 mt-1 font-semibold">
-                                                <div class="flex items-center gap-0.5 text-slate-400">
-                                                    <span class="material-symbols-outlined text-[10px]">schedule</span> 11h 45m
-                                                </div>
-                                                <div class="flex items-center gap-0.5 text-yellow-500 font-bold">
-                                                    <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.9
-                                                </div>
+                                                <div class="flex items-center gap-0.5 text-slate-400"><span class="material-symbols-outlined text-[10px]">schedule</span> 11h 45m</div>
+                                                <div class="flex items-center gap-0.5 text-yellow-500 font-bold"><span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.9</div>
                                             </div>
                                         </div>
                                         <!-- Card 3 -->
-                                        <div onclick="openAudiobookPlayer('capnhatyvan')" data-category="all" class="card-lift audio-card-item w-36 shrink-0 snap-start flex flex-col group cursor-pointer p-1 rounded-2xl transition-all duration-300">
-                                            <div class="w-full aspect-[3/4] rounded-2xl overflow-hidden border border-slate-100 shadow-sm relative mb-2">
-                                                <img src="/covers/capnhatyvan.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Dược lý Lâm sàng">
+                                        <div onclick="openAudiobookPlayer('capnhatyvan')" data-category="all" class="card-lift audio-card-item w-[28%] shrink-0 snap-start flex flex-col group cursor-pointer transition-all duration-300">
+                                            <div class="w-full aspect-[2/3] rounded-xl overflow-hidden border border-slate-100 shadow-sm mb-1.5 group-hover:scale-[1.02] transition-transform duration-300">
+                                                <img src="/covers/capnhatyvan.png" class="w-full h-full object-cover" alt="Cập nhật Y văn">
                                             </div>
-                                            <h4 class="text-[11px] font-black text-slate-800 leading-snug line-clamp-2">Dược lý Lâm sàng</h4>
+                                            <h4 class="text-[10px] font-black text-slate-800 leading-snug line-clamp-2">Cập nhật Y văn 2024</h4>
                                             <p class="text-[9px] text-slate-400 mt-0.5 truncate">Dr. Robert H.</p>
                                             <div class="flex items-center justify-between text-[9px] text-slate-500 mt-1 font-semibold">
-                                                <div class="flex items-center gap-0.5 text-slate-400">
-                                                    <span class="material-symbols-outlined text-[10px]">schedule</span> 9h 20m
-                                                </div>
-                                                <div class="flex items-center gap-0.5 text-yellow-500 font-bold">
-                                                    <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.7
-                                                </div>
+                                                <div class="flex items-center gap-0.5 text-slate-400"><span class="material-symbols-outlined text-[10px]">schedule</span> 9h 20m</div>
+                                                <div class="flex items-center gap-0.5 text-yellow-500 font-bold"><span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.7</div>
+                                            </div>
+                                        </div>
+                                        <!-- Card 4 -->
+                                        <div onclick="openAudiobookPlayer('ditruyen')" data-category="than-kinh" class="card-lift audio-card-item w-[28%] shrink-0 snap-start flex flex-col group cursor-pointer transition-all duration-300">
+                                            <div class="w-full aspect-[2/3] rounded-xl overflow-hidden border border-slate-100 shadow-sm mb-1.5 group-hover:scale-[1.02] transition-transform duration-300">
+                                                <img src="/covers/ditruyen.png" class="w-full h-full object-cover" alt="Y học Di truyền">
+                                            </div>
+                                            <h4 class="text-[10px] font-black text-slate-800 leading-snug line-clamp-2">Y học Di truyền &amp; Cá thể hóa</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5 truncate">PGS. TS. Lê Thu</p>
+                                            <div class="flex items-center justify-between text-[9px] text-slate-500 mt-1 font-semibold">
+                                                <div class="flex items-center gap-0.5 text-slate-400"><span class="material-symbols-outlined text-[10px]">schedule</span> 13h 00m</div>
+                                                <div class="flex items-center gap-0.5 text-yellow-500 font-bold"><span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.6</div>
+                                            </div>
+                                        </div>
+                                        <!-- Card 5 -->
+                                        <div onclick="openAudiobookPlayer('baoche')" data-category="all" class="card-lift audio-card-item w-[28%] shrink-0 snap-start flex flex-col group cursor-pointer transition-all duration-300">
+                                            <div class="w-full aspect-[2/3] rounded-xl overflow-hidden border border-slate-100 shadow-sm mb-1.5 group-hover:scale-[1.02] transition-transform duration-300">
+                                                <img src="/covers/baoche.png" class="w-full h-full object-cover" alt="Bào chế Dược">
+                                            </div>
+                                            <h4 class="text-[10px] font-black text-slate-800 leading-snug line-clamp-2">Bào chế Dược phẩm Hiện đại</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5 truncate">TS. Phạm Thanh Hà</p>
+                                            <div class="flex items-center justify-between text-[9px] text-slate-500 mt-1 font-semibold">
+                                                <div class="flex items-center gap-0.5 text-slate-400"><span class="material-symbols-outlined text-[10px]">schedule</span> 7h 30m</div>
+                                                <div class="flex items-center gap-0.5 text-yellow-500 font-bold"><span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.5</div>
+                                            </div>
+                                        </div>
+                                        <!-- Card 6 -->
+                                        <div onclick="openAudiobookPlayer('nhansam')" data-category="all" class="card-lift audio-card-item w-[28%] shrink-0 snap-start flex flex-col group cursor-pointer transition-all duration-300">
+                                            <div class="w-full aspect-[2/3] rounded-xl overflow-hidden border border-slate-100 shadow-sm mb-1.5 group-hover:scale-[1.02] transition-transform duration-300">
+                                                <img src="/covers/nhansam.png" class="w-full h-full object-cover" alt="Nhân Sâm">
+                                            </div>
+                                            <h4 class="text-[10px] font-black text-slate-800 leading-snug line-clamp-2">Nhân Sâm: Y học &amp; ứng dụng</h4>
+                                            <p class="text-[9px] text-slate-400 mt-0.5 truncate">GS. Lê Văn Minh</p>
+                                            <div class="flex items-center justify-between text-[9px] text-slate-500 mt-1 font-semibold">
+                                                <div class="flex items-center gap-0.5 text-slate-400"><span class="material-symbols-outlined text-[10px]">schedule</span> 6h 45m</div>
+                                                <div class="flex items-center gap-0.5 text-yellow-500 font-bold"><span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.9</div>
                                             </div>
                                         </div>
                                     </div>
@@ -2231,12 +2286,39 @@
                                     <span class="material-symbols-outlined text-2xl" id="btn-focus-icon">visibility</span>
                                     <span class="text-[9px] font-bold tracking-wider" id="btn-focus-text">TẬP TRUNG</span>
                                 </button>
-                                <button onclick="openAudiobookPlayer(appState.currentBookId)" class="flex flex-col items-center space-y-1 text-slate-750 hover:text-blue-700 transition-colors">
+                                <button id="btn-read-along" onclick="toggleReadAlong()" class="flex flex-col items-center space-y-1 text-slate-750 hover:text-blue-700 transition-colors">
                                     <span class="material-symbols-outlined text-2xl">headphones</span>
                                     <span class="text-[9px] font-bold tracking-wider">AUDIO</span>
                                 </button>
                             </div>
                         </footer>
+
+                        <!-- READ-ALONG PLAYER CONTROL BAR -->
+                        <div id="read-along-player-bar" class="hidden absolute bottom-[115px] left-0 right-0 mx-4 bg-white/70 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(31,38,135,0.08)] rounded-2xl p-3 z-50 flex items-center justify-between gap-3 transition-all duration-300">
+                            <div class="flex items-center gap-2 min-w-0">
+                                <div class="w-8 h-8 rounded-full bg-sky-50 flex items-center justify-center text-brand-blue shrink-0">
+                                    <span class="material-symbols-outlined text-base animated-hearing">headphones</span>
+                                </div>
+                                <div class="min-w-0">
+                                    <span class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Đọc & Nghe song hành</span>
+                                    <span id="read-along-status" class="block text-[11px] font-extrabold text-slate-700 truncate">Đang đọc: Trang 1</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 shrink-0">
+                                <!-- Prev Page -->
+                                <button onclick="flipPage(-1)" class="w-8 h-8 rounded-full hover:bg-slate-100/50 flex items-center justify-center text-slate-650 active:scale-90 transition-transform" title="Trang trước">
+                                    <span class="material-symbols-outlined text-base">skip_previous</span>
+                                </button>
+                                <!-- Play/Pause -->
+                                <button id="btn-read-along-play" onclick="toggleReadAlongPlayback()" class="w-8 h-8 rounded-full bg-[#005a9c] hover:bg-[#004b82] text-white flex items-center justify-center shadow-sm active:scale-95 transition-transform">
+                                    <span id="icon-read-along-play" class="material-symbols-outlined text-base filled-icon">play_arrow</span>
+                                </button>
+                                <!-- Next Page -->
+                                <button onclick="flipPage(1)" class="w-8 h-8 rounded-full hover:bg-slate-100/50 flex items-center justify-center text-slate-650 active:scale-90 transition-transform" title="Trang sau">
+                                    <span class="material-symbols-outlined text-base">skip_next</span>
+                                </button>
+                            </div>
+                        </div>
 
                         <!-- KINDLE SETTINGS ACCORDION POPUP -->
                         <div id="kindle-settings-menu" class="hidden absolute bottom-16 left-0 right-0 mx-4 bg-white rounded-2xl border border-gray-250 p-4 shadow-xl z-50 space-y-4">
@@ -3110,35 +3192,30 @@
                         <!-- Player Main Content (Restored smartphone mockup & controls layout) -->
                         <div class="flex-grow overflow-y-auto pb-6 px-margin-mobile flex flex-col items-center justify-between py-6 space-y-6">
                             
-                            <!-- Cover Art Mockup Container -->
-                            <div class="flex-grow flex items-center justify-center w-full max-w-[280px] aspect-square my-auto">
-                                <!-- Smartphone mockup wrapper -->
-                                <div class="relative w-48 aspect-[2/3] bg-neutral-900 rounded-[2.5rem] shadow-[0_15px_40px_rgba(0,0,0,0.15)] border-4 border-slate-350 p-2 overflow-hidden flex flex-col items-center justify-center">
-                                    <!-- iPhone notch/bezel details -->
-                                    <div class="absolute top-2 w-16 h-3 bg-neutral-950 rounded-full z-20"></div>
-                                    <!-- Speaker screen content -->
-                                    <div class="w-full h-full rounded-[2rem] overflow-hidden bg-white relative flex flex-col z-10">
-                                        <div id="audio-cover" class="w-full h-full">
-                                            <!-- Dynamically filled with book cover -->
-                                        </div>
+                            <!-- Cover Art: full gradient background + floating book cover -->
+                            <div class="flex-grow flex items-center justify-center w-full relative overflow-hidden rounded-3xl mx-0">
+                                <!-- Base gradient -->
+                                <div id="audio-cover-bg" class="absolute inset-0 transition-all duration-700" style="background: linear-gradient(160deg, #0a0e2e 0%, #1a237e 55%, #283593 100%);"></div>
+                                <!-- Radial glow from center for depth -->
+                                <div id="audio-cover-glow" class="absolute inset-0 transition-all duration-700" style="background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(99,137,255,0.25) 0%, transparent 75%);"></div>
+                                <!-- Subtle noise texture overlay -->
+                                <div class="absolute inset-0 opacity-5" style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;);"></div>
+                                <!-- Floating book cover with nice padding inside -->
+                                <div id="audio-cover" class="relative z-10 h-[65%] aspect-[2/3] rounded-2xl overflow-hidden shadow-[0_16px_48px_rgba(0,0,0,0.6)] ring-2 ring-white/15">
+                                    <!-- Dynamically filled with book cover -->
+                                </div>
+                                <!-- Chapter badge overlay inside cover area -->
+                                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20">
+                                    <div onclick="toggleAudioChapters()" class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-4 py-1.5 shadow-lg cursor-pointer hover:bg-white/30 transition-colors active:scale-95 duration-100">
+                                        <span class="material-symbols-outlined text-[12px] text-white filled-icon" style="font-variation-settings: 'FILL' 1">list</span>
+                                        <span id="audio-current-chapter-title" class="text-[10px] font-bold text-white uppercase tracking-wider max-w-[180px] truncate inline-block">Chương 1</span>
                                     </div>
-                                    <!-- Bottom home bar line -->
-                                    <div class="absolute bottom-1 w-16 h-1 bg-slate-400/80 rounded-full z-20"></div>
                                 </div>
                             </div>
 
-                            <!-- Title & Author & Current Chapter (Small chapter indicator) -->
-                            <div class="text-center w-full px-4 space-y-2">
-                                <h2 id="audio-title" class="text-base font-bold text-primary leading-tight truncate">Cẩm nang Thảo dược Quý Phương Đông</h2>
-                                <p id="audio-author" class="text-xs text-slate-500 font-medium">GS. TS. Nguyễn Văn Anh</p>
-                                <!-- Clicking this small chapter section/pill opens the popup -->
-                                <div class="pt-1">
-                                    <div onclick="toggleAudioChapters()" class="inline-flex items-center gap-1.5 bg-blue-50 border border-blue-100 rounded-full px-3.5 py-1 shadow-sm cursor-pointer hover:bg-blue-100 transition-colors active:scale-95 duration-100">
-                                        <span class="material-symbols-outlined text-[12px] text-blue-600 filled-icon" style="font-variation-settings: 'FILL' 1">play_circle</span>
-                                        <span id="audio-current-chapter-title" class="text-[10px] font-bold text-blue-700 uppercase tracking-wider">Đang phát: Chương 1</span>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- Hidden elements kept for JS reference -->
+                            <h2 id="audio-title" class="hidden">Cẩm nang Thảo dược Quý Phương Đông</h2>
+                            <p id="audio-author" class="hidden">GS. TS. Nguyễn Văn Anh</p>
 
                             <!-- Player Controls Box (white rounded card) -->
                             <div class="w-full bg-white border border-border-subtle shadow-sm rounded-3xl p-5 space-y-5">
@@ -3197,16 +3274,8 @@
                                 </div>
                             </div>
 
-                            <!-- Chapter Description Card (Premium Glass style) -->
-                            <div class="w-full bg-slate-50 border border-slate-100/60 rounded-3xl p-5 space-y-2.5 shadow-[0_4px_12px_rgba(0,0,0,0.01)] shrink-0">
-                                <div class="flex items-center gap-2 text-slate-800">
-                                    <span class="material-symbols-outlined text-sm text-blue-600">article</span>
-                                    <h3 class="text-xs font-black uppercase tracking-wider font-sans">Giới thiệu chương</h3>
-                                </div>
-                                <p id="audio-chapter-desc" class="text-[10.5px] text-slate-500 leading-relaxed font-semibold">
-                                    Đang tải giới thiệu chương...
-                                </p>
-                            </div>
+                            <!-- Chapter description hidden paragraph to preserve JS references -->
+                            <p id="audio-chapter-desc" class="hidden"></p>
 
                         </div>
 
@@ -3723,7 +3792,7 @@
                 'thucduong': '/covers/thucduong.png',
                 'co-the-nguoi': '/covers/cothe.png',
                 'thankinh': '/covers/thankinh.png',
-                'thankinhhoc': '/covers/brain_cover.png',
+                'thankinhhoc': '/covers/thankinh.png',
                 'ditruyen': '/covers/ditruyen.png',
                 // Herbal books diversified
                 'baoche': '/covers/baoche.png',
@@ -3886,19 +3955,22 @@
                 meta: "Chẩn đoán y khoa • Chương 1",
                 pages: [
                     `
-                    <header class="mb-6">
+                    <header class="mb-4">
                         <span class="text-[11px] font-bold text-blue-700 uppercase tracking-widest">Chẩn đoán Y khoa</span>
                         <h2 class="text-3xl serif-title mt-2 leading-tight text-[#1a2e35]">
                             Khái niệm giải phẫu học lâm sàng cơ bản
                         </h2>
-                        <div class="w-full h-px bg-gray-300 mt-6 opacity-50"></div>
+                        <div class="w-full h-px bg-gray-300 mt-4 opacity-50"></div>
                     </header>
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
                         <p>
-                            Giải phẫu học lâm sàng là nền tảng cốt lõi của mọi chẩn đoán và điều trị y khoa. Việc nắm vững cấu trúc cơ thể người dưới lăng kính lâm sàng giúp bác sĩ xác định chính xác các điểm mốc giải phẫu.
+                            Giải phẫu học lâm sàng là nền tảng cốt lõi của mọi chẩn đoán và điều trị y khoa. Việc nắm vững cấu trúc cơ thể người dưới lăng kính lâm sàng giúp bác sĩ xác định chính xác các điểm mốc giải phẫu quan trọng.
                         </p>
                         <p>
-                            Từ đó, các kỹ năng khám thực thể như sờ, gõ, nghe, khám hệ cơ xương và xác định vị trí tổn thương nội tạng sẽ được thực hiện một cách chuẩn xác nhất.
+                            Môn học này không chỉ đơn thuần là ghi nhớ tên gọi các xương, cơ, dây thần kinh hay mạch máu, mà quan trọng hơn là hiểu rõ mối liên quan về mặt không gian giữa chúng. Từ đó, bác sĩ có thể lý giải các triệu chứng lâm sàng phát sinh khi có thương tổn cấu trúc.
+                        </p>
+                        <p>
+                            Ví dụ, một khối u ở thùy đỉnh não bộ có thể chèn ép vào hồi sau trung tâm, dẫn đến mất cảm giác nửa người bên đối diện. Tương tự, việc xác định vị trí của ruột thừa viêm dựa trên điểm đau McBurney là một ứng dụng kinh điển của giải phẫu học bề mặt trong thực hành cấp cứu ngoại khoa hàng ngày.
                         </p>
                     </div>
                     `,
@@ -3906,23 +3978,29 @@
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
                         <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Các mặt phẳng giải phẫu chính</h3>
                         <p>
-                            Để định vị và mô tả vị trí các cơ quan, y học sử dụng ba mặt phẳng giải phẫu quy chiếu tiêu chuẩn:
+                            Để định vị và mô tả vị trí các cơ quan một cách thống nhất, y học sử dụng ba mặt phẳng giải phẫu quy chiếu tiêu chuẩn:
                         </p>
                         <ul class="list-disc pl-6 space-y-2">
-                            <li><strong>Mặt phẳng đứng dọc (Sagittal plane):</strong> Chia cơ thể thành hai nửa trái và phải.</li>
-                            <li><strong>Mặt phẳng đứng ngang (Coronal plane):</strong> Chia cơ thể thành phần trước (anterior) và phần sau (posterior).</li>
-                            <li><strong>Mặt phẳng ngang (Transverse plane):</strong> Chia cơ thể thành phần trên (superior) và phần dưới (inferior).</li>
+                            <li><strong>Mặt phẳng đứng dọc (Sagittal plane):</strong> Chia cơ thể thành hai nửa trái và phải. Mặt phẳng đứng dọc giữa chia cơ thể thành hai nửa đối xứng hoàn hảo.</li>
+                            <li><strong>Mặt phẳng đứng ngang (Coronal plane):</strong> Chia cơ thể thành phần trước (anterior/ventral) và phần sau (posterior/dorsal).</li>
+                            <li><strong>Mặt phẳng ngang (Transverse plane):</strong> Chia cơ thể thành phần trên (superior) và phần dưới (inferior), thường dùng trong hình ảnh cắt lớp CT/MRI.</li>
                         </ul>
+                        <p class="mt-4">
+                            Việc hiểu rõ các mặt phẳng này là bắt buộc khi đọc phim chụp cắt lớp vi tính. Khi lát cắt đi qua cơ thể, hình ảnh hiển thị trên phim chính là hình chiếu 2D của các cơ quan trên các mặt phẳng quy chiếu tương ứng, đòi hỏi tư duy không gian 3D nhạy bén từ bác sĩ chẩn đoán hình ảnh.
+                        </p>
                     </div>
                     `,
                     `
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
                         <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Các hệ thống cơ quan cốt lõi</h3>
                         <p>
-                            Cơ thể người được cấu thành bởi 11 hệ thống cơ quan hoạt động phối hợp chặt chẽ. Trong đó, hệ tuần hoàn, hệ hô hấp và hệ thần kinh là các hệ thống quan trọng nhất quyết định sự sống của bệnh nhân trong các tình huống cấp cứu lâm sàng.
+                            Cơ thể người được cấu thành bởi 11 hệ thống cơ quan hoạt động phối hợp chặt chẽ. Trong đó, hệ tuần hoàn, hệ hô hấp và hệ thần kinh là ba hệ thống quan trọng nhất quyết định sự sống trực tiếp của bệnh nhân.
                         </p>
                         <p>
-                            Việc thăm khám lâm sàng luôn bắt đầu bằng việc đánh giá sơ bộ các hệ thống này thông qua dấu hiệu sinh tồn.
+                            Sự suy sụp đột ngột của bất kỳ hệ thống nào trong ba hệ này đều dẫn đến tình trạng suy đa tạng và tử vong nhanh chóng nếu không được can thiệp kịp thời. Cụ thể, khi hệ hô hấp ngừng trao đổi khí, lượng oxy trong máu giảm mạnh làm cơ tim thiếu máu nuôi, dẫn đến ngừng tuần hoàn và tổn thương não không phục hồi sau 4-6 phút.
+                        </p>
+                        <p>
+                            Do đó, quy trình cấp cứu ban đầu (ABC - Airway, Breathing, Circulation) luôn ưu tiên tái lập đường thở thông thoáng, duy trì nhịp thở và ép tim ngoài lồng ngực để bảo vệ các cơ quan đích khỏi tổn thương do thiếu oxy.
                         </p>
                     </div>
                     `,
@@ -3930,7 +4008,13 @@
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
                         <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Ứng dụng trong Chẩn đoán Hình ảnh</h3>
                         <p>
-                            Kiến thức giải phẫu giúp diễn giải chính xác các phim chụp X-quang, cắt lớp vi tính (CT Scan), và cộng hưởng từ (MRI). Bác sĩ lâm sàng phải đối chiếu các mốc giải phẫu trên cơ thể bệnh nhân với hình ảnh phim chụp để phát hiện những bất thường cấu trúc.
+                            Kiến thức giải phẫu giúp diễn giải chính xác các phim chụp X-quang, cắt lớp vi tính (CT Scan), và cộng hưởng từ (MRI). Bác sĩ lâm sàng phải đối chiếu các mốc giải phẫu trên cơ thể bệnh nhân với hình ảnh hiển thị để phát hiện những bất thường cấu trúc.
+                        </p>
+                        <p>
+                            Ví dụ, khi chụp X-quang ngực thẳng, bóng tim to được xác định khi chỉ số tim ngực vượt quá 0.5. Sự mờ đi của góc sườn hoành là chỉ báo trực quan của tràn dịch màng phổi. Tương tự, trên phim CT mạch vành, việc phát hiện các mảng xơ vữa gây hẹp trên 70% lòng mạch là cơ sở để chỉ định can thiệp đặt stent.
+                        </p>
+                        <p>
+                            Sự kết hợp nhuần nhuyễn giữa giải phẫu học và công nghệ chẩn đoán hình ảnh hiện đại đã nâng cao đáng kể độ chính xác trong chẩn đoán y khoa, giảm thiểu sai sót lâm sàng xuống mức tối đa.
                         </p>
                     </div>
                     `,
@@ -3946,51 +4030,66 @@
                 meta: "Chẩn đoán y khoa • Chương 2",
                 pages: [
                     `
-                    <header class="mb-6">
+                    <header class="mb-4">
                         <span class="text-[11px] font-bold text-blue-700 uppercase tracking-widest">Chẩn đoán Y khoa</span>
                         <h2 class="text-3xl serif-title mt-2 leading-tight text-[#1a2e35]">
                             Giải phẫu tim mạch &amp; Huyết động học
                         </h2>
-                        <div class="w-full h-px bg-gray-300 mt-6 opacity-50"></div>
+                        <div class="w-full h-px bg-gray-300 mt-4 opacity-50"></div>
                     </header>
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
                         <p>
                             Tim là một bơm cơ học rỗng gồm bốn buồng: hai tâm nhĩ ở trên và hai tâm thất ở dưới. Hệ tuần hoàn chia làm hai vòng tuần hoàn lớn (tuần hoàn hệ thống) và tuần hoàn nhỏ (tuần hoàn phổi).
                         </p>
                         <p>
-                            Sự co bóp nhịp nhàng của cơ tim được điều khiển bởi hệ thống dẫn truyền tự động chuyên biệt trong tim.
+                            Vòng tuần hoàn lớn bắt nguồn từ tâm thất trái, bơm máu giàu oxy qua động mạch chủ đi nuôi khắp các mô và cơ quan của cơ thể, sau đó nhận máu nghèo oxy theo tĩnh mạch chủ trở về tâm nhĩ phải.
+                        </p>
+                        <p>
+                            Vòng tuần hoàn nhỏ bắt nguồn từ tâm thất phải, đẩy máu nghèo oxy lên động mạch phổi để thực hiện quá trình trao đổi khí tại các phế nang phổi. Tại đây, khí carbonic được thải ra ngoài và oxy được hấp thụ vào máu, đưa máu đỏ tươi theo tĩnh mạch phổi trở lại tâm nhĩ trái để chuẩn bị cho chu kỳ tiếp theo.
                         </p>
                     </div>
                     `,
                     `
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Hệ thống dẫn truyền tim</h3>
+                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Hệ thống dẫn truyền điện học của tim</h3>
                         <p>
-                            Hệ thống dẫn truyền điện học của tim bao gồm:
+                            Sự co bóp nhịp nhàng của cơ tim được điều khiển bởi hệ thống dẫn truyền tự động chuyên biệt trong tim bao gồm:
                         </p>
                         <ul class="list-disc pl-6 space-y-2">
-                            <li><strong>Nút xoang (SA node):</strong> Nút chủ nhịp tự nhiên của tim, nằm ở tâm nhĩ phải.</li>
-                            <li><strong>Nút nhĩ thất (AV node):</strong> Làm chậm xung động điện để tâm nhĩ kịp tống máu xuống thất.</li>
-                            <li><strong>Bó His và mạng Purkinje:</strong> Dẫn truyền nhanh xung động điện khắp cơ tâm thất để co bóp đồng bộ.</li>
+                            <li><strong>Nút xoang (SA node):</strong> Nút chủ nhịp tự nhiên của tim, nằm ở tâm nhĩ phải, tự động phát xung động với tần số 60-100 lần/phút.</li>
+                            <li><strong>Nút nhĩ thất (AV node):</strong> Nằm ở vách liên nhĩ, có nhiệm vụ làm chậm xung động điện khoảng 0.1 giây để tâm nhĩ kịp co bóp và tống hết máu xuống thất trước khi thất co.</li>
+                            <li><strong>Bó His và mạng lưới Purkinje:</strong> Dẫn truyền nhanh xung động điện khắp cơ tâm thất để kích hoạt quá trình co bóp đồng bộ, tống máu vào động mạch.</li>
                         </ul>
+                        <p class="mt-4">
+                            Mọi tổn thương hoặc gián đoạn trên đường dẫn truyền này đều có thể dẫn đến các rối loạn nhịp tim nguy hiểm như block nhĩ thất, nhịp nhanh thất hay rung thất cấp tính.
+                        </p>
                     </div>
                     `,
                     `
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
                         <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Chu kỳ tim &amp; Huyết động học</h3>
                         <p>
-                            Một chu kỳ tim tiêu chuẩn gồm pha tâm thu (co bóp, tống máu) và pha tâm trương (giãn cơ, đổ đầy máu).
+                            Một chu kỳ tim tiêu chuẩn gồm hai pha chính: pha tâm thu (co bóp, tống máu) và pha tâm trương (giãn cơ, đổ đầy máu).
                         </p>
                         <p>
-                            Các thông số huyết động học cốt lõi bao gồm huyết áp động mạch (tâm thu/tâm trương), cung lượng tim (Cardiac Output) và sức cản mạch ngoại biên.
+                            Trong pha tâm trương, các van nhĩ thất (van hai lá và ba lá) mở ra, cho phép máu chảy từ nhĩ xuống thất. Khi pha tâm thu bắt đầu, áp lực trong thất tăng vọt làm đóng các van nhĩ thất (tạo ra tiếng tim thứ nhất - T1), đồng thời mở các van bán nguyệt (van động mạch chủ và động mạch phổi) để máu được bơm vào động mạch chủ và phổi.
+                        </p>
+                        <p>
+                            Khi kết thúc pha tống máu, áp lực động mạch vượt quá áp lực thất làm đóng các van bán nguyệt (tạo ra tiếng tim thứ hai - T2). Sự phối hợp nhịp nhàng giữa sự co cơ và hoạt động đóng mở các van tim đảm bảo máu luôn lưu thông theo một chiều cố định với lưu lượng tuần hoàn ổn định.
                         </p>
                     </div>
                     `,
                     `
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Sinh lý bệnh mạch vành</h3>
+                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Các bệnh lý tuần hoàn thường gặp</h3>
                         <p>
-                            Bệnh mạch vành xảy ra khi các mảng xơ vữa làm hẹp lòng động mạch vành, làm giảm lưu lượng máu nuôi cơ tim, dẫn đến thiếu máu cơ tim cục bộ hoặc nhồi máu cơ tim cấp nguy hiểm đến tính mạng.
+                            Hệ tuần hoàn có thể gặp phải nhiều tình trạng bệnh lý nghiêm trọng. Phổ biến nhất là bệnh tăng huyết áp, đặc trưng bởi sự gia tăng áp lực dòng máu lên thành động mạch một cách liên tục, lâu ngày dẫn đến suy tim, tổn thương mạch máu não và suy thận mạn tính.
+                        </p>
+                        <p>
+                            Xơ vữa động mạch xảy ra do sự tích tụ cholesterol tạo nên các mảng xơ cứng trong lòng động mạch, làm hẹp lòng mạch và cản trở lưu thông dòng máu.
+                        </p>
+                        <p>
+                            Khi các mảng xơ vữa này bị nứt vỡ, chúng kích hoạt quá trình hình thành cục máu đông gây tắc nghẽn hoàn toàn mạch máu nuôi cơ tim, dẫn đến cơn nhồi máu cơ tim cấp tính đe dọa trực tiếp đến tính mạng bệnh nhân nếu không được thông mạch cấp cứu.
                         </p>
                     </div>
                     `,
@@ -4006,19 +4105,22 @@
                 meta: "Chẩn đoán y khoa • Chương 3",
                 pages: [
                     `
-                    <header class="mb-6">
+                    <header class="mb-4">
                         <span class="text-[11px] font-bold text-blue-700 uppercase tracking-widest">Chẩn đoán Y khoa</span>
                         <h2 class="text-3xl serif-title mt-2 leading-tight text-[#1a2e35]">
                             Nguyên lý Điện tâm đồ lâm sàng (ECG)
                         </h2>
-                        <div class="w-full h-px bg-gray-300 mt-6 opacity-50"></div>
+                        <div class="w-full h-px bg-gray-300 mt-4 opacity-50"></div>
                     </header>
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
                         <p>
                             Điện tâm đồ (ECG) là đồ thị ghi lại các biến thiên của dòng điện do tim phát ra trong quá trình hoạt động co bóp. Đây là công cụ chẩn đoán không xâm lấn cực kỳ quan trọng để phát hiện rối loạn nhịp tim và thiếu máu cơ tim.
                         </p>
                         <p>
-                            Một bản ghi điện tâm đồ chuẩn gồm 12 chuyển đạo: 3 chuyển đạo song cực chi (I, II, III), 3 chuyển đạo đơn cực chi tăng cường (aVR, aVL, aVF) và 6 chuyển đạo trước tim (V1 đến V6).
+                            Một bản ghi điện tâm đồ chuẩn gồm 12 chuyển đạo: 3 chuyển đạo song cực chi (I, II, III), 3 chuyển đạo đơn cực chi tăng cường (aVR, aVL, aVF) và 6 chuyển đạo trước tim (V1 đến V6). Các chuyển đạo này nhìn quả tim dưới các góc độ hình học khác nhau, giúp định vị chính xác vùng cơ tim bị tổn thương.
+                        </p>
+                        <p>
+                            Ví dụ, sự biến đổi ECG ở chuyển đạo II, III, aVF cho biết tổn thương nằm ở vùng dưới (hoặc thành sau dưới) của tâm thất trái, thường liên quan đến tắc nghẽn động mạch vành phải.
                         </p>
                     </div>
                     `,
@@ -4026,13 +4128,13 @@
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
                         <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Các sóng điện tim cơ bản</h3>
                         <p>
-                            Phân tích một chu kỳ ECG chuẩn bao gồm:
+                            Phân tích một chu kỳ ECG chuẩn bao gồm việc đánh giá hình dạng, biên độ và thời gian của các sóng và khoảng điện tim sau đây:
                         </p>
                         <ul class="list-disc pl-6 space-y-2">
-                            <li><strong>Sóng P:</strong> Biểu thị quá trình khử cực của tâm nhĩ.</li>
-                            <li><strong>Phức bộ QRS:</strong> Khử cực của hai tâm thất (co bóp thất).</li>
-                            <li><strong>Sóng T:</strong> Tái cực của tâm thất (thất giãn ra phục hồi điện tích).</li>
-                            <li><strong>Khoảng PR và QT:</strong> Đánh giá thời gian dẫn truyền nhĩ thất và thời gian hoạt động điện thất.</li>
+                            <li><strong>Sóng P:</strong> Biểu thị quá trình khử cực của tâm nhĩ, thời gian bình thường &lt;0.12 giây, biên độ &lt;2.5mm.</li>
+                            <li><strong>Khoảng PR:</strong> Đo lường thời gian dẫn truyền nhĩ thất, bình thường từ 0.12 đến 0.20 giây. Khoảng PR kéo dài báo hiệu tình trạng chậm dẫn truyền nhĩ thất (block nhĩ thất cấp I).</li>
+                            <li><strong>Phức bộ QRS:</strong> Biểu thị khử cực của hai tâm thất, thời gian bình thường &lt;0.10 giây. QRS giãn rộng gặp trong block nhánh hoặc nhịp thất.</li>
+                            <li><strong>Sóng T và đoạn ST:</strong> Biểu thị quá trình tái cực thất, ST luôn nằm trên đường đẳng điện. ST chênh lên là dấu hiệu tổn thương cơ tim cấp tính.</li>
                         </ul>
                     </div>
                     `,
@@ -4040,7 +4142,13 @@
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
                         <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Phân tích nhịp tim trên ECG</h3>
                         <p>
-                            Nhịp xoang bình thường được đặc trưng bởi sóng P đi trước mỗi phức bộ QRS, khoảng PR đều đặn và tần số tim từ 60 đến 100 chu kỳ/phút. Các rối loạn nhịp xoang bao gồm nhịp xoang nhanh (>100 bpm) hoặc nhịp xoang chậm (<60 bpm).
+                            Nhịp xoang bình thường được đặc trưng bởi sóng P đi trước mỗi phức bộ QRS, khoảng PR đều đặn và tần số tim từ 60 đến 100 chu kỳ/phút. Các rối loạn nhịp xoang bao gồm nhịp xoang nhanh (&gt;100 bpm) hoặc nhịp xoang chậm (&lt;60 bpm).
+                        </p>
+                        <p>
+                            Khi phân tích một điện tâm đồ, bác sĩ cần tính toán tần số tim dựa trên khoảng cách giữa các đỉnh sóng R (khoảng R-R). Nếu nhịp đều, tần số tim có thể tính nhanh bằng cách lấy 300 chia cho số ô lớn giữa hai sóng R kề nhau.
+                        </p>
+                        <p>
+                            Nhịp tim không đều và mất hoàn toàn sóng P, thay bằng các sóng lăn tăn (sóng f) là đặc trưng của rung nhĩ - một dạng rối loạn nhịp nhĩ phổ biến tăng nguy cơ đột quỵ do hình thành huyết khối buồng tim.
                         </p>
                     </div>
                     `,
@@ -4051,9 +4159,12 @@
                             Thiếu máu cơ tim và nhồi máu cơ tim cấp thể hiện rõ nét qua sự thay đổi đoạn ST và sóng T trên ECG:
                         </p>
                         <ul class="list-disc pl-6 space-y-2">
-                            <li><strong>ST chênh lên (ST Elevation):</strong> Dấu hiệu của nhồi máu cơ tim xuyên thành cấp tính (STEMI).</li>
-                            <li><strong>ST chênh xuống hoặc sóng T âm:</strong> Thiếu máu cơ tim dưới nội tâm mạc.</li>
+                            <li><strong>ST chênh lên (ST Elevation):</strong> Dấu hiệu của nhồi máu cơ tim xuyên thành cấp tính (STEMI). Đây là một cấp cứu nội khoa tối khẩn cấp đòi hỏi tái thông mạch vành ngay lập tức bằng can thiệp mạch vành qua da (PCI) hoặc thuốc tiêu sợi huyết.</li>
+                            <li><strong>ST chênh xuống hoặc sóng T âm:</strong> Biểu thị tình trạng thiếu máu cơ tim dưới nội tâm mạc (NSTEMI hoặc cơn đau thắt ngực không ổn định).</li>
                         </ul>
+                        <p class="mt-4">
+                            Việc đọc nhanh và chính xác các biến đổi này giúp bác sĩ đưa ra quyết định xử trí đúng đắn trong những phút đầu tiên vô cùng quý giá của bệnh nhân đột quỵ tim mạch.
+                        </p>
                     </div>
                     `,
                     `
@@ -4068,12 +4179,12 @@
                 meta: "Dược liệu học • Chương 4",
                 pages: [
                     `
-                    <header class="mb-6">
+                    <header class="mb-4">
                         <span class="text-[11px] font-bold text-green-700 uppercase tracking-widest">Y Học Cổ Truyền</span>
                         <h2 class="text-3xl serif-title mt-2 leading-tight text-[#1a2e35]" id="reader-content-heading">
                             Công dụng của <span class="underline decoration-4 decoration-green-800 underline-offset-4 text-green-800 cursor-pointer" onclick="openGlossary('tamthat', event)">Tam Thất</span> trong lâm sàng
                         </h2>
-                        <div class="w-full h-px bg-gray-300 mt-6 opacity-50"></div>
+                        <div class="w-full h-px bg-gray-300 mt-4 opacity-50"></div>
                     </header>
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
                         <p>
@@ -4081,14 +4192,18 @@
                             am Thất (tên khoa học: <span class="italic">Panax pseudoginseng</span>), còn được mệnh danh là "Kim bất hoán" (vàng không đổi), là một trong những vị thuốc quý nhất trong kho tàng Y học phương Đông.
                         </p>
                         <p>
-                            Theo các tài liệu y văn, <span class="dashed-underline text-green-900 font-semibold cursor-pointer" onclick="openGlossary('tamthat', event)">Tam Thất</span> có vị ngọt, hơi đắng, tính ấm, tác động trực tiếp vào hai kinh Can và Vị. Tác dụng chủ yếu của nó là tán ứ, <span class="dashed-underline text-green-900 font-semibold cursor-pointer" onclick="openGlossary('chihuyet', event)">chỉ huyết</span> (cầm máu), tiêu thũng và định thống (giảm đau).
+                            Theo các tài liệu y văn cổ truyền, Tam Thất có vị ngọt, hơi đắng, tính ấm, tác động trực tiếp vào hai kinh Can và Vị. Tác dụng chủ yếu của nó là tán ứ, chỉ huyết (cầm máu), tiêu thũng và định thống (giảm đau).
+                        </p>
+                        <p>
+                            Đặc biệt, Tam Thất được ghi nhận trong <em>Bản Thảo Cương Mục</em> của y thánh Lý Thời Trân với vai trò độc đáo: "chỉ huyết, tán huyết, định thống" — nghĩa là vừa có khả năng cầm máu tại chỗ tổn thương, vừa làm tan máu ứ tích tụ bên trong lòng mạch, đồng thời làm dịu nhanh cơn đau đớn dữ dội cho người bệnh.
                         </p>
                     </div>
                     `,
                     `
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
+                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Nghiên cứu Dược lý hiện đại</h3>
                         <p>
-                            Đặc biệt, Tam Thất được ghi nhận trong <em>Bản Thảo Cương Mục</em> của Lý Thời Trân với vai trò "chỉ huyết, tán huyết, định thống" — nghĩa là vừa cầm máu, vừa phá ứ huyết, vừa giảm đau.
+                            Các nghiên cứu dược lý học hiện đại đã chứng minh rằng rễ củ Tam Thất chứa hàm lượng cao các hoạt chất Saponin nhóm Rb, Rg tương tự nhân sâm. Nhờ đó, thuốc có khả năng rút ngắn thời gian đông máu và prothrombin đáng kể, ngăn ngừa tình trạng mất máu cấp trong các chấn thương ngoại khoa.
                         </p>
                         <div class="my-4 border border-slate-200 rounded-xl overflow-hidden cursor-zoom-in group shadow-sm bg-white" onclick="openHighresViewer(event)">
                             <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCwHvj_zxpIcI55QDfF9650v4iUtr15HL8lTicXD6pzReKQl5HDCNrv5NR_hZLEOsqdZB8QAH9biqfNYU8Xqetlcn3p2fKRnM0LCzl6gSMxg28nNVGCI8wAoohs2JbN1HVlvoFnXmXEHNZ_ocGU9X32uvyOTl8nPpm6ngfZiai2AqT1LKFjQxMOTGPjxVzk5Q6tqPbYzTj7Pao2UIpNhjRjAXQdy_Yvj2V6WWS6lZ9c7fgF62Tbmf8U8_oSWhJZiumqEon0qnJWK-7" class="w-full aspect-[21/9] object-cover group-hover:scale-102 transition-transform duration-300" alt="Tam Thất Anatomy"/>
@@ -4097,45 +4212,48 @@
                             </div>
                         </div>
                         <p class="text-sm text-gray-500 italic">
-                            Hình minh họa: Cấu trúc phân tử saponin và vùng tập trung hoạt chất trong rễ củ Tam Thất.
+                            Hình minh họa: Cấu trúc saponin và vùng phân bổ hoạt chất sinh hóa học quý trong rễ củ Tam Thất.
                         </p>
                     </div>
                     `,
                     `
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Nghiên cứu Dược lý hiện đại</h3>
+                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Cơ chế tác động hai chiều</h3>
                         <p>
-                            Các nghiên cứu dược lý học hiện đại đã chứng minh rằng rễ củ Tam Thất chứa hàm lượng cao các <span class="dashed-underline text-green-900 font-semibold cursor-pointer" onclick="openGlossary('saponin', event)">Saponin</span> nhóm Rb, Rg. Nhờ đó, thuốc có khả năng rút ngắn thời gian đông máu và prothrombin đáng kể.
-                        </p>
-                        <p>
-                            Đồng thời, hoạt chất saponin còn có tác dụng bảo vệ cơ tim, giãn mạch và chống ứ huyết — tạo nên cơ chế tác động hai chiều độc đáo: vừa <strong>chỉ huyết</strong> (cầm máu) vừa <strong>hoạt huyết</strong> (thông máu).
+                            Đồng thời, hoạt chất saponin triterpenoid còn có tác dụng bảo vệ cơ tim, tăng lưu lượng mạch vành, giãn mạch ngoại vi và chống ứ huyết — tạo nên cơ chế tác động hai chiều vô cùng độc đáo: vừa <strong>chỉ huyết</strong> (cầm máu) vừa <strong>hoạt huyết</strong> (thông máu) mà không gây biến chứng tạo huyết khối.
                         </p>
                         <blockquote class="border-l-4 border-green-700 pl-4 italic text-gray-600 my-4">
-                            "Tam Thất là vị thuốc có thể cầm máu mà không gây ứ huyết, hoạt huyết mà không gây xuất huyết."
-                            <br/><span class="text-xs not-italic text-gray-400">— Bản Thảo Cương Mục, Lý Thời Trân</span>
+                            "Tam Thất là vị thuốc thần kỳ có thể cầm máu mà không gây ứ huyết, hoạt huyết mà không gây xuất huyết, thực là thuốc tốt nhất trong huyết phận." — Lý Thời Trân, Bản Thảo Cương Mục.
                         </blockquote>
+                        <p class="mt-4">
+                            Nhờ cơ chế này, Tam Thất không chỉ ứng dụng để cầm máu ngoài da mà còn được dùng để hỗ trợ điều trị thiểu năng tuần hoàn não, đau thắt ngực do co thắt mạch vành và dự phòng tai biến mạch máu não hữu hiệu.
+                        </p>
                     </div>
                     `,
                     `
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Ứng dụng Lâm sàng</h3>
+                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Ứng dụng Lâm sàng &amp; Liều dùng</h3>
                         <p>
-                            Trong thực hành y học hiện đại, Tam Thất được sử dụng rộng rãi trong các bài thuốc điều trị:
+                            Trong thực hành y khoa hiện đại và cổ truyền, Tam Thất được bào chế dưới dạng bột mịn hoặc lát mỏng sắc uống với liều lượng chuẩn từ 3-9g mỗi ngày. Các chỉ định chính bao gồm:
                         </p>
                         <ul class="list-disc pl-6 space-y-2">
-                            <li><strong>Xuất huyết:</strong> Cầm máu trong chấn thương, xuất huyết tiêu hóa</li>
-                            <li><strong>Bệnh tim mạch:</strong> Hỗ trợ điều trị thiếu máu cơ tim, xơ vữa động mạch</li>
-                            <li><strong>Viêm nhiễm:</strong> Kháng viêm, giảm sưng trong các tổn thương mô mềm</li>
-                            <li><strong>Bồi bổ sức khỏe:</strong> Tăng cường hệ miễn dịch, chống lão hóa</li>
+                            <li><strong>Xuất huyết chấn thương:</strong> Cầm máu nhanh trong các tổn thương dập nát phần mềm, xuất huyết tiêu hóa, trĩ xuất huyết.</li>
+                            <li><strong>Hỗ trợ tuần hoàn tim mạch:</strong> Giảm đau thắt ngực, cải thiện lưu lượng máu cơ tim ở bệnh nhân bệnh mạch vành mãn tính.</li>
+                            <li><strong>Chống viêm, giảm thũng:</strong> Tiêu sưng tụ máu do va đập thể thao hoặc sau phẫu thuật.</li>
                         </ul>
                         <div class="bg-green-50 border border-green-200 rounded-xl p-4 mt-4">
                             <h4 class="font-bold text-green-800 text-sm flex items-center gap-2 mb-2">
                                 <span class="material-symbols-outlined text-sm">summarize</span> Tóm tắt chương
                             </h4>
                             <p class="text-sm text-green-700">
-                                Tam Thất là dược liệu quý với cơ chế tác động hai chiều "chỉ huyết — hoạt huyết" nhờ saponin nhóm Rb. Lật trang tiếp để kiểm tra kiến thức.
+                                Tam Thất là dược liệu quý với cơ chế tác động hai chiều "chỉ huyết — hoạt huyết" nhờ saponin nhóm Rb. Bạn đã hoàn thành chương học này!
                             </p>
                         </div>
+                    </div>
+                    `,
+                    `
+                    <div class="h-full overflow-y-auto bg-white px-5 py-6" id="quiz-container">
+                        <!-- Chapter Completed screen will render here -->
                     </div>
                     `
                 ]
@@ -4145,12 +4263,12 @@
                 meta: "Dược liệu học • Chương 5",
                 pages: [
                     `
-                    <header class="mb-6">
+                    <header class="mb-4">
                         <span class="text-[11px] font-bold text-red-700 uppercase tracking-widest">Y Học Cổ Truyền</span>
                         <h2 class="text-3xl serif-title mt-2 leading-tight text-[#1a2e35]" id="reader-content-heading">
                             Tác dụng của <span class="underline decoration-4 decoration-red-800 underline-offset-4 text-red-800 cursor-pointer" onclick="openGlossary('nhansam', event)">Nhân Sâm</span> - Đại bổ nguyên khí
                         </h2>
-                        <div class="w-full h-px bg-gray-300 mt-6 opacity-50"></div>
+                        <div class="w-full h-px bg-gray-300 mt-4 opacity-50"></div>
                     </header>
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
                         <p>
@@ -4158,7 +4276,10 @@
                             hân Sâm (tên khoa học: <span class="italic">Panax ginseng</span>) là vị thuốc đứng đầu trong tứ đại danh dược thảo của Đông y bao gồm: Sâm, Nhung, Quế, Phụ.
                         </p>
                         <p>
-                            Với hình dáng tương tự như hình người, Nhân Sâm được coi là linh dược giúp kéo dài tuổi thọ, bồi bổ lục phủ ngũ tạng, tăng cường hệ miễn dịch và phục hồi thể trạng suy nhược trầm trọng.
+                            Với hình dáng tương tự như hình người, Nhân Sâm được coi là linh dược giúp kéo dài tuổi thọ, bồi bổ lục phủ ngũ tạng, tăng cường hệ miễn dịch và phục hồi nhanh thể trạng suy nhược trầm trọng.
+                        </p>
+                        <p>
+                            Dược liệu quý này phân bố chủ yếu ở khu vực ôn đới mát mẻ như bán đảo Triều Tiên, vùng Đông Bắc Trung Quốc và Siberia. Nhân sâm trồng đủ 6 năm tuổi mới tích tụ đầy đủ tinh túy dược tính cao nhất.
                         </p>
                     </div>
                     `,
@@ -4166,10 +4287,10 @@
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
                         <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Thần Thảo Cương Mục</h3>
                         <p>
-                            Nhân Sâm quy vào kinh Tỳ, Phế, Tâm. Vị ngọt đắng nhẹ, tính ôn. Tác dụng nổi bật nhất là <strong>Đại bổ nguyên khí</strong>, cố thoát chỉ hãn, ích trí an thần, sinh tân chỉ khát.
+                            Nhân Sâm quy vào ba kinh Tỳ, Phế, Tâm. Vị ngọt đắng nhẹ, tính ôn. Tác dụng nổi bật nhất được ghi chép qua các thời kỳ y văn cổ là: <strong>Đại bổ nguyên khí</strong>, cố thoát chỉ hãn, ích trí an thần, sinh tân chỉ khát.
                         </p>
                         <div class="my-4 border border-slate-200 rounded-xl overflow-hidden cursor-zoom-in group shadow-sm bg-white" onclick="showToast('Ảnh sơ đồ cấu trúc Nhân Sâm độ phân giải cao.')">
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_3l1SCpwv_IidcRc2uGAYkCz7suGUX7KaLwuBgR8lWIit-KlxXlw2qIh8DVwmcWbtJlujAM2kMOq7CxNK9q_Dty2DuUiVVA2uCDwja4CzFmGMlk94SmtZPAsXC0f6atI_0JdwqMpy8XWqgtUD8TZIJ_dvLIstnoz9n760OO9LEZqaJNDa3xj3s4BibmbtNWN-NnbZLPIUn4IavJVUTQ-s8A5nNbhvpNCNJ_Gpu_4bKgGkZn867nHZsjL2DuMDuZCseuZwk83ytHg" class="w-full aspect-[21/9] object-cover group-hover:scale-102 transition-transform duration-300" alt="Nhân Sâm Anatomy"/>
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCwHvj_zxpIcI55QDfF9650v4iUtr15HL8lTicXD6pzReKQl5HDCNrv5NR_hZLEOsqdZB8QAH9biqfNYU8Xqetlcn3p2fKRnM0LCzl6gSMxg28nNVGCI8wAoohs2JbN1HVlvoFnXmXEHNZ_ocGU9X32uvyOTl8nPpm6ngfZiai2AqT1LKFjQxMOTGPjxVzk5Q6tqPbYzTj7Pao2UIpNhjRjAXQdy_Yvj2V6WWS6lZ9c7fgF62Tbmf8U8_oSWhJZiumqEon0qnJWK-7" class="w-full aspect-[21/9] object-cover group-hover:scale-102 transition-transform duration-300" alt="Nhân Sâm Anatomy"/>
                             <div class="bg-slate-50 p-2 text-[10px] text-slate-500 text-center font-medium border-t border-slate-200">
                                 Chi tiết hình dáng củ Nhân Sâm 6 năm tuổi & các nhánh rễ.
                             </div>
@@ -4180,10 +4301,13 @@
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
                         <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Hoạt chất sinh học chính</h3>
                         <p>
-                            Các saponin trong Nhân Sâm được gọi là các <strong>Ginsenoside</strong> (hơn 30 loại khác nhau). Trong đó, các nhóm Ro, Rb1, Rb2, Rc, Rd, Re, Rf, Rg1, Rg2... mang các đặc tính dược lý vô cùng đa dạng.
+                            Các saponin quý hiếm trong Nhân Sâm được gọi là các <strong>Ginsenoside</strong> (hơn 30 loại khác nhau). Trong đó, các nhóm Ro, Rb1, Rb2, Rc, Rd, Re, Rf, Rg1, Rg2... mang các đặc tính dược lý vô cùng phong phú và đa dạng.
                         </p>
                         <p>
                             Ginsenoside có tác dụng kích thích hệ thần kinh trung ương ở liều thấp, làm tăng trí nhớ, cải thiện khả năng tập trung, chống căng thẳng thần kinh và cải thiện chức năng sinh lý.
+                        </p>
+                        <p>
+                            Ngoài ra, Nhân sâm còn chứa các polysaccharide có tác dụng kích hoạt hệ thống miễn dịch tự nhiên, thúc đẩy tổng hợp protein huyết thanh và tăng sản sinh tế bào hồng cầu tủy xương.
                         </p>
                     </div>
                     `,
@@ -4191,13 +4315,13 @@
                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
                         <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Ứng dụng lâm sàng nâng cao</h3>
                         <p>
-                            Nhân sâm được chỉ định điều trị trong các trường hợp:
+                            Nhân sâm được chỉ định hỗ trợ điều trị đắc lực trong các trường hợp lâm sàng sau:
                         </p>
                         <ul class="list-disc pl-6 space-y-2">
-                            <li>Phế khí hư tổn, suyễn khái (khó thở, ho kéo dài).</li>
-                            <li>Tỳ vị khí hư, kém ăn, mệt mỏi, tiêu chảy mạn tính.</li>
-                            <li>Tâm thần bất an, hồi hộp, mất ngủ, hay quên.</li>
-                            <li>Tân dịch tổn thương gây khát, tiểu đường lâm sàng.</li>
+                            <li>Phế khí hư tổn, suyễn khái (hụt hơi, khó thở kéo dài ở người cao tuổi).</li>
+                            <li>Tỳ vị khí hư, chán ăn, người mệt mỏi rã rời, tiêu chảy mạn tính.</li>
+                            <li>Tâm thần bất an, hồi hộp lo âu, mất ngủ kinh niên, giảm trí nhớ.</li>
+                            <li>Tân dịch tổn thương gây khát, hỗ trợ điều hòa đường huyết.</li>
                         </ul>
                         <div class="bg-red-50 border border-red-200 rounded-xl p-4 mt-4">
                             <h4 class="font-bold text-red-800 text-sm flex items-center gap-2 mb-2">
@@ -4207,6 +4331,11 @@
                                 Nhân Sâm là vị thuốc đại bổ nguyên khí hàng đầu, nâng cao sinh lực tổng thể nhờ ginsenoside phong phú. Bạn đã hoàn thành toàn bộ chương này!
                             </p>
                         </div>
+                    </div>
+                    `,
+                    `
+                    <div class="h-full overflow-y-auto bg-white px-5 py-6" id="quiz-container">
+                        <!-- Chapter Completed screen will render here -->
                     </div>
                     `
                 ]
@@ -4286,13 +4415,9 @@
             });
             appState.activeTab = tabName;
             
-            // Auto hide search footer in e-reader
+            // Always show bottom nav when switching tabs
             const appNav = document.getElementById('app-bottom-nav');
-            if (tabName === 'reader' || tabName === 'quiz') {
-                appNav.classList.add('hidden');
-            } else {
-                appNav.classList.remove('hidden');
-            }
+            appNav.classList.remove('hidden');
         }
 
         // Side drawer menu toggler
@@ -4387,6 +4512,7 @@
 
         function closeBookDetails() {
             document.getElementById('view-book-detail').classList.add('hidden');
+            document.getElementById('app-bottom-nav').classList.remove('hidden');
         }
 
         function addToLibraryState() {
@@ -4461,10 +4587,16 @@
 
         function closeEreaderScreen() {
             document.getElementById('view-reader').classList.add('hidden');
-            const isBookDetailOpen = !document.getElementById('view-book-detail').classList.contains('hidden');
-            if (!isBookDetailOpen && appState.activeTab !== 'reader' && appState.activeTab !== 'quiz' && appState.activeTab !== 'book-toc') {
-                document.getElementById('app-bottom-nav').classList.remove('hidden');
+            
+            // If exiting reader and the active tab context is TOC, return to the library tab
+            if (appState.activeTab === 'book-toc') {
+                appState.activeTab = 'library'; // Break infinite recursion from switchTab()
+                switchTab('library');
+                return;
             }
+            
+            // Always restore bottom nav when reader is closed (detail overlays cover it via z-index)
+            document.getElementById('app-bottom-nav').classList.remove('hidden');
         }
 
         function openBookTOC() {
@@ -4475,6 +4607,267 @@
             appState.currentBookId = 'chandoanykhoa';
             openEreaderScreen();
             loadChapter(chapterId);
+        }
+
+        // Ebook & Audiobook Read-Along Voice Sync Logic
+        let readAlongState = {
+            isActive: false,
+            isPlaying: false,
+            currentIndex: -1,
+            timer: null,
+            fullText: ""
+        };
+
+        let originalPageHTMLs = {};
+        let wordIndex = 0;
+
+        function toggleReadAlong() {
+            readAlongState.isActive = !readAlongState.isActive;
+            const bar = document.getElementById('read-along-player-bar');
+            const btn = document.getElementById('btn-read-along');
+            
+            if (readAlongState.isActive) {
+                bar.classList.remove('hidden');
+                if (btn) {
+                    btn.classList.add('text-[#005a9c]', 'font-bold');
+                    btn.classList.remove('text-slate-750');
+                }
+                
+                // Initialize as paused by default
+                const playIcon = document.getElementById('icon-read-along-play');
+                if (playIcon) playIcon.innerText = 'play_arrow';
+                readAlongState.isPlaying = false;
+                
+                startReadAlongOnCurrentPage();
+                showToast("Đã mở trình điều khiển Đọc & Nghe. Nhấn nút Phát để bắt đầu đọc.", "success");
+            } else {
+                bar.classList.add('hidden');
+                if (btn) {
+                    btn.classList.remove('text-[#005a9c]', 'font-bold');
+                    btn.classList.add('text-slate-750');
+                }
+                stopReadAlongPlayback();
+                restoreOriginalHTML();
+            }
+        }
+
+        function toggleReadAlongPlayback() {
+            if (readAlongState.isPlaying) {
+                stopReadAlongPlayback();
+                showToast("Đã tạm dừng giọng đọc.");
+            } else {
+                startReadAlongPlayback();
+                showToast("Đang phát giọng đọc...", "success");
+            }
+        }
+
+        function startReadAlongPlayback() {
+            readAlongState.isPlaying = true;
+            const playIcon = document.getElementById('icon-read-along-play');
+            if (playIcon) playIcon.innerText = 'pause';
+            
+            speakCurrentPage();
+        }
+
+        function speakCurrentPage() {
+            stopTimer();
+            clearAllHighlights();
+            
+            const spans = document.querySelectorAll('.ra-word');
+            wordIndex = 0;
+            const msPerWord = 320; // Default average reading duration per word (320ms matches rate 0.92)
+            
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                
+                const textToSpeak = readAlongState.fullText || "";
+                if (!textToSpeak.trim()) {
+                    showToast("Trang này không có văn bản để đọc.");
+                    return;
+                }
+                
+                const utterance = new SpeechSynthesisUtterance(textToSpeak);
+                utterance.lang = 'vi-VN';
+                utterance.rate = 0.92;
+                
+                // Sync word index dynamically if onboundary is supported by the browser voice
+                utterance.onboundary = function(event) {
+                    if (event.name === 'word') {
+                        const charIndex = event.charIndex;
+                        syncWordIndexToCharIndex(charIndex);
+                    }
+                };
+                
+                utterance.onend = function() {
+                    stopTimer();
+                    if (readAlongState.isPlaying) {
+                        setTimeout(() => {
+                            if (readAlongState.isPlaying) {
+                                const totalPages = document.querySelectorAll('.flipbook-page').length;
+                                if (appState.readerCurrentPage < totalPages - 1) {
+                                    flipPage(1);
+                                } else {
+                                    stopReadAlongPlayback();
+                                    restoreOriginalHTML();
+                                    showToast("Đã đọc xong toàn bộ chương sách.");
+                                }
+                            }
+                        }, 1000);
+                    }
+                };
+                
+                utterance.onerror = function() {
+                    // Fallback to pure timer in case of error
+                };
+                
+                window.speechSynthesis.speak(utterance);
+            }
+            
+            // ALWAYS run the parallel timer to guarantee word-by-word highlights on all devices/browsers!
+            readAlongState.timer = setInterval(() => {
+                if (readAlongState.isPlaying && wordIndex < spans.length) {
+                    highlightWordAtIndex(wordIndex);
+                    wordIndex++;
+                } else {
+                    stopTimer();
+                }
+            }, msPerWord);
+        }
+
+        function syncWordIndexToCharIndex(charIndex) {
+            const spans = document.querySelectorAll('.ra-word');
+            for (let i = 0; i < spans.length; i++) {
+                const spanIdx = parseInt(spans[i].getAttribute('data-char-idx'));
+                if (spanIdx >= charIndex) {
+                    wordIndex = i;
+                    break;
+                }
+            }
+        }
+
+        function stopTimer() {
+            if (readAlongState.timer) {
+                clearInterval(readAlongState.timer);
+                readAlongState.timer = null;
+            }
+        }
+
+        function stopReadAlongPlayback() {
+            readAlongState.isPlaying = false;
+            const playIcon = document.getElementById('icon-read-along-play');
+            if (playIcon) playIcon.innerText = 'play_arrow';
+            
+            stopTimer();
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+            clearAllHighlights();
+        }
+
+        function startReadAlongOnCurrentPage() {
+            const activePageNum = appState.readerCurrentPage;
+            const pageEl = document.querySelector(`.flipbook-page[data-page="${activePageNum}"]`);
+            if (!pageEl) return;
+            
+            const article = pageEl.querySelector('article');
+            if (!article) return;
+            
+            restoreOriginalHTML();
+            
+            originalPageHTMLs[activePageNum] = article.innerHTML;
+            
+            let fullText = "";
+            
+            function processNode(node) {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    const text = node.nodeValue;
+                    const words = text.split(/(\s+)/);
+                    const fragment = document.createDocumentFragment();
+                    
+                    words.forEach(word => {
+                        if (/\s+/.test(word)) {
+                            fragment.appendChild(document.createTextNode(word));
+                            fullText += word;
+                        } else if (word.length > 0) {
+                            const span = document.createElement('span');
+                            span.className = 'ra-word';
+                            span.setAttribute('data-char-idx', fullText.length);
+                            span.innerText = word;
+                            fragment.appendChild(span);
+                            fullText += word;
+                        }
+                    });
+                    node.parentNode.replaceChild(fragment, node);
+                } else if (node.nodeType === Node.ELEMENT_NODE) {
+                    if (node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') {
+                        if (node.classList.contains('absolute') && node.classList.contains('bottom-4')) {
+                            return;
+                        }
+                        const children = Array.from(node.childNodes);
+                        children.forEach(child => processNode(child));
+                    }
+                }
+            }
+            
+            processNode(article);
+            
+            readAlongState.fullText = fullText;
+            
+            const statusText = document.getElementById('read-along-status');
+            if (statusText) {
+                statusText.innerText = `Đang đọc: Trang ${activePageNum + 1}`;
+            }
+            
+            if (readAlongState.isPlaying) {
+                speakCurrentPage();
+            }
+        }
+
+        function restoreOriginalHTML() {
+            for (let pageNum in originalPageHTMLs) {
+                const pageEl = document.querySelector(`.flipbook-page[data-page="${pageNum}"]`);
+                if (pageEl) {
+                    const article = pageEl.querySelector('article');
+                    if (article) {
+                        article.innerHTML = originalPageHTMLs[pageNum];
+                    }
+                }
+            }
+            originalPageHTMLs = {};
+        }
+
+        function highlightWordAtCharIndex(charIndex) {
+            clearAllHighlights();
+            
+            let bestSpan = null;
+            let minDiff = Infinity;
+            
+            document.querySelectorAll('.ra-word').forEach(span => {
+                const spanIdx = parseInt(span.getAttribute('data-char-idx'));
+                const diff = charIndex - spanIdx;
+                if (diff >= 0 && diff < minDiff) {
+                    minDiff = diff;
+                    bestSpan = span;
+                }
+            });
+            
+            if (bestSpan) {
+                bestSpan.classList.add('ra-word-active');
+            }
+        }
+
+        function highlightWordAtIndex(idx) {
+            clearAllHighlights();
+            const spans = document.querySelectorAll('.ra-word');
+            if (spans[idx]) {
+                spans[idx].classList.add('ra-word-active');
+            }
+        }
+
+        function clearAllHighlights() {
+            document.querySelectorAll('.ra-word-active').forEach(el => {
+                el.classList.remove('ra-word-active');
+            });
         }
 
         function toggleBookmarkState() {
@@ -4764,12 +5157,14 @@
         // Quiz checking and option active highlights
         function openQuizScreen() {
             document.getElementById('view-quiz').classList.remove('hidden');
-            document.getElementById('app-bottom-nav').classList.add('hidden');
+            // z-[70] on view-quiz automatically covers the bottom nav visually
         }
 
         function closeQuizScreen() {
             document.getElementById('view-quiz').classList.add('hidden');
-            if (appState.activeTab !== 'reader' && appState.activeTab !== 'quiz') {
+            // Restore bottom nav only if reader is also closed
+            const isReaderOpen = !document.getElementById('view-reader').classList.contains('hidden');
+            if (!isReaderOpen) {
                 document.getElementById('app-bottom-nav').classList.remove('hidden');
             }
         }
@@ -5355,6 +5750,11 @@
             if (progressPageText) {
                 progressPageText.innerText = `Trang ${appState.readerCurrentPage + 1}`;
             }
+            
+            // Sync with Read-along if active
+            if (typeof readAlongState !== 'undefined' && readAlongState.isActive) {
+                startReadAlongOnCurrentPage();
+            }
         }
 
         // 2. Selection & Highlight Management
@@ -5614,7 +6014,38 @@
             const audioTitle = document.getElementById('audio-title');
             const audioAuthor = document.getElementById('audio-author');
 
-            if (audioCover) audioCover.innerHTML = `<img src="${getBookCoverURL(activeBookId)}" class="w-full h-full object-cover rounded-[2rem]" alt="${book.title}" />`;
+            // Define gradient presets per book theme
+            const gradientMap = {
+                'thankinh':     'linear-gradient(135deg, #0a0e2e 0%, #1a237e 50%, #283593 100%)',
+                'thankinhhoc':  'linear-gradient(135deg, #0a0e2e 0%, #1a237e 50%, #283593 100%)',
+                'thaoduoc':     'linear-gradient(135deg, #0d2818 0%, #1b5e20 50%, #2e7d32 100%)',
+                'lamsangnoikhoa': 'linear-gradient(135deg, #0a1929 0%, #0d47a1 50%, #1565c0 100%)',
+                'capnhatyvan':  'linear-gradient(135deg, #0d1b2a 0%, #1565c0 50%, #0288d1 100%)',
+                'ditruyen':     'linear-gradient(135deg, #1a0533 0%, #4a148c 50%, #7b1fa2 100%)',
+                'baoche':       'linear-gradient(135deg, #0d1f1a 0%, #00695c 50%, #00897b 100%)',
+                'nhansam':      'linear-gradient(135deg, #1b0000 0%, #b71c1c 50%, #c62828 100%)',
+                'chandoanykhoa':'linear-gradient(135deg, #0a1929 0%, #01579b 50%, #0288d1 100%)',
+            };
+            const glowMap = {
+                'thankinh':     'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(99,137,255,0.30) 0%, transparent 75%)',
+                'thankinhhoc':  'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(99,137,255,0.30) 0%, transparent 75%)',
+                'thaoduoc':     'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(76,175,80,0.30) 0%, transparent 75%)',
+                'lamsangnoikhoa':'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(30,136,229,0.30) 0%, transparent 75%)',
+                'capnhatyvan':  'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(2,136,209,0.30) 0%, transparent 75%)',
+                'ditruyen':     'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(156,39,176,0.30) 0%, transparent 75%)',
+                'baoche':       'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,150,136,0.30) 0%, transparent 75%)',
+                'nhansam':      'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(229,57,53,0.35) 0%, transparent 75%)',
+                'chandoanykhoa':'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(30,136,229,0.30) 0%, transparent 75%)',
+            };
+            const coverGradient = gradientMap[activeBookId] || 'linear-gradient(160deg, #0a1525 0%, #0d47a1 50%, #1565c0 100%)';
+            const coverGlow = glowMap[activeBookId] || 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(99,137,255,0.25) 0%, transparent 75%)';
+            if (audioCover) {
+                audioCover.innerHTML = `<img src="${getBookCoverURL(activeBookId)}" class="w-full h-full object-cover" alt="${book.title}" />`;
+                const bgEl = document.getElementById('audio-cover-bg');
+                const glowEl = document.getElementById('audio-cover-glow');
+                if (bgEl) bgEl.style.background = coverGradient;
+                if (glowEl) glowEl.style.background = coverGlow;
+            }
             if (audioTitle) audioTitle.innerText = book.title;
             if (audioAuthor) audioAuthor.innerText = book.author;
 
@@ -5792,7 +6223,7 @@
             const currentChapter = audiobookState.chapters[audiobookState.currentChapterIdx];
             if (currentChapter) {
                 const titleEl = document.getElementById('audio-current-chapter-title');
-                if (titleEl) titleEl.innerText = `Đang phát: ${currentChapter.title}`;
+                if (titleEl) titleEl.innerText = currentChapter.title;
                 
                 const descEl = document.getElementById('audio-chapter-desc');
                 if (descEl) descEl.innerText = currentChapter.desc || "Không có giới thiệu cho chương này.";
