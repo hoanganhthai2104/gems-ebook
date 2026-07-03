@@ -561,6 +561,36 @@
             animation: circlePopUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
         }
 
+        /* E-reader Highlights */
+        .bg-highlight-yellow {
+            background-color: rgba(254, 240, 138, 0.7) !important;
+            border-bottom: 2px solid #eab308 !important;
+        }
+        .bg-highlight-green {
+            background-color: rgba(187, 247, 208, 0.7) !important;
+            border-bottom: 2px solid #22c55e !important;
+        }
+        .bg-highlight-pink {
+            background-color: rgba(251, 207, 232, 0.7) !important;
+            border-bottom: 2px solid #ec4899 !important;
+        }
+        .gems-highlight {
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+        .gems-highlight:hover {
+            opacity: 0.85;
+        }
+
+        /* Slide up animation for Note Modal */
+        @keyframes slideUp {
+            0% { transform: translateY(100%); }
+            100% { transform: translateY(0); }
+        }
+        .animate-slide-up {
+            animation: slideUp 0.35s cubic-bezier(0.32, 0.94, 0.6, 1) forwards;
+        }
+
         /* Badge pop animation */
         @keyframes badgePop {
             0% { transform: scale(0.5) rotate(-8deg); opacity: 0; }
@@ -662,11 +692,7 @@
                     <div id="view-home" class="view-panel flex-1 flex flex-col overflow-hidden bg-surface">
                         <!-- Top AppBar -->
                         <header class="bg-surface/80 backdrop-blur-md text-primary w-full top-0 sticky border-b border-slate-100 flex items-center justify-between px-margin-mobile py-3 z-50 shrink-0">
-                            <div class="w-10">
-                                <button onclick="toggleSideMenu()" class="text-primary hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-xl" data-icon="menu">menu</span>
-                                </button>
-                            </div>
+                            <div class="w-10"></div>
                             <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center">GEMS</h1>
                             <div class="flex items-center w-10 justify-end">
                                 <button onclick="showToast('Chưa có thông báo lâm sàng mới.')" class="text-primary hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center relative">
@@ -918,11 +944,7 @@
                     <div id="view-library" class="view-panel flex-1 flex flex-col overflow-hidden hidden bg-surface">
                         <!-- Top Nav -->
                         <header class="bg-surface/80 backdrop-blur-md w-full top-0 sticky border-b border-slate-100 flex items-center justify-between px-margin-mobile py-3 z-40 shrink-0">
-                            <div class="w-10">
-                                <button onclick="toggleSideMenu()" class="text-primary hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-xl" data-icon="menu">menu</span>
-                                </button>
-                            </div>
+                            <div class="w-10"></div>
                             <h1 id="library-header-title" class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center">GEMS</h1>
                             <div class="flex items-center w-10 justify-end">
                                 <button id="library-header-search" onclick="showToast('Chức năng tìm kiếm sách.')" class="text-primary hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
@@ -934,24 +956,27 @@
                             </div>
                         </header>
 
-                        <!-- Segment Control (Ebook / Audiobook) -->
+                        <!-- Segment Control (Ebook / Audiobook / Group) -->
                         <div class="px-margin-mobile py-2 bg-surface border-b border-slate-100 shrink-0">
                             <div class="bg-slate-100 p-1 flex rounded-2xl border border-slate-200/50">
-                                <button id="lib-tab-ebook" onclick="switchLibrarySubTab('ebook')" class="w-1/2 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 bg-white text-blue-600 shadow-sm">
+                                <button id="lib-tab-ebook" onclick="switchLibrarySubTab('ebook')" class="w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 bg-white text-blue-600 shadow-sm">
                                     Ebook
                                 </button>
-                                <button id="lib-tab-audio" onclick="switchLibrarySubTab('audiobook')" class="w-1/2 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700">
+                                <button id="lib-tab-audio" onclick="switchLibrarySubTab('audiobook')" class="w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700">
                                     Audiobook
+                                </button>
+                                <button id="lib-tab-group" onclick="switchLibrarySubTab('group')" class="w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700">
+                                    Group
                                 </button>
                             </div>
                         </div>
 
                         <!-- Sliding Container -->
                         <div class="flex-grow overflow-hidden relative">
-                            <div id="library-slides-wrapper" class="flex h-full w-[200%] transition-transform duration-300 ease-out">
+                            <div id="library-slides-wrapper" class="flex h-full w-[300%] transition-transform duration-300 ease-out">
                                 
                                 <!-- Slide 1: Ebook Library -->
-                                <div class="w-1/2 shrink-0 h-full overflow-y-auto pb-6">
+                                <div class="w-1/3 shrink-0 h-full overflow-y-auto pb-6">
                                     <!-- 3D Flip Book Carousel -->
                             <section class="py-4 px-4 bg-gradient-to-b from-blue-50/10 to-transparent">
                                 <h3 class="text-xs font-bold text-slate-800 uppercase tracking-widest mb-3">Sách Nổi Bật</h3>
@@ -1418,7 +1443,7 @@
                                 </div>
                                 
                                 <!-- Slide 2: Audiobook Library -->
-                                <div class="w-1/2 shrink-0 h-full overflow-y-auto pb-6 relative bg-slate-50">
+                                <div class="w-1/3 shrink-0 h-full overflow-y-auto pb-6 relative bg-slate-50">
 <!-- Featured Section Carousel -->
                                     <section class="px-margin-mobile pt-4 pb-2 relative">
                                         <div id="audiobook-featured-carousel" class="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 w-full" onscroll="updateAudiobookLibraryDots()">
@@ -1613,6 +1638,131 @@
                                         </div>
                                     </div>
                                 </div>
+
+<!-- Slide 3: Group/Club Library -->
+                                <div id="library-slide-group" class="w-1/3 shrink-0 h-full overflow-y-auto pb-24 px-4 space-y-5 relative bg-slate-50">
+                                    <!-- Header -->
+                                    <div class="pt-4">
+                                        <h2 class="text-xl font-black text-slate-800 leading-tight">Câu lạc bộ Đọc sách</h2>
+                                        <p class="text-xs text-slate-500 leading-relaxed mt-1">
+                                            Khám phá và tham gia các cộng đồng chuyên sâu để thảo luận về y học, nghiên cứu khoa học và phát triển chuyên môn.
+                                        </p>
+                                    </div>
+
+                                    <!-- Filter pills -->
+                                    <div class="flex overflow-x-auto gap-2 pb-1 scrollbar-none">
+                                        <button onclick="filterGroupCategory('all', this)" class="group-filter-pill px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-[#005a9c] text-white shrink-0">Tất cả</button>
+                                        <button onclick="filterGroupCategory('lam-sang', this)" class="group-filter-pill px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-650 hover:bg-slate-200 shrink-0">Thử nghiệm lâm sàng</button>
+                                        <button onclick="filterGroupCategory('than-kinh', this)" class="group-filter-pill px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-650 hover:bg-slate-200 shrink-0">Thần kinh học</button>
+                                        <button onclick="filterGroupCategory('cong-dong', this)" class="group-filter-pill px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-650 hover:bg-slate-200 shrink-0">Sức khỏe cộng đồng</button>
+                                        <button onclick="filterGroupCategory('dao-duc', this)" class="group-filter-pill px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-650 hover:bg-slate-200 shrink-0">Đạo đức y học</button>
+                                        <button onclick="filterGroupCategory('du-lieu', this)" class="group-filter-pill px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-650 hover:bg-slate-200 shrink-0">Khoa học dữ liệu</button>
+                                    </div>
+
+                                    <!-- Group Cards List -->
+                                    <div class="space-y-4" id="group-cards-list">
+                                        <!-- Card 1 (Thử nghiệm lâm sàng) -->
+                                        <div data-category="lam-sang" class="group-card-item card-lift bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col group cursor-pointer" onclick="openGroupDetail('lam-sang')">
+                                            <div class="relative w-full aspect-[2.1/1] overflow-hidden">
+                                                <div class="absolute top-2 left-2 z-10 bg-brand-blue text-white text-[9px] font-extrabold px-2 py-0.5 rounded-full shadow">Nổi bật</div>
+                                                <img src="/covers/immunotherapy_lab.png" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" alt="Phác đồ Ung thư Nâng cao">
+                                            </div>
+                                            <div class="p-4 space-y-2">
+                                                <span class="inline-block bg-slate-100 text-slate-600 text-[9px] font-bold px-2 py-0.5 rounded uppercase">Thử nghiệm lâm sàng</span>
+                                                <h3 class="text-sm font-black text-slate-800 leading-tight">Phác đồ Ung thư Nâng cao</h3>
+                                                <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">Nhóm đọc chuyên sâu dành cho bác sĩ ung thư và nghiên cứu viên phân tích các thử nghiệm lâm sàng giai đoạn 3.</p>
+                                                <div class="flex items-center justify-between pt-2 border-t border-slate-50" onclick="event.stopPropagation()">
+                                                    <div class="flex items-center gap-1.5">
+                                                        <div class="flex -space-x-1.5">
+                                                            <div class="w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-[7px] font-bold border border-white">NA</div>
+                                                            <div class="w-5 h-5 rounded-full bg-pink-100 text-pink-700 flex items-center justify-center text-[7px] font-bold border border-white">LM</div>
+                                                            <div class="w-5 h-5 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center text-[7px] font-bold border border-white">TB</div>
+                                                        </div>
+                                                        <span class="text-[9px] font-semibold text-slate-400">+42</span>
+                                                        <span class="text-[9px] text-slate-400">• 44 Thành viên</span>
+                                                    </div>
+                                                    <button onclick="joinGroup('lam-sang', event)" class="bg-[#005a9c] hover:bg-[#005a9c]/90 text-white text-[10px] font-bold px-3 py-1.5 rounded-xl transition-all duration-300 active:scale-95 shadow-sm">Tham gia</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Card 2 (Thần kinh học) -->
+                                        <div data-category="than-kinh" class="group-card-item card-lift bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col group cursor-pointer" onclick="openGroupDetail('than-kinh')">
+                                            <div class="relative w-full aspect-[2.1/1] overflow-hidden">
+                                                <img src="/covers/sinhlythankinh.png" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" alt="Đánh giá Tính dẻo Synap">
+                                            </div>
+                                            <div class="p-4 space-y-2">
+                                                <span class="inline-block bg-slate-100 text-slate-600 text-[9px] font-bold px-2 py-0.5 rounded uppercase">Thần kinh học</span>
+                                                <h3 class="text-sm font-black text-slate-800 leading-tight">Đánh giá Tính dẻo Synap</h3>
+                                                <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">Thảo luận hàng tuần về các bài báo nền tảng và tiên tiến liên quan đến sự thích nghi thần kinh.</p>
+                                                <div class="flex items-center justify-between pt-2 border-t border-slate-50" onclick="event.stopPropagation()">
+                                                    <div class="flex items-center gap-1.5">
+                                                        <span class="material-symbols-outlined text-xs text-slate-400">group</span>
+                                                        <span class="text-[10px] text-slate-400">128 Thành viên</span>
+                                                    </div>
+                                                    <button onclick="joinGroup('than-kinh', event)" class="border border-slate-200 hover:bg-slate-50 text-slate-655 text-[10px] font-bold px-3 py-1.5 rounded-xl transition-all duration-300 active:scale-95 shadow-sm">Tham gia</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Card 3 (Sức khỏe cộng đồng) -->
+                                        <div data-category="cong-dong" class="group-card-item card-lift bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col group cursor-pointer" onclick="openGroupDetail('cong-dong')">
+                                            <div class="relative w-full aspect-[2.1/1] overflow-hidden">
+                                                <img src="/covers/hospital_corridor.png" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" alt="Ranh giới Dịch tễ học">
+                                            </div>
+                                            <div class="p-4 space-y-2">
+                                                <span class="inline-block bg-slate-100 text-slate-600 text-[9px] font-bold px-2 py-0.5 rounded uppercase">Sức khỏe cộng đồng</span>
+                                                <h3 class="text-sm font-black text-slate-800 leading-tight">Ranh giới Dịch tễ học</h3>
+                                                <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">Phân tích các mô hình dịch tễ, chính sách y tế toàn cầu và theo dõi bệnh truyền nhiễm.</p>
+                                                <div class="flex items-center justify-between pt-2 border-t border-slate-50" onclick="event.stopPropagation()">
+                                                    <div class="flex items-center gap-1.5">
+                                                        <span class="material-symbols-outlined text-xs text-slate-400">group</span>
+                                                        <span class="text-[10px] text-slate-400">85 Thành viên</span>
+                                                    </div>
+                                                    <button onclick="joinGroup('cong-dong', event)" class="border border-slate-200 hover:bg-slate-50 text-slate-655 text-[10px] font-bold px-3 py-1.5 rounded-xl transition-all duration-300 active:scale-95 shadow-sm">Tham gia</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Card 4 (Đạo đức y học) -->
+                                        <div data-category="dao-duc" class="group-card-item card-lift bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col group cursor-pointer" onclick="openGroupDetail('dao-duc')">
+                                            <div class="relative w-full aspect-[2.1/1] overflow-hidden">
+                                                <img src="/covers/tamly.png" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" alt="Diễn đàn Đạo đức sinh học">
+                                            </div>
+                                            <div class="p-4 space-y-2">
+                                                <span class="inline-block bg-slate-100 text-slate-600 text-[9px] font-bold px-2 py-0.5 rounded uppercase">Đạo đức y học</span>
+                                                <h3 class="text-sm font-black text-slate-800 leading-tight">Diễn đàn Đạo đức sinh học</h3>
+                                                <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">Định hướng các vấn đề đạo đức phức tạp trong can thiệp y tế hiện đại và AI trong chăm sóc sức khỏe.</p>
+                                                <div class="flex items-center justify-between pt-2 border-t border-slate-50" onclick="event.stopPropagation()">
+                                                    <div class="flex items-center gap-1.5">
+                                                        <span class="material-symbols-outlined text-xs text-slate-400">group</span>
+                                                        <span class="text-[10px] text-slate-400">312 Thành viên</span>
+                                                    </div>
+                                                    <button onclick="joinGroup('dao-duc', event)" class="border border-slate-200 hover:bg-slate-50 text-slate-655 text-[10px] font-bold px-3 py-1.5 rounded-xl transition-all duration-300 active:scale-95 shadow-sm">Tham gia</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Card 5 (Khoa học dữ liệu) -->
+                                        <div data-category="du-lieu" class="group-card-item card-lift bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col group cursor-pointer" onclick="openGroupDetail('du-lieu')">
+                                            <div class="relative w-full aspect-[2.1/1] overflow-hidden">
+                                                <img src="/covers/digital_health_data.png" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" alt="Tin học Y tế">
+                                            </div>
+                                            <div class="p-4 space-y-2">
+                                                <span class="inline-block bg-slate-100 text-slate-600 text-[9px] font-bold px-2 py-0.5 rounded uppercase">Khoa học dữ liệu</span>
+                                                <h3 class="text-sm font-black text-slate-800 leading-tight">Tin học Y tế</h3>
+                                                <p class="text-xs text-slate-500 leading-relaxed line-clamp-2">Khám phá sự giao thoa giữa dữ liệu lớn, học máy và kết quả bệnh nhân trong lâm sàng.</p>
+                                                <div class="flex items-center justify-between pt-2 border-t border-slate-50" onclick="event.stopPropagation()">
+                                                    <div class="flex items-center gap-1.5">
+                                                        <span class="material-symbols-outlined text-xs text-slate-400">group</span>
+                                                        <span class="text-[10px] text-slate-400">56 Thành viên</span>
+                                                    </div>
+                                                    <button onclick="joinGroup('du-lieu', event)" class="border border-slate-200 hover:bg-slate-50 text-slate-655 text-[10px] font-bold px-3 py-1.5 rounded-xl transition-all duration-300 active:scale-95 shadow-sm">Tham gia</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 
                             </div>
                         </div>
@@ -1727,9 +1877,10 @@
                                 <button onclick="showToast('Đang tải thêm tin tức...')" class="text-xs font-bold text-blue-500 hover:underline">Xem thêm tin khác</button>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- ============================================== -->
+                                                    </div>
+
+                <!-- ============================================== -->
                     <!-- VIEW: MỤC LỤC CHI TIẾT (Timeline Book TOC View) -->
                     <!-- ============================================== -->
                     <div id="view-book-toc" class="view-panel flex-1 flex flex-col overflow-hidden hidden bg-surface">
@@ -1846,11 +1997,7 @@
                     <div id="view-profile" class="view-panel flex-1 flex flex-col overflow-hidden hidden bg-surface">
                         <!-- Top Header -->
                         <header class="bg-surface/80 backdrop-blur-md w-full top-0 sticky border-b border-slate-100 flex items-center justify-between px-margin-mobile py-3 z-40 shrink-0">
-                            <div class="w-10">
-                                <button onclick="toggleSideMenu()" class="text-primary hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-xl" data-icon="menu">menu</span>
-                                </button>
-                            </div>
+                            <div class="w-10"></div>
                             <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center">GEMS</h1>
                             <div class="flex items-center w-10 justify-end">
                                 <button onclick="showToast('Chức năng tìm kiếm cá nhân.')" class="text-on-surface-variant hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
@@ -2258,7 +2405,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4">
-                                <button onclick="toggleBookmarkState()" class="p-1 hover:bg-slate-100 rounded-full text-slate-500">
+                                <button onclick="openNoteHistoryList()" class="p-1 hover:bg-slate-100 rounded-full text-slate-500" title="Xem ghi chú & Dấu trang">
                                     <span id="reader-bookmark-icon" class="material-symbols-outlined text-lg">bookmark</span>
                                 </button>
                             </div>
@@ -2380,7 +2527,7 @@
                         </main>
 
                         <!-- Floating select menu (Mini Toolbar) -->
-                        <div id="selection-toolbar" class="hidden absolute top-48 left-1/2 -translate-x-1/2 flex items-center px-4 py-2 bg-slate-900/95 backdrop-blur-md rounded-full space-x-4 shadow-xl z-[90]">
+                        <div id="selection-toolbar" class="hidden absolute top-48 left-1/2 -translate-x-1/2 flex items-center px-4 py-2 bg-slate-900/95 backdrop-blur-md rounded-full space-x-4 shadow-xl z-[220]">
                             <div class="flex space-x-1.5 pr-3 border-r border-slate-700">
                                 <button onclick="highlightText('yellow')" class="w-4 h-4 rounded-full bg-yellow-400 border border-white/20 active:scale-90 transition-transform"></button>
                                 <button onclick="highlightText('green')" class="w-4 h-4 rounded-full bg-green-400 border border-white/20 active:scale-90 transition-transform"></button>
@@ -2407,7 +2554,7 @@
                         </div>
 
                         <!-- Bottom control menu navigation bar -->
-                        <footer id="reader-footer" class="bg-white border-t border-gray-100 shrink-0 sm:pb-5 transition-all duration-300">
+                        <footer id="reader-footer" class="bg-white border-t border-gray-100 shrink-0 sm:pb-5 transition-all duration-300 z-[210] relative">
                             <!-- Progress Indicator -->
                             <div class="px-6 py-4 flex items-center space-x-4 border-b border-gray-150">
                                 <span class="text-[10px] text-gray-400 font-bold">35%</span>
@@ -2438,7 +2585,7 @@
                         </footer>
 
                         <!-- READ-ALONG PLAYER CONTROL BAR -->
-                        <div id="read-along-player-bar" class="hidden absolute bottom-[115px] left-0 right-0 mx-4 bg-white/70 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(31,38,135,0.08)] rounded-2xl p-3 z-50 flex items-center justify-between gap-3 transition-all duration-300">
+                        <div id="read-along-player-bar" class="hidden absolute bottom-[130px] left-0 right-0 mx-4 bg-white/70 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(31,38,135,0.08)] rounded-2xl p-3 z-[220] flex items-center justify-between gap-3 transition-all duration-300">
                             <div class="flex items-center gap-2 min-w-0">
                                 <div class="w-8 h-8 rounded-full bg-sky-50 flex items-center justify-center text-brand-blue shrink-0">
                                     <span class="material-symbols-outlined text-base animated-hearing">headphones</span>
@@ -2465,7 +2612,7 @@
                         </div>
 
                         <!-- KINDLE SETTINGS ACCORDION POPUP -->
-                        <div id="kindle-settings-menu" class="hidden absolute bottom-16 left-0 right-0 mx-4 bg-white rounded-2xl border border-gray-250 p-4 shadow-xl z-50 space-y-4">
+                        <div id="kindle-settings-menu" class="hidden absolute bottom-[130px] left-0 right-0 mx-4 bg-white rounded-2xl border border-gray-250 p-4 shadow-xl z-[220] space-y-4">
                             <!-- Background color choices -->
                             <div class="space-y-1.5">
                                 <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Màu nền trang</span>
@@ -2541,6 +2688,66 @@
                                 <p id="glossary-body" class="leading-relaxed">
                                     Vị thuốc quý trong Đông y giúp tán ứ, chỉ huyết (cầm máu) và tiêu thũng định thống. Có hàm lượng saponin cực cao rất tốt cho tim mạch và tăng đề kháng.
                                 </p>
+                            </div>
+                        </div>
+                        
+                        <!-- VIEW 6.1: GHI CHÚ OVERLAY MODAL (Bottom Sheet / Overlay Drawer) -->
+                        <div id="reader-note-modal" onclick="closeReaderNoteModal()" class="hidden absolute inset-0 z-[300] bg-black/40 backdrop-blur-sm flex items-end justify-center">
+                            <div class="bg-white w-full rounded-t-[32px] p-6 max-h-[85%] flex flex-col shadow-[0_-10px_30px_rgba(0,0,0,0.1)] select-none animate-slide-up" onclick="event.stopPropagation()">
+                                
+                                <!-- Drag Handle -->
+                                <div class="w-12 h-1 bg-slate-200 rounded-full mx-auto mb-5 shrink-0"></div>
+                                
+                                <!-- Modal Header -->
+                                <div class="flex justify-between items-start mb-4 shrink-0">
+                                    <div>
+                                        <h3 class="text-lg font-black text-slate-800 leading-tight">Ghi chú</h3>
+                                        <p id="note-modal-subtitle" class="text-[10px] text-slate-400 font-extrabold uppercase mt-1 tracking-wider">CHƯƠNG 4: DƯỢC LIỆU HỌC</p>
+                                    </div>
+                                    <button onclick="closeReaderNoteModal()" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-250 active:scale-95 transition-all">
+                                        <span class="material-symbols-outlined text-sm">history</span>
+                                    </button>
+                                </div>
+                                
+                                <!-- Modal Scrollable Content -->
+                                <div class="flex-grow overflow-y-auto space-y-5 pb-4">
+                                    
+                                    <!-- Selected Text Preview Card -->
+                                    <div id="note-selected-text-card" class="bg-slate-50 border border-slate-100 rounded-2xl p-4">
+                                        <p id="note-selected-text" class="text-xs italic text-slate-650 leading-relaxed font-medium">
+                                            "...Tam Thất có vị ngọt, hơi đắng, tính ấm, tác động trực tiếp vào hai kinh Can và Vị..."
+                                        </p>
+                                    </div>
+                                    
+                                    <!-- Note Text Area -->
+                                    <div class="space-y-1.5">
+                                        <textarea id="note-textarea" rows="3" placeholder="Nhập ghi chú của bạn về đoạn văn bản này..." class="w-full border border-slate-200 rounded-2xl p-3.5 text-xs text-slate-750 placeholder-slate-400 focus:ring-1 focus:ring-blue-600 focus:border-blue-600 focus:outline-none leading-relaxed transition-all resize-none shadow-sm"></textarea>
+                                    </div>
+                                    
+                                    <!-- Color Highlights Picker & Save Button Row -->
+                                    <div class="flex items-center justify-between pt-1">
+                                        <div class="flex items-center gap-3">
+                                            <span class="text-[11px] font-bold text-slate-500">Màu:</span>
+                                            <div class="flex gap-2.5">
+                                                <button onclick="selectNoteColor('yellow')" id="btn-color-yellow" class="w-6 h-6 rounded-full bg-yellow-300 border border-white active:scale-90 transition-transform"></button>
+                                                <button onclick="selectNoteColor('green')" id="btn-color-green" class="w-6 h-6 rounded-full bg-green-300 border border-white active:scale-90 transition-transform"></button>
+                                                <button onclick="selectNoteColor('pink')" id="btn-color-pink" class="w-6 h-6 rounded-full bg-pink-300 border border-white active:scale-90 transition-transform"></button>
+                                            </div>
+                                        </div>
+                                        <button onclick="saveReaderNote()" class="bg-[#005a9c] hover:bg-blue-800 text-white text-[10px] font-black tracking-wider uppercase px-5 py-3 rounded-xl active:scale-95 transition-all shadow-[0_4px_12px_rgba(0,90,156,0.2)]">
+                                            LƯU GHI CHÚ
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- Previous Notes List Section -->
+                                    <div class="pt-4 border-t border-slate-100 space-y-3">
+                                        <h4 id="prev-notes-header" class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">GHI CHÚ CỦA TÔI</h4>
+                                        <div id="prev-notes-list" class="space-y-3">
+                                            <!-- Dynamically populated cards representing past notes -->
+                                        </div>
+                                    </div>
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -3471,7 +3678,7 @@
                 </div>
 
                 <!-- Bottom System Navigation Bar -->
-                <nav id="app-bottom-nav" class="relative bg-surface/95 backdrop-blur-xl text-slate-500 shrink-0 border-t border-slate-100/80 flex justify-center items-center h-16 sm:h-22 sm:pb-6 z-40 overflow-visible w-full">
+                <nav id="app-bottom-nav" class="relative bg-surface/95 backdrop-blur-xl text-slate-500 shrink-0 border-t border-slate-100/80 flex justify-center items-center h-16 sm:h-22 sm:pb-6 z-[200] overflow-visible w-full">
                     <div class="flex justify-around items-center w-full max-w-[430px]">
                     <!-- Home btn -->
                     <button onclick="switchTab('home')" id="tab-home" class="flex flex-col items-center justify-center w-20 transition-all duration-300 pt-1">
@@ -3638,6 +3845,287 @@
                         </div>
                     </div>
                 </div>
+
+                    <!-- ============================================== -->
+                    <!-- VIEW: CHI TIẾT NHÓM (Group/Community View)     -->
+                    <!-- ============================================== -->
+                    <div id="view-group-detail" class="absolute inset-0 sm:pt-7 z-[66] bg-surface text-on-surface flex flex-col hidden overflow-hidden select-none animate-fade-in">
+                        <!-- Navigation Header -->
+                        <header class="bg-surface/85 backdrop-blur-md w-full top-0 sticky border-b border-slate-100 flex items-center justify-between px-4 py-3 z-50 shrink-0">
+                            <div class="w-10">
+                                <button onclick="closeGroupDetail()" aria-label="Go back" class="text-slate-700 hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-xl">arrow_back</span>
+                                </button>
+                            </div>
+                            <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center truncate">GEMS</h1>
+                            <div class="flex items-center w-10 justify-end">
+                                <button onclick="showToast('Tìm kiếm bài thảo luận')" aria-label="Search" class="text-slate-700 hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-xl">search</span>
+                                </button>
+                            </div>
+                        </header>
+
+                        <!-- Main Scrollable Content Area -->
+                        <div class="flex-grow overflow-y-auto bg-slate-50 pb-20" id="group-detail-scroll-area">
+                            <!-- Group Banner Image -->
+                            <div class="relative w-full aspect-[21/9] bg-slate-200 overflow-hidden shrink-0">
+                                <img src="/covers/hospital_corridor.png" class="w-full h-full object-cover" alt="Group Banner">
+                            </div>
+
+                            <!-- Group Title & Metadata Card -->
+                            <div class="bg-white p-4 border-b border-slate-100 space-y-3 shrink-0">
+                                <h2 class="text-lg font-black text-slate-800 leading-tight">Cộng đồng Thảo luận Y khoa</h2>
+                                <div class="flex items-center gap-1.5 text-xs text-slate-500">
+                                    <span class="material-symbols-outlined text-sm">public</span>
+                                    <span>Nhóm Công khai • 15.4K thành viên</span>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button onclick="toggleGroupJoinState()" id="btn-group-join" class="flex-grow bg-[#005a9c] hover:bg-[#005a9c]/90 text-white font-bold text-xs py-2.5 rounded-xl transition-all duration-300 active:scale-95 flex items-center justify-center gap-1.5 shadow-sm">
+                                        <span class="material-symbols-outlined text-sm font-bold">person_add</span>
+                                        <span>Tham gia</span>
+                                    </button>
+                                    <button onclick="showToast('Tùy chọn khác')" class="bg-slate-100 hover:bg-slate-200 text-slate-705 p-2.5 rounded-xl transition-all active:scale-95 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-sm">more_horiz</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Tabs inside Group -->
+                            <div class="bg-white border-b border-slate-100 sticky top-0 z-20 flex">
+                                <button onclick="switchGroupDetailTab('discussion')" id="tab-group-discussion" class="flex-1 py-3 text-center text-xs font-bold text-blue-600 border-b-2 border-blue-600 transition-all focus:outline-none">Thảo luận</button>
+                                <button onclick="switchGroupDetailTab('docs')" id="tab-group-docs" class="flex-1 py-3 text-center text-xs font-semibold text-slate-500 hover:text-slate-700 transition-all focus:outline-none">Tài liệu</button>
+                                <button onclick="switchGroupDetailTab('members')" id="tab-group-members" class="flex-1 py-3 text-center text-xs font-semibold text-slate-500 hover:text-slate-700 transition-all focus:outline-none">Thành viên</button>
+                                <button onclick="switchGroupDetailTab('events')" id="tab-group-events" class="flex-1 py-3 text-center text-xs font-semibold text-slate-500 hover:text-slate-700 transition-all focus:outline-none">Sự kiện</button>
+                            </div>
+                            <!-- Discussion Tab Content -->
+                            <div id="group-tab-content-discussion" class="space-y-3.5 p-4">
+                                <!-- Post Input Area -->
+                                <div class="bg-white rounded-2xl border border-slate-100 p-3 flex items-center gap-3 shadow-sm">
+                                    <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold shrink-0">ME</div>
+                                    <input type="text" readonly onclick="showToast('Đăng bài thảo luận mới.')" placeholder="Bạn đang nghĩ gì?" class="flex-1 bg-slate-50 border border-slate-100 rounded-full py-2 px-4 text-xs focus:outline-none cursor-pointer hover:bg-slate-100 transition-all">
+                                    <button onclick="showToast('Đính kèm hình ảnh/tài liệu')" class="text-slate-400 hover:text-slate-600 p-1 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-lg">image</span>
+                                    </button>
+                                </div>
+
+                                <!-- Post 1 (Ung thư phổi) -->
+                                <div class="bg-white rounded-2xl border border-slate-100 p-4 shadow-sm space-y-3">
+                                    <!-- Author header -->
+                                    <div class="flex justify-between items-start">
+                                        <div class="flex gap-2.5">
+                                            <div class="w-9 h-9 rounded-full bg-blue-50 border border-blue-150 text-blue-750 flex items-center justify-center text-xs font-black shrink-0">A</div>
+                                            <div>
+                                                <div class="flex items-center gap-1">
+                                                    <span class="text-xs font-bold text-slate-800">BS. Nguyễn Văn A</span>
+                                                    <span class="material-symbols-outlined filled text-[14px] text-blue-500" style="font-variation-settings: 'FILL' 1">verified</span>
+                                                </div>
+                                                <p class="text-[10px] text-slate-400 font-semibold">Khoa Ung bướu - BV Chợ Rẫy • 2 giờ trước</p>
+                                            </div>
+                                        </div>
+                                        <button onclick="showToast('Tùy chọn bài viết')" class="text-slate-400 hover:text-slate-600">
+                                            <span class="material-symbols-outlined text-base">more_horiz</span>
+                                        </button>
+                                    </div>
+                                    <!-- Content -->
+                                    <p class="text-xs text-slate-700 leading-relaxed font-medium">
+                                        Chào các đồng nghiệp, hôm nay tôi muốn chia sẻ một chút về phác đồ cập nhật trong điều trị ung thư phổi không tế bào nhỏ (NSCLC) giai đoạn muộn có đột biến EGFR. Việc áp dụng thuốc đích thế hệ 3 ngay từ đầu đang cho thấy hiệu quả vượt trội (PFS kéo dài) so với thế hệ 1/2.
+                                        <br><br>
+                                        Mọi người có thể xem chi tiết guideline đính kèm bên dưới. Các ca lâm sàng gần đây tại khoa cũng ghi nhận tỉ lệ đáp ứng rất khả quan. Rất mong nhận được ý kiến trao đổi từ các bác sĩ chuyên khoa hô hấp và ung bướu.
+                                    </p>
+                                    <!-- Attachment (PDF Card) -->
+                                    <div onclick="showToast('Đang tải tài liệu: Phac_do_dieu_tri_NSCLC_2024.pdf')" class="flex items-center gap-3 bg-slate-50 hover:bg-slate-100 border border-slate-100 p-3 rounded-xl cursor-pointer transition-all">
+                                        <div class="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center text-red-500 shrink-0">
+                                            <span class="material-symbols-outlined text-lg font-bold">picture_as_pdf</span>
+                                        </div>
+                                        <div class="min-w-0">
+                                            <h4 class="text-[11px] font-bold text-slate-700 truncate">Phac_do_dieu_tri_NSCLC_2024.pdf</h4>
+                                            <p class="text-[9px] text-slate-400 font-bold uppercase mt-0.5">PDF • 2.4 MB</p>
+                                        </div>
+                                        <span class="material-symbols-outlined text-slate-400 text-sm ml-auto">download</span>
+                                    </div>
+                                    <!-- Post stats -->
+                                    <div class="flex justify-between items-center text-[10px] text-slate-400 border-b border-slate-50 pb-2">
+                                        <div class="flex items-center gap-1">
+                                            <span class="material-symbols-outlined filled text-[12px] text-blue-500" style="font-variation-settings: 'FILL' 1">thumb_up</span>
+                                            <span class="font-bold text-slate-650" id="post-likes-1">124</span>
+                                        </div>
+                                        <span class="font-semibold">32 Bình luận • 12 Chia sẻ</span>
+                                    </div>
+                                    <!-- Action buttons -->
+                                    <div class="flex justify-between text-slate-500 font-bold text-[11px] pt-1">
+                                        <button onclick="togglePostLike(this, 1)" class="flex-1 py-1 flex items-center justify-center gap-1 hover:bg-slate-50 rounded-lg active:scale-95 transition-all">
+                                            <span class="material-symbols-outlined text-sm">thumb_up</span> Thích
+                                        </button>
+                                        <button onclick="showToast('Tính năng bình luận bài viết')" class="flex-1 py-1 flex items-center justify-center gap-1 hover:bg-slate-50 rounded-lg active:scale-95 transition-all">
+                                            <span class="material-symbols-outlined text-sm">chat_bubble</span> Bình luận
+                                        </button>
+                                        <button onclick="showToast('Đang chia sẻ bài viết...')" class="flex-1 py-1 flex items-center justify-center gap-1 hover:bg-slate-50 rounded-lg active:scale-95 transition-all">
+                                            <span class="material-symbols-outlined text-sm">share</span> Chia sẻ
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Post 2 (Tim mạch) -->
+                                <div class="bg-white rounded-2xl border border-slate-100 p-4 shadow-sm space-y-3">
+                                    <!-- Author header -->
+                                    <div class="flex justify-between items-start">
+                                        <div class="flex gap-2.5">
+                                            <div class="w-9 h-9 rounded-full bg-pink-50 border border-pink-150 text-pink-700 flex items-center justify-center text-xs font-black shrink-0">M</div>
+                                            <div>
+                                                <div class="flex items-center gap-1">
+                                                    <span class="text-xs font-bold text-slate-800">ThS. BS. Lê Thị M</span>
+                                                </div>
+                                                <p class="text-[10px] text-slate-400 font-semibold">Khoa Tim mạch - Viện Tim TP.HCM • 4 giờ trước</p>
+                                            </div>
+                                        </div>
+                                        <button onclick="showToast('Tùy chọn bài viết')" class="text-slate-400 hover:text-slate-600">
+                                            <span class="material-symbols-outlined text-base">more_horiz</span>
+                                        </button>
+                                    </div>
+                                    <!-- Content -->
+                                    <p class="text-xs text-slate-700 leading-relaxed font-medium">
+                                        Ca lâm sàng: Bệnh nhân nam 65 tuổi, tiền sử THA, vào viện vì đau ngực trái dữ dội. Kết quả ECG cho thấy ST chênh lên ở các chuyển đạo V1-V4. Hình ảnh chụp mạch vành cho thấy tắc hoàn toàn LAD đoạn gần.
+                                    </p>
+                                    <!-- Post Image -->
+                                    <div class="my-1 border border-slate-100 rounded-xl overflow-hidden cursor-zoom-in group shadow-sm bg-white" onclick="openHighresViewer(event)">
+                                        <img src="/covers/immunotherapy_lab.png" class="w-full aspect-[21/9] object-cover group-hover:scale-102 transition-transform duration-300" alt="Cardiology Post Image"/>
+                                    </div>
+                                    <!-- Post stats -->
+                                    <div class="flex justify-between items-center text-[10px] text-slate-400 border-b border-slate-50 pb-2">
+                                        <div class="flex items-center gap-1">
+                                            <span class="material-symbols-outlined filled text-[12px] text-blue-500" style="font-variation-settings: 'FILL' 1">thumb_up</span>
+                                            <span class="font-bold text-slate-650" id="post-likes-2">80</span>
+                                        </div>
+                                        <span class="font-semibold">15 Bình luận • 5 Chia sẻ</span>
+                                    </div>
+                                    <!-- Action buttons -->
+                                    <div class="flex justify-between text-slate-500 font-bold text-[11px] pt-1">
+                                        <button onclick="togglePostLike(this, 2)" class="flex-1 py-1 flex items-center justify-center gap-1 hover:bg-slate-50 rounded-lg active:scale-95 transition-all">
+                                            <span class="material-symbols-outlined text-sm">thumb_up</span> Thích
+                                        </button>
+                                        <button onclick="showToast('Tính năng bình luận bài viết')" class="flex-1 py-1 flex items-center justify-center gap-1 hover:bg-slate-50 rounded-lg active:scale-95 transition-all">
+                                            <span class="material-symbols-outlined text-sm">chat_bubble</span> Bình luận
+                                        </button>
+                                        <button onclick="showToast('Đang chia sẻ bài viết...')" class="flex-1 py-1 flex items-center justify-center gap-1 hover:bg-slate-50 rounded-lg active:scale-95 transition-all">
+                                            <span class="material-symbols-outlined text-sm">share</span> Chia sẻ
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Post 3 (Đái tháo đường) -->
+                                <div class="bg-white rounded-2xl border border-slate-100 p-4 shadow-sm space-y-3">
+                                    <!-- Author header -->
+                                    <div class="flex justify-between items-start">
+                                        <div class="flex gap-2.5">
+                                            <div class="w-9 h-9 rounded-full bg-purple-50 border border-purple-150 text-purple-700 flex items-center justify-center text-xs font-black shrink-0">B</div>
+                                            <div>
+                                                <div class="flex items-center gap-1">
+                                                    <span class="text-xs font-bold text-slate-800">BS. CKII Trần Văn B</span>
+                                                </div>
+                                                <p class="text-[10px] text-slate-400 font-semibold">Khoa Nội tiết - BV Bạch Mai • 6 giờ trước</p>
+                                            </div>
+                                        </div>
+                                        <button onclick="showToast('Tùy chọn bài viết')" class="text-slate-400 hover:text-slate-600">
+                                            <span class="material-symbols-outlined text-base">more_horiz</span>
+                                        </button>
+                                    </div>
+                                    <!-- Content -->
+                                    <p class="text-xs text-slate-700 leading-relaxed font-medium">
+                                        Cập nhật ADA 2024: Những thay đổi quan trọng trong quản lý đái tháo đường tuýp 2 ở bệnh nhân có nguy cơ tim mạch cao. Việc ưu tiên sử dụng SGLT2i và GLP-1 RA đang ngày càng được khẳng định.
+                                    </p>
+                                    
+                                    <!-- Nested comments block -->
+                                    <div class="bg-slate-50 rounded-xl p-2.5 space-y-2 mt-2 border border-slate-100">
+                                        <div class="flex items-start gap-2">
+                                            <div class="w-6 h-6 rounded-full bg-teal-50 border border-teal-150 text-teal-700 flex items-center justify-center text-[8px] font-bold shrink-0 mt-0.5">H</div>
+                                            <div class="bg-white rounded-xl p-2 shadow-sm min-w-0 flex-1 border border-slate-100">
+                                                <div class="flex items-center justify-between">
+                                                    <span class="text-[10px] font-bold text-slate-800">BS. Nguyễn Thu H.</span>
+                                                    <span class="text-[8px] text-slate-400 font-semibold">5 giờ trước</span>
+                                                </div>
+                                                <p class="text-[10px] text-slate-700 mt-1 font-medium leading-relaxed">Cảm ơn bác sĩ B, bài viết rất hữu ích. Bác sĩ có kinh nghiệm gì về việc phối hợp hai nhóm thuốc này không ạ?</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Post stats -->
+                                    <div class="flex justify-between items-center text-[10px] text-slate-400 border-b border-slate-50 pb-2">
+                                        <div class="flex items-center gap-1">
+                                            <span class="material-symbols-outlined filled text-[12px] text-blue-500" style="font-variation-settings: 'FILL' 1">thumb_up</span>
+                                            <span class="font-bold text-slate-650" id="post-likes-3">215</span>
+                                        </div>
+                                        <span class="font-semibold">48 Bình luận • 22 Chia sẻ</span>
+                                    </div>
+                                    <!-- Action buttons -->
+                                    <div class="flex justify-between text-slate-500 font-bold text-[11px] pt-1">
+                                        <button onclick="togglePostLike(this, 3)" class="flex-1 py-1 flex items-center justify-center gap-1 hover:bg-slate-50 rounded-lg active:scale-95 transition-all">
+                                            <span class="material-symbols-outlined text-sm">thumb_up</span> Thích
+                                        </button>
+                                        <button onclick="showToast('Tính năng bình luận bài viết')" class="flex-1 py-1 flex items-center justify-center gap-1 hover:bg-slate-50 rounded-lg active:scale-95 transition-all">
+                                            <span class="material-symbols-outlined text-sm">chat_bubble</span> Bình luận
+                                        </button>
+                                        <button onclick="showToast('Đang chia sẻ bài viết...')" class="flex-1 py-1 flex items-center justify-center gap-1 hover:bg-slate-50 rounded-lg active:scale-95 transition-all">
+                                            <span class="material-symbols-outlined text-sm">share</span> Chia sẻ
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Post 4 (Sốt xuất huyết) -->
+                                <div class="bg-white rounded-2xl border border-slate-100 p-4 shadow-sm space-y-3">
+                                    <!-- Author header -->
+                                    <div class="flex justify-between items-start">
+                                        <div class="flex gap-2.5">
+                                            <div class="w-9 h-9 rounded-full bg-amber-50 border border-amber-150 text-amber-700 flex items-center justify-center text-xs font-black shrink-0">T</div>
+                                            <div>
+                                                <div class="flex items-center gap-1">
+                                                    <span class="text-xs font-bold text-slate-800">BS. Phạm Minh T.</span>
+                                                </div>
+                                                <p class="text-[10px] text-slate-400 font-semibold">Khoa Nhi - BV Nhi Trung ương • 8 giờ trước</p>
+                                            </div>
+                                        </div>
+                                        <button onclick="showToast('Tùy chọn bài viết')" class="text-slate-400 hover:text-slate-600">
+                                            <span class="material-symbols-outlined text-base">more_horiz</span>
+                                        </button>
+                                    </div>
+                                    <!-- Content -->
+                                    <p class="text-xs text-slate-700 leading-relaxed font-medium">
+                                        Cảnh báo: Tình trạng sốt xuất huyết đang có dấu hiệu gia tăng ở trẻ em. Các đồng nghiệp lưu ý các dấu hiệu cảnh báo sớm để tránh biến chứng nặng.
+                                    </p>
+                                    <!-- Post stats -->
+                                    <div class="flex justify-between items-center text-[10px] text-slate-400 border-b border-slate-50 pb-2">
+                                        <div class="flex items-center gap-1">
+                                            <span class="material-symbols-outlined filled text-[12px] text-blue-500" style="font-variation-settings: 'FILL' 1">thumb_up</span>
+                                            <span class="font-bold text-slate-650" id="post-likes-4">56</span>
+                                        </div>
+                                        <span class="font-semibold">8 Bình luận • 3 Chia sẻ</span>
+                                    </div>
+                                    <!-- Action buttons -->
+                                    <div class="flex justify-between text-slate-500 font-bold text-[11px] pt-1">
+                                        <button onclick="togglePostLike(this, 4)" class="flex-1 py-1 flex items-center justify-center gap-1 hover:bg-slate-50 rounded-lg active:scale-95 transition-all">
+                                            <span class="material-symbols-outlined text-sm">thumb_up</span> Thích
+                                        </button>
+                                        <button onclick="showToast('Tính năng bình luận bài viết')" class="flex-1 py-1 flex items-center justify-center gap-1 hover:bg-slate-50 rounded-lg active:scale-95 transition-all">
+                                            <span class="material-symbols-outlined text-sm">chat_bubble</span> Bình luận
+                                        </button>
+                                        <button onclick="showToast('Đang chia sẻ bài viết...')" class="flex-1 py-1 flex items-center justify-center gap-1 hover:bg-slate-50 rounded-lg active:scale-95 transition-all">
+                                            <span class="material-symbols-outlined text-sm">share</span> Chia sẻ
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Other tabs dummy screens -->
+                            <div id="group-tab-content-docs" class="hidden p-6 text-center text-xs font-semibold text-slate-400">
+                                Chưa tải tài liệu nào lên nhóm này.
+                            </div>
+                            <div id="group-tab-content-members" class="hidden p-6 text-center text-xs font-semibold text-slate-400">
+                                Tổng số 15.4K thành viên hoạt động.
+                            </div>
+                            <div id="group-tab-content-events" class="hidden p-6 text-center text-xs font-semibold text-slate-400">
+                                Không có sự kiện nào sắp diễn ra.
+                            </div>
+                        </div>
+                    </div>
 
                 <!-- TABLE OF CONTENTS SHEET -->
                 <div id="toc-sheet" class="hidden absolute inset-0 bg-black/50 z-[220] flex items-end justify-center" onclick="closeTOCSheet()">
@@ -4502,24 +4990,10 @@
 
         // View Tabs switching management
         function updateBottomNavVisibility() {
-            const subScreens = [
-                'view-book-detail',
-                'view-author-profile',
-                'view-reader',
-                'view-quiz',
-                'view-audiobook',
-                'view-dictionary',
-                'view-knowledge-details',
-                'view-news-blog',
-                'view-reading-habit'
-            ];
-            const isAnySubScreenOpen = subScreens.some(id => {
-                const el = document.getElementById(id);
-                return el && !el.classList.contains('hidden');
-            });
             const appNav = document.getElementById('app-bottom-nav');
             if (appNav) {
-                if (isAnySubScreenOpen) {
+                const readerView = document.getElementById('view-reader');
+                if (readerView && !readerView.classList.contains('hidden')) {
                     appNav.classList.add('hidden');
                 } else {
                     appNav.classList.remove('hidden');
@@ -4529,6 +5003,7 @@
 
         function switchTab(tabName) {
             // Close any overlay panels when switching tabs from the bottom nav
+            closeGroupDetail();
             closeBookDetails();
             closeAuthorProfile();
             closeEreaderScreen();
@@ -4748,7 +5223,9 @@
             }
 
             document.getElementById('view-reader').classList.remove('hidden');
-            updateBottomNavVisibility();
+            // Hide nav bar in reader (full-screen reading experience)
+            const appNav = document.getElementById('app-bottom-nav');
+            if (appNav) appNav.classList.add('hidden');
             
             // Auto complete reading daily mission after 5 seconds of opening reader
             setTimeout(() => {
@@ -4766,7 +5243,9 @@
                 return;
             }
             
-            updateBottomNavVisibility();
+            // Restore nav bar when leaving reader
+            const appNav = document.getElementById('app-bottom-nav');
+            if (appNav) appNav.classList.remove('hidden');
         }
 
         function openBookTOC() {
@@ -5649,6 +6128,13 @@
             
             appState.currentChapter = chapterId;
             
+            // Tự động đồng bộ đúng Book ID tương ứng với Chương
+            if (chapterId === 'tamthat' || chapterId === 'nhansam') {
+                appState.currentBookId = 'thaoduoc';
+            } else if (chapterId === 'tongquan' || chapterId === 'hetuanhoan' || chapterId === 'ecg') {
+                appState.currentBookId = 'chandoanykhoa';
+            }
+            
             const titleEl = document.getElementById('reader-book-title');
             if (titleEl) titleEl.innerText = chapter.title;
             
@@ -5662,6 +6148,10 @@
                     const article = pageEl.querySelector('article');
                     if (article) {
                         article.innerHTML = content;
+                        // Apply highlights if any
+                        if (typeof applyHighlightsToPage === 'function') {
+                            applyHighlightsToPage(article, appState.currentBookId, chapterId, idx);
+                        }
                     }
                 }
             });
@@ -5949,7 +6439,24 @@
         // Hide toolbar when clicking elsewhere
         document.addEventListener('pointerdown', (e) => {
             const toolbar = document.getElementById('selection-toolbar');
+            const noteModal = document.getElementById('reader-note-modal');
+            const kindleMenu = document.getElementById('kindle-settings-menu');
+            const readerViewport = document.getElementById('reader-viewport');
+            
+            // Close settings menu if clicking outside of it and not clicking the settings toggle button
+            if (kindleMenu && !kindleMenu.contains(e.target) && !e.target.closest('[onclick="toggleKindleSettings(event)"]')) {
+                kindleMenu.classList.add('hidden');
+            }
+            
             if (toolbar && !toolbar.contains(e.target) && !e.target.classList.contains('dashed-underline') && !e.target.classList.contains('medical-glossary-term')) {
+                // Do not dismiss if clicking inside reader viewport or inside note modal
+                const isInsideViewport = readerViewport && readerViewport.contains(e.target);
+                const isInsideNoteModal = noteModal && noteModal.contains(e.target);
+                
+                if (isInsideViewport || isInsideNoteModal) {
+                    return;
+                }
+                
                 toolbar.classList.add('hidden');
                 // Remove ranges only if we did not select or click the toolbar
                 if (window.getSelection() && !e.target.closest('#selection-toolbar')) {
@@ -5960,43 +6467,85 @@
             }
         });
 
+        // --- GEMS E-Reader Notes & Highlights Persistent Engine ---
+        let activeNoteColor = 'yellow';
+        let editingNoteId = null;
+
+        // Initialize persistent mock notes data (3 samples: yellow, green, pink)
+        if (!appState.notes || appState.notes.length === 0) {
+            appState.notes = [
+                {
+                    id: 'note_mock_1',
+                    bookId: 'thaoduoc',
+                    chapterId: 'tamthat',
+                    pageIdx: 0,
+                    selectedText: 'Theo các tài liệu y văn cổ truyền, Tam Thất có vị ngọt, hơi đắng, tính ấm, tác động trực tiếp vào hai kinh Can và Vị.',
+                    noteText: 'Cần tra cứu thêm tác dụng của Tam Thất đối với bệnh nhân cao huyết áp trong tài liệu tham khảo chương 5.',
+                    color: 'yellow',
+                    time: 'Vừa xong'
+                },
+                {
+                    id: 'note_mock_2',
+                    bookId: 'thaoduoc',
+                    chapterId: 'tamthat',
+                    pageIdx: 0,
+                    selectedText: 'nghĩa là vừa có khả năng cầm máu tại chỗ tổn thương, vừa làm tan máu ứ tích tụ bên trong lòng mạch',
+                    noteText: 'Công thức hóa học của saponin chính trong rễ Tam Thất: Notoginsenoside R1.',
+                    color: 'green',
+                    time: '2 giờ trước'
+                },
+                {
+                    id: 'note_mock_3',
+                    bookId: 'thaoduoc',
+                    chapterId: 'tamthat',
+                    pageIdx: 3,
+                    selectedText: 'Giảm đau thắt ngực, cải thiện lưu lượng máu cơ tim ở bệnh nhân bệnh mạch vành',
+                    noteText: 'Nhớ chú ý liều dùng tiêu chuẩn 3-9g mỗi ngày.',
+                    color: 'pink',
+                    time: 'Hôm qua'
+                },
+                {
+                    id: 'note_mock_4',
+                    bookId: 'chandoanykhoa',
+                    chapterId: 'ecg',
+                    pageIdx: 0,
+                    selectedText: 'Điện tâm đồ (ECG) là đồ thị ghi lại các biến thiên của dòng điện do tim phát ra trong quá trình hoạt động co bóp.',
+                    noteText: 'Nhớ kỹ định nghĩa ECG này phục vụ cho bài thi lâm sàng tuần tới.',
+                    color: 'yellow',
+                    time: '3 ngày trước'
+                }
+            ];
+        }
+
         function highlightText(color) {
-            if (!selectedRange) {
+            if (!selectedText) {
                 showToast("Vui lòng bôi đen đoạn văn bản cần đánh dấu.", "warning");
                 return;
             }
             
-            const colorClasses = {
-                yellow: 'bg-yellow-250 text-slate-850',
-                green: 'bg-emerald-200 text-slate-855',
-                pink: 'bg-pink-200 text-slate-855'
+            const note = {
+                id: 'note_' + Date.now(),
+                bookId: appState.currentBookId,
+                chapterId: appState.currentChapter,
+                pageIdx: appState.readerCurrentPage,
+                selectedText: selectedText,
+                noteText: "", // Empty note text for pure highlights
+                color: color,
+                time: 'Vừa xong'
             };
             
-            const span = document.createElement('span');
-            span.className = `${colorClasses[color] || 'bg-yellow-250'} rounded px-0.5 cursor-pointer transition-all duration-200 hover:brightness-95`;
-            span.title = "Nhấp để xóa đánh dấu";
-            span.onclick = (e) => {
-                e.stopPropagation();
-                const parent = span.parentNode;
-                while (span.firstChild) {
-                    parent.insertBefore(span.firstChild, span);
-                }
-                parent.removeChild(span);
-                showToast("Đã xóa đánh dấu.");
-            };
-            
-            try {
-                selectedRange.surroundContents(span);
-                showToast("Đã đánh dấu văn bản.", "success");
-            } catch (err) {
-                showToast("Không thể đánh dấu vùng chọn phức tạp qua nhiều đoạn.", "warning");
-            }
+            if (!appState.notes) appState.notes = [];
+            appState.notes.push(note);
             
             // Clear selection states
             if (window.getSelection()) window.getSelection().removeAllRanges();
             document.getElementById('selection-toolbar').classList.add('hidden');
             selectedText = "";
             selectedRange = null;
+            
+            // Re-render to show highlight
+            loadChapter(appState.currentChapter);
+            showToast("Đã đánh dấu văn bản.", "success");
         }
 
         function copyHighlightedText() {
@@ -6014,16 +6563,262 @@
 
         function noteHighlightedText() {
             if (!selectedText) return;
-            const note = prompt("Nhập ghi chú cho đoạn văn bản này:", "");
-            if (note === null) return;
+            document.getElementById('selection-toolbar').classList.add('hidden');
+            document.getElementById('note-selected-text').innerText = `"${selectedText}"`;
+            openAddNoteModal();
+        }
+
+        function openAddNoteModal() {
+            // Add mode: show preview and text inputs
+            document.getElementById('note-selected-text-card').classList.remove('hidden');
+            document.getElementById('note-textarea').parentNode.classList.remove('hidden');
+            const actionRow = document.getElementById('note-textarea').parentNode.nextElementSibling;
+            if (actionRow) actionRow.classList.remove('hidden');
             
-            if (note.trim()) {
+            document.getElementById('note-textarea').value = "";
+            editingNoteId = null;
+            
+            // Set header values
+            const titleEl = document.querySelector('#reader-note-modal h3');
+            if (titleEl) titleEl.innerText = "Ghi chú";
+            
+            const subtitleEl = document.getElementById('note-modal-subtitle');
+            if (subtitleEl) {
+                const chapter = bookChapters[appState.currentChapter];
+                subtitleEl.innerText = chapter ? chapter.title : "ĐỌC & GHÉP NỐI";
+            }
+            
+            selectNoteColor('yellow');
+            renderPrevNotes();
+            
+            document.getElementById('reader-note-modal').classList.remove('hidden');
+        }
+
+        function closeReaderNoteModal() {
+            document.getElementById('reader-note-modal').classList.add('hidden');
+            editingNoteId = null;
+        }
+
+        function selectNoteColor(color) {
+            activeNoteColor = color;
+            const colors = ['yellow', 'green', 'pink'];
+            colors.forEach(c => {
+                const btn = document.getElementById(`btn-color-${c}`);
+                if (btn) {
+                    if (c === color) {
+                        btn.style.boxShadow = '0 0 0 2px #fff, 0 0 0 4px #005a9c';
+                    } else {
+                        btn.style.boxShadow = 'none';
+                    }
+                }
+            });
+            
+            // Highlight the selected text preview inside the note modal too!
+            const previewEl = document.getElementById('note-selected-text');
+            if (previewEl) {
+                // Clear any previous color highlight class
+                previewEl.classList.remove('bg-highlight-yellow', 'bg-highlight-green', 'bg-highlight-pink', 'p-1.5', 'rounded');
+                // Apply the new color highlight class
+                let bgClass = 'bg-highlight-yellow';
+                if (color === 'green') bgClass = 'bg-highlight-green';
+                if (color === 'pink') bgClass = 'bg-highlight-pink';
+                previewEl.classList.add(bgClass, 'p-1.5', 'rounded');
+            }
+        }
+
+        function saveReaderNote() {
+            const textarea = document.getElementById('note-textarea');
+            const noteText = textarea.value.trim();
+            
+            if (editingNoteId) {
+                // Edit existing
+                const note = (appState.notes || []).find(n => n.id === editingNoteId);
+                if (note) {
+                    note.noteText = noteText;
+                    note.color = activeNoteColor;
+                    note.time = 'Vừa xong';
+                    showToast("Đã cập nhật ghi chú thành công.", "success");
+                }
+            } else {
+                // Add new
+                if (!selectedText) {
+                    showToast("Vui lòng bôi đen vùng chọn văn bản trước.", "warning");
+                    return;
+                }
+                const note = {
+                    id: 'note_' + Date.now(),
+                    bookId: appState.currentBookId,
+                    chapterId: appState.currentChapter,
+                    pageIdx: appState.readerCurrentPage,
+                    selectedText: selectedText,
+                    noteText: noteText,
+                    color: activeNoteColor,
+                    time: 'Vừa xong'
+                };
+                if (!appState.notes) appState.notes = [];
+                appState.notes.push(note);
                 showToast("Đã lưu ghi chú thành công.", "success");
-                highlightText('yellow');
                 
+                // Complete daily mission
                 appState.mission3Completed = true;
                 incrementLookupCount();
             }
+            
+            // Clear selection states
+            if (window.getSelection()) window.getSelection().removeAllRanges();
+            selectedText = "";
+            selectedRange = null;
+            
+            closeReaderNoteModal();
+            loadChapter(appState.currentChapter);
+        }
+
+        function renderPrevNotes() {
+            const listContainer = document.getElementById('prev-notes-list');
+            const headerContainer = document.getElementById('prev-notes-header');
+            
+            // Show all notes across all books (sorted newest first)
+            const currentBookNotes = [...(appState.notes || [])].reverse();
+            
+            if (headerContainer) {
+                headerContainer.textContent = `GHI CHÚ CỦA TÔI (${currentBookNotes.length})`;
+            }
+            
+            if (currentBookNotes.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="text-center py-6 text-slate-400 text-xs font-semibold">
+                        Chưa có dấu trang hay ghi chú nào cho cuốn sách này.
+                    </div>
+                `;
+                return;
+            }
+            
+            listContainer.innerHTML = currentBookNotes.map(note => {
+                let leftBorderColor = 'border-yellow-400';
+                let bgClass = 'bg-highlight-yellow';
+                if (note.color === 'green') {
+                    leftBorderColor = 'border-green-400';
+                    bgClass = 'bg-highlight-green';
+                }
+                if (note.color === 'pink') {
+                    leftBorderColor = 'border-pink-400';
+                    bgClass = 'bg-highlight-pink';
+                }
+                
+                let quoteHtml = '';
+                if (note.selectedText) {
+                    quoteHtml = `<p class="text-[11px] italic text-slate-700 leading-relaxed mb-2 font-medium p-1.5 rounded ${bgClass}">"${note.selectedText}"</p>`;
+                }
+                
+                const bookLabel = appState.bookData[note.bookId]?.title || note.bookId;
+                return `
+                    <div class="bg-slate-50 border-l-4 ${leftBorderColor} rounded-r-2xl p-4 shadow-sm relative">
+                        <div class="flex justify-between items-center mb-1.5">
+                            <span class="text-[10px] text-slate-400 font-bold">${note.time} • Trang ${note.pageIdx + 1}</span>
+                            <button onclick="deleteReaderNote('${note.id}', event)" class="text-red-500 hover:text-red-700 transition-colors">
+                                <span class="material-symbols-outlined text-xs">delete</span>
+                            </button>
+                        </div>
+                        ${quoteHtml}
+                        <p class="text-xs text-slate-700 font-medium leading-relaxed">${note.noteText || '<i class="text-slate-400">Đã đánh dấu màu (không có nội dung note)</i>'}</p>
+                        <div class="flex justify-end mt-2">
+                            <button onclick="jumpToNotePage(${note.pageIdx}, '${note.bookId}', '${note.chapterId}', event)" class="bg-[#005a9c]/5 text-[#005a9c] hover:bg-[#005a9c]/10 text-[9px] font-extrabold px-3 py-1 rounded-lg flex items-center gap-1 transition-all">
+                                <span class="material-symbols-outlined text-[10px]">arrow_forward</span> Đi tới trang
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function deleteReaderNote(noteId, event) {
+            if (event) event.stopPropagation();
+            appState.notes = (appState.notes || []).filter(n => n.id !== noteId);
+            showToast("Đã xóa ghi chú thành công.");
+            renderPrevNotes();
+            loadChapter(appState.currentChapter);
+        }
+
+        function jumpToNotePage(pageIdx, bookId, chapterId, event) {
+            if (event) event.stopPropagation();
+            closeReaderNoteModal();
+            
+            if (appState.currentBookId !== bookId) {
+                appState.currentBookId = bookId;
+            }
+            
+            if (appState.currentChapter !== chapterId) {
+                loadChapter(chapterId);
+            }
+            appState.readerCurrentPage = pageIdx;
+            flipPage(0);
+            showToast(`Đã chuyển tới Trang ${pageIdx + 1}`);
+        }
+
+        function openNoteHistoryList() {
+            // View Mode: Hide preview card and inputs
+            document.getElementById('note-selected-text-card').classList.add('hidden');
+            document.getElementById('note-textarea').parentNode.classList.add('hidden');
+            const actionRow = document.getElementById('note-textarea').parentNode.nextElementSibling;
+            if (actionRow) actionRow.classList.add('hidden');
+            
+            const titleEl = document.querySelector('#reader-note-modal h3');
+            if (titleEl) titleEl.innerText = "Ghi chú";
+            
+            const subtitleEl = document.getElementById('note-modal-subtitle');
+            if (subtitleEl) {
+                const book = appState.bookData[appState.currentBookId];
+                subtitleEl.innerText = book ? book.title : "TẤT CẢ GHI CHÚ";
+            }
+            
+            selectedText = "";
+            selectedRange = null;
+            editingNoteId = null;
+            
+            renderPrevNotes();
+            document.getElementById('reader-note-modal').classList.remove('hidden');
+        }
+
+        function applyHighlightsToPage(article, bookId, chapterId, pageIdx) {
+            const pageNotes = (appState.notes || []).filter(n => n.bookId === bookId && n.chapterId === chapterId && n.pageIdx === pageIdx);
+            if (pageNotes.length === 0) return;
+            
+            let html = article.innerHTML;
+            pageNotes.forEach(note => {
+                const escapedText = note.selectedText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                const regex = new RegExp(`(?![^<>]*>)(${escapedText})`, 'g');
+                
+                let bgClass = 'bg-highlight-yellow';
+                if (note.color === 'green') bgClass = 'bg-highlight-green';
+                if (note.color === 'pink') bgClass = 'bg-highlight-pink';
+                
+                html = html.replace(regex, `<span class="gems-highlight ${bgClass}" onclick="openNoteFromHighlight('${note.id}', event)">$1</span>`);
+            });
+            article.innerHTML = html;
+        }
+
+        function openNoteFromHighlight(noteId, event) {
+            if (event) event.stopPropagation();
+            const note = (appState.notes || []).find(n => n.id === noteId);
+            if (!note) return;
+            
+            // Edit Mode: show preview card and pre-populate textarea
+            document.getElementById('note-selected-text-card').classList.remove('hidden');
+            document.getElementById('note-textarea').parentNode.classList.remove('hidden');
+            const actionRow = document.getElementById('note-textarea').parentNode.nextElementSibling;
+            if (actionRow) actionRow.classList.remove('hidden');
+            
+            document.getElementById('note-selected-text').innerText = `"${note.selectedText}"`;
+            document.getElementById('note-textarea').value = note.noteText;
+            editingNoteId = note.id;
+            
+            const titleEl = document.querySelector('#reader-note-modal h3');
+            if (titleEl) titleEl.innerText = "Ghi chú & Đánh dấu";
+            
+            selectNoteColor(note.color);
+            renderPrevNotes();
+            
+            document.getElementById('reader-note-modal').classList.remove('hidden');
         }
 
         // 1. Focus Mode Exit Gesture
@@ -7334,17 +8129,30 @@
         }
 
         function openKeyTermDetail(title) {
-            let termCard = null;
-            document.querySelectorAll('#dict-list .card-lift').forEach(card => {
-                const name = (card.querySelector('span.text-sm') || card.querySelector('.text-sm.font-black'))?.textContent?.trim();
-                if (name === title) termCard = card;
-            });
-
-            if (termCard) {
-                termCard.click();
-            } else {
-                openDictionaryTerm(title, 'Bệnh lý', 'benhly', 'Thuật ngữ cần chú ý trong chương học.', 'Nghiên cứu lâm sàng chi tiết.');
+            // Look up term metadata from current book's knowledge data
+            const currentData = bookKnowledgeData[currentActiveBookId];
+            let termMeta = null;
+            if (currentData && currentData.terms) {
+                termMeta = currentData.terms.find(t => t.title === title);
             }
+
+            const badgeLabel = termMeta ? termMeta.badge : 'Thuật ngữ';
+            const badgeType = termMeta ? (termMeta.type || 'benhly') : 'benhly';
+            const termDesc = termMeta ? termMeta.desc : 'Thuật ngữ y khoa cần chú ý.';
+
+            // IMPORTANT: view-dict-term is a child of view-dictionary (z-[68]).
+            // view-knowledge-details is at z-[69] — HIGHER than view-dictionary.
+            // So we MUST close knowledge details first before opening the dictionary,
+            // otherwise the dictionary would be invisible behind knowledge details.
+            closeKnowledgeDetails();
+
+            // Open the dictionary (parent container needed for view-dict-term)
+            openDictionary();
+
+            // Small timeout to allow DOM to update before showing the term panel
+            setTimeout(() => {
+                openDictionaryTerm(title, badgeLabel, badgeType, termDesc, 'Nghiên cứu lâm sàng chi tiết về thuật ngữ này.');
+            }, 80);
         }
 
         function openRelatedBook() {
@@ -7389,26 +8197,40 @@
             const wrapper = document.getElementById('library-slides-wrapper');
             const tabEbook = document.getElementById('lib-tab-ebook');
             const tabAudio = document.getElementById('lib-tab-audio');
+            const tabGroup = document.getElementById('lib-tab-group');
             const searchBtn = document.getElementById('library-header-search');
             const filterBtn = document.getElementById('library-header-filter');
             const titleEl = document.getElementById('library-header-title');
             
-            if (!wrapper || !tabEbook || !tabAudio) return;
+            if (!wrapper || !tabEbook || !tabAudio || !tabGroup) return;
             
             if (tab === 'ebook') {
                 wrapper.style.transform = 'translateX(0)';
-                tabEbook.className = "w-1/2 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 bg-white text-blue-600 shadow-sm";
-                tabAudio.className = "w-1/2 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700";
+                tabEbook.className = "w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 bg-white text-blue-600 shadow-sm";
+                tabAudio.className = "w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700";
+                tabGroup.className = "w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700";
                 if (titleEl) {
                     titleEl.innerText = "GEMS";
                     titleEl.className = "font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center";
                 }
                 if (searchBtn) searchBtn.classList.remove('hidden');
                 if (filterBtn) filterBtn.classList.remove('hidden');
-            } else {
-                wrapper.style.transform = 'translateX(-50%)';
-                tabEbook.className = "w-1/2 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700";
-                tabAudio.className = "w-1/2 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 bg-white text-blue-600 shadow-sm";
+            } else if (tab === 'audiobook') {
+                wrapper.style.transform = 'translateX(-33.333%)';
+                tabEbook.className = "w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700";
+                tabAudio.className = "w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 bg-white text-blue-600 shadow-sm";
+                tabGroup.className = "w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700";
+                if (titleEl) {
+                    titleEl.innerText = "GEMS";
+                    titleEl.className = "font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center";
+                }
+                if (searchBtn) searchBtn.classList.remove('hidden');
+                if (filterBtn) filterBtn.classList.add('hidden');
+            } else if (tab === 'group') {
+                wrapper.style.transform = 'translateX(-66.666%)';
+                tabEbook.className = "w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700";
+                tabAudio.className = "w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700";
+                tabGroup.className = "w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 bg-white text-blue-600 shadow-sm";
                 if (titleEl) {
                     titleEl.innerText = "GEMS";
                     titleEl.className = "font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center";
@@ -7416,6 +8238,178 @@
                 if (searchBtn) searchBtn.classList.remove('hidden');
                 if (filterBtn) filterBtn.classList.add('hidden');
             }
+        }
+
+        // Group / Community Helpers
+        function filterGroupCategory(category, button) {
+            // Update filter pills styling
+            document.querySelectorAll('.group-filter-pill').forEach(pill => {
+                pill.className = "group-filter-pill px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-slate-100 text-slate-655 hover:bg-slate-200 shrink-0";
+            });
+            if (button) {
+                button.className = "group-filter-pill px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-[#005a9c] text-white shrink-0";
+            }
+
+            // Filter cards
+            document.querySelectorAll('.group-card-item').forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function joinGroup(groupId, event) {
+            if (event) event.stopPropagation();
+            showToast('Đã tham gia nhóm thành công!');
+            
+            // Update all buttons for this group to joined state
+            const card = document.querySelector(`.group-card-item[data-category="${groupId}"]`);
+            if (card) {
+                const btn = card.querySelector('button');
+                if (btn) {
+                    btn.innerText = 'Đã tham gia';
+                    btn.className = "border border-slate-200 hover:bg-slate-50 text-slate-400 text-[10px] font-bold px-3 py-1.5 rounded-xl transition-all duration-300 pointer-events-none";
+                }
+            }
+
+            // Also update main group detail join button if it is the current group
+            const detailJoinBtn = document.getElementById('btn-group-join');
+            if (detailJoinBtn) {
+                detailJoinBtn.innerHTML = `<span class="material-symbols-outlined text-sm font-bold">check</span><span>Đã tham gia</span>`;
+                detailJoinBtn.className = "flex-grow border border-slate-200 hover:bg-slate-50 text-slate-550 font-bold text-xs py-2.5 rounded-xl transition-all duration-300 active:scale-95 flex items-center justify-center gap-1.5";
+            }
+        }
+
+        function openGroupDetail(groupId) {
+            closeBookDetails();
+            closeAuthorProfile();
+            closeEreaderScreen();
+            closeQuizScreen();
+            closeAudiobookPlayer();
+            closeDictionary();
+            closeKnowledgeDetails();
+
+            // Hide other panels
+            document.querySelectorAll('.view-panel').forEach(panel => {
+                panel.classList.add('hidden');
+            });
+
+            // Show group view panel
+            const groupDetailView = document.getElementById('view-group-detail');
+            if (groupDetailView) {
+                groupDetailView.classList.remove('hidden');
+                
+                // Show parent library screen if we need to preserve tab state
+                const libraryView = document.getElementById('view-library');
+                if (libraryView) libraryView.classList.remove('hidden');
+            }
+            
+            // Sync joined state button
+            const card = document.querySelector(`.group-card-item[data-category="${groupId}"]`);
+            const isJoined = card && card.querySelector('button')?.innerText === 'Đã tham gia';
+            const detailJoinBtn = document.getElementById('btn-group-join');
+            if (detailJoinBtn) {
+                if (isJoined) {
+                    detailJoinBtn.innerHTML = `<span class="material-symbols-outlined text-sm font-bold">check</span><span>Đã tham gia</span>`;
+                    detailJoinBtn.className = "flex-grow border border-slate-200 hover:bg-slate-50 text-slate-550 font-bold text-xs py-2.5 rounded-xl transition-all duration-300 active:scale-95 flex items-center justify-center gap-1.5";
+                } else {
+                    detailJoinBtn.innerHTML = `<span class="material-symbols-outlined text-sm font-bold">person_add</span><span>Tham gia</span>`;
+                    detailJoinBtn.className = "flex-grow bg-[#005a9c] hover:bg-[#005a9c]/90 text-white font-bold text-xs py-2.5 rounded-xl transition-all duration-300 active:scale-95 flex items-center justify-center gap-1.5 shadow-sm";
+                }
+            }
+
+            // Save active groupId in detail view data attribute
+            document.getElementById('view-group-detail')?.setAttribute('data-active-group', groupId);
+            
+            // Scroll detail view to top
+            document.getElementById('group-detail-scroll-area').scrollTop = 0;
+            
+            updateBottomNavVisibility();
+        }
+
+        function closeGroupDetail() {
+            const groupDetailView = document.getElementById('view-group-detail');
+            if (groupDetailView) {
+                groupDetailView.classList.add('hidden');
+            }
+            updateBottomNavVisibility();
+        }
+
+        function toggleGroupJoinState() {
+            const detailJoinBtn = document.getElementById('btn-group-join');
+            const groupId = document.getElementById('view-group-detail')?.getAttribute('data-active-group');
+            if (!detailJoinBtn || !groupId) return;
+
+            const isJoined = detailJoinBtn.innerText.includes('Đã tham gia');
+            if (isJoined) {
+                // Leave group
+                showToast('Đã rời khỏi nhóm.');
+                detailJoinBtn.innerHTML = `<span class="material-symbols-outlined text-sm font-bold">person_add</span><span>Tham gia</span>`;
+                detailJoinBtn.className = "flex-grow bg-[#005a9c] hover:bg-[#005a9c]/90 text-white font-bold text-xs py-2.5 rounded-xl transition-all duration-300 active:scale-95 flex items-center justify-center gap-1.5 shadow-sm";
+                
+                // Sync card join button
+                const card = document.querySelector(`.group-card-item[data-category="${groupId}"]`);
+                if (card) {
+                    const btn = card.querySelector('button');
+                    if (btn) {
+                        btn.innerText = 'Tham gia';
+                        if (groupId === 'lam-sang') {
+                            btn.className = "bg-[#005a9c] hover:bg-[#005a9c]/90 text-white text-[10px] font-bold px-3 py-1.5 rounded-xl transition-all duration-300 active:scale-95 shadow-sm";
+                        } else {
+                            btn.className = "border border-slate-200 hover:bg-slate-50 text-slate-655 text-[10px] font-bold px-3 py-1.5 rounded-xl transition-all duration-300 active:scale-95 shadow-sm";
+                        }
+                    }
+                }
+            } else {
+                // Join group
+                joinGroup(groupId);
+            }
+        }
+
+        function switchGroupDetailTab(tab) {
+            // Update tabs styling
+            const tabs = ['discussion', 'docs', 'members', 'events'];
+            tabs.forEach(t => {
+                const el = document.getElementById(`tab-group-${t}`);
+                const content = document.getElementById(`group-tab-content-${t}`);
+                if (el) {
+                    if (t === tab) {
+                        el.className = "flex-1 py-3 text-center text-xs font-bold text-blue-600 border-b-2 border-blue-600 transition-all focus:outline-none";
+                    } else {
+                        el.className = "flex-1 py-3 text-center text-xs font-semibold text-slate-500 hover:text-slate-700 transition-all focus:outline-none";
+                    }
+                }
+                if (content) {
+                    if (t === tab) {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
+                }
+            });
+        }
+
+        function togglePostLike(btn, postId) {
+            const likesEl = document.getElementById(`post-likes-${postId}`);
+            if (!likesEl) return;
+
+            let likesCount = parseInt(likesEl.innerText);
+            const isLiked = btn.classList.contains('text-blue-600');
+            
+            if (isLiked) {
+                // Unlike
+                btn.classList.remove('text-blue-600');
+                btn.querySelector('.material-symbols-outlined').style.fontVariationSettings = "'FILL' 0";
+                likesCount--;
+            } else {
+                // Like
+                btn.classList.add('text-blue-600');
+                btn.querySelector('.material-symbols-outlined').style.fontVariationSettings = "'FILL' 1";
+                likesCount++;
+            }
+            likesEl.innerText = likesCount;
         }
 
         function openBlogView() {
