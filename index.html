@@ -675,6 +675,36 @@
             pointer-events: auto;
         }
 
+        /* Slide Up Fade and Underline Grow Keyframe Animations */
+        @keyframes slideUpFade {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .animate-slide-up-fade {
+            animation-name: slideUpFade;
+            animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes growWidth {
+            from {
+                width: 0;
+                left: 50%;
+            }
+            to {
+                width: 100%;
+                left: 0;
+            }
+        }
+        .animate-grow-width {
+            animation-name: growWidth;
+            animation-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+            width: 0;
+            left: 50%;
+        }
+
+
         /* Scroll mode styles */
         #flipbook-container.scroll-mode {
             display: flex;
@@ -759,8 +789,8 @@
                         <div class="flex-1 overflow-y-auto pb-6 px-margin-mobile py-6 space-y-6">
                             <!-- Greeting Section -->
                             <div class="pb-2">
-                                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Chào buổi sáng</p>
-                                <h2 class="text-xl font-black text-blue-900 leading-tight">Nguyễn Văn A</h2>
+                                <p id="home-typewriter-greeting" class="text-[10px] text-slate-500 font-bold uppercase tracking-wider min-h-[15px] flex items-center">Chào buổi sáng</p>
+                                <h2 id="home-username-animated" class="text-xl font-black text-blue-900 leading-tight">Nguyễn Văn A</h2>
                             </div>
 
                             <!-- Stats Row (Streak and Pages Read) -->
@@ -7501,6 +7531,10 @@
 
         // Initialize default chapter and standalone quiz on page load
         window.addEventListener('DOMContentLoaded', () => {
+            // Initialize Typewriter and Animated User Name Effects
+            initTypewriter('home-typewriter-greeting', ['Chào buổi sáng', 'Chào ngày mới', 'Chào mừng bác sĩ']);
+            initAnimatedText('home-username-animated', 'Nguyễn Văn A');
+
             loadChapter('tamthat');
             renderStandaloneQuiz();
             renderAllBookCovers();
@@ -8261,6 +8295,90 @@
 
 
         // GEMS Restructured Library & News Blog Helpers
+
+        // Typewriter Text Effect (Vanilla JS replica of React Typewriter component)
+        function initTypewriter(elementId, texts, speed = 100, delay = 1500, deleteSpeed = 50, loop = true) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            let textArrayIndex = 0;
+            let currentIndex = 0;
+            let isDeleting = false;
+            let displayText = "";
+            
+            const textSpan = document.createElement('span');
+            const cursorSpan = document.createElement('span');
+            cursorSpan.className = 'animate-pulse ml-0.5 text-slate-400 font-normal';
+            cursorSpan.innerText = '|';
+            el.innerHTML = '';
+            el.appendChild(textSpan);
+            el.appendChild(cursorSpan);
+
+            function tick() {
+                const currentText = texts[textArrayIndex] || "";
+                if (!isDeleting) {
+                    if (currentIndex < currentText.length) {
+                        displayText += currentText[currentIndex];
+                        currentIndex++;
+                        textSpan.innerText = displayText;
+                        setTimeout(tick, speed);
+                    } else if (loop) {
+                        setTimeout(() => {
+                            isDeleting = true;
+                            tick();
+                        }, delay);
+                    }
+                } else {
+                    if (displayText.length > 0) {
+                        displayText = displayText.slice(0, -1);
+                        textSpan.innerText = displayText;
+                        setTimeout(tick, deleteSpeed);
+                    } else {
+                        isDeleting = false;
+                        currentIndex = 0;
+                        textArrayIndex = (textArrayIndex + 1) % texts.length;
+                        setTimeout(tick, speed);
+                    }
+                }
+            }
+            tick();
+        }
+
+        // Animated Text with Underline (Vanilla JS replica of React AnimatedText component)
+        function initAnimatedText(elementId, text, delay = 0.08, duration = 0.4) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            const letters = Array.from(text);
+            el.innerHTML = '';
+            
+            // Layout styling
+            el.style.position = 'relative';
+            el.style.display = 'inline-block';
+            el.style.paddingBottom = '4px';
+            
+            const textContainer = document.createElement('div');
+            textContainer.style.display = 'flex';
+            textContainer.style.overflow = 'hidden';
+            
+            letters.forEach((letter, index) => {
+                const span = document.createElement('span');
+                span.innerText = letter === ' ' ? '\u00A0' : letter;
+                span.className = 'inline-block transform translate-y-5 opacity-0 animate-slide-up-fade';
+                span.style.animationDelay = `${index * delay}s`;
+                span.style.animationDuration = `${duration}s`;
+                span.style.animationFillMode = 'forwards';
+                textContainer.appendChild(span);
+            });
+            el.appendChild(textContainer);
+            
+            // Create animated underline
+            const underline = document.createElement('div');
+            underline.className = 'absolute bottom-0 h-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-grow-width';
+            underline.style.animationDelay = `${letters.length * delay}s`;
+            underline.style.animationDuration = '0.8s';
+            underline.style.animationFillMode = 'forwards';
+            el.appendChild(underline);
+        }
+
         function switchLibrarySubTab(tab) {
             const wrapper = document.getElementById('library-slides-wrapper');
             const tabEbook = document.getElementById('lib-tab-ebook');
