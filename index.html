@@ -4501,6 +4501,32 @@
         updatePhoneTime();
 
         // View Tabs switching management
+        function updateBottomNavVisibility() {
+            const subScreens = [
+                'view-book-detail',
+                'view-author-profile',
+                'view-reader',
+                'view-quiz',
+                'view-audiobook',
+                'view-dictionary',
+                'view-knowledge-details',
+                'view-news-blog',
+                'view-reading-habit'
+            ];
+            const isAnySubScreenOpen = subScreens.some(id => {
+                const el = document.getElementById(id);
+                return el && !el.classList.contains('hidden');
+            });
+            const appNav = document.getElementById('app-bottom-nav');
+            if (appNav) {
+                if (isAnySubScreenOpen) {
+                    appNav.classList.add('hidden');
+                } else {
+                    appNav.classList.remove('hidden');
+                }
+            }
+        }
+
         function switchTab(tabName) {
             // Close any overlay panels when switching tabs from the bottom nav
             closeBookDetails();
@@ -4559,10 +4585,7 @@
                 }
             });
             appState.activeTab = tabName;
-            
-            // Always show bottom nav when switching tabs
-            const appNav = document.getElementById('app-bottom-nav');
-            appNav.classList.remove('hidden');
+            updateBottomNavVisibility();
         }
 
         // Side drawer menu toggler
@@ -4653,11 +4676,12 @@
             }
 
             document.getElementById('view-book-detail').classList.remove('hidden');
+            updateBottomNavVisibility();
         }
 
         function closeBookDetails() {
             document.getElementById('view-book-detail').classList.add('hidden');
-            document.getElementById('app-bottom-nav').classList.remove('hidden');
+            updateBottomNavVisibility();
         }
 
         function addToLibraryState() {
@@ -4677,9 +4701,11 @@
         // Author profile view opening
         function openAuthorProfile() {
             document.getElementById('view-author-profile').classList.remove('hidden');
+            updateBottomNavVisibility();
         }
         function closeAuthorProfile() {
             document.getElementById('view-author-profile').classList.add('hidden');
+            updateBottomNavVisibility();
         }
         function followAuthorState() {
             appState.followingAuthor = !appState.followingAuthor;
@@ -4722,7 +4748,7 @@
             }
 
             document.getElementById('view-reader').classList.remove('hidden');
-            document.getElementById('app-bottom-nav').classList.add('hidden');
+            updateBottomNavVisibility();
             
             // Auto complete reading daily mission after 5 seconds of opening reader
             setTimeout(() => {
@@ -4740,8 +4766,7 @@
                 return;
             }
             
-            // Always restore bottom nav when reader is closed (detail overlays cover it via z-index)
-            document.getElementById('app-bottom-nav').classList.remove('hidden');
+            updateBottomNavVisibility();
         }
 
         function openBookTOC() {
@@ -5305,16 +5330,12 @@
         // Quiz checking and option active highlights
         function openQuizScreen() {
             document.getElementById('view-quiz').classList.remove('hidden');
-            // z-[70] on view-quiz automatically covers the bottom nav visually
+            updateBottomNavVisibility();
         }
 
         function closeQuizScreen() {
             document.getElementById('view-quiz').classList.add('hidden');
-            // Restore bottom nav only if reader is also closed
-            const isReaderOpen = !document.getElementById('view-reader').classList.contains('hidden');
-            if (!isReaderOpen) {
-                document.getElementById('app-bottom-nav').classList.remove('hidden');
-            }
+            updateBottomNavVisibility();
         }
 
         function selectQuizOption(optIdx, event, type = 'standalone') {
@@ -6324,10 +6345,12 @@
 
             // Open screen
             document.getElementById('view-audiobook').classList.remove('hidden');
+            updateBottomNavVisibility();
         }
 
         function closeAudiobookPlayer() {
             document.getElementById('view-audiobook').classList.add('hidden');
+            updateBottomNavVisibility();
             // Close chapters sheet if open
             document.getElementById('audio-chapters-sheet').classList.add('translate-y-full');
             document.getElementById('audio-chapters-sheet').classList.add('hidden');
@@ -6658,6 +6681,7 @@
                 if (inp) inp.value = '';
                 filterDictionary('');
                 setDictFilter('all');
+                updateBottomNavVisibility();
             }
         }
 
@@ -6665,6 +6689,7 @@
             const view = document.getElementById('view-dictionary');
             if (view) view.classList.add('hidden');
             closeDictionaryTerm();
+            updateBottomNavVisibility();
         }
 
         function handleDictionaryBack() {
@@ -7028,11 +7053,13 @@
             const view = document.getElementById('view-reading-habit');
             if (view) view.classList.remove('hidden');
             updateMissionsUI();
+            updateBottomNavVisibility();
         }
 
         function closeReadingHabit() {
             const view = document.getElementById('view-reading-habit');
             if (view) view.classList.add('hidden');
+            updateBottomNavVisibility();
         }
 
         function incrementLookupCount() {
@@ -7218,10 +7245,12 @@
         function closeKnowledgeDetails() {
             const view = document.getElementById('view-knowledge-details');
             if (view) view.classList.add('hidden');
+            updateBottomNavVisibility();
         }
 
         function openBookKnowledgeDetails(bookId) {
             currentActiveBookId = bookId;
+            updateBottomNavVisibility();
             const data = bookKnowledgeData[bookId];
             if (!data) return;
 
@@ -7406,6 +7435,7 @@
             const blogView = document.getElementById('view-news-blog');
             if (blogView) {
                 blogView.classList.remove('hidden');
+                updateBottomNavVisibility();
                 // Trigger scroll position calculation for slide indicator dots
                 setTimeout(updateBlogCarouselDots, 100);
             }
@@ -7414,6 +7444,7 @@
         function closeBlogView() {
             const blogView = document.getElementById('view-news-blog');
             if (blogView) blogView.classList.add('hidden');
+            updateBottomNavVisibility();
             const homeView = document.getElementById('view-home');
             if (homeView) homeView.classList.remove('hidden');
         }
