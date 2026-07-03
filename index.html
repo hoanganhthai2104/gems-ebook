@@ -2,7 +2,7 @@
 <html lang="vi" class="light">
 <head>
     <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="width=410" name="viewport"/>
     <title>GEMS - Medical E-Reader App</title>
     
     <!-- Tailwind CSS with Forms plugin -->
@@ -216,10 +216,131 @@
             font-family: 'Playfair Display', serif;
         }
 
+        /* Normal mode: Audio inactive */
         .page-container {
             background-color: var(--page-bg);
             border-radius: 24px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            overflow: hidden !important;
+            padding: 24px 20px 8px 20px !important;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .page-container header {
+            margin-bottom: 14px !important;
+            margin-top: 4px !important;
+        }
+        
+        .page-container header h2 {
+            font-size: 24px !important;
+            line-height: 1.35 !important;
+            margin-top: 4px !important;
+        }
+        
+        .page-container header div {
+            margin-top: 8px !important;
+        }
+        
+        .page-container .font-reading,
+        .page-container article > div,
+        .page-container .page-container-content {
+            max-height: calc(100% - 50px) !important; /* Normal mode uses full height */
+            overflow: hidden !important;
+            font-size: 16.5px !important;
+            line-height: 1.65 !important;
+            transition: all 0.3s ease;
+        }
+        
+        .page-container p {
+            margin-bottom: 14px !important;
+            margin-top: 0px !important;
+            transition: all 0.3s ease;
+        }
+        
+        .page-container ul {
+            padding-left: 20px !important;
+            margin-top: 12px !important;
+            margin-bottom: 12px !important;
+            transition: all 0.3s ease;
+        }
+        
+        .page-container li {
+            font-size: 15px !important;
+            line-height: 1.55 !important;
+            margin-bottom: 10px !important;
+            transition: all 0.3s ease;
+        }
+
+        .page-container blockquote {
+            margin-top: 14px !important;
+            margin-bottom: 14px !important;
+            padding-left: 16px !important;
+            transition: all 0.3s ease;
+        }
+
+        /* Compact mode: Audio active */
+        .audio-active .page-container {
+            padding: 16px 16px 8px 16px !important;
+        }
+
+        .audio-active .page-container header {
+            margin-bottom: 8px !important;
+            margin-top: 2px !important;
+        }
+        
+        .audio-active .page-container header h2 {
+            font-size: 20px !important;
+            line-height: 1.25 !important;
+            margin-top: 2px !important;
+        }
+
+        .audio-active .page-container header div {
+            margin-top: 4px !important;
+        }
+
+        .audio-active .page-container .font-reading,
+        .audio-active .page-container article > div,
+        .audio-active .page-container .page-container-content {
+            max-height: calc(100% - 130px) !important; /* Compact mode keeps text above player */
+            font-size: 14.5px !important;
+            line-height: 1.50 !important;
+        }
+
+        .audio-active .page-container p {
+            margin-bottom: 8px !important;
+        }
+
+        .audio-active .page-container ul {
+            margin-top: 6px !important;
+            margin-bottom: 6px !important;
+        }
+
+        .audio-active .page-container li {
+            font-size: 13px !important;
+            line-height: 1.45 !important;
+            margin-bottom: 6px !important;
+        }
+
+        .audio-active .page-container blockquote {
+            margin-top: 8px !important;
+            margin-bottom: 8px !important;
+            padding-left: 12px !important;
+        }
+
+        /* Compact illustration image inside reader */
+        .audio-active .page-container img {
+            height: 90px !important;
+            object-fit: cover !important;
+        }
+
+        /* Compact dynamic quiz completed box */
+        .audio-active .page-container .bg-green-50 {
+            padding: 8px 12px !important;
+            margin-top: 8px !important;
+        }
+        .audio-active .page-container .bg-green-50 p {
+            margin-bottom: 0px !important;
         }
 
         .dashed-underline {
@@ -418,19 +539,23 @@
             border-radius: 50% !important;
             background: linear-gradient(135deg, #f0f7fc 0%, #e0eff9 100%) !important;
             color: #005A9C !important;
-            box-shadow: 0 4px 14px rgba(0, 90, 156, 0.18);
-            transform: translateY(-2px) scale(1.08) !important;
+            box-shadow: 0 6px 16px rgba(0, 90, 156, 0.25) !important;
+            transform: translateY(-14px) scale(1.12) !important;
+            width: 50px !important;
+            height: 50px !important;
+            margin-top: -6px !important;
             transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.25s ease, box-shadow 0.25s ease !important;
         }
         .active-tab-circle .material-symbols-outlined {
             transform: none !important;
+            font-size: 24px !important;
         }
 
         /* Circle pop animation */
         @keyframes circlePopUp {
             0% { transform: translateY(0) scale(0.85); opacity: 0.6; }
-            60% { transform: translateY(-4px) scale(1.12); }
-            100% { transform: translateY(-2px) scale(1.08); opacity: 1; }
+            60% { transform: translateY(-18px) scale(1.15); }
+            100% { transform: translateY(-14px) scale(1.12); opacity: 1; }
         }
         .circle-animate {
             animation: circlePopUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
@@ -495,13 +620,40 @@
         }
     </style>
 </head>
-<body class="bg-slate-100 antialiased h-screen overflow-hidden flex items-center justify-center">
+<body class="bg-slate-100 antialiased h-[100dvh] overflow-hidden flex items-center justify-center" style="background: radial-gradient(circle at 10% 20%, rgb(240, 243, 248) 0%, rgb(218, 226, 240) 90.1%);">
 
     <!-- Global Alert / Toast Notification -->
     <div id="toast-container" class="fixed top-6 left-1/2 -translate-x-1/2 z-[9999] flex flex-col gap-2 w-80 pointer-events-none"></div>
 
-    <!-- MAIN APP CONTAINER -->
-    <div class="relative w-full max-w-[430px] h-screen bg-white text-on-surface overflow-hidden flex flex-col shadow-2xl border-x border-gray-100 transition-all duration-300">
+    <!-- PHONE MOCKUP WRAPPER FOR DESKTOP -->
+    <div class="relative w-full h-[100dvh] sm:w-[410px] sm:h-[860px] sm:max-h-[calc(100vh-40px)] sm:rounded-[50px] sm:ring-[14px] sm:ring-slate-950 sm:outline sm:outline-2 sm:outline-slate-900 sm:bg-slate-950 sm:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.4)] flex items-center justify-center transition-all duration-300">
+        
+        <!-- Camera Notch / Dynamic Island -->
+        <div class="hidden sm:block absolute top-3.5 left-1/2 -translate-x-1/2 w-28 h-6 bg-black rounded-full z-[100] flex items-center justify-end pr-4">
+            <!-- Camera lens glow -->
+            <div class="w-2.5 h-2.5 rounded-full bg-[#080d1a] border border-[#1f293d] flex items-center justify-center">
+                <div class="w-1 h-1 rounded-full bg-[#1c3a63]"></div>
+            </div>
+        </div>
+
+        <!-- Speaker grill -->
+        <div class="hidden sm:block absolute top-1.5 left-1/2 -translate-x-1/2 w-14 h-1 bg-zinc-800 rounded-full z-[100]"></div>
+        
+        <!-- Home bar at the bottom of the screen -->
+        <div class="hidden sm:block absolute bottom-2 w-32 h-1 bg-black/40 rounded-full z-[100] left-1/2 -translate-x-1/2"></div>
+
+        <!-- Status Bar inside phone screen (only on desktop mockup) -->
+        <div class="hidden sm:flex absolute top-1.5 left-4 right-4 h-7 px-4 justify-between items-center z-[110] text-[10px] font-bold text-slate-700 select-none pointer-events-none">
+            <span id="mock-phone-time">09:41</span>
+            <div class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-[11px] font-bold">signal_cellular_4_bar</span>
+                <span class="material-symbols-outlined text-[11px] font-bold">wifi</span>
+                <span class="material-symbols-outlined text-[12px]">battery_5_bar</span>
+            </div>
+        </div>
+        
+        <!-- MAIN APP CONTAINER -->
+        <div class="relative w-full h-full sm:pt-7 sm:rounded-[38px] bg-white text-on-surface overflow-hidden flex flex-col transition-all duration-300">
 
         <!-- VIEW CONTAINER SCREEN -->
         <div class="flex-grow overflow-hidden relative bg-surface flex flex-col">
@@ -2133,9 +2285,7 @@
                                                 Theo các tài liệu y văn, <span class="dashed-underline text-green-900 font-semibold cursor-pointer" onclick="openGlossary('tamthat', event)">Tam Thất</span> có vị ngọt, hơi đắng, tính ấm, tác động trực tiếp vào hai kinh Can và Vị. Tác dụng chủ yếu của nó là tán ứ, <span class="dashed-underline text-green-900 font-semibold cursor-pointer" onclick="openGlossary('chihuyet', event)">chỉ huyết</span> (cầm máu), tiêu thũng và định thống (giảm đau).
                                             </p>
                                         </div>
-                                        <div class="absolute bottom-4 left-0 right-0 text-center">
-                                            <p class="text-[11px] text-gray-400 font-medium tracking-widest uppercase">Trang 1 / 5</p>
-                                        </div>
+
                                     </article>
                                 </div>
 
@@ -2147,7 +2297,7 @@
                                                 Đặc biệt, Tam Thất được ghi nhận trong <em>Bản Thảo Cương Mục</em> của Lý Thời Trân với vai trò "chỉ huyết, tán huyết, định thống" — nghĩa là vừa cầm máu, vừa phá ứ huyết, vừa giảm đau.
                                             </p>
                                             <!-- Embedded anatomical illustration -->
-                                            <div class="my-4 border border-slate-200 rounded-xl overflow-hidden cursor-zoom-in group shadow-sm bg-white" onclick="openHighresViewer(event)">
+                                            <div class="my-2 border border-slate-200 rounded-xl overflow-hidden cursor-zoom-in group shadow-sm bg-white" onclick="openHighresViewer(event)">
                                                 <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCwHvj_zxpIcI55QDfF9650v4iUtr15HL8lTicXD6pzReKQl5HDCNrv5NR_hZLEOsqdZB8QAH9biqfNYU8Xqetlcn3p2fKRnM0LCzl6gSMxg28nNVGCI8wAoohs2JbN1HVlvoFnXmXEHNZ_ocGU9X32uvyOTl8nPpm6ngfZiai2AqT1LKFjQxMOTGPjxVzk5Q6tqPbYzTj7Pao2UIpNhjRjAXQdy_Yvj2V6WWS6lZ9c7fgF62Tbmf8U8_oSWhJZiumqEon0qnJWK-7" class="w-full aspect-[21/9] object-cover group-hover:scale-102 transition-transform duration-300" alt="Tam Thất Anatomy"/>
                                                 <div class="bg-slate-50 p-2 text-[10px] text-slate-500 text-center font-medium border-t border-slate-200">
                                                     Sơ đồ cấu trúc cây Tam Thất & Hoạt chất sinh học. Nhấp để phóng to chi tiết.
@@ -2157,9 +2307,7 @@
                                                 Hình minh họa: Cấu trúc phân tử saponin và vùng tập trung hoạt chất trong rễ củ Tam Thất.
                                             </p>
                                         </div>
-                                        <div class="absolute bottom-4 left-0 right-0 text-center">
-                                            <p class="text-[11px] text-gray-400 font-medium tracking-widest uppercase">Trang 2 / 5</p>
-                                        </div>
+
                                     </article>
                                 </div>
 
@@ -2179,9 +2327,7 @@
                                                 <br/><span class="text-xs not-italic text-gray-400">— Bản Thảo Cương Mục, Lý Thời Trân</span>
                                             </blockquote>
                                         </div>
-                                        <div class="absolute bottom-4 left-0 right-0 text-center">
-                                            <p class="text-[11px] text-gray-400 font-medium tracking-widest uppercase">Trang 3 / 5</p>
-                                        </div>
+
                                     </article>
                                 </div>
 
@@ -2208,9 +2354,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="absolute bottom-4 left-0 right-0 text-center">
-                                            <p class="text-[11px] text-gray-400 font-medium tracking-widest uppercase">Trang 4 / 5</p>
-                                        </div>
+
                                     </article>
                                 </div>
 
@@ -2263,7 +2407,7 @@
                         </div>
 
                         <!-- Bottom control menu navigation bar -->
-                        <footer id="reader-footer" class="bg-white border-t border-gray-100 shrink-0 transition-all duration-300">
+                        <footer id="reader-footer" class="bg-white border-t border-gray-100 shrink-0 sm:pb-5 transition-all duration-300">
                             <!-- Progress Indicator -->
                             <div class="px-6 py-4 flex items-center space-x-4 border-b border-gray-150">
                                 <span class="text-[10px] text-gray-400 font-bold">35%</span>
@@ -3327,7 +3471,7 @@
                 </div>
 
                 <!-- Bottom System Navigation Bar -->
-                <nav id="app-bottom-nav" class="relative bg-surface/95 backdrop-blur-xl text-slate-500 shrink-0 border-t border-slate-100/80 flex justify-center items-center h-16 z-40 overflow-visible w-full">
+                <nav id="app-bottom-nav" class="relative bg-surface/95 backdrop-blur-xl text-slate-500 shrink-0 border-t border-slate-100/80 flex justify-center items-center h-16 sm:h-22 sm:pb-6 z-40 overflow-visible w-full">
                     <div class="flex justify-around items-center w-full max-w-[430px]">
                     <!-- Home btn -->
                     <button onclick="switchTab('home')" id="tab-home" class="flex flex-col items-center justify-center w-20 transition-all duration-300 pt-1">
@@ -3529,7 +3673,8 @@
                     </div>
                 </div>
 
-        </div>
+        </div> <!-- End MAIN APP CONTAINER -->
+    </div> <!-- End PHONE MOCKUP WRAPPER -->
 
 
 
@@ -4205,7 +4350,7 @@
                         <p>
                             Các nghiên cứu dược lý học hiện đại đã chứng minh rằng rễ củ Tam Thất chứa hàm lượng cao các hoạt chất Saponin nhóm Rb, Rg tương tự nhân sâm. Nhờ đó, thuốc có khả năng rút ngắn thời gian đông máu và prothrombin đáng kể, ngăn ngừa tình trạng mất máu cấp trong các chấn thương ngoại khoa.
                         </p>
-                        <div class="my-4 border border-slate-200 rounded-xl overflow-hidden cursor-zoom-in group shadow-sm bg-white" onclick="openHighresViewer(event)">
+                        <div class="my-2 border border-slate-200 rounded-xl overflow-hidden cursor-zoom-in group shadow-sm bg-white" onclick="openHighresViewer(event)">
                             <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCwHvj_zxpIcI55QDfF9650v4iUtr15HL8lTicXD6pzReKQl5HDCNrv5NR_hZLEOsqdZB8QAH9biqfNYU8Xqetlcn3p2fKRnM0LCzl6gSMxg28nNVGCI8wAoohs2JbN1HVlvoFnXmXEHNZ_ocGU9X32uvyOTl8nPpm6ngfZiai2AqT1LKFjQxMOTGPjxVzk5Q6tqPbYzTj7Pao2UIpNhjRjAXQdy_Yvj2V6WWS6lZ9c7fgF62Tbmf8U8_oSWhJZiumqEon0qnJWK-7" class="w-full aspect-[21/9] object-cover group-hover:scale-102 transition-transform duration-300" alt="Tam Thất Anatomy"/>
                             <div class="bg-slate-50 p-2 text-[10px] text-slate-500 text-center font-medium border-t border-slate-200">
                                 Sơ đồ cấu trúc cây Tam Thất & Hoạt chất sinh học. Nhấp để phóng to chi tiết.
@@ -4289,7 +4434,7 @@
                         <p>
                             Nhân Sâm quy vào ba kinh Tỳ, Phế, Tâm. Vị ngọt đắng nhẹ, tính ôn. Tác dụng nổi bật nhất được ghi chép qua các thời kỳ y văn cổ là: <strong>Đại bổ nguyên khí</strong>, cố thoát chỉ hãn, ích trí an thần, sinh tân chỉ khát.
                         </p>
-                        <div class="my-4 border border-slate-200 rounded-xl overflow-hidden cursor-zoom-in group shadow-sm bg-white" onclick="showToast('Ảnh sơ đồ cấu trúc Nhân Sâm độ phân giải cao.')">
+                        <div class="my-2 border border-slate-200 rounded-xl overflow-hidden cursor-zoom-in group shadow-sm bg-white" onclick="showToast('Ảnh sơ đồ cấu trúc Nhân Sâm độ phân giải cao.')">
                             <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCwHvj_zxpIcI55QDfF9650v4iUtr15HL8lTicXD6pzReKQl5HDCNrv5NR_hZLEOsqdZB8QAH9biqfNYU8Xqetlcn3p2fKRnM0LCzl6gSMxg28nNVGCI8wAoohs2JbN1HVlvoFnXmXEHNZ_ocGU9X32uvyOTl8nPpm6ngfZiai2AqT1LKFjQxMOTGPjxVzk5Q6tqPbYzTj7Pao2UIpNhjRjAXQdy_Yvj2V6WWS6lZ9c7fgF62Tbmf8U8_oSWhJZiumqEon0qnJWK-7" class="w-full aspect-[21/9] object-cover group-hover:scale-102 transition-transform duration-300" alt="Nhân Sâm Anatomy"/>
                             <div class="bg-slate-50 p-2 text-[10px] text-slate-500 text-center font-medium border-t border-slate-200">
                                 Chi tiết hình dáng củ Nhân Sâm 6 năm tuổi & các nhánh rễ.
@@ -4625,9 +4770,11 @@
             readAlongState.isActive = !readAlongState.isActive;
             const bar = document.getElementById('read-along-player-bar');
             const btn = document.getElementById('btn-read-along');
+            const readerView = document.getElementById('view-reader');
             
             if (readAlongState.isActive) {
                 bar.classList.remove('hidden');
+                if (readerView) readerView.classList.add('audio-active');
                 if (btn) {
                     btn.classList.add('text-[#005a9c]', 'font-bold');
                     btn.classList.remove('text-slate-750');
@@ -4642,6 +4789,7 @@
                 showToast("Đã mở trình điều khiển Đọc & Nghe. Nhấn nút Phát để bắt đầu đọc.", "success");
             } else {
                 bar.classList.add('hidden');
+                if (readerView) readerView.classList.remove('audio-active');
                 if (btn) {
                     btn.classList.remove('text-[#005a9c]', 'font-bold');
                     btn.classList.add('text-slate-750');
@@ -5492,12 +5640,7 @@
                 if (pageEl) {
                     const article = pageEl.querySelector('article');
                     if (article) {
-                        const innerText = content + `
-                            <div class="absolute bottom-4 left-0 right-0 text-center">
-                                <p class="text-[11px] text-gray-400 font-medium tracking-widest uppercase">Trang ${idx + 1} / 5</p>
-                            </div>
-                        `;
-                        article.innerHTML = innerText;
+                        article.innerHTML = content;
                     }
                 }
             });
@@ -6487,6 +6630,19 @@
             const habitStreakValEl = document.getElementById('habit-streak-val');
             if (habitStreakValEl) {
                 habitStreakValEl.innerText = appState.streakDays;
+            }
+
+            // Update mock phone time dynamically
+            const mockTimeEl = document.getElementById('mock-phone-time');
+            if (mockTimeEl) {
+                const updateTime = () => {
+                    const now = new Date();
+                    const hrs = String(now.getHours()).padStart(2, '0');
+                    const mins = String(now.getMinutes()).padStart(2, '0');
+                    mockTimeEl.innerText = `${hrs}:${mins}`;
+                };
+                updateTime();
+                setInterval(updateTime, 60000);
             }
         });
         // =============================================
