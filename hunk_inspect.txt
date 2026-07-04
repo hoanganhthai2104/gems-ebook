@@ -1,0 +1,61 @@
+@@ -4140,200 +4279,786 @@
+                     `
+                 ]
+             },
+-            nhansam: {
+-                title: "Bài thuốc từ Nhân Sâm",
+-                meta: "Dược liệu học • Chương 5",
+-                pages: [
+-                    `
+-                    <header class="mb-6">
+-                        <span class="text-[11px] font-bold text-red-700 uppercase tracking-widest">Y Học Cổ Truyền</span>
+-                        <h2 class="text-3xl serif-title mt-2 leading-tight text-[#1a2e35]" id="reader-content-heading">
+-                            Tác dụng của <span class="underline decoration-4 decoration-red-800 underline-offset-4 text-red-800 cursor-pointer" onclick="openGlossary('nhansam', event)">Nhân Sâm</span> - Đại bổ nguyên khí
+-                        </h2>
+-                        <div class="w-full h-px bg-gray-300 mt-6 opacity-50"></div>
+-                    </header>
+-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
+-                        <p>
+-                            <span class="text-4xl font-bold text-red-800 float-left mr-2 mt-1 leading-none">N</span>
+-                            hân Sâm (tên khoa học: <span class="italic">Panax ginseng</span>) là vị thuốc đứng đầu trong tứ đại danh dược thảo của Đông y bao gồm: Sâm, Nhung, Quế, Phụ.
+-                        </p>
+-                        <p>
+-                            Với hình dáng tương tự như hình người, Nhân Sâm được coi là linh dược giúp kéo dài tuổi thọ, bồi bổ lục phủ ngũ tạng, tăng cường hệ miễn dịch và phục hồi thể trạng suy nhược trầm trọng.
+-                        </p>
+-                    </div>
+-                    `,
+-                    `
+-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
+-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Thần Thảo Cương Mục</h3>
+-                        <p>
+-                            Nhân Sâm quy vào kinh Tỳ, Phế, Tâm. Vị ngọt đắng nhẹ, tính ôn. Tác dụng nổi bật nhất là <strong>Đại bổ nguyên khí</strong>, cố thoát chỉ hãn, ích trí an thần, sinh tân chỉ khát.
+-                        </p>
+-                        <div class="my-4 border border-slate-200 rounded-xl overflow-hidden cursor-zoom-in group shadow-sm bg-white" onclick="showToast('Ảnh sơ đồ cấu trúc Nhân Sâm độ phân giải cao.')">
+-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_3l1SCpwv_IidcRc2uGAYkCz7suGUX7KaLwuBgR8lWIit-KlxXlw2qIh8DVwmcWbtJlujAM2kMOq7CxNK9q_Dty2DuUiVVA2uCDwja4CzFmGMlk94SmtZPAsXC0f6atI_0JdwqMpy8XWqgtUD8TZIJ_dvLIstnoz9n760OO9LEZqaJNDa3xj3s4BibmbtNWN-NnbZLPIUn4IavJVUTQ-s8A5nNbhvpNCNJ_Gpu_4bKgGkZn867nHZsjL2DuMDuZCseuZwk83ytHg" class="w-full aspect-[21/9] object-cover group-hover:scale-102 transition-transform duration-300" alt="Nhân Sâm Anatomy"/>
+-                            <div class="bg-slate-50 p-2 text-[10px] text-slate-500 text-center font-medium border-t border-slate-200">
+-                                Chi tiết hình dáng củ Nhân Sâm 6 năm tuổi & các nhánh rễ.
+-                            </div>
+-                        </div>
+-                    </div>
+-                    `,
+-                    `
+-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
+-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Hoạt chất sinh học chính</h3>
+-                        <p>
+-                            Các saponin trong Nhân Sâm được gọi là các <strong>Ginsenoside</strong> (hơn 30 loại khác nhau). Trong đó, các nhóm Ro, Rb1, Rb2, Rc, Rd, Re, Rf, Rg1, Rg2... mang các đặc tính dược lý vô cùng đa dạng.
+-                        </p>
+-                        <p>
+-                            Ginsenoside có tác dụng kích thích hệ thần kinh trung ương ở liều thấp, làm tăng trí nhớ, cải thiện khả năng tập trung, chống căng thẳng thần kinh và cải thiện chức năng sinh lý.
+-                        </p>
+-                    </div>
+-                    `,
+-                    `
+-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
+-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Ứng dụng lâm sàng nâng cao</h3>
+-                        <p>
+-                            Nhân sâm được chỉ định điều trị trong các trường hợp:
+-                        </p>
+-                        <ul class="list-disc pl-6 space-y-2">
+-                            <li>Phế khí hư tổn, suyễn khái (khó thở, ho kéo dài).</li>
+-                            <li>Tỳ vị khí hư, kém ăn, mệt mỏi, tiêu chảy mạn tính.</li>
+-                            <li>Tâm thần bấ

@@ -5,13 +5,6 @@
     <meta content="width=410" name="viewport"/>
     <title>GEMS - Medical E-Reader App</title>
     
-    <!-- PWA Setup -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#ffffff">
-    <link rel="apple-touch-icon" href="assets/logo.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="GEMS">
     <!-- Tailwind CSS with Forms plugin -->
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     
@@ -36,8 +29,8 @@
                         "border-subtle": "#E5E7EB",
                         "highlight-cyan": "#E0F7FA",
                         "dark-charcoal": "#333333",
-                        "surface": "#ffffff",
-                        "surface-dim": "#f1f5f9",
+                        "surface": "#fbf9f8",
+                        "surface-dim": "#dcd9d9",
                         "on-surface": "#1b1c1c",
                         "on-surface-variant": "#414750",
                         "primary-container": "#003D66",
@@ -61,8 +54,8 @@
                         },
                         
                         // Mockups colors
-                        "surface-variant": "#f1f5f9",
-                        "surface-container-low": "#f8fafc",
+                        "surface-variant": "#e4e2e1",
+                        "surface-container-low": "#f6f3f2",
                         "primary-fixed": "#d2e4ff",
                         "on-tertiary-fixed-variant": "#733600",
                         "on-primary-fixed": "#001c37",
@@ -118,7 +111,7 @@
                         "gutter": "1rem"
                     },
                     fontFamily: {
-                        sans: ["-apple-system", "BlinkMacSystemFont", "SF Pro Display", "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif"],
+                        sans: ["Inter", "sans-serif"],
                         serif: ["Playfair Display", "serif"],
                         "headline-lg-mobile": ["Inter"],
                         "headline-lg": ["Inter"],
@@ -630,52 +623,27 @@
             box-shadow: 0 12px 32px rgba(186, 26, 26, 0.10), 0 2px 8px rgba(186, 26, 26, 0.06) !important;
         }
         .card-lift:active {
-            transform: translateY(0px) scale(0.96) !important;
-            transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+            transform: translateY(-1px) scale(0.985);
         }
 
-        /* Premium UI Upgrades: Ultra Glassmorphism, Hairline Borders & Soft Shadows */
+        /* Premium UI Upgrades: Glassmorphism, Hairline Borders & Soft Shadows */
         .glass-header {
-            background: rgba(255, 255, 255, 0.65) !important;
-            backdrop-filter: blur(24px) saturate(200%) !important;
-            -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
-            border-bottom: 0.5px solid rgba(226, 232, 240, 0.6) !important;
+            background: rgba(255, 255, 255, 0.82) !important;
+            backdrop-filter: blur(16px) saturate(180%) !important;
+            -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+            border-bottom: 0.5px solid rgba(226, 232, 240, 0.75) !important;
         }
         
         .glass-nav {
-            background: rgba(255, 255, 255, 0.7) !important;
-            backdrop-filter: blur(32px) saturate(220%) !important;
-            -webkit-backdrop-filter: blur(32px) saturate(220%) !important;
-            border-top: 0.5px solid rgba(226, 232, 240, 0.8) !important;
-            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.03) !important;
-        }
-        
-        /* Minimalist Bottom Nav: Icon only */
-        #app-bottom-nav .nav-label {
-            display: none !important;
-        }
-        #app-bottom-nav .material-symbols-outlined {
-            font-size: 26px !important;
-        }
-        #app-bottom-nav .nav-icon-wrapper {
-            width: 44px !important;
-            height: 44px !important;
-            margin-top: 4px;
-        }
-
-        .mesh-bg {
-            background-color: #ffffff !important;
-            background-image: 
-                radial-gradient(at 0% 0%, hsla(210, 100%, 97%, 1) 0px, transparent 60%),
-                radial-gradient(at 100% 0%, hsla(280, 100%, 98%, 1) 0px, transparent 60%),
-                radial-gradient(at 100% 100%, hsla(30, 100%, 97%, 1) 0px, transparent 60%),
-                radial-gradient(at 0% 100%, hsla(180, 100%, 97%, 1) 0px, transparent 60%) !important;
+            background: rgba(255, 255, 255, 0.85) !important;
+            backdrop-filter: blur(20px) saturate(190%) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(190%) !important;
+            border-top: 0.5px solid rgba(226, 232, 240, 0.75) !important;
         }
 
         .premium-card {
             background: #ffffff !important;
             border: 0.5px solid rgba(226, 232, 240, 0.9) !important;
-            border-radius: 24px !important; /* Apple Squircle emulation */
             box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.02), 0 2px 6px -1px rgba(0, 0, 0, 0.01) !important;
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.4s ease !important;
         }
@@ -686,68 +654,7 @@
             border-color: rgba(0, 90, 156, 0.3) !important;
         }
         .premium-card:active {
-            transform: translateY(0px) scale(0.96) !important;
-            transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
-        }
-
-        /* iOS Opacity Tap Effect for Icon Buttons */
-        header button:active, 
-        #app-bottom-nav button:active,
-        .ios-tap:active {
-            opacity: 0.4 !important;
-            transform: scale(0.96) !important;
-            transition: none !important;
-        }
-        
-        /* Minimalist Book Cards Layout: Apple Books Style */
-        .audio-card-item {
-            background-color: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-            padding: 0 !important;
-        }
-        
-        /* Hide ONLY ratings and meta, KEEP the author */
-        .card-lift.w-28 > .flex,
-        .audio-card-item > .flex.justify-between {
-            display: none !important;
-        }
-
-        /* Typography & Alignment (Left Align) */
-        .audio-card-item h4, .card-lift.w-28 h4 {
-            text-align: left !important;
-            font-size: 12px !important;
-            font-weight: 600 !important;
-            color: #0f172a !important; /* slate-900 */
-            margin-top: 8px !important;
-            padding: 0 2px !important;
-            line-height: 1.4 !important;
-            height: 34px !important; /* Fixes text cut off by overriding h-7 */
-            text-wrap: balance !important; /* Prevents awkward word wrapping */
-            word-break: normal !important;
-        }
-        
-        /* Hide Author again per user request */
-        .audio-card-item p, .card-lift.w-28 p {
-            display: none !important;
-        }
-
-        /* Physical Book Cover 3D Shadow */
-        .audio-card-item .aspect-\[2\/3\], .card-lift.w-28 .aspect-\[2\/3\] {
-            border-radius: 6px !important; /* Real books have sharp/small corners */
-            box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0,0,0,0.05) !important;
-            border: 1px solid rgba(0,0,0,0.04) !important;
-            position: relative;
-        }
-        
-        /* Inner lighting for glossy cover effect */
-        .audio-card-item .aspect-\[2\/3\]::after, .card-lift.w-28 .aspect-\[2\/3\]::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 6px;
-            box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.3), inset -1px -1px 2px rgba(0, 0, 0, 0.05);
-            pointer-events: none;
+            transform: translateY(-1px) scale(0.985);
         }
 
         /* Segment Control Slider Indicator */
@@ -766,46 +673,6 @@
             transform: translateX(0);
             opacity: 1;
             pointer-events: auto;
-        }
-
-        /* Mini Player Equalizer Animation */
-        @keyframes eq-play {
-            0%, 100% { height: 4px; }
-            50% { height: 16px; }
-        }
-        .animate-eq-1 { animation: eq-play 1s ease-in-out infinite; }
-        .animate-eq-2 { animation: eq-play 1s ease-in-out infinite 0.2s; }
-        .animate-eq-3 { animation: eq-play 1s ease-in-out infinite 0.4s; }
-        .animate-eq-4 { animation: eq-play 1s ease-in-out infinite 0.1s; }
-        .eq-paused .animate-eq-1,
-        .eq-paused .animate-eq-2,
-        .eq-paused .animate-eq-3,
-        .eq-paused .animate-eq-4 {
-            animation-play-state: paused;
-            height: 4px;
-        }
-
-        /* Floating Icons Animation */
-        @keyframes float-icon {
-            0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
-            20% { opacity: 1; transform: translateY(-5px) scale(1) rotate(10deg); }
-            80% { opacity: 0.8; }
-            100% { transform: translateY(-30px) scale(1.2) rotate(-15deg); opacity: 0; }
-        }
-        .floating-icon {
-            position: absolute;
-            font-size: 10px;
-            opacity: 0;
-            pointer-events: none;
-            color: #1e293b;
-        }
-        .animate-float-1 { animation: float-icon 2s ease-in infinite; left: 10%; bottom: 50%; }
-        .animate-float-2 { animation: float-icon 2.5s ease-in infinite 0.7s; right: 10%; bottom: 40%; }
-        .animate-float-3 { animation: float-icon 2.2s ease-in infinite 1.4s; left: 40%; bottom: 20%; }
-        
-        .eq-paused .floating-icon {
-            animation: none !important;
-            opacity: 0 !important;
         }
 
         /* Slide Up Fade and Underline Grow Keyframe Animations */
@@ -860,21 +727,9 @@
         /* Hide tap zones and side buttons in scroll mode */
         #flipbook-container.scroll-mode ~ #tap-zone-prev,
         #flipbook-container.scroll-mode ~ #tap-zone-next,
+        #flipbook-container.scroll-mode ~ #flip-prev-btn,
         #flipbook-container.scroll-mode ~ #flip-next-btn {
             display: none !important;
-        }
-        /* Splash Screen Animations */
-        @keyframes logoPremiumFade {
-            0% { transform: scale(1.08) translateY(10px); opacity: 0; }
-            100% { transform: scale(1) translateY(0); opacity: 1; }
-        }
-        .animate-logo-premium {
-            animation: logoPremiumFade 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-        }
-        .splash-ripple-out {
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.8s ease-in-out;
         }
     </style>
 </head>
@@ -913,26 +768,15 @@
         <!-- MAIN APP CONTAINER -->
         <div class="relative w-full h-full sm:pt-7 sm:rounded-[38px] bg-white text-on-surface overflow-hidden flex flex-col transition-all duration-300">
 
-            <!-- SPLASH SCREEN (Premium iOS Frosted Glass) -->
-            <div id="splash-screen" class="absolute inset-0 z-[9999] bg-white/60 backdrop-blur-[40px] flex items-center justify-center transition-all duration-[1000ms] ease-in-out">
-                
-                <!-- Ambient Glow Behind Logo -->
-                <div class="absolute w-64 h-64 bg-blue-400/20 rounded-full blur-[60px] animate-pulse"></div>
-
-                <div id="splash-logo" class="relative z-10 flex flex-col items-center animate-logo-premium opacity-0">
-                    <img src="assets/logo.png" alt="GEMS Logo" class="w-48 h-48 object-contain" />
-                </div>
-            </div>
-
         <!-- VIEW CONTAINER SCREEN -->
         <div class="flex-grow overflow-hidden relative bg-surface flex flex-col">
 
                     <!-- ============================================== -->
-                    <div id="view-home" class="view-panel flex-1 flex flex-col overflow-hidden mesh-bg">
+                    <div id="view-home" class="view-panel flex-1 flex flex-col overflow-hidden bg-surface">
                         <!-- Top AppBar -->
                         <header class="glass-header text-primary w-full top-0 sticky flex items-center justify-between px-margin-mobile py-3 z-50 shrink-0">
                             <div class="w-10"></div>
-                            <img src="assets/logo.png" alt="GEMS" class="h-7 w-auto object-contain mx-auto drop-shadow-sm" />
+                            <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center">GEMS</h1>
                             <div class="flex items-center w-10 justify-end">
                                 <button onclick="showToast('Chưa có thông báo lâm sàng mới.')" class="text-primary hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center relative">
                                     <span class="material-symbols-outlined text-xl" data-icon="notifications">notifications</span>
@@ -1180,11 +1024,11 @@
                     <!-- ============================================== -->
                     <!-- VIEW 2: THƯ VIỆN (Library Screen)              -->
                     <!-- ============================================== -->
-                    <div id="view-library" class="view-panel flex-1 flex flex-col overflow-hidden hidden mesh-bg">
+                    <div id="view-library" class="view-panel flex-1 flex flex-col overflow-hidden hidden bg-surface">
                         <!-- Top Nav -->
                         <header class="glass-header w-full top-0 sticky flex items-center justify-between px-margin-mobile py-3 z-40 shrink-0">
                             <div class="w-10"></div>
-                            <img id="library-header-title" src="assets/logo.png" alt="GEMS" class="h-7 w-auto object-contain mx-auto drop-shadow-sm" />
+                            <h1 id="library-header-title" class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center">GEMS</h1>
                             <div class="flex items-center w-10 justify-end">
                                 <button id="library-header-search" onclick="showToast('Chức năng tìm kiếm sách.')" class="text-primary hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
                                     <span class="material-symbols-outlined text-xl">search</span>
@@ -1310,37 +1154,80 @@
                             </section>
  
                             <!-- Section: Dành cho bạn -->
-                            <section class="px-4 mb-8">
-                                <div class="flex items-center justify-between mb-3">
-                                    <h3 class="text-sm font-bold text-slate-800 tracking-tight uppercase">DÀNH CHO BẠN</h3>
-                                    <button onclick="showToast('Xem tất cả sách Dành cho bạn')" class="text-slate-400 hover:text-blue-600 transition-colors flex items-center p-1">
-                                        <span class="material-symbols-outlined text-[16px]">arrow_forward_ios</span>
-                                    </button>
-                                </div>
-                                <div class="flex gap-4 overflow-x-auto custom-scrollbar pb-4 pr-4">
-                                    <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('thaoduoc')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="thaoduoc"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Cẩm nang Thảo dược</h4>
+                            <section class="px-4 mb-4">
+                                <h3 class="text-xs font-bold text-slate-800 uppercase tracking-widest mb-3">Dành cho bạn</h3>
+                                <div class="flex gap-3 overflow-x-auto custom-scrollbar pb-2">
+                                    <!-- Book 1 -->
+                                    <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('thaoduoc')">
+                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="thaoduoc"></div>
+                                        <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Cẩm nang Thảo dược</h4>
+                                        <p class="text-[10px] text-slate-500 mt-0.5 truncate">GS. TS. Nguyễn Văn Anh</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8
+                                            </span>
+                                            <span class="text-slate-500 font-medium">• 12.5k đọc</span>
+                                        </div>
                                     </div>
-                                    <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('trathaomoc')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="trathaomoc"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Trà Thảo Mộc</h4>
+                                    <!-- Book 2 -->
+                                    <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('trathaomoc')">
+                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="trathaomoc"></div>
+                                        <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Trà Thảo Mộc</h4>
+                                        <p class="text-[10px] text-slate-500 mt-0.5 truncate">Lê Minh</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.7
+                                            </span>
+                                            <span class="text-slate-500 font-medium">• 8.7k đọc</span>
+                                        </div>
                                     </div>
-                                    <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('thucduong')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="thucduong"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Thực dưỡng hiện đại</h4>
+                                    <!-- Book 3 -->
+                                    <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('thucduong')">
+                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="thucduong"></div>
+                                        <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Thực Dưỡng Toàn Diện</h4>
+                                        <p class="text-[10px] text-slate-500 mt-0.5 truncate">Trần Hòa</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.6
+                                            </span>
+                                            <span class="text-slate-500 font-medium">• 6.2k đọc</span>
+                                        </div>
                                     </div>
-                                    <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('co-the-nguoi')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="co-the-nguoi"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Cơ thể người</h4>
+                                    <!-- Book 4 -->
+                                    <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('co-the-nguoi')">
+                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="co-the-nguoi"></div>
+                                        <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Cơ thể người</h4>
+                                        <p class="text-[10px] text-slate-500 mt-0.5 truncate">PGS. TS. Lê Thu</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8
+                                            </span>
+                                            <span class="text-slate-500 font-medium">• 14.2k đọc</span>
+                                        </div>
                                     </div>
-                                    <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('thankinh')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="thankinh"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Thần kinh học cơ bản</h4>
+                                    <!-- Book 5 -->
+                                    <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('thankinh')">
+                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="thankinh"></div>
+                                        <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Thần kinh học cơ bản</h4>
+                                        <p class="text-[10px] text-slate-500 mt-0.5 truncate">GEMS Academic</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.9
+                                            </span>
+                                            <span class="text-slate-500 font-medium">• 9.8k đọc</span>
+                                        </div>
                                     </div>
-                                    <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('ditruyen')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="ditruyen"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Di truyền học y khoa</h4>
+                                    <!-- Book 6 -->
+                                    <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('ditruyen')">
+                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-lg shadow-sm border border-border-subtle overflow-hidden mb-1.5" data-book-id="ditruyen"></div>
+                                        <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Di truyền học y khoa</h4>
+                                        <p class="text-[10px] text-slate-500 mt-0.5 truncate">PGS. TS. Trần Hải</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8
+                                            </span>
+                                            <span class="text-slate-500 font-medium">• 11.3k đọc</span>
+                                        </div>
                                     </div>
                                 </div>
                             </section>
@@ -1349,137 +1236,304 @@
                             <div class="space-y-6">
                                 <!-- Section: Dược liệu học -->
                                 <section class="px-4">
-                                    <div class="flex items-center justify-between mb-3">
-                                        <h3 class="text-sm font-bold text-slate-800 tracking-tight uppercase">DƯỢC LIỆU HỌC</h3>
-                                        <button onclick="showToast('Xem tất cả sách Dược liệu học')" class="text-slate-400 hover:text-blue-600 transition-colors flex items-center p-1">
-                                            <span class="material-symbols-outlined text-[16px]">arrow_forward_ios</span>
-                                        </button>
+                                    <h3 class="text-xs font-bold text-slate-800 uppercase tracking-widest mb-3">Dược liệu học</h3>
+                                    <div class="flex gap-3 overflow-x-auto custom-scrollbar pb-2">
+                                        <!-- Book 1 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('thaoduoc')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="thaoduoc"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Cẩm nang Thảo dược</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">GS. TS. Nguyễn Văn Anh</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8
+                                            </span>
+                                            <span class="text-slate-500">• 12.5k đọc</span>
+                                        </div>
                                     </div>
-                                    <div class="flex gap-4 overflow-x-auto custom-scrollbar pb-4 pr-4">
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('nhansam')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="nhansam"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Nhân Sâm y học</h4>
+                                        <!-- Book 2 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('nhansam')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="nhansam"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Nhân Sâm y học</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">PGS. Lê Thị Hoa</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.9
+                                            </span>
+                                            <span class="text-slate-500">• 10.2k đọc</span>
+                                        </div>
                                     </div>
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('baoche')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="baoche"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Kỹ Thuật Bào Chế</h4>
+                                        <!-- Book 3 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('trathaomoc')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="trathaomoc"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Trà Thảo Mộc</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">Lê Minh</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.7
+                                            </span>
+                                            <span class="text-slate-500">• 8.2k đọc</span>
+                                        </div>
                                     </div>
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('namduocthanhieu')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="namduocthanhieu"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Nam Dược Thần Hiệu</h4>
+                                        <!-- Book 4 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('baoche')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="baoche"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Kỹ Thuật Bào Chế</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">GS. TS. Nguyễn Văn Anh</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8
+                                            </span>
+                                            <span class="text-slate-500">• 6.2k đọc</span>
+                                        </div>
                                     </div>
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('thaoduoc')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="thaoduoc"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Cẩm nang Thảo dược</h4>
+                                        <!-- Book 5 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('dongydieuphuong')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="dongydieuphuong"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Đông Y Diệu Phương</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">PGS. TS. Hoàng Tích Huyền</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8
+                                            </span>
+                                            <span class="text-slate-500">• 4.1k đọc</span>
+                                        </div>
                                     </div>
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('trathaomoc')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="trathaomoc"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Trà Thảo Mộc</h4>
+                                        <!-- Book 6 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('namduocthanhieu')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="namduocthanhieu"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Nam Dược Thần Hiệu</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">Tuệ Tĩnh</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.9
+                                            </span>
+                                            <span class="text-slate-500">• 15.6k đọc</span>
+                                        </div>
                                     </div>
                                     </div>
                                 </section>
 
-
                                 <!-- Section: Giải phẫu học -->
                                 <section class="px-4">
-                                    <div class="flex items-center justify-between mb-3">
-                                        <h3 class="text-sm font-bold text-slate-800 tracking-tight uppercase">GIẢI PHẪU HỌC</h3>
-                                        <button onclick="showToast('Xem tất cả sách Giải phẫu học')" class="text-slate-400 hover:text-blue-600 transition-colors flex items-center p-1">
-                                            <span class="material-symbols-outlined text-[16px]">arrow_forward_ios</span>
-                                        </button>
+                                    <h3 class="text-xs font-bold text-slate-800 uppercase tracking-widest mb-3">Giải phẫu học</h3>
+                                    <div class="flex gap-3 overflow-x-auto custom-scrollbar pb-2">
+                                        <!-- Book 1 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('giaiphau')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="giaiphau"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Giải phẫu đại cương</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">BS. Trần Minh Đức</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8
+                                            </span>
+                                            <span class="text-slate-500">• 8.5k đọc</span>
+                                        </div>
                                     </div>
-                                    <div class="flex gap-4 overflow-x-auto custom-scrollbar pb-4 pr-4">
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('giaiphau')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="giaiphau"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Giải phẫu đại cương</h4>
+                                        <!-- Book 2 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('cohoc')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="cohoc"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Cơ học vận động</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">TS. Phạm Quốc Hùng</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.7
+                                            </span>
+                                            <span class="text-slate-500">• 4.2k đọc</span>
+                                        </div>
                                     </div>
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('cohoc')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="cohoc"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Cơ học vận động</h4>
+                                        <!-- Book 3 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('co-the-nguoi')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="co-the-nguoi"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Cơ thể người</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">PGS. TS. Lê Thu</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8
+                                            </span>
+                                            <span class="text-slate-500">• 9.1k đọc</span>
+                                        </div>
                                     </div>
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('co-the-nguoi')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="co-the-nguoi"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Cơ thể người</h4>
+                                        <!-- Book 4 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('xuongkhop')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="xuongkhop"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Giải phẫu xương khớp</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">BS. Nguyễn Minh Tuấn</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.7
+                                            </span>
+                                            <span class="text-slate-500">• 3.1k đọc</span>
+                                        </div>
                                     </div>
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('xuongkhop')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="xuongkhop"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Giải phẫu xương khớp</h4>
+                                        <!-- Book 5 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('giaiphauthanhinh')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="giaiphauthanhinh"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">GP Hệ Thần Kinh</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">GS. Trịnh Bình</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.7
+                                            </span>
+                                            <span class="text-slate-500">• 5.2k đọc</span>
+                                        </div>
                                     </div>
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('giaiphauthanhinh')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="giaiphauthanhinh"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">GP Hệ Thần Kinh</h4>
-                                    </div>
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('atlasgiaiphau')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="atlasgiaiphau"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Atlas Giải phẫu</h4>
+                                        <!-- Book 6 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('atlasgiaiphau')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="atlasgiaiphau"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Atlas Giải Phẫu</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">BS. Nguyễn Quang Quyền</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.9
+                                            </span>
+                                            <span class="text-slate-500">• 21.4k đọc</span>
+                                        </div>
                                     </div>
                                     </div>
                                 </section>
 
                                 <!-- Section: Thần kinh học -->
                                 <section class="px-4">
-                                    <div class="flex items-center justify-between mb-3">
-                                        <h3 class="text-sm font-bold text-slate-800 tracking-tight uppercase">THẦN KINH HỌC</h3>
-                                        <button onclick="showToast('Xem tất cả sách Thần kinh học')" class="text-slate-400 hover:text-blue-600 transition-colors flex items-center p-1">
-                                            <span class="material-symbols-outlined text-[16px]">arrow_forward_ios</span>
-                                        </button>
+                                    <h3 class="text-xs font-bold text-slate-800 uppercase tracking-widest mb-3">Thần kinh học</h3>
+                                    <div class="flex gap-3 overflow-x-auto custom-scrollbar pb-2">
+                                        <!-- Book 1 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('thankinh')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="thankinh"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Thần kinh học cơ bản</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">GEMS Academic</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8
+                                            </span>
+                                            <span class="text-slate-500">• 8.9k đọc</span>
+                                        </div>
                                     </div>
-                                    <div class="flex gap-4 overflow-x-auto custom-scrollbar pb-4 pr-4">
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('thankinh')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="thankinh"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Thần kinh học cơ bản</h4>
+                                        <!-- Book 2 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('tamly')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="tamly"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Tâm lý học lâm sàng</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">ThS. Ngô Anh Tuấn</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.7
+                                            </span>
+                                            <span class="text-slate-500">• 3.8k đọc</span>
+                                        </div>
                                     </div>
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('tamly')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="tamly"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Tâm lý học lâm sàng</h4>
+                                        <!-- Book 3 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('sinhlythankinh')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="sinhlythankinh"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Sinh lý thần kinh</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">GS. Phạm Hoàng Nam</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8
+                                            </span>
+                                            <span class="text-slate-500">• 2.5k đọc</span>
+                                        </div>
                                     </div>
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('sinhlythankinh')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="sinhlythankinh"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Sinh lý thần kinh</h4>
+                                        <!-- Book 4 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('naobo')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="naobo"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Não bộ và Hành vi</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">TS. Đỗ Quyên</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.6
+                                            </span>
+                                            <span class="text-slate-500">• 1.8k đọc</span>
+                                        </div>
                                     </div>
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('naobo')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="naobo"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Não bộ và Hành vi</h4>
+                                        <!-- Book 5 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('benhthanhinh')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="benhthanhinh"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Bệnh học Thần kinh</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">PGS. TS. Nguyễn Chương</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8
+                                            </span>
+                                            <span class="text-slate-500">• 3.9k đọc</span>
+                                        </div>
                                     </div>
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('benhthanhinh')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="benhthanhinh"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Bệnh học Thần kinh</h4>
-                                    </div>
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('taibienmachmau')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="taibienmachmau"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Tai biến mạch não</h4>
+                                        <!-- Book 6 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('taibienmachmau')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="taibienmachmau"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Tai biến mạch não</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">GS. Lê Đức Hinh</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8
+                                            </span>
+                                            <span class="text-slate-500">• 6.7k đọc</span>
+                                        </div>
                                     </div>
                                     </div>
                                 </section>
 
                                 <!-- Section: Di truyền học -->
                                 <section class="px-4">
-                                    <div class="flex items-center justify-between mb-3">
-                                        <h3 class="text-sm font-bold text-slate-800 tracking-tight uppercase">DI TRUYỀN HỌC</h3>
-                                        <button onclick="showToast('Xem tất cả sách Di truyền học')" class="text-slate-400 hover:text-blue-600 transition-colors flex items-center p-1">
-                                            <span class="material-symbols-outlined text-[16px]">arrow_forward_ios</span>
-                                        </button>
+                                    <h3 class="text-xs font-bold text-slate-800 uppercase tracking-widest mb-3">Di truyền học</h3>
+                                    <div class="flex gap-3 overflow-x-auto custom-scrollbar pb-2">
+                                        <!-- Book 1 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('ditruyen')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="ditruyen"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Di truyền học y khoa</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">PGS. TS. Trần Hải</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8
+                                            </span>
+                                            <span class="text-slate-500">• 3.7k đọc</span>
+                                        </div>
                                     </div>
-                                    <div class="flex gap-4 overflow-x-auto custom-scrollbar pb-4 pr-4">
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('ditruyen')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="ditruyen"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Di truyền học y khoa</h4>
+                                        <!-- Book 2 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('genkhoa')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="genkhoa"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Gen và bệnh học</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">TS. Vũ Thị Lan</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.7
+                                            </span>
+                                            <span class="text-slate-500">• 2.6k đọc</span>
+                                        </div>
                                     </div>
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('genkhoa')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="genkhoa"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Gen và bệnh học</h4>
+                                        <!-- Book 3 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('ditruyenphantu')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="ditruyenphantu"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Di truyền phân tử</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">PGS. Lê Huy</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.7
+                                            </span>
+                                            <span class="text-slate-500">• 2.9k đọc</span>
+                                        </div>
                                     </div>
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('ditruyenphantu')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="ditruyenphantu"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Di truyền phân tử</h4>
+                                        <!-- Book 4 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('dotbiengene')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="dotbiengene"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Đột biến Gene lâm sàng</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">TS. Nguyễn Thị Trang</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.9
+                                            </span>
+                                            <span class="text-slate-500">• 3.5k đọc</span>
+                                        </div>
                                     </div>
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('dotbiengene')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="dotbiengene"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Đột biến Gene lâm sàng</h4>
-                                    </div>
-                                        <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('kythuatditruyen')">
-                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-slate-100/50 overflow-hidden" data-book-id="kythuatditruyen"></div>
-                                        <h4 class="text-xs font-bold text-slate-800 truncate px-0.5 mt-2.5">Kỹ thuật Di truyền</h4>
+                                        <!-- Book 6 -->
+                                        <div class="card-lift flex-shrink-0 w-28 cursor-pointer p-1 rounded-2xl transition-all duration-300" onclick="openBookDetails('kythuatditruyen')">
+                                            <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden mb-1.5" data-book-id="kythuatditruyen"></div>
+                                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 h-7 leading-snug">Kỹ thuật Di truyền</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5">PGS. TS. Đinh Đoàn Long</p>
+                                        <div class="flex items-center gap-1 mt-0.5 text-[10px] font-bold">
+                                            <span class="flex items-center gap-0.5 text-amber-500">
+                                                <span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8
+                                            </span>
+                                            <span class="text-slate-500">• 4.8k đọc</span>
+                                        </div>
                                     </div>
                                     </div>
                                 </section>
@@ -1566,87 +1620,85 @@
                                     </div>
 
                                     <!-- Mới nhất -->
-                                    <section class="px-margin-mobile">
-                                        <div class="flex items-center justify-between mb-3 mt-4">
-                                            <h3 class="text-sm font-bold text-slate-800">Mới nhất</h3>
-                                            <span class="material-symbols-outlined text-blue-500 text-sm font-bold">chevron_right</span>
-                                        </div>
-                                        <!-- Mới nhất: horizontal scroll ~3.5 cards visible -->
-                                        <div class="flex overflow-x-auto snap-x scrollbar-none gap-3 pb-2">
+                                    <div class="flex items-center justify-between px-margin-mobile mb-3 mt-4">
+                                        <h3 class="text-sm font-bold text-slate-800">Mới nhất</h3>
+                                        <span class="material-symbols-outlined text-blue-500 text-sm font-bold">chevron_right</span>
+                                    </div>
+                                    <!-- Mới nhất: horizontal scroll ~3.5 cards visible -->
+                                    <div class="flex overflow-x-auto snap-x scrollbar-none gap-3 px-4 pb-2 scroll-pl-4">
                                         <!-- Card 1 -->
-                                        <div onclick="openAudiobookPlayer('thankinh')" data-category="than-kinh" class="card-lift audio-card-item w-[32%] shrink-0 snap-start flex flex-col group cursor-pointer transition-all duration-300 bg-white border border-slate-100 p-2 rounded-2xl shadow-sm hover:shadow">
-                                            <div class="w-full aspect-[2/3] rounded-xl overflow-hidden shadow-sm mb-2 group-hover:scale-[1.02] transition-transform duration-300">
+                                        <div onclick="openAudiobookPlayer('thankinh')" data-category="than-kinh" class="card-lift audio-card-item w-[28%] shrink-0 snap-start flex flex-col group cursor-pointer transition-all duration-300">
+                                            <div class="w-full aspect-[2/3] rounded-xl overflow-hidden border border-slate-100 shadow-sm mb-1.5 group-hover:scale-[1.02] transition-transform duration-300">
                                                 <img src="/covers/thankinh.png" class="w-full h-full object-cover" alt="Thần kinh học cơ bản">
                                             </div>
-                                            <h4 class="text-[10px] font-black text-slate-800 leading-snug line-clamp-2 h-7 px-0.5">Thần kinh học cơ bản</h4>
-                                            <p class="text-[10px] text-slate-500 mt-0.5 truncate px-0.5">Dr. Michael Chen</p>
-                                            <div class="flex items-center justify-between text-[10px] text-slate-500 mt-1.5 font-semibold px-0.5">
+                                            <h4 class="text-[10px] font-black text-slate-800 leading-snug line-clamp-2 h-7">Thần kinh học cơ bản</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5 truncate">Dr. Michael Chen</p>
+                                            <div class="flex items-center justify-between text-[10px] text-slate-500 mt-1 font-semibold">
                                                 <div class="flex items-center gap-0.5 text-slate-500"><span class="material-symbols-outlined text-[10px]">schedule</span> 8h 15m</div>
                                                 <div class="flex items-center gap-0.5 text-yellow-500 font-bold"><span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.8</div>
                                             </div>
                                         </div>
                                         <!-- Card 2 -->
-                                        <div onclick="openAudiobookPlayer('lamsangnoikhoa')" data-category="tim-mach" class="card-lift audio-card-item w-[32%] shrink-0 snap-start flex flex-col group cursor-pointer transition-all duration-300 bg-white border border-slate-100 p-2 rounded-2xl shadow-sm hover:shadow">
-                                            <div class="w-full aspect-[2/3] rounded-xl overflow-hidden shadow-sm mb-2 group-hover:scale-[1.02] transition-transform duration-300">
+                                        <div onclick="openAudiobookPlayer('lamsangnoikhoa')" data-category="tim-mach" class="card-lift audio-card-item w-[28%] shrink-0 snap-start flex flex-col group cursor-pointer transition-all duration-300">
+                                            <div class="w-full aspect-[2/3] rounded-xl overflow-hidden border border-slate-100 shadow-sm mb-1.5 group-hover:scale-[1.02] transition-transform duration-300">
                                                 <img src="/covers/lamsangnoikhoa.png" class="w-full h-full object-cover" alt="Lâm sàng Nội khoa">
                                             </div>
-                                            <h4 class="text-[10px] font-black text-slate-800 leading-snug line-clamp-2 h-7 px-0.5">Lâm sàng Nội khoa</h4>
-                                            <p class="text-[10px] text-slate-500 mt-0.5 truncate px-0.5">Dr. Elena Rostova</p>
-                                            <div class="flex items-center justify-between text-[10px] text-slate-500 mt-1.5 font-semibold px-0.5">
+                                            <h4 class="text-[10px] font-black text-slate-800 leading-snug line-clamp-2 h-7">Lâm sàng Nội khoa</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5 truncate">Dr. Elena Rostova</p>
+                                            <div class="flex items-center justify-between text-[10px] text-slate-500 mt-1 font-semibold">
                                                 <div class="flex items-center gap-0.5 text-slate-500"><span class="material-symbols-outlined text-[10px]">schedule</span> 11h 45m</div>
                                                 <div class="flex items-center gap-0.5 text-yellow-500 font-bold"><span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.9</div>
                                             </div>
                                         </div>
                                         <!-- Card 3 -->
-                                        <div onclick="openAudiobookPlayer('capnhatyvan')" data-category="all" class="card-lift audio-card-item w-[32%] shrink-0 snap-start flex flex-col group cursor-pointer transition-all duration-300 bg-white border border-slate-100 p-2 rounded-2xl shadow-sm hover:shadow">
-                                            <div class="w-full aspect-[2/3] rounded-xl overflow-hidden shadow-sm mb-2 group-hover:scale-[1.02] transition-transform duration-300">
+                                        <div onclick="openAudiobookPlayer('capnhatyvan')" data-category="all" class="card-lift audio-card-item w-[28%] shrink-0 snap-start flex flex-col group cursor-pointer transition-all duration-300">
+                                            <div class="w-full aspect-[2/3] rounded-xl overflow-hidden border border-slate-100 shadow-sm mb-1.5 group-hover:scale-[1.02] transition-transform duration-300">
                                                 <img src="/covers/capnhatyvan.png" class="w-full h-full object-cover" alt="Cập nhật Y văn">
                                             </div>
-                                            <h4 class="text-[10px] font-black text-slate-800 leading-snug line-clamp-2 h-7 px-0.5">Cập nhật Y văn 2024</h4>
-                                            <p class="text-[10px] text-slate-500 mt-0.5 truncate px-0.5">Dr. Robert H.</p>
-                                            <div class="flex items-center justify-between text-[10px] text-slate-500 mt-1.5 font-semibold px-0.5">
+                                            <h4 class="text-[10px] font-black text-slate-800 leading-snug line-clamp-2 h-7">Cập nhật Y văn 2024</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5 truncate">Dr. Robert H.</p>
+                                            <div class="flex items-center justify-between text-[10px] text-slate-500 mt-1 font-semibold">
                                                 <div class="flex items-center gap-0.5 text-slate-500"><span class="material-symbols-outlined text-[10px]">schedule</span> 9h 20m</div>
                                                 <div class="flex items-center gap-0.5 text-yellow-500 font-bold"><span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.7</div>
                                             </div>
                                         </div>
                                         <!-- Card 4 -->
-                                        <div onclick="openAudiobookPlayer('ditruyen')" data-category="than-kinh" class="card-lift audio-card-item w-[32%] shrink-0 snap-start flex flex-col group cursor-pointer transition-all duration-300 bg-white border border-slate-100 p-2 rounded-2xl shadow-sm hover:shadow">
-                                            <div class="w-full aspect-[2/3] rounded-xl overflow-hidden shadow-sm mb-2 group-hover:scale-[1.02] transition-transform duration-300">
+                                        <div onclick="openAudiobookPlayer('ditruyen')" data-category="than-kinh" class="card-lift audio-card-item w-[28%] shrink-0 snap-start flex flex-col group cursor-pointer transition-all duration-300">
+                                            <div class="w-full aspect-[2/3] rounded-xl overflow-hidden border border-slate-100 shadow-sm mb-1.5 group-hover:scale-[1.02] transition-transform duration-300">
                                                 <img src="/covers/ditruyen.png" class="w-full h-full object-cover" alt="Y học Di truyền">
                                             </div>
-                                            <h4 class="text-[10px] font-black text-slate-800 leading-snug line-clamp-2 h-7 px-0.5">Y học Di truyền &amp; Cá thể hóa</h4>
-                                            <p class="text-[10px] text-slate-500 mt-0.5 truncate px-0.5">PGS. TS. Lê Thu</p>
-                                            <div class="flex items-center justify-between text-[10px] text-slate-500 mt-1.5 font-semibold px-0.5">
+                                            <h4 class="text-[10px] font-black text-slate-800 leading-snug line-clamp-2 h-7">Y học Di truyền &amp; Cá thể hóa</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5 truncate">PGS. TS. Lê Thu</p>
+                                            <div class="flex items-center justify-between text-[10px] text-slate-500 mt-1 font-semibold">
                                                 <div class="flex items-center gap-0.5 text-slate-500"><span class="material-symbols-outlined text-[10px]">schedule</span> 13h 00m</div>
                                                 <div class="flex items-center gap-0.5 text-yellow-500 font-bold"><span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.6</div>
                                             </div>
                                         </div>
                                         <!-- Card 5 -->
-                                        <div onclick="openAudiobookPlayer('baoche')" data-category="all" class="card-lift audio-card-item w-[32%] shrink-0 snap-start flex flex-col group cursor-pointer transition-all duration-300 bg-white border border-slate-100 p-2 rounded-2xl shadow-sm hover:shadow">
-                                            <div class="w-full aspect-[2/3] rounded-xl overflow-hidden shadow-sm mb-2 group-hover:scale-[1.02] transition-transform duration-300">
+                                        <div onclick="openAudiobookPlayer('baoche')" data-category="all" class="card-lift audio-card-item w-[28%] shrink-0 snap-start flex flex-col group cursor-pointer transition-all duration-300">
+                                            <div class="w-full aspect-[2/3] rounded-xl overflow-hidden border border-slate-100 shadow-sm mb-1.5 group-hover:scale-[1.02] transition-transform duration-300">
                                                 <img src="/covers/baoche.png" class="w-full h-full object-cover" alt="Bào chế Dược">
                                             </div>
-                                            <h4 class="text-[10px] font-black text-slate-800 leading-snug line-clamp-2 h-7 px-0.5">Bào chế Dược phẩm Hiện đại</h4>
-                                            <p class="text-[10px] text-slate-500 mt-0.5 truncate px-0.5">TS. Phạm Thanh Hà</p>
-                                            <div class="flex items-center justify-between text-[10px] text-slate-500 mt-1.5 font-semibold px-0.5">
+                                            <h4 class="text-[10px] font-black text-slate-800 leading-snug line-clamp-2 h-7">Bào chế Dược phẩm Hiện đại</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5 truncate">TS. Phạm Thanh Hà</p>
+                                            <div class="flex items-center justify-between text-[10px] text-slate-500 mt-1 font-semibold">
                                                 <div class="flex items-center gap-0.5 text-slate-500"><span class="material-symbols-outlined text-[10px]">schedule</span> 7h 30m</div>
                                                 <div class="flex items-center gap-0.5 text-yellow-500 font-bold"><span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.5</div>
                                             </div>
                                         </div>
                                         <!-- Card 6 -->
-                                        <div onclick="openAudiobookPlayer('nhansam')" data-category="all" class="card-lift audio-card-item w-[32%] shrink-0 snap-start flex flex-col group cursor-pointer transition-all duration-300 bg-white border border-slate-100 p-2 rounded-2xl shadow-sm hover:shadow">
-                                            <div class="w-full aspect-[2/3] rounded-xl overflow-hidden shadow-sm mb-2 group-hover:scale-[1.02] transition-transform duration-300">
+                                        <div onclick="openAudiobookPlayer('nhansam')" data-category="all" class="card-lift audio-card-item w-[28%] shrink-0 snap-start flex flex-col group cursor-pointer transition-all duration-300">
+                                            <div class="w-full aspect-[2/3] rounded-xl overflow-hidden border border-slate-100 shadow-sm mb-1.5 group-hover:scale-[1.02] transition-transform duration-300">
                                                 <img src="/covers/nhansam.png" class="w-full h-full object-cover" alt="Nhân Sâm">
                                             </div>
-                                            <h4 class="text-[10px] font-black text-slate-800 leading-snug line-clamp-2 h-7 px-0.5">Nhân Sâm: Y học &amp; ứng dụng</h4>
-                                            <p class="text-[10px] text-slate-500 mt-0.5 truncate px-0.5">GS. Lê Văn Minh</p>
-                                            <div class="flex items-center justify-between text-[10px] text-slate-500 mt-1.5 font-semibold px-0.5">
+                                            <h4 class="text-[10px] font-black text-slate-800 leading-snug line-clamp-2 h-7">Nhân Sâm: Y học &amp; ứng dụng</h4>
+                                            <p class="text-[10px] text-slate-500 mt-0.5 truncate">GS. Lê Văn Minh</p>
+                                            <div class="flex items-center justify-between text-[10px] text-slate-500 mt-1 font-semibold">
                                                 <div class="flex items-center gap-0.5 text-slate-500"><span class="material-symbols-outlined text-[10px]">schedule</span> 6h 45m</div>
                                                 <div class="flex items-center gap-0.5 text-yellow-500 font-bold"><span class="material-symbols-outlined text-[10px] filled-icon">star</span> 4.9</div>
                                             </div>
                                         </div>
-                                        </div>
-                                    </section>
+                                    </div>
 
                                     <!-- Podcast Y khoa -->
                                     <div class="flex items-center justify-between px-margin-mobile mb-3 mt-5">
@@ -1816,7 +1868,7 @@
 
                     <!-- VIEW: TIN TỨC & BLOG ĐẦY ĐỦ (Full Blog View) -->
                     <!-- ============================================== -->
-                    <div id="view-news-blog" class="view-panel flex-1 flex flex-col overflow-hidden hidden mesh-bg">
+                    <div id="view-news-blog" class="view-panel flex-1 flex flex-col overflow-hidden hidden bg-surface">
                         <!-- Top Header -->
                         <header class="bg-surface/80 backdrop-blur-md w-full top-0 sticky border-b border-slate-100 flex items-center justify-between px-margin-mobile py-3 z-40 shrink-0">
                             <div class="w-10">
@@ -1824,7 +1876,7 @@
                                     <span class="material-symbols-outlined text-xl">arrow_back</span>
                                 </button>
                             </div>
-                            <h1 class="font-sans text-xl font-black tracking-tight text-slate-900 mx-auto text-center truncate">Tin tức &amp; Blog</h1>
+                            <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center truncate">Tin tức &amp; Blog</h1>
                             <div class="flex items-center w-10 justify-end">
                                 <button onclick="showToast('Chức năng tìm kiếm bài viết.')" class="text-slate-600 hover:bg-slate-100 p-2 rounded-full flex items-center justify-center">
                                     <span class="material-symbols-outlined text-xl">search</span>
@@ -1937,7 +1989,7 @@
                                     <span class="material-symbols-outlined text-xl">arrow_back</span>
                                 </button>
                             </div>
-                            <img src="assets/logo.png" alt="GEMS" class="h-7 w-auto object-contain mx-auto drop-shadow-sm" />
+                            <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center">GEMS</h1>
                             <div class="flex items-center w-10 justify-end">
                                 <button onclick="showToast('Chức năng tìm kiếm.')" class="text-primary hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
                                     <span class="material-symbols-outlined text-xl">search</span>
@@ -2040,11 +2092,11 @@
                     <!-- ============================================== -->
                     <!-- VIEW 3: HỒ SƠ CÁ NHÂN (User Profile Screen)   -->
                     <!-- ============================================== -->
-                    <div id="view-profile" class="view-panel flex-1 flex flex-col overflow-hidden hidden mesh-bg">
+                    <div id="view-profile" class="view-panel flex-1 flex flex-col overflow-hidden hidden bg-surface">
                         <!-- Top Header -->
                         <header class="bg-surface/80 backdrop-blur-md w-full top-0 sticky border-b border-slate-100 flex items-center justify-between px-margin-mobile py-3 z-40 shrink-0">
                             <div class="w-10"></div>
-                            <img src="assets/logo.png" alt="GEMS" class="h-7 w-auto object-contain mx-auto drop-shadow-sm" />
+                            <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center">GEMS</h1>
                             <div class="flex items-center w-10 justify-end">
                                 <button onclick="showToast('Chức năng tìm kiếm cá nhân.')" class="text-on-surface-variant hover:bg-slate-100 transition-colors active:scale-95 duration-100 p-2 rounded-full flex items-center justify-center">
                                     <span class="material-symbols-outlined text-xl">search</span>
@@ -2166,7 +2218,7 @@
                                     <span class="material-symbols-outlined text-xl">arrow_back</span>
                                 </button>
                             </div>
-                            <h1 class="font-sans text-xl font-black tracking-tight text-slate-900 mx-auto text-center truncate max-w-[200px]">Chi tiết sách</h1>
+                            <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center truncate max-w-[200px]">Chi tiết sách</h1>
                             <div class="flex items-center w-10 justify-end">
                                 <button onclick="showToast('Đã sao chép liên kết chia sẻ.')" aria-label="Share" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
                                     <span class="material-symbols-outlined text-xl">share</span>
@@ -2340,7 +2392,7 @@
                                     <span class="material-symbols-outlined text-xl" data-icon="arrow_back">arrow_back</span>
                                 </button>
                             </div>
-                            <h1 class="font-sans text-xl font-black tracking-tight text-slate-900 mx-auto text-center truncate">Hồ sơ Tác giả</h1>
+                            <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center truncate">Hồ sơ Tác giả</h1>
                             <div class="flex items-center w-10 justify-end">
                                 <button onclick="showToast('Đã chia sẻ thông tin tác giả.')" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
                                     <span class="material-symbols-outlined text-xl" data-icon="share">share</span>
@@ -2810,7 +2862,7 @@
                                     <span class="material-symbols-outlined text-xl">arrow_back</span>
                                 </button>
                             </div>
-                            <h1 class="font-sans text-xl font-black tracking-tight text-slate-900 mx-auto text-center truncate">Từ điển Y khoa</h1>
+                            <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center truncate">Từ điển Y khoa</h1>
                             <div class="w-10"></div>
                         </header>
 
@@ -2931,7 +2983,7 @@
                                         <span class="material-symbols-outlined text-xl">arrow_back</span>
                                     </button>
                                 </div>
-                                <h1 class="font-sans text-xl font-black tracking-tight text-slate-900 mx-auto text-center truncate">Chi tiết thuật ngữ</h1>
+                                <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center truncate">Chi tiết thuật ngữ</h1>
                                 <div class="flex items-center w-10 justify-end">
                                     <button onclick="showToast('Đang phát âm...')" class="text-blue-600 hover:bg-slate-100 transition-colors p-2 rounded-full active:scale-95 flex items-center justify-center">
                                         <span class="material-symbols-outlined text-xl">volume_up</span>
@@ -3023,7 +3075,7 @@
                                     <span class="material-symbols-outlined text-xl">arrow_back</span>
                                 </button>
                             </div>
-                            <h1 class="font-sans text-xl font-black tracking-tight text-slate-900 mx-auto text-center truncate">Thói quen đọc</h1>
+                            <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center truncate">Thói quen đọc</h1>
                             <div class="w-10"></div>
                         </header>
 
@@ -3312,7 +3364,7 @@
                                     <span class="material-symbols-outlined text-xl">arrow_back</span>
                                 </button>
                             </div>
-                            <h1 class="font-sans text-xl font-black tracking-tight text-slate-900 mx-auto text-center truncate">Trải nghiệm Kiến thức</h1>
+                            <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center truncate">Trải nghiệm Kiến thức</h1>
                             <div class="w-10"></div>
                         </header>
 
@@ -3419,7 +3471,7 @@
                                     <span class="material-symbols-outlined text-xl">arrow_back</span>
                                 </button>
                             </div>
-                            <h1 class="font-sans text-xl font-black tracking-tight text-slate-900 mx-auto text-center truncate">Chi tiết kiến thức</h1>
+                            <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center truncate">Chi tiết kiến thức</h1>
                             <div class="flex items-center w-10 justify-end">
                                 <button onclick="showToast('Thêm tùy chọn...')" class="text-slate-600 hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
                                     <span class="material-symbols-outlined text-xl">more_vert</span>
@@ -3495,7 +3547,7 @@
                                     <span class="material-symbols-outlined text-xl">arrow_back</span>
                                 </button>
                             </div>
-                            <h1 class="font-sans text-xl font-black tracking-tight text-slate-900 mx-auto text-center truncate">Kiểm tra kiến thức</h1>
+                            <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center truncate">Kiểm tra kiến thức</h1>
                             <div class="w-10"></div>
                         </header>
 
@@ -3557,7 +3609,7 @@
                                     <span class="material-symbols-outlined text-xl">arrow_back</span>
                                 </button>
                             </div>
-                            <h1 id="profile-sublist-title" class="font-sans text-xl font-black tracking-tight text-slate-900 mx-auto text-center truncate">Danh sách</h1>
+                            <h1 id="profile-sublist-title" class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center truncate">Danh sách</h1>
                             <div class="w-10"></div>
                         </header>
                         
@@ -3578,7 +3630,7 @@
                                     <span class="material-symbols-outlined text-xl">expand_more</span>
                                 </button>
                             </div>
-                            <h1 class="font-sans text-xl font-black tracking-tight text-slate-900 mx-auto text-center truncate">Đang phát</h1>
+                            <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center truncate">Đang phát</h1>
                             <div class="flex items-center w-10 justify-end">
                                 <button onclick="showToast('Thêm tùy chọn sách nói.')" aria-label="More options" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
                                     <span class="material-symbols-outlined text-xl">more_vert</span>
@@ -3721,42 +3773,6 @@
                         </div>
                     </div>
 
-                </div>
-
-                <!-- Global Mini Audio Player -->
-                <div id="global-mini-player" class="absolute bottom-[80px] sm:bottom-[104px] left-1/2 -translate-x-1/2 z-[190] bg-white rounded-full shadow-[0_12px_40px_rgba(0,0,0,0.12)] border border-slate-200/80 p-1.5 flex items-center gap-1 hidden transition-all duration-300 translate-y-4 opacity-0 scale-95 cursor-pointer hover:shadow-[0_16px_50px_rgba(0,0,0,0.16)]" onclick="openAudiobookPlayer()">
-                    <!-- Floating Close Button on Corner -->
-                    <button onclick="event.stopPropagation(); closeMiniPlayer()" class="absolute -top-1.5 -right-1.5 w-[22px] h-[22px] rounded-full flex items-center justify-center bg-white shadow-md border border-slate-200 text-slate-400 hover:text-red-500 hover:bg-red-50 active:scale-95 transition-all z-10">
-                        <span class="material-symbols-outlined text-[12px] font-bold">close</span>
-                    </button>
-
-                    <!-- Cover & Equalizer -->
-                    <div class="relative w-9 h-9 shrink-0 rounded-full shadow-inner bg-slate-200">
-                        <div id="mini-player-cover" class="w-full h-full rounded-full overflow-hidden"></div>
-                        <!-- Equalizer Animation Overlay -->
-                        <div class="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center gap-[2px] overflow-hidden">
-                            <div class="w-[2px] bg-white rounded-full animate-eq-1"></div>
-                            <div class="w-[2px] bg-white rounded-full animate-eq-2"></div>
-                            <div class="w-[2px] bg-white rounded-full animate-eq-3"></div>
-                            <div class="w-[2px] bg-white rounded-full animate-eq-4"></div>
-                        </div>
-                        <!-- Floating Icons (Emitter) -->
-                        <span class="floating-icon animate-float-1">♪</span>
-                        <span class="floating-icon animate-float-2">✦</span>
-                        <span class="floating-icon animate-float-3">♫</span>
-                    </div>
-                    <!-- Controls -->
-                    <div class="flex items-center gap-0.5 px-1 pr-1.5">
-                        <button onclick="event.stopPropagation(); skipAudioTime(-15)" class="w-8 h-8 rounded-full flex items-center justify-center text-slate-600 hover:bg-slate-100 hover:text-slate-900 active:scale-95 transition-all">
-                            <span class="material-symbols-outlined text-[18px]">replay_10</span>
-                        </button>
-                        <button onclick="event.stopPropagation(); toggleMiniPlayerPlayback()" class="w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 text-slate-800 hover:bg-slate-200 active:scale-95 transition-all">
-                            <span id="mini-player-play-icon" class="material-symbols-outlined text-[20px] filled-icon">pause</span>
-                        </button>
-                        <button onclick="event.stopPropagation(); skipAudioTime(15)" class="w-8 h-8 rounded-full flex items-center justify-center text-slate-600 hover:bg-slate-100 hover:text-slate-900 active:scale-95 transition-all">
-                            <span class="material-symbols-outlined text-[18px]">forward_10</span>
-                        </button>
-                    </div>
                 </div>
 
                 <!-- Bottom System Navigation Bar -->
@@ -3939,7 +3955,7 @@
                                     <span class="material-symbols-outlined text-xl">arrow_back</span>
                                 </button>
                             </div>
-                            <img src="assets/logo.png" alt="GEMS" class="h-7 w-auto object-contain mx-auto drop-shadow-sm" />
+                            <h1 class="font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center truncate">GEMS</h1>
                             <div class="flex items-center w-10 justify-end">
                                 <button onclick="showToast('Tìm kiếm bài thảo luận')" aria-label="Search" class="text-slate-700 hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
                                     <span class="material-symbols-outlined text-xl">search</span>
@@ -7043,12 +7059,6 @@
             if (!document.getElementById('view-reader').classList.contains('hidden')) {
                 closeEreaderScreen();
             }
-            
-            // Hide mini player if it was open
-            const miniPlayer = document.getElementById('global-mini-player');
-            if (miniPlayer) {
-                miniPlayer.classList.add('hidden', 'translate-y-4', 'opacity-0', 'scale-95');
-            }
             if (bookId) {
                 appState.currentBookId = bookId;
             }
@@ -7237,40 +7247,12 @@
             // Close chapters sheet if open
             document.getElementById('audio-chapters-sheet').classList.add('translate-y-full');
             document.getElementById('audio-chapters-sheet').classList.add('hidden');
-            
-            // Check if there is an active audiobook, show mini player instead of stopping
-            if (audiobookState.duration > 0) {
-                const miniPlayer = document.getElementById('global-mini-player');
-                if (miniPlayer) {
-                    miniPlayer.classList.remove('hidden');
-                    // setTimeout for transition
-                    setTimeout(() => {
-                        miniPlayer.classList.remove('translate-y-4', 'opacity-0', 'scale-95');
-                    }, 10);
-                }
-                updateAudioPlayerUI();
-            }
-        }
-
-        function toggleMiniPlayerPlayback() {
-            toggleAudioPlayback();
-        }
-
-        function closeMiniPlayer() {
+            // Stop ticker if playing when collapsing
             if (audiobookState.isPlaying) {
                 stopAudioTicker();
                 audiobookState.isPlaying = false;
+                updateAudioPlayerUI();
             }
-            audiobookState.currentTime = 0;
-            audiobookState.duration = 0;
-            const miniPlayer = document.getElementById('global-mini-player');
-            if (miniPlayer) {
-                miniPlayer.classList.add('translate-y-4', 'opacity-0', 'scale-95');
-                setTimeout(() => {
-                    miniPlayer.classList.add('hidden');
-                }, 300);
-            }
-            updateAudioPlayerUI();
         }
 
         function updateAudioPlayerUI() {
@@ -7308,29 +7290,6 @@
 
             // Re-render the chapter list in real-time to update states
             renderAudioChapters();
-
-            // Update Mini Player UI
-            const miniPlayer = document.getElementById('global-mini-player');
-            if (miniPlayer && !miniPlayer.classList.contains('hidden')) {
-                const miniTitle = document.getElementById('mini-player-title');
-                const miniAuthor = document.getElementById('mini-player-author');
-                const miniPlayIcon = document.getElementById('mini-player-play-icon');
-                const miniCover = document.getElementById('mini-player-cover');
-                const activeBookId = appState.currentBookId || 'thaoduoc';
-                const book = appState.bookData[activeBookId];
-                
-                if (currentChapter && miniTitle) miniTitle.innerText = currentChapter.title;
-                if (book && miniAuthor) miniAuthor.innerText = book.title;
-                if (miniCover) miniCover.innerHTML = `<img src="${getBookCoverURL(activeBookId)}" class="w-full h-full object-cover">`;
-
-                if (audiobookState.isPlaying) {
-                    miniPlayIcon.innerText = 'pause';
-                    miniPlayer.classList.remove('eq-paused');
-                } else {
-                    miniPlayIcon.innerText = 'play_arrow';
-                    miniPlayer.classList.add('eq-paused');
-                }
-            }
         }
 
         function toggleAudioPlayback() {
@@ -8438,7 +8397,10 @@
                 tabEbook.className = "w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-blue-600 z-10";
                 tabAudio.className = "w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700 z-10";
                 tabGroup.className = "w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700 z-10";
-
+                if (titleEl) {
+                    titleEl.innerText = "GEMS";
+                    titleEl.className = "font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center";
+                }
                 if (searchBtn) searchBtn.classList.remove('hidden');
                 if (filterBtn) filterBtn.classList.remove('hidden');
             } else if (tab === 'audiobook') {
@@ -8447,7 +8409,10 @@
                 tabEbook.className = "w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700 z-10";
                 tabAudio.className = "w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-blue-600 z-10";
                 tabGroup.className = "w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700 z-10";
-
+                if (titleEl) {
+                    titleEl.innerText = "GEMS";
+                    titleEl.className = "font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center";
+                }
                 if (searchBtn) searchBtn.classList.remove('hidden');
                 if (filterBtn) filterBtn.classList.add('hidden');
             } else if (tab === 'group') {
@@ -8456,7 +8421,10 @@
                 tabEbook.className = "w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700 z-10";
                 tabAudio.className = "w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-slate-500 hover:text-slate-700 z-10";
                 tabGroup.className = "w-1/3 py-2 text-center text-xs font-bold rounded-xl cursor-pointer transition-all duration-300 text-blue-600 z-10";
-
+                if (titleEl) {
+                    titleEl.innerText = "GEMS";
+                    titleEl.className = "font-sans text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent mx-auto text-center";
+                }
                 if (searchBtn) searchBtn.classList.remove('hidden');
                 if (filterBtn) filterBtn.classList.add('hidden');
             }
@@ -8767,42 +8735,6 @@
                     if (typeMatch && searchMatch) groupVisible = true;
                 });
                 group.style.display = groupVisible ? '' : 'none';
-            });
-        }
-
-        // Splash Screen Logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const splash = document.getElementById('splash-screen');
-            const ripple = document.getElementById('splash-ripple-bg');
-            const logo = document.getElementById('splash-logo');
-            
-            // Wait 1.5s for the user to see the logo
-            setTimeout(() => {
-                // Fade out the logo slightly
-                logo.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                logo.style.transform = 'scale(0.95)';
-                logo.style.opacity = '0';
-                
-                // Fade out the entire splash screen
-                setTimeout(() => {
-                    splash.style.opacity = '0';
-                    splash.style.pointerEvents = 'none';
-                    
-                    // Remove from DOM
-                    setTimeout(() => {
-                        splash.style.display = 'none';
-                    }, 800);
-                }, 400);
-                
-            }, 1800);
-        });
-
-        // Register Service Worker for PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => console.log('PWA ServiceWorker registered'))
-                    .catch(error => console.log('PWA ServiceWorker registration failed:', error));
             });
         }
     </script>

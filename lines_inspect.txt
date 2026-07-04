@@ -1,0 +1,100 @@
+4250:                             Đồng thời, hoạt chất saponin còn có tác dụng bảo vệ cơ tim, giãn mạch và chống ứ huyết — tạo nên cơ chế tác động hai chiều độc đáo: vừa <strong>chỉ huyết</strong> (cầm máu) vừa <strong>hoạt huyết</strong> (thông máu).
+4251:                         </p>
+4252:                         <blockquote class="border-l-4 border-green-700 pl-4 italic text-gray-600 my-4">
+4253:                             "Tam Thất là vị thuốc có thể cầm máu mà không gây ứ huyết, hoạt huyết mà không gây xuất huyết."
+4254:                             <br/><span class="text-xs not-italic text-gray-400">— Bản Thảo Cương Mục, Lý Thời Trân</span>
+4255:                         </blockquote>
+4256:                     </div>
+4257:                     `,
+4258:                     `
+4259:                     <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
+4260:                         <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Ứng dụng Lâm sàng</h3>
+4261:                         <p>
+4262:                             Trong thực hành y học hiện đại, Tam Thất được sử dụng rộng rãi trong các bài thuốc điều trị:
+4263:                         </p>
+4264:                         <ul class="list-disc pl-6 space-y-2">
+4265:                             <li><strong>Xuất huyết:</strong> Cầm máu trong chấn thương, xuất huyết tiêu hóa</li>
+4266:                             <li><strong>Bệnh tim mạch:</strong> Hỗ trợ điều trị thiếu máu cơ tim, xơ vữa động mạch</li>
+4267:                             <li><strong>Viêm nhiễm:</strong> Kháng viêm, giảm sưng trong các tổn thương mô mềm</li>
+4268:                             <li><strong>Bồi bổ sức khỏe:</strong> Tăng cường hệ miễn dịch, chống lão hóa</li>
+4269:                         </ul>
+4270:                         <div class="bg-green-50 border border-green-200 rounded-xl p-4 mt-4">
+4271:                             <h4 class="font-bold text-green-800 text-sm flex items-center gap-2 mb-2">
+4272:                                 <span class="material-symbols-outlined text-sm">summarize</span> Tóm tắt chương
+4273:                             </h4>
+4274:                             <p class="text-sm text-green-700">
+4275:                                 Tam Thất là dược liệu quý với cơ chế tác động hai chiều "chỉ huyết — hoạt huyết" nhờ saponin nhóm Rb. Lật trang tiếp để kiểm tra kiến thức.
+4276:                             </p>
+4277:                         </div>
+4278:                     </div>
+4279:                     `
+4280:                 ]
+4281:             },
+4282:             ditruyen: {
+4283:                     title: 'Di truyền học y khoa',
+4284:                     author: 'PGS. TS. Trần Hải',
+4285:                     rating: '4.8',
+4286:                     reads: '3.7k',
+4287:                     cover: '/covers/ditruyen.png',
+4288:                     desc: 'Nghiên cứu ADN, đột biến gene di truyền sinh học tế bào gốc. Định hướng y học cá nhân hóa dựa trên hệ gene biểu thị của từng cá thể bệnh nhân.'
+4289:                 },
+4290:                 xuongkhop: {
+4291:                     title: 'Giải phẫu hệ xương khớp',
+4292:                     author: 'BS. Nguyễn Minh Tuấn',
+4293:                     rating: '4.7',
+4294:                     reads: '3.1k',
+4295:                     cover: '/covers/cothe.png',
+4296:                     desc: 'Phân tích cơ xương khớp lâm sàng và các bệnh lý về thoái hóa khớp ở người trưởng thành.'
+4297:                 },
+4298:                 sinhlythankinh: {
+4299:                     title: 'Sinh lý học Thần kinh',
+4300:                     author: 'GS. Phạm Hoàng Nam',
+4301:                     rating: '4.8',
+4302:                     reads: '2.5k',
+4303:                     cover: '/covers/sinhlythankinh.png',
+4304:                     desc: 'Cơ chế dẫn truyền xung điện thần kinh và các phản xạ không điều kiện của con người.'
+4305:                 },
+4306:                 naobo: {
+4307:                     title: 'Não bộ và Hành vi',
+4308:                     author: 'TS. Đỗ Quyên',
+4309:                     rating: '4.6',
+4310:                     reads: '1.8k',
+4311:                     cover: '/covers/naobo.png',
+4312:                     desc: 'Nghiên cứu về mối liên hệ giữa các thùy não bộ và hành vi tâm lý của bệnh nhân tâm thần.'
+4313:                 },
+4314:                 ditruyenphantu: {
+4315:                     title: 'Di truyền học phân tử',
+4316:                     author: 'PGS. Lê Huy',
+4317:                     rating: '4.7',
+4318:                     reads: '2.9k',
+4319:                     cover: '/covers/ditruyenphantu.png',
+4320:                     desc: 'Cấu trúc ADN và ARN, cơ chế nhân đôi, phiên mã và dịch mã sinh học phân tử tế bào.'
+4321:                 },
+4322:                 dotbiengene: {
+4323:                     title: 'Đột biến Gene lâm sàng',
+4324:                     author: 'TS. Nguyễn Thị Trang',
+4325:                     rating: '4.9',
+4326:                     reads: '3.5k',
+4327:                     cover: '/covers/ditruyen.png',
+4328:                     desc: 'Các dạng đột biến cấu trúc nhiễm sắc thể gây ra các hội chứng bệnh lý hiếm gặp trên lâm sàng.'
+4329:                 },
+4330:                 baoche: {
+4331:                     title: 'Kỹ Thuật Bào Chế Dược Liệu',
+4332:                     author: 'GS. TS. Nguyễn Văn Anh',
+4333:                     rating: '4.8',
+4334:                     reads: '6.2k',
+4335:                     cover: '/covers/baoche.png',
+4336:                     desc: 'Hướng dẫn chi tiết phương pháp sao tẩm, chưng cất và bào chế các loại cao thảo dược quý Đông y.'
+4337:                 },
+4338:                 dongydieuphuong: {
+4339:                     title: 'Đông Y Diệu Phương',
+4340:                     author: 'PGS. TS. Hoàng Tích Huyền',
+4341:                     rating: '4.8',
+4342:                     reads: '4.1k',
+4343:                     cover: '/covers/dongydieuphuong.png',
+4344:                     desc: 'Tổng hợp các bài thuốc bí truyền từ cung đình đến dân gian, kết hợp chẩn trị y học hiện đại và phân tích dược lý sinh hóa học.'
+4345:                 },
+4346:                 namduocthanhieu: {
+4347:                     title: 'Nam Dược Thần Hiệu',
+4348:                     author: 'Tuệ Tĩnh',
+4349:                     rating: '4.9',
