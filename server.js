@@ -16,13 +16,18 @@ const mimeTypes = {
 };
 
 const server = http.createServer((req, res) => {
-    let filePath = req.url === '/' ? './index.html' : '.' + decodeURIComponent(req.url);
+    console.log(`[REQ] ${req.method} ${req.url}`);
+    
+    // Strip query parameters from req.url to prevent file-not-found errors for static assets with cache busters
+    const cleanUrl = req.url.split('?')[0];
+    let filePath = cleanUrl === '/' ? './index.html' : '.' + decodeURIComponent(cleanUrl);
     
     // Resolve absolute path to ensure we are within workspace
     const absolutePath = path.resolve(filePath);
     const workspacePath = path.resolve(__dirname);
     
     if (!absolutePath.startsWith(workspacePath)) {
+        console.log(`[FORBIDDEN] ${absolutePath}`);
         res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' });
         res.end('Forbidden');
         return;
@@ -30,6 +35,7 @@ const server = http.createServer((req, res) => {
 
     fs.stat(absolutePath, (err, stats) => {
         if (err || !stats.isFile()) {
+            console.log(`[NOT FOUND - FALLBACK] ${absolutePath}`);
             // Fallback to index.html for SPA routing if file not found
             fs.readFile(path.join(workspacePath, 'index.html'), (err, data) => {
                 if (err) {
@@ -48,9 +54,11 @@ const server = http.createServer((req, res) => {
 
         fs.readFile(absolutePath, (err, data) => {
             if (err) {
+                console.log(`[ERR] Reading ${absolutePath}: ${err.message}`);
                 res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
                 res.end('Internal Server Error');
             } else {
+                console.log(`[OK] Served ${absolutePath} (${contentType})`);
                 res.writeHead(200, { 'Content-Type': contentType });
                 res.end(data);
             }
