@@ -2108,19 +2108,20 @@
                                         </div>
                                         <span class="text-[9px] font-bold text-slate-600">Voucher</span>
                                     </div>
-                                    <div onclick="showToast('Tin nhắn với nhà bán hàng.')" class="flex flex-col items-center gap-1 cursor-pointer select-none w-14 active:opacity-50 transition-opacity">
-                                        <div class="w-10 h-10 rounded-xl bg-blue-50/60 border border-blue-100/30 flex items-center justify-center">
+                                    <div onclick="openShopMessages()" class="flex flex-col items-center gap-1 cursor-pointer select-none w-14 active:opacity-50 transition-opacity">
+                                        <div class="w-10 h-10 rounded-xl bg-blue-50/60 border border-blue-100/30 flex items-center justify-center relative">
                                             <span class="material-symbols-outlined text-primary text-[20px]">chat</span>
+                                            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-[7px] font-black px-1 rounded-full">2</span>
                                         </div>
                                         <span class="text-[9px] font-bold text-slate-600">Tin nhắn</span>
                                     </div>
-                                    <div onclick="showToast('Thanh toán trả sau với GEMS PayLater.')" class="flex flex-col items-center gap-1 cursor-pointer select-none w-14 active:opacity-50 transition-opacity">
+                                    <div onclick="openShopPayLater()" class="flex flex-col items-center gap-1 cursor-pointer select-none w-14 active:opacity-50 transition-opacity">
                                         <div class="w-10 h-10 rounded-xl bg-blue-50/60 border border-blue-100/30 flex items-center justify-center">
                                             <span class="material-symbols-outlined text-primary text-[20px]">credit_card</span>
                                         </div>
                                         <span class="text-[9px] font-bold text-slate-600">PayLater</span>
                                     </div>
-                                    <div onclick="showToast('Mua hàng gần bạn.')" class="flex flex-col items-center gap-1 cursor-pointer select-none w-14 active:opacity-50 transition-opacity">
+                                    <div onclick="openShopLocal()" class="flex flex-col items-center gap-1 cursor-pointer select-none w-14 active:opacity-50 transition-opacity">
                                         <div class="w-10 h-10 rounded-xl bg-blue-50/60 border border-blue-100/30 flex items-center justify-center">
                                             <span class="material-symbols-outlined text-primary text-[20px]">storefront</span>
                                         </div>
@@ -2132,19 +2133,19 @@
                             <!-- Service Banners Row (GEMS Cohesive Blue Theme) -->
                             <div class="bg-white px-3 pb-3">
                                 <div class="flex gap-2 overflow-x-auto scrollbar-none">
-                                    <div onclick="showToast('Xtra Coupons — Giảm thêm 15% cho đơn từ 200K.')" class="flex items-center gap-1 bg-blue-50/40 border border-blue-100/70 rounded-xl px-3 py-1.5 cursor-pointer shrink-0 active:scale-95 transition-transform">
+                                    <div onclick="openShopXtraCoupons()" class="flex items-center gap-1 bg-blue-50/40 border border-blue-100/70 rounded-xl px-3 py-1.5 cursor-pointer shrink-0 active:scale-95 transition-transform">
                                         <span class="material-symbols-outlined text-primary text-[15px]">local_offer</span>
                                         <span class="text-[9px] font-black text-primary whitespace-nowrap">Xtra Coupons</span>
                                     </div>
-                                    <div onclick="showToast('Miễn phí vận chuyển toàn quốc.')" class="flex items-center gap-1 bg-blue-50/40 border border-blue-100/70 rounded-xl px-3 py-1.5 cursor-pointer shrink-0 active:scale-95 transition-transform">
+                                    <div onclick="openShopFreeShip()" class="flex items-center gap-1 bg-blue-50/40 border border-blue-100/70 rounded-xl px-3 py-1.5 cursor-pointer shrink-0 active:scale-95 transition-transform">
                                         <span class="material-symbols-outlined text-primary text-[15px]">local_shipping</span>
                                         <span class="text-[9px] font-black text-primary whitespace-nowrap">Free Ship</span>
                                     </div>
-                                    <div onclick="showToast('GEMS Mall — Sản phẩm chính hãng 100%.')" class="flex items-center gap-1 bg-blue-50/40 border border-blue-100/70 rounded-xl px-3 py-1.5 cursor-pointer shrink-0 active:scale-95 transition-transform">
+                                    <div onclick="openShopMall()" class="flex items-center gap-1 bg-blue-50/40 border border-blue-100/70 rounded-xl px-3 py-1.5 cursor-pointer shrink-0 active:scale-95 transition-transform">
                                         <span class="material-symbols-outlined text-primary text-[15px]">verified</span>
                                         <span class="text-[9px] font-black text-primary whitespace-nowrap">GEMS Mall</span>
                                     </div>
-                                    <div onclick="showToast('Mua thêm để nhận quà tặng.')" class="flex items-center gap-1 bg-blue-50/40 border border-blue-100/70 rounded-xl px-3 py-1.5 cursor-pointer shrink-0 active:scale-95 transition-transform">
+                                    <div onclick="openShopGifts()" class="flex items-center gap-1 bg-blue-50/40 border border-blue-100/70 rounded-xl px-3 py-1.5 cursor-pointer shrink-0 active:scale-95 transition-transform">
                                         <span class="material-symbols-outlined text-primary text-[15px]">card_giftcard</span>
                                         <span class="text-[9px] font-black text-primary whitespace-nowrap">Quà tặng</span>
                                     </div>
@@ -2454,9 +2455,574 @@
                         </div>
                     </div>
 
+                    <!-- ============================================== -->
+                    <!-- VIEW: TIN NHẮN (Messages)                     -->
+                    <!-- ============================================== -->
+                    <div id="view-shop-messages" class="absolute inset-0 z-[132] bg-slate-50 text-on-surface flex flex-col overflow-hidden hidden select-none animate-fade-in">
+                        <header class="bg-white w-full top-0 sticky border-b border-slate-100 flex items-center justify-between px-3 py-3 z-50 shrink-0">
+                            <div class="w-10">
+                                <button onclick="closeShopMessages()" aria-label="Go back" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-xl">arrow_back</span>
+                                </button>
+                            </div>
+                            <h1 class="font-sans text-sm font-black tracking-tight text-slate-900 mx-auto text-center truncate">Tin nhắn</h1>
+                            <div class="w-10"></div>
+                        </header>
+                        <div class="flex-grow overflow-y-auto">
+                            <!-- Conversation list -->
+                            <div class="space-y-0 divide-y divide-slate-100">
+                                <!-- Conversation item 1 -->
+                                <div onclick="showToast('Đang mở cuộc trò chuyện...')" class="flex items-center gap-3 bg-white px-4 py-3 cursor-pointer active:bg-slate-50 transition-colors">
+                                    <div class="relative shrink-0">
+                                        <div class="w-11 h-11 rounded-full bg-gradient-to-br from-blue-500 to-primary flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-white text-lg">store</span>
+                                        </div>
+                                        <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-white rounded-full"></span>
+                                    </div>
+                                    <div class="flex-grow min-w-0">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-[11px] font-black text-slate-800">GEMS Tech Store</span>
+                                            <span class="text-[9px] text-slate-400 font-bold shrink-0 ml-2">10:32</span>
+                                        </div>
+                                        <p class="text-[10px] text-slate-500 font-medium truncate mt-0.5">Đơn hàng của bạn đã được xác nhận và đang chuẩn bị giao...</p>
+                                        <div class="mt-1"><span class="bg-primary text-white text-[8px] font-black px-1.5 py-0.5 rounded-full">2 tin mới</span></div>
+                                    </div>
+                                </div>
+                                <!-- Conversation item 2 -->
+                                <div onclick="showToast('Đang mở cuộc trò chuyện...')" class="flex items-center gap-3 bg-white px-4 py-3 cursor-pointer active:bg-slate-50 transition-colors">
+                                    <div class="relative shrink-0">
+                                        <div class="w-11 h-11 rounded-full bg-gradient-to-br from-orange-400 to-rose-500 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-white text-lg">checkroom</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow min-w-0">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-[11px] font-black text-slate-800">GEMS Fashion House</span>
+                                            <span class="text-[9px] text-slate-400 font-bold shrink-0 ml-2">Hôm qua</span>
+                                        </div>
+                                        <p class="text-[10px] text-slate-400 font-medium truncate mt-0.5">Bạn: Cảm ơn shop nhé, sản phẩm rất đẹp!</p>
+                                    </div>
+                                </div>
+                                <!-- Conversation item 3 -->
+                                <div onclick="showToast('Đang mở cuộc trò chuyện...')" class="flex items-center gap-3 bg-white px-4 py-3 cursor-pointer active:bg-slate-50 transition-colors">
+                                    <div class="relative shrink-0">
+                                        <div class="w-11 h-11 rounded-full bg-gradient-to-br from-teal-400 to-emerald-600 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-white text-lg">menu_book</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow min-w-0">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-[11px] font-black text-slate-800">GEMS Books & Education</span>
+                                            <span class="text-[9px] text-slate-400 font-bold shrink-0 ml-2">2 ngày</span>
+                                        </div>
+                                        <p class="text-[10px] text-slate-400 font-medium truncate mt-0.5">Shop: Xin chào! Shop có thể tư vấn thêm cho bạn không?</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Empty state hint -->
+                            <div class="flex flex-col items-center justify-center py-8 px-6 text-center">
+                                <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mb-3">
+                                    <span class="material-symbols-outlined text-primary text-2xl">add_comment</span>
+                                </div>
+                                <p class="text-xs font-bold text-slate-500">Nhắn tin với nhà bán hàng để được hỗ trợ nhanh nhất</p>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- ============================================== -->
-                    <!-- DRAWER: BOTTOM SHEET CHỌN PHÂN LOẠI (Variant Sheet) -->
+                    <!-- VIEW: PAYLATER                                 -->
+                    <!-- ============================================== -->
+                    <div id="view-shop-paylater" class="absolute inset-0 z-[133] bg-slate-50 text-on-surface flex flex-col overflow-hidden hidden select-none animate-fade-in">
+                        <header class="bg-white w-full top-0 sticky border-b border-slate-100 flex items-center justify-between px-3 py-3 z-50 shrink-0">
+                            <div class="w-10">
+                                <button onclick="closeShopPayLater()" aria-label="Go back" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-xl">arrow_back</span>
+                                </button>
+                            </div>
+                            <h1 class="font-sans text-sm font-black tracking-tight text-slate-900 mx-auto text-center truncate">GEMS PayLater</h1>
+                            <div class="w-10"></div>
+                        </header>
+                        <div class="flex-grow overflow-y-auto p-4 space-y-4">
+                            <!-- Hero card -->
+                            <div class="bg-gradient-to-br from-primary to-blue-800 rounded-2xl p-5 text-white relative overflow-hidden shadow-lg">
+                                <div class="absolute -top-6 -right-6 w-28 h-28 rounded-full bg-white/10"></div>
+                                <div class="absolute -bottom-8 -left-4 w-24 h-24 rounded-full bg-white/5"></div>
+                                <div class="relative">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <span class="material-symbols-outlined text-2xl">credit_score</span>
+                                        <span class="text-sm font-black tracking-wide">Hạn mức của tôi</span>
+                                    </div>
+                                    <p class="text-3xl font-black mb-1">5.000.000đ</p>
+                                    <p class="text-xs text-blue-200 font-bold">Đã sử dụng: 0đ • Còn lại: 5.000.000đ</p>
+                                    <div class="mt-3 bg-white/20 rounded-full h-2 overflow-hidden">
+                                        <div class="h-full w-0 bg-white rounded-full"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Features -->
+                            <div class="bg-white rounded-2xl p-4 space-y-3 shadow-sm border border-slate-100">
+                                <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider">Tính năng nổi bật</h3>
+                                <div class="grid grid-cols-2 gap-2.5">
+                                    <div class="bg-blue-50 rounded-xl p-3 flex flex-col gap-1.5">
+                                        <span class="material-symbols-outlined text-primary text-xl">calendar_month</span>
+                                        <p class="text-[10px] font-black text-slate-700">Trả góp 0%</p>
+                                        <p class="text-[9px] text-slate-500 font-medium">Chia nhỏ thành 3-12 kỳ</p>
+                                    </div>
+                                    <div class="bg-blue-50 rounded-xl p-3 flex flex-col gap-1.5">
+                                        <span class="material-symbols-outlined text-primary text-xl">bolt</span>
+                                        <p class="text-[10px] font-black text-slate-700">Duyệt tức thì</p>
+                                        <p class="text-[9px] text-slate-500 font-medium">Phê duyệt trong 30 giây</p>
+                                    </div>
+                                    <div class="bg-blue-50 rounded-xl p-3 flex flex-col gap-1.5">
+                                        <span class="material-symbols-outlined text-primary text-xl">shield_person</span>
+                                        <p class="text-[10px] font-black text-slate-700">Bảo mật tuyệt đối</p>
+                                        <p class="text-[9px] text-slate-500 font-medium">Mã OTP & xác thực kép</p>
+                                    </div>
+                                    <div class="bg-blue-50 rounded-xl p-3 flex flex-col gap-1.5">
+                                        <span class="material-symbols-outlined text-primary text-xl">savings</span>
+                                        <p class="text-[10px] font-black text-slate-700">Không lãi suất</p>
+                                        <p class="text-[9px] text-slate-500 font-medium">Trả đúng hạn miễn lãi</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- CTA -->
+                            <button onclick="showToast('Đang kích hoạt GEMS PayLater...')" class="w-full bg-primary text-white font-black text-sm py-3.5 rounded-2xl active:scale-95 transition-transform shadow-md">
+                                Kích hoạt ngay
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ============================================== -->
+                    <!-- VIEW: MUA LOCAL (Buy Local)                   -->
+                    <!-- ============================================== -->
+                    <div id="view-shop-local" class="absolute inset-0 z-[134] bg-slate-50 text-on-surface flex flex-col overflow-hidden hidden select-none animate-fade-in">
+                        <header class="bg-white w-full top-0 sticky border-b border-slate-100 flex items-center justify-between px-3 py-3 z-50 shrink-0">
+                            <div class="w-10">
+                                <button onclick="closeShopLocal()" aria-label="Go back" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-xl">arrow_back</span>
+                                </button>
+                            </div>
+                            <h1 class="font-sans text-sm font-black tracking-tight text-slate-900 mx-auto text-center truncate">Mua local</h1>
+                            <div class="w-10">
+                                <button onclick="showToast('Đang định vị...')" class="text-primary hover:bg-blue-50 rounded-full p-2 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-xl">my_location</span>
+                                </button>
+                            </div>
+                        </header>
+                        <div class="flex-grow overflow-y-auto p-4 space-y-4">
+                            <!-- Location banner -->
+                            <div class="bg-gradient-to-r from-blue-50 to-sky-50 border border-blue-100 rounded-2xl p-4 flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary text-2xl shrink-0">location_on</span>
+                                <div>
+                                    <p class="text-[11px] font-black text-slate-800">Vị trí hiện tại của bạn</p>
+                                    <p class="text-[10px] text-slate-500 font-medium">Quận 1, TP. Hồ Chí Minh</p>
+                                </div>
+                                <button onclick="showToast('Thay đổi vị trí...')" class="ml-auto text-[9px] font-black text-primary bg-white border border-blue-200 px-2.5 py-1.5 rounded-lg shrink-0">Thay đổi</button>
+                            </div>
+                            <!-- Nearby shops list -->
+                            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+                                <div class="px-4 py-3 border-b border-slate-50">
+                                    <h3 class="text-xs font-black text-slate-800">Cửa hàng gần bạn</h3>
+                                </div>
+                                <div class="divide-y divide-slate-50">
+                                    <div onclick="showToast('Đang mở cửa hàng...')" class="flex items-center gap-3 p-3 cursor-pointer active:bg-slate-50 transition-colors">
+                                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-primary flex items-center justify-center shrink-0">
+                                            <span class="material-symbols-outlined text-white text-lg">medical_services</span>
+                                        </div>
+                                        <div class="flex-grow min-w-0">
+                                            <p class="text-[11px] font-black text-slate-800">GEMS Medical Supplies HCM</p>
+                                            <div class="flex items-center gap-2 mt-0.5">
+                                                <span class="text-[9px] text-slate-500 font-bold">📍 0.3 km</span>
+                                                <span class="text-green-500 font-black text-[9px]">● Đang mở</span>
+                                            </div>
+                                            <div class="flex gap-1 mt-1">
+                                                <span class="text-[8px] bg-blue-50 text-primary font-bold px-1.5 py-0.5 rounded-full border border-blue-100">Dụng cụ y tế</span>
+                                                <span class="text-[8px] bg-blue-50 text-primary font-bold px-1.5 py-0.5 rounded-full border border-blue-100">Sách</span>
+                                            </div>
+                                        </div>
+                                        <span class="material-symbols-outlined text-slate-300 text-lg shrink-0">chevron_right</span>
+                                    </div>
+                                    <div onclick="showToast('Đang mở cửa hàng...')" class="flex items-center gap-3 p-3 cursor-pointer active:bg-slate-50 transition-colors">
+                                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-400 to-emerald-600 flex items-center justify-center shrink-0">
+                                            <span class="material-symbols-outlined text-white text-lg">local_pharmacy</span>
+                                        </div>
+                                        <div class="flex-grow min-w-0">
+                                            <p class="text-[11px] font-black text-slate-800">Nhà Thuốc GEMS Pharmacy</p>
+                                            <div class="flex items-center gap-2 mt-0.5">
+                                                <span class="text-[9px] text-slate-500 font-bold">📍 0.7 km</span>
+                                                <span class="text-green-500 font-black text-[9px]">● Đang mở</span>
+                                            </div>
+                                            <div class="flex gap-1 mt-1">
+                                                <span class="text-[8px] bg-teal-50 text-teal-700 font-bold px-1.5 py-0.5 rounded-full border border-teal-100">Dược phẩm</span>
+                                            </div>
+                                        </div>
+                                        <span class="material-symbols-outlined text-slate-300 text-lg shrink-0">chevron_right</span>
+                                    </div>
+                                    <div onclick="showToast('Đang mở cửa hàng...')" class="flex items-center gap-3 p-3 cursor-pointer active:bg-slate-50 transition-colors">
+                                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-400 to-purple-600 flex items-center justify-center shrink-0">
+                                            <span class="material-symbols-outlined text-white text-lg">auto_stories</span>
+                                        </div>
+                                        <div class="flex-grow min-w-0">
+                                            <p class="text-[11px] font-black text-slate-800">GEMS Education Center</p>
+                                            <div class="flex items-center gap-2 mt-0.5">
+                                                <span class="text-[9px] text-slate-500 font-bold">📍 1.2 km</span>
+                                                <span class="text-amber-500 font-black text-[9px]">● Sắp đóng (22:00)</span>
+                                            </div>
+                                            <div class="flex gap-1 mt-1">
+                                                <span class="text-[8px] bg-violet-50 text-violet-700 font-bold px-1.5 py-0.5 rounded-full border border-violet-100">Đào tạo</span>
+                                                <span class="text-[8px] bg-violet-50 text-violet-700 font-bold px-1.5 py-0.5 rounded-full border border-violet-100">Tài liệu</span>
+                                            </div>
+                                        </div>
+                                        <span class="material-symbols-outlined text-slate-300 text-lg shrink-0">chevron_right</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ============================================== -->
+                    <!-- VIEW: XTRA COUPONS                            -->
+                    <!-- ============================================== -->
+                    <div id="view-shop-xtra" class="absolute inset-0 z-[135] bg-slate-50 text-on-surface flex flex-col overflow-hidden hidden select-none animate-fade-in">
+                        <header class="bg-white w-full top-0 sticky border-b border-slate-100 flex items-center justify-between px-3 py-3 z-50 shrink-0">
+                            <div class="w-10">
+                                <button onclick="closeShopXtraCoupons()" aria-label="Go back" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-xl">arrow_back</span>
+                                </button>
+                            </div>
+                            <h1 class="font-sans text-sm font-black tracking-tight text-slate-900 mx-auto text-center truncate">Xtra Coupons</h1>
+                            <div class="w-10"></div>
+                        </header>
+                        <div class="flex-grow overflow-y-auto p-4 space-y-4">
+                            <!-- Hero banner -->
+                            <div class="bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl p-5 text-white relative overflow-hidden shadow-lg">
+                                <div class="absolute -top-4 -right-4 w-24 h-24 rounded-full bg-white/15"></div>
+                                <div class="relative">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="material-symbols-outlined text-xl">local_offer</span>
+                                        <span class="text-xs font-black uppercase tracking-wider">Giảm thêm cực đã</span>
+                                    </div>
+                                    <p class="text-2xl font-black leading-tight">Tích thêm<br><span class="text-4xl">15%</span> OFF</p>
+                                    <p class="text-xs text-orange-100 font-bold mt-1">Cho đơn hàng từ 200.000đ</p>
+                                </div>
+                            </div>
+                            <!-- Coupon cards -->
+                            <div class="space-y-3">
+                                <h3 class="text-xs font-black text-slate-600 uppercase tracking-wider px-1">Coupon có thể nhận</h3>
+                                <!-- Coupon 1 -->
+                                <div class="relative bg-white border border-amber-100 rounded-2xl overflow-hidden shadow-sm flex h-24">
+                                    <div class="w-24 bg-gradient-to-br from-amber-400 to-orange-500 text-white flex flex-col items-center justify-center relative flex-shrink-0">
+                                        <span class="text-[9px] font-bold uppercase">GIẢM</span>
+                                        <span class="text-xl font-black">15%</span>
+                                        <div class="absolute -right-1.5 -top-1.5 w-3 h-3 rounded-full bg-slate-50"></div>
+                                        <div class="absolute -right-1.5 -bottom-1.5 w-3 h-3 rounded-full bg-slate-50"></div>
+                                    </div>
+                                    <div class="flex-grow p-3 flex flex-col justify-between min-w-0">
+                                        <div>
+                                            <h4 class="text-[10px] font-black text-slate-800">Xtra Coupon Cuối Tuần</h4>
+                                            <p class="text-[8px] text-slate-400 font-bold mt-0.5">Đơn tối thiểu 200K • HSD: Còn 1 ngày</p>
+                                        </div>
+                                        <button onclick="showToast('Đã lưu coupon thành công!')" class="self-end bg-orange-500 text-white text-[9px] font-black px-3 py-1 rounded-full active:scale-95 transition-transform">Lưu ngay</button>
+                                    </div>
+                                </div>
+                                <!-- Coupon 2 -->
+                                <div class="relative bg-white border border-amber-100 rounded-2xl overflow-hidden shadow-sm flex h-24">
+                                    <div class="w-24 bg-gradient-to-br from-primary to-blue-700 text-white flex flex-col items-center justify-center relative flex-shrink-0">
+                                        <span class="text-[9px] font-bold uppercase">GIẢM</span>
+                                        <span class="text-xl font-black">20K</span>
+                                        <div class="absolute -right-1.5 -top-1.5 w-3 h-3 rounded-full bg-slate-50"></div>
+                                        <div class="absolute -right-1.5 -bottom-1.5 w-3 h-3 rounded-full bg-slate-50"></div>
+                                    </div>
+                                    <div class="flex-grow p-3 flex flex-col justify-between min-w-0">
+                                        <div>
+                                            <h4 class="text-[10px] font-black text-slate-800">Coupon Thành Viên GEMS</h4>
+                                            <p class="text-[8px] text-slate-400 font-bold mt-0.5">Đơn tối thiểu 150K • HSD: Còn 5 ngày</p>
+                                        </div>
+                                        <button onclick="showToast('Đã lưu coupon thành công!')" class="self-end bg-primary text-white text-[9px] font-black px-3 py-1 rounded-full active:scale-95 transition-transform">Lưu ngay</button>
+                                    </div>
+                                </div>
+                                <!-- Coupon 3 -->
+                                <div class="relative bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm flex h-24 opacity-60">
+                                    <div class="w-24 bg-gradient-to-br from-slate-400 to-slate-500 text-white flex flex-col items-center justify-center relative flex-shrink-0">
+                                        <span class="text-[9px] font-bold uppercase">GIẢM</span>
+                                        <span class="text-xl font-black">30K</span>
+                                        <div class="absolute -right-1.5 -top-1.5 w-3 h-3 rounded-full bg-slate-50"></div>
+                                        <div class="absolute -right-1.5 -bottom-1.5 w-3 h-3 rounded-full bg-slate-50"></div>
+                                    </div>
+                                    <div class="flex-grow p-3 flex flex-col justify-between min-w-0">
+                                        <div>
+                                            <h4 class="text-[10px] font-black text-slate-800">Coupon Flash Deal</h4>
+                                            <p class="text-[8px] text-slate-400 font-bold mt-0.5">Đơn tối thiểu 500K • HSD: Đã hết hạn</p>
+                                        </div>
+                                        <span class="self-end bg-slate-200 text-slate-500 text-[9px] font-black px-3 py-1 rounded-full">Hết hạn</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ============================================== -->
+                    <!-- VIEW: FREE SHIP                               -->
+                    <!-- ============================================== -->
+                    <div id="view-shop-freeship" class="absolute inset-0 z-[136] bg-slate-50 text-on-surface flex flex-col overflow-hidden hidden select-none animate-fade-in">
+                        <header class="bg-white w-full top-0 sticky border-b border-slate-100 flex items-center justify-between px-3 py-3 z-50 shrink-0">
+                            <div class="w-10">
+                                <button onclick="closeShopFreeShip()" aria-label="Go back" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-xl">arrow_back</span>
+                                </button>
+                            </div>
+                            <h1 class="font-sans text-sm font-black tracking-tight text-slate-900 mx-auto text-center truncate">Free Ship</h1>
+                            <div class="w-10"></div>
+                        </header>
+                        <div class="flex-grow overflow-y-auto p-4 space-y-4">
+                            <!-- Hero banner -->
+                            <div class="bg-gradient-to-br from-teal-500 to-emerald-600 rounded-2xl p-5 text-white relative overflow-hidden shadow-lg">
+                                <div class="absolute -top-6 -right-6 w-28 h-28 rounded-full bg-white/10"></div>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined text-3xl mb-2 block">local_shipping</span>
+                                    <p class="text-2xl font-black leading-tight">Miễn phí<br>vận chuyển</p>
+                                    <p class="text-xs text-teal-100 font-bold mt-1">Toàn quốc • Không giới hạn đơn</p>
+                                </div>
+                            </div>
+                            <!-- Conditions -->
+                            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 space-y-3">
+                                <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider">Điều kiện áp dụng</h3>
+                                <div class="space-y-2.5">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center shrink-0">
+                                            <span class="material-symbols-outlined text-teal-600 text-base">check_circle</span>
+                                        </div>
+                                        <p class="text-[10px] font-bold text-slate-700">Đơn hàng từ <span class="font-black text-teal-600">100.000đ</span> trở lên</p>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center shrink-0">
+                                            <span class="material-symbols-outlined text-teal-600 text-base">check_circle</span>
+                                        </div>
+                                        <p class="text-[10px] font-bold text-slate-700">Áp dụng cho sản phẩm <span class="font-black text-primary">GEMS Mall</span></p>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center shrink-0">
+                                            <span class="material-symbols-outlined text-teal-600 text-base">check_circle</span>
+                                        </div>
+                                        <p class="text-[10px] font-bold text-slate-700">Giao toàn quốc trong <span class="font-black text-teal-600">2-3 ngày</span></p>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center shrink-0">
+                                            <span class="material-symbols-outlined text-teal-600 text-base">check_circle</span>
+                                        </div>
+                                        <p class="text-[10px] font-bold text-slate-700">Hỏa tốc trong ngày tại <span class="font-black text-teal-600">TP. HCM & HN</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Voucher free ship -->
+                            <div class="relative bg-white border border-teal-100 rounded-2xl overflow-hidden shadow-sm flex h-24">
+                                <div class="w-24 bg-gradient-to-br from-teal-500 to-emerald-600 text-white flex flex-col items-center justify-center relative flex-shrink-0">
+                                    <span class="text-[9px] font-bold uppercase">FREE</span>
+                                    <span class="text-xl font-black">SHIP</span>
+                                    <div class="absolute -right-1.5 -top-1.5 w-3 h-3 rounded-full bg-slate-50"></div>
+                                    <div class="absolute -right-1.5 -bottom-1.5 w-3 h-3 rounded-full bg-slate-50"></div>
+                                </div>
+                                <div class="flex-grow p-3 flex flex-col justify-between min-w-0">
+                                    <div>
+                                        <h4 class="text-[10px] font-black text-slate-800">Miễn phí vận chuyển GEMS</h4>
+                                        <p class="text-[8px] text-slate-400 font-bold mt-0.5">Đơn tối thiểu 100K • HSD: Còn 7 ngày</p>
+                                    </div>
+                                    <button onclick="showToast('Đã lưu voucher Free Ship!')" class="self-end bg-teal-500 text-white text-[9px] font-black px-3 py-1 rounded-full active:scale-95 transition-transform">Lưu ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ============================================== -->
+                    <!-- VIEW: GEMS MALL                               -->
+                    <!-- ============================================== -->
+                    <div id="view-shop-mall" class="absolute inset-0 z-[137] bg-slate-50 text-on-surface flex flex-col overflow-hidden hidden select-none animate-fade-in">
+                        <header class="bg-white w-full top-0 sticky border-b border-slate-100 flex items-center justify-between px-3 py-3 z-50 shrink-0">
+                            <div class="w-10">
+                                <button onclick="closeShopMall()" aria-label="Go back" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-xl">arrow_back</span>
+                                </button>
+                            </div>
+                            <h1 class="font-sans text-sm font-black tracking-tight text-slate-900 mx-auto text-center truncate">GEMS Mall</h1>
+                            <div class="w-10"></div>
+                        </header>
+                        <div class="flex-grow overflow-y-auto p-4 space-y-4">
+                            <!-- Hero banner -->
+                            <div class="bg-gradient-to-br from-primary via-blue-700 to-blue-900 rounded-2xl p-5 text-white relative overflow-hidden shadow-lg">
+                                <div class="absolute -top-4 -right-4 w-28 h-28 rounded-full bg-white/10"></div>
+                                <div class="absolute bottom-2 left-4 w-20 h-20 rounded-full bg-white/5"></div>
+                                <div class="relative flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-4xl">verified</span>
+                                    <div>
+                                        <p class="text-lg font-black leading-tight">GEMS Mall</p>
+                                        <p class="text-xs text-blue-200 font-bold">Chính hãng 100% • Bảo hành toàn quốc</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Stats row -->
+                            <div class="grid grid-cols-3 gap-3">
+                                <div class="bg-white rounded-xl border border-slate-100 shadow-sm p-3 text-center">
+                                    <p class="text-base font-black text-primary">1,200+</p>
+                                    <p class="text-[9px] text-slate-500 font-bold mt-0.5">Thương hiệu</p>
+                                </div>
+                                <div class="bg-white rounded-xl border border-slate-100 shadow-sm p-3 text-center">
+                                    <p class="text-base font-black text-primary">50K+</p>
+                                    <p class="text-[9px] text-slate-500 font-bold mt-0.5">Sản phẩm</p>
+                                </div>
+                                <div class="bg-white rounded-xl border border-slate-100 shadow-sm p-3 text-center">
+                                    <p class="text-base font-black text-primary">100%</p>
+                                    <p class="text-[9px] text-slate-500 font-bold mt-0.5">Chính hãng</p>
+                                </div>
+                            </div>
+                            <!-- Featured brands -->
+                            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 space-y-3">
+                                <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider">Thương hiệu nổi bật</h3>
+                                <div class="grid grid-cols-4 gap-2">
+                                    <div onclick="showToast('Đang mở thương hiệu...')" class="flex flex-col items-center gap-1 cursor-pointer active:scale-95 transition-transform">
+                                        <div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-primary text-xl">medical_services</span>
+                                        </div>
+                                        <p class="text-[8px] font-bold text-slate-600 text-center">GEMS Med</p>
+                                    </div>
+                                    <div onclick="showToast('Đang mở thương hiệu...')" class="flex flex-col items-center gap-1 cursor-pointer active:scale-95 transition-transform">
+                                        <div class="w-12 h-12 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-teal-600 text-xl">local_pharmacy</span>
+                                        </div>
+                                        <p class="text-[8px] font-bold text-slate-600 text-center">Pharma</p>
+                                    </div>
+                                    <div onclick="showToast('Đang mở thương hiệu...')" class="flex flex-col items-center gap-1 cursor-pointer active:scale-95 transition-transform">
+                                        <div class="w-12 h-12 rounded-xl bg-violet-50 border border-violet-100 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-violet-600 text-xl">auto_stories</span>
+                                        </div>
+                                        <p class="text-[8px] font-bold text-slate-600 text-center">EduBooks</p>
+                                    </div>
+                                    <div onclick="showToast('Đang mở thương hiệu...')" class="flex flex-col items-center gap-1 cursor-pointer active:scale-95 transition-transform">
+                                        <div class="w-12 h-12 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-orange-500 text-xl">devices</span>
+                                        </div>
+                                        <p class="text-[8px] font-bold text-slate-600 text-center">TechLab</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Benefits -->
+                            <div class="space-y-2">
+                                <div class="bg-white rounded-xl border border-slate-100 shadow-sm flex items-center gap-3 p-3">
+                                    <span class="material-symbols-outlined text-primary text-xl shrink-0">verified_user</span>
+                                    <div>
+                                        <p class="text-[10px] font-black text-slate-800">Cam kết chính hãng</p>
+                                        <p class="text-[9px] text-slate-500 font-medium">Hoàn tiền 100% nếu phát hiện hàng giả</p>
+                                    </div>
+                                </div>
+                                <div class="bg-white rounded-xl border border-slate-100 shadow-sm flex items-center gap-3 p-3">
+                                    <span class="material-symbols-outlined text-teal-600 text-xl shrink-0">assignment_return</span>
+                                    <div>
+                                        <p class="text-[10px] font-black text-slate-800">Đổi trả trong 30 ngày</p>
+                                        <p class="text-[9px] text-slate-500 font-medium">Miễn phí đổi trả cho mọi lý do</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ============================================== -->
+                    <!-- VIEW: QUÀ TẶNG (Gifts)                       -->
+                    <!-- ============================================== -->
+                    <div id="view-shop-gifts" class="absolute inset-0 z-[138] bg-slate-50 text-on-surface flex flex-col overflow-hidden hidden select-none animate-fade-in">
+                        <header class="bg-white w-full top-0 sticky border-b border-slate-100 flex items-center justify-between px-3 py-3 z-50 shrink-0">
+                            <div class="w-10">
+                                <button onclick="closeShopGifts()" aria-label="Go back" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-xl">arrow_back</span>
+                                </button>
+                            </div>
+                            <h1 class="font-sans text-sm font-black tracking-tight text-slate-900 mx-auto text-center truncate">Quà tặng</h1>
+                            <div class="w-10"></div>
+                        </header>
+                        <div class="flex-grow overflow-y-auto p-4 space-y-4">
+                            <!-- Hero banner -->
+                            <div class="bg-gradient-to-br from-rose-400 to-pink-600 rounded-2xl p-5 text-white relative overflow-hidden shadow-lg">
+                                <div class="absolute -top-4 -right-4 w-28 h-28 rounded-full bg-white/15"></div>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined text-3xl mb-2 block">card_giftcard</span>
+                                    <p class="text-xl font-black leading-tight">Mua đủ — Nhận quà!</p>
+                                    <p class="text-xs text-rose-100 font-bold mt-1">Tích điểm để nhận phần thưởng hấp dẫn</p>
+                                </div>
+                            </div>
+                            <!-- Progress to gift -->
+                            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <h3 class="text-xs font-black text-slate-800">Tiến độ nhận quà</h3>
+                                    <span class="text-[10px] font-black text-primary">750 / 1.000 điểm</span>
+                                </div>
+                                <div class="bg-slate-100 rounded-full h-3 overflow-hidden">
+                                    <div class="h-full w-3/4 bg-gradient-to-r from-primary to-blue-400 rounded-full transition-all duration-500"></div>
+                                </div>
+                                <p class="text-[9px] text-slate-500 font-bold">Còn 250 điểm nữa để nhận quà! Mua thêm ngay 👇</p>
+                            </div>
+                            <!-- Gift items -->
+                            <div class="space-y-3">
+                                <h3 class="text-xs font-black text-slate-600 uppercase tracking-wider px-1">Quà có thể đổi</h3>
+                                <!-- Gift 1 - unlocked -->
+                                <div class="bg-white rounded-2xl border border-blue-100 shadow-sm overflow-hidden">
+                                    <div class="flex items-center gap-3 p-3">
+                                        <div class="w-14 h-14 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0">
+                                            <span class="material-symbols-outlined text-primary text-2xl">book</span>
+                                        </div>
+                                        <div class="flex-grow min-w-0">
+                                            <h4 class="text-[10px] font-black text-slate-800">Sách Y Khoa GEMS Premium</h4>
+                                            <p class="text-[8px] text-slate-400 font-bold mt-0.5">Trị giá 350.000đ</p>
+                                            <div class="flex items-center gap-1 mt-1">
+                                                <span class="material-symbols-outlined text-amber-500 text-xs">star</span>
+                                                <span class="text-[9px] font-black text-amber-600">500 điểm</span>
+                                            </div>
+                                        </div>
+                                        <button onclick="showToast('Đổi quà thành công! 🎁')" class="shrink-0 bg-primary text-white text-[9px] font-black px-3 py-2 rounded-xl active:scale-95 transition-transform">Đổi quà</button>
+                                    </div>
+                                </div>
+                                <!-- Gift 2 - locked -->
+                                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden opacity-60">
+                                    <div class="flex items-center gap-3 p-3">
+                                        <div class="w-14 h-14 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 relative">
+                                            <span class="material-symbols-outlined text-slate-400 text-2xl">headphones</span>
+                                            <div class="absolute inset-0 bg-slate-50/70 flex items-center justify-center rounded-xl">
+                                                <span class="material-symbols-outlined text-slate-400 text-sm">lock</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow min-w-0">
+                                            <h4 class="text-[10px] font-black text-slate-500">Tai Nghe GEMS Air</h4>
+                                            <p class="text-[8px] text-slate-400 font-bold mt-0.5">Trị giá 1.200.000đ</p>
+                                            <div class="flex items-center gap-1 mt-1">
+                                                <span class="material-symbols-outlined text-amber-400 text-xs">star</span>
+                                                <span class="text-[9px] font-black text-slate-400">2.000 điểm</span>
+                                            </div>
+                                        </div>
+                                        <span class="shrink-0 bg-slate-200 text-slate-400 text-[9px] font-black px-3 py-2 rounded-xl">Chưa đủ</span>
+                                    </div>
+                                </div>
+                                <!-- Gift 3 - locked -->
+                                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden opacity-60">
+                                    <div class="flex items-center gap-3 p-3">
+                                        <div class="w-14 h-14 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 relative">
+                                            <span class="material-symbols-outlined text-slate-400 text-2xl">laptop</span>
+                                            <div class="absolute inset-0 bg-slate-50/70 flex items-center justify-center rounded-xl">
+                                                <span class="material-symbols-outlined text-slate-400 text-sm">lock</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow min-w-0">
+                                            <h4 class="text-[10px] font-black text-slate-500">iPad GEMS Edition</h4>
+                                            <p class="text-[8px] text-slate-400 font-bold mt-0.5">Trị giá 15.000.000đ</p>
+                                            <div class="flex items-center gap-1 mt-1">
+                                                <span class="material-symbols-outlined text-amber-400 text-xs">star</span>
+                                                <span class="text-[9px] font-black text-slate-400">10.000 điểm</span>
+                                            </div>
+                                        </div>
+                                        <span class="shrink-0 bg-slate-200 text-slate-400 text-[9px] font-black px-3 py-2 rounded-xl">Chưa đủ</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <!-- ============================================== -->
                     <div id="shop-variant-drawer" class="absolute inset-0 z-[250] hidden select-none">
                         <!-- Backdrop overlay -->
@@ -5586,7 +6152,21 @@
             closeShopProductDetail();
             closeShopCart();
             closeShopCheckout();
+            closeShopOrders();
+            closeShopVouchers();
+            closeShopMessages();
+            closeShopPayLater();
+            closeShopLocal();
+            closeShopXtraCoupons();
+            closeShopFreeShip();
+            closeShopMall();
+            closeShopGifts();
             closeVariantDrawer();
+            closeProfileSublist();
+            const successView = document.getElementById('view-shop-success');
+            if (successView) successView.classList.add('hidden');
+            const dictTermView = document.getElementById('view-dict-term');
+            if (dictTermView) dictTermView.classList.add('hidden');
 
             // Panels show/hide
             document.querySelectorAll('.view-panel').forEach(panel => {
@@ -10711,6 +11291,77 @@
             closeShopVouchers();
             showToast("Đã chọn voucher này áp dụng cho đơn tiếp theo của bạn.");
         }
+
+        // ============ TIN NHẮN ============
+        function openShopMessages() {
+            const view = document.getElementById('view-shop-messages');
+            if (view) view.classList.remove('hidden');
+        }
+        function closeShopMessages() {
+            const view = document.getElementById('view-shop-messages');
+            if (view) view.classList.add('hidden');
+        }
+
+        // ============ PAYLATER ============
+        function openShopPayLater() {
+            const view = document.getElementById('view-shop-paylater');
+            if (view) view.classList.remove('hidden');
+        }
+        function closeShopPayLater() {
+            const view = document.getElementById('view-shop-paylater');
+            if (view) view.classList.add('hidden');
+        }
+
+        // ============ MUA LOCAL ============
+        function openShopLocal() {
+            const view = document.getElementById('view-shop-local');
+            if (view) view.classList.remove('hidden');
+        }
+        function closeShopLocal() {
+            const view = document.getElementById('view-shop-local');
+            if (view) view.classList.add('hidden');
+        }
+
+        // ============ XTRA COUPONS ============
+        function openShopXtraCoupons() {
+            const view = document.getElementById('view-shop-xtra');
+            if (view) view.classList.remove('hidden');
+        }
+        function closeShopXtraCoupons() {
+            const view = document.getElementById('view-shop-xtra');
+            if (view) view.classList.add('hidden');
+        }
+
+        // ============ FREE SHIP ============
+        function openShopFreeShip() {
+            const view = document.getElementById('view-shop-freeship');
+            if (view) view.classList.remove('hidden');
+        }
+        function closeShopFreeShip() {
+            const view = document.getElementById('view-shop-freeship');
+            if (view) view.classList.add('hidden');
+        }
+
+        // ============ GEMS MALL ============
+        function openShopMall() {
+            const view = document.getElementById('view-shop-mall');
+            if (view) view.classList.remove('hidden');
+        }
+        function closeShopMall() {
+            const view = document.getElementById('view-shop-mall');
+            if (view) view.classList.add('hidden');
+        }
+
+        // ============ QUÀ TẶNG ============
+        function openShopGifts() {
+            const view = document.getElementById('view-shop-gifts');
+            if (view) view.classList.remove('hidden');
+        }
+        function closeShopGifts() {
+            const view = document.getElementById('view-shop-gifts');
+            if (view) view.classList.add('hidden');
+        }
+
 
         function updateCartBadge() {
             const totalQty = ShopCart.reduce((total, item) => total + item.quantity, 0);
