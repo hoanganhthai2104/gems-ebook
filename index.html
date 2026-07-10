@@ -885,6 +885,26 @@
             animation: staggerSlideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
 
+        /* Shimmer sweep animation for Flash Sale progress bars */
+        @keyframes shimmerSweep {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+        .progress-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .progress-shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmerSweep 2s infinite;
+        }
+
         /* Custom styles for GEMS Shop */
         .custom-scrollbar::-webkit-scrollbar {
             height: 4px;
@@ -2092,6 +2112,51 @@
                         <!-- Scrollable Shop Content -->
                         <div class="flex-grow overflow-y-auto pb-32">
 
+                            <!-- Shop Banner Carousel (Slideshow) -->
+                            <div class="px-3 pt-3 bg-white relative">
+                                <div id="shop-banner-carousel" class="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-3 w-full rounded-2xl" onscroll="updateShopBannerDots()">
+                                    <!-- Slide 1 -->
+                                    <div class="snap-start shrink-0 w-full relative px-5 py-4 cursor-pointer active:scale-[0.99] transition-transform rounded-2xl overflow-hidden" style="background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)" onclick="showToast('Xem chi tiết Super Brand Day')">
+                                        <div class="flex items-center gap-2 mb-1.5">
+                                            <span class="bg-yellow-400 text-[8px] font-black text-slate-900 px-2 py-0.5 rounded-full uppercase">⚡ Super Brand Day</span>
+                                            <span class="text-white/60 text-[8px] font-bold">GEMS Mall</span>
+                                        </div>
+                                        <h3 class="text-white text-sm font-black leading-snug tracking-tight">SÁCH Y KHOA ĐỘC QUYỀN</h3>
+                                        <p class="text-yellow-300 text-[10px] font-bold mt-1">🎁 Ưu đãi tới 30% + Tặng kèm sổ tay</p>
+                                        <div class="absolute right-4 bottom-3 bg-white/20 hover:bg-white/30 text-white text-[9px] font-black px-3 py-1 rounded-full transition-colors">Mua ngay</div>
+                                    </div>
+                                    
+                                    <!-- Slide 2 -->
+                                    <div class="snap-start shrink-0 w-full relative px-5 py-4 cursor-pointer active:scale-[0.99] transition-transform rounded-2xl overflow-hidden" style="background: linear-gradient(135deg, #005A9C 0%, #00b4d8 100%)" onclick="showToast('Săn mã Freeship Xtra')">
+                                        <div class="flex items-center gap-2 mb-1.5">
+                                            <span class="bg-white text-[8px] font-black text-brand-blue px-2 py-0.5 rounded-full uppercase">🚚 Freeship Xtra</span>
+                                            <span class="text-white/60 text-[8px] font-bold">Toàn Quốc</span>
+                                        </div>
+                                        <h3 class="text-white text-sm font-black leading-snug tracking-tight">NGẬP TRÀN MÃ FREESHIP</h3>
+                                        <p class="text-white text-[10px] font-bold mt-1">🔥 Giảm đến 50.000đ cho đơn hàng từ 0đ</p>
+                                        <div class="absolute right-4 bottom-3 bg-white/20 hover:bg-white/30 text-white text-[9px] font-black px-3 py-1 rounded-full transition-colors">Thu thập</div>
+                                    </div>
+
+                                    <!-- Slide 3 -->
+                                    <div class="snap-start shrink-0 w-full relative px-5 py-4 cursor-pointer active:scale-[0.99] transition-transform rounded-2xl overflow-hidden" style="background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%)" onclick="showToast('Xem deal công nghệ GEMS')">
+                                        <div class="flex items-center gap-2 mb-1.5">
+                                            <span class="bg-red-500 text-white text-[8px] font-black px-2 py-0.5 rounded-full uppercase">🎧 Tech Club</span>
+                                            <span class="text-white/60 text-[8px] font-bold">Hot Deal</span>
+                                        </div>
+                                        <h3 class="text-white text-sm font-black leading-snug tracking-tight">ĐẠI TIỆC CÔNG NGHỆ GEMS</h3>
+                                        <p class="text-yellow-300 text-[10px] font-bold mt-1">💥 Tai nghe & Bàn phím cơ giảm đến 45%</p>
+                                        <div class="absolute right-4 bottom-3 bg-white/20 hover:bg-white/30 text-white text-[9px] font-black px-3 py-1 rounded-full transition-colors">Săn ngay</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Carousel dots pagination -->
+                                <div id="shop-banner-dots" class="flex justify-center gap-1.5 mt-2 pb-1">
+                                    <span class="shop-banner-dot w-1.5 h-1.5 rounded-full bg-brand-blue transition-all duration-300"></span>
+                                    <span class="shop-banner-dot w-1.5 h-1.5 rounded-full bg-slate-200 transition-all duration-300"></span>
+                                    <span class="shop-banner-dot w-1.5 h-1.5 rounded-full bg-slate-200 transition-all duration-300"></span>
+                                </div>
+                            </div>
+
                             <!-- Quick Action Icons Row (GEMS Cohesive Theme) -->
                             <div class="bg-white px-2 pt-3 pb-2.5">
                                 <div class="flex justify-around items-start">
@@ -2166,7 +2231,7 @@
                                             <span id="flash-sec" class="bg-slate-800 px-1.5 py-0.5 rounded">44</span>
                                         </div>
                                     </div>
-                                    <span class="text-[10px] text-primary font-black uppercase flex items-center gap-0.5">Xem thêm <span class="material-symbols-outlined text-xs">chevron_right</span></span>
+                                    <span onclick="openShopFlashSale()" class="text-[10px] text-brand-blue font-black uppercase flex items-center gap-0.5 cursor-pointer hover:underline transition-all">Xem thêm <span class="material-symbols-outlined text-xs">chevron_right</span></span>
                                 </div>
                                 
                                 <!-- Horizontal list of Flash Sale items -->
@@ -3022,6 +3087,139 @@
                         </div>
                     </div>
 
+                    <!-- ============================================== -->
+                    <!-- VIEW: FLASH SALE DETAIL VIEW (Flash Sale Detail Screen) -->
+                    <!-- ============================================== -->
+                    <div id="view-shop-flashsale" class="absolute inset-0 z-[139] bg-slate-50 text-on-surface flex flex-col overflow-hidden hidden select-none animate-fade-in">
+                        <!-- Header: Brand-Blue Gradient (cohesive with app) -->
+                        <header class="bg-gradient-to-r from-brand-blue to-brand-blue-dark w-full top-0 sticky flex items-center justify-between px-3 py-2 z-50 shrink-0 shadow-md">
+                            <button onclick="closeShopFlashSale()" aria-label="Go back" class="text-white hover:bg-white/10 transition-colors rounded-full p-1.5 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-xl">arrow_back</span>
+                            </button>
+                            <h1 class="text-white font-black text-sm tracking-tight flex items-center gap-1"><span class="material-symbols-outlined text-base filled-icon text-yellow-300">bolt</span> Flash Sale</h1>
+                            <!-- Search bar inside header -->
+                            <div class="flex-grow mx-2 relative">
+                                <span class="material-symbols-outlined absolute left-2.5 top-1.5 text-white/60 text-base">search</span>
+                                <input type="text" id="shop-flash-search-input" oninput="handleFlashSaleSearch(this.value)" placeholder="Tìm kiếm deal hot..." class="w-full bg-white/15 backdrop-blur-sm rounded-full pl-8 pr-3 py-1.5 text-xs text-white placeholder-white/50 focus:outline-none focus:ring-1 focus:ring-white/30 border border-white/15">
+                            </div>
+                            
+                            <!-- Cart button with dynamic badge -->
+                            <button onclick="openShopCart()" class="text-white hover:bg-white/10 rounded-full p-1.5 flex items-center justify-center relative">
+                                <span class="material-symbols-outlined text-xl">shopping_cart</span>
+                                <span id="detail-flash-cart-badge" class="absolute -top-0.5 -right-0.5 bg-red-500 text-white text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center border border-white shadow-sm hidden">0</span>
+                            </button>
+                        </header>
+
+                        <!-- Scrollable container -->
+                        <div class="flex-grow overflow-y-auto pb-24 scrollbar-none" style="background: linear-gradient(180deg, #F0F6FF 0%, #F8F9FA 120px)">
+                            
+                            <!-- Giờ Vàng Flash Sale - Horizontal Scroll Cards (like TikTok top section) -->
+                            <div class="px-3 pt-3 pb-2" style="background: linear-gradient(180deg, rgba(0,90,156,0.05) 0%, transparent 100%)">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="text-xs font-black flex items-center gap-0.5" style="color:#EE4D2D">
+                                            <span class="material-symbols-outlined text-sm filled-icon" style="color:#EE4D2D">bolt</span>
+                                            Giờ Vàng Flash Sale
+                                        </span>
+                                        <span class="material-symbols-outlined text-slate-400 text-sm cursor-pointer">info</span>
+                                    </div>
+                                    <button onclick="showToast('Xem thêm Flash Sale')" class="text-slate-500 text-[10px] font-bold flex items-center gap-0.5">Xem thêm <span class="material-symbols-outlined text-xs">chevron_right</span></button>
+                                </div>
+                                <div class="flex gap-2.5 overflow-x-auto pb-1 scrollbar-none" id="fs-golden-hour-list">
+                                    <!-- Dynamic golden hour cards -->
+                                </div>
+                            </div>
+
+                            <!-- Voucher & Countdown Banner (brand-blue tinted) -->
+                            <div class="mx-3 my-2 rounded-xl overflow-hidden bg-blue-50/80 border border-brand-blue/10">
+                                <div class="px-3 py-2.5 flex items-center justify-between">
+                                    <div class="flex items-center gap-1.5 text-xs font-bold text-brand-blue">
+                                        <span class="material-symbols-outlined text-base">confirmation_number</span>
+                                        <span>Vouchers giảm đến <strong class="font-black">50k xu</strong> off</span>
+                                    </div>
+                                    <div class="flex items-center gap-1 text-[10px] font-black">
+                                        <span class="text-white px-1.5 py-0.5 rounded text-[10px] bg-slate-800" id="fs-detail-hour">00</span>
+                                        <span class="text-slate-500">:</span>
+                                        <span class="text-white px-1.5 py-0.5 rounded text-[10px] bg-slate-800" id="fs-detail-min">33</span>
+                                        <span class="text-slate-500">:</span>
+                                        <span class="text-white px-1.5 py-0.5 rounded text-[10px] bg-slate-800" id="fs-detail-sec">36</span>
+                                        <span class="material-symbols-outlined text-sm ml-0.5 text-brand-blue">chevron_right</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Promo Banner (Super Brand Day style) -->
+                            <div class="mx-3 mb-2 rounded-xl overflow-hidden cursor-pointer active:scale-[0.99] transition-transform" onclick="showToast('Xem chi tiết chương trình khuyến mãi')">
+                                <div class="relative px-4 py-3" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%)">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="bg-yellow-400 text-[7px] font-black text-slate-900 px-1.5 py-0.5 rounded uppercase">⚡ Super Brand Day</span>
+                                        <div class="flex items-center gap-1">
+                                            <span class="text-white/60 text-[7px] font-bold">Powered by</span>
+                                            <span class="text-white text-[8px] font-black">GEMS</span>
+                                        </div>
+                                    </div>
+                                    <h3 class="text-white text-[11px] font-black leading-snug">SÁCH THƠM GHI BẢN - HẾT MÌNH CHỜ DEAL VÀNG</h3>
+                                    <div class="flex items-center gap-3 mt-1.5">
+                                        <span class="text-yellow-300 text-[8px] font-bold flex items-center gap-0.5">🎁 Ưu Đãi Tới 25%</span>
+                                        <span class="text-yellow-300 text-[8px] font-bold flex items-center gap-0.5">🎁 Quà Tặng Độc Quyền</span>
+                                    </div>
+                                    <button class="mt-2 text-[9px] font-black text-white px-3 py-1 rounded-full" style="background: #EE4D2D">Mua Ngay</button>
+                                    <div class="absolute right-2 bottom-1 text-[7px] text-white/40 font-bold">Duy Nhất Hôm Nay</div>
+                                </div>
+                            </div>
+
+                            <!-- Session Tabs (Now | Tomorrow) - TikTok style -->
+                            <div class="bg-white flex border-b border-slate-100 sticky top-0 z-[40] shrink-0 shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+                                <button onclick="switchFlashSaleSession('now')" id="fs-session-now" class="flex-1 py-2.5 text-center transition-all">
+                                    <div class="text-[13px] font-black leading-none text-brand-blue">00:00</div>
+                                    <div class="text-[8px] font-bold mt-0.5 uppercase text-brand-blue">Đang diễn ra</div>
+                                    <div class="h-0.5 mt-1.5 mx-auto w-12 rounded-full bg-brand-blue"></div>
+                                </button>
+                                <button onclick="switchFlashSaleSession('tomorrow')" id="fs-session-tomorrow" class="flex-1 py-2.5 text-center transition-all">
+                                    <div class="text-[13px] font-black leading-none text-slate-400">00:00</div>
+                                    <div class="text-[8px] font-bold text-slate-400 mt-0.5 uppercase">Ngày mai</div>
+                                    <div class="h-0.5 mt-1.5 mx-auto w-12 rounded-full bg-transparent"></div>
+                                </button>
+                            </div>
+
+                            <!-- Horizontal Category Pills (TikTok style with icons) -->
+                            <div class="flex gap-2 overflow-x-auto px-3 py-2.5 bg-white scrollbar-none border-b border-slate-50 shrink-0">
+                                <button onclick="filterFlashCategory('on-sale')" id="fs-pill-on-sale" class="fs-cat-pill shrink-0 flex items-center gap-1 text-[10px] font-black px-3 py-1.5 rounded-full transition-all border-2" style="background:#EBF5FF; border-color:#005A9C; color:#005A9C">
+                                    <span class="material-symbols-outlined text-xs" style="color:#005A9C">bolt</span> On Sale
+                                </button>
+                                <button onclick="filterFlashCategory('super-cheap')" id="fs-pill-super-cheap" class="fs-cat-pill shrink-0 flex items-center gap-1 bg-slate-50 border-2 border-slate-200 text-slate-600 text-[10px] font-bold px-3 py-1.5 rounded-full transition-all">
+                                    Siêu Rẻ 🔥
+                                </button>
+                                <button onclick="filterFlashCategory('mall')" id="fs-pill-mall" class="fs-cat-pill shrink-0 flex items-center gap-1 bg-slate-50 border-2 border-slate-200 text-slate-600 text-[10px] font-bold px-3 py-1.5 rounded-full transition-all">
+                                    <span class="font-black text-brand-blue">Mall</span>⚡
+                                </button>
+                                <button onclick="filterFlashCategory('hot-trend')" id="fs-pill-hot-trend" class="fs-cat-pill shrink-0 flex items-center gap-1 bg-slate-50 border-2 border-slate-200 text-slate-600 text-[10px] font-bold px-3 py-1.5 rounded-full transition-all">
+                                    HOT TREND
+                                </button>
+                                <button onclick="filterFlashCategory('smart')" id="fs-pill-smart" class="fs-cat-pill shrink-0 flex items-center gap-1 bg-slate-50 border-2 border-slate-200 text-slate-600 text-[10px] font-bold px-3 py-1.5 rounded-full transition-all">
+                                    Smart Tech 💡
+                                </button>
+                            </div>
+
+                            <!-- Brand Fan Day Highlight Section -->
+                            <div class="bg-white p-3 space-y-2 border-b border-slate-100">
+                                <div class="flex justify-between items-center">
+                                    <h3 class="text-xs font-black text-slate-800 tracking-tight" id="fs-brand-title">GEMS Brand Fan Day</h3>
+                                    <button onclick="showToast('Xem thêm deal từ GEMS Brand')" class="text-slate-400 hover:text-slate-600 text-[10px] font-bold flex items-center gap-0.5">
+                                        Xem thêm <span class="material-symbols-outlined text-xs">chevron_right</span>
+                                    </button>
+                                </div>
+                                <div class="flex gap-2.5 overflow-x-auto pb-1 scrollbar-none" id="fs-brand-carousel">
+                                    <!-- Brand Promo Cards rendered here dynamically -->
+                                </div>
+                            </div>
+
+                            <!-- Main Product Flash Sale List (Vertical Row Cards - TikTok style) -->
+                            <div class="bg-white p-3 space-y-0" id="fs-main-list-container">
+                                <!-- Dynamic vertical list of flash sale products -->
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- ============================================== -->
                     <div id="shop-variant-drawer" class="absolute inset-0 z-[250] hidden select-none">
@@ -5315,6 +5513,7 @@
             bookInLibrary: false,
             selectedQuizOption: -1,
             activeTab: 'home',
+            shopBannerInterval: null,
             bookData: {
                 chandoanykhoa: {
                     title: 'Cẩm nang Chẩn đoán Y khoa',
@@ -6138,6 +6337,7 @@
 
         function switchTab(tabName) {
             // Close any overlay panels when switching tabs from the bottom nav
+            if (appState.shopBannerInterval) clearInterval(appState.shopBannerInterval);
             closeGroupDetail();
             closeBookDetails();
             closeAuthorProfile();
@@ -6161,6 +6361,7 @@
             closeShopFreeShip();
             closeShopMall();
             closeShopGifts();
+            closeShopFlashSale();
             closeVariantDrawer();
             closeProfileSublist();
             const successView = document.getElementById('view-shop-success');
@@ -10059,6 +10260,127 @@
                     { user: "Hồng Nhung", avatar: "HN", stars: 5, text: "Bút viết mượt lắm, màu sắc tươi. Con gái rất thích!", date: "05/07/2026", hasImg: true },
                     { user: "Tuấn Kiệt", avatar: "TK", stars: 4, text: "Chất lượng tốt so với giá tiền. Mực không bị lem.", date: "02/07/2026", hasImg: false }
                 ]
+            },
+            {
+                id: "book_ecg",
+                title: "Cẩm Nang Học Điện Tâm Đồ ECG GEMS (Lâm Sàng)",
+                category: "books",
+                rating: 4.9,
+                sold: "950+",
+                basePrice: 320000,
+                discount: 25,
+                shippingFee: 0,
+                shopName: "GEMS Bookstore",
+                desc: "Hướng dẫn thực hành đọc điện tâm đồ lâm sàng từ cơ bản đến nâng cao. Tích hợp hơn 150 bản ghi ECG thực tế kèm phân tích chi tiết. Rất phù hợp cho sinh viên y khoa và bác sĩ trẻ.",
+                specs: { "Tác giả": "GEMS Academic", "Số trang": "320 trang", "Ngôn ngữ": "Tiếng Việt", "Bảo hành": "1 đổi 1" },
+                images: ["assets/shop/book.png", "assets/shop/book.png"],
+                variants: [
+                    { id: "ecg_print", name: "Bản In Bìa Mềm", price: 240000, originalPrice: 320000, image: "assets/shop/book.png", stock: 150 }
+                ],
+                reviews: [
+                    { user: "Duy Anh", avatar: "DA", stars: 5, text: "Sách viết cực kỳ trực quan, hình minh họa ECG rất rõ nét.", date: "07/07/2026", hasImg: false }
+                ]
+            },
+            {
+                id: "smart_watch_fit",
+                title: "Đồng Hồ Thông Minh GEMS Watch Fit Pro",
+                category: "tech",
+                rating: 4.8,
+                sold: "1.2k+",
+                basePrice: 1500000,
+                discount: 35,
+                shippingFee: 0,
+                shopName: "GEMS Tech Store",
+                desc: "Theo dõi nhịp tim 24/7, đo nồng độ oxy SpO2, đo huyết áp và phân tích giấc ngủ khoa học. Hơn 100 chế độ tập luyện thể thao chuyên nghiệp. Pin bền bỉ tới 14 ngày, chống nước IP68.",
+                specs: { "Màn hình": "AMOLED 1.64 inch", "Pin": "14 ngày", "Chống nước": "IP68", "Vật liệu": "Hợp kim nhôm" },
+                images: ["assets/shop/headphones_black.png", "assets/shop/headphones_black.png"],
+                variants: [
+                    { id: "wf_black", name: "Đen Thể Thao", price: 975000, originalPrice: 1500000, image: "assets/shop/headphones_black.png", stock: 95 }
+                ],
+                reviews: [
+                    { user: "Lâm Phong", avatar: "LP", stars: 5, text: "Kết nối nhanh, đo cảm biến nhạy. Màn hình ngoài trời hiển thị rõ nét.", date: "08/07/2026", hasImg: false }
+                ]
+            },
+            {
+                id: "tshirt_essential",
+                title: "Áo Thun Unisex GEMS Essential Tee Cotton",
+                category: "fashion",
+                rating: 4.6,
+                sold: "3.4k+",
+                basePrice: 280000,
+                discount: 40,
+                shippingFee: 15000,
+                shopName: "GEMS Fashion House",
+                desc: "Áo thun basic 100% cotton định lượng 250gsm dày dặn, đứng form cực đẹp. Thấm hút mồ hôi hiệu quả, không bai nhão hay xơ vải sau nhiều lần giặt. Form oversize phù hợp cả nam và nữ.",
+                specs: { "Chất liệu": "Cotton 100%", "Định lượng": "250gsm", "Form": "Oversize", "Xuất xứ": "Việt Nam" },
+                images: ["assets/shop/hoodie.png", "assets/shop/hoodie.png"],
+                variants: [
+                    { id: "tee_black", name: "Màu Đen - Size M", price: 168000, originalPrice: 280000, image: "assets/shop/hoodie.png", stock: 220 },
+                    { id: "tee_white", name: "Màu Trắng - Size L", price: 168000, originalPrice: 280000, image: "assets/shop/hoodie.png", stock: 180 }
+                ],
+                reviews: [
+                    { user: "Thế Vinh", avatar: "TV", stars: 4, text: "Vải dày dặn gánh được form, mặc mát mẻ dễ chịu.", date: "06/07/2026", hasImg: false }
+                ]
+            },
+            {
+                id: "smart_kettle",
+                title: "Ấm Siêu Tốc Thủy Tinh GEMS SmartKettle 1.8L",
+                category: "home",
+                rating: 4.7,
+                sold: "720+",
+                basePrice: 590000,
+                discount: 30,
+                shippingFee: 30000,
+                shopName: "GEMS Home & Living",
+                desc: "Thân ấm làm bằng thủy tinh borosilicate chịu nhiệt cao cấp, không bám cặn. Hệ thống đèn LED đổi màu theo nhiệt độ nước thông minh. Công suất 1800W đun sôi cực nhanh, tự động ngắt khi sôi hoặc cạn nước.",
+                specs: { "Dung tích": "1.8 Lít", "Công suất": "1800W", "Chất liệu": "Thủy tinh Borosilicate", "Đèn LED": "5 màu đổi theo nhiệt độ" },
+                images: ["assets/shop/desklamp.png", "assets/shop/desklamp.png"],
+                variants: [
+                    { id: "kt_glass", name: "Thủy Tinh Trong Suốt", price: 413000, originalPrice: 590000, image: "assets/shop/desklamp.png", stock: 50 }
+                ],
+                reviews: [
+                    { user: "Như Quỳnh", avatar: "NQ", stars: 5, text: "Ấm đẹp lắm, nhìn nước sôi sùng sục đổi màu đèn rất thích mắt.", date: "04/07/2026", hasImg: false }
+                ]
+            },
+            {
+                id: "book_pharmacology",
+                title: "Sách Dược Lý Học Lâm Sàng GEMS (Bản Cập Nhật)",
+                category: "books",
+                rating: 4.9,
+                sold: "1.1k+",
+                basePrice: 380000,
+                discount: 20,
+                shippingFee: 15000,
+                shopName: "GEMS Bookstore",
+                desc: "Tổng hợp cơ chế tác dụng, chỉ định, chống chỉ định và tương tác thuốc lâm sàng của các nhóm dược phẩm phổ biến. Bản cập nhật hướng dẫn điều trị mới nhất của Bộ Y tế. Thích hợp cho sinh viên y dược.",
+                specs: { "Tác giả": "Hội đồng Y học GEMS", "NXB": "NXB Y học", "Số trang": "480 trang", "Năm XB": "2026" },
+                images: ["assets/shop/book.png", "assets/shop/book.png"],
+                variants: [
+                    { id: "pharm_soft", name: "Bìa Mềm Thường", price: 304000, originalPrice: 380000, image: "assets/shop/book.png", stock: 120 }
+                ],
+                reviews: [
+                    { user: "Đăng Khoa", avatar: "DK", stars: 5, text: "Sách trình bày khoa học, dễ tra cứu lâm sàng nhanh.", date: "09/07/2026", hasImg: false }
+                ]
+            },
+            {
+                id: "backpack_antitheft",
+                title: "Balo Chống Trộm Cao Cấp GEMS AntiTheft Pro",
+                category: "fashion",
+                rating: 4.8,
+                sold: "1.5k+",
+                basePrice: 850000,
+                discount: 38,
+                shippingFee: 20000,
+                shopName: "GEMS Fashion House",
+                desc: "Thiết kế khóa kéo ẩn thông minh chống trộm. Chất liệu vải Oxford chống thấm nước và chống sờn rách hiệu quả. Tích hợp cổng sạc USB ngoài tiện dụng. Nhiều ngăn phân loại khoa học cho laptop 15.6 inch và phụ kiện.",
+                specs: { "Chất liệu": "Vải Oxford chống nước", "Ngăn Laptop": "15.6 inch", "Cổng sạc": "USB 2.0 tích hợp", "Trọng lượng": "750g" },
+                images: ["assets/shop/keyboard.png", "assets/shop/keyboard.png"],
+                variants: [
+                    { id: "bp_grey", name: "Xám Đô Thị", price: 527000, originalPrice: 850000, image: "assets/shop/keyboard.png", stock: 140 }
+                ],
+                reviews: [
+                    { user: "Tuấn Tú", avatar: "TT", stars: 5, text: "Balo đeo êm vai, ngăn chứa rộng và cực an tâm khi đi xe bus đông người.", date: "08/07/2026", hasImg: false }
+                ]
             }
         ];
 
@@ -10076,10 +10398,50 @@
         let activeShopCategory = 'all';
         let shopSearchQuery = '';
 
+        function initShopBannerAutoSlide() {
+            const container = document.getElementById('shop-banner-carousel');
+            if (!container) return;
+            if (appState.shopBannerInterval) clearInterval(appState.shopBannerInterval);
+            appState.shopBannerInterval = setInterval(() => {
+                const total = container.children.length;
+                if (total <= 1) return;
+                const scrollLeft = container.scrollLeft;
+                const width = container.clientWidth;
+                let activeIndex = Math.round(scrollLeft / (width + 12));
+                activeIndex = (activeIndex + 1) % total;
+                const slide = container.children[activeIndex];
+                if (slide) {
+                    container.scrollTo({
+                        left: slide.offsetLeft,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 4000);
+        }
+
+        function updateShopBannerDots() {
+            const container = document.getElementById('shop-banner-carousel');
+            const dotsContainer = document.getElementById('shop-banner-dots');
+            if (!container || !dotsContainer) return;
+            const scrollLeft = container.scrollLeft;
+            const width = container.clientWidth;
+            const activeIndex = Math.round(scrollLeft / (width + 12));
+            const total = container.children.length;
+            dotsContainer.innerHTML = Array.from({length: total}).map((_, idx) => {
+                if (idx === activeIndex) {
+                    return '<span class="shop-banner-dot w-1.5 h-1.5 rounded-full bg-brand-blue transition-all duration-300"></span>';
+                }
+                return '<span class="shop-banner-dot w-1.5 h-1.5 rounded-full bg-slate-200 transition-all duration-300"></span>';
+            }).join('');
+        }
+
         function initShop() {
             renderShopFeed(activeShopCategory, shopSearchQuery);
             renderFlashSale();
             updateCartBadge();
+            
+            // Start shop banner slideshow auto-sliding
+            setTimeout(initShopBannerAutoSlide, 100);
             
             if (!window.flashSaleInterval) {
                 window.flashSaleInterval = setInterval(updateFlashSaleCountdown, 1000);
@@ -10146,6 +10508,7 @@
                 // Alternate between video duration and live status
                 const isLive = idx % 3 === 0;
                 const duration = `00:${25 + (idx * 3) % 35}`;
+                const cartQty = ShopCart.filter(item => item.productId === p.id).reduce((sum, item) => sum + item.quantity, 0);
                 
                 return `
                     <div class="card-lift bg-white border border-slate-100 rounded-lg overflow-hidden flex flex-col cursor-pointer shadow-sm relative" onclick="openShopProductDetail('${p.id}')">
@@ -10155,11 +10518,15 @@
                             
                             <!-- Video status indicator (top-left) -->
                             ${isLive ? `
-                                <div class="absolute top-2 left-2 bg-red-500 text-white text-[8px] font-black px-1.5 py-0.5 rounded flex items-center gap-0.5 shadow-sm">
-                                    <span class="w-1.5 h-1.5 bg-white rounded-full animate-pulse mr-0.5"></span>
+                                <div class="absolute top-2 left-2 bg-red-500 text-white text-[8px] font-black px-1.5 py-0.5 rounded flex items-center gap-1 shadow-sm z-10">
+                                    <div class="flex items-center gap-[2px]">
+                                        <span class="w-[2px] h-[6px] bg-white rounded-sm animate-pulse" style="animation-duration: 0.8s"></span>
+                                        <span class="w-[2px] h-[10px] bg-white rounded-sm animate-pulse" style="animation-duration: 0.5s"></span>
+                                        <span class="w-[2px] h-[6px] bg-white rounded-sm animate-pulse" style="animation-duration: 0.7s"></span>
+                                    </div>
                                     LIVE
                                 </div>
-                            ` : `
+                             ` : `
                                 <div class="absolute top-2 left-2 bg-black/40 text-white text-[8px] font-black px-1.5 py-0.5 rounded flex items-center gap-1">
                                     <span class="material-symbols-outlined text-[10px]">play_arrow</span>
                                     <span>${duration}</span>
@@ -10167,13 +10534,20 @@
                             `}
 
                             <!-- Coupon voucher tag (top-right) -->
-                            <div class="absolute right-2 top-2 bg-amber-500 text-white text-[8px] font-black px-1 py-[3px] rounded shadow-sm flex flex-col items-center leading-none">
+                            <div class="absolute right-2 top-2 bg-amber-500 text-white text-[8px] font-black px-1 py-[3px] rounded shadow-sm flex flex-col items-center leading-none z-10">
                                 <span>-${p.discount}%</span>
                             </div>
 
+                            <!-- Cart quantity badge (right-below coupon) -->
+                            ${cartQty > 0 ? `
+                            <div class="absolute right-2 top-8 bg-brand-blue text-white text-[8px] font-black px-1.5 py-[3px] rounded shadow-sm flex items-center gap-0.5 leading-none z-10 animate-fade-in">
+                                <span class="material-symbols-outlined text-[8px]" style="font-size: 8px;">shopping_cart</span>
+                                <span>${cartQty}</span>
+                            </div>` : ''}
+
                             <!-- Shop profile overlay (bottom) -->
                             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-2 pt-6 flex items-center gap-1.5">
-                                <div class="w-5 h-5 rounded-full bg-primary/10 border border-white/60 flex items-center justify-center text-[7px] font-black text-white overflow-hidden shrink-0">
+                                <div class="w-5 h-5 rounded-full bg-primary/10 border ${isLive ? 'border-red-500 animate-pulse' : 'border-white/60'} flex items-center justify-center text-[7px] font-black text-white overflow-hidden shrink-0">
                                     ${p.avatar || p.shopName.substring(0, 2).toUpperCase()}
                                 </div>
                                 <p class="text-[9px] text-white font-bold truncate flex-1">${p.shopName}</p>
@@ -10193,6 +10567,10 @@
                                     <span>${p.rating}</span>
                                     <span>| Đã bán ${p.sold}</span>
                                 </div>
+                                <div class="flex items-center gap-1 mt-0.5 flex-wrap">
+                                    ${p.shippingFee === 0 ? `<span class="text-[7px] font-black text-emerald-600 bg-emerald-50 border border-emerald-200/60 px-1.5 py-[1px] rounded">Free Ship</span>` : ''}
+                                    ${p.shopName.toLowerCase().includes('gems') ? `<span class="text-[7px] font-black text-white bg-brand-blue px-1.5 py-[1px] rounded">Mall</span>` : ''}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -10210,11 +10588,23 @@
                 const discountedPrice = Math.round(p.basePrice * (1 - p.discount / 100));
                 return `
                     <div class="card-lift flex-shrink-0 w-[84px] cursor-pointer flex flex-col items-center" onclick="openShopProductDetail('${p.id}')">
-                        <div class="w-[84px] h-[84px] bg-slate-50 rounded-lg overflow-hidden border border-slate-100 mb-1 relative">
+                        <div class="w-[84px] h-[84px] bg-white rounded-lg overflow-hidden border border-slate-100 mb-1 relative">
                             <img src="${p.images[0]}" alt="${p.title}" class="w-full h-full object-cover" />
-                            <!-- Red discount banner at the bottom of the thumbnail -->
-                            <div class="absolute bottom-0 left-0 right-0 h-3.5 bg-red-500/90 text-[7px] text-center font-black text-white flex items-center justify-center leading-none">
-                                -${p.discount}% OFF
+                            <!-- Downward Arrow Badge at the top-left of the thumbnail -->
+                            <div class="absolute left-1 top-0 w-[22px] h-[24px] flex flex-col items-center justify-center filter drop-shadow-[0_1px_1.5px_rgba(0,0,0,0.15)] pointer-events-none select-none z-10">
+                                <svg class="absolute inset-0 w-full h-full" viewBox="0 0 32 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="fsArrowGrad-${p.id}" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#FF9A00" />
+                                            <stop offset="100%" stop-color="#FF2A54" />
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M2,2 L30,2 L30,20 L18,31 C17,32 15,32 14,31 L2,20 Z" fill="url(#fsArrowGrad-${p.id})" />
+                                </svg>
+                                <div class="relative z-20 text-center flex flex-col justify-center items-center h-full -mt-0.5 leading-none text-white font-black select-none">
+                                    <span class="text-[7px] tracking-tight font-black">${p.discount}%</span>
+                                    <span class="text-[4px] opacity-95 uppercase font-bold tracking-tighter" style="font-size: 4px;">off</span>
+                                </div>
                             </div>
                         </div>
                         <p class="text-[9.5px] font-black text-red-500 text-center truncate mt-0.5">${discountedPrice.toLocaleString()}đ</p>
@@ -11362,11 +11752,332 @@
             if (view) view.classList.add('hidden');
         }
 
+        // ============ FLASH SALE ============
+        function openShopFlashSale() {
+            const view = document.getElementById('view-shop-flashsale');
+            if (view) view.classList.remove('hidden');
+            // Reset state
+            activeFlashSession = 'now';
+            activeFlashCategory = 'on-sale';
+            flashSaleSearchQuery = '';
+            
+            // Set tab states visually
+            const nowBtn = document.getElementById('fs-session-now');
+            const tomBtn = document.getElementById('fs-session-tomorrow');
+            if (nowBtn && tomBtn) {
+                nowBtn.querySelector('div:nth-child(1)').style.color = '#005A9C';
+                nowBtn.querySelector('div:nth-child(2)').style.color = '#005A9C';
+                nowBtn.querySelector('div:nth-child(3)').style.background = '#005A9C';
+                
+                tomBtn.querySelector('div:nth-child(1)').style.color = '#94a3b8';
+                tomBtn.querySelector('div:nth-child(2)').style.color = '#94a3b8';
+                tomBtn.querySelector('div:nth-child(3)').style.background = 'transparent';
+            }
+            
+            const searchInput = document.getElementById('shop-flash-search-input');
+            if (searchInput) searchInput.value = '';
+            
+            filterFlashCategory('on-sale');
+        }
+        function closeShopFlashSale() {
+            const view = document.getElementById('view-shop-flashsale');
+            if (view) view.classList.add('hidden');
+            if (window.detailFlashInterval) clearInterval(window.detailFlashInterval);
+        }
+
+        // State variables
+        let activeFlashSession = 'now';
+        let activeFlashCategory = 'on-sale';
+        let flashSaleSearchQuery = '';
+
+        function updateFlashSaleCartBadge() {
+            const totalQty = ShopCart.reduce((total, item) => total + item.quantity, 0);
+            const badge = document.getElementById('detail-flash-cart-badge');
+            if (badge) {
+                badge.textContent = String(totalQty);
+                if (totalQty > 0) badge.classList.remove('hidden');
+                else badge.classList.add('hidden');
+            }
+        }
+
+        function switchFlashSaleSession(session) {
+            activeFlashSession = session;
+            const nowBtn = document.getElementById('fs-session-now');
+            const tomBtn = document.getElementById('fs-session-tomorrow');
+            
+            if (session === 'now') {
+                nowBtn.querySelector('div:nth-child(1)').style.color = '#005A9C';
+                nowBtn.querySelector('div:nth-child(2)').style.color = '#005A9C';
+                nowBtn.querySelector('div:nth-child(3)').style.background = '#005A9C';
+                tomBtn.querySelector('div:nth-child(1)').style.color = '#94a3b8';
+                tomBtn.querySelector('div:nth-child(2)').style.color = '#94a3b8';
+                tomBtn.querySelector('div:nth-child(3)').style.background = 'transparent';
+            } else {
+                tomBtn.querySelector('div:nth-child(1)').style.color = '#005A9C';
+                tomBtn.querySelector('div:nth-child(2)').style.color = '#005A9C';
+                tomBtn.querySelector('div:nth-child(3)').style.background = '#005A9C';
+                nowBtn.querySelector('div:nth-child(1)').style.color = '#94a3b8';
+                nowBtn.querySelector('div:nth-child(2)').style.color = '#94a3b8';
+                nowBtn.querySelector('div:nth-child(3)').style.background = 'transparent';
+            }
+            
+            showToast(`Chuyển sang khung giờ: ${session === 'now' ? 'Đang diễn ra' : 'Khung giờ ngày mai'}`);
+            renderShopFlashSaleDetail();
+        }
+
+        function filterFlashCategory(cat) {
+            activeFlashCategory = cat;
+            document.querySelectorAll('.fs-cat-pill').forEach(btn => {
+                btn.className = "fs-cat-pill shrink-0 flex items-center gap-1 bg-slate-50 border-2 border-slate-200 text-slate-600 text-[10px] font-bold px-3 py-1.5 rounded-full transition-all";
+                btn.style.cssText = '';
+            });
+            
+            const activeBtn = document.getElementById(`fs-pill-${cat}`);
+            if (activeBtn) {
+                activeBtn.style.background = '#EBF5FF';
+                activeBtn.style.borderColor = '#005A9C';
+                activeBtn.style.color = '#005A9C';
+                activeBtn.className = "fs-cat-pill shrink-0 flex items-center gap-1 text-[10px] font-black px-3 py-1.5 rounded-full transition-all border-2";
+            }
+            
+            renderShopFlashSaleDetail();
+        }
+
+        function handleFlashSaleSearch(val) {
+            flashSaleSearchQuery = val.trim().toLowerCase();
+            renderShopFlashSaleDetail();
+        }
+
+        function renderShopFlashSaleDetail() {
+            updateFlashSaleCartBadge();
+            
+            // Sync countdown timer
+            const updateCountdown = () => {
+                const h = document.getElementById('flash-hour')?.textContent || '02';
+                const m = document.getElementById('flash-min')?.textContent || '35';
+                const s = document.getElementById('flash-sec')?.textContent || '44';
+                
+                const dh = document.getElementById('fs-detail-hour');
+                const dm = document.getElementById('fs-detail-min');
+                const ds = document.getElementById('fs-detail-sec');
+                
+                if (dh) dh.textContent = h;
+                if (dm) dm.textContent = m;
+                if (ds) ds.textContent = s;
+            };
+            updateCountdown();
+            if (window.detailFlashInterval) clearInterval(window.detailFlashInterval);
+            window.detailFlashInterval = setInterval(updateCountdown, 1000);
+            
+            // Get all discounted products
+            let fsProducts = shopProducts.filter(p => p.discount > 0);
+            
+            // Filter by active category
+            if (activeFlashCategory === 'super-cheap') {
+                fsProducts = fsProducts.filter(p => {
+                    const discountedPrice = Math.round(p.basePrice * (1 - p.discount / 100));
+                    return discountedPrice <= 500000;
+                });
+            } else if (activeFlashCategory === 'mall') {
+                fsProducts = fsProducts.filter(p => p.shopName.includes('GEMS Tech') || p.shopName.includes('GEMS Home'));
+            } else if (activeFlashCategory === 'hot-trend') {
+                fsProducts = fsProducts.filter(p => p.rating >= 4.8);
+            } else if (activeFlashCategory === 'smart') {
+                fsProducts = fsProducts.filter(p => p.category === 'tech' || p.category === 'home');
+            }
+            
+            // Filter by search query
+            if (flashSaleSearchQuery) {
+                fsProducts = fsProducts.filter(p => p.title.toLowerCase().includes(flashSaleSearchQuery) || p.shopName.toLowerCase().includes(flashSaleSearchQuery));
+            }
+            
+            // ========== Giờ Vàng Flash Sale - Horizontal Scroll Cards ==========
+            const goldenHourList = document.getElementById('fs-golden-hour-list');
+            if (goldenHourList) {
+                goldenHourList.innerHTML = fsProducts.slice(0, 5).map((p, idx) => {
+                    const discountedPrice = Math.round(p.basePrice * (1 - p.discount / 100));
+                    return `
+                        <div class="flex-shrink-0 w-24 flex flex-col items-center cursor-pointer active:scale-95 transition-transform" onclick="openShopProductDetail('${p.id}')">
+                            <div class="relative w-full aspect-square rounded-xl overflow-hidden bg-slate-50 mb-1.5 shadow-sm border border-slate-100">
+                                <img src="${p.images[0]}" alt="${p.title}" class="w-full h-full object-cover" />
+                                <div class="absolute top-1 left-1 text-white text-[8px] font-black px-1.5 py-0.5 rounded-br-lg rounded-tl-lg flex items-center gap-0.5" style="background:#EE4D2D">
+                                    ↓ ${p.discount}%
+                                </div>
+                            </div>
+                            <span class="text-[10px] font-black" style="color:#EE4D2D">${discountedPrice.toLocaleString()}<span class="underline">đ</span></span>
+                            <span class="text-[8px] text-slate-400 line-through font-bold">${p.basePrice.toLocaleString()}đ</span>
+                        </div>
+                    `;
+                }).join('');
+            }
+            
+            // ========== Brand Fan Day Carousel ==========
+            const brandCarousel = document.getElementById('fs-brand-carousel');
+            if (brandCarousel) {
+                const brandItems = fsProducts.slice(0, 3);
+                brandCarousel.innerHTML = brandItems.map((p, idx) => {
+                    const discountedPrice = Math.round(p.basePrice * (1 - p.discount / 100));
+                    return `
+                        <div class="flex-shrink-0 w-32 bg-white border border-slate-100 rounded-xl overflow-hidden flex flex-col relative shadow-sm cursor-pointer active:scale-95 transition-transform" onclick="openShopProductDetail('${p.id}')">
+                            <!-- Ribbon discount Tag -->
+                            <div class="absolute left-1.5 top-1.5 text-white text-[8px] font-black px-1.5 py-0.5 rounded-br-lg rounded-tl-sm flex items-center gap-0.5 z-10 shadow-sm" style="background:#EE4D2D">
+                                <span class="text-[7px]">↓</span> ${p.discount}%
+                            </div>
+                            
+                            <div class="w-full aspect-square overflow-hidden bg-slate-50">
+                                <img src="${p.images[0]}" alt="${p.title}" class="w-full h-full object-cover" />
+                            </div>
+                            
+                            <!-- Deal Dành Tặng banner -->
+                            <div class="px-1.5 py-1 text-center text-[7px] font-black text-white" style="background: linear-gradient(90deg, #EE4D2D, #FF6B35)">Deal Dành Tặng Fan YÊU ✨</div>
+                            
+                            <div class="p-1.5 flex-grow flex flex-col justify-between">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] font-black" style="color:#EE4D2D">${discountedPrice.toLocaleString()}đ</span>
+                                    <span class="text-[8px] text-slate-400 line-through font-bold">${p.basePrice.toLocaleString()}đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+            
+            // ========== Main Product List (Vertical TikTok Style Cards) ==========
+            const mainList = document.getElementById('fs-main-list-container');
+            if (mainList) {
+                if (fsProducts.length === 0) {
+                    mainList.innerHTML = `
+                        <div class="text-center py-12 text-slate-400 text-xs">
+                            <span class="material-symbols-outlined text-3xl mb-1 text-slate-300">search_off</span>
+                            <p>Không tìm thấy sản phẩm Flash Sale nào.</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                mainList.innerHTML = fsProducts.map((p, idx) => {
+                    const discountedPrice = Math.round(p.basePrice * (1 - p.discount / 100));
+                    const percentSold = 30 + (idx * 23) % 65;
+                    const hasFreeShip = idx % 2 === 0;
+                    const hasMall = idx % 3 === 0;
+                    const hasXtra = idx % 2 === 0;
+                    const cartQty = ShopCart.filter(item => item.productId === p.id).reduce((sum, item) => sum + item.quantity, 0);
+                    
+                    return `
+                        <div class="flex gap-3 py-3 border-b border-slate-100 last:border-0 items-start select-none cursor-pointer" onclick="openShopProductDetail('${p.id}')">
+                            <!-- Left: Image Cover with overlays -->
+                            <div class="relative w-[100px] h-[100px] bg-white rounded-xl overflow-hidden flex-shrink-0 shadow-sm">
+                                <img src="${p.images[0]}" alt="${p.title}" class="w-full h-full object-cover" />
+                                <!-- Cart quantity badge -->
+                                ${cartQty > 0 ? `
+                                <div class="absolute right-1.5 top-1.5 bg-brand-blue text-white text-[8px] font-black px-1.5 py-0.5 rounded-full shadow-sm flex items-center gap-0.5 z-10 animate-fade-in">
+                                    <span class="material-symbols-outlined text-[8px]" style="font-size: 8px;">shopping_cart</span>
+                                    <span>${cartQty}</span>
+                                </div>` : ''}
+                                <!-- XTRA badges at bottom of image -->
+                                ${hasXtra ? `
+                                <div class="absolute left-0 bottom-0 right-0 flex">
+                                    <span class="text-[6px] font-black text-white px-1 py-0.5" style="background:#EE4D2D">XTRA</span>
+                                    <span class="text-[6px] font-black text-white px-1 py-0.5" style="background:#2563eb">EXTRA Freeship</span>
+                                </div>` : ''}
+                                ${!hasXtra ? `<div class="absolute left-0 bottom-0 right-0 text-[6px] font-black text-white py-0.5 text-center" style="background:#2563eb">Ad</div>` : ''}
+                            </div>
+                            
+                            <!-- Right: Product Information & Action Panel -->
+                            <div class="flex-grow flex flex-col justify-between min-h-[100px] min-w-0">
+                                <div class="space-y-1">
+                                    <!-- Mall badge + Title -->
+                                    <div class="flex items-start gap-1">
+                                        ${hasMall ? `<span class="shrink-0 text-[7px] font-black text-white px-1 py-0.5 rounded-sm mt-0.5" style="background:#2563eb">Mall</span>` : ''}
+                                        <h4 class="text-[11px] font-bold text-slate-800 line-clamp-1 leading-snug">${p.title}</h4>
+                                    </div>
+                                    
+                                    <!-- Shipping Badges -->
+                                    <div class="flex items-center gap-1.5 flex-wrap">
+                                        ${hasFreeShip ? `<span class="text-[7.5px] font-black flex items-center gap-0.5" style="color:#00B894">🚚 Free shipping</span>` : ''}
+                                        <span class="text-[7.5px] font-bold text-slate-400">|</span>
+                                        <span class="text-[7.5px] font-bold text-slate-500">COD</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Progress Bar (orange/red like TikTok) -->
+                                <div class="mt-1">
+                                    <div class="flex items-center gap-1.5 mb-1">
+                                        <div class="flex-grow bg-orange-100 rounded-full h-[6px] overflow-hidden relative">
+                                            <div class="h-full rounded-full progress-shimmer" style="width: ${percentSold}%; background: linear-gradient(90deg, #FF6B35, #EE4D2D)"></div>
+                                        </div>
+                                        <span class="text-[8px] font-black shrink-0 flex items-center gap-0.5" style="color:#EE4D2D">
+                                            <span>${percentSold}%</span>
+                                            <span>${percentSold > 60 ? '🔥' : '⚡'}</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Pricing & Buy trigger (TikTok style) -->
+                                <div class="flex items-end justify-between">
+                                    <div class="flex flex-col">
+                                        <span class="text-[13px] font-black leading-none" style="color:#EE4D2D">${discountedPrice.toLocaleString()}<span class="underline text-[10px]">đ</span></span>
+                                        <span class="text-[9px] text-slate-400 line-through font-bold mt-0.5">${p.basePrice.toLocaleString()}đ</span>
+                                    </div>
+                                    
+                                    <!-- Premium Overlapping Downward-Arrow Tag & Buy Button -->
+                                    <div class="relative flex items-center shrink-0 h-8 pl-4 cursor-pointer" onclick="event.stopPropagation(); openShopProductDetail('${p.id}')">
+                                        <!-- Buy button rounded right -->
+                                        <button class="text-white text-[10px] font-black pl-[16px] pr-2.5 h-[24px] rounded-r-full rounded-l-md active:scale-95 transition-all leading-none shadow-sm flex items-center justify-center" style="background: linear-gradient(90deg, #FF2A54, #FF0040);">
+                                            Buy
+                                        </button>
+                                        
+                                        <!-- Overlapping Arrow Badge -->
+                                        <div class="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col items-center justify-center w-[24px] h-[26px] filter drop-shadow-[0_1.5px_2.5px_rgba(0,0,0,0.15)] pointer-events-none select-none z-10">
+                                            <!-- SVG Downward Ribbon/Arrow -->
+                                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 32 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <defs>
+                                                    <linearGradient id="arrowGrad-${p.id}" x1="0%" y1="0%" x2="0%" y2="100%">
+                                                        <stop offset="0%" stop-color="#FF9A00" />
+                                                        <stop offset="100%" stop-color="#FF2A54" />
+                                                    </linearGradient>
+                                                </defs>
+                                                <path d="M2,2 L30,2 L30,20 L18,31 C17,32 15,32 14,31 L2,20 Z" fill="url(#arrowGrad-${p.id})" />
+                                            </svg>
+                                            <!-- Discount numbers -->
+                                            <div class="relative z-20 text-center flex flex-col justify-center items-center h-full -mt-0.5 leading-none text-white font-black select-none">
+                                                <span class="text-[7.5px] tracking-tight font-black">${p.discount}%</span>
+                                                <span class="text-[5px] opacity-95 uppercase font-bold tracking-tighter" style="font-size: 5px;">off</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        function syncFlashSaleDetailCountdown() {
+            const updateCount = () => {
+                const globalHour = document.getElementById('flash-hour');
+                const globalMin = document.getElementById('flash-min');
+                const globalSec = document.getElementById('flash-sec');
+                
+                const detailHour = document.getElementById('fs-detail-hour');
+                const detailMin = document.getElementById('fs-detail-min');
+                const detailSec = document.getElementById('fs-detail-sec');
+                
+                if (globalHour && detailHour) detailHour.textContent = globalHour.textContent;
+                if (globalMin && detailMin) detailMin.textContent = globalMin.textContent;
+                if (globalSec && detailSec) detailSec.textContent = globalSec.textContent;
+            };
+            updateCount();
+            if (window.detailFlashInterval) clearInterval(window.detailFlashInterval);
+            window.detailFlashInterval = setInterval(updateCount, 1000);
+        }
 
         function updateCartBadge() {
             const totalQty = ShopCart.reduce((total, item) => total + item.quantity, 0);
             const badge1 = document.getElementById('shop-cart-badge');
             const badge2 = document.getElementById('detail-shop-cart-badge');
+            const badge3 = document.getElementById('detail-flash-cart-badge');
             
             if (badge1) {
                 badge1.textContent = String(totalQty);
@@ -11377,6 +12088,19 @@
                 badge2.textContent = String(totalQty);
                 if (totalQty > 0) badge2.classList.remove('hidden');
                 else badge2.classList.add('hidden');
+            }
+            if (badge3) {
+                badge3.textContent = String(totalQty);
+                if (totalQty > 0) badge3.classList.remove('hidden');
+                else badge3.classList.add('hidden');
+            }
+
+            // Reactively update product card quantity badges
+            if (typeof renderShopFeed === 'function') {
+                renderShopFeed(activeShopCategory, shopSearchQuery);
+            }
+            if (typeof renderShopFlashSaleDetail === 'function') {
+                renderShopFlashSaleDetail();
             }
         }
 
