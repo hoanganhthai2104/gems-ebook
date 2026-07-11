@@ -23842,6 +23842,22 @@
             const hotDeals = [...LOCAL_PRODUCTS].sort((a, b) => b.discount - a.discount).slice(0, 4);
             
             container.innerHTML = hotDeals.map(p => {
+                let badgesHtml = '';
+                if (p.price >= 100000) {
+                    badgesHtml += `
+                        <span class="bg-blue-50/95 border border-blue-200 text-[#005A9C] font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none flex items-center gap-0.5 w-max">
+                            <span class="material-symbols-outlined" style="font-size: 7px; font-weight: 900;">local_shipping</span>Freeship
+                        </span>
+                    `;
+                }
+                if (p.discount > 0) {
+                    badgesHtml += `
+                        <span class="bg-amber-50/95 border border-amber-200 text-amber-800 font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none flex items-center gap-0.5 w-max">
+                            <span class="material-symbols-outlined" style="font-size: 7px; font-weight: 900;">local_offer</span>Giảm ${p.discount}%
+                        </span>
+                    `;
+                }
+
                 return `
                     <div class="bg-white border border-teal-100/70 rounded-2xl p-2 flex flex-col justify-between shadow-[0_4px_15px_rgba(13,148,136,0.015)] relative active:scale-[0.98] transition-transform hover:border-teal-300 transition-colors cursor-pointer" onclick="showToast('Sản phẩm OCOP: ${p.title}')">
                         <div>
@@ -23851,12 +23867,7 @@
                                 
                                 <!-- Floating Tags bottom left -->
                                 <div class="absolute bottom-1.5 left-1.5 flex flex-col gap-1 pointer-events-none select-none z-10">
-                                    <span class="bg-blue-50/95 border border-blue-200 text-[#005A9C] font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none flex items-center gap-0.5 w-max">
-                                        <span class="material-symbols-outlined" style="font-size: 7px; font-weight: 900;">local_shipping</span>Freeship
-                                    </span>
-                                    <span class="bg-amber-50/95 border border-amber-200 text-amber-800 font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none flex items-center gap-0.5 w-max">
-                                        <span class="material-symbols-outlined" style="font-size: 7px; font-weight: 900;">local_offer</span>Giảm 50K
-                                    </span>
+                                    ${badgesHtml}
                                 </div>
                             </div>
                             
@@ -23890,6 +23901,21 @@
             }
             
             container.innerHTML = filtered.map(p => {
+                let badgesHtml = '';
+                if (p.price >= 100000) {
+                    badgesHtml += `
+                        <span class="bg-blue-50/95 border border-blue-200 text-[#005A9C] font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none flex items-center gap-0.5 w-max">
+                            <span class="material-symbols-outlined" style="font-size: 7px; font-weight: 900;">local_shipping</span>Freeship
+                        </span>
+                    `;
+                } else if (p.discount > 0) {
+                    badgesHtml += `
+                        <span class="bg-amber-50/95 border border-amber-200 text-amber-800 font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none flex items-center gap-0.5 w-max">
+                            <span class="material-symbols-outlined" style="font-size: 7px; font-weight: 900;">local_offer</span>Giảm ${p.discount}%
+                        </span>
+                    `;
+                }
+
                 return `
                     <div class="bg-white border border-teal-100/70 rounded-2xl p-2 flex flex-col justify-between shadow-[0_4px_15px_rgba(13,148,136,0.015)] relative active:scale-[0.98] transition-transform hover:border-teal-300 transition-colors cursor-pointer" onclick="showToast('Sản phẩm OCOP: ${p.title}')">
                         <div>
@@ -23899,9 +23925,7 @@
                                 
                                 <!-- Floating Tags bottom left -->
                                 <div class="absolute bottom-1.5 left-1.5 flex flex-col gap-1 pointer-events-none select-none z-10">
-                                    <span class="bg-blue-50/95 border border-blue-200 text-[#005A9C] font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none flex items-center gap-0.5 w-max">
-                                        <span class="material-symbols-outlined" style="font-size: 7px; font-weight: 900;">local_shipping</span>Freeship
-                                    </span>
+                                    ${badgesHtml}
                                 </div>
                             </div>
                             
@@ -24855,7 +24879,7 @@
 
                     const hasMall = idx % 3 === 0;
 
-                    const hasXtra = idx % 2 === 0;
+                    const hasXtra = idx % 3 === 0;
 
                     const cartQty = ShopCart.filter(item => item.productId === p.id).reduce((sum, item) => sum + item.quantity, 0);
 
@@ -24885,35 +24909,33 @@
 
                                 <!-- XTRA badges at bottom of image -->
 
-                                ${hasXtra ? `
-
                                 <div class="absolute left-1.5 bottom-1.5 flex flex-col gap-1 z-10">
+
+                                    ${hasFreeShip ? `
 
                                     <span class="bg-blue-50/95 border border-blue-200 text-[#005A9C] font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none flex items-center gap-0.5 w-max">
 
                                         <span class="material-symbols-outlined" style="font-size: 7px; font-weight: 900;">local_shipping</span>Freeship
 
-                                    </span>
+                                    </span>` : ''}
+
+                                    ${hasXtra ? `
 
                                     <span class="bg-amber-50/95 border border-amber-200 text-amber-800 font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none flex items-center gap-0.5 w-max">
 
                                         <span class="material-symbols-outlined" style="font-size: 7px; font-weight: 900;">local_offer</span>XTRA
 
-                                    </span>
+                                    </span>` : ''}
 
-                                </div>` : ''}
-
-                                ${!hasXtra ? `
-
-                                <div class="absolute left-1.5 bottom-1.5 z-10">
+                                    ${!hasFreeShip && !hasXtra ? `
 
                                     <span class="bg-slate-50/95 border border-slate-200 text-slate-600 font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none w-max">
 
                                         Ad
 
-                                    </span>
+                                    </span>` : ''}
 
-                                </div>` : ''}
+                                </div>
 
                             </div>
 
