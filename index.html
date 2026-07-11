@@ -5575,18 +5575,22 @@
 
                     <!-- ============================================== -->
 
-                    <div id="view-shop-local" class="absolute inset-0 z-[134] bg-[#FAF7F2] text-slate-800 flex flex-col overflow-hidden hidden select-none animate-fade-in">
+                    <div id="view-shop-local" class="absolute inset-0 z-[134] bg-gradient-to-br from-[#F4F8F4] via-[#FAFDF9] to-[#F1F6F1] text-slate-800 flex flex-col overflow-hidden hidden select-none animate-fade-in relative">
+
+                        <!-- Floating Green Aurora Blobs -->
+                        <div class="absolute top-10 -left-16 w-48 h-48 bg-emerald-500/10 rounded-full blur-[60px] pointer-events-none animate-pulse"></div>
+                        <div class="absolute bottom-20 -right-16 w-52 h-52 bg-green-400/8 rounded-full blur-[65px] pointer-events-none animate-pulse"></div>
 
                         <!-- Header -->
-                        <header class="bg-[#FAF7F2]/90 backdrop-blur-md border-b border-amber-100/50 w-full top-0 sticky flex items-center justify-between px-3 py-3 z-50 shrink-0">
+                        <header class="bg-[#FAFDF9]/90 backdrop-blur-md border-b border-emerald-100 w-full top-0 sticky flex items-center justify-between px-3 py-3 z-50 shrink-0">
                             <div class="w-10">
-                                <button onclick="closeShopLocal()" aria-label="Go back" class="text-slate-700 hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+                                <button onclick="closeShopLocal()" aria-label="Go back" class="text-emerald-800 hover:bg-emerald-50 transition-colors rounded-full p-2 flex items-center justify-center">
                                     <span class="material-symbols-outlined text-xl">arrow_back</span>
                                 </button>
                             </div>
-                            <h1 class="font-sans text-sm font-black tracking-tight text-slate-900 mx-auto text-center truncate">OCOP - Hàng Việt</h1>
+                            <h1 class="font-sans text-sm font-black tracking-tight text-emerald-950 mx-auto text-center truncate">🌿 OCOP - Hàng Việt</h1>
                             <div class="w-10 flex justify-end">
-                                <button onclick="openShopCart()" class="relative text-slate-700 hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+                                <button onclick="openShopCart()" class="relative text-emerald-800 hover:bg-emerald-50 transition-colors rounded-full p-2 flex items-center justify-center">
                                     <span class="material-symbols-outlined text-xl">shopping_cart</span>
                                     <span id="local-shop-cart-badge" class="absolute top-0 right-0 bg-red-500 text-white font-bold text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center hidden border border-white">0</span>
                                 </button>
@@ -5598,10 +5602,10 @@
 
                             <!-- Top Local Sellers (Top Nhà Bán Hàng Địa Phương) -->
                             <div class="px-3 pt-3">
-                                <div class="bg-white/80 backdrop-blur-md rounded-3xl border border-slate-200/50 p-4 space-y-3.5 shadow-[0_4px_15px_rgba(0,0,0,0.015)]">
+                                <div class="bg-white/90 backdrop-blur-md rounded-3xl border border-green-100/60 p-4 space-y-3.5 shadow-[0_4px_15px_rgba(16,185,129,0.01)]">
                                     <div class="flex items-center gap-2">
-                                        <span class="material-symbols-outlined text-amber-500 text-base font-black">stars</span>
-                                        <h3 class="text-[10px] font-black text-slate-800 uppercase tracking-wider">Top Nhà Bán Hàng Địa Phương</h3>
+                                        <span class="material-symbols-outlined text-emerald-600 text-base font-black">local_florist</span>
+                                        <h3 class="text-[10px] font-black text-emerald-950 uppercase tracking-wider">Top Nhà Bán Hàng OCOP tiêu biểu</h3>
                                     </div>
                                     
                                     <!-- 2 Rows of 5 circular seller icons (Total 10 sellers matching TikTok Shop) -->
@@ -5682,13 +5686,13 @@
 
                             <!-- Săn Ngay Deal Hot Section (2x2 Grid of local products) -->
                             <div class="px-3">
-                                <div class="bg-white/80 backdrop-blur-md rounded-3xl border border-slate-200/50 p-4 space-y-3.5 shadow-[0_4px_15px_rgba(0,0,0,0.015)]">
+                                <div class="bg-white/90 backdrop-blur-md rounded-3xl border border-green-100/60 p-4 space-y-3.5 shadow-[0_4px_15px_rgba(16,185,129,0.01)]">
                                     <div class="flex items-center justify-between">
                                         <div class="flex items-center gap-2">
-                                            <span class="material-symbols-outlined text-[#005A9C] text-lg font-black">local_offer</span>
-                                            <h3 class="text-[10px] font-black text-slate-800 uppercase tracking-wider bg-gradient-to-r from-[#005A9C] via-[#004B82] to-amber-500 bg-clip-text text-transparent">Săn Ngay Deal Hot</h3>
+                                            <span class="material-symbols-outlined text-emerald-600 text-lg font-black">eco</span>
+                                            <h3 class="text-[10px] font-black text-slate-800 uppercase tracking-wider bg-gradient-to-r from-emerald-600 to-teal-700 bg-clip-text text-transparent">Deal OCOP Giờ Vàng</h3>
                                         </div>
-                                        <span class="text-[8px] font-black text-amber-600 bg-amber-50 border border-amber-100 px-2 py-0.5 rounded-full select-none">OCOP 5★</span>
+                                        <span class="text-[8px] font-black text-emerald-700 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full select-none">OCOP 5★</span>
                                     </div>
 
                                     <!-- 2x2 Grid Products -->
@@ -5700,15 +5704,15 @@
 
                             <!-- Săn Deal Ngành Hàng Section (Filtering tabs) -->
                             <div class="px-3">
-                                <div class="bg-white/80 backdrop-blur-md rounded-3xl border border-slate-200/50 p-4 space-y-3.5 shadow-[0_4px_15px_rgba(0,0,0,0.015)]">
+                                <div class="bg-white/90 backdrop-blur-md rounded-3xl border border-green-100/60 p-4 space-y-3.5 shadow-[0_4px_15px_rgba(16,185,129,0.01)]">
                                     <div class="flex items-center gap-2">
-                                        <span class="material-symbols-outlined text-[#005A9C] text-lg font-black">category</span>
-                                        <h3 class="text-[10px] font-black text-slate-800 uppercase tracking-wider bg-gradient-to-r from-[#005A9C] via-[#004B82] to-amber-500 bg-clip-text text-transparent">Săn Deal Ngành Hàng</h3>
+                                        <span class="material-symbols-outlined text-emerald-600 text-lg font-black">grid_view</span>
+                                        <h3 class="text-[10px] font-black text-slate-800 uppercase tracking-wider bg-gradient-to-r from-emerald-600 to-teal-700 bg-clip-text text-transparent">Sản phẩm theo danh mục</h3>
                                     </div>
 
                                     <!-- Filters row -->
                                     <div class="flex gap-2 overflow-x-auto scrollbar-none border-b border-slate-100 pb-1" id="local-category-tabs">
-                                        <button onclick="filterLocalCategory('all')" data-loccat="all" class="local-cat-tab shrink-0 px-3 pb-2 text-[10px] font-black text-primary border-b-2 border-primary transition-all">Tất cả</button>
+                                        <button onclick="filterLocalCategory('all')" data-loccat="all" class="local-cat-tab shrink-0 px-3 pb-2 text-[10px] font-black text-emerald-600 border-b-2 border-emerald-600 transition-all">Tất cả</button>
                                         <button onclick="filterLocalCategory('specialty')" data-loccat="specialty" class="local-cat-tab shrink-0 px-3 pb-2 text-[10px] font-bold text-slate-500 border-b-2 border-transparent transition-all">Đặc sản OCOP</button>
                                         <button onclick="filterLocalCategory('craft')" data-loccat="craft" class="local-cat-tab shrink-0 px-3 pb-2 text-[10px] font-bold text-slate-500 border-b-2 border-transparent transition-all">Thủ công</button>
                                         <button onclick="filterLocalCategory('herb')" data-loccat="herb" class="local-cat-tab shrink-0 px-3 pb-2 text-[10px] font-bold text-slate-500 border-b-2 border-transparent transition-all">Thảo dược</button>
@@ -23819,10 +23823,10 @@
             tabs.forEach(t => {
                 const isMatch = t.getAttribute('data-loccat') === cat;
                 if (isMatch) {
-                    t.classList.add('text-primary', 'font-black', 'border-primary');
+                    t.classList.add('text-emerald-600', 'font-black', 'border-emerald-600');
                     t.classList.remove('text-slate-500', 'font-bold', 'border-transparent');
                 } else {
-                    t.classList.remove('text-primary', 'font-black', 'border-primary');
+                    t.classList.remove('text-emerald-600', 'font-black', 'border-emerald-600');
                     t.classList.add('text-slate-500', 'font-bold', 'border-transparent');
                 }
             });
@@ -23839,10 +23843,10 @@
             
             container.innerHTML = hotDeals.map(p => {
                 return `
-                    <div class="bg-white border border-amber-100/50 rounded-2xl p-2 flex flex-col justify-between shadow-[0_4px_12px_rgba(139,92,26,0.02)] relative active:scale-[0.98] transition-transform cursor-pointer" onclick="showToast('Sản phẩm OCOP: ${p.title}')">
+                    <div class="bg-white border border-green-100/60 rounded-2xl p-2 flex flex-col justify-between shadow-[0_4px_15px_rgba(16,185,129,0.015)] relative active:scale-[0.98] transition-transform hover:border-emerald-300 transition-colors cursor-pointer" onclick="showToast('Sản phẩm OCOP: ${p.title}')">
                         <div>
                             <!-- Thumbnail Image -->
-                            <div class="relative w-full aspect-square bg-[#FAF7F2]/60 rounded-xl overflow-hidden flex items-center justify-center">
+                            <div class="relative w-full aspect-square bg-[#F4F8F4]/50 rounded-xl overflow-hidden flex items-center justify-center">
                                 <img src="${p.image}" alt="${p.title}" class="w-[85%] h-[85%] object-contain" />
                                 
                                 <!-- Floating Tags bottom left -->
@@ -23863,7 +23867,8 @@
                                 <span class="text-[8px] text-slate-400 line-through font-bold">${(p.oldPrice).toLocaleString()}đ</span>
                             </div>
                             <div class="flex items-center justify-between text-[8px] text-slate-400 font-bold mt-1">
-                                <span>★ ${p.rating} | Đã bán ${p.sold}</span>
+                                <span class="text-emerald-600 font-black">★ ${p.rating}</span>
+                                <span>Đã bán ${p.sold}</span>
                             </div>
                         </div>
                     </div>
@@ -23882,10 +23887,10 @@
             
             container.innerHTML = filtered.map(p => {
                 return `
-                    <div class="bg-white border border-amber-100/50 rounded-2xl p-2 flex flex-col justify-between shadow-[0_4px_12px_rgba(139,92,26,0.02)] relative active:scale-[0.98] transition-transform cursor-pointer" onclick="showToast('Sản phẩm OCOP: ${p.title}')">
+                    <div class="bg-white border border-green-100/60 rounded-2xl p-2 flex flex-col justify-between shadow-[0_4px_15px_rgba(16,185,129,0.015)] relative active:scale-[0.98] transition-transform hover:border-emerald-300 transition-colors cursor-pointer" onclick="showToast('Sản phẩm OCOP: ${p.title}')">
                         <div>
                             <!-- Thumbnail Image -->
-                            <div class="relative w-full aspect-square bg-[#FAF7F2]/60 rounded-xl overflow-hidden flex items-center justify-center">
+                            <div class="relative w-full aspect-square bg-[#F4F8F4]/50 rounded-xl overflow-hidden flex items-center justify-center">
                                 <img src="${p.image}" alt="${p.title}" class="w-[85%] h-[85%] object-contain" />
                                 
                                 <!-- Floating Tags bottom left -->
@@ -23905,7 +23910,8 @@
                                 <span class="text-[8px] text-slate-400 line-through font-bold">${(p.oldPrice).toLocaleString()}đ</span>
                             </div>
                             <div class="flex items-center justify-between text-[8px] text-slate-400 font-bold mt-1">
-                                <span>★ ${p.rating} | Đã bán ${p.sold}</span>
+                                <span class="text-emerald-600 font-black">★ ${p.rating}</span>
+                                <span>Đã bán ${p.sold}</span>
                             </div>
                         </div>
                     </div>
