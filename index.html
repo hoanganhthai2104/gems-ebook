@@ -4651,36 +4651,32 @@
 
                                 <div class="flex gap-2 overflow-x-auto scrollbar-none">
 
-                                    <div onclick="openShopXtraCoupons()" class="flex items-center gap-1 bg-blue-50/40 border border-blue-100/70 rounded-xl px-3 py-1.5 cursor-pointer shrink-0 active:scale-95 transition-transform">
-
-                                        <span class="material-symbols-outlined text-primary text-[15px]">new_releases</span>
-
-                                        <span class="text-[9px] font-black text-primary whitespace-nowrap">Hàng mới về</span>
-
+                                    <!-- Hàng mới về (Purple Theme) -->
+                                    <div onclick="openShopXtraCoupons()" class="relative flex items-center gap-1 bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-100 rounded-xl px-3.5 py-1.8 cursor-pointer shrink-0 hover:-translate-y-0.5 active:scale-95 transition-all duration-200 shadow-[0_2px_8px_rgba(124,58,237,0.04)]">
+                                        <span class="material-symbols-outlined text-indigo-600 text-[15px] font-bold">new_releases</span>
+                                        <span class="text-[9.5px] font-extrabold text-indigo-900 whitespace-nowrap">Hàng mới về</span>
+                                        <span class="absolute -top-1.5 -right-1 bg-red-500 text-white text-[5.5px] font-black px-1.2 py-0.2 rounded-full uppercase scale-90 tracking-wider shadow-sm animate-pulse">NEW</span>
                                     </div>
 
-                                    <div onclick="openShopFreeShip()" class="flex items-center gap-1 bg-blue-50/40 border border-blue-100/70 rounded-xl px-3 py-1.5 cursor-pointer shrink-0 active:scale-95 transition-transform">
-
-                                        <span class="material-symbols-outlined text-primary text-[15px]">local_shipping</span>
-
-                                        <span class="text-[9px] font-black text-primary whitespace-nowrap">Free Ship</span>
-
+                                    <!-- Free Ship (Teal Theme) -->
+                                    <div onclick="openShopFreeShip()" class="relative flex items-center gap-1 bg-gradient-to-r from-teal-50 to-emerald-50 border border-teal-100 rounded-xl px-3.5 py-1.8 cursor-pointer shrink-0 hover:-translate-y-0.5 active:scale-95 transition-all duration-200 shadow-[0_2px_8px_rgba(13,148,136,0.04)]">
+                                        <span class="material-symbols-outlined text-teal-600 text-[15px] font-bold">local_shipping</span>
+                                        <span class="text-[9.5px] font-extrabold text-teal-900 whitespace-nowrap">Free Ship</span>
+                                        <span class="absolute -top-1.5 -right-1 bg-teal-500 text-white text-[5.5px] font-black px-1.2 py-0.2 rounded-full uppercase scale-90 tracking-wider shadow-sm">XTRA</span>
                                     </div>
 
-                                    <div onclick="openShopMall()" class="flex items-center gap-1 bg-blue-50/40 border border-blue-100/70 rounded-xl px-3 py-1.5 cursor-pointer shrink-0 active:scale-95 transition-transform">
-
-                                        <span class="material-symbols-outlined text-primary text-[15px]">verified</span>
-
-                                        <span class="text-[9px] font-black text-primary whitespace-nowrap">GEMS Mall</span>
-
+                                    <!-- GEMS Mall (Gold/Amber Theme) -->
+                                    <div onclick="openShopMall()" class="relative flex items-center gap-1 bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200/80 rounded-xl px-3.5 py-1.8 cursor-pointer shrink-0 hover:-translate-y-0.5 active:scale-95 transition-all duration-200 shadow-[0_2px_8px_rgba(245,158,11,0.04)]">
+                                        <span class="material-symbols-outlined text-amber-600 text-[15px] font-bold">verified</span>
+                                        <span class="text-[9.5px] font-extrabold text-amber-900 whitespace-nowrap font-sans">GEMS Mall</span>
+                                        <span class="absolute -top-1.5 -right-1 bg-amber-500 text-white text-[5.5px] font-black px-1.2 py-0.2 rounded-full uppercase scale-90 tracking-wider shadow-sm">PRO</span>
                                     </div>
 
-                                    <div onclick="openShopGifts()" class="flex items-center gap-1 bg-blue-50/40 border border-blue-100/70 rounded-xl px-3 py-1.5 cursor-pointer shrink-0 active:scale-95 transition-transform">
-
-                                        <span class="material-symbols-outlined text-primary text-[15px]">card_giftcard</span>
-
-                                        <span class="text-[9px] font-black text-primary whitespace-nowrap">Quà tặng</span>
-
+                                    <!-- Quà tặng (Rose Theme) -->
+                                    <div onclick="openShopGifts()" class="relative flex items-center gap-1 bg-gradient-to-r from-rose-50 to-orange-50 border border-rose-100 rounded-xl px-3.5 py-1.8 cursor-pointer shrink-0 hover:-translate-y-0.5 active:scale-95 transition-all duration-200 shadow-[0_2px_8px_rgba(225,29,72,0.04)]">
+                                        <span class="material-symbols-outlined text-rose-600 text-[15px] font-bold">card_giftcard</span>
+                                        <span class="text-[9.5px] font-extrabold text-rose-900 whitespace-nowrap">Quà tặng</span>
+                                        <span class="absolute -top-1.5 -right-1 bg-rose-500 text-white text-[5.5px] font-black px-1.2 py-0.2 rounded-full uppercase scale-90 tracking-wider shadow-sm">FREE</span>
                                     </div>
 
                                 </div>
