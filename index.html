@@ -5575,22 +5575,22 @@
 
                     <!-- ============================================== -->
 
-                    <div id="view-shop-local" class="absolute inset-0 z-[134] bg-gradient-to-br from-[#F4F8F4] via-[#FAFDF9] to-[#F1F6F1] text-slate-800 flex flex-col overflow-hidden hidden select-none animate-fade-in relative">
+                    <div id="view-shop-local" class="absolute inset-0 z-[134] bg-gradient-to-br from-[#F3F7F5] via-[#FAFDF9] to-[#ECF4F0] text-slate-800 flex flex-col overflow-hidden hidden select-none animate-fade-in relative">
 
-                        <!-- Floating Green Aurora Blobs -->
-                        <div class="absolute top-10 -left-16 w-48 h-48 bg-emerald-500/10 rounded-full blur-[60px] pointer-events-none animate-pulse"></div>
-                        <div class="absolute bottom-20 -right-16 w-52 h-52 bg-green-400/8 rounded-full blur-[65px] pointer-events-none animate-pulse"></div>
+                        <!-- Floating Harmonized Blue-Green-Amber Aurora Blobs -->
+                        <div class="absolute top-10 -left-16 w-48 h-48 bg-gradient-to-br from-[#005A9C]/10 to-emerald-500/10 rounded-full blur-[60px] pointer-events-none animate-pulse"></div>
+                        <div class="absolute bottom-20 -right-16 w-52 h-52 bg-gradient-to-br from-amber-500/8 to-green-400/8 rounded-full blur-[65px] pointer-events-none animate-pulse"></div>
 
                         <!-- Header -->
-                        <header class="bg-[#FAFDF9]/90 backdrop-blur-md border-b border-emerald-100 w-full top-0 sticky flex items-center justify-between px-3 py-3 z-50 shrink-0">
+                        <header class="bg-[#FAFDF9]/90 backdrop-blur-md border-b border-teal-100/60 w-full top-0 sticky flex items-center justify-between px-3 py-3 z-50 shrink-0">
                             <div class="w-10">
-                                <button onclick="closeShopLocal()" aria-label="Go back" class="text-emerald-800 hover:bg-emerald-50 transition-colors rounded-full p-2 flex items-center justify-center">
+                                <button onclick="closeShopLocal()" aria-label="Go back" class="text-teal-800 hover:bg-teal-50 transition-colors rounded-full p-2 flex items-center justify-center">
                                     <span class="material-symbols-outlined text-xl">arrow_back</span>
                                 </button>
                             </div>
-                            <h1 class="font-sans text-sm font-black tracking-tight text-emerald-950 mx-auto text-center truncate">🌿 OCOP - Hàng Việt</h1>
+                            <h1 class="font-sans text-sm font-black tracking-tight bg-gradient-to-r from-[#005A9C] via-teal-600 to-emerald-600 bg-clip-text text-transparent mx-auto text-center truncate">🌿 OCOP - Hàng Việt</h1>
                             <div class="w-10 flex justify-end">
-                                <button onclick="openShopCart()" class="relative text-emerald-800 hover:bg-emerald-50 transition-colors rounded-full p-2 flex items-center justify-center">
+                                <button onclick="openShopCart()" class="relative text-teal-800 hover:bg-teal-50 transition-colors rounded-full p-2 flex items-center justify-center">
                                     <span class="material-symbols-outlined text-xl">shopping_cart</span>
                                     <span id="local-shop-cart-badge" class="absolute top-0 right-0 bg-red-500 text-white font-bold text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center hidden border border-white">0</span>
                                 </button>
@@ -5604,8 +5604,8 @@
                             <div class="px-3 pt-3">
                                 <div class="bg-white/90 backdrop-blur-md rounded-3xl border border-green-100/60 p-4 space-y-3.5 shadow-[0_4px_15px_rgba(16,185,129,0.01)]">
                                     <div class="flex items-center gap-2">
-                                        <span class="material-symbols-outlined text-emerald-600 text-base font-black">local_florist</span>
-                                        <h3 class="text-[10px] font-black text-emerald-950 uppercase tracking-wider">Top Nhà Bán Hàng OCOP tiêu biểu</h3>
+                                        <span class="material-symbols-outlined text-teal-600 text-base font-black">local_florist</span>
+                                        <h3 class="text-[10px] font-black uppercase tracking-wider bg-gradient-to-r from-[#005A9C] via-teal-600 to-emerald-600 bg-clip-text text-transparent">Top Nhà Bán Hàng OCOP tiêu biểu</h3>
                                     </div>
                                     
                                     <!-- 2 Rows of 5 circular seller icons (Total 10 sellers matching TikTok Shop) -->
@@ -5712,7 +5712,7 @@
 
                                     <!-- Filters row -->
                                     <div class="flex gap-2 overflow-x-auto scrollbar-none border-b border-slate-100 pb-1" id="local-category-tabs">
-                                        <button onclick="filterLocalCategory('all')" data-loccat="all" class="local-cat-tab shrink-0 px-3 pb-2 text-[10px] font-black text-emerald-600 border-b-2 border-emerald-600 transition-all">Tất cả</button>
+                                        <button onclick="filterLocalCategory('all')" data-loccat="all" class="local-cat-tab shrink-0 px-3 pb-2 text-[10px] font-black text-teal-600 border-b-2 border-teal-600 transition-all">Tất cả</button>
                                         <button onclick="filterLocalCategory('specialty')" data-loccat="specialty" class="local-cat-tab shrink-0 px-3 pb-2 text-[10px] font-bold text-slate-500 border-b-2 border-transparent transition-all">Đặc sản OCOP</button>
                                         <button onclick="filterLocalCategory('craft')" data-loccat="craft" class="local-cat-tab shrink-0 px-3 pb-2 text-[10px] font-bold text-slate-500 border-b-2 border-transparent transition-all">Thủ công</button>
                                         <button onclick="filterLocalCategory('herb')" data-loccat="herb" class="local-cat-tab shrink-0 px-3 pb-2 text-[10px] font-bold text-slate-500 border-b-2 border-transparent transition-all">Thảo dược</button>
@@ -23823,10 +23823,10 @@
             tabs.forEach(t => {
                 const isMatch = t.getAttribute('data-loccat') === cat;
                 if (isMatch) {
-                    t.classList.add('text-emerald-600', 'font-black', 'border-emerald-600');
+                    t.classList.add('text-teal-600', 'font-black', 'border-teal-600');
                     t.classList.remove('text-slate-500', 'font-bold', 'border-transparent');
                 } else {
-                    t.classList.remove('text-emerald-600', 'font-black', 'border-emerald-600');
+                    t.classList.remove('text-teal-600', 'font-black', 'border-teal-600');
                     t.classList.add('text-slate-500', 'font-bold', 'border-transparent');
                 }
             });
@@ -23843,16 +23843,16 @@
             
             container.innerHTML = hotDeals.map(p => {
                 return `
-                    <div class="bg-white border border-green-100/60 rounded-2xl p-2 flex flex-col justify-between shadow-[0_4px_15px_rgba(16,185,129,0.015)] relative active:scale-[0.98] transition-transform hover:border-emerald-300 transition-colors cursor-pointer" onclick="showToast('Sản phẩm OCOP: ${p.title}')">
+                    <div class="bg-white border border-teal-100/70 rounded-2xl p-2 flex flex-col justify-between shadow-[0_4px_15px_rgba(13,148,136,0.015)] relative active:scale-[0.98] transition-transform hover:border-teal-300 transition-colors cursor-pointer" onclick="showToast('Sản phẩm OCOP: ${p.title}')">
                         <div>
                             <!-- Thumbnail Image -->
-                            <div class="relative w-full aspect-square bg-[#F4F8F4]/50 rounded-xl overflow-hidden flex items-center justify-center">
+                            <div class="relative w-full aspect-square bg-[#F3F7F5] rounded-xl overflow-hidden flex items-center justify-center">
                                 <img src="${p.image}" alt="${p.title}" class="w-[85%] h-[85%] object-contain" />
                                 
                                 <!-- Floating Tags bottom left -->
                                 <div class="absolute bottom-1.5 left-1.5 flex flex-col gap-0.5 pointer-events-none select-none">
-                                    <span class="bg-[#005A9C] text-amber-400 text-[6.5px] font-black px-1 py-0.5 rounded leading-none uppercase w-max">XTRA Freeship</span>
-                                    <span class="bg-amber-500 text-white text-[6.5px] font-black px-1 py-0.5 rounded leading-none uppercase w-max">Giảm 50K</span>
+                                    <span class="bg-gradient-to-r from-[#005A9C] to-teal-600 text-amber-300 text-[6.5px] font-black px-1.5 py-0.5 rounded leading-none uppercase w-max shadow-sm">XTRA Freeship</span>
+                                    <span class="bg-gradient-to-r from-amber-500 to-emerald-500 text-white text-[6.5px] font-black px-1.5 py-0.5 rounded leading-none uppercase w-max shadow-sm">Giảm 50K</span>
                                 </div>
                             </div>
                             
@@ -23867,8 +23867,8 @@
                                 <span class="text-[8px] text-slate-400 line-through font-bold">${(p.oldPrice).toLocaleString()}đ</span>
                             </div>
                             <div class="flex items-center justify-between text-[8px] text-slate-400 font-bold mt-1">
-                                <span class="text-emerald-600 font-black">★ ${p.rating}</span>
-                                <span>Đã bán ${p.sold}</span>
+                                <span class="text-amber-500 font-black">★ ${p.rating}</span>
+                                <span class="text-emerald-700 font-bold">100% Tự nhiên</span>
                             </div>
                         </div>
                     </div>
@@ -23887,15 +23887,15 @@
             
             container.innerHTML = filtered.map(p => {
                 return `
-                    <div class="bg-white border border-green-100/60 rounded-2xl p-2 flex flex-col justify-between shadow-[0_4px_15px_rgba(16,185,129,0.015)] relative active:scale-[0.98] transition-transform hover:border-emerald-300 transition-colors cursor-pointer" onclick="showToast('Sản phẩm OCOP: ${p.title}')">
+                    <div class="bg-white border border-teal-100/70 rounded-2xl p-2 flex flex-col justify-between shadow-[0_4px_15px_rgba(13,148,136,0.015)] relative active:scale-[0.98] transition-transform hover:border-teal-300 transition-colors cursor-pointer" onclick="showToast('Sản phẩm OCOP: ${p.title}')">
                         <div>
                             <!-- Thumbnail Image -->
-                            <div class="relative w-full aspect-square bg-[#F4F8F4]/50 rounded-xl overflow-hidden flex items-center justify-center">
+                            <div class="relative w-full aspect-square bg-[#F3F7F5] rounded-xl overflow-hidden flex items-center justify-center">
                                 <img src="${p.image}" alt="${p.title}" class="w-[85%] h-[85%] object-contain" />
                                 
                                 <!-- Floating Tags bottom left -->
                                 <div class="absolute bottom-1.5 left-1.5 flex flex-col gap-0.5 pointer-events-none select-none">
-                                    <span class="bg-[#005A9C] text-amber-400 text-[6.5px] font-black px-1 py-0.5 rounded leading-none uppercase w-max">XTRA Freeship</span>
+                                    <span class="bg-gradient-to-r from-[#005A9C] to-teal-600 text-amber-300 text-[6.5px] font-black px-1.5 py-0.5 rounded leading-none uppercase w-max shadow-sm">XTRA Freeship</span>
                                 </div>
                             </div>
                             
@@ -23910,8 +23910,8 @@
                                 <span class="text-[8px] text-slate-400 line-through font-bold">${(p.oldPrice).toLocaleString()}đ</span>
                             </div>
                             <div class="flex items-center justify-between text-[8px] text-slate-400 font-bold mt-1">
-                                <span class="text-emerald-600 font-black">★ ${p.rating}</span>
-                                <span>Đã bán ${p.sold}</span>
+                                <span class="text-amber-500 font-black">★ ${p.rating}</span>
+                                <span class="text-slate-400">Đã bán ${p.sold}</span>
                             </div>
                         </div>
                     </div>
