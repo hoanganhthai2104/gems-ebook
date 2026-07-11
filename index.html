@@ -23850,9 +23850,13 @@
                                 <img src="${p.image}" alt="${p.title}" class="w-[85%] h-[85%] object-contain" />
                                 
                                 <!-- Floating Tags bottom left -->
-                                <div class="absolute bottom-1.5 left-1.5 flex flex-col gap-0.5 pointer-events-none select-none">
-                                    <span class="bg-gradient-to-r from-[#005A9C] to-teal-600 text-amber-300 text-[6.5px] font-black px-1.5 py-0.5 rounded leading-none uppercase w-max shadow-sm">XTRA Freeship</span>
-                                    <span class="bg-gradient-to-r from-amber-500 to-emerald-500 text-white text-[6.5px] font-black px-1.5 py-0.5 rounded leading-none uppercase w-max shadow-sm">Giảm 50K</span>
+                                <div class="absolute bottom-1.5 left-1.5 flex flex-col gap-1 pointer-events-none select-none z-10">
+                                    <span class="bg-blue-50/95 border border-blue-200 text-[#005A9C] font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none flex items-center gap-0.5 w-max">
+                                        <span class="material-symbols-outlined" style="font-size: 7px; font-weight: 900;">local_shipping</span>Freeship
+                                    </span>
+                                    <span class="bg-amber-50/95 border border-amber-200 text-amber-800 font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none flex items-center gap-0.5 w-max">
+                                        <span class="material-symbols-outlined" style="font-size: 7px; font-weight: 900;">local_offer</span>Giảm 50K
+                                    </span>
                                 </div>
                             </div>
                             
@@ -23894,8 +23898,10 @@
                                 <img src="${p.image}" alt="${p.title}" class="w-[85%] h-[85%] object-contain" />
                                 
                                 <!-- Floating Tags bottom left -->
-                                <div class="absolute bottom-1.5 left-1.5 flex flex-col gap-0.5 pointer-events-none select-none">
-                                    <span class="bg-gradient-to-r from-[#005A9C] to-teal-600 text-amber-300 text-[6.5px] font-black px-1.5 py-0.5 rounded leading-none uppercase w-max shadow-sm">XTRA Freeship</span>
+                                <div class="absolute bottom-1.5 left-1.5 flex flex-col gap-1 pointer-events-none select-none z-10">
+                                    <span class="bg-blue-50/95 border border-blue-200 text-[#005A9C] font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none flex items-center gap-0.5 w-max">
+                                        <span class="material-symbols-outlined" style="font-size: 7px; font-weight: 900;">local_shipping</span>Freeship
+                                    </span>
                                 </div>
                             </div>
                             
@@ -24881,15 +24887,33 @@
 
                                 ${hasXtra ? `
 
-                                <div class="absolute left-0 bottom-0 right-0 flex">
+                                <div class="absolute left-1.5 bottom-1.5 flex flex-col gap-1 z-10">
 
-                                    <span class="text-[6px] font-black text-white px-1 py-0.5" style="background:#d97706">XTRA</span>
+                                    <span class="bg-blue-50/95 border border-blue-200 text-[#005A9C] font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none flex items-center gap-0.5 w-max">
 
-                                    <span class="text-[6px] font-black text-white px-1 py-0.5" style="background:#2563eb">EXTRA Freeship</span>
+                                        <span class="material-symbols-outlined" style="font-size: 7px; font-weight: 900;">local_shipping</span>Freeship
+
+                                    </span>
+
+                                    <span class="bg-amber-50/95 border border-amber-200 text-amber-800 font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none flex items-center gap-0.5 w-max">
+
+                                        <span class="material-symbols-outlined" style="font-size: 7px; font-weight: 900;">local_offer</span>XTRA
+
+                                    </span>
 
                                 </div>` : ''}
 
-                                ${!hasXtra ? `<div class="absolute left-0 bottom-0 right-0 text-[6px] font-black text-white py-0.5 text-center" style="background:#2563eb">Ad</div>` : ''}
+                                ${!hasXtra ? `
+
+                                <div class="absolute left-1.5 bottom-1.5 z-10">
+
+                                    <span class="bg-slate-50/95 border border-slate-200 text-slate-600 font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none w-max">
+
+                                        Ad
+
+                                    </span>
+
+                                </div>` : ''}
 
                             </div>
 
