@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gems-pwa-cache-v40';
+const CACHE_NAME = 'gems-pwa-cache-v41';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -37,9 +37,16 @@ self.addEventListener('fetch', event => {
       const fetchPromise = fetch(event.request).then(networkResponse => {
         // Update the cache with the newest version from the network
         if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
-          caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, networkResponse.clone());
-          });
+          // Prevent caching HTML fallback responses for static assets (images, css, js)
+          const contentType = networkResponse.headers.get('content-type');
+          const isHtml = contentType && contentType.includes('text/html');
+          const isPageRequest = event.request.destination === 'document' || event.request.mode === 'navigate';
+
+          if (!isHtml || isPageRequest) {
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(event.request, networkResponse.clone());
+            });
+          }
         }
         return networkResponse;
       }).catch(() => {

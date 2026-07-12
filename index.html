@@ -296,6 +296,75 @@
 
     <style>
 
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer-sweep {
+            0% { left: -150%; }
+            50% { left: 150%; }
+            100% { left: 150%; }
+        }
+        .btn-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: skewX(-25deg);
+            animation: shimmer-sweep 3.5s ease-in-out infinite;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -20px) scale(1.15); }
+            66% { transform: translate(-20px, 30px) scale(0.9); }
+        }
+        .glow-blob-1 {
+            animation: drift 10s ease-in-out infinite;
+        }
+        .glow-blob-2 {
+            animation: drift 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes fly-to-cart {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(var(--fly-x-half), var(--fly-y-half)) scale(1.2) rotate(180deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(var(--fly-x), var(--fly-y)) scale(0.2) rotate(360deg);
+                opacity: 0.1;
+            }
+        }
+        .animate-fly-cart {
+            animation: fly-to-cart 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        @keyframes cart-bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+        .cart-bounce-active {
+            animation: cart-bounce 0.3s ease-out;
+        }
+
         .ra-word {
 
             transition: background-color 0.15s ease, color 0.15s ease;
@@ -5752,10 +5821,10 @@
 
                     <!-- ============================================== -->
 
-                    <div id="view-shop-xtra" class="absolute inset-0 z-[135] bg-gradient-to-br from-[#EBF3FC] via-[#F3EBF9] to-[#FAF8FD] text-slate-800 flex flex-col overflow-hidden hidden select-none animate-fade-in">
+                    <div id="view-shop-xtra" class="absolute inset-0 z-[135] bg-gradient-to-br from-[#F3F7FC] via-[#F8F3FD] to-[#FAF9F5] text-slate-800 flex flex-col overflow-hidden hidden select-none animate-fade-in">
 
                         <!-- Header -->
-                        <header class="bg-white/70 backdrop-blur-md border-b border-purple-100/40 w-full top-0 sticky flex items-center justify-between px-3 py-3 z-50 shrink-0">
+                        <header class="bg-white/60 backdrop-blur-lg border-b border-purple-100/30 w-full top-0 sticky flex items-center justify-between px-3 py-3 z-50 shrink-0">
                             <div class="w-10">
                                 <button onclick="closeShopXtraCoupons()" aria-label="Go back" class="text-slate-700 hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
                                     <span class="material-symbols-outlined text-xl">arrow_back</span>
@@ -5763,7 +5832,7 @@
                             </div>
                             <h1 class="font-sans text-sm font-black tracking-tight text-slate-900 mx-auto text-center truncate">Hàng mới về</h1>
                             <div class="w-10 flex justify-end">
-                                <button onclick="openShopCart()" class="relative text-slate-700 hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+                                <button id="xtra-shop-cart-btn" onclick="openShopCart()" class="relative text-slate-700 hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
                                     <span class="material-symbols-outlined text-xl">shopping_cart</span>
                                     <span id="xtra-shop-cart-badge" class="absolute top-0 right-0 bg-red-500 text-white font-bold text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center hidden border border-white">0</span>
                                 </button>
@@ -5771,28 +5840,23 @@
                         </header>
 
                         <!-- Scrollable Content -->
-                        <div class="flex-grow overflow-y-auto space-y-4 pb-10">
+                        <div class="flex-grow overflow-y-auto space-y-4 pb-10" id="view-shop-xtra-scroll">
 
-                            <!-- Campaign Banner -->
+                            <!-- Campaign Banner (Premium Custom Background) -->
                             <div class="px-3 pt-3">
-                                <div class="bg-gradient-to-r from-[#005A9C] via-[#004B82] to-amber-500 rounded-3xl p-4 text-white relative overflow-hidden shadow-md flex flex-col gap-1.5 min-h-[140px] justify-between">
-                                    <div class="absolute -top-10 -right-10 w-28 h-28 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
-                                    
-                                    <div class="z-10 space-y-1 max-w-[60%]">
-                                        <span class="bg-amber-400 text-slate-900 text-[7px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider select-none">Độc quyền</span>
-                                        <h2 class="text-xs font-black uppercase tracking-wider leading-none mt-1 text-amber-300">GEMS New Arrivals</h2>
-                                        <h3 class="text-sm font-black leading-tight mt-1">Sản phẩm mới<br>giảm giá đến 50%</h3>
-                                        <p class="text-[7.5px] text-blue-100 font-bold leading-normal">Bật tốc độ - Dẫn nhịp cuộc chơi</p>
+                                <div class="relative rounded-3xl p-4 text-white overflow-hidden shadow-md flex flex-col gap-1.5 min-h-[145px] justify-between border border-white/15 bg-cover bg-center" style="background-image: linear-gradient(to right, rgba(11,21,40,0.85) 45%, rgba(11,21,40,0.15) 100%), url('assets/shop/campaign_banner_premium.png');">
+                                    <div class="z-10 space-y-1 max-w-[62%]">
+                                        <span class="bg-amber-400 text-slate-900 text-[7px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider select-none border border-white/10 shadow-sm">Độc quyền</span>
+                                        <h2 class="text-xs font-black uppercase tracking-wider leading-none mt-1.5 text-amber-300 drop-shadow-md">GEMS New Arrivals</h2>
+                                        <h3 class="text-sm font-black leading-tight mt-1 drop-shadow-md">Bộ sưu tập mới<br>Giảm cực sâu 50%</h3>
+                                        <p class="text-[7.5px] text-blue-100 font-bold leading-normal drop-shadow-sm">Bật tốc độ - Dẫn nhịp cuộc chơi</p>
                                     </div>
                                     
                                     <div class="z-10 mt-1">
-                                        <button onclick="showToast('Đang mở danh mục sản phẩm mới...')" class="bg-white hover:bg-slate-50 text-[#005A9C] font-black text-[8px] px-3.5 py-1.5 rounded-full shadow-md uppercase active:scale-95 transition-all">
+                                        <button onclick="document.getElementById('new-arrivals-category-tabs').scrollIntoView({ behavior: 'smooth' })" class="btn-shimmer bg-white hover:bg-slate-50 text-[#005A9C] font-black text-[8px] px-3.5 py-1.5 rounded-full shadow-md uppercase active:scale-95 transition-all">
                                             Mua ngay
                                         </button>
                                     </div>
-                                    
-                                    <!-- Floating Graphic -->
-                                    <img src="assets/shop/sneaker_white.png" alt="Puma Sneaker" class="absolute right-2 bottom-2 w-28 h-28 object-contain pointer-events-none z-10 drop-shadow-lg select-none" />
                                 </div>
                             </div>
 
@@ -5808,6 +5872,39 @@
                                 <!-- Dynamic 3-Column Brands Grid -->
                                 <div class="grid grid-cols-3 gap-2.5 px-3" id="new-arrivals-brands-grid">
                                     <!-- Populated dynamically by JS -->
+                                </div>
+                            </div>
+
+                            <!-- New Arrivals Category Filter Tabs (Sticky) -->
+                            <div class="bg-white/90 backdrop-blur-md border-y border-slate-200/40 px-3 pt-3 pb-0 sticky top-0 z-30 shadow-sm mt-4">
+                                <div class="flex gap-2 overflow-x-auto scrollbar-none border-b border-slate-100" id="new-arrivals-category-tabs">
+                                    <button onclick="filterNewArrivalsCategory('all')" data-newcat="all" class="new-cat-tab shrink-0 px-3 pb-2.5 text-[10px] font-black text-primary border-b-2 border-primary transition-all flex items-center justify-center gap-1">
+                                        <span class="material-symbols-outlined text-[12px] font-black">local_fire_department</span>
+                                        <span>Tất cả</span>
+                                    </button>
+                                    <button onclick="filterNewArrivalsCategory('books')" data-newcat="books" class="new-cat-tab shrink-0 px-3 pb-2.5 text-[10px] font-bold text-slate-500 border-b-2 border-transparent transition-all flex items-center justify-center gap-1">
+                                        <span class="material-symbols-outlined text-[12px]">menu_book</span>
+                                        <span>Sách & VP</span>
+                                    </button>
+                                    <button onclick="filterNewArrivalsCategory('tech')" data-newcat="tech" class="new-cat-tab shrink-0 px-3 pb-2.5 text-[10px] font-bold text-slate-500 border-b-2 border-transparent transition-all flex items-center justify-center gap-1">
+                                        <span class="material-symbols-outlined text-[12px]">devices</span>
+                                        <span>Công nghệ</span>
+                                    </button>
+                                    <button onclick="filterNewArrivalsCategory('fashion')" data-newcat="fashion" class="new-cat-tab shrink-0 px-3 pb-2.5 text-[10px] font-bold text-slate-500 border-b-2 border-transparent transition-all flex items-center justify-center gap-1">
+                                        <span class="material-symbols-outlined text-[12px]">apparel</span>
+                                        <span>Thời trang</span>
+                                    </button>
+                                    <button onclick="filterNewArrivalsCategory('home')" data-newcat="home" class="new-cat-tab shrink-0 px-3 pb-2.5 text-[10px] font-bold text-slate-500 border-b-2 border-transparent transition-all flex items-center justify-center gap-1">
+                                        <span class="material-symbols-outlined text-[12px]">home</span>
+                                        <span>Gia dụng</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- New Arrivals Products Section -->
+                            <div class="px-3 pb-8">
+                                <div class="grid grid-cols-2 gap-2.5" id="new-arrivals-products-list">
+                                    <!-- Dynamic layout by JS (Hero Card + Grid 2 cols) -->
                                 </div>
                             </div>
 
@@ -21082,8 +21179,130 @@
 
                 ]
 
+            },
+            {
+                id: "new_simple_sunscreen",
+                title: "Sữa Chống Nắng Dịu Nhẹ Simple SPF50",
+                category: "fashion",
+                rating: 4.8,
+                sold: "2.5k+",
+                basePrice: 220000,
+                discount: 10,
+                shippingFee: 0,
+                shopName: "Simple Skincare Official",
+                desc: "Sữa chống nắng vật lý lai hóa học dành cho da nhạy cảm với chỉ số SPF50 PA++++ bảo vệ da toàn diện trước tia UVA/UVB. Kết cấu mỏng nhẹ, thấm nhanh không để lại vệt trắng. Chứa Vitamin E và Pro-Vitamin B5 nuôi dưỡng da ẩm mượt.",
+                specs: { "Chỉ số chống nắng": "SPF50 PA++++", "Dung tích": "50ml", "Loại da phù hợp": "Mọi loại da, kể cả da nhạy cảm", "Thành phần chính": "Vitamin E, Pro-Vitamin B5" },
+                images: ["assets/shop/new_simple.png"],
+                variants: [
+                    { id: "simple_sun_50ml", name: "Chai 50ml", price: 198000, originalPrice: 220000, image: "assets/shop/new_simple.png", stock: 150 }
+                ],
+                reviews: [
+                    { user: "Hương Giang", avatar: "HG", stars: 5, text: "Kem chống nắng cực kỳ dịu nhẹ, không bị bóng nhờn hay lên mụn, rất thích hợp cho da nhạy cảm.", date: "10/07/2026", hasImg: false }
+                ]
+            },
+            {
+                id: "new_unilever_dove",
+                title: "Dầu Gội Phục Hồi Hư Tổn Dove Khô Xơ",
+                category: "home",
+                rating: 4.7,
+                sold: "4.1k+",
+                basePrice: 180000,
+                discount: 15,
+                shippingFee: 0,
+                shopName: "Unilever Dove Official Store",
+                desc: "Dầu gội Dove Phục Hồi Hư Tổn với công thức phục hồi ưu việt Bio-Restore Complex giúp thấm sâu và nuôi dưỡng tóc khô xơ từ sâu bên trong, trả lại mái tóc suôn mượt óng ả.",
+                specs: { "Dung tích": "640g", "Thương hiệu": "Dove (Unilever)", "Xuất xứ": "Việt Nam", "Loại tóc phù hợp": "Tóc khô xơ, hư tổn" },
+                images: ["assets/shop/new_unilever.png"],
+                variants: [
+                    { id: "dove_640g", name: "Chai 640g", price: 153000, originalPrice: 180000, image: "assets/shop/new_unilever.png", stock: 200 }
+                ],
+                reviews: [
+                    { user: "Thế Anh", avatar: "TA", stars: 5, text: "Dầu gội thơm lâu, mượt tóc, shop đóng gói kỹ và giao hàng nhanh chóng.", date: "09/07/2026", hasImg: false }
+                ]
+            },
+            {
+                id: "new_puma_sneaker",
+                title: "Giày Thể Thao PUMA RS-X White Gold",
+                category: "fashion",
+                rating: 4.9,
+                sold: "350+",
+                basePrice: 2400000,
+                discount: 25,
+                shippingFee: 0,
+                shopName: "PUMA Việt Nam",
+                desc: "Giày Sneaker PUMA RS-X thiết kế retro-future cá tính, kết hợp tông màu trắng tinh tế cùng các chi tiết mạ vàng sang trọng. Công nghệ Running System đệm êm ái, nâng đỡ bàn chân tối ưu cho mọi hoạt động thể thao hay dạo phố hàng ngày.",
+                specs: { "Chất liệu": "Da PU kết hợp vải mesh thoáng khí", "Công nghệ": "Running System (RS)", "Màu sắc": "Trắng / Vàng Gold", "Phù hợp": "Unisex (Nam & Nữ)" },
+                images: ["assets/shop/sneaker_premium.png"],
+                variants: [
+                    { id: "puma_sz40", name: "Size 40 - Trắng", price: 1800000, originalPrice: 2400000, image: "assets/shop/sneaker_premium.png", stock: 20 },
+                    { id: "puma_sz41", name: "Size 41 - Trắng", price: 1800000, originalPrice: 2400000, image: "assets/shop/sneaker_premium.png", stock: 25 },
+                    { id: "puma_sz42", name: "Size 42 - Trắng", price: 1800000, originalPrice: 2400000, image: "assets/shop/sneaker_premium.png", stock: 15 }
+                ],
+                reviews: [
+                    { user: "Đức Anh", avatar: "DA", stars: 5, text: "Giày đẹp xuất sắc, đi cực kỳ êm chân và tôn dáng. Giao hàng nhanh và đóng gói rất cẩn thận.", date: "11/07/2026", hasImg: true }
+                ]
+            },
+            {
+                id: "new_nutifood_grow",
+                title: "Sữa Bột Nutifood GrowPlus+ Đỏ Hộp 900g",
+                category: "home",
+                rating: 4.8,
+                sold: "1.9k+",
+                basePrice: 380000,
+                discount: 12,
+                shippingFee: 0,
+                shopName: "Nutifood Official Store",
+                desc: "Sữa bột GrowPlus+ Đỏ dành cho trẻ suy dinh dưỡng, thấp còi được nghiên cứu bởi các chuyên gia dinh dưỡng Nutifood, giúp bổ sung dưỡng chất thiết yếu cho sự phát triển vượt trội của bé.",
+                specs: { "Khối lượng": "900g", "Độ tuổi phù hợp": "Trẻ trên 1 tuổi", "Thương hiệu": "Nutifood", "Sản xuất tại": "Việt Nam" },
+                images: ["assets/shop/new_nutifood.png"],
+                variants: [
+                    { id: "grow_900g", name: "Hộp thiếc 900g", price: 334400, originalPrice: 380000, image: "assets/shop/new_nutifood.png", stock: 300 }
+                ],
+                reviews: [
+                    { user: "Khánh Chi", avatar: "KC", stars: 5, text: "Sữa chính hãng, date mới, con mình rất thích uống dòng này.", date: "07/07/2026", hasImg: false }
+                ]
+            },
+            {
+                id: "new_bitex_pen",
+                title: "Hộp 12 Bút Gel Viết Chữ Đẹp GEMS Bitex",
+                category: "books",
+                rating: 4.6,
+                sold: "820",
+                basePrice: 120000,
+                discount: 20,
+                shippingFee: 0,
+                shopName: "BITEX Văn Phòng Phẩm",
+                desc: "Hộp 12 bút gel viết chữ đẹp thương hiệu GEMS sản xuất bởi Bitex. Mực ra đều, êm mượt, nhanh khô và không lem. Thiết kế vừa tay có nắp đậy, phù hợp cho học sinh và văn phòng.",
+                specs: { "Số lượng": "12 bút/hộp", "Cỡ ngòi": "0.5mm", "Màu mực": "Xanh / Đen", "Hãng sản xuất": "Bitex" },
+                images: ["assets/shop/gelpen.png"],
+                variants: [
+                    { id: "bitex_blue", name: "Hộp mực Xanh", price: 96000, originalPrice: 120000, image: "assets/shop/gelpen.png", stock: 120 },
+                    { id: "bitex_black", name: "Hộp mực Đen", price: 96000, originalPrice: 120000, image: "assets/shop/gelpen.png", stock: 80 }
+                ],
+                reviews: [
+                    { user: "Thanh Hằng", avatar: "TH", stars: 5, text: "Ngòi bút trơn tru, viết rất êm tay. Đã mua nhiều lần và rất hài lòng.", date: "06/07/2026", hasImg: false }
+                ]
+            },
+            {
+                id: "new_olay_cream",
+                title: "Kem Dưỡng Sáng Da Cao Cấp Olay Active",
+                category: "fashion",
+                rating: 4.8,
+                sold: "1.1k+",
+                basePrice: 450000,
+                discount: 30,
+                shippingFee: 0,
+                shopName: "Olay Beauty Store",
+                desc: "Kem dưỡng ẩm sáng da Olay Active Hydrating Cream giúp cung cấp độ ẩm tối ưu cho làn da mịn màng, hỗ trợ làm mờ các vết thâm sạm và cải thiện sắc tố da sáng hồng rạng rỡ.",
+                specs: { "Khối lượng": "50g", "Thành phần chính": "Niacinamide, Glycerin", "Công dụng": "Dưỡng ẩm, làm sáng da", "Thương hiệu": "Olay" },
+                images: ["assets/shop/artichoke_resin.png"],
+                variants: [
+                    { id: "olay_50g", name: "Hũ 50g", price: 315000, originalPrice: 450000, image: "assets/shop/artichoke_resin.png", stock: 90 }
+                ],
+                reviews: [
+                    { user: "Minh Tú", avatar: "MT", stars: 5, text: "Kem dưỡng ẩm cực tốt, dùng một thời gian thấy da sáng mịn hẳn lên.", date: "05/07/2026", hasImg: false }
+                ]
             }
-
         ];
 
 
@@ -23996,6 +24215,20 @@
             
             // Render brands list
             renderNewArrivalsBrands();
+
+            // Render new arrivals products list
+            activeNewArrivalsCategory = 'all';
+            const tabs = document.querySelectorAll('.new-cat-tab');
+            tabs.forEach((tab, idx) => {
+                if (idx === 0) {
+                    tab.classList.add('text-primary', 'font-black', 'border-primary');
+                    tab.classList.remove('text-slate-500', 'font-bold', 'border-transparent');
+                } else {
+                    tab.classList.remove('text-primary', 'font-black', 'border-primary');
+                    tab.classList.add('text-slate-500', 'font-bold', 'border-transparent');
+                }
+            });
+            renderNewArrivalsProducts();
         }
 
         function closeShopXtraCoupons() {
@@ -24028,7 +24261,8 @@
                     title: 'Simple Skincare',
                     desc: 'Sữa chống nắng SPF50',
                     promo: 'Giảm đến 10%',
-                    image: 'assets/shop/new_simple.png'
+                    image: 'assets/shop/new_simple.png',
+                    glowClass: 'border-green-200 shadow-[0_4px_15px_rgba(34,197,94,0.06)] hover:border-green-400 hover:shadow-[0_4px_20px_rgba(34,197,94,0.15)]'
                 },
                 {
                     id: 'new_unilever_dove',
@@ -24037,7 +24271,8 @@
                     title: 'Unilever Dove',
                     desc: 'Dầu gội phục hồi hư tổn',
                     promo: 'Voucher giảm 15%',
-                    image: 'assets/shop/new_unilever.png'
+                    image: 'assets/shop/new_unilever.png',
+                    glowClass: 'border-blue-200 shadow-[0_4px_15px_rgba(59,130,246,0.06)] hover:border-blue-400 hover:shadow-[0_4px_20px_rgba(59,130,246,0.15)]'
                 },
                 {
                     id: 'new_puma_sneaker',
@@ -24046,7 +24281,8 @@
                     title: 'PUMA Việt Nam',
                     desc: 'Giày thể thao RS-X',
                     promo: 'Voucher giảm 25%',
-                    image: 'assets/shop/sneaker_white.png'
+                    image: 'assets/shop/sneaker_premium.png',
+                    glowClass: 'border-slate-800/15 shadow-[0_4px_15px_rgba(15,23,42,0.04)] hover:border-slate-800/40 hover:shadow-[0_4px_20px_rgba(15,23,42,0.12)]'
                 },
                 {
                     id: 'new_nutifood_grow',
@@ -24055,7 +24291,8 @@
                     title: 'Nutifood Grow+',
                     desc: 'Sữa bột GrowPlus đỏ',
                     promo: 'Giảm đến 12%',
-                    image: 'assets/shop/new_nutifood.png'
+                    image: 'assets/shop/new_nutifood.png',
+                    glowClass: 'border-red-200 shadow-[0_4px_15px_rgba(239,68,68,0.06)] hover:border-red-400 hover:shadow-[0_4px_20px_rgba(239,68,68,0.15)]'
                 },
                 {
                     id: 'new_bitex_pen',
@@ -24064,7 +24301,8 @@
                     title: 'BITEX Pen',
                     desc: 'Hộp 12 bút gel cao cấp',
                     promo: 'Voucher giảm 20%',
-                    image: 'assets/shop/gelpen.png'
+                    image: 'assets/shop/gelpen.png',
+                    glowClass: 'border-cyan-200 shadow-[0_4px_15px_rgba(6,182,212,0.06)] hover:border-cyan-400 hover:shadow-[0_4px_20px_rgba(6,182,212,0.15)]'
                 },
                 {
                     id: 'new_olay_cream',
@@ -24073,16 +24311,17 @@
                     title: 'P&G Beauty Olay',
                     desc: 'Kem dưỡng sáng da Olay',
                     promo: 'Voucher giảm 30%',
-                    image: 'assets/shop/artichoke_resin.png'
+                    image: 'assets/shop/artichoke_resin.png',
+                    glowClass: 'border-amber-200 shadow-[0_4px_15px_rgba(245,158,11,0.06)] hover:border-amber-400 hover:shadow-[0_4px_20px_rgba(245,158,11,0.15)]'
                 }
             ];
             
             container.innerHTML = brandsData.map(b => {
                 return `
-                    <div onclick="openShopProductDetail('${b.id}')" class="bg-white rounded-2xl border border-slate-100 p-2 flex flex-col justify-between items-center text-center relative shadow-sm active:scale-[0.98] transition-transform cursor-pointer">
+                    <div onclick="openShopProductDetail('${b.id}')" class="bg-white/95 rounded-2xl border p-2 flex flex-col justify-between items-center text-center relative active:scale-[0.98] transition-all duration-300 cursor-pointer ${b.glowClass}">
                         <div class="w-full">
                             <!-- Product Image -->
-                            <div class="relative w-full aspect-square bg-slate-50/70 rounded-xl overflow-hidden flex items-center justify-center">
+                            <div class="relative w-full aspect-square bg-slate-50/50 rounded-xl overflow-hidden flex items-center justify-center">
                                 <img src="${b.image}" alt="${b.title}" class="w-[75%] h-[75%] object-contain" />
                             </div>
                             
@@ -24101,6 +24340,226 @@
                     </div>
                 `;
             }).join('');
+        }
+
+        let activeNewArrivalsCategory = 'all';
+
+        function filterNewArrivalsCategory(cat) {
+            activeNewArrivalsCategory = cat;
+            
+            const tabs = document.querySelectorAll('.new-cat-tab');
+            tabs.forEach(tab => {
+                const isMatch = tab.getAttribute('data-newcat') === cat;
+                if (isMatch) {
+                    tab.classList.add('text-primary', 'font-black', 'border-primary');
+                    tab.classList.remove('text-slate-500', 'font-bold', 'border-transparent');
+                } else {
+                    tab.classList.remove('text-primary', 'font-black', 'border-primary');
+                    tab.classList.add('text-slate-500', 'font-bold', 'border-transparent');
+                }
+            });
+            
+            renderNewArrivalsProducts();
+        }
+
+        function renderNewArrivalsProducts() {
+            const container = document.getElementById('new-arrivals-products-list');
+            if (!container) return;
+            
+            let newProducts = shopProducts.filter(p => p.id.startsWith('new_'));
+            
+            if (activeNewArrivalsCategory !== 'all') {
+                newProducts = newProducts.filter(p => p.category === activeNewArrivalsCategory);
+            }
+            
+            if (newProducts.length === 0) {
+                container.innerHTML = `<div class="col-span-2 text-center py-10 text-xs text-slate-400">Không có sản phẩm mới nào phù hợp</div>`;
+                return;
+            }
+            
+            // Choose Hero product
+            let heroProduct = newProducts.find(p => p.id === 'new_puma_sneaker');
+            if (!heroProduct && newProducts.length > 0) {
+                heroProduct = newProducts[0];
+            }
+            
+            let cardsHtml = '';
+            
+            // Render Hero product card (Full-bleed edge-to-edge: -mx-3, w-[calc(100%+1.5rem)])
+            if (heroProduct) {
+                const discountedPrice = Math.round(heroProduct.basePrice * (1 - heroProduct.discount / 100));
+                let hotTag = '';
+                if (heroProduct.id === 'new_puma_sneaker') {
+                    hotTag = `<span class="text-[7.5px] text-rose-400 font-bold animate-pulse">🔥 Sắp hết hàng</span>`;
+                } else if (heroProduct.id === 'new_simple_sunscreen' || heroProduct.id === 'new_olay_cream') {
+                    hotTag = `<span class="text-[7.5px] text-amber-400 font-bold">🔥 Chỉ còn 3 sản phẩm</span>`;
+                } else {
+                    hotTag = `<span class="text-[7.5px] text-emerald-400 font-bold">✔ Còn hàng</span>`;
+                }
+                
+                cardsHtml += `
+                    <div class="col-span-2 -mx-3 w-[calc(100%+1.5rem)] bg-gradient-to-r from-[#0B1528] via-[#131E36] to-[#24132D] p-4 flex items-center justify-between text-white relative overflow-hidden shadow-md active:scale-[0.99] transition-transform cursor-pointer border-y border-white/5 mb-2.5" onclick="openShopProductDetail('${heroProduct.id}')">
+                        <div class="absolute -bottom-10 -left-10 w-24 h-24 bg-purple-600/15 rounded-full blur-xl pointer-events-none"></div>
+                        <div class="absolute -top-10 -right-10 w-24 h-24 bg-blue-500/15 rounded-full blur-xl pointer-events-none"></div>
+                        
+                        <div class="z-10 flex-grow max-w-[58%] space-y-1.5 pl-3">
+                            <span class="bg-amber-500 text-slate-950 font-black text-[7px] px-2 py-0.5 rounded shadow-sm uppercase tracking-wider select-none leading-none border border-white/10">Sản phẩm tiêu điểm</span>
+                            <h3 class="text-xs font-black uppercase tracking-tight line-clamp-2 text-white leading-snug">
+                                ${heroProduct.title}
+                            </h3>
+                            <p class="text-[7.5px] text-slate-300 font-medium line-clamp-2 leading-relaxed">
+                                ${heroProduct.description || 'Sản phẩm mới ra mắt độc quyền tại GEMS Mall với chất lượng và mức giá ưu đãi nhất.'}
+                            </p>
+                            
+                            <div class="pt-1 flex items-baseline gap-1.5 flex-wrap">
+                                <span class="text-xs font-black text-amber-400">${discountedPrice.toLocaleString('vi-VN')}đ</span>
+                                <span class="text-[8px] text-slate-400 line-through font-bold">${heroProduct.basePrice.toLocaleString('vi-VN')}đ</span>
+                            </div>
+                            
+                            <div class="flex items-center gap-2 mt-1">
+                                <button onclick="quickAddShopCart('${heroProduct.id}', event)" class="bg-white hover:bg-slate-100 text-[#005A9C] font-black text-[8px] px-3.5 py-1.5 rounded-full shadow-md active:scale-95 transition-all flex items-center gap-1 select-none">
+                                    <span class="material-symbols-outlined text-[9px] font-black">shopping_cart</span>
+                                    <span>Mua nhanh</span>
+                                </button>
+                                ${hotTag}
+                            </div>
+                        </div>
+                        
+                        <div class="relative w-[36%] aspect-square rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-1.5 shrink-0 z-10 overflow-hidden shadow-inner mr-3">
+                            <img src="${heroProduct.images[0]}" alt="${heroProduct.title}" class="w-[90%] h-[90%] object-contain drop-shadow-[0_4px_10px_rgba(255,255,255,0.15)]" />
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Render other products (Grid 2 columns)
+            const otherProducts = newProducts.filter(p => p.id !== heroProduct.id);
+            cardsHtml += otherProducts.map(p => {
+                const discountedPrice = Math.round(p.basePrice * (1 - p.discount / 100));
+                
+                let hotTag = '';
+                if (p.id === 'new_simple_sunscreen' || p.id === 'new_olay_cream') {
+                    hotTag = `<div class="mt-1 text-[7px] font-bold text-amber-600 flex items-center gap-0.5 select-none leading-none"><span>🔥</span> Chỉ còn 3sp</div>`;
+                } else {
+                    hotTag = `<div class="mt-1 text-[7px] font-bold text-teal-600 flex items-center gap-0.5 select-none leading-none"><span>✔</span> Còn hàng</div>`;
+                }
+                
+                return `
+                    <div class="bg-white/80 backdrop-blur-sm border border-slate-100/80 rounded-2xl p-2.5 flex flex-col justify-between shadow-[0_4px_15px_rgba(0,0,0,0.02)] active:scale-[0.98] transition-all duration-200 cursor-pointer relative" onclick="openShopProductDetail('${p.id}')">
+                        
+                        <!-- Top Image Side -->
+                        <div class="relative w-full aspect-square bg-slate-50/50 rounded-xl overflow-hidden flex-shrink-0 flex items-center justify-center">
+                            <img src="${p.images[0]}" alt="${p.title}" class="w-[85%] h-[85%] object-contain" />
+                            
+                            <!-- Discount Badge Top-Left -->
+                            <div class="absolute left-1 top-1 bg-amber-500 text-slate-950 font-black text-[7.5px] px-1.5 py-0.5 rounded shadow-sm leading-none">
+                                -${p.discount}%
+                            </div>
+                            
+                            <!-- Rainbow Pulsing New Badge Top-Right -->
+                            <div class="absolute right-1 top-1 bg-gradient-to-r from-teal-500 via-[#005a9c] to-[#004b82] text-white font-black text-[7.5px] px-1.5 py-0.5 rounded shadow-sm leading-none uppercase animate-pulse">
+                                MỚI
+                            </div>
+                        </div>
+                        
+                        <!-- Details Side -->
+                        <div class="flex-grow flex flex-col justify-between min-w-0 mt-2.5">
+                            <div class="space-y-1.5">
+                                <!-- Title -->
+                                <h4 class="text-[10px] font-bold text-slate-800 leading-snug line-clamp-2">
+                                    ${p.title}
+                                </h4>
+                            </div>
+                            
+                            <!-- Price & Action (Quick Buy integrated) -->
+                            <div class="flex items-center justify-between mt-2.5 flex-shrink-0">
+                                <div class="flex flex-col">
+                                    <div class="flex items-baseline gap-1 flex-wrap">
+                                        <span class="text-xs font-black text-amber-600">${discountedPrice.toLocaleString('vi-VN')}đ</span>
+                                        <span class="text-[8px] text-slate-400 line-through font-bold">${p.basePrice.toLocaleString('vi-VN')}đ</span>
+                                    </div>
+                                    ${hotTag}
+                                </div>
+                                <!-- Quick Buy button -->
+                                <button onclick="quickAddShopCart('${p.id}', event)" class="bg-[#005A9C] hover:bg-[#004B82] text-white w-6 h-6 rounded-full flex items-center justify-center shadow-md active:scale-90 transition-all select-none shrink-0 ml-1.5">
+                                    <span class="material-symbols-outlined text-[11px] font-black">shopping_cart</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            container.innerHTML = cardsHtml;
+        }
+
+        function quickAddShopCart(productId, event) {
+            if (event) event.stopPropagation();
+            
+            const product = shopProducts.find(p => p.id === productId);
+            if (!product) return;
+            
+            const variant = product.variants && product.variants.length > 0 ? product.variants[0] : null;
+            if (!variant) return;
+            
+            const cartItem = ShopCart.find(item => item.productId === productId && item.variantId === variant.id);
+            if (cartItem) {
+                cartItem.quantity += 1;
+            } else {
+                ShopCart.push({
+                    productId: productId,
+                    variantId: variant.id,
+                    quantity: 1,
+                    checked: true
+                });
+            }
+            
+            localStorage.setItem('gems_shop_cart', JSON.stringify(ShopCart));
+            
+            updateCartBadge();
+            updateXtraCartBadge();
+            
+            showToast('Đã thêm vào giỏ hàng thành công.', 'success');
+            
+            if (event && event.currentTarget) {
+                playQuickBuyFlyAnimation(event.currentTarget);
+            }
+        }
+
+        function playQuickBuyFlyAnimation(clickedElement) {
+            const cartBtn = document.getElementById('xtra-shop-cart-btn');
+            if (!cartBtn) return;
+            
+            const btnRect = clickedElement.getBoundingClientRect();
+            const cartRect = cartBtn.getBoundingClientRect();
+            
+            const flyer = document.createElement('div');
+            flyer.className = 'fixed bg-amber-500 rounded-full flex items-center justify-center text-white shadow-lg pointer-events-none animate-fly-cart';
+            flyer.style.width = '24px';
+            flyer.style.height = '24px';
+            flyer.style.left = `${btnRect.left + btnRect.width/2 - 12}px`;
+            flyer.style.top = `${btnRect.top + btnRect.height/2 - 12}px`;
+            
+            flyer.innerHTML = `<span class="material-symbols-outlined text-[13px] font-black">shopping_cart</span>`;
+            
+            const flyX = cartRect.left + cartRect.width/2 - (btnRect.left + btnRect.width/2);
+            const flyY = cartRect.top + cartRect.height/2 - (btnRect.top + btnRect.height/2);
+            
+            flyer.style.setProperty('--fly-x', `${flyX}px`);
+            flyer.style.setProperty('--fly-y', `${flyY}px`);
+            flyer.style.setProperty('--fly-x-half', `${flyX * 0.5}px`);
+            flyer.style.setProperty('--fly-y-half', `${flyY * 0.7 - 80}px`);
+            
+            document.body.appendChild(flyer);
+            
+            setTimeout(() => {
+                flyer.remove();
+                
+                cartBtn.classList.add('cart-bounce-active');
+                setTimeout(() => {
+                    cartBtn.classList.remove('cart-bounce-active');
+                }, 300);
+            }, 800);
         }
 
 
