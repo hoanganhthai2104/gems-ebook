@@ -4655,28 +4655,26 @@
                                     <div onclick="openShopXtraCoupons()" class="relative flex flex-col items-center gap-1.5 cursor-pointer select-none active:scale-95 transition-transform">
                                         <img src="assets/shop/icon_new_arrivals.png" alt="New" class="object-contain shrink-0" style="width: 44px; height: 44px;" />
                                         <span class="text-[9px] font-bold text-slate-600 text-center whitespace-nowrap">Hàng mới về</span>
-                                        <span class="absolute top-0 right-2 bg-red-500 text-white text-[5.5px] font-black px-1.2 py-0.2 rounded-full uppercase scale-90 tracking-wider shadow-sm animate-pulse">NEW</span>
                                     </div>
 
                                     <!-- Free Ship -->
                                     <div onclick="openShopFreeShip()" class="relative flex flex-col items-center gap-1.5 cursor-pointer select-none active:scale-95 transition-transform">
                                         <img src="assets/shop/icon_free_ship.png" alt="FreeShip" class="object-contain shrink-0" style="width: 44px; height: 44px;" />
                                         <span class="text-[9px] font-bold text-slate-600 text-center whitespace-nowrap">Free Ship</span>
-                                        <span class="absolute top-0 right-3.5 bg-teal-500 text-white text-[5.5px] font-black px-1.2 py-0.2 rounded-full uppercase scale-90 tracking-wider shadow-sm">XTRA</span>
                                     </div>
 
                                     <!-- GEMS Mall -->
                                     <div onclick="openShopMall()" class="relative flex flex-col items-center gap-1.5 cursor-pointer select-none active:scale-95 transition-transform">
-                                        <img src="assets/shop/icon_gems_mall.png" alt="Mall" class="object-contain shrink-0" style="width: 44px; height: 44px;" />
-                                        <span class="text-[9px] font-bold text-slate-600 text-center whitespace-nowrap font-sans">GEMS Mall</span>
-                                        <span class="absolute top-0 right-2 bg-amber-500 text-white text-[5.5px] font-black px-1.2 py-0.2 rounded-full uppercase scale-90 tracking-wider shadow-sm">PRO</span>
+                                        <div class="w-[44px] h-[44px] bg-slate-50 border border-slate-100 rounded-full flex items-center justify-center shadow-sm">
+                                            <span class="bg-gradient-to-b from-[#ffd800] to-[#ffa600] text-[#005a9c] text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wide border border-[#e09000]/20 shadow-sm leading-none">MALL</span>
+                                        </div>
+                                        <span class="text-[9px] font-bold text-slate-600 text-center whitespace-nowrap font-sans">Mall</span>
                                     </div>
 
                                     <!-- Quà tặng -->
                                     <div onclick="openShopGifts()" class="relative flex flex-col items-center gap-1.5 cursor-pointer select-none active:scale-95 transition-transform">
                                         <img src="assets/shop/icon_gifts.png" alt="Gifts" class="object-contain shrink-0" style="width: 44px; height: 44px;" />
                                         <span class="text-[9px] font-bold text-slate-600 text-center whitespace-nowrap">Quà tặng</span>
-                                        <span class="absolute top-0 right-4 bg-rose-500 text-white text-[5.5px] font-black px-1.2 py-0.2 rounded-full uppercase scale-90 tracking-wider shadow-sm">FREE</span>
                                     </div>
 
                                 </div>
@@ -4741,7 +4739,7 @@
 
                                     <button onclick="filterShopCategory('all')" data-cat="all" class="shop-cat-tab shrink-0 px-3 pb-2.5 text-[11px] font-black text-primary border-b-2 border-primary transition-all">Tất cả</button>
 
-                                    <button onclick="filterShopCategory('gems')" data-cat="gems" class="shop-cat-tab shrink-0 px-3 pb-2.5 text-[11px] font-bold text-slate-500 border-b-2 border-transparent transition-all"><span class="bg-amber-400 text-primary text-[8px] font-black px-1.5 py-0.5 rounded mr-0.5 border border-amber-500/10 shadow-sm select-none leading-none">Mall</span> GEMS</button>
+                                    <button onclick="filterShopCategory('gems')" data-cat="gems" class="shop-cat-tab shrink-0 px-3 pb-2.5 text-[11px] font-bold text-slate-500 border-b-2 border-transparent transition-all flex items-center gap-1"><span class="bg-gradient-to-b from-[#ffd800] to-[#ffa600] text-[#005a9c] text-[8px] font-black px-1.5 py-0.5 rounded-full uppercase tracking-wider border border-[#e09000]/20">MALL</span></button>
 
                                     <button onclick="filterShopCategory('fashion')" data-cat="fashion" class="shop-cat-tab shrink-0 px-3 pb-2.5 text-[11px] font-bold text-slate-500 border-b-2 border-transparent transition-all">Thời trang</button>
 
@@ -5949,81 +5947,97 @@
 
                     <!-- ============================================== -->
 
-                    <div id="view-shop-mall" class="absolute inset-0 z-[137] bg-gradient-to-br from-[#0B1E36] via-[#051121] to-[#01060E] text-white flex flex-col overflow-hidden hidden select-none animate-fade-in">
-
-                        <!-- Header -->
-                        <header class="bg-slate-900/60 backdrop-blur-md border-b border-white/5 w-full top-0 sticky flex items-center justify-between px-3 py-3 z-50 shrink-0">
-                            <div class="w-10">
-                                <button onclick="closeShopMall()" aria-label="Go back" class="text-white hover:bg-white/10 transition-colors rounded-full p-2 flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-xl">arrow_back</span>
-                                </button>
-                            </div>
-                            <h1 class="font-sans text-sm font-black tracking-tight text-white mx-auto text-center truncate">GEMS Mall</h1>
-                            <div class="w-10 flex justify-end">
-                                <button onclick="openShopCart()" class="relative text-white hover:bg-white/10 transition-colors rounded-full p-2 flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-xl">shopping_cart</span>
-                                    <span id="mall-shop-cart-badge" class="absolute top-0 right-0 bg-red-500 text-white font-bold text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center hidden border border-white">0</span>
-                                </button>
-                            </div>
-                        </header>
-
-                        <!-- Brand Promises Inline Banner (TikTok Shop style) -->
-                        <div class="bg-slate-900/40 border-b border-white/5 px-4 py-2 flex items-center justify-between text-[8px] font-black text-slate-300 shrink-0">
-                            <div class="flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[10px] text-amber-500">verified</span>
-                                <span>Chính hãng 100%</span>
-                            </div>
-                            <div class="flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[10px] text-amber-500">assignment_return</span>
-                                <span>Đổi trả 15 ngày</span>
-                            </div>
-                            <div class="flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[10px] text-amber-500">local_shipping</span>
-                                <span>Miễn phí vận chuyển</span>
-                            </div>
-                        </div>
+                    <div id="view-shop-mall" class="absolute inset-0 z-[137] bg-slate-50 text-slate-800 overflow-hidden hidden select-none animate-fade-in">
 
                         <!-- Scrollable Content Area -->
-                        <div class="flex-grow overflow-y-auto space-y-4 pb-10">
+                        <div id="view-shop-mall-scroll" class="absolute inset-0 overflow-y-auto pb-10 bg-slate-50 z-10 flex flex-col">
 
-                            <!-- Marketing Campaign Banner (Highly Polished) -->
-                            <div class="px-3 pt-3">
-                                <div class="bg-gradient-to-br from-[#005A9C] via-[#004B82] to-[#002742] rounded-3xl p-4 text-white relative overflow-hidden shadow-sm flex items-center justify-between border border-white/10">
+                            <!-- Unified Hero Poster Section (Poster background cover spans behind header) -->
+                            <div class="relative w-full min-h-[380px] text-white flex flex-col justify-between pt-[58px] pb-5 rounded-b-none overflow-hidden shadow-[0_4px_16px_rgba(0,0,0,0.06)] shrink-0" style="background-image: url('assets/shop/apple_campaign_banner.png'); background-size: cover; background-position: center;">
+                                
+                                <!-- Header (Inside the poster container at the top, scrolls away) -->
+                                <header class="absolute top-0 left-0 w-full bg-gradient-to-b from-black/65 to-transparent flex items-center justify-between px-3 py-3.5 z-50 text-white select-none">
+                                    <div class="w-10">
+                                        <button onclick="closeShopMall()" aria-label="Go back" class="text-white hover:bg-white/10 transition-colors rounded-full p-2 flex items-center justify-center active:scale-95">
+                                            <span class="material-symbols-outlined text-xl font-bold">arrow_back</span>
+                                        </button>
+                                    </div>
+                                    <div class="mx-auto flex items-center justify-center">
+                                        <div class="px-5 py-1.5 bg-gradient-to-b from-[#ffd800] to-[#ffa600] text-[#005a9c] text-xs font-black rounded-full flex items-center justify-center select-none shadow-[0_2px_8px_rgba(0,0,0,0.15)] tracking-wider border border-[#e09000]/25">
+                                            MALL
+                                        </div>
+                                    </div>
+                                    <div class="w-10 flex justify-end">
+                                        <button onclick="openShopCart()" class="relative text-white hover:bg-white/10 transition-colors rounded-full p-2 flex items-center justify-center active:scale-95">
+                                            <span class="material-symbols-outlined text-xl font-bold">shopping_cart</span>
+                                            <span id="mall-shop-cart-badge" class="absolute top-0 right-0 bg-rose-600 text-white font-bold text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center hidden border border-white">0</span>
+                                        </button>
+                                    </div>
+                                </header>
+
+                                <!-- Dark overlay filter for high legibility -->
+                                <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/25 to-black/75 pointer-events-none"></div>
+
+                                <!-- Brand Promises Inline Banner (TikTok Shop style overlayed inside) -->
+                                <div class="w-full bg-white/5 backdrop-blur-sm border-y border-white/5 px-4 py-2 flex items-center justify-between text-[8px] font-extrabold text-blue-100/90 relative z-20 select-none">
+                                    <div class="flex items-center gap-1 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/5 shadow-sm">
+                                        <span class="material-symbols-outlined text-[10px] text-amber-400 font-bold">verified</span>
+                                        <span>Chính hãng 100%</span>
+                                    </div>
+                                    <div class="flex items-center gap-1 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/5 shadow-sm">
+                                        <span class="material-symbols-outlined text-[10px] text-amber-400 font-bold">assignment_return</span>
+                                        <span>Đổi trả 15 ngày</span>
+                                    </div>
+                                    <div class="flex items-center gap-1 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/5 shadow-sm">
+                                        <span class="material-symbols-outlined text-[10px] text-amber-400 font-bold">local_shipping</span>
+                                        <span>Giao nhanh & Free</span>
+                                    </div>
+                                </div>
+
+                                <!-- Spacer to push campaign details to bottom -->
+                                <div class="flex-grow min-h-[30px]"></div>
+
+                                <!-- Campaign Banner Content (Positioned at the bottom part of the poster) -->
+                                <div class="w-full px-5 space-y-4 relative z-20 mt-4">
                                     
-                                    <!-- Decorative backdrops -->
-                                    <div class="absolute -top-12 -right-12 w-28 h-28 bg-amber-400/20 rounded-full blur-xl pointer-events-none"></div>
-                                    <div class="absolute -bottom-10 -left-10 w-24 h-24 bg-blue-500/20 rounded-full blur-xl pointer-events-none"></div>
-                                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_right,_rgba(245,158,11,0.08)_0%,_transparent_60%)]"></div>
-
-                                    <!-- Left details -->
-                                    <div class="space-y-1.5 relative z-10 max-w-[60%]">
-                                        <div class="bg-amber-400 text-slate-950 text-[7px] font-black uppercase px-2.5 py-0.5 rounded-full tracking-wider inline-block shadow-sm leading-none">
+                                    <!-- Countdown & Tag -->
+                                    <div class="flex items-center justify-between w-full">
+                                        <div class="bg-white/20 text-white text-[7.5px] font-black uppercase px-2.5 py-1 rounded-full tracking-wider border border-white/20 leading-none">
                                             Siêu Hội GEMS Mall
                                         </div>
-                                        <h3 class="text-xs font-black uppercase tracking-tight leading-tight drop-shadow-md">
-                                            THƯƠNG HIỆU APPLE GIẢM SÂU 20%
-                                        </h3>
-                                        <p class="text-[8px] text-amber-200 font-bold leading-tight">
-                                            🎁 Tặng kèm GEMS Voucher 50K khi mua các thiết bị công nghệ TechLab.
+                                        <!-- Countdown -->
+                                        <div class="flex items-center gap-1 bg-black/40 backdrop-blur-sm text-[8px] px-2.5 py-1 rounded-full text-amber-300 font-bold border border-white/10 select-none" id="mall-campaign-timer">
+                                            <span class="material-symbols-outlined text-[9px] font-bold">schedule</span>
+                                            <span id="mall-timer-text">02:45:10</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Slanted Bold Title -->
+                                    <div class="text-center space-y-1 transform -skew-x-6 rotate-[-1deg]">
+                                        <h2 class="text-[26px] font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 via-amber-400 to-amber-500 drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)] uppercase font-sans italic leading-none">
+                                            THƯƠNG HIỆU APPLE
+                                        </h2>
+                                        <h2 class="text-[32px] font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-200 drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)] uppercase font-sans italic -mt-1 leading-none">
+                                            GIẢM SÂU 20%
+                                        </h2>
+                                    </div>
+
+                                    <!-- Description & CTA Button -->
+                                    <div class="flex items-end justify-between w-full gap-3">
+                                        <p class="text-[9px] text-blue-150 font-medium leading-relaxed max-w-[65%] drop-shadow-md">
+                                            🎁 Tặng kèm GEMS Voucher 50K khi mua các sản phẩm Apple chính hãng.
                                         </p>
+                                        <button onclick="showToast('Đã nhận mã Apple giảm 20%!', 'success')" class="bg-gradient-to-r from-amber-400 to-yellow-300 hover:from-amber-500 hover:to-yellow-400 text-slate-950 font-black text-[9.5px] px-6 py-2.5 rounded-full shadow-lg active:scale-95 transition-all uppercase tracking-wider border border-white/20 shrink-0 leading-none animate-pulse">
+                                            Nhận Mã
+                                        </button>
                                     </div>
 
-                                    <!-- Right Collage (Floating Products) -->
-                                    <div class="relative w-20 h-16 flex items-center justify-center z-10 select-none pointer-events-none">
-                                        <div class="absolute w-14 h-14 bg-amber-400/35 rounded-full blur-lg"></div>
-                                        <img src="assets/shop/keyboard.png" alt="Tech Product" class="absolute w-11 h-11 object-cover rounded-xl rotate-[-12deg] shadow-md border border-white/30 filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.15)]" />
-                                        <img src="assets/shop/headphones_black.png" alt="Tech Product" class="absolute w-10 h-10 object-cover rounded-xl rotate-[12deg] translate-x-3 translate-y-1 shadow-md border border-white/30 filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.15)]" />
-                                    </div>
-
-                                    <!-- Floating CTA Button -->
-                                    <button onclick="showToast('Đã nhận mã giảm giá TechLab 20%!', 'success')" class="absolute bottom-3 right-3 bg-white hover:bg-slate-50 text-[#005A9C] font-black text-[8px] px-3 py-1.5 rounded-full shadow-lg active:scale-95 transition-all uppercase tracking-wider z-20 border border-slate-200/50">
-                                        Nhận Mã
-                                    </button>
                                 </div>
+
                             </div>
 
                             <!-- Top Selling Brands Section (Mesh-Background Glassmorphism) -->
-                            <div class="bg-white/5 backdrop-blur-md py-3.5 border-y border-white/5 space-y-2.5">
+                            <div class="bg-white py-3.5 border-y border-slate-150 space-y-2.5 shadow-[0_2px_12px_rgba(0,0,0,0.01)]">
                                 <div class="flex items-center justify-between px-3">
                                     <h3 class="text-[10px] font-black text-slate-800 uppercase tracking-wider">Thương hiệu bán chạy</h3>
                                     <a href="#" onclick="showToast('Tính năng đang được phát triển.')" class="text-[9px] font-black text-brand-blue flex items-center gap-0.5">
@@ -6116,7 +6130,7 @@
                             </div>
 
                             <!-- Category Tabs (Sticky) -->
-                            <div class="bg-white/60 backdrop-blur-md border-y border-slate-200/40 px-3 pt-3 pb-0 sticky top-0 z-30 shadow-sm">
+                            <div class="bg-white/90 backdrop-blur-md border-y border-slate-250/30 px-3 pt-3 pb-0 sticky top-0 z-30 shadow-sm">
                                 <div class="flex gap-2 overflow-x-auto scrollbar-none border-b border-slate-100" id="mall-category-tabs">
                                     <button onclick="filterMallCategory('all')" data-mallcat="all" class="mall-cat-tab shrink-0 px-3 pb-2.5 text-[11px] font-black text-primary border-b-2 border-primary transition-all">Tất cả</button>
                                     <button onclick="filterMallCategory('books')" data-mallcat="books" class="mall-cat-tab shrink-0 px-3 pb-2.5 text-[11px] font-bold text-slate-500 border-b-2 border-transparent transition-all">Sách & VP</button>
@@ -6128,12 +6142,18 @@
 
                             <!-- Vertical Mall Products List -->
                             <div class="px-3">
-                                <div class="flex flex-col gap-2.5" id="mall-products-list">
+                                <div class="grid grid-cols-2 gap-2.5" id="mall-products-list">
                                     <!-- Dynamic Mall items populated by JS render -->
                                 </div>
                             </div>
 
                         </div>
+
+                        <!-- Floating Scroll To Top Button -->
+                        <button id="mall-back-to-top" onclick="scrollMallToTop()" class="absolute bottom-20 right-6 w-11 h-11 rounded-full bg-[#004B82] text-white flex items-center justify-center shadow-lg hover:bg-[#003B66] active:scale-95 transition-all duration-300 opacity-0 pointer-events-none scale-75 z-50">
+                            <span class="material-symbols-outlined font-black">arrow_upward</span>
+                        </button>
+
                     </div>
 
 
@@ -21434,13 +21454,7 @@
 
                                 </div>
 
-                                <div class="flex items-center gap-1 mt-0.5 flex-wrap">
-
-                                    ${p.shippingFee === 0 ? `<span class="text-[7px] font-black text-blue-650 bg-blue-50 border border-blue-200/60 px-1.5 py-[1px] rounded">Free Ship</span>` : ''}
-
-                                    ${p.shopName.toLowerCase().includes('gems') ? `<span class="text-[7px] font-black text-white bg-brand-blue px-1.5 py-[1px] rounded">Mall</span>` : ''}
-
-                                </div>
+                                ${p.shopName.toLowerCase().includes('gems') ? `<div class="mt-0.5"><span class="inline-flex items-center justify-center bg-gradient-to-b from-[#ffd800] to-[#ffa600] text-[#005a9c] text-[8px] font-black px-2 py-0.5 rounded-full select-none leading-none shadow-sm uppercase tracking-wider border border-[#e09000]/20 align-middle shrink-0">MALL</span></div>` : ''}
 
                             </div>
 
@@ -24345,6 +24359,52 @@
         // ============ GEMS MALL ============
 
         let activeMallCategory = 'all';
+        let mallCountdownInterval = null;
+
+        function startMallCampaignCountdown() {
+            if (mallCountdownInterval) clearInterval(mallCountdownInterval);
+            
+            let totalSeconds = 2 * 3600 + 45 * 60 + 10;
+            const timerText = document.getElementById('mall-timer-text');
+            if (!timerText) return;
+            
+            function updateText() {
+                if (totalSeconds <= 0) {
+                    totalSeconds = 3 * 3600;
+                }
+                const hrs = Math.floor(totalSeconds / 3600);
+                const mins = Math.floor((totalSeconds % 3600) / 60);
+                const secs = totalSeconds % 60;
+                
+                timerText.textContent = `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+                totalSeconds--;
+            }
+            
+            updateText();
+            mallCountdownInterval = setInterval(updateText, 1000);
+        }
+
+        function scrollMallToTop() {
+            const scrollContainer = document.getElementById('view-shop-mall-scroll');
+            if (scrollContainer) {
+                scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function handleMallScroll() {
+            const btn = document.getElementById('mall-back-to-top');
+            if (!btn) return;
+            const mallScroll = document.getElementById('view-shop-mall-scroll');
+            if (!mallScroll) return;
+            
+            if (mallScroll.scrollTop > 200) {
+                btn.classList.remove('opacity-0', 'pointer-events-none', 'scale-75');
+                btn.classList.add('opacity-100', 'scale-100');
+            } else {
+                btn.classList.add('opacity-0', 'pointer-events-none', 'scale-75');
+                btn.classList.remove('opacity-100', 'scale-100');
+            }
+        }
 
         function openShopMall() {
             const view = document.getElementById('view-shop-mall');
@@ -24355,11 +24415,36 @@
             
             // Render products
             renderMallProducts();
+
+            // Start countdown
+            startMallCampaignCountdown();
+
+            // Register scroll listener for Back to Top button
+            const mallScroll = document.getElementById('view-shop-mall-scroll');
+            if (mallScroll) {
+                mallScroll.removeEventListener('scroll', handleMallScroll);
+                mallScroll.addEventListener('scroll', handleMallScroll);
+            }
         }
 
         function closeShopMall() {
             const view = document.getElementById('view-shop-mall');
             if (view) view.classList.add('hidden');
+            
+            if (mallCountdownInterval) {
+                clearInterval(mallCountdownInterval);
+                mallCountdownInterval = null;
+            }
+
+            const mallScroll = document.getElementById('view-shop-mall-scroll');
+            if (mallScroll) {
+                mallScroll.removeEventListener('scroll', handleMallScroll);
+            }
+            const btn = document.getElementById('mall-back-to-top');
+            if (btn) {
+                btn.classList.add('opacity-0', 'pointer-events-none', 'scale-75');
+                btn.classList.remove('opacity-100', 'scale-100');
+            }
         }
 
         function updateMallCartBadge() {
@@ -24412,10 +24497,10 @@
                 const discountedPrice = Math.round(p.basePrice * (1 - p.discount / 100));
                 
                 return `
-                    <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-2.5 flex gap-3 cursor-pointer shadow-[0_8px_32px_rgba(0,0,0,0.15)] active:scale-[0.99] transition-all" onclick="openShopProductDetail('${p.id}')">
+                    <div class="bg-white border border-slate-100 rounded-2xl p-2 flex flex-col justify-between shadow-[0_4px_12px_rgba(0,0,0,0.02)] active:scale-[0.98] transition-all duration-200 cursor-pointer" onclick="openShopProductDetail('${p.id}')">
                         
-                        <!-- Left Image Side -->
-                        <div class="relative w-[90px] h-[90px] bg-slate-950 rounded-xl overflow-hidden flex-shrink-0">
+                        <!-- Top Image Side -->
+                        <div class="relative w-full aspect-square bg-slate-50 rounded-xl overflow-hidden flex-shrink-0">
                             <img src="${p.images[0]}" alt="${p.title}" class="w-full h-full object-cover" />
                             
                             <!-- Discount Badge Top-Left -->
@@ -24424,35 +24509,21 @@
                             </div>
                         </div>
                         
-                        <!-- Right Details Side -->
-                        <div class="flex-grow flex flex-col justify-between min-w-0">
-                            <div class="space-y-1">
+                        <!-- Details Side -->
+                        <div class="flex-grow flex flex-col justify-between min-w-0 mt-2.5">
+                            <div class="space-y-1.5">
                                 <!-- Mall Badge + Title -->
-                                <h4 class="text-xs font-black text-white leading-snug line-clamp-2">
-                                    <span class="bg-amber-400 text-slate-950 text-[7.5px] font-black px-1.5 py-0.5 rounded mr-1 inline-block select-none leading-none shadow-sm border border-amber-500/10 uppercase">Mall</span>
+                                <h4 class="text-[10px] font-bold text-slate-800 leading-snug line-clamp-2">
+                                    <span class="inline-flex items-center justify-center bg-gradient-to-b from-[#ffd800] to-[#ffa600] text-[#005a9c] text-[8px] font-black px-2 py-0.5 rounded-full select-none leading-none shadow-sm uppercase tracking-wider border border-[#e09000]/20 align-middle mr-1.5 shrink-0">MALL</span>
                                     ${p.title}
                                 </h4>
-                                
-                                <!-- Free Shipping Tag -->
-                                <div class="flex items-center gap-1 text-[8px] font-extrabold text-teal-300 bg-teal-950/45 border border-teal-800/40 rounded px-1.5 py-0.5 w-max select-none leading-none">
-                                    <span class="material-symbols-outlined text-[9px] font-black">local_shipping</span>
-                                    <span>Free shipping</span>
-                                </div>
                             </div>
                             
-                            <!-- Price & Sales Info -->
-                            <div class="flex items-center justify-between mt-1">
-                                <div class="flex items-baseline gap-1.5">
-                                    <span class="text-xs font-black text-amber-400">${discountedPrice.toLocaleString()}đ</span>
-                                    <span class="text-[9px] text-slate-400 line-through font-bold">${p.basePrice.toLocaleString()}đ</span>
-                                </div>
-                                
-                                <!-- Stars and sold count -->
-                                <div class="flex items-center gap-1 text-[8.5px] text-slate-350 font-bold">
-                                    <span class="text-amber-400 text-[10px]">★</span>
-                                    <span class="text-white">${p.rating}</span>
-                                    <span class="text-slate-500">|</span>
-                                    <span class="text-slate-400">Đã bán ${p.sold}</span>
+                            <!-- Price Info -->
+                            <div class="space-y-1 mt-2.5">
+                                <div class="flex items-baseline gap-1 flex-wrap">
+                                    <span class="text-xs font-black text-primary">${discountedPrice.toLocaleString()}đ</span>
+                                    <span class="text-[8px] text-slate-400 line-through font-bold">${p.basePrice.toLocaleString()}đ</span>
                                 </div>
                             </div>
                         </div>
@@ -24927,35 +24998,8 @@
 
                                 </div>` : ''}
 
-                                <!-- XTRA badges at bottom of image -->
 
-                                <div class="absolute left-1.5 bottom-1.5 flex flex-col gap-1 z-10">
 
-                                    ${hasFreeShip ? `
-
-                                    <span class="bg-blue-50/95 border border-blue-200 text-[#005A9C] font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none flex items-center gap-0.5 w-max">
-
-                                        <span class="material-symbols-outlined" style="font-size: 7px; font-weight: 900;">local_shipping</span>Freeship
-
-                                    </span>` : ''}
-
-                                    ${hasXtra ? `
-
-                                    <span class="bg-amber-50/95 border border-amber-200 text-amber-800 font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none flex items-center gap-0.5 w-max">
-
-                                        <span class="material-symbols-outlined" style="font-size: 7px; font-weight: 900;">local_offer</span>XTRA
-
-                                    </span>` : ''}
-
-                                    ${!hasFreeShip && !hasXtra ? `
-
-                                    <span class="bg-slate-50/95 border border-slate-200 text-slate-600 font-black text-[6.5px] px-1.5 py-0.5 rounded shadow-sm uppercase select-none leading-none w-max">
-
-                                        Ad
-
-                                    </span>` : ''}
-
-                                </div>
 
                             </div>
 
@@ -24971,25 +25015,13 @@
 
                                     <div class="flex items-start gap-1">
 
-                                        ${hasMall ? `<span class="shrink-0 text-[7px] font-black text-white px-1 py-0.5 rounded-sm mt-0.5" style="background:#2563eb">Mall</span>` : ''}
+                                        ${hasMall ? `<span class="inline-flex items-center justify-center bg-gradient-to-b from-[#ffd800] to-[#ffa600] text-[#005a9c] text-[8px] font-black px-2 py-0.5 rounded-full select-none leading-none shadow-sm uppercase tracking-wider border border-[#e09000]/20 align-middle mr-1.5 shrink-0 mt-0.5">MALL</span>` : ''}
 
                                         <h4 class="text-[11px] font-bold text-slate-800 line-clamp-1 leading-snug">${p.title}</h4>
 
                                     </div>
 
-                                    
 
-                                    <!-- Shipping Badges -->
-
-                                    <div class="flex items-center gap-1.5 flex-wrap">
-
-                                        ${hasFreeShip ? `<span class="text-[7.5px] font-black flex items-center gap-0.5" style="color:#00B894">🚚 Free shipping</span>` : ''}
-
-                                        <span class="text-[7.5px] font-bold text-slate-400">|</span>
-
-                                        <span class="text-[7.5px] font-bold text-slate-500">COD</span>
-
-                                    </div>
 
                                 </div>
 
