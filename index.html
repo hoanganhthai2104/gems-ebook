@@ -4598,11 +4598,11 @@
 
                                         <div class="w-10 h-10 rounded-xl bg-blue-50/60 border border-blue-100/30 flex items-center justify-center">
 
-                                            <span class="material-symbols-outlined text-primary text-[20px]">credit_card</span>
+                                            <span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
 
                                         </div>
 
-                                        <span class="text-[9px] font-bold text-slate-600">PayLater</span>
+                                        <span class="text-[9px] font-bold text-slate-600">Địa chỉ</span>
 
                                     </div>
 
@@ -4740,10 +4740,10 @@
                                         <span class="text-[9px] font-bold text-slate-600 text-center whitespace-nowrap font-sans">Mall</span>
                                     </div>
 
-                                    <!-- Quà tặng -->
-                                    <div onclick="openShopGifts()" class="relative flex flex-col items-center gap-1.5 cursor-pointer select-none active:scale-95 transition-transform">
-                                        <img src="assets/shop/icon_gifts.png" alt="Gifts" class="object-contain shrink-0" style="width: 44px; height: 44px;" />
-                                        <span class="text-[9px] font-bold text-slate-600 text-center whitespace-nowrap">Quà tặng</span>
+                                    <!-- Hàng Quốc Tế -->
+                                    <div onclick="openShopGlobal()" class="relative flex flex-col items-center gap-1.5 cursor-pointer select-none active:scale-95 transition-transform">
+                                        <img src="assets/shop/icon_global.png" alt="Global" class="object-contain shrink-0" style="width: 44px; height: 44px;" />
+                                        <span class="text-[9px] font-bold text-slate-600 text-center whitespace-nowrap">Hàng Quốc Tế</span>
                                     </div>
 
                                 </div>
@@ -5094,7 +5094,7 @@
 
                                     <span class="material-symbols-outlined text-amber-500 text-lg">confirmation_number</span>
 
-                                    <span class="text-xs font-bold text-slate-700">GEMS Voucher / TikTok Shop discount</span>
+                                    <span class="text-xs font-bold text-slate-700">GEMS Voucher / Giảm giá của shop</span>
 
                                 </div>
 
@@ -5108,6 +5108,74 @@
 
                             </div>
 
+
+                            <!-- Payment Method Card -->
+
+                            <div class="bg-white p-4 space-y-3 border-y border-slate-150">
+
+                                <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider">Phương thức thanh toán</h3>
+
+                                <div class="space-y-2" id="checkout-payment-methods">
+
+                                    <!-- COD Option -->
+                                    <div onclick="selectPaymentMethod('cod')" id="payment-option-cod" class="payment-method-item flex items-center justify-between p-3 rounded-2xl border-2 border-primary bg-blue-50/10 cursor-pointer transition-all select-none">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">
+                                                <span class="material-symbols-outlined text-primary text-lg">local_shipping</span>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <span class="text-xs font-black text-slate-800">Thanh toán khi nhận hàng (COD)</span>
+                                                <span class="text-[9px] text-slate-500 font-bold">Trả tiền mặt khi nhận sách in</span>
+                                            </div>
+                                        </div>
+                                        <span class="material-symbols-outlined text-primary text-xl select-none" id="payment-radio-cod">radio_button_checked</span>
+                                    </div>
+
+                                    <!-- MoMo Option -->
+                                    <div onclick="selectPaymentMethod('momo')" id="payment-option-momo" class="payment-method-item flex items-center justify-between p-3 rounded-2xl border border-slate-200 bg-slate-50/30 hover:border-slate-300 cursor-pointer transition-all select-none">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-xl bg-pink-50 border border-pink-100 flex items-center justify-center shrink-0">
+                                                <span class="material-symbols-outlined text-pink-600 text-lg">account_balance_wallet</span>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <span class="text-xs font-black text-slate-800">Ví MoMo</span>
+                                                <span class="text-[9px] text-slate-500 font-bold">Thanh toán nhanh qua ví điện tử</span>
+                                            </div>
+                                        </div>
+                                        <span class="material-symbols-outlined text-slate-300 text-xl select-none" id="payment-radio-momo">radio_button_unchecked</span>
+                                    </div>
+
+                                    <!-- Visa Option -->
+                                    <div onclick="selectPaymentMethod('visa')" id="payment-option-visa" class="payment-method-item flex items-center justify-between p-3 rounded-2xl border border-slate-200 bg-slate-50/30 hover:border-slate-300 cursor-pointer transition-all select-none">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0">
+                                                <span class="material-symbols-outlined text-blue-600 text-lg">credit_card</span>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <span class="text-xs font-black text-slate-800">Thẻ Visa / Mastercard</span>
+                                                <span class="text-[9px] text-slate-500 font-bold">Thẻ tín dụng hoặc thẻ ghi nợ</span>
+                                            </div>
+                                        </div>
+                                        <span class="material-symbols-outlined text-slate-300 text-xl select-none" id="payment-radio-visa">radio_button_unchecked</span>
+                                    </div>
+
+                                    <!-- Bank Transfer Option -->
+                                    <div onclick="selectPaymentMethod('bank')" id="payment-option-bank" class="payment-method-item flex items-center justify-between p-3 rounded-2xl border border-slate-200 bg-slate-50/30 hover:border-slate-300 cursor-pointer transition-all select-none">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center shrink-0">
+                                                <span class="material-symbols-outlined text-emerald-600 text-lg">qr_code_2</span>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <span class="text-xs font-black text-slate-800">Chuyển khoản Ngân hàng (QR)</span>
+                                                <span class="text-[9px] text-slate-500 font-bold">Quét mã VietQR chuyển khoản nhanh</span>
+                                            </div>
+                                        </div>
+                                        <span class="material-symbols-outlined text-slate-300 text-xl select-none" id="payment-radio-bank">radio_button_unchecked</span>
+                                    </div>
+
+                                </div>
+
+                            </div>
 
 
                             <!-- Cost Breakdown -->
@@ -5243,13 +5311,310 @@
                     </div>
 
 
+                    <!-- ============================================== -->
+
+                    <!-- POPUP: PAYMENT MODAL QR (MoMo & Bank Transfer) -->
 
                     <!-- ============================================== -->
 
+                    <div id="payment-modal-qr" class="absolute inset-0 z-[150] bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 hidden select-none animate-fade-in">
+
+                        <div class="bg-white rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl flex flex-col animate-scale-up">
+
+                            <header id="qr-modal-header" class="bg-primary text-white p-4 flex items-center justify-between">
+
+                                <h3 id="qr-modal-title" class="text-xs font-black uppercase tracking-wider">Thanh toán chuyển khoản</h3>
+
+                                <button onclick="closePaymentQrModal()" class="text-white/80 hover:text-white p-1 rounded-full hover:bg-white/10 transition-all flex items-center justify-center">
+
+                                    <span class="material-symbols-outlined text-lg">close</span>
+
+                                </button>
+
+                            </header>
+
+                            <div class="p-5 flex flex-col items-center space-y-4">
+
+                                <p class="text-[11px] text-slate-500 font-bold text-center">
+
+                                    Vui lòng quét mã QR dưới đây hoặc chuyển khoản theo thông tin chi tiết.
+
+                                </p>
+
+                                <!-- QR Wrapper -->
+
+                                <div class="w-48 h-48 border-2 border-slate-100 rounded-2xl p-2 bg-white flex items-center justify-center relative overflow-hidden shadow-inner">
+
+                                    <img id="qr-modal-image" src="" alt="Payment QR" class="w-full h-full object-contain">
+
+                                </div>
+
+                                <!-- Bank details card -->
+
+                                <div class="w-full bg-slate-50 border border-slate-150 rounded-2xl p-3.5 space-y-2">
+
+                                    <div class="flex justify-between items-center text-xs">
+
+                                        <span class="text-slate-500 font-bold">Số tiền:</span>
+
+                                        <span id="qr-modal-amount" class="text-sm font-black text-primary">0đ</span>
+
+                                    </div>
+
+                                    <div class="flex justify-between items-center text-xs">
+
+                                        <span class="text-slate-500 font-bold" id="qr-modal-label-bank">Ngân hàng:</span>
+
+                                        <span id="qr-modal-bank" class="text-slate-800 font-black">MB Bank (Quân Đội)</span>
+
+                                    </div>
+
+                                    <div class="flex justify-between items-center text-xs">
+
+                                        <span class="text-slate-500 font-bold" id="qr-modal-label-account">Số tài khoản:</span>
+
+                                        <div class="flex items-center gap-1.5">
+
+                                            <span id="qr-modal-account" class="text-slate-800 font-black">19028392182</span>
+
+                                            <button onclick="copyToClipboard(document.getElementById('qr-modal-account').textContent)" class="text-primary hover:bg-blue-50 p-1 rounded-md transition-all flex items-center justify-center">
+
+                                                <span class="material-symbols-outlined text-sm">content_copy</span>
+
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="flex justify-between items-center text-xs">
+
+                                        <span class="text-slate-500 font-bold">Nội dung chuyển khoản:</span>
+
+                                        <div class="flex items-center gap-1.5">
+
+                                            <span id="qr-modal-memo" class="text-slate-800 font-black">GEMS SHOP 928372</span>
+
+                                            <button onclick="copyToClipboard(document.getElementById('qr-modal-memo').textContent)" class="text-primary hover:bg-blue-50 p-1 rounded-md transition-all flex items-center justify-center">
+
+                                                <span class="material-symbols-outlined text-sm">content_copy</span>
+
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Action -->
+
+                                <button onclick="confirmQrPayment()" class="w-full bg-primary hover:bg-blue-800 text-white font-black text-xs py-3.5 rounded-2xl active:scale-95 transition-transform shadow-md flex items-center justify-center gap-2">
+
+                                    <span class="material-symbols-outlined text-base">check_circle</span>
+
+                                    Tôi đã chuyển khoản thành công
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ============================================== -->
+
+                    <!-- POPUP: PAYMENT MODAL VISA (Credit Card input)  -->
+
+                    <!-- ============================================== -->
+
+                    <div id="payment-modal-visa" class="absolute inset-0 z-[150] bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 hidden select-none animate-fade-in">
+
+                        <div class="bg-white rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl flex flex-col animate-scale-up">
+
+                            <header class="bg-blue-900 text-white p-4 flex items-center justify-between">
+
+                                <h3 class="text-xs font-black uppercase tracking-wider flex items-center gap-2">
+
+                                    <span class="material-symbols-outlined text-base">credit_card</span>
+
+                                    Thẻ Visa / Mastercard
+
+                                </h3>
+
+                                <button onclick="closeVisaPaymentModal()" class="text-white/80 hover:text-white p-1 rounded-full hover:bg-white/10 transition-all flex items-center justify-center">
+
+                                    <span class="material-symbols-outlined text-lg">close</span>
+
+                                </button>
+
+                            </header>
+
+                            <div class="p-5 space-y-4">
+
+                                <!-- Mock credit card -->
+
+                                <div class="bg-gradient-to-br from-blue-950 to-blue-800 rounded-2xl p-4 text-white space-y-4 shadow-md relative overflow-hidden">
+
+                                    <div class="absolute -right-8 -top-8 w-24 h-24 bg-white/5 rounded-full"></div>
+
+                                    <div class="flex justify-between items-center">
+
+                                        <span class="text-xs font-black tracking-widest italic opacity-85">CREDIT CARD</span>
+
+                                        <span class="material-symbols-outlined text-2xl opacity-60">contactless</span>
+
+                                    </div>
+
+                                    <div class="space-y-1">
+
+                                        <p id="card-display-number" class="text-sm font-black tracking-widest text-center">•••• •••• •••• ••••</p>
+
+                                        <div class="flex justify-between items-center text-[9px] opacity-75">
+
+                                            <span id="card-display-name">CHỦ THẺ</span>
+
+                                            <span id="card-display-expiry">MM/YY</span>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Form inputs -->
+
+                                <div class="space-y-3">
+
+                                    <div class="space-y-1">
+
+                                        <label class="text-[9px] font-black text-slate-500 uppercase tracking-wider pl-0.5">Số thẻ</label>
+
+                                        <input type="text" id="visa-input-number" placeholder="4111 2222 3333 4444" maxlength="19" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-3 text-xs font-bold text-slate-800 focus:outline-none focus:border-blue-900 transition-all">
+
+                                    </div>
+
+                                    <div class="space-y-1">
+
+                                        <label class="text-[9px] font-black text-slate-500 uppercase tracking-wider pl-0.5">Họ và tên chủ thẻ</label>
+
+                                        <input type="text" id="visa-input-name" placeholder="NGUYEN VAN A" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-3 text-xs font-bold text-slate-800 focus:outline-none focus:border-blue-900 transition-all uppercase">
+
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-3">
+
+                                        <div class="space-y-1">
+
+                                            <label class="text-[9px] font-black text-slate-500 uppercase tracking-wider pl-0.5">Ngày hết hạn</label>
+
+                                            <input type="text" id="visa-input-expiry" placeholder="MM/YY" maxlength="5" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-3 text-xs font-bold text-slate-800 focus:outline-none focus:border-blue-900 transition-all">
+
+                                        </div>
+
+                                        <div class="space-y-1">
+
+                                            <label class="text-[9px] font-black text-slate-500 uppercase tracking-wider pl-0.5">Mã bảo mật (CVV)</label>
+
+                                            <input type="password" id="visa-input-cvv" placeholder="•••" maxlength="3" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-3 text-xs font-bold text-slate-800 focus:outline-none focus:border-blue-900 transition-all">
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Action -->
+
+                                <button onclick="submitVisaPayment()" id="visa-payment-submit-btn" class="w-full bg-blue-900 hover:bg-blue-950 text-white font-black text-xs py-3.5 rounded-2xl active:scale-95 transition-transform shadow-md flex items-center justify-center gap-2">
+
+                                    <span class="material-symbols-outlined text-base">lock</span>
+
+                                    Thanh toán ngay
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ============================================== -->
+                    <!-- VIEW: VÍ VOUCHER / CHỌN VOUCHER (Voucher Selector) -->
+                    <!-- ============================================== -->
+                    <div id="view-checkout-voucher-selector" class="absolute inset-0 z-[250] bg-slate-900/60 backdrop-blur-xs flex flex-col justify-end hidden select-none animate-fade-in">
+                        <div class="bg-white rounded-t-[24px] w-full max-h-[88%] flex flex-col overflow-hidden animate-slide-up shadow-2xl relative border-t border-slate-100">
+                            <!-- Top Header -->
+                            <header class="w-full flex items-center justify-between px-4 py-3.5 border-b border-slate-100 shrink-0">
+                                <div class="w-6"></div>
+                                <h1 class="font-sans text-sm font-black tracking-tight text-slate-900 mx-auto text-center truncate">Giảm giá từ GEMS Shop</h1>
+                                <button onclick="closeCheckoutVoucherSelector()" aria-label="Close" class="text-slate-400 hover:text-slate-700 transition-colors p-1 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-xl">close</span>
+                                </button>
+                            </header>
+
+                            <!-- Body (Scrollable) -->
+                            <div class="flex-grow overflow-y-auto pb-6">
+                                <!-- Banner -->
+                                <div class="px-4 pt-4">
+                                    <div class="bg-slate-50 border border-slate-150 rounded-xl p-3 flex items-center gap-2.5 text-[10px] text-slate-650 font-bold">
+                                        <span class="material-symbols-outlined text-slate-500 text-base">confirmation_number</span>
+                                        <span>Chúng tôi đã áp dụng giảm giá tốt nhất bạn có</span>
+                                    </div>
+                                </div>
+
+                                <!-- Shipping Vouchers Section -->
+                                <div class="px-4 pt-5 space-y-3">
+                                    <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider">Voucher phí vận chuyển</h3>
+                                    <div class="space-y-3" id="shop-checkout-shipping-vouchers-list">
+                                        <!-- Dynamic Shipping Vouchers -->
+                                    </div>
+                                </div>
+
+                                <!-- Discount Vouchers Section -->
+                                <div class="px-4 pt-5 space-y-3">
+                                    <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider">Voucher giảm giá</h3>
+                                    <div class="space-y-3" id="shop-checkout-discount-vouchers-list">
+                                        <!-- Dynamic Discount Vouchers -->
+                                    </div>
+                                </div>
+
+                                <!-- Clear Selection Option -->
+                                <div class="px-4 pt-5">
+                                    <div onclick="selectVoucherOption('none')" class="flex items-center justify-between p-3.5 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-slate-350 transition-colors select-none">
+                                        <span class="text-xs font-black text-slate-850">Không dùng phiếu giảm giá</span>
+                                        <span class="material-symbols-outlined text-slate-300 text-xl" id="voucher-radio-none">radio_button_unchecked</span>
+                                    </div>
+                                </div>
+
+                                <!-- Add Promo Code -->
+                                <div class="px-4 pt-5 space-y-2">
+                                    <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider">Thêm mã khuyến mãi</h3>
+                                    <div class="flex gap-2">
+                                        <input type="text" id="voucher-promo-input" placeholder="Nhập mã" class="flex-grow bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-3 text-xs font-bold text-slate-800 focus:outline-none focus:border-primary transition-all uppercase">
+                                        <button onclick="applyPromoCode()" class="bg-primary hover:bg-[#004B82] text-white font-black text-xs px-4 py-2.5 rounded-xl active:scale-95 transition-all">
+                                            Áp dụng
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Footer (Sticky) -->
+                            <div class="p-4 bg-white border-t border-slate-100 shrink-0">
+                                <button onclick="confirmSelectedVouchers()" class="w-full bg-primary hover:bg-[#004B82] text-white font-black text-xs py-3.5 rounded-2xl active:scale-[0.98] transition-all shadow-md flex items-center justify-center">
+                                    Xác nhận
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ============================================== -->
                     <!-- VIEW: ĐƠN HÀNG CỦA TÔI (Orders Screen)        -->
-
                     <!-- ============================================== -->
-
                     <div id="view-shop-orders" class="absolute inset-0 z-[130] bg-surface text-on-surface flex flex-col overflow-hidden hidden select-none animate-fade-in">
 
                         <!-- Top Header -->
@@ -5516,118 +5881,100 @@
 
                     <div id="view-shop-paylater" class="absolute inset-0 z-[133] bg-surface text-on-surface flex flex-col overflow-hidden hidden select-none animate-fade-in">
 
-                        <header class="glass-header w-full top-0 sticky flex items-center justify-between px-3 py-3 z-50 shrink-0">
+                        <!-- VIEW: ADDRESS LIST VIEW -->
+                        <div id="shop-address-list-view" class="flex flex-col h-full w-full">
+                            <header class="glass-header w-full top-0 sticky flex items-center justify-between px-3 py-3 z-50 shrink-0">
+                                <div class="w-10">
+                                    <button onclick="closeShopPayLater()" aria-label="Go back" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-xl">arrow_back</span>
+                                    </button>
+                                </div>
+                                <h1 class="font-sans text-sm font-black tracking-tight text-slate-900 mx-auto text-center truncate">Địa chỉ nhận hàng</h1>
+                                <div class="w-10 flex justify-end">
+                                    <button onclick="showShopAddressForm()" aria-label="Thêm địa chỉ" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-xl text-primary font-bold">add</span>
+                                    </button>
+                                </div>
+                            </header>
 
-                            <div class="w-10">
+                            <!-- Scrollable items -->
+                            <div class="flex-grow overflow-y-auto p-4 space-y-4" id="shop-address-items-list">
+                                <!-- Dynamic address cards rendered via Javascript -->
+                            </div>
 
-                                <button onclick="closeShopPayLater()" aria-label="Go back" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
-
-                                    <span class="material-symbols-outlined text-xl">arrow_back</span>
-
+                            <!-- Footer action -->
+                            <div class="p-4 bg-white border-t border-slate-100">
+                                <button onclick="showShopAddressForm()" class="w-full bg-primary text-white font-black text-sm py-3.5 rounded-2xl active:scale-95 transition-transform shadow-md flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined text-lg">add</span>
+                                    Thêm địa chỉ mới
                                 </button>
-
                             </div>
+                        </div>
 
-                            <h1 class="font-sans text-sm font-black tracking-tight text-slate-900 mx-auto text-center truncate">GEMS PayLater</h1>
+                        <!-- VIEW: ADDRESS FORM VIEW -->
+                        <div id="shop-address-form-view" class="flex flex-col h-full w-full hidden">
+                            <header class="glass-header w-full top-0 sticky flex items-center justify-between px-3 py-3 z-50 shrink-0">
+                                <div class="w-10">
+                                    <button onclick="hideShopAddressForm()" aria-label="Go back" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-xl">arrow_back</span>
+                                    </button>
+                                </div>
+                                <h1 id="shop-address-form-title" class="font-sans text-sm font-black tracking-tight text-slate-900 mx-auto text-center truncate">Thêm địa chỉ mới</h1>
+                                <div class="w-10"></div>
+                            </header>
 
-                            <div class="w-10"></div>
-
-                        </header>
-
-                        <div class="flex-grow overflow-y-auto p-4 space-y-4">
-
-                            <!-- Hero card -->
-
-                            <div class="bg-gradient-to-br from-primary to-blue-800 rounded-2xl p-5 text-white relative overflow-hidden shadow-lg">
-
-                                <div class="absolute -top-6 -right-6 w-28 h-28 rounded-full bg-white/10"></div>
-
-                                <div class="absolute -bottom-8 -left-4 w-24 h-24 rounded-full bg-white/5"></div>
-
-                                <div class="relative">
-
-                                    <div class="flex items-center gap-2 mb-3">
-
-                                        <span class="material-symbols-outlined text-2xl">credit_score</span>
-
-                                        <span class="text-sm font-black tracking-wide">Hạn mức của tôi</span>
-
+                            <div class="flex-grow overflow-y-auto p-4 space-y-5">
+                                <!-- Form Fields -->
+                                <input type="hidden" id="shop-address-edit-id">
+                                
+                                <div class="space-y-4">
+                                    <div class="space-y-1.5">
+                                        <label class="text-[11px] font-black text-slate-600 uppercase tracking-wider pl-1">Họ tên người nhận</label>
+                                        <div class="relative flex items-center">
+                                            <span class="material-symbols-outlined text-slate-400 absolute left-4 text-lg">person</span>
+                                            <input type="text" id="shop-address-input-name" placeholder="Ví dụ: Thái Nhân Sâm" class="w-full bg-slate-50 border border-slate-200/80 rounded-2xl py-3.5 pl-11 pr-4 text-xs font-bold text-slate-800 focus:outline-none focus:border-primary focus:bg-white transition-all">
+                                        </div>
                                     </div>
 
-                                    <p class="text-3xl font-black mb-1">5.000.000đ</p>
-
-                                    <p class="text-xs text-blue-200 font-bold">Đã sử dụng: 0đ • Còn lại: 5.000.000đ</p>
-
-                                    <div class="mt-3 bg-white/20 rounded-full h-2 overflow-hidden">
-
-                                        <div class="h-full w-0 bg-white rounded-full"></div>
-
+                                    <div class="space-y-1.5">
+                                        <label class="text-[11px] font-black text-slate-600 uppercase tracking-wider pl-1">Số điện thoại</label>
+                                        <div class="relative flex items-center">
+                                            <span class="material-symbols-outlined text-slate-400 absolute left-4 text-lg">call</span>
+                                            <input type="tel" id="shop-address-input-phone" placeholder="Ví dụ: 0975555777" class="w-full bg-slate-50 border border-slate-200/80 rounded-2xl py-3.5 pl-11 pr-4 text-xs font-bold text-slate-800 focus:outline-none focus:border-primary focus:bg-white transition-all">
+                                        </div>
                                     </div>
 
+                                    <div class="space-y-1.5">
+                                        <label class="text-[11px] font-black text-slate-600 uppercase tracking-wider pl-1">Địa chỉ nhận hàng chi tiết</label>
+                                        <div class="relative flex items-start">
+                                            <span class="material-symbols-outlined text-slate-400 absolute left-4 top-3.5 text-lg">location_on</span>
+                                            <textarea id="shop-address-input-detail" rows="4" placeholder="Số nhà, tên đường, phường/xã, quận/huyện, tỉnh/thành phố..." class="w-full bg-slate-50 border border-slate-200/80 rounded-2xl py-3.5 pl-11 pr-4 text-xs font-bold text-slate-800 focus:outline-none focus:border-primary focus:bg-white transition-all resize-none"></textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-center justify-between p-1">
+                                        <div class="flex flex-col">
+                                            <span class="text-xs font-black text-slate-800">Đặt làm địa chỉ mặc định</span>
+                                            <span class="text-[10px] text-slate-500 font-medium">Sử dụng địa chỉ này cho các đơn hàng tiếp theo</span>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" id="shop-address-input-default" class="sr-only peer">
+                                            <div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-350 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
                                 </div>
 
-                            </div>
-
-                            <!-- Features -->
-
-                            <div class="bg-white rounded-2xl p-4 space-y-3 shadow-sm border border-slate-100">
-
-                                <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider">Tính năng nổi bật</h3>
-
-                                <div class="grid grid-cols-2 gap-2.5">
-
-                                    <div class="bg-blue-50 rounded-xl p-3 flex flex-col gap-1.5">
-
-                                        <span class="material-symbols-outlined text-primary text-xl">calendar_month</span>
-
-                                        <p class="text-[10px] font-black text-slate-700">Trả góp 0%</p>
-
-                                        <p class="text-[9px] text-slate-500 font-medium">Chia nhỏ thành 3-12 kỳ</p>
-
-                                    </div>
-
-                                    <div class="bg-blue-50 rounded-xl p-3 flex flex-col gap-1.5">
-
-                                        <span class="material-symbols-outlined text-primary text-xl">bolt</span>
-
-                                        <p class="text-[10px] font-black text-slate-700">Duyệt tức thì</p>
-
-                                        <p class="text-[9px] text-slate-500 font-medium">Phê duyệt trong 30 giây</p>
-
-                                    </div>
-
-                                    <div class="bg-blue-50 rounded-xl p-3 flex flex-col gap-1.5">
-
-                                        <span class="material-symbols-outlined text-primary text-xl">shield_person</span>
-
-                                        <p class="text-[10px] font-black text-slate-700">Bảo mật tuyệt đối</p>
-
-                                        <p class="text-[9px] text-slate-500 font-medium">Mã OTP & xác thực kép</p>
-
-                                    </div>
-
-                                    <div class="bg-blue-50 rounded-xl p-3 flex flex-col gap-1.5">
-
-                                        <span class="material-symbols-outlined text-primary text-xl">savings</span>
-
-                                        <p class="text-[10px] font-black text-slate-700">Không lãi suất</p>
-
-                                        <p class="text-[9px] text-slate-500 font-medium">Trả đúng hạn miễn lãi</p>
-
-                                    </div>
-
+                                <!-- CTA buttons inside form -->
+                                <div class="pt-4 space-y-2">
+                                    <button onclick="saveShopAddressFromForm()" class="w-full bg-primary text-white font-black text-sm py-3.5 rounded-2xl active:scale-95 transition-transform shadow-md flex items-center justify-center gap-2">
+                                        <span class="material-symbols-outlined text-lg">check_circle</span>
+                                        Lưu địa chỉ
+                                    </button>
+                                    <button onclick="hideShopAddressForm()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-black text-sm py-3.5 rounded-2xl active:scale-95 transition-transform flex items-center justify-center">
+                                        Hủy
+                                    </button>
                                 </div>
-
                             </div>
-
-                            <!-- CTA -->
-
-                            <button onclick="showToast('Đang kích hoạt GEMS PayLater...')" class="w-full bg-primary text-white font-black text-sm py-3.5 rounded-2xl active:scale-95 transition-transform shadow-md">
-
-                                Kích hoạt ngay
-
-                            </button>
-
                         </div>
 
                     </div>
@@ -5673,7 +6020,7 @@
                                         <h3 class="text-[10px] font-black uppercase tracking-wider bg-gradient-to-r from-emerald-700 via-teal-600 to-[#005A9C] bg-clip-text text-transparent">Top Nhà Bán Hàng OCOP tiêu biểu</h3>
                                     </div>
                                     
-                                    <!-- 2 Rows of 5 circular seller icons (Total 10 sellers matching TikTok Shop) -->
+                                    <!-- 2 Rows of 5 circular seller icons (Total 10 sellers matching GEMS Shop) -->
                                     <div class="grid grid-cols-5 gap-y-4 gap-x-1.5">
                                         <!-- Seller 1: Aikomi -->
                                         <div onclick="showToast('Xem gian hàng Aikomi OCOP')" class="flex flex-col items-center gap-1 cursor-pointer active:scale-90 transition-transform">
@@ -6261,194 +6608,86 @@
 
                     <!-- ============================================== -->
 
-                    <div id="view-shop-gifts" class="absolute inset-0 z-[138] bg-surface text-on-surface flex flex-col overflow-hidden hidden select-none animate-fade-in">
-
-                        <header class="glass-header w-full top-0 sticky flex items-center justify-between px-3 py-3 z-50 shrink-0">
-
+                    <!-- ============================================== -->
+                    <!-- VIEW: HÀNG QUỐC TẾ (Global/International)      -->
+                    <!-- ============================================== -->
+                    <!-- ============================================== -->
+                    <!-- VIEW: HÀNG QUỐC TẾ (Global/International)      -->
+                    <!-- ============================================== -->
+                    <div id="view-shop-global" class="absolute inset-0 z-[138] bg-[#f5f7fa] text-on-surface flex flex-col overflow-hidden hidden select-none animate-fade-in">
+                        <header class="glass-header w-full top-0 sticky flex items-center justify-between px-3 py-3 z-50 shrink-0 bg-white border-b border-slate-100">
                             <div class="w-10">
-
-                                <button onclick="closeShopGifts()" aria-label="Go back" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
-
+                                <button onclick="closeShopGlobal()" aria-label="Go back" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
                                     <span class="material-symbols-outlined text-xl">arrow_back</span>
-
                                 </button>
-
                             </div>
-
-                            <h1 class="font-sans text-sm font-black tracking-tight text-slate-900 mx-auto text-center truncate">Quà tặng</h1>
-
+                            <h1 class="font-sans text-sm font-black tracking-tight text-slate-900 mx-auto text-center truncate">Hàng Quốc Tế</h1>
                             <div class="w-10"></div>
-
                         </header>
 
-                        <div class="flex-grow overflow-y-auto p-4 space-y-4">
-
-                            <!-- Hero banner -->
-
-                            <div class="bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl p-5 text-white relative overflow-hidden shadow-lg">
-
-                                <div class="absolute -top-4 -right-4 w-28 h-28 rounded-full bg-white/15"></div>
-
-                                <div class="relative">
-
-                                    <span class="material-symbols-outlined text-3xl mb-2 block">card_giftcard</span>
-
-                                    <p class="text-xl font-black leading-tight">Mua đủ — Nhận quà!</p>
-
-                                    <p class="text-xs text-blue-200 font-bold mt-1">Tích điểm để nhận phần thưởng hấp dẫn</p>
-
-                                </div>
-
+                        <div class="flex-grow overflow-y-auto space-y-3 pb-24">
+                            <!-- Shopee Style Hero Banner (Single visual graphic asset with integrated vouchers for a professional WOW) -->
+                            <div onclick="claimAllGlobalVouchers(this)" class="relative shrink-0 w-full overflow-hidden cursor-pointer active:scale-[0.99] transition-transform shadow-xs">
+                                <img src="assets/shop/global_banner_full.png" alt="Hàng Quốc Tế Deal Hè Cực Xịn" class="w-full h-auto block" />
                             </div>
 
-                            <!-- Progress to gift -->
-
-                            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 space-y-3">
-
-                                <div class="flex justify-between items-center">
-
-                                    <h3 class="text-xs font-black text-slate-800">Tiến độ nhận quà</h3>
-
-                                    <span class="text-[10px] font-black text-primary">750 / 1.000 điểm</span>
-
-                                </div>
-
-                                <div class="bg-slate-100 rounded-full h-3 overflow-hidden">
-
-                                    <div class="h-full w-3/4 bg-gradient-to-r from-primary to-blue-400 rounded-full transition-all duration-500"></div>
-
-                                </div>
-
-                                <p class="text-[9px] text-slate-500 font-bold">Còn 250 điểm nữa để nhận quà! Mua thêm ngay 👇</p>
-
+                            <!-- Tabs Category List (White sticky background) -->
+                            <div class="bg-white border-b border-slate-100 py-2.5 px-3 sticky top-0 z-30 shadow-xs flex gap-4 justify-around">
+                                <button onclick="switchGlobalTab(this, 'all')" class="global-tab-btn text-[10px] font-black text-sky-600 border-b-2 border-sky-600 pb-1 transition-all">TẤT CẢ DEAL</button>
+                                <button onclick="switchGlobalTab(this, 'shipping')" class="global-tab-btn text-[10px] font-bold text-slate-500 border-b-2 border-transparent pb-1 transition-all">GIAO THẦN TỐC</button>
+                                <button onclick="switchGlobalTab(this, 'brands')" class="global-tab-btn text-[10px] font-bold text-slate-500 border-b-2 border-transparent pb-1 transition-all">THƯƠNG HIỆU</button>
                             </div>
 
-                            <!-- Gift items -->
-
-                            <div class="space-y-3">
-
-                                <h3 class="text-xs font-black text-slate-600 uppercase tracking-wider px-1">Quà có thể đổi</h3>
-
-                                <!-- Gift 1 - unlocked -->
-
-                                <div class="bg-white rounded-2xl border border-blue-100 shadow-sm overflow-hidden">
-
-                                    <div class="flex items-center gap-3 p-3">
-
-                                        <div class="w-14 h-14 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0">
-
-                                            <span class="material-symbols-outlined text-primary text-2xl">book</span>
-
-                                        </div>
-
-                                        <div class="flex-grow min-w-0">
-
-                                            <h4 class="text-[10px] font-black text-slate-800">Sách Y Khoa GEMS Premium</h4>
-
-                                            <p class="text-[8px] text-slate-400 font-bold mt-0.5">Trị giá 350.000đ</p>
-
-                                            <div class="flex items-center gap-1 mt-1">
-
-                                                <span class="material-symbols-outlined text-amber-500 text-xs">star</span>
-
-                                                <span class="text-[9px] font-black text-amber-600">500 điểm</span>
-
-                                            </div>
-
-                                        </div>
-
-                                        <button onclick="showToast('Đổi quà thành công! 🎁')" class="shrink-0 bg-primary text-white text-[9px] font-black px-3 py-2 rounded-xl active:scale-95 transition-transform">Đổi quà</button>
-
+                            <!-- Section: Giao Thần Tốc -->
+                            <div id="global-section-shipping" class="px-3 space-y-2">
+                                <!-- Styled Capsule Header with red/yellow slanted corners -->
+                                <div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 via-sky-500 to-sky-400 p-2.5 shadow-sm flex items-center justify-between min-h-[44px]">
+                                    <!-- Left decoration slanted lines -->
+                                    <div class="absolute left-0 top-0 bottom-0 w-8 flex items-stretch">
+                                        <div class="w-2.5 bg-yellow-400 transform -skew-x-12 -ml-2"></div>
+                                        <div class="w-2 bg-red-500 transform -skew-x-12 ml-1"></div>
                                     </div>
-
-                                </div>
-
-                                <!-- Gift 2 - locked -->
-
-                                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden opacity-60">
-
-                                    <div class="flex items-center gap-3 p-3">
-
-                                        <div class="w-14 h-14 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 relative">
-
-                                            <span class="material-symbols-outlined text-slate-400 text-2xl">headphones</span>
-
-                                            <div class="absolute inset-0 bg-slate-50/70 flex items-center justify-center rounded-xl">
-
-                                                <span class="material-symbols-outlined text-slate-400 text-sm">lock</span>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="flex-grow min-w-0">
-
-                                            <h4 class="text-[10px] font-black text-slate-500">Tai Nghe GEMS Air</h4>
-
-                                            <p class="text-[8px] text-slate-400 font-bold mt-0.5">Trị giá 1.200.000đ</p>
-
-                                            <div class="flex items-center gap-1 mt-1">
-
-                                                <span class="material-symbols-outlined text-amber-400 text-xs">star</span>
-
-                                                <span class="text-[9px] font-black text-slate-400">2.000 điểm</span>
-
-                                            </div>
-
-                                        </div>
-
-                                        <span class="shrink-0 bg-slate-200 text-slate-400 text-[9px] font-black px-3 py-2 rounded-xl">Chưa đủ</span>
-
+                                    <!-- Center Title -->
+                                    <div class="relative z-10 pl-6 flex flex-col justify-center">
+                                        <h3 class="text-[11px] font-black text-white uppercase tracking-wider leading-none">HÀNG QUỐC TẾ GIAO THẦN TỐC ⚡</h3>
+                                        <span class="text-[7.5px] text-white/80 font-bold mt-0.5">* Số lượng có hạn, sản phẩm sẽ trở về giá cũ khi hết số lượng khuyến mãi</span>
                                     </div>
-
-                                </div>
-
-                                <!-- Gift 3 - locked -->
-
-                                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden opacity-60">
-
-                                    <div class="flex items-center gap-3 p-3">
-
-                                        <div class="w-14 h-14 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0 relative">
-
-                                            <span class="material-symbols-outlined text-slate-400 text-2xl">laptop</span>
-
-                                            <div class="absolute inset-0 bg-slate-50/70 flex items-center justify-center rounded-xl">
-
-                                                <span class="material-symbols-outlined text-slate-400 text-sm">lock</span>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="flex-grow min-w-0">
-
-                                            <h4 class="text-[10px] font-black text-slate-500">iPad GEMS Edition</h4>
-
-                                            <p class="text-[8px] text-slate-400 font-bold mt-0.5">Trị giá 15.000.000đ</p>
-
-                                            <div class="flex items-center gap-1 mt-1">
-
-                                                <span class="material-symbols-outlined text-amber-400 text-xs">star</span>
-
-                                                <span class="text-[9px] font-black text-slate-400">10.000 điểm</span>
-
-                                            </div>
-
-                                            <span id="detail-flash-cart-badge" class="absolute -top-0.5 -right-0.5 bg-red-500 text-white text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center border border-white shadow-sm hidden">0</span>
-
-                                        </div>
-
-                                        <span class="shrink-0 bg-slate-200 text-slate-400 text-[9px] font-black px-3 py-2 rounded-xl">Chưa đủ</span>
-
+                                    <!-- Right decoration slanted lines -->
+                                    <div class="absolute right-0 top-0 bottom-0 w-8 flex justify-end items-stretch">
+                                        <div class="w-2 bg-red-500 transform -skew-x-12 mr-1"></div>
+                                        <div class="w-2.5 bg-yellow-400 transform -skew-x-12 -mr-2"></div>
                                     </div>
-
                                 </div>
-
+                                <div class="grid grid-cols-2 gap-2.5" id="global-list-shipping">
+                                    <!-- Rendered dynamically -->
+                                </div>
                             </div>
 
+                            <!-- Section: Thương Hiệu Deal Xịn -->
+                            <div id="global-section-brands" class="px-3 space-y-2 pt-2">
+                                <!-- Styled Capsule Header with red/yellow slanted corners -->
+                                <div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-emerald-600 via-teal-500 to-teal-400 p-2.5 shadow-sm flex items-center justify-between min-h-[44px]">
+                                    <!-- Left decoration slanted lines -->
+                                    <div class="absolute left-0 top-0 bottom-0 w-8 flex items-stretch">
+                                        <div class="w-2.5 bg-yellow-400 transform -skew-x-12 -ml-2"></div>
+                                        <div class="w-2 bg-red-500 transform -skew-x-12 ml-1"></div>
+                                    </div>
+                                    <!-- Center Title -->
+                                    <div class="relative z-10 pl-6 flex flex-col justify-center">
+                                        <h3 class="text-[11px] font-black text-white uppercase tracking-wider leading-none">THƯƠNG HIỆU QUỐC TẾ DEAL XỊN 🌟</h3>
+                                        <span class="text-[7.5px] text-white/80 font-bold mt-0.5">* Hàng chính hãng 100% • Miễn phí đổi trả 15 ngày</span>
+                                    </div>
+                                    <!-- Right decoration slanted lines -->
+                                    <div class="absolute right-0 top-0 bottom-0 w-8 flex justify-end items-stretch">
+                                        <div class="w-2 bg-red-500 transform -skew-x-12 mr-1"></div>
+                                        <div class="w-2.5 bg-yellow-400 transform -skew-x-12 -mr-2"></div>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2.5" id="global-list-brands">
+                                    <!-- Rendered dynamically -->
+                                </div>
+                            </div>
                         </div>
-
                     </div>
 
 
@@ -6537,8 +6776,6 @@
 
                             </div>
 
-
-
                             <!-- Voucher & Countdown Banner (brand-blue tinted) -->
 
                             <div class="mx-3 my-2 rounded-xl overflow-hidden bg-blue-50/80 border border-brand-blue/10">
@@ -6572,8 +6809,6 @@
                                 </div>
 
                             </div>
-
-
 
                             <!-- Promo Banner (Super Brand Day style) -->
 
@@ -6613,9 +6848,7 @@
 
                             </div>
 
-
-
-                            <!-- Session Tabs (Now | Tomorrow) - TikTok style -->
+                            <!-- Session Tabs (Now | Tomorrow) - GEMS style -->
 
                             <div class="bg-white flex border-b border-slate-100 sticky top-0 z-[40] shrink-0 shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
 
@@ -11280,6 +11513,11 @@
     <!-- MAIN APP STATE JAVASCRIPT -->
 
     <script>
+        // Global error handler to catch and alert any runtime errors
+        window.onerror = function(message, source, lineno, colno, error) {
+            alert("Lỗi JS: " + message + " (dòng: " + lineno + ", cột: " + colno + ")");
+            console.error(error);
+        };
 
         // Global variables state
 
@@ -15537,9 +15775,23 @@
 
             
 
-            const voucherCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+            const voucherCode = 'GEMS-' + Math.random().toString(36).substring(2, 8).toUpperCase();
 
-            showToast(`Đổi Voucher thành công! Mã của bạn: GEMS-${voucherCode}`, "success");
+            const newVoucher = {
+                id: voucherCode,
+                type: 'exclusive',
+                badge: 'Độc quyền',
+                subBadge: 'Từ GEMS Shop',
+                title: 'Giảm giá 30K',
+                desc: 'áp dụng cho mọi đơn hàng',
+                validity: 'HSD: 30 ngày sau khi nhận',
+                claimed: true,
+                color: 'amber',
+                qty: ''
+            };
+            GEMS_COUPONS.push(newVoucher);
+
+            showToast(`Đổi Voucher thành công! Mã của bạn: ${voucherCode}`, "success");
 
         }
 
@@ -21302,6 +21554,183 @@
                 reviews: [
                     { user: "Minh Tú", avatar: "MT", stars: 5, text: "Kem dưỡng ẩm cực tốt, dùng một thời gian thấy da sáng mịn hẳn lên.", date: "05/07/2026", hasImg: false }
                 ]
+            },
+            // 8 International Products added for Hàng Quốc Tế view
+            {
+                id: "global_ugreen_gan_30w",
+                title: "Bộ sạc USB-C UGREEN GaN 30W 2C1A",
+                category: "tech",
+                rating: 4.9,
+                sold: "12.5k+",
+                basePrice: 270000,
+                discount: 50,
+                shippingFee: 0,
+                shopName: "UGREEN Official Store",
+                isGlobal: true,
+                globalCategory: "shipping",
+                desc: "Bộ sạc nhanh Ugreen GaN 30W với 2 cổng USB-C và 1 cổng USB-A. Công nghệ chip GaN cao cấp giúp sạc nhanh an toàn, chống nhiệt tốt và thiết kế siêu nhỏ gọn tiện mang đi.",
+                specs: { "Công suất": "30W Max", "Cổng sạc": "2x USB-C, 1x USB-A", "Công nghệ": "GaN Tech", "Thương hiệu": "UGREEN" },
+                images: ["assets/shop/ugreen_charger.png"],
+                variants: [
+                    { id: "gl_ug_black", name: "Đen Midnight", price: 135000, originalPrice: 270000, image: "assets/shop/ugreen_charger.png", stock: 150 }
+                ],
+                reviews: [
+                    { user: "Hải Nam", avatar: "HN", stars: 5, text: "Sạc rất nhanh và không bị nóng. Rất hài lòng!", date: "10/07/2026", hasImg: false }
+                ]
+            },
+            {
+                id: "global_cosnori_makeup_remover",
+                title: "Nước Tẩy Trang Cosnori Pure Cleansing Water 500ml",
+                category: "home",
+                rating: 4.8,
+                sold: "8.2k+",
+                basePrice: 330000,
+                discount: 51,
+                shippingFee: 15000,
+                shopName: "Cosnori Official",
+                isGlobal: true,
+                globalCategory: "shipping",
+                desc: "Nước tẩy trang dịu nhẹ từ Cosnori Hàn Quốc, dung tích 500ml siêu tiết kiệm. Giúp tẩy trôi lớp trang điểm cứng đầu và bã nhờn sâu trong lỗ chân lông mà không gây khô da.",
+                specs: { "Dung tích": "500ml", "Loại da": "Mọi loại da", "Xuất xứ": "Hàn Quốc", "Độ PH": "Dịu nhẹ 5.5" },
+                images: ["assets/shop/cosnori_remover.png"],
+                variants: [
+                    { id: "gl_cos_500", name: "Chai 500ml", price: 161700, originalPrice: 330000, image: "assets/shop/cosnori_remover.png", stock: 80 }
+                ],
+                reviews: [
+                    { user: "Ngọc Vy", avatar: "NV", stars: 5, text: "Tẩy trang rất sạch, không rát mắt. Sẽ mua lại lần sau.", date: "09/07/2026", hasImg: false }
+                ]
+            },
+            {
+                id: "global_fjbottle_vacuum_flask",
+                title: "Bình Giữ Nhiệt Inox FJbottle 1L Premium",
+                category: "home",
+                rating: 4.9,
+                sold: "4.5k+",
+                basePrice: 600000,
+                discount: 50,
+                shippingFee: 0,
+                shopName: "FJbottle Store",
+                isGlobal: true,
+                globalCategory: "shipping",
+                desc: "Bình giữ nhiệt FJbottle chất liệu Inox 316 cao cấp giữ nóng 12h và giữ lạnh 24h. Dung tích 1L thoải mái mang đi làm, đi học hay tập thể thao. Thiết kế nắp chống rò rỉ tuyệt đối.",
+                specs: { "Dung tích": "1L", "Chất liệu": "Inox 316", "Giữ nhiệt": "Nóng 12h / Lạnh 24h", "Thương hiệu": "FJbottle" },
+                images: ["assets/shop/fj_thermos.png"],
+                variants: [
+                    { id: "gl_fj_1l", name: "Inox Đen Nhám", price: 300000, originalPrice: 600000, image: "assets/shop/fj_thermos.png", stock: 60 }
+                ],
+                reviews: [
+                    { user: "Anh Quân", avatar: "AQ", stars: 5, text: "Bình giữ nhiệt tốt, sơn nhám cầm rất thích tay.", date: "08/07/2026", hasImg: false }
+                ]
+            },
+            {
+                id: "global_magnetic_phone_case",
+                title: "Ốp Điện Thoại Từ Tính Kính Viền Thép Chống Va Đập",
+                category: "tech",
+                rating: 4.7,
+                sold: "15.8k+",
+                basePrice: 205000,
+                discount: 27,
+                shippingFee: 0,
+                shopName: "SIPIAO Case",
+                isGlobal: true,
+                globalCategory: "shipping",
+                desc: "Ốp lưng từ tính hỗ trợ sạc không dây thế hệ mới. Viền kim loại thép không gỉ kết hợp mặt lưng kính cường lực 9H chống trầy xước và va đập hiệu quả cho điện thoại của bạn.",
+                specs: { "Chất liệu": "Kính cường lực + Thép", "Hỗ trợ sạc": "Magsafe từ tính", "Chống va đập": "Tiêu chuẩn quân đội" },
+                images: ["assets/shop/magnetic_phone_case.png"],
+                variants: [
+                    { id: "gl_case_ip", name: "Viền Titanium", price: 149650, originalPrice: 205000, image: "assets/shop/magnetic_phone_case.png", stock: 250 }
+                ],
+                reviews: [
+                    { user: "Khánh Linh", avatar: "KL", stars: 4, text: "Ốp ôm khít máy, nút bấm nảy. Rất hài lòng.", date: "06/07/2026", hasImg: false }
+                ]
+            },
+            {
+                id: "global_sace_lady_blush",
+                title: "Kem Má Hồng SACE LADY Dạng Lỏng Mịn Lì",
+                category: "fashion",
+                rating: 4.8,
+                sold: "22.4k+",
+                basePrice: 157000,
+                discount: 64,
+                shippingFee: 10000,
+                shopName: "SACE LADY Official Store",
+                isGlobal: true,
+                globalCategory: "brands",
+                desc: "Má hồng dạng kem lỏng Sace Lady lâu trôi, lên màu chuẩn tự nhiên. Kết cấu mịn màng dễ tán đều trên da, mang lại đôi má hồng hào rạng rỡ suốt cả ngày dài.",
+                specs: { "Trọng lượng": "4g", "Tone màu": "Cam đào, Hồng dâu", "Xuất xứ": "nội địa Trung", "Độ bền màu": "Lên tới 8h" },
+                images: ["assets/shop/sace_lady_blush.png"],
+                variants: [
+                    { id: "gl_blush_peach", name: "Màu 01 - Cam Đào", price: 56520, originalPrice: 157000, image: "assets/shop/sace_lady_blush.png", stock: 400 }
+                ],
+                reviews: [
+                    { user: "Hương Giang", avatar: "HG", stars: 5, text: "Màu lên rất xinh và tự nhiên, kem mỏng nhẹ không bị bí da.", date: "11/07/2026", hasImg: false }
+                ]
+            },
+            {
+                id: "global_leego_wardrobe",
+                title: "Tủ Quần Áo Vải Khung Thép Ghép Đa Năng LEEGO",
+                category: "home",
+                rating: 4.7,
+                sold: "3.1k+",
+                basePrice: 556000,
+                discount: 47,
+                shippingFee: 35000,
+                shopName: "LEEGO Official",
+                isGlobal: true,
+                globalCategory: "brands",
+                desc: "Tủ quần áo khung thép bọc vải không dệt dai bền từ LEEGO. Thiết kế nhiều ngăn tiện lợi cho việc sắp xếp đồ đạc. Dễ dàng tháo lắp và di chuyển linh hoạt.",
+                specs: { "Khung": "Thép chịu lực", "Vải bọc": "Vải không dệt Oxford", "Kích thước": "170 x 105 x 45 cm" },
+                images: ["assets/shop/leego_wardrobe.png"],
+                variants: [
+                    { id: "gl_wardrobe_grey", name: "Màu Xám Đậm", price: 294680, originalPrice: 556000, image: "assets/shop/leego_wardrobe.png", stock: 40 }
+                ],
+                reviews: [
+                    { user: "Thế Anh", avatar: "TA", stars: 5, text: "Tủ chắc chắn, khung thép chịu lực tốt. Đựng được rất nhiều đồ.", date: "09/07/2026", hasImg: false }
+                ]
+            },
+            {
+                id: "global_dalba_sunscreen",
+                title: "Kem Chống Nắng D'Alba Nâng Tone Thuần Chay SPF50+",
+                category: "home",
+                rating: 4.9,
+                sold: "18.2k+",
+                basePrice: 815000,
+                discount: 40,
+                shippingFee: 0,
+                shopName: "d'Alba Official Store",
+                isGlobal: true,
+                globalCategory: "brands",
+                desc: "Kem chống nắng vật lý lai hóa học nâng tone trắng hồng tự nhiên d'Alba Truffle Watery Sunscreen. Tinh chất nấm truffle trắng quý hiếm giúp cấp ẩm và bảo vệ da tối ưu.",
+                specs: { "Chỉ số": "SPF50+ PA++++", "Loại": "Vật lý lai hóa học", "Nâng tone": "Trắng hồng tự nhiên", "Xuất xứ": "Hàn Quốc" },
+                images: ["assets/shop/dalba_sunscreen.png"],
+                variants: [
+                    { id: "gl_dalba_50", name: "Tuýp 50ml", price: 489000, originalPrice: 815000, image: "assets/shop/dalba_sunscreen.png", stock: 120 }
+                ],
+                reviews: [
+                    { user: "Minh Thư", avatar: "MT", stars: 5, text: "Kem thấm nhanh, nâng tông nhẹ tự nhiên không bị vệt trắng. Rất thích!", date: "12/07/2026", hasImg: false }
+                ]
+            },
+            {
+                id: "global_torriden_serum",
+                title: "Tinh Chất Cấp Nước Torriden Dive-In Serum 50ml",
+                category: "home",
+                rating: 4.9,
+                sold: "9.4k+",
+                basePrice: 292000,
+                discount: 49,
+                shippingFee: 0,
+                shopName: "Torriden Korea",
+                isGlobal: true,
+                globalCategory: "brands",
+                desc: "Dive-In Serum của Torriden chứa phức hợp 5 loại Hyaluronic Acid giúp cấp nước sâu cho da căng mọng. Bổ sung Vitamin B5 làm dịu da nhạy cảm cực kỳ hiệu quả.",
+                specs: { "Dung tích": "50ml", "Thành phần chính": "Axit Hyaluronic, Panthenol", "Công dụng": "Cấp ẩm, phục hồi da" },
+                images: ["assets/shop/torriden_serum.png"],
+                variants: [
+                    { id: "gl_torriden_50", name: "Chai 50ml", price: 148920, originalPrice: 292000, image: "assets/shop/torriden_serum.png", stock: 110 }
+                ],
+                reviews: [
+                    { user: "Hồng Đào", avatar: "HD", stars: 5, text: "Serum lỏng nhẹ, thấm nhanh. Da mình bớt đổ dầu hẳn từ khi dùng.", date: "10/07/2026", hasImg: false }
+                ]
             }
         ];
 
@@ -21557,6 +21986,69 @@
 
                 const cartQty = ShopCart.filter(item => item.productId === p.id).reduce((sum, item) => sum + item.quantity, 0);
 
+                // Dynamic Campaigns Badges Logic (GEMS themed slanted overlapping premium uniform fixed-width straight-edge)
+                let badgesHtml = '';
+                if (idx % 3 === 0) {
+                    badgesHtml = `
+                        <!-- Segment 1: 15.7 -->
+                        <div class="w-[58px] -ml-[6px] pl-[6px] flex-shrink-0 bg-gradient-to-r from-[#005a9c] to-[#007cc4] transform -skew-x-12 flex items-center justify-center border-r border-white/10 relative z-30 shadow-xs">
+                            <div class="transform skew-x-12 text-white font-extrabold text-[6.5px] tracking-tighter leading-none flex items-center justify-center select-none whitespace-nowrap">
+                                <span class="material-symbols-outlined text-[8px] text-yellow-300 mr-0.5" style="font-size: 8px; font-variation-settings: 'FILL' 1;">star</span>
+                                <span>15.7</span>
+                            </div>
+                        </div>
+                        <!-- Segment 2: XTRA -->
+                        <div class="w-[52px] flex-shrink-0 bg-gradient-to-r from-[#ff1a40] to-[#ff4d6d] transform -skew-x-12 flex items-center justify-center border-r border-white/10 -ml-[3px] relative z-20 shadow-xs">
+                            <div class="transform skew-x-12 text-white font-extrabold text-[6.5px] tracking-tighter leading-none flex items-center justify-center select-none whitespace-nowrap">
+                                <span class="material-symbols-outlined text-[8px] text-white mr-0.5" style="font-size: 8px; font-variation-settings: 'FILL' 1;">local_offer</span>
+                                <span>XTRA</span>
+                            </div>
+                        </div>
+                        <!-- Segment 3: SIÊU RẺ -->
+                        <div class="w-[52px] flex-shrink-0 bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] transform -skew-x-12 flex items-center justify-center -ml-[3px] relative z-10 shadow-xs">
+                            <div class="transform skew-x-12 text-[#005a9c] font-extrabold text-[6.5px] tracking-tighter leading-none flex items-center justify-center select-none whitespace-nowrap">
+                                <span class="material-symbols-outlined text-[8px] text-red-600 mr-0.5" style="font-size: 8px; font-variation-settings: 'FILL' 1;">local_fire_department</span>
+                                <span>SIÊU RẺ</span>
+                            </div>
+                        </div>
+                    `;
+                } else if (idx % 3 === 1) {
+                    badgesHtml = `
+                        <!-- Segment 1: 15.7 -->
+                        <div class="w-[58px] -ml-[6px] pl-[6px] flex-shrink-0 bg-gradient-to-r from-[#005a9c] to-[#007cc4] transform -skew-x-12 flex items-center justify-center border-r border-white/10 relative z-20 shadow-xs">
+                            <div class="transform skew-x-12 text-white font-extrabold text-[6.5px] tracking-tighter leading-none flex items-center justify-center select-none whitespace-nowrap">
+                                <span class="material-symbols-outlined text-[8px] text-yellow-300 mr-0.5" style="font-size: 8px; font-variation-settings: 'FILL' 1;">star</span>
+                                <span>15.7</span>
+                            </div>
+                        </div>
+                        <!-- Segment 3: SIÊU RẺ -->
+                        <div class="w-[52px] flex-shrink-0 bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] transform -skew-x-12 flex items-center justify-center -ml-[3px] relative z-10 shadow-xs">
+                            <div class="transform skew-x-12 text-[#005a9c] font-extrabold text-[6.5px] tracking-tighter leading-none flex items-center justify-center select-none whitespace-nowrap">
+                                <span class="material-symbols-outlined text-[8px] text-red-600 mr-0.5" style="font-size: 8px; font-variation-settings: 'FILL' 1;">local_fire_department</span>
+                                <span>SIÊU RẺ</span>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    badgesHtml = `
+                        <!-- Segment 2: XTRA -->
+                        <div class="w-[58px] -ml-[6px] pl-[6px] flex-shrink-0 bg-gradient-to-r from-[#ff1a40] to-[#ff4d6d] transform -skew-x-12 flex items-center justify-center border-r border-white/10 relative z-20 shadow-xs">
+                            <div class="transform skew-x-12 text-white font-extrabold text-[6.5px] tracking-tighter leading-none flex items-center justify-center select-none whitespace-nowrap">
+                                <span class="material-symbols-outlined text-[8px] text-white mr-0.5" style="font-size: 8px; font-variation-settings: 'FILL' 1;">local_offer</span>
+                                <span>XTRA</span>
+                            </div>
+                        </div>
+                        <!-- Segment 3: SIÊU RẺ -->
+                        <div class="w-[52px] flex-shrink-0 bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] transform -skew-x-12 flex items-center justify-center -ml-[3px] relative z-10 shadow-xs">
+                            <div class="transform skew-x-12 text-[#005a9c] font-extrabold text-[6.5px] tracking-tighter leading-none flex items-center justify-center select-none whitespace-nowrap">
+                                <span class="material-symbols-outlined text-[8px] text-red-600 mr-0.5" style="font-size: 8px; font-variation-settings: 'FILL' 1;">local_fire_department</span>
+                                <span>SIÊU RẺ</span>
+                            </div>
+                        </div>
+                    `;
+                }
+
+
                 
 
                 return `
@@ -21629,20 +22121,10 @@
 
 
 
-                            <!-- Shop profile overlay (bottom) -->
-
-                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-2 pt-6 flex items-center gap-1.5">
-
-                                <div class="w-5 h-5 rounded-full bg-primary/10 border ${isLive ? 'border-amber-500 animate-pulse' : 'border-white/60'} flex items-center justify-center text-[7px] font-black text-white overflow-hidden shrink-0">
-
-                                    ${p.avatar || p.shopName.substring(0, 2).toUpperCase()}
-
-                                </div>
-
-                                <p class="text-[9px] text-white font-bold truncate flex-1">${p.shopName}</p>
-
+                            <!-- Campaigns Banners (Slanted Overlapping Bottom Floating Tab) -->
+                            <div class="absolute bottom-0 left-0 flex items-stretch h-[24px] select-none overflow-hidden rounded-tr-[8px] w-max max-w-[85%] z-10 shadow-[0_1px_3px_rgba(0,0,0,0.12)]">
+                                ${badgesHtml}
                             </div>
-
                         </div>
 
 
@@ -21651,7 +22133,7 @@
 
                         <div class="p-2 space-y-1 flex-grow flex flex-col justify-between">
 
-                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 leading-snug min-h-[28px]">${p.title}</h4>
+                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 leading-snug min-h-[28px]">${p.shopName.toLowerCase().includes('gems') ? `<span class="inline-flex items-center justify-center bg-gradient-to-b from-[#ffd800] to-[#ffa600] text-[#005a9c] text-[7.5px] font-black px-1.5 py-0.5 rounded select-none leading-none shadow-sm uppercase tracking-wider mr-1 shrink-0 align-middle">MALL</span>` : ''}${p.title}</h4>
 
                             <div class="space-y-0.5">
 
@@ -21672,8 +22154,6 @@
                                     <span>| Đã bán ${p.sold}</span>
 
                                 </div>
-
-                                ${p.shopName.toLowerCase().includes('gems') ? `<div class="mt-0.5"><span class="inline-flex items-center justify-center bg-gradient-to-b from-[#ffd800] to-[#ffa600] text-[#005a9c] text-[8px] font-black px-2 py-0.5 rounded-full select-none leading-none shadow-sm uppercase tracking-wider border border-[#e09000]/20 align-middle shrink-0">MALL</span></div>` : ''}
 
                             </div>
 
@@ -22955,6 +23435,12 @@
 
             if (detailEl) detailEl.textContent = ShippingAddress.address;
 
+            if (typeof selectPaymentMethod === 'function') {
+
+                selectPaymentMethod(currentPaymentMethod);
+
+            }
+
             
 
             const checkoutList = document.getElementById('checkout-products-list');
@@ -23079,15 +23565,21 @@
 
             
 
-            if (subtotal >= 300000) {
+            // Calculate voucher discount based on chosen selectedShippingVoucherCode and selectedDiscountVoucherCode
+            let shippingDiscount = 0;
+            let productDiscount = 0;
 
-                voucherDiscount = 50000;
-
-            } else if (subtotal >= 100000) {
-
-                voucherDiscount = 10000;
-
+            const activeShipVoucher = GEMS_COUPONS.find(v => v.id === selectedShippingVoucherCode && v.claimed);
+            if (activeShipVoucher && subtotal >= getCouponMinSpend(activeShipVoucher)) {
+                shippingDiscount = Math.min(totalShipping, getCouponValue(activeShipVoucher, subtotal));
             }
+
+            const activeDiscVoucher = GEMS_COUPONS.find(v => v.id === selectedDiscountVoucherCode && v.claimed);
+            if (activeDiscVoucher && subtotal >= getCouponMinSpend(activeDiscVoucher)) {
+                productDiscount = getCouponValue(activeDiscVoucher, subtotal);
+            }
+
+            voucherDiscount = shippingDiscount + productDiscount;
 
             
 
@@ -23122,21 +23614,17 @@
             
 
             if (appliedVoucherText) {
-
+                let count = 0;
+                if (activeShipVoucher && subtotal >= activeShipVoucher.minSpend) count++;
+                if (activeDiscVoucher && subtotal >= activeDiscVoucher.minSpend) count++;
+                
                 if (voucherDiscount > 0) {
-
-                    appliedVoucherText.textContent = 'Giảm ' + voucherDiscount.toLocaleString() + 'đ';
-
+                    appliedVoucherText.textContent = `Giảm ${voucherDiscount.toLocaleString()}đ` + (count > 1 ? ` (${count} Voucher)` : '');
                     appliedVoucherText.className = "text-[10px] text-primary font-extrabold";
-
                 } else {
-
                     appliedVoucherText.textContent = 'Chọn mã giảm giá';
-
                     appliedVoucherText.className = "text-[10px] text-slate-400 font-bold";
-
                 }
-
             }
 
         }
@@ -23145,148 +23633,541 @@
 
         function editCheckoutAddress() {
 
-            const name = prompt("Họ tên người nhận:", ShippingAddress.name);
-
-            if (name === null) return;
-
-            const phone = prompt("Số điện thoại:", ShippingAddress.phone);
-
-            if (phone === null) return;
-
-            const addr = prompt("Địa chỉ giao hàng chi tiết:", ShippingAddress.address);
-
-            if (addr === null) return;
-
-            
-
-            if (name.trim() === '' || phone.trim() === '' || addr.trim() === '') {
-
-                showToast("Vui lòng điền đầy đủ các thông tin địa chỉ.", "warning");
-
-                return;
-
-            }
-
-            
-
-            ShippingAddress = { name, phone, address: addr };
-
-            localStorage.setItem('gems_shipping_address', JSON.stringify(ShippingAddress));
-
-            renderCheckout();
-
-            showToast("Đã lưu địa chỉ nhận hàng mới.");
+            openShopPayLater();
 
         }
 
 
+
+        let selectedShippingVoucherCode = 'fs-40k'; 
+        let selectedDiscountVoucherCode = 'ex-20pct-1'; 
+        
+        let tempSelectedShippingCode = null;
+        let tempSelectedDiscountCode = null;
+
+        function getCouponValue(c, subtotal) {
+            if (c.type === 'shipping') {
+                if (c.id.includes('500k')) return 500000;
+                if (c.id.includes('40k')) return 40000;
+                if (c.id.includes('30')) return 30000;
+                return 30000;
+            } else {
+                if (c.title.includes('%')) {
+                    const pct = parseInt(c.title.match(/\d+/)[0]) || 0;
+                    return Math.floor(subtotal * (pct / 100));
+                } else {
+                    const flat = parseInt(c.title.match(/\d+/)[0]) || 0;
+                    if (c.title.toLowerCase().includes('k')) return flat * 1000;
+                    return flat;
+                }
+            }
+        }
+
+        function getCouponMinSpend(c) {
+            if (!c.desc) return 0;
+            const match = c.desc.match(/đơn từ\s*(\d+)/i) || c.desc.match(/trên\s*(\d+)/i) || c.desc.match(/tối thiểu\s*(\d+)/i);
+            if (match) {
+                let val = parseInt(match[1]);
+                if (c.desc.toLowerCase().includes('k')) val *= 1000;
+                return val;
+            }
+            const kMatch = c.desc.match(/(\d+)\s*k/i);
+            if (kMatch) {
+                return parseInt(kMatch[1]) * 1000;
+            }
+            return 0;
+        }
 
         function showVoucherSelector() {
+            openCheckoutVoucherSelector();
+        }
 
-            showToast("Đã chọn voucher tối ưu nhất cho đơn hàng này.");
+        function openCheckoutVoucherSelector() {
+            tempSelectedShippingCode = selectedShippingVoucherCode;
+            tempSelectedDiscountCode = selectedDiscountVoucherCode;
+            
+            renderCheckoutVouchers();
+            updateVoucherRadioNoneVisual();
+            
+            const view = document.getElementById('view-checkout-voucher-selector');
+            if (view) view.classList.remove('hidden');
+        }
 
+        function closeCheckoutVoucherSelector() {
+            const view = document.getElementById('view-checkout-voucher-selector');
+            if (view) view.classList.add('hidden');
+        }
+
+        function selectVoucherOption(option, code) {
+            if (option === 'none') {
+                tempSelectedShippingCode = null;
+                tempSelectedDiscountCode = null;
+            } else if (option === 'shipping') {
+                if (tempSelectedShippingCode === code) {
+                    tempSelectedShippingCode = null;
+                } else {
+                    tempSelectedShippingCode = code;
+                }
+            } else if (option === 'exclusive' || option === 'discount') {
+                if (tempSelectedDiscountCode === code) {
+                    tempSelectedDiscountCode = null;
+                } else {
+                    tempSelectedDiscountCode = code;
+                }
+            }
+            renderCheckoutVouchers();
+            updateVoucherRadioNoneVisual();
+        }
+
+        function updateVoucherRadioNoneVisual() {
+            const radioNone = document.getElementById('voucher-radio-none');
+            if (!radioNone) return;
+            
+            if (tempSelectedShippingCode === null && tempSelectedDiscountCode === null) {
+                radioNone.textContent = 'radio_button_checked';
+                radioNone.className = 'material-symbols-outlined text-primary text-xl select-none';
+            } else {
+                radioNone.textContent = 'radio_button_unchecked';
+                radioNone.className = 'material-symbols-outlined text-slate-300 text-xl select-none';
+            }
+        }
+
+        function renderCheckoutVouchers() {
+            const shippingContainer = document.getElementById('shop-checkout-shipping-vouchers-list');
+            const discountContainer = document.getElementById('shop-checkout-discount-vouchers-list');
+            
+            if (!shippingContainer || !discountContainer) return;
+
+            shippingContainer.innerHTML = '';
+            discountContainer.innerHTML = '';
+            
+            let subtotal = 0;
+            SelectedCheckoutItems.forEach(item => {
+                subtotal += item.variant.price * item.quantity;
+            });
+
+            let shippingCount = 0;
+            let discountCount = 0;
+
+            const claimedCoupons = GEMS_COUPONS.filter(v => v.claimed);
+
+            claimedCoupons.forEach(v => {
+                const minSpend = getCouponMinSpend(v);
+                const isEligible = subtotal >= minSpend;
+                const isSelected = v.type === 'shipping' ? (tempSelectedShippingCode === v.id) : (tempSelectedDiscountCode === v.id);
+                
+                const card = document.createElement('div');
+                
+                const colorBorder = v.type === 'shipping' 
+                    ? (isSelected ? 'border-primary ring-1 ring-primary' : 'border-slate-150')
+                    : (isSelected ? 'border-amber-500 ring-1 ring-amber-500' : 'border-slate-150');
+                
+                card.className = `bg-white rounded-2xl border flex overflow-hidden relative transition-all ${
+                    !isEligible ? 'opacity-55 cursor-not-allowed border-slate-200' : 
+                    isSelected ? `${colorBorder} shadow-xs cursor-pointer` : 
+                    'border-slate-200 hover:border-slate-350 cursor-pointer'
+                }`;
+                
+                if (isEligible) {
+                    card.onclick = () => selectVoucherOption(v.type, v.id);
+                }
+
+                const badgeText = v.type === 'shipping' ? 'Từ GEMS Shop' : 'Flash Sale';
+                const badgeColor = v.type === 'shipping' ? 'bg-[#e0f4ff] text-primary' : 'bg-amber-50 text-amber-600';
+                const icon = v.type === 'shipping' ? 'local_shipping' : 'confirmation_number';
+                
+                card.innerHTML = `
+                    <!-- Left icon part with ticket notch -->
+                    <div class="w-20 flex flex-col items-center justify-center p-3 relative shrink-0 border-r border-dashed border-slate-150 select-none bg-slate-50/50">
+                        <span class="material-symbols-outlined text-2xl ${v.type === 'shipping' ? 'text-primary' : 'text-amber-500'}">${icon}</span>
+                        <span class="text-[8px] font-black mt-1 whitespace-nowrap ${v.type === 'shipping' ? 'text-primary' : 'text-amber-500'}">
+                            ${v.type === 'shipping' ? 'Vận chuyển' : 'Sản phẩm'}
+                        </span>
+                        
+                        <!-- Notches -->
+                        <div class="absolute -left-1.5 top-[calc(50%-6px)] w-3 h-3 rounded-full bg-slate-50 border border-slate-200/50"></div>
+                        <div class="absolute -right-1.5 top-[calc(50%-6px)] w-3 h-3 rounded-full bg-slate-50 border border-slate-200/50 z-10"></div>
+                    </div>
+                    
+                    <!-- Middle details -->
+                    <div class="flex-grow p-3 flex items-center justify-between min-w-0">
+                        <div class="space-y-1 pr-2 min-w-0 text-left">
+                            <div class="flex items-center gap-1.5 flex-wrap">
+                                <span class="text-[8px] font-extrabold px-1 py-0.5 rounded-sm uppercase tracking-tight text-white ${v.type === 'shipping' ? 'bg-primary' : 'bg-amber-500'}">XTRA</span>
+                                <span class="text-[8px] font-extrabold px-1.5 py-0.5 rounded-sm ${badgeColor}">${badgeText}</span>
+                            </div>
+                            
+                            <h4 class="text-xs font-black text-slate-800">${escapeHtml(v.title)}</h4>
+                            <p class="text-[9px] text-slate-550 leading-tight font-bold">${escapeHtml(v.desc)}</p>
+                            
+                            <div class="flex items-center gap-2 pt-0.5">
+                                <span class="text-[8px] text-slate-400 font-bold">Hết hạn sau 9 giờ</span>
+                                <span class="text-[8px] text-blue-500 font-black cursor-pointer hover:underline">Điều khoản & điều kiện</span>
+                            </div>
+                            
+                            ${!isEligible ? `
+                                <p class="text-[8px] text-red-500 font-extrabold flex items-center gap-0.5 mt-1">
+                                    <span class="material-symbols-outlined text-[9px]">error</span>
+                                    Chưa đủ điều kiện mua hàng tối thiểu
+                                </p>
+                            ` : ''}
+                        </div>
+                        
+                        <!-- Right check Circle -->
+                        <div class="shrink-0 flex items-center pr-1">
+                            ${isSelected ? `
+                                <span class="material-symbols-outlined text-${v.type === 'shipping' ? 'primary' : 'amber-600'} text-xl select-none font-bold">check_circle</span>
+                            ` : isEligible ? `
+                                <span class="material-symbols-outlined text-slate-250 text-xl select-none">radio_button_unchecked</span>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+
+                if (v.type === 'shipping') {
+                    shippingContainer.appendChild(card);
+                    shippingCount++;
+                } else {
+                    discountContainer.appendChild(card);
+                    discountCount++;
+                }
+            });
+
+            if (shippingCount === 0) {
+                shippingContainer.innerHTML = '<p class="text-[10px] text-slate-400 py-2">Không có voucher vận chuyển khả dụng.</p>';
+            }
+            if (discountCount === 0) {
+                discountContainer.innerHTML = '<p class="text-[10px] text-slate-400 py-2">Không có voucher giảm giá khả dụng.</p>';
+            }
+        }
+
+        function confirmSelectedVouchers() {
+            selectedShippingVoucherCode = tempSelectedShippingCode;
+            selectedDiscountVoucherCode = tempSelectedDiscountCode;
+            
+            renderCheckout();
+            closeCheckoutVoucherSelector();
+            showToast("Đã áp dụng các mã giảm giá được chọn!", "success");
+        }
+
+        function applyPromoCode() {
+            const promoInput = document.getElementById('voucher-promo-input');
+            if (!promoInput) return;
+
+            const code = promoInput.value.trim().toUpperCase();
+            if (code === '') {
+                showToast("Vui lòng nhập mã khuyến mãi.", "warning");
+                return;
+            }
+
+            const existed = GEMS_COUPONS.some(v => v.id === code);
+            if (existed) {
+                showToast("Mã khuyến mãi này đã có trong ví của bạn.", "warning");
+                return;
+            }
+
+            let newVoucher = null;
+            if (code === 'GEMS100K' || code === 'GEMS100') {
+                newVoucher = {
+                    id: code,
+                    type: 'exclusive',
+                    badge: 'Độc quyền',
+                    subBadge: 'Từ GEMS Shop',
+                    title: 'Giảm giá 100K',
+                    desc: 'áp dụng cho mọi đơn hàng',
+                    validity: 'HSD: 1 ngày sau khi nhận',
+                    claimed: true,
+                    color: 'amber',
+                    qty: ''
+                };
+            } else if (code.startsWith('GEMS')) {
+                const val = (Math.floor(Math.random() * 4) + 1) * 10000;
+                newVoucher = {
+                    id: code,
+                    type: 'exclusive',
+                    badge: 'Khuyến mãi',
+                    subBadge: 'Từ GEMS Shop',
+                    title: `Giảm giá ${val/1000}K`,
+                    desc: 'áp dụng cho mọi đơn hàng',
+                    validity: 'HSD: 1 ngày sau khi nhận',
+                    claimed: true,
+                    color: 'amber',
+                    qty: ''
+                };
+            } else {
+                showToast("Mã khuyến mãi không hợp lệ hoặc đã hết hạn.", "error");
+                return;
+            }
+
+            GEMS_COUPONS.push(newVoucher);
+            promoInput.value = '';
+            
+            tempSelectedDiscountCode = newVoucher.id;
+            
+            renderCheckoutVouchers();
+            updateVoucherRadioNoneVisual();
+            showToast(`Áp dụng thành công mã ${code}!`, "success");
         }
 
 
 
-        function placeOrderAction() {
+        // ============ MULTI-PAYMENT METHODS SYSTEM ============
+        let currentPaymentMethod = 'cod';
+        let pendingOrderPayload = null;
+        let isCardSyncSetup = false;
 
-            const subtotalText = document.getElementById('checkout-grandtotal').textContent;
-
-            const successTotal = document.getElementById('success-total-price');
-
-            const successId = document.getElementById('success-order-id');
-
+        function selectPaymentMethod(method) {
+            currentPaymentMethod = method;
             
-
-            if (successTotal) successTotal.textContent = subtotalText;
-
+            const methods = ['cod', 'momo', 'visa', 'bank'];
+            methods.forEach(m => {
+                const optEl = document.getElementById(`payment-option-${m}`);
+                const radioEl = document.getElementById(`payment-radio-${m}`);
+                if (optEl) {
+                    optEl.className = "payment-method-item flex items-center justify-between p-3 rounded-2xl border border-slate-200 bg-slate-50/30 hover:border-slate-350 cursor-pointer transition-all select-none";
+                }
+                if (radioEl) {
+                    radioEl.textContent = "radio_button_unchecked";
+                    radioEl.className = "material-symbols-outlined text-slate-300 text-xl select-none";
+                }
+            });
             
+            const activeOptEl = document.getElementById(`payment-option-${method}`);
+            const activeRadioEl = document.getElementById(`payment-radio-${method}`);
+            if (activeOptEl) {
+                activeOptEl.className = "payment-method-item flex items-center justify-between p-3 rounded-2xl border-2 border-primary bg-blue-50/10 cursor-pointer transition-all select-none shadow-sm";
+            }
+            if (activeRadioEl) {
+                activeRadioEl.textContent = "radio_button_checked";
+                activeRadioEl.className = "material-symbols-outlined text-primary text-xl select-none";
+            }
+        }
 
-            const randomId = 'GEMS-' + Math.floor(1000000 + Math.random() * 9000000);
+        function openPaymentQrModal(method, amount, orderId) {
+            const modal = document.getElementById('payment-modal-qr');
+            const header = document.getElementById('qr-modal-header');
+            const title = document.getElementById('qr-modal-title');
+            const image = document.getElementById('qr-modal-image');
+            const amountEl = document.getElementById('qr-modal-amount');
+            const labelBank = document.getElementById('qr-modal-label-bank');
+            const labelAccount = document.getElementById('qr-modal-label-account');
+            const bankName = document.getElementById('qr-modal-bank');
+            const accountNo = document.getElementById('qr-modal-account');
+            const memoEl = document.getElementById('qr-modal-memo');
 
-            if (successId) successId.textContent = randomId;
+            if (!modal) return;
 
+            const amountText = amount.toLocaleString('vi-VN') + 'đ';
+            if (amountEl) amountEl.textContent = amountText;
+            if (memoEl) memoEl.textContent = `GEMS SHOP ${orderId.replace('GEMS-', '')}`;
+
+            if (method === 'momo') {
+                if (header) header.className = "bg-[#a50064] text-white p-4 flex items-center justify-between";
+                if (title) title.textContent = "Thanh toán qua Ví MoMo";
+                if (labelBank) labelBank.textContent = "Tên ví điện tử:";
+                if (bankName) bankName.textContent = "Ví điện tử MoMo";
+                if (labelAccount) labelAccount.textContent = "Số điện thoại:";
+                if (accountNo) accountNo.textContent = "0975555777";
+                if (image) image.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&color=a50064&data=momo://pay?phone=0975555777%26amount=${amount}%26memo=GEMS%20${orderId}`;
+            } else if (method === 'bank') {
+                if (header) header.className = "bg-primary text-white p-4 flex items-center justify-between";
+                if (title) title.textContent = "Chuyển khoản Ngân hàng (QR)";
+                if (labelBank) labelBank.textContent = "Ngân hàng:";
+                if (bankName) bankName.textContent = "MB Bank (Quân Đội)";
+                if (labelAccount) labelAccount.textContent = "Số tài khoản:";
+                if (accountNo) accountNo.textContent = "19028392182";
+                if (image) image.src = `https://api.vietqr.io/image/970422-19028392182-Y9Z3aC8.jpg?accountName=GEMS%20GROUP&amount=${amount}&addInfo=GEMS%20${orderId}`;
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closePaymentQrModal() {
+            const modal = document.getElementById('payment-modal-qr');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function confirmQrPayment() {
+            closePaymentQrModal();
+            if (pendingOrderPayload) {
+                completeOrderAndSave(pendingOrderPayload);
+                showToast("Thanh toán thành công!", "success");
+            }
+        }
+
+        function openVisaPaymentModal() {
+            const modal = document.getElementById('payment-modal-visa');
+            if (!modal) return;
             
-
-            // Build and persist order
-
-            const totalVal = parseInt(subtotalText.replace(/\D/g, ''));
-
-            const orderItems = SelectedCheckoutItems.map(i => ({
-
-                title: i.product.title,
-
-                variantName: i.variant.name,
-
-                price: i.variant.price,
-
-                qty: i.quantity,
-
-                image: i.variant.image || i.product.images[0]
-
-            }));
-
+            document.getElementById('visa-input-number').value = '';
+            document.getElementById('visa-input-name').value = '';
+            document.getElementById('visa-input-expiry').value = '';
+            document.getElementById('visa-input-cvv').value = '';
             
-
-            const newOrder = {
-
-                id: randomId,
-
-                date: new Date().toLocaleDateString('vi-VN'),
-
-                status: 'pending_ship',
-
-                shopName: SelectedCheckoutItems[0]?.product.shopName || "GEMS Shop",
-
-                items: orderItems,
-
-                total: totalVal
-
-            };
-
+            document.getElementById('card-display-number').textContent = '•••• •••• •••• ••••';
+            document.getElementById('card-display-name').textContent = 'CHỦ THẺ';
+            document.getElementById('card-display-expiry').textContent = 'MM/YY';
             
+            const submitBtn = document.getElementById('visa-payment-submit-btn');
+            if (submitBtn) {
+                submitBtn.innerHTML = '<span class="material-symbols-outlined text-base">lock</span> Thanh toán ngay';
+                submitBtn.disabled = false;
+            }
 
+            if (!isCardSyncSetup) {
+                setupCardInputsSync();
+                isCardSyncSetup = true;
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeVisaPaymentModal() {
+            const modal = document.getElementById('payment-modal-visa');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function submitVisaPayment() {
+            const number = document.getElementById('visa-input-number').value.trim();
+            const name = document.getElementById('visa-input-name').value.trim();
+            const expiry = document.getElementById('visa-input-expiry').value.trim();
+            const cvv = document.getElementById('visa-input-cvv').value.trim();
+
+            if (number.length < 16 || name === '' || expiry.length < 5 || cvv.length < 3) {
+                showToast("Vui lòng nhập đầy đủ thông tin thẻ hợp lệ.", "warning");
+                return;
+            }
+
+            const submitBtn = document.getElementById('visa-payment-submit-btn');
+            if (submitBtn) {
+                submitBtn.innerHTML = `<svg class="animate-spin -ml-1 mr-3 h-4 w-4 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg> Đang xử lý...`;
+                submitBtn.disabled = true;
+            }
+
+            setTimeout(() => {
+                closeVisaPaymentModal();
+                if (pendingOrderPayload) {
+                    completeOrderAndSave(pendingOrderPayload);
+                    showToast("Giao dịch Visa thành công!", "success");
+                }
+            }, 1500);
+        }
+
+        function setupCardInputsSync() {
+            const numInput = document.getElementById('visa-input-number');
+            const nameInput = document.getElementById('visa-input-name');
+            const expInput = document.getElementById('visa-input-expiry');
+            
+            const numDisplay = document.getElementById('card-display-number');
+            const nameDisplay = document.getElementById('card-display-name');
+            const expDisplay = document.getElementById('card-display-expiry');
+
+            if (numInput && numDisplay) {
+                numInput.addEventListener('input', (e) => {
+                    let val = e.target.value.replace(/\D/g, '');
+                    let formatted = '';
+                    for (let i = 0; i < val.length; i++) {
+                        if (i > 0 && i % 4 === 0) formatted += ' ';
+                        formatted += val[i];
+                    }
+                    e.target.value = formatted;
+                    numDisplay.textContent = formatted || '•••• •••• •••• ••••';
+                });
+            }
+
+            if (nameInput && nameDisplay) {
+                nameInput.addEventListener('input', (e) => {
+                    e.target.value = e.target.value.toUpperCase();
+                    nameDisplay.textContent = e.target.value || 'CHỦ THẺ';
+                });
+            }
+
+            if (expInput && expDisplay) {
+                expInput.addEventListener('input', (e) => {
+                    let val = e.target.value.replace(/\D/g, '');
+                    if (val.length > 2) {
+                        e.target.value = val.substring(0, 2) + '/' + val.substring(2, 4);
+                    } else {
+                        e.target.value = val;
+                    }
+                    expDisplay.textContent = e.target.value || 'MM/YY';
+                });
+            }
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast("Đã sao chép vào bộ nhớ tạm.");
+            }).catch(err => {
+                console.error("Lỗi copy:", err);
+            });
+        }
+
+        function completeOrderAndSave(payload) {
             let orders = JSON.parse(localStorage.getItem('gems_shop_orders')) || [];
-
-            orders.unshift(newOrder);
-
+            orders.unshift(payload);
             localStorage.setItem('gems_shop_orders', JSON.stringify(orders));
 
-
-
             const checkedProductIds = SelectedCheckoutItems.map(i => i.product.id);
-
             const checkedVariantIds = SelectedCheckoutItems.map(i => i.variant.id);
-
             
-
             ShopCart = ShopCart.filter(c => {
-
                 const matchIndex = checkedProductIds.indexOf(c.productId);
-
                 if (matchIndex !== -1 && checkedVariantIds[matchIndex] === c.variantId) {
-
                     return false;
-
                 }
-
                 return true;
-
             });
-
             
-
             localStorage.setItem('gems_shop_cart', JSON.stringify(ShopCart));
-
             updateCartBadge();
 
-            
+            const successTotal = document.getElementById('success-total-price');
+            const successId = document.getElementById('success-order-id');
+            if (successTotal) successTotal.textContent = document.getElementById('checkout-grandtotal').textContent;
+            if (successId) successId.textContent = payload.id;
 
             const successView = document.getElementById('view-shop-success');
-
             if (successView) successView.classList.remove('hidden');
+        }
 
+        function placeOrderAction() {
+            const subtotalText = document.getElementById('checkout-grandtotal').textContent;
+            const randomId = 'GEMS-' + Math.floor(1000000 + Math.random() * 9000000);
+            const totalVal = parseInt(subtotalText.replace(/\D/g, ''));
+            
+            const orderItems = SelectedCheckoutItems.map(i => ({
+                title: i.product.title,
+                variantName: i.variant.name,
+                price: i.variant.price,
+                qty: i.quantity,
+                image: i.variant.image || i.product.images[0]
+            }));
+
+            const payload = {
+                id: randomId,
+                date: new Date().toLocaleDateString('vi-VN'),
+                status: 'pending_ship',
+                shopName: SelectedCheckoutItems[0]?.product.shopName || "GEMS Shop",
+                items: orderItems,
+                total: totalVal,
+                paymentMethod: currentPaymentMethod
+            };
+
+            pendingOrderPayload = payload;
+
+            if (currentPaymentMethod === 'cod') {
+                completeOrderAndSave(payload);
+            } else if (currentPaymentMethod === 'momo') {
+                openPaymentQrModal('momo', totalVal, randomId);
+            } else if (currentPaymentMethod === 'bank') {
+                openPaymentQrModal('bank', totalVal, randomId);
+            } else if (currentPaymentMethod === 'visa') {
+                openVisaPaymentModal();
+            }
         }
 
 
@@ -23315,7 +24196,7 @@
 
         // ======================================================
 
-        // ORDERS & VOUCHERS SCREEN FUNCTIONALITY (TikTok Shop Style)
+        // ORDERS & VOUCHERS SCREEN FUNCTIONALITY (GEMS Shop Style)
 
         // ======================================================
 
@@ -23912,22 +24793,287 @@
 
 
 
-        // ============ PAYLATER ============
+        // ============ PAYLATER / ADDRESS ============
+
+        let ShippingAddresses = JSON.parse(localStorage.getItem('gems_shipping_addresses')) || [];
+
+        function initShippingAddresses() {
+            if (ShippingAddresses.length === 0) {
+                ShippingAddresses = [
+                    {
+                        id: 'addr-' + Date.now(),
+                        name: ShippingAddress.name || 'Thái Nhân Sâm',
+                        phone: ShippingAddress.phone || '(+84)97555577',
+                        address: ShippingAddress.address || '25 Đường Số 37, Hiệp Bình Phước, Hồ Chí Minh',
+                        isDefault: true
+                    }
+                ];
+                localStorage.setItem('gems_shipping_addresses', JSON.stringify(ShippingAddresses));
+            }
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
 
         function openShopPayLater() {
+            // Show list view, hide form view
+            const listView = document.getElementById('shop-address-list-view');
+            const formView = document.getElementById('shop-address-form-view');
+            if (listView) listView.classList.remove('hidden');
+            if (formView) formView.classList.add('hidden');
+
+            renderAddressList();
 
             const view = document.getElementById('view-shop-paylater');
-
             if (view) view.classList.remove('hidden');
-
         }
 
         function closeShopPayLater() {
-
             const view = document.getElementById('view-shop-paylater');
-
             if (view) view.classList.add('hidden');
+        }
 
+        function renderAddressList() {
+            initShippingAddresses();
+            const listContainer = document.getElementById('shop-address-items-list');
+            if (!listContainer) return;
+
+            listContainer.innerHTML = '';
+            
+            ShippingAddresses.forEach(addr => {
+                const isSelected = (addr.name === ShippingAddress.name && addr.phone === ShippingAddress.phone && addr.address === ShippingAddress.address);
+                
+                const card = document.createElement('div');
+                card.className = `bg-white border rounded-2xl p-4 relative cursor-pointer select-none active:scale-[0.99] transition-all shadow-sm flex flex-col gap-1.5 ${
+                    isSelected ? 'border-primary bg-blue-50/10 shadow-md ring-1 ring-primary' : 'border-slate-150 hover:border-slate-350'
+                }`;
+                card.onclick = () => selectShippingAddress(addr.id);
+
+                card.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-black text-slate-800">${escapeHtml(addr.name)}</span>
+                            <span class="text-[10px] text-slate-500 font-bold">${escapeHtml(addr.phone)}</span>
+                        </div>
+                        <div class="flex items-center gap-1" onclick="event.stopPropagation();">
+                            <button onclick="showShopAddressForm('${addr.id}')" class="p-1 text-blue-600 hover:bg-blue-50 rounded-full flex items-center justify-center" title="Sửa">
+                                <span class="material-symbols-outlined text-[16px]">edit</span>
+                            </button>
+                            <button onclick="deleteShopAddress('${addr.id}')" class="p-1 text-red-500 hover:bg-red-50 rounded-full flex items-center justify-center" title="Xóa" ${addr.isDefault ? 'disabled style="opacity: 0.3; cursor: not-allowed;"' : ''}>
+                                <span class="material-symbols-outlined text-[16px]">delete</span>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-slate-650 leading-relaxed pr-6">${escapeHtml(addr.address)}</p>
+                    <div class="flex items-center justify-between mt-1" onclick="event.stopPropagation();">
+                        ${addr.isDefault ? `
+                            <span class="bg-primary/10 text-primary text-[8px] font-black uppercase px-2 py-0.5 rounded-full border border-primary/20">Mặc định</span>
+                        ` : `
+                            <button onclick="setDefaultAddress('${addr.id}')" class="text-slate-500 hover:text-primary text-[9px] font-black uppercase tracking-wide hover:underline transition-colors flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[11px]">check_box_outline_blank</span>
+                                Đặt mặc định
+                            </button>
+                        `}
+                    </div>
+                `;
+                listContainer.appendChild(card);
+            });
+        }
+
+        function setDefaultAddress(id) {
+            initShippingAddresses();
+            
+            ShippingAddresses.forEach(addr => {
+                addr.isDefault = (addr.id === id);
+            });
+            
+            // Sync default address to active ShippingAddress
+            const defaultAddr = ShippingAddresses.find(a => a.isDefault);
+            if (defaultAddr) {
+                ShippingAddress = { name: defaultAddr.name, phone: defaultAddr.phone, address: defaultAddr.address };
+                localStorage.setItem('gems_shipping_address', JSON.stringify(ShippingAddress));
+                
+                const nameEl = document.getElementById('checkout-address-name');
+                const phoneEl = document.getElementById('checkout-address-phone');
+                const detailEl = document.getElementById('checkout-address-detail');
+                if (nameEl) nameEl.textContent = defaultAddr.name;
+                if (phoneEl) phoneEl.textContent = defaultAddr.phone;
+                if (detailEl) detailEl.textContent = defaultAddr.address;
+                
+                if (typeof renderCheckout === 'function') {
+                    renderCheckout();
+                }
+            }
+            
+            localStorage.setItem('gems_shipping_addresses', JSON.stringify(ShippingAddresses));
+            renderAddressList();
+            showToast("Đã đặt làm địa chỉ mặc định.");
+        }
+        
+        function selectShippingAddress(id) {
+            const addr = ShippingAddresses.find(a => a.id === id);
+            if (!addr) return;
+            
+            ShippingAddress = { name: addr.name, phone: addr.phone, address: addr.address };
+            localStorage.setItem('gems_shipping_address', JSON.stringify(ShippingAddress));
+            
+            const nameEl = document.getElementById('checkout-address-name');
+            const phoneEl = document.getElementById('checkout-address-phone');
+            const detailEl = document.getElementById('checkout-address-detail');
+            if (nameEl) nameEl.textContent = addr.name;
+            if (phoneEl) phoneEl.textContent = addr.phone;
+            if (detailEl) detailEl.textContent = addr.address;
+            
+            if (typeof renderCheckout === 'function') {
+                renderCheckout();
+            }
+            
+            closeShopPayLater();
+            showToast("Đã chọn địa chỉ giao hàng.");
+        }
+
+        function showShopAddressForm(id = null) {
+            document.getElementById('shop-address-list-view').classList.add('hidden');
+            const formView = document.getElementById('shop-address-form-view');
+            formView.classList.remove('hidden');
+            
+            const titleEl = document.getElementById('shop-address-form-title');
+            const editIdEl = document.getElementById('shop-address-edit-id');
+            const nameInput = document.getElementById('shop-address-input-name');
+            const phoneInput = document.getElementById('shop-address-input-phone');
+            const detailInput = document.getElementById('shop-address-input-detail');
+            const defaultCheckbox = document.getElementById('shop-address-input-default');
+            
+            if (id) {
+                // Edit mode
+                const addr = ShippingAddresses.find(a => a.id === id);
+                if (titleEl) titleEl.textContent = "Cập nhật địa chỉ";
+                if (editIdEl) editIdEl.value = id;
+                if (nameInput) nameInput.value = addr.name;
+                if (phoneInput) phoneInput.value = addr.phone;
+                if (detailInput) detailInput.value = addr.address;
+                if (defaultCheckbox) {
+                    defaultCheckbox.checked = addr.isDefault;
+                    defaultCheckbox.disabled = addr.isDefault;
+                }
+            } else {
+                // Add mode
+                if (titleEl) titleEl.textContent = "Thêm địa chỉ mới";
+                if (editIdEl) editIdEl.value = '';
+                if (nameInput) nameInput.value = '';
+                if (phoneInput) phoneInput.value = '';
+                if (detailInput) detailInput.value = '';
+                if (defaultCheckbox) {
+                    defaultCheckbox.checked = ShippingAddresses.length === 0;
+                    defaultCheckbox.disabled = false;
+                }
+            }
+        }
+
+        function hideShopAddressForm() {
+            document.getElementById('shop-address-form-view').classList.add('hidden');
+            document.getElementById('shop-address-list-view').classList.remove('hidden');
+            renderAddressList();
+        }
+
+        function saveShopAddressFromForm() {
+            const editIdEl = document.getElementById('shop-address-edit-id');
+            const nameInput = document.getElementById('shop-address-input-name');
+            const phoneInput = document.getElementById('shop-address-input-phone');
+            const detailInput = document.getElementById('shop-address-input-detail');
+            const defaultCheckbox = document.getElementById('shop-address-input-default');
+            
+            if (!nameInput || !phoneInput || !detailInput) return;
+            
+            const name = nameInput.value.trim();
+            const phone = phoneInput.value.trim();
+            const addrVal = detailInput.value.trim();
+            const isDefault = defaultCheckbox ? defaultCheckbox.checked : false;
+            const editId = editIdEl ? editIdEl.value : '';
+
+            if (name === '' || phone === '' || addrVal === '') {
+                showToast("Vui lòng điền đầy đủ các thông tin địa chỉ.", "warning");
+                return;
+            }
+
+            initShippingAddresses();
+
+            if (isDefault) {
+                // Remove default flag from all other addresses
+                ShippingAddresses.forEach(a => a.isDefault = false);
+            }
+
+            if (editId) {
+                // Edit existing
+                const addrIndex = ShippingAddresses.findIndex(a => a.id === editId);
+                if (addrIndex !== -1) {
+                    const wasDefault = ShippingAddresses[addrIndex].isDefault;
+                    ShippingAddresses[addrIndex] = {
+                        id: editId,
+                        name: name,
+                        phone: phone,
+                        address: addrVal,
+                        isDefault: isDefault || wasDefault || ShippingAddresses.length === 1
+                    };
+                }
+            } else {
+                // Add new
+                const newId = 'addr-' + Date.now();
+                ShippingAddresses.push({
+                    id: newId,
+                    name: name,
+                    phone: phone,
+                    address: addrVal,
+                    isDefault: isDefault || ShippingAddresses.length === 0
+                });
+            }
+
+            // Sync default address to active ShippingAddress
+            const defaultAddr = ShippingAddresses.find(a => a.isDefault);
+            if (defaultAddr) {
+                ShippingAddress = { name: defaultAddr.name, phone: defaultAddr.phone, address: defaultAddr.address };
+                localStorage.setItem('gems_shipping_address', JSON.stringify(ShippingAddress));
+                
+                const nameEl = document.getElementById('checkout-address-name');
+                const phoneEl = document.getElementById('checkout-address-phone');
+                const detailEl = document.getElementById('checkout-address-detail');
+                if (nameEl) nameEl.textContent = defaultAddr.name;
+                if (phoneEl) phoneEl.textContent = defaultAddr.phone;
+                if (detailEl) detailEl.textContent = defaultAddr.address;
+                
+                if (typeof renderCheckout === 'function') {
+                    renderCheckout();
+                }
+            }
+
+            localStorage.setItem('gems_shipping_addresses', JSON.stringify(ShippingAddresses));
+            showToast("Đã lưu địa chỉ thành công.");
+            hideShopAddressForm();
+        }
+
+        function deleteShopAddress(id) {
+            initShippingAddresses();
+            const addrIndex = ShippingAddresses.findIndex(a => a.id === id);
+            if (addrIndex === -1) return;
+
+            if (ShippingAddresses[addrIndex].isDefault) {
+                showToast("Không thể xóa địa chỉ mặc định.", "warning");
+                return;
+            }
+
+            if (confirm("Bạn có chắc chắn muốn xóa địa chỉ này?")) {
+                ShippingAddresses.splice(addrIndex, 1);
+                localStorage.setItem('gems_shipping_addresses', JSON.stringify(ShippingAddresses));
+                renderAddressList();
+                showToast("Đã xóa địa chỉ thành công.");
+            }
         }
 
 
@@ -24578,7 +25724,7 @@
                 title: 'Miễn phí ship 500K',
                 desc: 'áp dụng cho đơn từ 1đ',
                 validity: 'HSD: 1 ngày sau khi nhận',
-                claimed: false,
+                claimed: true,
                 color: 'blue',
                 qty: 'x3'
             },
@@ -24590,7 +25736,7 @@
                 title: 'Miễn phí ship 40K',
                 desc: 'áp dụng cho đơn từ 1đ',
                 validity: 'HSD: 1 ngày sau khi nhận',
-                claimed: false,
+                claimed: true,
                 color: 'blue',
                 qty: 'x3'
             },
@@ -24602,7 +25748,7 @@
                 title: 'Giảm ship 30đ',
                 desc: 'áp dụng cho đơn từ 30đ',
                 validity: 'HSD: 1 ngày sau khi nhận',
-                claimed: false,
+                claimed: true,
                 color: 'blue',
                 qty: ''
             },
@@ -24614,7 +25760,7 @@
                 title: 'Giảm giá 20%',
                 desc: 'áp dụng cho đơn từ 99K',
                 validity: 'HSD: 2 giờ sau khi nhận',
-                claimed: false,
+                claimed: true,
                 color: 'amber',
                 qty: ''
             },
@@ -24626,7 +25772,7 @@
                 title: 'Giảm giá 20%',
                 desc: 'áp dụng cho đơn từ 99K',
                 validity: 'HSD: 07/11/2026 - 07/31/2026',
-                claimed: false,
+                claimed: true,
                 color: 'amber',
                 qty: ''
             },
@@ -24638,7 +25784,7 @@
                 title: 'Giảm giá 9%',
                 desc: 'áp dụng cho đơn từ 100K',
                 validity: 'HSD: 2 giờ sau khi nhận',
-                claimed: false,
+                claimed: true,
                 color: 'amber',
                 qty: ''
             }
@@ -24993,22 +26139,198 @@
 
 
 
-        // ============ QUÀ TẶNG ============
-
-        function openShopGifts() {
-
-            const view = document.getElementById('view-shop-gifts');
-
-            if (view) view.classList.remove('hidden');
-
+        // ============ HÀNG QUỐC TẾ (GLOBAL) ============
+        function openShopGlobal() {
+            const view = document.getElementById('view-shop-global');
+            if (view) {
+                view.classList.remove('hidden');
+                renderGlobalFeed();
+            }
+        }
+        function closeShopGlobal() {
+            const view = document.getElementById('view-shop-global');
+            if (view) view.classList.add('hidden');
         }
 
+        // Backward compatibility redirects for old Gifts functions to prevent runtime exceptions
+        function openShopGifts() {
+            openShopGlobal();
+        }
         function closeShopGifts() {
+            closeShopGlobal();
+        }
 
-            const view = document.getElementById('view-shop-gifts');
+        // Global claimed vouchers storage
+        let GlobalClaimedVouchers = JSON.parse(localStorage.getItem('gems_global_vouchers')) || [];
 
-            if (view) view.classList.add('hidden');
+        function claimGlobalVoucher(btn, value) {
+            if (GlobalClaimedVouchers.includes(value)) return;
+            GlobalClaimedVouchers.push(value);
+            localStorage.setItem('gems_global_vouchers', JSON.stringify(GlobalClaimedVouchers));
+            
+            showToast(`Lưu voucher giảm ${value} thành công! 🎟️`, "success");
+            
+            // Add custom voucher object to GEMS_COUPONS
+            const newVoucher = {
+                id: 'GLOBAL-' + value.replace(/[^a-zA-Z0-9]/g, ''),
+                type: 'global',
+                badge: 'Quốc Tế',
+                subBadge: 'Voucher Hàng Quốc Tế',
+                title: value.includes('Freeship') ? 'Freeship 0Đ' : `Giảm ${value}`,
+                desc: 'áp dụng riêng cho Hàng Quốc Tế',
+                validity: 'HSD: 30 ngày',
+                claimed: true,
+                color: 'teal',
+                qty: ''
+            };
+            GEMS_COUPONS.push(newVoucher);
+            
+            btn.innerText = 'Đã Lưu';
+            btn.disabled = true;
+            btn.className = "self-start bg-slate-200 text-slate-400 text-[7.5px] font-black px-2 py-0.5 rounded-full cursor-not-allowed leading-none";
+        }
 
+        function claimAllGlobalVouchers(btn) {
+            let vouchers = ['500K', '50%', 'Freeship 0Đ'];
+            let claimedAny = false;
+            
+            vouchers.forEach(val => {
+                if (!GlobalClaimedVouchers.includes(val)) {
+                    GlobalClaimedVouchers.push(val);
+                    claimedAny = true;
+                    
+                    const newVoucher = {
+                        id: 'GLOBAL-' + val.replace(/[^a-zA-Z0-9]/g, ''),
+                        type: 'global',
+                        badge: 'Quốc Tế',
+                        subBadge: 'Voucher Hàng Quốc Tế',
+                        title: val.includes('Freeship') ? 'Freeship 0Đ' : `Giảm ${val}`,
+                        desc: 'áp dụng riêng cho Hàng Quốc Tế',
+                        validity: 'HSD: 30 ngày',
+                        claimed: true,
+                        color: 'teal',
+                        qty: ''
+                    };
+                    GEMS_COUPONS.push(newVoucher);
+                }
+            });
+            
+            localStorage.setItem('gems_global_vouchers', JSON.stringify(GlobalClaimedVouchers));
+            
+            if (claimedAny) {
+                showToast("Thu thập trọn bộ Voucher Quốc Tế thành công! 🎟️", "success");
+            } else {
+                showToast("Bạn đã thu thập toàn bộ Voucher Quốc Tế rồi!", "info");
+            }
+        }
+
+        function switchGlobalTab(btn, category) {
+            const buttons = document.querySelectorAll('.global-tab-btn');
+            buttons.forEach(b => {
+                b.classList.remove('text-sky-600', 'border-sky-600', 'font-black');
+                b.classList.add('text-slate-500', 'border-transparent', 'font-bold');
+            });
+            btn.classList.remove('text-slate-500', 'border-transparent', 'font-bold');
+            btn.classList.add('text-sky-600', 'border-sky-600', 'font-black');
+
+            const secShipping = document.getElementById('global-section-shipping');
+            const secBrands = document.getElementById('global-section-brands');
+
+            if (category === 'all') {
+                secShipping.classList.remove('hidden');
+                secBrands.classList.remove('hidden');
+            } else if (category === 'shipping') {
+                secShipping.classList.remove('hidden');
+                secBrands.classList.add('hidden');
+            } else if (category === 'brands') {
+                secShipping.classList.add('hidden');
+                secBrands.classList.remove('hidden');
+            }
+        }
+
+        function renderGlobalFeed() {
+            const shipList = document.getElementById('global-list-shipping');
+            const brandList = document.getElementById('global-list-brands');
+            if (!shipList || !brandList) return;
+
+            const globalProds = shopProducts.filter(p => p.isGlobal);
+
+            const renderCard = (p) => {
+                const discountedPrice = Math.round(p.basePrice * (1 - p.discount / 100));
+                
+                // Overlapping slanted badges inside Hàng Quốc Tế
+                const badgesHtml = `
+                    <!-- Segment 1: 15.7 -->
+                    <div class="w-[58px] -ml-[6px] pl-[6px] flex-shrink-0 bg-gradient-to-r from-[#005a9c] to-[#007cc4] transform -skew-x-12 flex items-center justify-center border-r border-white/10 relative z-30 shadow-xs">
+                        <div class="transform skew-x-12 text-white font-extrabold text-[6.5px] tracking-tighter leading-none flex items-center justify-center select-none whitespace-nowrap">
+                            <span class="material-symbols-outlined text-[8px] text-yellow-300 mr-0.5" style="font-size: 8px; font-variation-settings: 'FILL' 1;">star</span>
+                            <span>15.7</span>
+                        </div>
+                    </div>
+                    <!-- Segment 2: XTRA -->
+                    <div class="w-[52px] flex-shrink-0 bg-gradient-to-r from-[#e09000] to-[#ffa600] transform -skew-x-12 flex items-center justify-center border-r border-white/10 -ml-[3px] relative z-20 shadow-xs">
+                        <div class="transform skew-x-12 text-[#005a9c] font-extrabold text-[6.5px] tracking-tighter leading-none flex items-center justify-center select-none whitespace-nowrap">
+                            <span class="material-symbols-outlined text-[8px] text-[#005a9c] mr-0.5" style="font-size: 8px; font-variation-settings: 'FILL' 1;">local_offer</span>
+                            <span>XTRA</span>
+                        </div>
+                    </div>
+                `;
+
+                return `
+                    <div class="bg-white border border-slate-100 rounded-xl overflow-hidden shadow-xs flex flex-col relative cursor-pointer active:scale-[0.98] transition-transform" onclick="openShopProductDetail('${p.id}')">
+                        <div class="aspect-square w-full bg-slate-50 relative overflow-hidden shrink-0">
+                            <img src="${p.images[0]}" alt="${p.title}" class="w-full h-full object-cover" />
+                            <div class="absolute right-1 top-1 bg-sky-600 text-white text-[7.5px] font-black px-1.5 py-0.5 rounded shadow-sm leading-none z-10">
+                                -${p.discount}%
+                            </div>
+                            <div class="absolute bottom-0 left-0 flex items-stretch h-[24px] select-none overflow-hidden rounded-tr-[8px] w-max max-w-[85%] z-10 shadow-[0_1px_3px_rgba(0,0,0,0.12)]">
+                                ${badgesHtml}
+                            </div>
+                        </div>
+                        <div class="p-2 space-y-1 flex-grow flex flex-col justify-between">
+                            <div class="space-y-1">
+                                <h4 class="text-[9.5px] font-black text-slate-800 line-clamp-2 leading-tight min-h-[24px]">
+                                    ${p.title}
+                                </h4>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="inline-block border border-[#005a9c] text-[#005a9c] text-[6.5px] font-black px-1 rounded-sm uppercase tracking-wider scale-95 origin-left">Yêu thích+</span>
+                                    <span class="inline-block bg-sky-50 text-sky-700 text-[6.5px] font-black px-1 py-0.5 rounded-sm scale-95 origin-left">Mua 2 & giảm 3%</span>
+                                </div>
+                            </div>
+                            <div class="space-y-0.5 pt-1">
+                                <div class="flex items-baseline gap-1">
+                                    <span class="text-xs font-black text-[#005a9c]">${discountedPrice.toLocaleString()}đ</span>
+                                </div>
+                                <div class="flex items-center gap-1 text-[7.5px] text-slate-450 font-bold">
+                                    <span class="text-yellow-500">★</span>
+                                    <span>${p.rating}</span>
+                                    <span>| Đã bán ${p.sold}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            };
+
+            const shippingProds = globalProds.filter(p => p.globalCategory === 'shipping');
+            const brandProds = globalProds.filter(p => p.globalCategory === 'brands');
+
+            shipList.innerHTML = shippingProds.map(renderCard).join('');
+            brandList.innerHTML = brandProds.map(renderCard).join('');
+
+            const buttons = document.querySelectorAll('[onclick^="claimGlobalVoucher"]');
+            buttons.forEach(btn => {
+                const onclickStr = btn.getAttribute('onclick');
+                const match = onclickStr.match(/'([^']+)'/);
+                if (match && match[1]) {
+                    const val = match[1];
+                    if (GlobalClaimedVouchers.includes(val)) {
+                        btn.innerText = 'Đã Lưu';
+                        btn.disabled = true;
+                        btn.className = "self-start bg-slate-200 text-slate-400 text-[7.5px] font-black px-2 py-0.5 rounded-full cursor-not-allowed leading-none";
+                    }
+                }
+            });
         }
 
 
@@ -25393,7 +26715,7 @@
 
             
 
-            // ========== Main Product List (Vertical TikTok Style Cards) ==========
+            // ========== Main Product List (Vertical GEMS Style Cards) ==========
 
             const mainList = document.getElementById('fs-main-list-container');
 
@@ -25512,7 +26834,7 @@
 
                                 
 
-                                <!-- Pricing & Buy trigger (TikTok style) -->
+                                <!-- Pricing & Buy trigger (GEMS style) -->
 
                                 <div class="flex items-end justify-between">
 

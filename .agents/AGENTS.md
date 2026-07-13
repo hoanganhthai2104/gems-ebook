@@ -1,5 +1,11 @@
 # Project Rules
 
+- **Workspace File Authority**: The agent has full permission and authority to manage, read, write, create, and delete any files and folders within this workspace directory (`d:\Desktop\EBOOK GEMS`), including source files, environment variables (`.env`, `.env.local`), configurations, and scripts, to efficiently fulfill the tasks requested by the user.
+
+- **Git & Version Control Authority**: The agent is authorized to run local Git commands (`git status`, `git diff`, `git log`, `git checkout`, `git add`, `git commit`, etc.) to track changes and manage local version control. However, code pushes to GitHub must follow the Git Push Policy below.
+
+- **Browser & Testing Authority**: The agent is fully authorized to run local servers, execute URL requests, perform web searches, and interact with browser sessions to test and debug the application.
+
 - **Git Push Policy**: Chỉ thực hiện commit và push lên Git/GitHub khi có yêu cầu bằng lời nói rõ ràng từ người dùng. Tuyệt đối không tự ý stage, commit hoặc push code trong bất kỳ trường hợp nào khác.
 
 - **Strict Scope of Work**: Chỉ chỉnh sửa đúng những file và những dòng code cần thiết cho yêu cầu hiện tại. Các phần code khác phải giữ nguyên trạng để tránh gây lỗi dây chuyền cho các tính năng đang hoạt động bình thường khác.
