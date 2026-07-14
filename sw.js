@@ -1,9 +1,8 @@
-const CACHE_NAME = 'gems-pwa-cache-v71';
+const CACHE_NAME = 'gems-pwa-cache-v79';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/assets/logo.png',
-  '/index.css'
+  '/assets/logo.png'
 ];
 
 self.addEventListener('install', event => {
@@ -31,31 +30,42 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  // Strategy: Stale-While-Revalidate
-  event.respondWith(
-    caches.match(event.request).then(cachedResponse => {
-      const fetchPromise = fetch(event.request).then(networkResponse => {
-        // Update the cache with the newest version from the network
-        if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
-          // Prevent caching HTML fallback responses for static assets (images, css, js)
-          const contentType = networkResponse.headers.get('content-type');
-          const isHtml = contentType && contentType.includes('text/html');
-          const isPageRequest = event.request.destination === 'document' || event.request.mode === 'navigate';
+  const isPageRequest = event.request.destination === 'document' || event.request.mode === 'navigate';
 
-          if (!isHtml || isPageRequest) {
+  if (isPageRequest) {
+    // Strategy: Network-First for HTML page requests to avoid getting stuck in old cache
+    event.respondWith(
+      fetch(event.request)
+        .then(networkResponse => {
+          if (networkResponse && networkResponse.status === 200) {
+            const responseClone = networkResponse.clone();
             caches.open(CACHE_NAME).then(cache => {
-              cache.put(event.request, networkResponse.clone());
+              cache.put(event.request, responseClone);
             });
           }
-        }
-        return networkResponse;
-      }).catch(() => {
-        // If network fails (offline), return cached version
-        return cachedResponse;
-      });
-      
-      // Return cached version immediately if available, otherwise wait for network
-      return cachedResponse || fetchPromise;
-    })
-  );
+          return networkResponse;
+        })
+        .catch(() => {
+          return caches.match(event.request);
+        })
+    );
+  } else {
+    // Strategy: Stale-While-Revalidate for static assets
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
+        const fetchPromise = fetch(event.request).then(networkResponse => {
+          if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+            const responseClone = networkResponse.clone();
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(event.request, responseClone);
+            });
+          }
+          return networkResponse;
+        }).catch(() => {
+          return cachedResponse;
+        });
+        return cachedResponse || fetchPromise;
+      })
+    );
+  }
 });
