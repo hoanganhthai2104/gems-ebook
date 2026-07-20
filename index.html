@@ -30,13 +30,30 @@
 
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 
-    
+    <!-- Firebase Web SDKs (Compat mode) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyBqYwumJNkRogUIjCY965OQQv28nGeHI_o",
+        authDomain: "gems-ebook.firebaseapp.com",
+        projectId: "gems-ebook",
+        storageBucket: "gems-ebook.firebasestorage.app",
+        messagingSenderId: "531668800970",
+        appId: "1:531668800970:web:0985471a02361fcf0e6b33"
+      };
+      if (typeof firebase !== 'undefined') {
+        firebase.initializeApp(firebaseConfig);
+        window.db = firebase.firestore();
+        console.log("🔥 Firebase initialized successfully!");
+      }
+    </script>
 
     <!-- Fonts -->
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet"/>
-
-    
 
     <!-- Google Material Symbols -->
 
@@ -1808,18 +1825,13 @@
         /* High-end Premium Animations */
 
         @keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-            from { opacity: 0; transform: translateY(15px) scale(0.98); filter: blur(2px); }
-
-            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-
-        }
-
-        .page-enter {
-
-            animation: pageFadeIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-
-        }
+.page-enter {
+    animation: pageFadeIn 0.15s ease-out forwards;
+}
 
 
 
@@ -4877,7 +4889,11 @@
 
                                 <div class="grid grid-cols-2 gap-2" id="shop-main-product-grid">
 
-                                    <!-- Dynamic Products Grid will be inserted here -->
+                                    <!-- Skeleton placeholders shown before products load -->
+                                    <div class="shop-skeleton rounded-2xl overflow-hidden bg-white/80 border border-slate-100 animate-pulse"><div class="aspect-[3/4.2] bg-slate-200"></div><div class="p-2 space-y-2"><div class="h-3 bg-slate-200 rounded w-4/5"></div><div class="h-3 bg-slate-200 rounded w-2/3"></div><div class="h-4 bg-slate-200 rounded w-1/2 mt-1"></div></div></div>
+                                    <div class="shop-skeleton rounded-2xl overflow-hidden bg-white/80 border border-slate-100 animate-pulse"><div class="aspect-[3/4.2] bg-slate-200"></div><div class="p-2 space-y-2"><div class="h-3 bg-slate-200 rounded w-4/5"></div><div class="h-3 bg-slate-200 rounded w-2/3"></div><div class="h-4 bg-slate-200 rounded w-1/2 mt-1"></div></div></div>
+                                    <div class="shop-skeleton rounded-2xl overflow-hidden bg-white/80 border border-slate-100 animate-pulse"><div class="aspect-[3/4.2] bg-slate-200"></div><div class="p-2 space-y-2"><div class="h-3 bg-slate-200 rounded w-4/5"></div><div class="h-3 bg-slate-200 rounded w-2/3"></div><div class="h-4 bg-slate-200 rounded w-1/2 mt-1"></div></div></div>
+                                    <div class="shop-skeleton rounded-2xl overflow-hidden bg-white/80 border border-slate-100 animate-pulse"><div class="aspect-[3/4.2] bg-slate-200"></div><div class="p-2 space-y-2"><div class="h-3 bg-slate-200 rounded w-4/5"></div><div class="h-3 bg-slate-200 rounded w-2/3"></div><div class="h-4 bg-slate-200 rounded w-1/2 mt-1"></div></div></div>
 
                                 </div>
 
@@ -12244,443 +12260,9 @@
 
             shopBannerInterval: null,
 
-            bookData: {
+            bookData: {},
 
-                chandoanykhoa: {
-
-                    title: 'Cẩm nang Chẩn đoán Y khoa',
-
-                    author: 'GEMS Academic',
-
-                    rating: '4.8',
-
-                    reads: '15.6k',
-
-                    cover: 'covers/chandoanykhoa.png',
-
-                    desc: 'Sách cẩm nang chẩn đoán y khoa lâm sàng toàn diện, cung cấp các quy trình chẩn đoán từ triệu chứng đến bệnh lý chi tiết hệ tuần hoàn và các cơ quan.'
-
-                },
-
-                lamsangnoikhoa: {
-
-                    title: 'Sinh lý bệnh Tim mạch',
-
-                    author: 'Dr. Elena Rostova',
-
-                    rating: '4.9',
-
-                    reads: '11.4k',
-
-                    cover: 'covers/lamsangnoikhoa.png',
-
-                    desc: 'Sổ tay hướng dẫn chi tiết lâm sàng nội khoa dành cho các bác sĩ và sinh viên thực tập.'
-
-                },
-
-                capnhatyvan: {
-
-                    title: 'Dược lý Lâm sàng',
-
-                    author: 'Dr. Robert H.',
-
-                    rating: '4.7',
-
-                    reads: '9.2k',
-
-                    cover: 'covers/capnhatyvan.png',
-
-                    desc: 'Tập hợp các nghiên cứu y khoa, hướng dẫn điều trị mới nhất được cập nhật trong năm 2024.'
-
-                },
-
-                thaoduoc: {
-
-                    title: 'Cẩm nang Thảo dược Quý Phương Đông',
-
-                    author: 'GS. TS. Nguyễn Văn Anh',
-
-                    rating: '4.8',
-
-                    reads: '12.5k',
-
-                    cover: 'covers/thaoduoc.png',
-
-                    desc: 'Cuốn sách là kết tinh của hơn 30 năm nghiên cứu thực địa về các loài thảo dược quý tại vùng núi phía Bắc Việt Nam. Tác phẩm không chỉ cung cấp kiến thức về nhận dạng, công dụng mà còn hướng dẫn chi tiết cách bào chế các phương thuốc dân gian hiệu quả cho sức khỏe hiện đại. Nghiên cứu sâu rộng về các hợp chất sinh học hoạt tính được phân tích qua lăng kính y học cổ truyền kết hợp y học hiện đại, tạo nên một tài liệu tham khảo giá trị cho cả sinh viên y khoa và bác sĩ lâm sàng.'
-
-                },
-
-                trathaomoc: {
-
-                    title: 'Trà Thảo Mộc',
-
-                    author: 'Lê Minh',
-
-                    rating: '4.7',
-
-                    reads: '8.2k',
-
-                    cover: 'covers/trathaomoc.png',
-
-                    desc: 'Phân tích khoa học và công thức chưng cất chè, thảo mộc chữa trị các bệnh nhẹ trong gia đình, an thần cải thiện giấc ngủ sâu và hỗ trợ bài độc tố từ gan thận ra ngoài.'
-
-                },
-
-                thucduong: {
-
-                    title: 'Thực Dưỡng Toàn Diện',
-
-                    author: 'Trần Hòa',
-
-                    rating: '4.6',
-
-                    reads: '5.4k',
-
-                    cover: 'covers/thucduong.png',
-
-                    desc: 'Nguyên lý ăn uống theo khoa học dinh dưỡng phương Đông kết hợp hiện đại. Cách sử dụng ngũ cốc nguyên cám và rau củ quả hữu cơ để tái lập hệ miễn dịch tự nhiên cơ thể.'
-
-                },
-
-                'co-the-nguoi': {
-
-                    title: 'Cơ thể người: Phân tích chi tiết',
-
-                    author: 'PGS. TS. Lê Thu',
-
-                    rating: '4.8',
-
-                    reads: '9.1k',
-
-                    cover: 'covers/cothe.png',
-
-                    desc: 'Cẩm nang sơ đồ giải phẫu đầy đủ với tỷ lệ hình minh họa sinh động. Phân tích chi tiết các hệ tuần hoàn, hệ hô hấp, cơ xương khớp giúp nâng cao kỹ năng thực hành.'
-
-                },
-
-                thankinh: {
-
-                    title: 'Miễn dịch học Nâng cao',
-
-                    author: 'Dr. Michael Chen',
-
-                    rating: '4.8',
-
-                    reads: '8.9k',
-
-                    cover: 'covers/thankinh.png',
-
-                    desc: 'Nghiên cứu cốt lõi về cơ chế miễn dịch tự nhiên và tế bào chất kháng thể phòng ngừa các bệnh tự miễn y khoa.'
-
-                },
-
-                thankinhhoc: {
-
-                    title: 'Thần kinh học & Chức năng Nhận thức Nâng cao',
-
-                    author: 'Dr. Sarah Jenkins',
-
-                    rating: '4.9',
-
-                    reads: '14.5k',
-
-                    cover: 'covers/brain_cover.png',
-
-                    desc: 'Nghiên cứu nâng cao về thần kinh học, các trung khu chức năng não bộ và ứng dụng phục hồi chức năng nhận thức lâm sàng.'
-
-                },
-
-                ditruyen: {
-
-                    title: 'Di truyền học y khoa',
-
-                    author: 'PGS. TS. Trần Hải',
-
-                    rating: '4.8',
-
-                    reads: '3.7k',
-
-                    cover: 'covers/ditruyen.png',
-
-                    desc: 'Nghiên cứu ADN, đột biến gene di truyền sinh học tế bào gốc. Định hướng y học cá nhân hóa dựa trên hệ gene biểu thị của từng cá thể bệnh nhân.'
-
-                },
-
-                xuongkhop: {
-
-                    title: 'Giải phẫu hệ xương khớp',
-
-                    author: 'BS. Nguyễn Minh Tuấn',
-
-                    rating: '4.7',
-
-                    reads: '3.1k',
-
-                    cover: 'covers/cothe.png',
-
-                    desc: 'Phân tích cơ xương khớp lâm sàng và các bệnh lý về thoái hóa khớp ở người trưởng thành.'
-
-                },
-
-                sinhlythankinh: {
-
-                    title: 'Sinh lý học Thần kinh',
-
-                    author: 'GS. Phạm Hoàng Nam',
-
-                    rating: '4.8',
-
-                    reads: '2.5k',
-
-                    cover: 'covers/sinhlythankinh.png',
-
-                    desc: 'Cơ chế dẫn truyền xung điện thần kinh và các phản xạ không điều kiện của con người.'
-
-                },
-
-                naobo: {
-
-                    title: 'Não bộ và Hành vi',
-
-                    author: 'TS. Đỗ Quyên',
-
-                    rating: '4.6',
-
-                    reads: '1.8k',
-
-                    cover: 'covers/naobo.png',
-
-                    desc: 'Nghiên cứu về mối liên hệ giữa các thùy não bộ và hành vi tâm lý của bệnh nhân tâm thần.'
-
-                },
-
-                ditruyenphantu: {
-
-                    title: 'Di truyền học phân tử',
-
-                    author: 'PGS. Lê Huy',
-
-                    rating: '4.7',
-
-                    reads: '2.9k',
-
-                    cover: 'covers/ditruyenphantu.png',
-
-                    desc: 'Cấu trúc ADN và ARN, cơ chế nhân đôi, phiên mã và dịch mã sinh học phân tử tế bào.'
-
-                },
-
-                dotbiengene: {
-
-                    title: 'Đột biến Gene lâm sàng',
-
-                    author: 'TS. Nguyễn Thị Trang',
-
-                    rating: '4.9',
-
-                    reads: '3.5k',
-
-                    cover: 'covers/ditruyen.png',
-
-                    desc: 'Các dạng đột biến cấu trúc nhiễm sắc thể gây ra các hội chứng bệnh lý hiếm gặp trên lâm sàng.'
-
-                },
-
-                baoche: {
-
-                    title: 'Kỹ Thuật Bào Chế Dược Liệu',
-
-                    author: 'GS. TS. Nguyễn Văn Anh',
-
-                    rating: '4.8',
-
-                    reads: '6.2k',
-
-                    cover: 'covers/baoche.png',
-
-                    desc: 'Hướng dẫn chi tiết phương pháp sao tẩm, chưng cất và bào chế các loại cao thảo dược quý Đông y.'
-
-                },
-
-                dongydieuphuong: {
-
-                    title: 'Đông Y Diệu Phương',
-
-                    author: 'PGS. TS. Hoàng Tích Huyền',
-
-                    rating: '4.8',
-
-                    reads: '4.1k',
-
-                    cover: 'covers/dongydieuphuong.png',
-
-                    desc: 'Tổng hợp các bài thuốc bí truyền từ cung đình đến dân gian, kết hợp chẩn trị y học hiện đại và phân tích dược lý sinh hóa học.'
-
-                },
-
-                namduocthanhieu: {
-
-                    title: 'Nam Dược Thần Hiệu',
-
-                    author: 'Tuệ Tĩnh',
-
-                    rating: '4.9',
-
-                    reads: '15.6k',
-
-                    cover: 'covers/namduocthanhieu.png',
-
-                    desc: 'Tác phẩm y học kinh điển của thiền sư Tuệ Tĩnh về các vị thuốc nam bản địa trị bệnh cho người Việt theo phương châm Nam dược trị Nam nhân.'
-
-                },
-
-                giaiphauthanhinh: {
-
-                    title: 'Giải phẫu hệ thần kinh',
-
-                    author: 'GS. Trịnh Bình',
-
-                    rating: '4.7',
-
-                    reads: '5.2k',
-
-                    cover: 'covers/cothe.png',
-
-                    desc: 'Khảo sát cấu trúc chi tiết của tủy sống, não bộ, hệ thần kinh ngoại vi và các bó dẫn truyền vận động cảm giác chính.'
-
-                },
-
-                atlasgiaiphau: {
-
-                    title: 'Atlas Giải Phẫu Cơ Thể Người',
-
-                    author: 'BS. Nguyễn Quang Quyền',
-
-                    rating: '4.9',
-
-                    reads: '21.4k',
-
-                    cover: 'covers/atlasgiaiphau.png',
-
-                    desc: 'Tập bản đồ giải phẫu đầy đủ nhất của Việt Nam, cung cấp cái nhìn trực quan và thuật ngữ chuẩn hóa phục vụ học tập nghiên cứu y khoa.'
-
-                },
-
-                benhthanhinh: {
-
-                    title: 'Bệnh học Thần kinh lâm sàng',
-
-                    author: 'PGS. TS. Nguyễn Chương',
-
-                    rating: '4.8',
-
-                    reads: '3.9k',
-
-                    cover: 'covers/thankinh.png',
-
-                    desc: 'Chẩn đoán và điều trị các bệnh lý thần kinh thường gặp như động kinh, đau nửa đầu, bệnh thần kinh ngoại biên và nhược cơ.'
-
-                },
-
-                taibienmachmau: {
-
-                    title: 'Tai biến mạch máu não',
-
-                    author: 'GS. Lê Đức Hinh',
-
-                    rating: '4.8',
-
-                    reads: '6.7k',
-
-                    cover: 'covers/taibienmachmau.png',
-
-                    desc: 'Hướng dẫn chẩn đoán nhanh đột quỵ, điều trị cấp cứu nội khoa và các liệu pháp phục hồi chức năng sau tai biến.'
-
-                },
-
-                ditruyentebao: {
-
-                    title: 'Di truyền tế bào học',
-
-                    author: 'GS. Phan Cự Nhân',
-
-                    rating: '4.6',
-
-                    reads: '2.3k',
-
-                    cover: 'covers/ditruyentebao.png',
-
-                    desc: 'Khảo sát nhiễm sắc thể, phân bào và các bất thường NST liên quan đến dị tật bẩm sinh và ung thư di truyền.'
-
-                },
-
-                kythuatditruyen: {
-
-                    title: 'Kỹ thuật di truyền hiện đại',
-
-                    author: 'PGS. TS. Đinh Đoàn Long',
-
-                    rating: '4.8',
-
-                    reads: '4.8k',
-
-                    cover: 'covers/kythuatditruyen.png',
-
-                    desc: 'Các công nghệ cốt lõi trong thao tác gen như PCR, giải trình tự thế hệ mới (NGS) và công nghệ CRISPR-Cas9 chỉnh sửa gen.'
-
-                },
-
-                nhansam: {
-
-                    title: 'Nhân Sâm: Đại Bổ Nguyên Khí',
-
-                    author: 'GS. TS. Nguyễn Văn Anh',
-
-                    rating: '4.9',
-
-                    reads: '10.2k',
-
-                    cover: 'covers/nhansam.png',
-
-                    desc: 'Nghiên cứu toàn diện về Nhân Sâm (Panax ginseng) và các hợp chất ginsenoside có tác dụng đại bổ nguyên khí, ích huyết, sinh tân, an thần trong y học cổ truyền.'
-
-                },
-
-                tamly: {
-
-                    title: 'Tâm lý học lâm sàng',
-
-                    author: 'ThS. Ngô Anh Tuấn',
-
-                    rating: '4.7',
-
-                    reads: '3.8k',
-
-                    cover: 'covers/tamly.png',
-
-                    desc: 'Giáo trình tâm lý học lâm sàng ứng dụng trong thực hành y khoa, chẩn đoán các rối loạn tâm thần, trầm cảm và liệu pháp tâm lý trị liệu.'
-
-                },
-
-                genkhoa: {
-
-                    title: 'Gen và bệnh học',
-
-                    author: 'TS. Vũ Thị Lan',
-
-                    rating: '4.7',
-
-                    reads: '2.6k',
-
-                    cover: 'covers/genkhoa.png',
-
-                    desc: 'Mối liên hệ giữa biến thể gen và các bệnh lý phổ biến, phân tích GWAS và ứng dụng di truyền dược lý trong điều trị cá thể hóa.'
-
-                }
-
-            },
-
-            currentBookId: 'thaoduoc',
+        currentBookId: 'thaoduoc',
 
             carouselIndex: 0,
 
@@ -13048,793 +12630,9 @@
 
 
 
-        const bookChapters = {
+        const bookChapters = {};
 
-            tongquan: {
-
-                title: "Chương 1: Tổng quan",
-
-                meta: "Chẩn đoán y khoa • Chương 1",
-
-                pages: [
-
-                    `
-
-                    <header class="mb-4">
-
-                        <span class="text-[11px] font-bold text-blue-700 uppercase tracking-widest">Chẩn đoán Y khoa</span>
-
-                        <h2 class="text-3xl serif-title mt-2 leading-tight text-[#1a2e35]">
-
-                            Khái niệm giải phẫu học lâm sàng cơ bản
-
-                        </h2>
-
-                        <div class="w-full h-px bg-gray-300 mt-4 opacity-50"></div>
-
-                    </header>
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <p>
-
-                            Giải phẫu học lâm sàng là nền tảng cốt lõi của mọi chẩn đoán và điều trị y khoa. Việc nắm vững cấu trúc cơ thể người dưới lăng kính lâm sàng giúp bác sĩ xác định chính xác các điểm mốc giải phẫu quan trọng.
-
-                        </p>
-
-                        <p>
-
-                            Môn học này không chỉ đơn thuần là ghi nhớ tên gọi các xương, cơ, dây thần kinh hay mạch máu, mà quan trọng hơn là hiểu rõ mối liên quan về mặt không gian giữa chúng. Từ đó, bác sĩ có thể lý giải các triệu chứng lâm sàng phát sinh khi có thương tổn cấu trúc.
-
-                        </p>
-
-                        <p>
-
-                            Ví dụ, một khối u ở thùy đỉnh não bộ có thể chèn ép vào hồi sau trung tâm, dẫn đến mất cảm giác nửa người bên đối diện. Tương tự, việc xác định vị trí của ruột thừa viêm dựa trên điểm đau McBurney là một ứng dụng kinh điển của giải phẫu học bề mặt trong thực hành cấp cứu ngoại khoa hàng ngày.
-
-                        </p>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Các mặt phẳng giải phẫu chính</h3>
-
-                        <p>
-
-                            Để định vị và mô tả vị trí các cơ quan một cách thống nhất, y học sử dụng ba mặt phẳng giải phẫu quy chiếu tiêu chuẩn:
-
-                        </p>
-
-                        <ul class="list-disc pl-6 space-y-2">
-
-                            <li><strong>Mặt phẳng đứng dọc (Sagittal plane):</strong> Chia cơ thể thành hai nửa trái và phải. Mặt phẳng đứng dọc giữa chia cơ thể thành hai nửa đối xứng hoàn hảo.</li>
-
-                            <li><strong>Mặt phẳng đứng ngang (Coronal plane):</strong> Chia cơ thể thành phần trước (anterior/ventral) và phần sau (posterior/dorsal).</li>
-
-                            <li><strong>Mặt phẳng ngang (Transverse plane):</strong> Chia cơ thể thành phần trên (superior) và phần dưới (inferior), thường dùng trong hình ảnh cắt lớp CT/MRI.</li>
-
-                        </ul>
-
-                        <p class="mt-4">
-
-                            Việc hiểu rõ các mặt phẳng này là bắt buộc khi đọc phim chụp cắt lớp vi tính. Khi lát cắt đi qua cơ thể, hình ảnh hiển thị trên phim chính là hình chiếu 2D của các cơ quan trên các mặt phẳng quy chiếu tương ứng, đòi hỏi tư duy không gian 3D nhạy bén từ bác sĩ chẩn đoán hình ảnh.
-
-                        </p>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Các hệ thống cơ quan cốt lõi</h3>
-
-                        <p>
-
-                            Cơ thể người được cấu thành bởi 11 hệ thống cơ quan hoạt động phối hợp chặt chẽ. Trong đó, hệ tuần hoàn, hệ hô hấp và hệ thần kinh là ba hệ thống quan trọng nhất quyết định sự sống trực tiếp của bệnh nhân.
-
-                        </p>
-
-                        <p>
-
-                            Sự suy sụp đột ngột của bất kỳ hệ thống nào trong ba hệ này đều dẫn đến tình trạng suy đa tạng và tử vong nhanh chóng nếu không được can thiệp kịp thời. Cụ thể, khi hệ hô hấp ngừng trao đổi khí, lượng oxy trong máu giảm mạnh làm cơ tim thiếu máu nuôi, dẫn đến ngừng tuần hoàn và tổn thương não không phục hồi sau 4-6 phút.
-
-                        </p>
-
-                        <p>
-
-                            Do đó, quy trình cấp cứu ban đầu (ABC - Airway, Breathing, Circulation) luôn ưu tiên tái lập đường thở thông thoáng, duy trì nhịp thở và ép tim ngoài lồng ngực để bảo vệ các cơ quan đích khỏi tổn thương do thiếu oxy.
-
-                        </p>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Ứng dụng trong Chẩn đoán Hình ảnh</h3>
-
-                        <p>
-
-                            Kiến thức giải phẫu giúp diễn giải chính xác các phim chụp X-quang, cắt lớp vi tính (CT Scan), và cộng hưởng từ (MRI). Bác sĩ lâm sàng phải đối chiếu các mốc giải phẫu trên cơ thể bệnh nhân với hình ảnh hiển thị để phát hiện những bất thường cấu trúc.
-
-                        </p>
-
-                        <p>
-
-                            Ví dụ, khi chụp X-quang ngực thẳng, bóng tim to được xác định khi chỉ số tim ngực vượt quá 0.5. Sự mờ đi của góc sườn hoành là chỉ báo trực quan của tràn dịch màng phổi. Tương tự, trên phim CT mạch vành, việc phát hiện các mảng xơ vữa gây hẹp trên 70% lòng mạch là cơ sở để chỉ định can thiệp đặt stent.
-
-                        </p>
-
-                        <p>
-
-                            Sự kết hợp nhuần nhuyễn giữa giải phẫu học và công nghệ chẩn đoán hình ảnh hiện đại đã nâng cao đáng kể độ chính xác trong chẩn đoán y khoa, giảm thiểu sai sót lâm sàng xuống mức tối đa.
-
-                        </p>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="h-full overflow-y-auto bg-white px-5 py-6" id="quiz-container">
-
-                        <!-- Chapter Completed screen will render here -->
-
-                    </div>
-
-                    `
-
-                ]
-
-            },
-
-            hetuanhoan: {
-
-                title: "Chương 2: Hệ tuần hoàn",
-
-                meta: "Chẩn đoán y khoa • Chương 2",
-
-                pages: [
-
-                    `
-
-                    <header class="mb-4">
-
-                        <span class="text-[11px] font-bold text-blue-700 uppercase tracking-widest">Chẩn đoán Y khoa</span>
-
-                        <h2 class="text-3xl serif-title mt-2 leading-tight text-[#1a2e35]">
-
-                            Giải phẫu tim mạch &amp; Huyết động học
-
-                        </h2>
-
-                        <div class="w-full h-px bg-gray-300 mt-4 opacity-50"></div>
-
-                    </header>
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <p>
-
-                            Tim là một bơm cơ học rỗng gồm bốn buồng: hai tâm nhĩ ở trên và hai tâm thất ở dưới. Hệ tuần hoàn chia làm hai vòng tuần hoàn lớn (tuần hoàn hệ thống) và tuần hoàn nhỏ (tuần hoàn phổi).
-
-                        </p>
-
-                        <p>
-
-                            Vòng tuần hoàn lớn bắt nguồn từ tâm thất trái, bơm máu giàu oxy qua động mạch chủ đi nuôi khắp các mô và cơ quan của cơ thể, sau đó nhận máu nghèo oxy theo tĩnh mạch chủ trở về tâm nhĩ phải.
-
-                        </p>
-
-                        <p>
-
-                            Vòng tuần hoàn nhỏ bắt nguồn từ tâm thất phải, đẩy máu nghèo oxy lên động mạch phổi để thực hiện quá trình trao đổi khí tại các phế nang phổi. Tại đây, khí carbonic được thải ra ngoài và oxy được hấp thụ vào máu, đưa máu đỏ tươi theo tĩnh mạch phổi trở lại tâm nhĩ trái để chuẩn bị cho chu kỳ tiếp theo.
-
-                        </p>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Hệ thống dẫn truyền điện học của tim</h3>
-
-                        <p>
-
-                            Sự co bóp nhịp nhàng của cơ tim được điều khiển bởi hệ thống dẫn truyền tự động chuyên biệt trong tim bao gồm:
-
-                        </p>
-
-                        <ul class="list-disc pl-6 space-y-2">
-
-                            <li><strong>Nút xoang (SA node):</strong> Nút chủ nhịp tự nhiên của tim, nằm ở tâm nhĩ phải, tự động phát xung động với tần số 60-100 lần/phút.</li>
-
-                            <li><strong>Nút nhĩ thất (AV node):</strong> Nằm ở vách liên nhĩ, có nhiệm vụ làm chậm xung động điện khoảng 0.1 giây để tâm nhĩ kịp co bóp và tống hết máu xuống thất trước khi thất co.</li>
-
-                            <li><strong>Bó His và mạng lưới Purkinje:</strong> Dẫn truyền nhanh xung động điện khắp cơ tâm thất để kích hoạt quá trình co bóp đồng bộ, tống máu vào động mạch.</li>
-
-                        </ul>
-
-                        <p class="mt-4">
-
-                            Mọi tổn thương hoặc gián đoạn trên đường dẫn truyền này đều có thể dẫn đến các rối loạn nhịp tim nguy hiểm như block nhĩ thất, nhịp nhanh thất hay rung thất cấp tính.
-
-                        </p>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Chu kỳ tim &amp; Huyết động học</h3>
-
-                        <p>
-
-                            Một chu kỳ tim tiêu chuẩn gồm hai pha chính: pha tâm thu (co bóp, tống máu) và pha tâm trương (giãn cơ, đổ đầy máu).
-
-                        </p>
-
-                        <p>
-
-                            Trong pha tâm trương, các van nhĩ thất (van hai lá và ba lá) mở ra, cho phép máu chảy từ nhĩ xuống thất. Khi pha tâm thu bắt đầu, áp lực trong thất tăng vọt làm đóng các van nhĩ thất (tạo ra tiếng tim thứ nhất - T1), đồng thời mở các van bán nguyệt (van động mạch chủ và động mạch phổi) để máu được bơm vào động mạch chủ và phổi.
-
-                        </p>
-
-                        <p>
-
-                            Khi kết thúc pha tống máu, áp lực động mạch vượt quá áp lực thất làm đóng các van bán nguyệt (tạo ra tiếng tim thứ hai - T2). Sự phối hợp nhịp nhàng giữa sự co cơ và hoạt động đóng mở các van tim đảm bảo máu luôn lưu thông theo một chiều cố định với lưu lượng tuần hoàn ổn định.
-
-                        </p>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Các bệnh lý tuần hoàn thường gặp</h3>
-
-                        <p>
-
-                            Hệ tuần hoàn có thể gặp phải nhiều tình trạng bệnh lý nghiêm trọng. Phổ biến nhất là bệnh tăng huyết áp, đặc trưng bởi sự gia tăng áp lực dòng máu lên thành động mạch một cách liên tục, lâu ngày dẫn đến suy tim, tổn thương mạch máu não và suy thận mạn tính.
-
-                        </p>
-
-                        <p>
-
-                            Xơ vữa động mạch xảy ra do sự tích tụ cholesterol tạo nên các mảng xơ cứng trong lòng động mạch, làm hẹp lòng mạch và cản trở lưu thông dòng máu.
-
-                        </p>
-
-                        <p>
-
-                            Khi các mảng xơ vữa này bị nứt vỡ, chúng kích hoạt quá trình hình thành cục máu đông gây tắc nghẽn hoàn toàn mạch máu nuôi cơ tim, dẫn đến cơn nhồi máu cơ tim cấp tính đe dọa trực tiếp đến tính mạng bệnh nhân nếu không được thông mạch cấp cứu.
-
-                        </p>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="h-full overflow-y-auto bg-white px-5 py-6" id="quiz-container">
-
-                        <!-- Chapter Completed screen will render here -->
-
-                    </div>
-
-                    `
-
-                ]
-
-            },
-
-            ecg: {
-
-                title: "Chương 3: Diễn giải ECG",
-
-                meta: "Chẩn đoán y khoa • Chương 3",
-
-                pages: [
-
-                    `
-
-                    <header class="mb-4">
-
-                        <span class="text-[11px] font-bold text-blue-700 uppercase tracking-widest">Chẩn đoán Y khoa</span>
-
-                        <h2 class="text-3xl serif-title mt-2 leading-tight text-[#1a2e35]">
-
-                            Nguyên lý Điện tâm đồ lâm sàng (ECG)
-
-                        </h2>
-
-                        <div class="w-full h-px bg-gray-300 mt-4 opacity-50"></div>
-
-                    </header>
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <p>
-
-                            Điện tâm đồ (ECG) là đồ thị ghi lại các biến thiên của dòng điện do tim phát ra trong quá trình hoạt động co bóp. Đây là công cụ chẩn đoán không xâm lấn cực kỳ quan trọng để phát hiện rối loạn nhịp tim và thiếu máu cơ tim.
-
-                        </p>
-
-                        <p>
-
-                            Một bản ghi điện tâm đồ chuẩn gồm 12 chuyển đạo: 3 chuyển đạo song cực chi (I, II, III), 3 chuyển đạo đơn cực chi tăng cường (aVR, aVL, aVF) và 6 chuyển đạo trước tim (V1 đến V6). Các chuyển đạo này nhìn quả tim dưới các góc độ hình học khác nhau, giúp định vị chính xác vùng cơ tim bị tổn thương.
-
-                        </p>
-
-                        <p>
-
-                            Ví dụ, sự biến đổi ECG ở chuyển đạo II, III, aVF cho biết tổn thương nằm ở vùng dưới (hoặc thành sau dưới) của tâm thất trái, thường liên quan đến tắc nghẽn động mạch vành phải.
-
-                        </p>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Các sóng điện tim cơ bản</h3>
-
-                        <p>
-
-                            Phân tích một chu kỳ ECG chuẩn bao gồm việc đánh giá hình dạng, biên độ và thời gian của các sóng và khoảng điện tim sau đây:
-
-                        </p>
-
-                        <ul class="list-disc pl-6 space-y-2">
-
-                            <li><strong>Sóng P:</strong> Biểu thị quá trình khử cực của tâm nhĩ, thời gian bình thường &lt;0.12 giây, biên độ &lt;2.5mm.</li>
-
-                            <li><strong>Khoảng PR:</strong> Đo lường thời gian dẫn truyền nhĩ thất, bình thường từ 0.12 đến 0.20 giây. Khoảng PR kéo dài báo hiệu tình trạng chậm dẫn truyền nhĩ thất (block nhĩ thất cấp I).</li>
-
-                            <li><strong>Phức bộ QRS:</strong> Biểu thị khử cực của hai tâm thất, thời gian bình thường &lt;0.10 giây. QRS giãn rộng gặp trong block nhánh hoặc nhịp thất.</li>
-
-                            <li><strong>Sóng T và đoạn ST:</strong> Biểu thị quá trình tái cực thất, ST luôn nằm trên đường đẳng điện. ST chênh lên là dấu hiệu tổn thương cơ tim cấp tính.</li>
-
-                        </ul>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Phân tích nhịp tim trên ECG</h3>
-
-                        <p>
-
-                            Nhịp xoang bình thường được đặc trưng bởi sóng P đi trước mỗi phức bộ QRS, khoảng PR đều đặn và tần số tim từ 60 đến 100 chu kỳ/phút. Các rối loạn nhịp xoang bao gồm nhịp xoang nhanh (&gt;100 bpm) hoặc nhịp xoang chậm (&lt;60 bpm).
-
-                        </p>
-
-                        <p>
-
-                            Khi phân tích một điện tâm đồ, bác sĩ cần tính toán tần số tim dựa trên khoảng cách giữa các đỉnh sóng R (khoảng R-R). Nếu nhịp đều, tần số tim có thể tính nhanh bằng cách lấy 300 chia cho số ô lớn giữa hai sóng R kề nhau.
-
-                        </p>
-
-                        <p>
-
-                            Nhịp tim không đều và mất hoàn toàn sóng P, thay bằng các sóng lăn tăn (sóng f) là đặc trưng của rung nhĩ - một dạng rối loạn nhịp nhĩ phổ biến tăng nguy cơ đột quỵ do hình thành huyết khối buồng tim.
-
-                        </p>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Nhận diện thiếu máu cơ tim cấp</h3>
-
-                        <p>
-
-                            Thiếu máu cơ tim và nhồi máu cơ tim cấp thể hiện rõ nét qua sự thay đổi đoạn ST và sóng T trên ECG:
-
-                        </p>
-
-                        <ul class="list-disc pl-6 space-y-2">
-
-                            <li><strong>ST chênh lên (ST Elevation):</strong> Dấu hiệu của nhồi máu cơ tim xuyên thành cấp tính (STEMI). Đây là một cấp cứu nội khoa tối khẩn cấp đòi hỏi tái thông mạch vành ngay lập tức bằng can thiệp mạch vành qua da (PCI) hoặc thuốc tiêu sợi huyết.</li>
-
-                            <li><strong>ST chênh xuống hoặc sóng T âm:</strong> Biểu thị tình trạng thiếu máu cơ tim dưới nội tâm mạc (NSTEMI hoặc cơn đau thắt ngực không ổn định).</li>
-
-                        </ul>
-
-                        <p class="mt-4">
-
-                            Việc đọc nhanh và chính xác các biến đổi này giúp bác sĩ đưa ra quyết định xử trí đúng đắn trong những phút đầu tiên vô cùng quý giá của bệnh nhân đột quỵ tim mạch.
-
-                        </p>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="h-full overflow-y-auto bg-white px-5 py-6" id="quiz-container">
-
-                        <!-- Chapter Completed screen will render here -->
-
-                    </div>
-
-                    `
-
-                ]
-
-            },
-
-            tamthat: {
-
-                title: "Bài thuốc từ Tam Thất",
-
-                meta: "Dược liệu học • Chương 4",
-
-                pages: [
-
-                    `
-
-                    <header class="mb-4">
-
-                        <span class="text-[11px] font-bold text-blue-800 uppercase tracking-widest">Y Học Cổ Truyền</span>
-
-                        <h2 class="text-3xl serif-title mt-2 leading-tight text-[#1a2e35]" id="reader-content-heading">
-
-                            Công dụng của <span class="underline decoration-4 decoration-blue-800 underline-offset-4 text-blue-800 cursor-pointer" onclick="openGlossary('tamthat', event)">Tam Thất</span> trong lâm sàng
-
-                        </h2>
-
-                        <div class="w-full h-px bg-gray-300 mt-4 opacity-50"></div>
-
-                    </header>
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <p>
-
-                            <span class="text-4xl font-bold text-blue-800 float-left mr-2 mt-1 leading-none">T</span>
-
-                            am Thất (tên khoa học: <span class="italic">Panax pseudoginseng</span>), còn được mệnh danh là "Kim bất hoán" (vàng không đổi), là một trong những vị thuốc quý nhất trong kho tàng Y học phương Đông.
-
-                        </p>
-
-                        <p>
-
-                            Theo các tài liệu y văn cổ truyền, Tam Thất có vị ngọt, hơi đắng, tính ấm, tác động trực tiếp vào hai kinh Can và Vị. Tác dụng chủ yếu của nó là tán ứ, chỉ huyết (cầm máu), tiêu thũng và định thống (giảm đau).
-
-                        </p>
-
-                        <p>
-
-                            Đặc biệt, Tam Thất được ghi nhận trong <em>Bản Thảo Cương Mục</em> của y thánh Lý Thời Trân với vai trò độc đáo: "chỉ huyết, tán huyết, định thống" — nghĩa là vừa có khả năng cầm máu tại chỗ tổn thương, vừa làm tan máu ứ tích tụ bên trong lòng mạch, đồng thời làm dịu nhanh cơn đau đớn dữ dội cho người bệnh.
-
-                        </p>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Nghiên cứu Dược lý hiện đại</h3>
-
-                        <p>
-
-                            Các nghiên cứu dược lý học hiện đại đã chứng minh rằng rễ củ Tam Thất chứa hàm lượng cao các hoạt chất Saponin nhóm Rb, Rg tương tự nhân sâm. Nhờ đó, thuốc có khả năng rút ngắn thời gian đông máu và prothrombin đáng kể, ngăn ngừa tình trạng mất máu cấp trong các chấn thương ngoại khoa.
-
-                        </p>
-
-                        <div class="my-2 border border-slate-200 rounded-xl overflow-hidden cursor-zoom-in group shadow-sm bg-white" onclick="openHighresViewer(event)">
-
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCwHvj_zxpIcI55QDfF9650v4iUtr15HL8lTicXD6pzReKQl5HDCNrv5NR_hZLEOsqdZB8QAH9biqfNYU8Xqetlcn3p2fKRnM0LCzl6gSMxg28nNVGCI8wAoohs2JbN1HVlvoFnXmXEHNZ_ocGU9X32uvyOTl8nPpm6ngfZiai2AqT1LKFjQxMOTGPjxVzk5Q6tqPbYzTj7Pao2UIpNhjRjAXQdy_Yvj2V6WWS6lZ9c7fgF62Tbmf8U8_oSWhJZiumqEon0qnJWK-7" class="w-full aspect-[21/9] object-cover group-hover:scale-102 transition-transform duration-300" alt="Tam Thất Anatomy"/>
-
-                            <div class="bg-slate-50 p-2 text-[10px] text-slate-500 text-center font-medium border-t border-slate-200">
-
-                                Sơ đồ cấu trúc cây Tam Thất & Hoạt chất sinh học. Nhấp để phóng to chi tiết.
-
-                            </div>
-
-                        </div>
-
-                        <p class="text-sm text-gray-500 italic">
-
-                            Hình minh họa: Cấu trúc saponin và vùng phân bổ hoạt chất sinh hóa học quý trong rễ củ Tam Thất.
-
-                        </p>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Cơ chế tác động hai chiều</h3>
-
-                        <p>
-
-                            Đồng thời, hoạt chất saponin triterpenoid còn có tác dụng bảo vệ cơ tim, tăng lưu lượng mạch vành, giãn mạch ngoại vi và chống ứ huyết — tạo nên cơ chế tác động hai chiều vô cùng độc đáo: vừa <strong>chỉ huyết</strong> (cầm máu) vừa <strong>hoạt huyết</strong> (thông máu) mà không gây biến chứng tạo huyết khối.
-
-                        </p>
-
-                        <blockquote class="border-l-4 border-blue-700 pl-4 italic text-gray-600 my-4">
-
-                            "Tam Thất là vị thuốc thần kỳ có thể cầm máu mà không gây ứ huyết, hoạt huyết mà không gây xuất huyết, thực là thuốc tốt nhất trong huyết phận." — Lý Thời Trân, Bản Thảo Cương Mục.
-
-                        </blockquote>
-
-                        <p class="mt-4">
-
-                            Nhờ cơ chế này, Tam Thất không chỉ ứng dụng để cầm máu ngoài da mà còn được dùng để hỗ trợ điều trị thiểu năng tuần hoàn não, đau thắt ngực do co thắt mạch vành và dự phòng tai biến mạch máu não hữu hiệu.
-
-                        </p>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Ứng dụng Lâm sàng &amp; Liều dùng</h3>
-
-                        <p>
-
-                            Trong thực hành y khoa hiện đại và cổ truyền, Tam Thất được bào chế dưới dạng bột mịn hoặc lát mỏng sắc uống với liều lượng chuẩn từ 3-9g mỗi ngày. Các chỉ định chính bao gồm:
-
-                        </p>
-
-                        <ul class="list-disc pl-6 space-y-2">
-
-                            <li><strong>Xuất huyết chấn thương:</strong> Cầm máu nhanh trong các tổn thương dập nát phần mềm, xuất huyết tiêu hóa, trĩ xuất huyết.</li>
-
-                            <li><strong>Hỗ trợ tuần hoàn tim mạch:</strong> Giảm đau thắt ngực, cải thiện lưu lượng máu cơ tim ở bệnh nhân bệnh mạch vành mãn tính.</li>
-
-                            <li><strong>Chống viêm, giảm thũng:</strong> Tiêu sưng tụ máu do va đập thể thao hoặc sau phẫu thuật.</li>
-
-                        </ul>
-
-                        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mt-4">
-
-                            <h4 class="font-bold text-blue-800 text-sm flex items-center gap-2 mb-2">
-
-                                <span class="material-symbols-outlined text-sm">summarize</span> Tóm tắt chương
-
-                            </h4>
-
-                            <p class="text-sm text-blue-700">
-
-                                Tam Thất là dược liệu quý với cơ chế tác động hai chiều "chỉ huyết — hoạt huyết" nhờ saponin nhóm Rb. Bạn đã hoàn thành chương học này!
-
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="h-full overflow-y-auto bg-white px-5 py-6" id="quiz-container">
-
-                        <!-- Chapter Completed screen will render here -->
-
-                    </div>
-
-                    `
-
-                ]
-
-            },
-
-            nhansam: {
-
-                title: "Bài thuốc từ Nhân Sâm",
-
-                meta: "Dược liệu học • Chương 5",
-
-                pages: [
-
-                    `
-
-                    <header class="mb-4">
-
-                        <span class="text-[11px] font-bold text-blue-800 uppercase tracking-widest">Y Học Cổ Truyền</span>
-
-                        <h2 class="text-3xl serif-title mt-2 leading-tight text-[#1a2e35]" id="reader-content-heading">
-
-                            Tác dụng của <span class="underline decoration-4 decoration-blue-800 underline-offset-4 text-blue-800 cursor-pointer" onclick="openGlossary('nhansam', event)">Nhân Sâm</span> - Đại bổ nguyên khí
-
-                        </h2>
-
-                        <div class="w-full h-px bg-gray-300 mt-4 opacity-50"></div>
-
-                    </header>
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <p>
-
-                            <span class="text-4xl font-bold text-blue-800 float-left mr-2 mt-1 leading-none">N</span>
-
-                            hân Sâm (tên khoa học: <span class="italic">Panax ginseng</span>) là vị thuốc đứng đầu trong tứ đại danh dược thảo của Đông y bao gồm: Sâm, Nhung, Quế, Phụ.
-
-                        </p>
-
-                        <p>
-
-                            Với hình dáng tương tự như hình người, Nhân Sâm được coi là linh dược giúp kéo dài tuổi thọ, bồi bổ lục phủ ngũ tạng, tăng cường hệ miễn dịch và phục hồi nhanh thể trạng suy nhược trầm trọng.
-
-                        </p>
-
-                        <p>
-
-                            Dược liệu quý này phân bố chủ yếu ở khu vực ôn đới mát mẻ như bán đảo Triều Tiên, vùng Đông Bắc Trung Quốc và Siberia. Nhân sâm trồng đủ 6 năm tuổi mới tích tụ đầy đủ tinh túy dược tính cao nhất.
-
-                        </p>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Thần Thảo Cương Mục</h3>
-
-                        <p>
-
-                            Nhân Sâm quy vào ba kinh Tỳ, Phế, Tâm. Vị ngọt đắng nhẹ, tính ôn. Tác dụng nổi bật nhất được ghi chép qua các thời kỳ y văn cổ là: <strong>Đại bổ nguyên khí</strong>, cố thoát chỉ hãn, ích trí an thần, sinh tân chỉ khát.
-
-                        </p>
-
-                        <div class="my-2 border border-slate-200 rounded-xl overflow-hidden cursor-zoom-in group shadow-sm bg-white" onclick="showToast('Ảnh sơ đồ cấu trúc Nhân Sâm độ phân giải cao.')">
-
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCwHvj_zxpIcI55QDfF9650v4iUtr15HL8lTicXD6pzReKQl5HDCNrv5NR_hZLEOsqdZB8QAH9biqfNYU8Xqetlcn3p2fKRnM0LCzl6gSMxg28nNVGCI8wAoohs2JbN1HVlvoFnXmXEHNZ_ocGU9X32uvyOTl8nPpm6ngfZiai2AqT1LKFjQxMOTGPjxVzk5Q6tqPbYzTj7Pao2UIpNhjRjAXQdy_Yvj2V6WWS6lZ9c7fgF62Tbmf8U8_oSWhJZiumqEon0qnJWK-7" class="w-full aspect-[21/9] object-cover group-hover:scale-102 transition-transform duration-300" alt="Nhân Sâm Anatomy"/>
-
-                            <div class="bg-slate-50 p-2 text-[10px] text-slate-500 text-center font-medium border-t border-slate-200">
-
-                                Chi tiết hình dáng củ Nhân Sâm 6 năm tuổi & các nhánh rễ.
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Hoạt chất sinh học chính</h3>
-
-                        <p>
-
-                            Các saponin quý hiếm trong Nhân Sâm được gọi là các <strong>Ginsenoside</strong> (hơn 30 loại khác nhau). Trong đó, các nhóm Ro, Rb1, Rb2, Rc, Rd, Re, Rf, Rg1, Rg2... mang các đặc tính dược lý vô cùng phong phú và đa dạng.
-
-                        </p>
-
-                        <p>
-
-                            Ginsenoside có tác dụng kích thích hệ thần kinh trung ương ở liều thấp, làm tăng trí nhớ, cải thiện khả năng tập trung, chống căng thẳng thần kinh và cải thiện chức năng sinh lý.
-
-                        </p>
-
-                        <p>
-
-                            Ngoài ra, Nhân sâm còn chứa các polysaccharide có tác dụng kích hoạt hệ thống miễn dịch tự nhiên, thúc đẩy tổng hợp protein huyết thanh và tăng sản sinh tế bào hồng cầu tủy xương.
-
-                        </p>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="text-lg leading-relaxed text-gray-800 space-y-4 font-reading" style="font-size: var(--reader-font-size, 18px); line-height: 1.65;">
-
-                        <h3 class="text-xl font-bold text-[#1a2e35] serif-title">Ứng dụng lâm sàng nâng cao</h3>
-
-                        <p>
-
-                            Nhân sâm được chỉ định hỗ trợ điều trị đắc lực trong các trường hợp lâm sàng sau:
-
-                        </p>
-
-                        <ul class="list-disc pl-6 space-y-2">
-
-                            <li>Phế khí hư tổn, suyễn khái (hụt hơi, khó thở kéo dài ở người cao tuổi).</li>
-
-                            <li>Tỳ vị khí hư, chán ăn, người mệt mỏi rã rời, tiêu chảy mạn tính.</li>
-
-                            <li>Tâm thần bất an, hồi hộp lo âu, mất ngủ kinh niên, giảm trí nhớ.</li>
-
-                            <li>Tân dịch tổn thương gây khát, hỗ trợ điều hòa đường huyết.</li>
-
-                        </ul>
-
-                        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mt-4">
-
-                            <h4 class="font-bold text-blue-800 text-sm flex items-center gap-2 mb-2">
-
-                                <span class="material-symbols-outlined text-sm">summarize</span> Tóm tắt chương
-
-                            </h4>
-
-                            <p class="text-sm text-blue-700">
-
-                                Nhân Sâm là vị thuốc đại bổ nguyên khí hàng đầu, nâng cao sinh lực tổng thể nhờ ginsenoside phong phú. Bạn đã hoàn thành toàn bộ chương này!
-
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    `,
-
-                    `
-
-                    <div class="h-full overflow-y-auto bg-white px-5 py-6" id="quiz-container">
-
-                        <!-- Chapter Completed screen will render here -->
-
-                    </div>
-
-                    `
-
-                ]
-
-            }
-
-        };
-
-
-
-        // System Time Clock init
+// System Time Clock init
 
         function updatePhoneTime() {
 
@@ -14022,7 +12820,7 @@
 
                         if (wrapper) {
 
-                            wrapper.className = "nav-icon-wrapper flex items-center justify-center w-11 h-11 active-tab-circle circle-animate transition-all duration-300";
+                            wrapper.className = "nav-icon-wrapper flex items-center justify-center w-11 h-11 active-tab-circle circle-animate transition-colors duration-150";
 
                         }
 
@@ -14044,7 +12842,7 @@
 
                         if (wrapper) {
 
-                            wrapper.className = "nav-icon-wrapper flex items-center justify-center w-11 h-11 text-slate-500 hover:bg-slate-100/50 rounded-full transition-all duration-300";
+                            wrapper.className = "nav-icon-wrapper flex items-center justify-center w-11 h-11 text-slate-500 hover:bg-slate-100/50 rounded-full transition-colors duration-150";
 
                         }
 
@@ -14197,7 +12995,10 @@
 
         // Book details view opening
 
-        function openBookDetails(bookId) {
+        async function openBookDetails(bookId) {
+    if (Object.keys(appState.bookData).length === 0) {
+        await loadBooksData();
+    }
 
             appState.currentBookId = bookId;
 
@@ -16207,231 +15008,117 @@
 
 
 
-        function loadChapter(chapterId) {
+        async function loadChapter(chapterId) {
+    const readerViewport = document.getElementById('reader-viewport');
+    let loadingEl = document.getElementById('reader-lazy-loading');
+    if (!loadingEl && readerViewport) {
+        loadingEl = document.createElement('div');
+        loadingEl.id = 'reader-lazy-loading';
+        loadingEl.className = 'absolute inset-0 z-[150] bg-white flex flex-col items-center justify-center space-y-4';
+        loadingEl.innerHTML = `
+            <div class="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
+            <p class="text-sm font-semibold text-slate-500 font-sans">Đang tải nội dung chương y khoa...</p>
+        `;
+        readerViewport.appendChild(loadingEl);
+    }
+    if (loadingEl) loadingEl.classList.remove('hidden');
 
-            const chapter = bookChapters[chapterId];
-
-            if (!chapter) return;
-
-            
-
-            appState.currentChapter = chapterId;
-
-            
-
-            // Tự động đồng bộ đúng Book ID tương ứng với Chương
-
-            if (chapterId === 'tamthat' || chapterId === 'nhansam') {
-
-                appState.currentBookId = 'thaoduoc';
-
-            } else if (chapterId === 'tongquan' || chapterId === 'hetuanhoan' || chapterId === 'ecg') {
-
-                appState.currentBookId = 'chandoanykhoa';
-
+    if (!bookChapters[chapterId]) {
+        try {
+            if (window.db) {
+                const doc = await window.db.collection('chapters').doc(chapterId).get();
+                if (doc.exists) {
+                    bookChapters[chapterId] = doc.data();
+                    console.log(`🔥 Chapter ${chapterId} loaded from Firebase Firestore!`);
+                }
             }
-
-            
-
-            const titleEl = document.getElementById('reader-book-title');
-
-            if (titleEl) titleEl.innerText = chapter.title;
-
-            
-
-            const metaEl = document.querySelector('#reader-header p');
-
-            if (metaEl) metaEl.innerText = chapter.meta;
-
-            
-
-            const pages = document.querySelectorAll('.flipbook-page');
-
-            chapter.pages.forEach((content, idx) => {
-
-                const pageEl = pages[idx];
-
-                if (pageEl) {
-
-                    const article = pageEl.querySelector('article');
-
-                    if (article) {
-
-                        article.innerHTML = content;
-
-                        // Apply highlights if any
-
-                        if (typeof applyHighlightsToPage === 'function') {
-
-                            applyHighlightsToPage(article, appState.currentBookId, chapterId, idx);
-
-                        }
-
-                    }
-
-                }
-
-            });
-
-            
-
-            setReaderFont(appState.readerFontFamily);
-
-            document.querySelectorAll('.font-reading').forEach(el => {
-
-                el.style.fontSize = `${appState.readerFontSize}px`;
-
-            });
-
-            
-
-            if (chapterId === 'tamthat') {
-
-                renderEmbeddedQuiz();
-
-            } else if (chapterId === 'tongquan' || chapterId === 'hetuanhoan' || chapterId === 'ecg') {
-
-                const quizCont = document.getElementById('quiz-container');
-
-                if (quizCont) {
-
-                    let nextChap = chapterId === 'tongquan' ? 'hetuanhoan' : (chapterId === 'hetuanhoan' ? 'ecg' : null);
-
-                    let chapName = chapterId === 'tongquan' ? 'Chương 1: Tổng quan' : (chapterId === 'hetuanhoan' ? 'Chương 2: Hệ tuần hoàn' : 'Chương 3: Diễn giải ECG');
-
-                    let nextChapName = chapterId === 'tongquan' ? 'Chương 2: Hệ tuần hoàn' : 'Chương 3: Diễn giải ECG';
-
-                    
-
-                    quizCont.innerHTML = `
-
-                        <div class="flex flex-col items-center justify-center h-full text-center p-6 space-y-6 animate-fade-in">
-
-                            <span class="material-symbols-outlined text-6xl text-blue-600 filled-icon animate-bounce">check_circle</span>
-
-                            <h3 class="text-lg font-bold text-slate-800">Chương học đã hoàn thành!</h3>
-
-                            <p class="text-xs text-slate-500 max-w-xs">
-
-                                Chúc mừng bạn đã đọc xong và hoàn thành tất cả các nội dung của ${chapName}.
-
-                            </p>
-
-                            ${nextChap ? `
-
-                            <button onclick="readTOCChapter('${nextChap}')" class="w-full bg-brand-blue hover:bg-brand-blue-dark text-white font-bold py-3 px-6 rounded-xl transition-all active:scale-95 shadow-md flex items-center justify-center gap-2 text-xs">
-
-                                <span class="material-symbols-outlined text-xs">arrow_forward</span> Tiếp tục sang ${nextChapName}
-
-                            </button>
-
-                            ` : `
-
-                            <button onclick="closeEreaderScreen(); openBookTOC();" class="w-full bg-brand-blue hover:bg-brand-blue-dark text-white font-bold py-3 px-6 rounded-xl transition-all active:scale-95 shadow-md text-xs">
-
-                                Quay lại Mục lục tiến trình
-
-                            </button>
-
-                            `}
-
-                        </div>
-
-                    `;
-
-                }
-
-            } else {
-
-                const quizCont = document.getElementById('quiz-container');
-
-                if (quizCont) {
-
-                    quizCont.innerHTML = `
-
-                        <div class="flex flex-col items-center justify-center h-full text-center p-6 space-y-6">
-
-                            <span class="material-symbols-outlined text-6xl text-brand-blue filled-icon animate-pulse">workspace_premium</span>
-
-                            <h3 class="text-lg font-bold text-slate-800">Bạn đã đọc hết chương 5!</h3>
-
-                            <p class="text-xs text-slate-500 max-w-xs">
-
-                                Nhân Sâm là chương học cuối cùng của quyển Cẩm nang Thảo dược Quý Phương Đông trong giả lập này. Cảm ơn bạn đã đồng hành y khoa!
-
-                            </p>
-
-                            <button onclick="closeEreaderScreen(); switchTab('library')" class="w-full bg-brand-blue hover:bg-brand-blue-dark text-white font-bold py-3 px-6 rounded-xl transition-all active:scale-95 shadow-md text-xs">
-
-                                Quay lại Thư viện
-
-                            </button>
-
-                        </div>
-
-                    `;
-
-                }
-
-            }
-
-            
-
-            appState.readerCurrentPage = 0;
-
-            flipPage(0);
-
-            
-
-            const tamthatInd = document.getElementById('toc-indicator-tamthat');
-
-            const nhansamInd = document.getElementById('toc-indicator-nhansam');
-
-            
-
-            if (chapterId === 'tamthat') {
-
-                if (tamthatInd) {
-
-                    tamthatInd.innerText = "Đang đọc";
-
-                    tamthatInd.className = "text-[10px] text-blue-700 font-bold";
-
-                }
-
-                if (nhansamInd) {
-
-                    nhansamInd.innerText = "Chưa đọc";
-
-                    nhansamInd.className = "text-[10px] text-slate-450 font-medium";
-
-                }
-
-            } else {
-
-                if (tamthatInd) {
-
-                    tamthatInd.innerText = "Đã đọc";
-
-                    tamthatInd.className = "text-[10px] text-slate-500 font-medium";
-
-                }
-
-                if (nhansamInd) {
-
-                    nhansamInd.innerText = "Đang đọc";
-
-                    nhansamInd.className = "text-[10px] text-blue-700 font-bold";
-
-                }
-
-            }
-
-            
-
-            showToast(`Đã tải: ${chapter.title}`);
-
+        } catch (firebaseErr) {
+            console.warn(`Firebase chapter fetch failed for ${chapterId}, falling back to local JSON:`, firebaseErr);
         }
+
+        if (!bookChapters[chapterId]) {
+            try {
+                const res = await fetch('/data/chapters.json');
+                const data = await res.json();
+                Object.assign(bookChapters, data);
+            } catch (err) {
+                console.error("Lỗi tải nội dung chương:", err);
+                if (typeof showToast === 'function') {
+                    showToast("Không thể tải nội dung chương. Vui lòng thử lại!", "error");
+                } else {
+                    alert("Không thể tải nội dung chương. Vui lòng thử lại!");
+                }
+                if (loadingEl) loadingEl.classList.add('hidden');
+                return;
+            }
+        }
+    }
+
+    if (loadingEl) loadingEl.classList.add('hidden');
+
+    const chapter = bookChapters[chapterId];
+    if (!chapter) return;
+
+    appState.currentChapter = chapterId;
+
+    // Tự động đồng bộ đúng Book ID tương ứng với Chương
+    if (chapterId === 'tamthat' || chapterId === 'nhansam') {
+        appState.currentBookId = 'thaoduoc';
+    } else if (chapterId === 'tongquan' || chapterId === 'hetuanhoan' || chapterId === 'ecg') {
+        appState.currentBookId = 'chandoanykhoa';
+    }
+
+    const titleEl = document.getElementById('reader-book-title');
+    if (titleEl) titleEl.innerText = chapter.title;
+
+    const metaEl = document.querySelector('#reader-header p');
+    if (metaEl) metaEl.innerText = chapter.meta;
+
+    const pages = document.querySelectorAll('.flipbook-page');
+    chapter.pages.forEach((content, idx) => {
+        const pageEl = pages[idx];
+        if (pageEl) {
+            const article = pageEl.querySelector('article');
+            if (article) {
+                article.innerHTML = content;
+                if (typeof applyHighlightsToPage === 'function') {
+                    applyHighlightsToPage(article, appState.currentBookId, chapterId, idx);
+                }
+            }
+        }
+    });
+
+    setReaderFont(appState.readerFontFamily);
+    document.querySelectorAll('.font-reading').forEach(el => {
+        el.style.fontSize = `${appState.readerFontSize}px`;
+    });
+
+    if (chapterId === 'tamthat') {
+        renderEmbeddedQuiz();
+    } else if (chapterId === 'tongquan' || chapterId === 'hetuanhoan' || chapterId === 'ecg') {
+        const quizCont = document.getElementById('quiz-container');
+        if (quizCont) {
+            let nextChap = chapterId === 'tongquan' ? 'hetuanhoan' : (chapterId === 'hetuanhoan' ? 'ecg' : null);
+            let chapName = chapterId === 'tongquan' ? 'Chương 1: Tổng quan' : (chapterId === 'hetuanhoan' ? 'Chương 2: Hệ tuần hoàn' : 'Chương 3: Diễn giải ECG');
+            let nextChapName = chapterId === 'tongquan' ? 'Chương 2: Hệ tuần hoàn' : 'Chương 3: Diễn giải ECG';
+
+            quizCont.innerHTML = `
+                <div class="flex flex-col items-center justify-center h-full text-center p-6 space-y-6 animate-fade-in">
+                    <span class="material-symbols-outlined text-6xl text-blue-600 filled-icon animate-bounce">check_circle</span>
+                    <h3 class="text-lg font-bold text-slate-800">Chương học đã hoàn thành!</h3>
+                    <p class="text-xs text-slate-500 max-w-xs">
+                        Chúc mừng bạn đã đọc xong và hoàn thành tất cả các nội dung của ${chapName}.
+                    </p>
+                    ${nextChap ? `
+                        <button onclick="selectChapter('${nextChap}')" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2.5 px-6 rounded-full shadow-md transition-all active:scale-95 flex items-center gap-2">
+                            Đọc chương tiếp theo (${nextChapName}) <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </button>
+                    ` : ''}
+                </div>
+            `;
+        }
+    }
+}
 
 
 
@@ -18958,6 +17645,7 @@
         // Initialize default chapter and standalone quiz on page load
 
         window.addEventListener('DOMContentLoaded', () => {
+    loadBooksData();
 
             // Initialize Typewriter and Animated User Name Effects
 
@@ -19700,7 +18388,9 @@
             const filterBanner = document.getElementById('shop-search-filter-banner');
             if (filterBanner) filterBanner.classList.add('hidden');
             
+            shopInitialized = false;
             renderShopFeed(activeShopCategory, '');
+            shopInitialized = true;
         }
 
         function generateProductCardHtml(p, idx, query = '') {
@@ -20208,6 +18898,7 @@
 
 
         function openDictionary() {
+    loadDictionaryData();
 
             const view = document.getElementById('view-dictionary');
 
@@ -20415,329 +19106,73 @@
 
 
 
-        const termData = {
-
-            'Aneurysm': {
-
-                pronunciation: '/ˈænyəˌrɪzəm/',
-
-                symptoms: [
-
-                    'Hầu hết không có triệu chứng cho đến khi phình lớn hoặc vỡ.',
-
-                    'Đau khu trú tại vùng bị phình.',
-
-                    'Trường hợp vỡ: Đau dữ dội, tụt huyết áp, sốc.'
-
-                ],
-
-                diagnosis: [
-
-                    { label: 'CT Scan', desc: 'Xác định kích thước và vị trí chính xác của túi phình.' },
-
-                    { label: 'MRI', desc: 'Cung cấp hình ảnh chi tiết về cấu trúc mạch máu và mô xung quanh.' },
-
-                    { label: 'Siêu âm', desc: 'Phương pháp nhanh chóng để tầm soát và theo dõi dòng chảy mạch máu.' }
-
-                ],
-
-                causes: [
-
-                    'Huyết áp cao kéo dài làm yếu thành mạch.',
-
-                    'Xơ vữa động mạch (tích tụ mảng bám).',
-
-                    'Chấn thương vật lý trực tiếp vào mạch máu.',
-
-                    'Yếu tố di truyền hoặc bẩm sinh.'
-
-                ],
-
-                prevention: [
-
-                    'Kiểm soát huyết áp và cholesterol định kỳ.',
-
-                    'Duy trì chế độ ăn uống lành mạnh, ít muối và chất béo bão hòa.',
-
-                    'Tuyệt đối không hút thuốc lá và hạn chế rượu bia.',
-
-                    'Tập thể dục đều đặn theo chỉ dẫn của bác sĩ.'
-
-                ],
-
-                treatment: 'Tùy thuộc vào kích thước và nguy cơ vỡ, các phương pháp bao gồm: theo dõi định kỳ bằng hình ảnh học, sử dụng thuốc kiểm soát huyết áp, hoặc can thiệp ngoại khoa (phẫu thuật kẹp túi phình hoặc đặt stent nội mạch).',
-
-                image: 'covers/aneurysm_diagram.png',
-
-                caption: 'Sơ đồ minh họa chứng phình động mạch.',
-
-                relatedDoc: {
-
-                    title: 'Cẩm nang Chẩn đoán Y khoa',
-
-                    chapter: 'Chương II: Bệnh lý mạch máu',
-
-                    bookId: 'chandoanykhoa'
-
-                }
-
-            },
-
-            'Anterior': {
-
-                pronunciation: '/ænˈtɪəriər/',
-
-                symptoms: ['Không áp dụng (đây là thuật ngữ chỉ hướng vị trí giải phẫu).'],
-
-                diagnosis: [
-
-                    { label: 'Xác định vị trí', desc: 'Được sử dụng trong mô tả vị trí các cơ quan giải phẫu.' }
-
-                ],
-
-                causes: ['Đặc điểm giải phẫu học tự nhiên của cơ thể người.'],
-
-                prevention: ['Không áp dụng.'],
-
-                treatment: 'Dùng trong định hướng phẫu thuật, chẩn đoán hình ảnh và mô tả tổn thương.',
-
-                relatedDoc: {
-
-                    title: 'Cơ thể người: Phân tích chi tiết',
-
-                    chapter: 'Chương I: Định hướng không gian giải phẫu',
-
-                    bookId: 'cothe'
-
-                }
-
-            },
-
-            'Biopsy': {
-
-                pronunciation: '/ˈbaɪɒpsi/',
-
-                symptoms: ['Cần thực hiện khi phát hiện khối u hoặc tổn thương nghi ngờ.', 'Không tự có triệu chứng tự thân.'],
-
-                diagnosis: [
-
-                    { label: 'Mẫu sinh thiết', desc: 'Lấy mô bằng kim nhỏ (FNAC) hoặc bấm sinh thiết.' },
-
-                    { label: 'Giải phẫu bệnh', desc: 'Nhuộm và soi kính hiển vi để phân tích tế bào học.' }
-
-                ],
-
-                causes: ['Chỉ định y khoa để phân biệt u lành tính và ác tính.'],
-
-                prevention: ['Không áp dụng trực tiếp.'],
-
-                treatment: 'Kết quả sinh thiết là tiêu chuẩn vàng để quyết định phác đồ điều trị (phẫu thuật, hóa trị, xạ trị).',
-
-                relatedDoc: {
-
-                    title: 'Cẩm nang Chẩn đoán Y khoa',
-
-                    chapter: 'Chương IV: Kỹ thuật sinh thiết lâm sàng',
-
-                    bookId: 'chandoanykhoa'
-
-                }
-
-            },
-
-            'Bradycardia': {
-
-                pronunciation: '/ˌbræd.ɪˈkɑː.di.ə/',
-
-                symptoms: [
-
-                    'Mệt mỏi, suy nhược cơ thể kéo dài.',
-
-                    'Chóng mặt, xây xẩm mặt mày, có thể ngất xỉu.',
-
-                    'Khó thở, đặc biệt khi gắng sức nhẹ.'
-
-                ],
-
-                diagnosis: [
-
-                    { label: 'Điện tâm đồ (ECG)', desc: 'Ghi lại hoạt động điện để đo tần số nhịp tim.' },
-
-                    { label: 'Holter ECG', desc: 'Theo dõi nhịp tim liên tục trong 24-48 giờ khi sinh hoạt bình thường.' }
-
-                ],
-
-                causes: [
-
-                    'Rối loạn hệ thống dẫn truyền tim (suy nút xoang).',
-
-                    'Tác dụng phụ của thuốc (như thuốc chẹn beta).',
-
-                    'Thiếu oxy tim hoặc lão hóa cơ tim ở người lớn tuổi.'
-
-                ],
-
-                prevention: [
-
-                    'Ăn uống lành mạnh, hạn chế muối và chất kích thích.',
-
-                    'Tập thể dục nhẹ nhàng đều đặn.',
-
-                    'Khám sức khỏe định kỳ để phát hiện sớm các bệnh tim mạch kèm theo.'
-
-                ],
-
-                treatment: 'Thay đổi liều lượng thuốc đang dùng, điều trị nguyên nhân gốc rễ, hoặc cấy máy tạo nhịp tim (pacemaker) đối với các trường hợp nhịp tim quá chậm gây triệu chứng nặng.',
-
-                relatedDoc: {
-
-                    title: 'Cẩm nang Chẩn đoán Y khoa',
-
-                    chapter: 'Chương III: Rối loạn nhịp tim',
-
-                    bookId: 'chandoanykhoa'
-
-                }
-
-            },
-
-            'Cerebellum': {
-
-                pronunciation: '/ˌser.əˈbel.əm/',
-
-                symptoms: ['Tổn thương tiểu não gây mất thăng bằng, đi đứng lảo đảo.', 'Run tay chân khi cố gắng thực hiện động tác.', 'Nói ngọng hoặc khó phát âm rõ từ.'],
-
-                diagnosis: [
-
-                    { label: 'Khám thần kinh', desc: 'Đánh giá thăng bằng, phối hợp ngón tay - chỉ mũi.' },
-
-                    { label: 'Chụp MRI não', desc: 'Xem hình ảnh chi tiết cấu trúc tiểu não để tìm u hoặc đột quỵ.' }
-
-                ],
-
-                causes: ['Đột quỵ tiểu não do thiếu máu cục bộ.', 'Khối u tiểu não hoặc thoái hóa tiểu não di truyền.', 'Ngộ độc cồn hoặc kim loại nặng.'],
-
-                prevention: ['Tránh lạm dụng rượu bia.', 'Kiểm soát tốt huyết áp và xơ vữa mạch máu.', 'Bảo vệ đầu tránh chấn thương sọ não.'],
-
-                treatment: 'Vật lý trị liệu phục hồi chức năng vận động. Phẫu thuật giải ép nếu có khối u hoặc xuất huyết tiểu não lớn.',
-
-                relatedDoc: {
-
-                    title: 'Thần kinh học cơ bản',
-
-                    chapter: 'Chương V: Chức năng tiểu não và các đường dẫn truyền',
-
-                    bookId: 'thankinh'
-
-                }
-
-            },
-
-            'Cholesterol': {
-
-                pronunciation: '/kəˈlestərɒl/',
-
-                symptoms: ['Hầu như không gây triệu chứng trực tiếp cho đến khi xuất hiện biến chứng.', 'Tích tụ mảng xơ vữa gây đau thắt ngực hoặc đột quỵ nhẹ.'],
-
-                diagnosis: [
-
-                    { label: 'Xét nghiệm mỡ máu', desc: 'Đo định lượng Cholesterol toàn phần, LDL-C, HDL-C và Triglyceride.' }
-
-                ],
-
-                causes: ['Chế độ ăn nhiều chất béo bão hòa và cholesterol.', 'Lười vận động, thừa cân, béo phì.', 'Yếu tố gia đình (tăng cholesterol máu gia đình).'],
-
-                prevention: ['Hạn chế thức ăn nhanh, mỡ động vật.', 'Tăng cường chất xơ từ rau quả, ngũ cốc nguyên hạt.', 'Tập thể dục tối thiểu 30 phút mỗi ngày.'],
-
-                treatment: 'Điều chỉnh lối sống ăn uống và tập luyện. Sử dụng thuốc nhóm statin (như atorvastatin, rosuvastatin) dưới sự hướng dẫn của bác sĩ.',
-
-                relatedDoc: {
-
-                    title: 'Dinh dưỡng lâm sàng & Thực dưỡng',
-
-                    chapter: 'Chương VI: Chế độ ăn cho người tăng lipid máu',
-
-                    bookId: 'thucduong'
-
-                }
-
-            },
-
-            'Dyspnea': {
-
-                pronunciation: '/dɪspˈniːə/',
-
-                symptoms: ['Cảm giác nghẹt thở, hụt hơi, không thể hít thở sâu.', 'Thở nhanh, nông, lồng ngực co kéo khi thở.', 'Da tái nhợt hoặc môi thâm tím nếu thiếu oxy nặng.'],
-
-                diagnosis: [
-
-                    { label: 'Đo SpO2', desc: 'Đánh giá độ bão hòa oxy trong máu ngoại vi.' },
-
-                    { label: 'X-quang ngực', desc: 'Kiểm tra tổn thương ở phổi hoặc tràn dịch/khí màng phổi.' },
-
-                    { label: 'Hô hấp ký', desc: 'Đánh giá chức năng thông khí của phổi.' }
-
-                ],
-
-                causes: ['Bệnh lý hô hấp: hen suyễn, COPD, viêm phổi.', 'Bệnh lý tim mạch: suy tim cấp, nhồi máu cơ tim.', 'Lo âu, hoảng loạn hoặc dị vật đường thở.'],
-
-                prevention: ['Tránh hút thuốc lá thụ động và chủ động.', 'Đeo khẩu trang khi làm việc trong môi trường khói bụi.', 'Điều trị và kiểm soát tốt các bệnh tim phổi mãn tính.'],
-
-                treatment: 'Cung cấp oxy liệu pháp ngay nếu SpO2 thấp. Sử dụng thuốc giãn phế quản (hen/COPD), thuốc lợi tiểu (suy tim) hoặc giải quyết nguyên nhân nền gây khó thở.',
-
-                relatedDoc: {
-
-                    title: 'Cập nhật Y văn Lâm sàng',
-
-                    chapter: 'Chương I: Xử trí khó thở cấp cứu',
-
-                    bookId: 'capnhatyvan'
-
-                }
-
-            },
-
-            'Edema': {
-
-                pronunciation: '/ɪˈdiːmə/',
-
-                symptoms: ['Sưng phù vùng bị ảnh hưởng (thường là mắt cá chân, bàn chân).', 'Da căng bóng, khi ấn vào để lại vết lõm lâu đàn hồi (phù mềm).', 'Cảm giác nặng nề, khó vận động khớp vùng bị phù.'],
-
-                diagnosis: [
-
-                    { label: 'Khám lâm sàng', desc: 'Đánh giá tính chất phù (phù cứng/mềm, đối xứng/không đối xứng).' },
-
-                    { label: 'Xét nghiệm máu & nước tiểu', desc: 'Đo chức năng gan, thận, định lượng albumin máu và protein niệu.' }
-
-                ],
-
-                causes: ['Suy tim sung huyết làm ứ máu ngoại vi.', 'Suy thận gây giữ muối và nước, hoặc hội chứng thận hư gây mất albumin.', 'Xơ gan làm giảm tổng hợp albumin huyết tương.'],
-
-                prevention: ['Hạn chế lượng muối ăn hàng ngày.', 'Tránh đứng hoặc ngồi một chỗ quá lâu, kê cao chân khi nằm.', 'Kiểm soát tốt các bệnh lý gan, thận, tim mạch.'],
-
-                treatment: 'Sử dụng thuốc lợi tiểu (như furosemide) để thải bớt dịch thừa. Điều trị tích cực bệnh lý nền gây ra phù (như bù albumin, tối ưu hóa điều trị suy tim).',
-
-                relatedDoc: {
-
-                    title: 'Cẩm nang Chẩn đoán Y khoa',
-
-                    chapter: 'Chương VIII: Tiếp cận chẩn đoán bệnh nhân phù',
-
-                    bookId: 'chandoanykhoa'
-
-                }
-
+        let termData = {};
+
+async function loadBooksData() {
+    if (Object.keys(appState.bookData).length > 0) return;
+    try {
+        if (window.db) {
+            const snapshot = await window.db.collection('books').get();
+            if (!snapshot.empty) {
+                const books = {};
+                snapshot.forEach(doc => {
+                    books[doc.id] = doc.data();
+                });
+                appState.bookData = books;
+                console.log("🔥 Books data loaded from Firebase Firestore!", Object.keys(books).length, "books");
+                return;
             }
+        }
+    } catch (firebaseErr) {
+        console.warn("Firebase books fetch failed, falling back to local JSON:", firebaseErr);
+    }
 
-        };
+    try {
+        const response = await fetch('/data/books.json');
+        appState.bookData = await response.json();
+        console.log("Books data loaded dynamically from local JSON!");
+    } catch (err) {
+        console.error("Lỗi tải danh sách sách:", err);
+    }
+}
+
+async function loadDictionaryData() {
+    if (Object.keys(termData).length > 0) return;
+    try {
+        if (window.db) {
+            const snapshot = await window.db.collection('dictionary').get();
+            if (!snapshot.empty) {
+                const dict = {};
+                snapshot.forEach(doc => {
+                    dict[doc.id] = doc.data();
+                });
+                termData = dict;
+                console.log("🔥 Dictionary data loaded from Firebase Firestore!", Object.keys(dict).length, "terms");
+                return;
+            }
+        }
+    } catch (firebaseErr) {
+        console.warn("Firebase dictionary fetch failed, falling back to local JSON:", firebaseErr);
+    }
+
+    try {
+        const response = await fetch('/data/dictionary.json');
+        termData = await response.json();
+        console.log("Dictionary data loaded dynamically from local JSON!");
+    } catch (err) {
+        console.error("Lỗi tải từ điển y khoa:", err);
+    }
+}
+
+
+let currentActiveBookId = 'chandoanykhoa';
 
 
 
-        let currentActiveBookId = 'chandoanykhoa';
-
-
-
-        function openDictionaryTerm(title, badgeLabel, badgeType, definition, clinical) {
+        async function openDictionaryTerm(title, badgeLabel, badgeType, definition, clinical) {
+    if (Object.keys(termData).length === 0) {
+        await loadDictionaryData();
+    }
 
             incrementLookupCount();
 
@@ -24835,29 +23270,36 @@
 
 
 
+        let shopInitialized = false;
         function initShop() {
 
-            renderShopFeed(activeShopCategory, shopSearchQuery);
+            if (!shopInitialized) {
+                shopInitialized = true;
 
-            renderFlashSale();
+                // Defer heavy DOM work — let browser paint skeleton first
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        renderShopFeed(activeShopCategory, shopSearchQuery);
+                        renderFlashSale();
+                        updateCartBadge();
+                    }, 0);
+                });
 
-            updateCartBadge();
+            } else {
+                updateCartBadge();
+            }
 
-            
-
-            // Start shop banner slideshow auto-sliding
-
-            setTimeout(initShopBannerAutoSlide, 100);
-
-            
+            // Start shop banner slideshow — only if not already running
+            if (!appState.shopBannerInterval) {
+                setTimeout(initShopBannerAutoSlide, 100);
+            }
 
             if (!window.flashSaleInterval) {
-
                 window.flashSaleInterval = setInterval(updateFlashSaleCountdown, 1000);
-
             }
 
         }
+
 
         // Back to Top Helpers
         function updateScrollProgress(scrollContainer, progressBarId) {
@@ -25074,200 +23516,33 @@
 
             }
 
-            
-
-            grid.innerHTML = filtered.map((p, idx) => {
-
-                const discountedPrice = Math.round(p.basePrice * (1 - p.discount / 100));
-
-                // Alternate between video duration and live status
-
-                const isLive = idx % 3 === 0;
-
-                const duration = `00:${25 + (idx * 3) % 35}`;
-
-                const cartQty = ShopCart.filter(item => item.productId === p.id).reduce((sum, item) => sum + item.quantity, 0);
-
-                // Dynamic Campaigns Badges Logic (GEMS themed slanted overlapping premium uniform fixed-width straight-edge with gapless rounded-tr)
-                let badgesHtml = '';
-                if (idx % 3 === 0) {
-                    badgesHtml = `
-                        <!-- Segment 1: 15.7 -->
-                        <div class="w-[52px] -ml-[6px] pl-[6px] flex-shrink-0 bg-gradient-to-r from-[#005a9c] to-[#007cc4] transform -skew-x-12 flex items-center justify-center border-r border-white/10 rounded-t-[8px] relative z-30 shadow-xs">
-                            <div class="transform skew-x-12 text-white font-extrabold text-[6.5px] tracking-tighter leading-none flex items-center justify-center select-none whitespace-nowrap">
-                                <span class="material-symbols-outlined text-[8px] text-yellow-300 mr-0.5" style="font-size: 8px; font-variation-settings: 'FILL' 1;">star</span>
-                                <span>15.7</span>
-                            </div>
-                        </div>
-                        <!-- Segment 2: XTRA -->
-                        <div class="w-[52px] flex-shrink-0 bg-gradient-to-r from-[#ff1a40] to-[#ff4d6d] transform -skew-x-12 flex items-center justify-center border-r border-white/10 -ml-[10px] rounded-t-[8px] relative z-20 shadow-xs">
-                            <div class="transform skew-x-12 relative left-[5px] text-white font-extrabold text-[6.5px] tracking-tighter leading-none flex items-center justify-center select-none whitespace-nowrap">
-                                <span class="material-symbols-outlined text-[8px] text-white mr-0.5" style="font-size: 8px; font-variation-settings: 'FILL' 1;">local_offer</span>
-                                <span>XTRA</span>
-                            </div>
-                        </div>
-                        <!-- Segment 3: SIÊU RẺ -->
-                        <div class="w-[52px] flex-shrink-0 bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] transform -skew-x-12 flex items-center justify-center -ml-[10px] rounded-t-[8px] relative z-10 shadow-xs">
-                            <div class="transform skew-x-12 relative left-[2px] text-[#005a9c] font-extrabold text-[6.5px] tracking-tighter leading-none flex items-center justify-center select-none whitespace-nowrap">
-                                <span class="material-symbols-outlined text-[8px] text-red-600 mr-0.5" style="font-size: 8px; font-variation-settings: 'FILL' 1;">local_fire_department</span>
-                                <span>SIÊU RẺ</span>
-                            </div>
-                        </div>
-                    `;
-                } else if (idx % 3 === 1) {
-                    badgesHtml = `
-                        <!-- Segment 1: 15.7 -->
-                        <div class="w-[52px] -ml-[6px] pl-[6px] flex-shrink-0 bg-gradient-to-r from-[#005a9c] to-[#007cc4] transform -skew-x-12 flex items-center justify-center border-r border-white/10 rounded-t-[8px] relative z-20 shadow-xs">
-                            <div class="transform skew-x-12 text-white font-extrabold text-[6.5px] tracking-tighter leading-none flex items-center justify-center select-none whitespace-nowrap">
-                                <span class="material-symbols-outlined text-[8px] text-yellow-300 mr-0.5" style="font-size: 8px; font-variation-settings: 'FILL' 1;">star</span>
-                                <span>15.7</span>
-                            </div>
-                        </div>
-                        <!-- Segment 3: SIÊU RẺ -->
-                        <div class="w-[52px] flex-shrink-0 bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] transform -skew-x-12 flex items-center justify-center -ml-[10px] rounded-t-[8px] relative z-10 shadow-xs">
-                            <div class="transform skew-x-12 relative left-[2px] text-[#005a9c] font-extrabold text-[6.5px] tracking-tighter leading-none flex items-center justify-center select-none whitespace-nowrap">
-                                <span class="material-symbols-outlined text-[8px] text-red-600 mr-0.5" style="font-size: 8px; font-variation-settings: 'FILL' 1;">local_fire_department</span>
-                                <span>SIÊU RẺ</span>
-                            </div>
-                        </div>
-                    `;
-                } else {
-                    badgesHtml = `
-                        <!-- Segment 2: XTRA -->
-                        <div class="w-[52px] -ml-[6px] pl-[6px] flex-shrink-0 bg-gradient-to-r from-[#ff1a40] to-[#ff4d6d] transform -skew-x-12 flex items-center justify-center border-r border-white/10 rounded-t-[8px] relative z-20 shadow-xs">
-                            <div class="transform skew-x-12 text-white font-extrabold text-[6.5px] tracking-tighter leading-none flex items-center justify-center select-none whitespace-nowrap">
-                                <span class="material-symbols-outlined text-[8px] text-white mr-0.5" style="font-size: 8px; font-variation-settings: 'FILL' 1;">local_offer</span>
-                                <span>XTRA</span>
-                            </div>
-                        </div>
-                        <!-- Segment 3: SIÊU RẺ -->
-                        <div class="w-[52px] flex-shrink-0 bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] transform -skew-x-12 flex items-center justify-center -ml-[10px] rounded-t-[8px] relative z-10 shadow-xs">
-                            <div class="transform skew-x-12 relative left-[2px] text-[#005a9c] font-extrabold text-[6.5px] tracking-tighter leading-none flex items-center justify-center select-none whitespace-nowrap">
-                                <span class="material-symbols-outlined text-[8px] text-red-600 mr-0.5" style="font-size: 8px; font-variation-settings: 'FILL' 1;">local_fire_department</span>
-                                <span>SIÊU RẺ</span>
-                            </div>
-                        </div>
-                    `;
-                }
-
-
-                
-
-                return `
-
-                    <div class="card-lift bg-white/90 backdrop-blur-md border border-slate-100/80 rounded-2xl overflow-hidden flex flex-col cursor-pointer shadow-[0_8px_30px_rgba(0,0,0,0.02)] relative" onclick="openShopProductDetail('${p.id}')">
-
-                        <!-- Video simulation cover -->
-
-                        <div class="relative aspect-[3/4.2] bg-slate-900 overflow-hidden flex-shrink-0">
-
-                            <img src="${p.images[0]}" alt="${p.title}" class="w-full h-full object-cover" />
-
-                            
-
-                            <!-- Video status indicator (top-left) -->
-
-                            ${isLive ? `
-
-                                <div class="absolute top-2 left-2 bg-red-600 text-white text-[8px] font-black px-1.5 py-0.5 rounded flex items-center gap-1 shadow-sm z-10">
-
-                                    <div class="flex items-center gap-[2px]">
-
-                                        <span class="w-[2px] h-[6px] bg-white rounded-sm animate-pulse" style="animation-duration: 0.8s"></span>
-
-                                        <span class="w-[2px] h-[10px] bg-white rounded-sm animate-pulse" style="animation-duration: 0.5s"></span>
-
-                                        <span class="w-[2px] h-[6px] bg-white rounded-sm animate-pulse" style="animation-duration: 0.7s"></span>
-
-                                    </div>
-
-                                    LIVE
-
-                                </div>
-
-                             ` : `
-
-                                <div class="absolute top-2 left-2 bg-black/40 text-white text-[8px] font-black px-1.5 py-0.5 rounded flex items-center gap-1">
-
-                                    <span class="material-symbols-outlined text-[10px]">play_arrow</span>
-
-                                    <span>${duration}</span>
-
-                                </div>
-
-                            `}
-
-
-
-                            <!-- Coupon voucher tag (top-right) -->
-
-                            <div class="absolute right-2 top-2 bg-amber-500 text-white text-[8px] font-black px-1 py-[3px] rounded shadow-sm flex flex-col items-center leading-none z-10">
-
-                                <span>-${p.discount}%</span>
-
-                            </div>
-
-
-
-                            <!-- Cart quantity badge (right-below coupon) -->
-
-                            ${cartQty > 0 ? `
-
-                            <div class="absolute right-2 top-8 bg-brand-blue text-white text-[8px] font-black px-1.5 py-[3px] rounded shadow-sm flex items-center gap-0.5 leading-none z-10 animate-fade-in">
-
-                                <span class="material-symbols-outlined text-[8px]" style="font-size: 8px;">shopping_cart</span>
-
-                                <span>${cartQty}</span>
-
-                            </div>` : ''}
-
-
-
-                            <!-- Campaigns Banners (Slanted Overlapping Bottom Floating Tab) -->
-                            <div class="absolute bottom-0 left-0 flex items-stretch h-[24px] select-none overflow-hidden rounded-tr-[8px] w-max max-w-[85%] z-10 shadow-[0_1px_3px_rgba(0,0,0,0.12)]">
-                                ${badgesHtml}
-                            </div>
-                        </div>
-
-
-
-                        <!-- Product details (bottom) -->
-
-                        <div class="p-2 space-y-1 flex-grow flex flex-col justify-between">
-
-                            <h4 class="text-[10px] font-bold text-slate-800 line-clamp-2 leading-snug min-h-[28px]">${p.shopName.toLowerCase().includes('gems') ? `<span class="inline-flex items-center justify-center bg-gradient-to-b from-[#ffd800] to-[#ffa600] text-[#005a9c] text-[7.5px] font-black px-1.5 py-0.5 rounded select-none leading-none shadow-sm uppercase tracking-wider mr-1 shrink-0 align-middle">MALL</span>` : ''}${p.title}</h4>
-
-                            <div class="space-y-0.5">
-
-                                <div class="flex items-baseline gap-1">
-
-                                    <span class="text-xs font-black text-primary">${discountedPrice.toLocaleString()}đ</span>
-
-                                    <span class="text-[8px] text-slate-400 line-through font-bold">${p.basePrice.toLocaleString()}đ</span>
-
-                                </div>
-
-                                <div class="flex items-center gap-1 text-[8px] text-slate-450 font-bold">
-
-                                    <span class="text-yellow-500">★</span>
-
-                                    <span>${p.rating}</span>
-
-                                    <span>| Đã bán ${p.sold}</span>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            }).join('');
+            // --- Progressive Rendering ---
+            // Step 1: Render first 4 cards immediately (above the fold = instant)
+            const ABOVE_FOLD = 4;
+            const firstBatch = filtered.slice(0, ABOVE_FOLD);
+            grid.innerHTML = firstBatch.map((p, idx) => generateProductCardHtml(p, idx)).join('');
+
+            // Step 2: Render remaining cards in batches of 4, one frame at a time
+            const remaining = filtered.slice(ABOVE_FOLD);
+            if (remaining.length === 0) return;
+
+            const BATCH = 4;
+            let offset = 0;
+            function appendNextBatch() {
+                const chunk = remaining.slice(offset, offset + BATCH);
+                if (!chunk.length) return;
+                const tmp = document.createElement('div');
+                tmp.innerHTML = chunk.map((p, i) => generateProductCardHtml(p, ABOVE_FOLD + offset + i)).join('');
+                while (tmp.firstChild) grid.appendChild(tmp.firstChild);
+                offset += BATCH;
+                if (offset < remaining.length) requestAnimationFrame(appendNextBatch);
+            }
+            requestAnimationFrame(appendNextBatch);
 
         }
+
+
+
 
 
 
@@ -25370,8 +23645,6 @@
             renderShopFeed(category, shopSearchQuery);
 
         }
-
-
 
         function handleShopSearch(val) {
 
@@ -30207,13 +28480,16 @@
 
 
 
-            // Reactively update product card quantity badges
 
-            if (typeof renderShopFeed === 'function') {
+            // Update quantity badges on existing product cards (no full re-render)
+            document.querySelectorAll('[data-product-cart-qty]').forEach(badge => {
+                const productId = badge.dataset.productCartQty;
+                const qty = ShopCart.filter(item => item.productId === productId).reduce((s, i) => s + i.quantity, 0);
+                badge.textContent = qty > 0 ? qty : '';
+                if (qty > 0) badge.classList.remove('hidden');
+                else badge.classList.add('hidden');
+            });
 
-                renderShopFeed(activeShopCategory, shopSearchQuery);
-
-            }
 
             if (typeof renderShopFlashSaleDetail === 'function') {
 

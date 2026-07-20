@@ -1,0 +1,218 @@
+{
+  "chandoanykhoa": {
+    "title": "Cẩm nang Chẩn đoán Y khoa",
+    "author": "GEMS Academic",
+    "rating": "4.8",
+    "reads": "15.6k",
+    "cover": "covers/chandoanykhoa.png",
+    "desc": "Sách cẩm nang chẩn đoán y khoa lâm sàng toàn diện, cung cấp các quy trình chẩn đoán từ triệu chứng đến bệnh lý chi tiết hệ tuần hoàn và các cơ quan."
+  },
+  "lamsangnoikhoa": {
+    "title": "Sinh lý bệnh Tim mạch",
+    "author": "Dr. Elena Rostova",
+    "rating": "4.9",
+    "reads": "11.4k",
+    "cover": "covers/lamsangnoikhoa.png",
+    "desc": "Sổ tay hướng dẫn chi tiết lâm sàng nội khoa dành cho các bác sĩ và sinh viên thực tập."
+  },
+  "capnhatyvan": {
+    "title": "Dược lý Lâm sàng",
+    "author": "Dr. Robert H.",
+    "rating": "4.7",
+    "reads": "9.2k",
+    "cover": "covers/capnhatyvan.png",
+    "desc": "Tập hợp các nghiên cứu y khoa, hướng dẫn điều trị mới nhất được cập nhật trong năm 2024."
+  },
+  "thaoduoc": {
+    "title": "Cẩm nang Thảo dược Quý Phương Đông",
+    "author": "GS. TS. Nguyễn Văn Anh",
+    "rating": "4.8",
+    "reads": "12.5k",
+    "cover": "covers/thaoduoc.png",
+    "desc": "Cuốn sách là kết tinh của hơn 30 năm nghiên cứu thực địa về các loài thảo dược quý tại vùng núi phía Bắc Việt Nam. Tác phẩm không chỉ cung cấp kiến thức về nhận dạng, công dụng mà còn hướng dẫn chi tiết cách bào chế các phương thuốc dân gian hiệu quả cho sức khỏe hiện đại. Nghiên cứu sâu rộng về các hợp chất sinh học hoạt tính được phân tích qua lăng kính y học cổ truyền kết hợp y học hiện đại, tạo nên một tài liệu tham khảo giá trị cho cả sinh viên y khoa và bác sĩ lâm sàng."
+  },
+  "trathaomoc": {
+    "title": "Trà Thảo Mộc",
+    "author": "Lê Minh",
+    "rating": "4.7",
+    "reads": "8.2k",
+    "cover": "covers/trathaomoc.png",
+    "desc": "Phân tích khoa học và công thức chưng cất chè, thảo mộc chữa trị các bệnh nhẹ trong gia đình, an thần cải thiện giấc ngủ sâu và hỗ trợ bài độc tố từ gan thận ra ngoài."
+  },
+  "thucduong": {
+    "title": "Thực Dưỡng Toàn Diện",
+    "author": "Trần Hòa",
+    "rating": "4.6",
+    "reads": "5.4k",
+    "cover": "covers/thucduong.png",
+    "desc": "Nguyên lý ăn uống theo khoa học dinh dưỡng phương Đông kết hợp hiện đại. Cách sử dụng ngũ cốc nguyên cám và rau củ quả hữu cơ để tái lập hệ miễn dịch tự nhiên cơ thể."
+  },
+  "co-the-nguoi": {
+    "title": "Cơ thể người: Phân tích chi tiết",
+    "author": "PGS. TS. Lê Thu",
+    "rating": "4.8",
+    "reads": "9.1k",
+    "cover": "covers/cothe.png",
+    "desc": "Cẩm nang sơ đồ giải phẫu đầy đủ với tỷ lệ hình minh họa sinh động. Phân tích chi tiết các hệ tuần hoàn, hệ hô hấp, cơ xương khớp giúp nâng cao kỹ năng thực hành."
+  },
+  "thankinh": {
+    "title": "Miễn dịch học Nâng cao",
+    "author": "Dr. Michael Chen",
+    "rating": "4.8",
+    "reads": "8.9k",
+    "cover": "covers/thankinh.png",
+    "desc": "Nghiên cứu cốt lõi về cơ chế miễn dịch tự nhiên và tế bào chất kháng thể phòng ngừa các bệnh tự miễn y khoa."
+  },
+  "thankinhhoc": {
+    "title": "Thần kinh học & Chức năng Nhận thức Nâng cao",
+    "author": "Dr. Sarah Jenkins",
+    "rating": "4.9",
+    "reads": "14.5k",
+    "cover": "covers/brain_cover.png",
+    "desc": "Nghiên cứu nâng cao về thần kinh học, các trung khu chức năng não bộ và ứng dụng phục hồi chức năng nhận thức lâm sàng."
+  },
+  "ditruyen": {
+    "title": "Di truyền học y khoa",
+    "author": "PGS. TS. Trần Hải",
+    "rating": "4.8",
+    "reads": "3.7k",
+    "cover": "covers/ditruyen.png",
+    "desc": "Nghiên cứu ADN, đột biến gene di truyền sinh học tế bào gốc. Định hướng y học cá nhân hóa dựa trên hệ gene biểu thị của từng cá thể bệnh nhân."
+  },
+  "xuongkhop": {
+    "title": "Giải phẫu hệ xương khớp",
+    "author": "BS. Nguyễn Minh Tuấn",
+    "rating": "4.7",
+    "reads": "3.1k",
+    "cover": "covers/cothe.png",
+    "desc": "Phân tích cơ xương khớp lâm sàng và các bệnh lý về thoái hóa khớp ở người trưởng thành."
+  },
+  "sinhlythankinh": {
+    "title": "Sinh lý học Thần kinh",
+    "author": "GS. Phạm Hoàng Nam",
+    "rating": "4.8",
+    "reads": "2.5k",
+    "cover": "covers/sinhlythankinh.png",
+    "desc": "Cơ chế dẫn truyền xung điện thần kinh và các phản xạ không điều kiện của con người."
+  },
+  "naobo": {
+    "title": "Não bộ và Hành vi",
+    "author": "TS. Đỗ Quyên",
+    "rating": "4.6",
+    "reads": "1.8k",
+    "cover": "covers/naobo.png",
+    "desc": "Nghiên cứu về mối liên hệ giữa các thùy não bộ và hành vi tâm lý của bệnh nhân tâm thần."
+  },
+  "ditruyenphantu": {
+    "title": "Di truyền học phân tử",
+    "author": "PGS. Lê Huy",
+    "rating": "4.7",
+    "reads": "2.9k",
+    "cover": "covers/ditruyenphantu.png",
+    "desc": "Cấu trúc ADN và ARN, cơ chế nhân đôi, phiên mã và dịch mã sinh học phân tử tế bào."
+  },
+  "dotbiengene": {
+    "title": "Đột biến Gene lâm sàng",
+    "author": "TS. Nguyễn Thị Trang",
+    "rating": "4.9",
+    "reads": "3.5k",
+    "cover": "covers/ditruyen.png",
+    "desc": "Các dạng đột biến cấu trúc nhiễm sắc thể gây ra các hội chứng bệnh lý hiếm gặp trên lâm sàng."
+  },
+  "baoche": {
+    "title": "Kỹ Thuật Bào Chế Dược Liệu",
+    "author": "GS. TS. Nguyễn Văn Anh",
+    "rating": "4.8",
+    "reads": "6.2k",
+    "cover": "covers/baoche.png",
+    "desc": "Hướng dẫn chi tiết phương pháp sao tẩm, chưng cất và bào chế các loại cao thảo dược quý Đông y."
+  },
+  "dongydieuphuong": {
+    "title": "Đông Y Diệu Phương",
+    "author": "PGS. TS. Hoàng Tích Huyền",
+    "rating": "4.8",
+    "reads": "4.1k",
+    "cover": "covers/dongydieuphuong.png",
+    "desc": "Tổng hợp các bài thuốc bí truyền từ cung đình đến dân gian, kết hợp chẩn trị y học hiện đại và phân tích dược lý sinh hóa học."
+  },
+  "namduocthanhieu": {
+    "title": "Nam Dược Thần Hiệu",
+    "author": "Tuệ Tĩnh",
+    "rating": "4.9",
+    "reads": "15.6k",
+    "cover": "covers/namduocthanhieu.png",
+    "desc": "Tác phẩm y học kinh điển của thiền sư Tuệ Tĩnh về các vị thuốc nam bản địa trị bệnh cho người Việt theo phương châm Nam dược trị Nam nhân."
+  },
+  "giaiphauthanhinh": {
+    "title": "Giải phẫu hệ thần kinh",
+    "author": "GS. Trịnh Bình",
+    "rating": "4.7",
+    "reads": "5.2k",
+    "cover": "covers/cothe.png",
+    "desc": "Khảo sát cấu trúc chi tiết của tủy sống, não bộ, hệ thần kinh ngoại vi và các bó dẫn truyền vận động cảm giác chính."
+  },
+  "atlasgiaiphau": {
+    "title": "Atlas Giải Phẫu Cơ Thể Người",
+    "author": "BS. Nguyễn Quang Quyền",
+    "rating": "4.9",
+    "reads": "21.4k",
+    "cover": "covers/atlasgiaiphau.png",
+    "desc": "Tập bản đồ giải phẫu đầy đủ nhất của Việt Nam, cung cấp cái nhìn trực quan và thuật ngữ chuẩn hóa phục vụ học tập nghiên cứu y khoa."
+  },
+  "benhthanhinh": {
+    "title": "Bệnh học Thần kinh lâm sàng",
+    "author": "PGS. TS. Nguyễn Chương",
+    "rating": "4.8",
+    "reads": "3.9k",
+    "cover": "covers/thankinh.png",
+    "desc": "Chẩn đoán và điều trị các bệnh lý thần kinh thường gặp như động kinh, đau nửa đầu, bệnh thần kinh ngoại biên và nhược cơ."
+  },
+  "taibienmachmau": {
+    "title": "Tai biến mạch máu não",
+    "author": "GS. Lê Đức Hinh",
+    "rating": "4.8",
+    "reads": "6.7k",
+    "cover": "covers/taibienmachmau.png",
+    "desc": "Hướng dẫn chẩn đoán nhanh đột quỵ, điều trị cấp cứu nội khoa và các liệu pháp phục hồi chức năng sau tai biến."
+  },
+  "ditruyentebao": {
+    "title": "Di truyền tế bào học",
+    "author": "GS. Phan Cự Nhân",
+    "rating": "4.6",
+    "reads": "2.3k",
+    "cover": "covers/ditruyentebao.png",
+    "desc": "Khảo sát nhiễm sắc thể, phân bào và các bất thường NST liên quan đến dị tật bẩm sinh và ung thư di truyền."
+  },
+  "kythuatditruyen": {
+    "title": "Kỹ thuật di truyền hiện đại",
+    "author": "PGS. TS. Đinh Đoàn Long",
+    "rating": "4.8",
+    "reads": "4.8k",
+    "cover": "covers/kythuatditruyen.png",
+    "desc": "Các công nghệ cốt lõi trong thao tác gen như PCR, giải trình tự thế hệ mới (NGS) và công nghệ CRISPR-Cas9 chỉnh sửa gen."
+  },
+  "nhansam": {
+    "title": "Nhân Sâm: Đại Bổ Nguyên Khí",
+    "author": "GS. TS. Nguyễn Văn Anh",
+    "rating": "4.9",
+    "reads": "10.2k",
+    "cover": "covers/nhansam.png",
+    "desc": "Nghiên cứu toàn diện về Nhân Sâm (Panax ginseng) và các hợp chất ginsenoside có tác dụng đại bổ nguyên khí, ích huyết, sinh tân, an thần trong y học cổ truyền."
+  },
+  "tamly": {
+    "title": "Tâm lý học lâm sàng",
+    "author": "ThS. Ngô Anh Tuấn",
+    "rating": "4.7",
+    "reads": "3.8k",
+    "cover": "covers/tamly.png",
+    "desc": "Giáo trình tâm lý học lâm sàng ứng dụng trong thực hành y khoa, chẩn đoán các rối loạn tâm thần, trầm cảm và liệu pháp tâm lý trị liệu."
+  },
+  "genkhoa": {
+    "title": "Gen và bệnh học",
+    "author": "TS. Vũ Thị Lan",
+    "rating": "4.7",
+    "reads": "2.6k",
+    "cover": "covers/genkhoa.png",
+    "desc": "Mối liên hệ giữa biến thể gen và các bệnh lý phổ biến, phân tích GWAS và ứng dụng di truyền dược lý trong điều trị cá thể hóa."
+  }
+}

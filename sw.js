@@ -2,7 +2,10 @@ const CACHE_NAME = 'gems-pwa-cache-v79';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/assets/logo.png'
+  '/assets/logo.png',
+  '/data/books.json',
+  '/data/dictionary.json',
+  '/data/chapters.json'
 ];
 
 self.addEventListener('install', event => {

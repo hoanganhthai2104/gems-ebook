@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="vi" class="light">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>GEMS Admin Dashboard - Quản Trị Hệ Thống</title>
+
+    <!-- Tailwind CSS with Forms plugin -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#005a9c',
+                            darkBlue: '#003d6b',
+                            amber: '#f59e0b',
+                            lightBg: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Firebase Web SDKs (Compat mode) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyBqYwumJNkRogUIjCY965OQQv28nGeHI_o",
+        authDomain: "gems-ebook.firebaseapp.com",
+        projectId: "gems-ebook",
+        storageBucket: "gems-ebook.firebasestorage.app",
+        messagingSenderId: "531668800970",
+        appId: "1:531668800970:web:0985471a02361fcf0e6b33"
+      };
+      if (typeof firebase !== 'undefined') {
+        firebase.initializeApp(firebaseConfig);
+        window.db = firebase.firestore();
+      }
+    </script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed top-5 right-5 z-[999] space-y-3 pointer-events-none"></div>
+
+    <!-- Login Modal / Screen -->
+    <div id="admin-login-screen" class="fixed inset-0 z-[500] bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full space-y-6 border border-slate-100">
+            <div class="text-center space-y-2">
+                <div class="w-16 h-16 bg-gradient-to-tr from-brand-blue to-blue-500 rounded-2xl mx-auto flex items-center justify-center shadow-lg shadow-brand-blue/30 text-white mb-3">
+                    <span class="material-symbols-outlined text-3xl">admin_panel_settings</span>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900 tracking-tight">GEMS Admin Portal</h2>
+                <p class="text-xs text-slate-500">Đăng nhập hệ thống quản trị dữ liệu Firebase Cloud</p>
+            </div>
+
+            <form id="login-form" onsubmit="handleAdminLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Mã xác thực Admin Passcode</label>
+                    <div class="relative">
+                        <input type="password" id="admin-passcode" placeholder="Nhập passcode (mặc định: gems2026)" required class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition"/>
+                        <span class="material-symbols-outlined absolute right-3 top-3 text-slate-400 text-xl">key</span>
+                    </div>
+                </div>
+                <button type="submit" class="w-full py-3.5 bg-brand-blue hover:bg-brand-darkBlue text-white font-bold rounded-xl text-sm transition duration-200 shadow-md shadow-brand-blue/20 flex items-center justify-center gap-2">
+                    <span>Vào Trang Quản Trị</span>
+                    <span class="material-symbols-outlined text-base">arrow_forward</span>
+                </button>
+            </form>
+            <div class="text-center">
+                <p class="text-[11px] text-slate-400">GEMS Ebook Cloud System v2.0 • Firebase Integrated</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Admin Layout (Initially Hidden until login) -->
+    <div id="admin-main-layout" class="hidden flex-grow flex min-h-screen">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="w-64 bg-slate-900 text-slate-300 flex flex-col flex-shrink-0 border-r border-slate-800">
+            <!-- Sidebar Header -->
+            <div class="p-5 border-b border-slate-800 flex items-center gap-3">
+                <div class="w-10 h-10 bg-brand-blue rounded-xl flex items-center justify-center text-white shadow-md font-black">
+                    GEMS
+                </div>
+                <div>
+                    <h1 class="font-bold text-white text-sm leading-tight">Admin Dashboard</h1>
+                    <p class="text-[10px] text-slate-400">Firebase Firestore Cloud</p>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <nav class="flex-grow p-4 space-y-1.5 overflow-y-auto">
+                <a href="#overview" onclick="switchAdminTab('overview')" id="nav-overview" class="admin-nav-item active flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-xs text-white bg-brand-blue transition">
+                    <span class="material-symbols-outlined text-lg">dashboard</span>
+                    <span>Tổng Quan (Overview)</span>
+                </a>
+
+                <a href="#books" onclick="switchAdminTab('books')" id="nav-books" class="admin-nav-item flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-xs text-slate-400 hover:text-white hover:bg-slate-800 transition">
+                    <span class="material-symbols-outlined text-lg">menu_book</span>
+                    <span>Quản Lý Sách & Chương</span>
+                </a>
+
+                <a href="#dictionary" onclick="switchAdminTab('dictionary')" id="nav-dictionary" class="admin-nav-item flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-xs text-slate-400 hover:text-white hover:bg-slate-800 transition">
+                    <span class="material-symbols-outlined text-lg">auto_stories</span>
+                    <span>Quản Lý Từ Điển Y Khoa</span>
+                </a>
+
+                <a href="#system" onclick="switchAdminTab('system')" id="nav-system" class="admin-nav-item flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-xs text-slate-400 hover:text-white hover:bg-slate-800 transition">
+                    <span class="material-symbols-outlined text-lg">cloud_sync</span>
+                    <span>Đồng Bộ & Cấu Hình</span>
+                </a>
+            </nav>
+
+            <!-- Sidebar Footer -->
+            <div class="p-4 border-t border-slate-800">
+                <button onclick="handleAdminLogout()" class="w-full py-2.5 px-3 bg-slate-800 hover:bg-red-600/20 hover:text-red-400 text-slate-400 text-xs font-semibold rounded-xl flex items-center justify-center gap-2 transition">
+                    <span class="material-symbols-outlined text-base">logout</span>
+                    <span>Đăng Xuất Admin</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-grow flex flex-col min-w-0 bg-slate-50">
+            <!-- Top App Bar -->
+            <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between sticky top-0 z-30 shadow-xs">
+                <div class="flex items-center gap-3">
+                    <span id="current-tab-title" class="text-base font-bold text-slate-900">Tổng Quan Hệ Thống</span>
+                    <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-ping"></span>
+                        Firebase Live
+                    </span>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button onclick="fetchLatestAdminData()" class="p-2 text-slate-500 hover:text-brand-blue hover:bg-slate-100 rounded-xl transition flex items-center gap-1 text-xs font-medium" title="Làm mới dữ liệu">
+                        <span class="material-symbols-outlined text-lg">refresh</span>
+                        <span class="hidden sm:inline">Làm mới</span>
+                    </button>
+                    <a href="http://localhost:8081/" target="_blank" class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition">
+                        <span class="material-symbols-outlined text-sm">visibility</span>
+                        <span>Xem Trang Người Dùng</span>
+                    </a>
+                </div>
+            </header>
+
+            <!-- Page Body Content -->
+            <div class="p-6 space-y-6 overflow-y-auto flex-grow custom-scrollbar">
+
+                <!-- SECTION 1: OVERVIEW -->
+                <section id="tab-overview" class="space-y-6">
+                    <!-- Metrics Cards Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                        <div class="glass-panel p-5 rounded-2xl flex items-center justify-between shadow-xs">
+                            <div class="space-y-1">
+                                <p class="text-xs font-semibold text-slate-500">Tổng Số Sách</p>
+                                <h3 id="stat-total-books" class="text-2xl font-black text-slate-900">--</h3>
+                                <p class="text-[10px] text-emerald-600 font-medium flex items-center gap-0.5">
+                                    <span class="material-symbols-outlined text-xs">check_circle</span> Firestore Active
+                                </p>
+                            </div>
+                            <div class="w-12 h-12 bg-blue-50 text-brand-blue rounded-2xl flex items-center justify-center">
+                                <span class="material-symbols-outlined text-2xl">menu_book</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-panel p-5 rounded-2xl flex items-center justify-between shadow-xs">
+                            <div class="space-y-1">
+                                <p class="text-xs font-semibold text-slate-500">Thuật Ngữ Từ Điển</p>
+                                <h3 id="stat-total-terms" class="text-2xl font-black text-slate-900">--</h3>
+                                <p class="text-[10px] text-emerald-600 font-medium flex items-center gap-0.5">
+                                    <span class="material-symbols-outlined text-xs">verified</span> Cẩm nang Y khoa
+                                </p>
+                            </div>
+                            <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center">
+                                <span class="material-symbols-outlined text-2xl">auto_stories</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-panel p-5 rounded-2xl flex items-center justify-between shadow-xs">
+                            <div class="space-y-1">
+                                <p class="text-xs font-semibold text-slate-500">Số Chương Nội Dung</p>
+                                <h3 id="stat-total-chapters" class="text-2xl font-black text-slate-900">--</h3>
+                                <p class="text-[10px] text-blue-600 font-medium flex items-center gap-0.5">
+                                    <span class="material-symbols-outlined text-xs">description</span> HTML Lazy Load
+                                </p>
+                            </div>
+                            <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center">
+                                <span class="material-symbols-outlined text-2xl">library_books</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-panel p-5 rounded-2xl flex items-center justify-between shadow-xs">
+                            <div class="space-y-1">
+                                <p class="text-xs font-semibold text-slate-500">Trạng Thái Backend</p>
+                                <h3 class="text-lg font-bold text-emerald-600">Ổn định 100%</h3>
+                                <p class="text-[10px] text-slate-400">Cloud Firestore Connection</p>
+                            </div>
+                            <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center">
+                                <span class="material-symbols-outlined text-2xl">cloud_done</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Action Banner -->
+                    <div class="bg-gradient-to-r from-brand-blue to-blue-700 rounded-3xl p-6 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="space-y-2 max-w-xl">
+                            <span class="bg-white/20 text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">Hệ thống Quản trị v2.0</span>
+                            <h2 class="text-xl font-bold">Quản Lý Toàn Bộ Dữ Liệu Sách & Từ Điển</h2>
+                            <p class="text-xs text-blue-100 leading-relaxed">Mọi thay đổi của bạn trên bảng điều khiển này sẽ tự động đồng bộ realtime lên Cloud Firestore và cập nhật ngay lập tức cho ứng dụng đọc sách của độc giả.</p>
+                        </div>
+                        <div class="flex gap-3 shrink-0">
+                            <button onclick="openAddBookModal()" class="px-4 py-2.5 bg-white text-brand-blue font-bold rounded-xl text-xs hover:bg-blue-50 transition shadow-md flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-base">add</span>
+                                <span>Thêm Sách Mới</span>
+                            </button>
+                            <button onclick="openAddTermModal()" class="px-4 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl text-xs transition shadow-md flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-base">post_add</span>
+                                <span>Thêm Thuật Ngữ</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity Table Preview -->
+                    <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-bold text-sm text-slate-900">Danh Sách Sách Mới Cập Nhật</h3>
+                            <button onclick="switchAdminTab('books')" class="text-xs text-brand-blue font-semibold hover:underline">Xem Tất Cả →</button>
+                        </div>
+                        <div id="overview-books-preview" class="divide-y divide-slate-100">
+                            <!-- Rendered dynamically -->
+                            <p class="text-xs text-slate-400 py-4 text-center">Đang tải danh sách sách...</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 2: BOOKS MANAGEMENT -->
+                <section id="tab-books" class="hidden space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-900">Quản Lý Danh Mục Sách (Books)</h2>
+                            <p class="text-xs text-slate-500">Xem, chỉnh sửa hoặc thêm sách mới vào cơ sở dữ liệu Firestore</p>
+                        </div>
+                        <button onclick="openAddBookModal()" class="px-4 py-2.5 bg-brand-blue hover:bg-brand-darkBlue text-white font-bold rounded-xl text-xs shadow-md transition flex items-center gap-1.5 w-max">
+                            <span class="material-symbols-outlined text-base">add_box</span>
+                            <span>Thêm Sách Mới</span>
+                        </button>
+                    </div>
+
+                    <!-- Filter / Search bar -->
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-slate-400">search</span>
+                        <input type="text" id="search-books-input" oninput="filterAdminBooks()" placeholder="Tìm theo tên sách, tác giả hoặc ID sách..." class="w-full text-xs outline-none bg-transparent"/>
+                    </div>
+
+                    <!-- Books Data Table -->
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                                        <th class="py-3 px-4">Ảnh Bìa</th>
+                                        <th class="py-3 px-4">Mã Sách (ID)</th>
+                                        <th class="py-3 px-4">Tên Sách & Tác Giả</th>
+                                        <th class="py-3 px-4">Đánh Giá</th>
+                                        <th class="py-3 px-4">Lượt Đọc</th>
+                                        <th class="py-3 px-4 text-right">Thao Tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="books-table-body" class="divide-y divide-slate-100 text-xs">
+                                    <tr><td colspan="6" class="text-center py-6 text-slate-400">Đang tải dữ liệu sách...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 3: DICTIONARY MANAGEMENT -->
+                <section id="tab-dictionary" class="hidden space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-900">Quản Lý Từ Điển Y Khoa (Dictionary)</h2>
+                            <p class="text-xs text-slate-500">Quản lý thuật ngữ, phiên âm, triệu chứng và quy trình chẩn đoán</p>
+                        </div>
+                        <button onclick="openAddTermModal()" class="px-4 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl text-xs shadow-md transition flex items-center gap-1.5 w-max">
+                            <span class="material-symbols-outlined text-base">library_add</span>
+                            <span>Thêm Thuật Ngữ Mới</span>
+                        </button>
+                    </div>
+
+                    <!-- Dictionary Data Table -->
+                    <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                                        <th class="py-3 px-4">Thuật Ngữ Key</th>
+                                        <th class="py-3 px-4">Phiên Âm</th>
+                                        <th class="py-3 px-4">Số Triệu Chứng</th>
+                                        <th class="py-3 px-4">Số Chẩn Đoán</th>
+                                        <th class="py-3 px-4 text-right">Thao Tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dictionary-table-body" class="divide-y divide-slate-100 text-xs">
+                                    <tr><td colspan="5" class="text-center py-6 text-slate-400">Đang tải dữ liệu từ điển...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 4: SYSTEM & SYNC -->
+                <section id="tab-system" class="hidden space-y-6">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-4 shadow-xs">
+                        <h3 class="font-bold text-sm text-slate-900">Đồng Bộ & Khôi Phục Dữ Liệu Ban Đầu</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">Nếu bạn muốn đồng bộ lại dữ liệu gốc từ các file local JSON (`data/books.json`, `data/dictionary.json`, `data/chapters.json`) lên Cloud Firestore, bạn có thể thực hiện chạy lại lệnh seed script.</p>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs font-mono text-slate-700">
+                            node scripts/seed_firebase.js
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-emerald-600 font-medium">
+                            <span class="material-symbols-outlined text-base">check_circle</span>
+                            <span>Firestore Collection Active & Ready</span>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL: ADD / EDIT BOOK -->
+    <div id="book-modal" class="hidden fixed inset-0 z-[600] bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-5 shadow-2xl border border-slate-100 max-h-[90vh] overflow-y-auto custom-scrollbar">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <h3 id="book-modal-title" class="font-bold text-base text-slate-900">Thêm Sách Mới</h3>
+                <button onclick="closeBookModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <form id="book-form" onsubmit="saveBookSubmit(event)" class="space-y-4">
+                <input type="hidden" id="book-form-is-edit" value="false"/>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">ID Sách (duy nhất, viết liền không dấu)</label>
+                    <input type="text" id="book-form-id" placeholder="vd: nhansam" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-brand-blue outline-none"/>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Tên Sách</label>
+                    <input type="text" id="book-form-title" placeholder="Tên sách y khoa..." required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-brand-blue outline-none"/>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Tác Giả</label>
+                        <input type="text" id="book-form-author" placeholder="GS. TS. Nguyễn Văn A" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-brand-blue outline-none"/>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Đánh Giá (Rating)</label>
+                        <input type="text" id="book-form-rating" placeholder="4.8" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-brand-blue outline-none"/>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Lượt Đọc (Reads)</label>
+                        <input type="text" id="book-form-reads" placeholder="12.5k" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-brand-blue outline-none"/>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Đường Dẫn Ảnh Bìa</label>
+                        <input type="text" id="book-form-cover" placeholder="covers/thaoduoc.png" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-brand-blue outline-none"/>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Mô Tả Chi Tiết Sách</label>
+                    <textarea id="book-form-desc" rows="4" placeholder="Mô tả tóm tắt nội dung cuốn sách..." required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-brand-blue outline-none"></textarea>
+                </div>
+
+                <div class="flex justify-end gap-2 pt-2 border-t border-slate-100">
+                    <button type="button" onclick="closeBookModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-xs font-semibold">Hủy</button>
+                    <button type="submit" class="px-5 py-2 bg-brand-blue hover:bg-brand-darkBlue text-white rounded-xl text-xs font-bold shadow-md">Lưu Vào Firestore</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: ADD / EDIT DICTIONARY TERM -->
+    <div id="term-modal" class="hidden fixed inset-0 z-[600] bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-5 shadow-2xl border border-slate-100 max-h-[90vh] overflow-y-auto custom-scrollbar">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <h3 id="term-modal-title" class="font-bold text-base text-slate-900">Thêm Thuật Ngữ Mới</h3>
+                <button onclick="closeTermModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <form id="term-form" onsubmit="saveTermSubmit(event)" class="space-y-4">
+                <input type="hidden" id="term-form-is-edit" value="false"/>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Tên Thuật Ngữ Key (Tiếng Anh / Viết Tắt)</label>
+                    <input type="text" id="term-form-key" placeholder="vd: Aneurysm" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-amber-500 outline-none"/>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Phiên Âm</label>
+                    <input type="text" id="term-form-pronunciation" placeholder="/ˈænyəˌrɪzəm/" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-amber-500 outline-none"/>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Các Triệu Chứng (Phân cách bằng xuống dòng)</label>
+                    <textarea id="term-form-symptoms" rows="3" placeholder="Triệu chứng 1&#10;Triệu chứng 2" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
+                </div>
+
+                <div class="flex justify-end gap-2 pt-2 border-t border-slate-100">
+                    <button type="button" onclick="closeTermModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-xs font-semibold">Hủy</button>
+                    <button type="submit" class="px-5 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-xs font-bold shadow-md">Lưu Từ Điển</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JS Application Logic -->
+    <script>
+        let adminBooksCache = {};
+        let adminDictCache = {};
+        let adminChaptersCache = {};
+
+        // Authentication logic
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const passcode = document.getElementById('admin-passcode').value;
+            if (passcode === 'gems2026' || passcode === 'admin' || passcode === '123456') {
+                sessionStorage.setItem('gems_admin_logged', 'true');
+                document.getElementById('admin-login-screen').classList.add('hidden');
+                document.getElementById('admin-main-layout').classList.remove('hidden');
+                showToast("Đăng nhập Admin thành công!", "success");
+                fetchLatestAdminData();
+            } else {
+                showToast("Mã Passcode không chính xác! Thử: gems2026", "error");
+            }
+        }
+
+        function handleAdminLogout() {
+            sessionStorage.removeItem('gems_admin_logged');
+            location.reload();
+        }
+
+        // Auto login if session active
+        window.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem('gems_admin_logged') === 'true') {
+                document.getElementById('admin-login-screen').classList.add('hidden');
+                document.getElementById('admin-main-layout').classList.remove('hidden');
+                fetchLatestAdminData();
+            }
+        });
+
+        // Tab Switching Logic
+        function switchAdminTab(tabName) {
+            ['overview', 'books', 'dictionary', 'system'].forEach(t => {
+                const nav = document.getElementById('nav-' + t);
+                const section = document.getElementById('tab-' + t);
+                if (nav) {
+                    if (t === tabName) {
+                        nav.className = "admin-nav-item active flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-xs text-white bg-brand-blue transition";
+                    } else {
+                        nav.className = "admin-nav-item flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-xs text-slate-400 hover:text-white hover:bg-slate-800 transition";
+                    }
+                }
+                if (section) {
+                    if (t === tabName) section.classList.remove('hidden');
+                    else section.classList.add('hidden');
+                }
+            });
+
+            const titles = {
+                overview: 'Tổng Quan Hệ Thống',
+                books: 'Quản Lý Sách & Chương',
+                dictionary: 'Quản Lý Từ Điển Y Khoa',
+                system: 'Cấu Hình & Đồng Bộ Hệ Thống'
+            };
+            document.getElementById('current-tab-title').textContent = titles[tabName] || 'GEMS Admin';
+        }
+
+        // Fetch data from Firebase Firestore
+        async function fetchLatestAdminData() {
+            if (!window.db) {
+                showToast("Không thể kết nối Firebase DB!", "error");
+                return;
+            }
+
+            try {
+                // Fetch Books
+                const booksSnap = await window.db.collection('books').get();
+                adminBooksCache = {};
+                booksSnap.forEach(doc => { adminBooksCache[doc.id] = doc.data(); });
+
+                // Fetch Dictionary
+                const dictSnap = await window.db.collection('dictionary').get();
+                adminDictCache = {};
+                dictSnap.forEach(doc => { adminDictCache[doc.id] = doc.data(); });
+
+                // Fetch Chapters
+                const chapSnap = await window.db.collection('chapters').get();
+                adminChaptersCache = {};
+                chapSnap.forEach(doc => { adminChaptersCache[doc.id] = doc.data(); });
+
+                // Render metrics & tables
+                renderOverviewMetrics();
+                renderBooksTable();
+                renderDictionaryTable();
+                showToast("Đã làm mới dữ liệu từ Firebase!", "success");
+            } catch (err) {
+                console.error("Error fetching admin data:", err);
+                showToast("Lỗi tải dữ liệu Firestore!", "error");
+            }
+        }
+
+        // Render Overview Metrics
+        function renderOverviewMetrics() {
+            document.getElementById('stat-total-books').textContent = Object.keys(adminBooksCache).length;
+            document.getElementById('stat-total-terms').textContent = Object.keys(adminDictCache).length;
+            document.getElementById('stat-total-chapters').textContent = Object.keys(adminChaptersCache).length;
+
+            const previewEl = document.getElementById('overview-books-preview');
+            const previewList = Object.entries(adminBooksCache).slice(0, 5);
+            if (previewList.length === 0) {
+                previewEl.innerHTML = '<p class="text-xs text-slate-400 py-4 text-center">Chưa có cuốn sách nào.</p>';
+                return;
+            }
+
+            previewEl.innerHTML = previewList.map(([id, b]) => `
+                <div class="py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <img src="${b.cover || 'covers/thaoduoc.png'}" alt="${b.title}" class="w-8 h-11 object-cover rounded-md border border-slate-200"/>
+                        <div>
+                            <h4 class="font-bold text-xs text-slate-800">${b.title}</h4>
+                            <p class="text-[10px] text-slate-400">Tác giả: ${b.author} • ID: ${id}</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-semibold text-brand-blue">${b.reads || '0'} lượt đọc</span>
+                </div>
+            `).join('');
+        }
+
+        // Render Books Table
+        function renderBooksTable(filterQuery = '') {
+            const tbody = document.getElementById('books-table-body');
+            let entries = Object.entries(adminBooksCache);
+
+            if (filterQuery) {
+                const q = filterQuery.toLowerCase();
+                entries = entries.filter(([id, b]) => id.toLowerCase().includes(q) || (b.title && b.title.toLowerCase().includes(q)) || (b.author && b.author.toLowerCase().includes(q)));
+            }
+
+            if (entries.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="text-center py-6 text-slate-400">Không tìm thấy sách nào.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = entries.map(([id, b]) => `
+                <tr class="hover:bg-slate-50/80 transition">
+                    <td class="py-3 px-4">
+                        <img src="${b.cover || 'covers/thaoduoc.png'}" class="w-9 h-12 object-cover rounded border border-slate-200"/>
+                    </td>
+                    <td class="py-3 px-4 font-mono font-bold text-brand-blue">${id}</td>
+                    <td class="py-3 px-4">
+                        <div class="font-bold text-slate-800">${b.title}</div>
+                        <div class="text-[10px] text-slate-400">${b.author}</div>
+                    </td>
+                    <td class="py-3 px-4 font-bold text-amber-500">★ ${b.rating || '5.0'}</td>
+                    <td class="py-3 px-4 text-slate-600 font-medium">${b.reads || '0'}</td>
+                    <td class="py-3 px-4 text-right space-x-1">
+                        <button onclick="editBookModal('${id}')" class="px-2.5 py-1 bg-slate-100 hover:bg-brand-blue hover:text-white text-slate-700 rounded-lg text-[11px] font-semibold transition">Sửa</button>
+                        <button onclick="deleteBookFirestore('${id}')" class="px-2.5 py-1 bg-red-50 hover:bg-red-600 hover:text-white text-red-600 rounded-lg text-[11px] font-semibold transition">Xóa</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterAdminBooks() {
+            const query = document.getElementById('search-books-input').value;
+            renderBooksTable(query);
+        }
+
+        // Render Dictionary Table
+        function renderDictionaryTable() {
+            const tbody = document.getElementById('dictionary-table-body');
+            const entries = Object.entries(adminDictCache);
+
+            if (entries.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="text-center py-6 text-slate-400">Chưa có thuật ngữ từ điển nào.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = entries.map(([key, item]) => `
+                <tr class="hover:bg-slate-50/80 transition">
+                    <td class="py-3 px-4 font-bold text-amber-600 font-mono">${key}</td>
+                    <td class="py-3 px-4 text-slate-500">${item.pronunciation || '--'}</td>
+                    <td class="py-3 px-4 font-medium text-slate-700">${(item.symptoms || []).length} mục</td>
+                    <td class="py-3 px-4 font-medium text-slate-700">${(item.diagnosis || []).length} mục</td>
+                    <td class="py-3 px-4 text-right space-x-1">
+                        <button onclick="editTermModal('${key}')" class="px-2.5 py-1 bg-slate-100 hover:bg-amber-500 hover:text-white text-slate-700 rounded-lg text-[11px] font-semibold transition">Sửa</button>
+                        <button onclick="deleteTermFirestore('${key}')" class="px-2.5 py-1 bg-red-50 hover:bg-red-600 hover:text-white text-red-600 rounded-lg text-[11px] font-semibold transition">Xóa</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Book Modals & Operations
+        function openAddBookModal() {
+            document.getElementById('book-modal-title').textContent = 'Thêm Sách Mới';
+            document.getElementById('book-form-is-edit').value = 'false';
+            document.getElementById('book-form-id').disabled = false;
+            document.getElementById('book-form-id').value = '';
+            document.getElementById('book-form-title').value = '';
+            document.getElementById('book-form-author').value = '';
+            document.getElementById('book-form-rating').value = '4.8';
+            document.getElementById('book-form-reads').value = '10.0k';
+            document.getElementById('book-form-cover').value = 'covers/thaoduoc.png';
+            document.getElementById('book-form-desc').value = '';
+            document.getElementById('book-modal').classList.remove('hidden');
+        }
+
+        function editBookModal(id) {
+            const b = adminBooksCache[id];
+            if (!b) return;
+            document.getElementById('book-modal-title').textContent = 'Chỉnh Sửa Sách: ' + id;
+            document.getElementById('book-form-is-edit').value = 'true';
+            document.getElementById('book-form-id').value = id;
+            document.getElementById('book-form-id').disabled = true;
+            document.getElementById('book-form-title').value = b.title || '';
+            document.getElementById('book-form-author').value = b.author || '';
+            document.getElementById('book-form-rating').value = b.rating || '4.8';
+            document.getElementById('book-form-reads').value = b.reads || '10.0k';
+            document.getElementById('book-form-cover').value = b.cover || 'covers/thaoduoc.png';
+            document.getElementById('book-form-desc').value = b.desc || '';
+            document.getElementById('book-modal').classList.remove('hidden');
+        }
+
+        function closeBookModal() {
+            document.getElementById('book-modal').classList.add('hidden');
+        }
+
+        async function saveBookSubmit(e) {
+            e.preventDefault();
+            const id = document.getElementById('book-form-id').value.trim();
+            const title = document.getElementById('book-form-title').value.trim();
+            const author = document.getElementById('book-form-author').value.trim();
+            const rating = document.getElementById('book-form-rating').value.trim();
+            const reads = document.getElementById('book-form-reads').value.trim();
+            const cover = document.getElementById('book-form-cover').value.trim();
+            const desc = document.getElementById('book-form-desc').value.trim();
+
+            if (!id || !title) {
+                showToast("Vui lòng điền đầy đủ ID và Tên sách!", "error");
+                return;
+            }
+
+            const bookObj = { title, author, rating, reads, cover, desc };
+            try {
+                await window.db.collection('books').doc(id).set(bookObj, { merge: true });
+                showToast(`Đã lưu sách "${title}" thành công lên Firestore!`, "success");
+                closeBookModal();
+                fetchLatestAdminData();
+            } catch (err) {
+                console.error("Save book error:", err);
+                showToast("Lỗi lưu sách lên Firestore!", "error");
+            }
+        }
+
+        async function deleteBookFirestore(id) {
+            if (!confirm(`Bạn có chắc chắn muốn xóa cuốn sách "${id}" khỏi Firestore?`)) return;
+            try {
+                await window.db.collection('books').doc(id).delete();
+                showToast(`Đã xóa cuốn sách "${id}"`, "success");
+                fetchLatestAdminData();
+            } catch (err) {
+                console.error("Delete book error:", err);
+                showToast("Lỗi xóa sách!", "error");
+            }
+        }
+
+        // Dictionary Modals & Operations
+        function openAddTermModal() {
+            document.getElementById('term-modal-title').textContent = 'Thêm Thuật Ngữ Mới';
+            document.getElementById('term-form-is-edit').value = 'false';
+            document.getElementById('term-form-key').disabled = false;
+            document.getElementById('term-form-key').value = '';
+            document.getElementById('term-form-pronunciation').value = '';
+            document.getElementById('term-form-symptoms').value = '';
+            document.getElementById('term-modal').classList.remove('hidden');
+        }
+
+        function editTermModal(key) {
+            const item = adminDictCache[key];
+            if (!item) return;
+            document.getElementById('term-modal-title').textContent = 'Chỉnh Sửa Thuật Ngữ: ' + key;
+            document.getElementById('term-form-is-edit').value = 'true';
+            document.getElementById('term-form-key').value = key;
+            document.getElementById('term-form-key').disabled = true;
+            document.getElementById('term-form-pronunciation').value = item.pronunciation || '';
+            document.getElementById('term-form-symptoms').value = (item.symptoms || []).join('\n');
+            document.getElementById('term-modal').classList.remove('hidden');
+        }
+
+        function closeTermModal() {
+            document.getElementById('term-modal').classList.add('hidden');
+        }
+
+        async function saveTermSubmit(e) {
+            e.preventDefault();
+            const key = document.getElementById('term-form-key').value.trim();
+            const pronunciation = document.getElementById('term-form-pronunciation').value.trim();
+            const symptomsRaw = document.getElementById('term-form-symptoms').value;
+            const symptoms = symptomsRaw.split('\n').map(s => s.trim()).filter(Boolean);
+
+            if (!key) {
+                showToast("Vui lòng nhập tên thuật ngữ!", "error");
+                return;
+            }
+
+            const termObj = { pronunciation, symptoms };
+            try {
+                await window.db.collection('dictionary').doc(key).set(termObj, { merge: true });
+                showToast(`Đã lưu thuật ngữ "${key}" thành công!`, "success");
+                closeTermModal();
+                fetchLatestAdminData();
+            } catch (err) {
+                console.error("Save term error:", err);
+                showToast("Lỗi lưu thuật ngữ!", "error");
+            }
+        }
+
+        async function deleteTermFirestore(key) {
+            if (!confirm(`Bạn có chắc chắn muốn xóa thuật ngữ "${key}"?`)) return;
+            try {
+                await window.db.collection('dictionary').doc(key).delete();
+                showToast(`Đã xóa thuật ngữ "${key}"`, "success");
+                fetchLatestAdminData();
+            } catch (err) {
+                console.error("Delete term error:", err);
+                showToast("Lỗi xóa thuật ngữ!", "error");
+            }
+        }
+
+        // Toast Notification System
+        function showToast(msg, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            const colors = {
+                success: 'bg-emerald-600 text-white shadow-emerald-500/20',
+                error: 'bg-red-600 text-white shadow-red-500/20',
+                info: 'bg-brand-blue text-white shadow-brand-blue/20'
+            };
+            toast.className = `px-4 py-3 rounded-xl text-xs font-semibold shadow-xl flex items-center gap-2 transform transition duration-300 translate-y-2 opacity-0 pointer-events-auto ${colors[type] || colors.info}`;
+            toast.innerHTML = `
+                <span class="material-symbols-outlined text-sm">${type === 'success' ? 'check_circle' : type === 'error' ? 'error' : 'info'}</span>
+                <span>${msg}</span>
+            `;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
