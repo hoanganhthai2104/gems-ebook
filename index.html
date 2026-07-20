@@ -2213,10 +2213,10 @@
             </div>
 
             <!-- GEMS Shop Campaign Pop-up Modal -->
-            <div id="shop-campaign-popup" class="absolute inset-0 z-[250] bg-black/75 backdrop-blur-sm flex items-center justify-center hidden opacity-0 transition-all duration-300 select-none">
+            <div id="shop-campaign-popup" class="absolute inset-0 z-[250] bg-black/75 backdrop-blur-sm flex items-center justify-center hidden opacity-0 transition-opacity duration-200 ease-out select-none">
                 
                 <!-- Outer Wrapper to support overflow-visible for the half-outside button -->
-                <div class="relative w-[285px] h-[390px] rounded-[32px] overflow-visible flex flex-col justify-between items-center text-white transform scale-95 transition-transform duration-300" id="shop-popup-card">
+                <div class="relative w-[285px] h-[390px] rounded-[32px] overflow-visible flex flex-col justify-between items-center text-white transform scale-90 translate-y-3 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]" id="shop-popup-card">
                     
                     <!-- Close button (floating outside top-right) -->
                     <button onclick="closeShopPopup()" class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-white text-slate-800 flex items-center justify-center shadow-xl hover:bg-slate-100 active:scale-90 transition-all border border-slate-200 z-[320] cursor-pointer">
@@ -12789,9 +12789,9 @@
 
             if (tabName === 'shop' && !appState.shopPopupShown) {
                 appState.shopPopupShown = true;
-                setTimeout(() => {
+                requestAnimationFrame(() => {
                     showShopPopup();
-                }, 450);
+                });
             }
 
 
@@ -28824,11 +28824,13 @@ let currentActiveBookId = 'chandoanykhoa';
             const card = document.getElementById('shop-popup-card');
             if (popup && card) {
                 popup.classList.remove('hidden');
-                setTimeout(() => {
-                    popup.classList.remove('opacity-0');
-                    card.classList.remove('scale-95');
-                    card.classList.add('scale-100');
-                }, 50);
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        popup.classList.remove('opacity-0');
+                        card.classList.remove('scale-90', 'translate-y-3');
+                        card.classList.add('scale-100', 'translate-y-0');
+                    });
+                });
             }
         }
 
@@ -28837,11 +28839,11 @@ let currentActiveBookId = 'chandoanykhoa';
             const card = document.getElementById('shop-popup-card');
             if (popup && card) {
                 popup.classList.add('opacity-0');
-                card.classList.remove('scale-100');
-                card.classList.add('scale-95');
+                card.classList.remove('scale-100', 'translate-y-0');
+                card.classList.add('scale-90', 'translate-y-3');
                 setTimeout(() => {
                     popup.classList.add('hidden');
-                }, 300);
+                }, 200);
             }
         }
 
