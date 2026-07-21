@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>GEMS Admin — Quản trị nền tảng</title>
-    <meta name="description" content="Bảng điều khiển nội bộ: người dùng, nội dung, thương mại, học tập và kiểm duyệt."/>
+    <meta name="description" content="Bảng điều khiển nội bộ: quản lý nội dung, đơn hàng, người dùng và kiểm duyệt hệ thống GEMS."/>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
@@ -13,7 +13,7 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: { blue: '#3b82f6', dark: '#1e40af', sidebar: '#0f172a', card: '#1e293b' }
+                        brand: { blue: '#3b82f6', dark: '#0f172a', sidebar: '#090d16', card: '#1e293b' }
                     },
                     fontFamily: { sans: ['Inter', 'sans-serif'] }
                 }
@@ -48,117 +48,106 @@
 
     <style>
         * { font-family: 'Inter', sans-serif; }
-        body { background: #f1f5f9; }
+        body { background: #f8fafc; color: #0f172a; }
 
-        /* Scrollbars */
+        /* Custom Scrollbars */
         ::-webkit-scrollbar { width: 5px; height: 5px; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
 
-        /* Sidebar */
-        #admin-sidebar { background: #0f172a; min-height: 100vh; width: 240px; flex-shrink: 0; }
-        .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 10px; font-size: 12px; font-weight: 500; color: #94a3b8; cursor: pointer; transition: all 0.15s; margin-bottom: 2px; }
-        .nav-item:hover { background: rgba(255,255,255,0.07); color: #e2e8f0; }
-        .nav-item.active { background: #3b82f6; color: #fff; }
-        .nav-item .material-symbols-outlined { font-size: 18px; }
-        .nav-section-label { font-size: 9px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 1.2px; padding: 8px 12px 4px; }
+        /* Sidebar Styling */
+        #admin-sidebar { background: #090d16; border-right: 1px solid rgba(255,255,255,0.06); min-height: 100vh; width: 250px; flex-shrink: 0; }
+        .nav-item { display: flex; align-items: center; gap: 11px; padding: 10px 14px; border-radius: 12px; font-size: 13px; font-weight: 500; color: #94a3b8; cursor: pointer; transition: all 0.2s ease; margin-bottom: 3px; }
+        .nav-item:hover { background: rgba(255,255,255,0.06); color: #f1f5f9; }
+        .nav-item.active { background: linear-gradient(135deg, #3b82f6, #2563eb); color: #ffffff; font-weight: 600; box-shadow: 0 4px 14px rgba(59,130,246,0.35); }
+        .nav-item .material-symbols-outlined { font-size: 20px; }
+        .nav-section-label { font-size: 10px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 1.2px; padding: 12px 14px 4px; }
+
+        /* Segmented Sub-Pill Controls */
+        .subtab-pill { padding: 7px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; color: #64748b; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+        .subtab-pill:hover { color: #0f172a; background: rgba(0,0,0,0.03); }
+        .subtab-pill.active { background: #ffffff; color: #2563eb; box-shadow: 0 1px 3px rgba(0,0,0,0.08); font-weight: 700; }
 
         /* Cards */
-        .stat-card { background: #fff; border-radius: 16px; padding: 20px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-        .content-card { background: #fff; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+        .stat-card { background: #ffffff; border-radius: 20px; padding: 20px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: transform 0.2s, box-shadow 0.2s; }
+        .stat-card:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.04); }
+        .content-card { background: #ffffff; border-radius: 20px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
 
-        /* Table */
+        /* Tables */
         table { width: 100%; border-collapse: collapse; }
         thead tr { background: #f8fafc; border-bottom: 1px solid #e2e8f0; }
-        thead th { padding: 11px 14px; font-size: 10.5px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.6px; text-align: left; }
-        tbody tr { border-bottom: 1px solid #f1f5f9; transition: background 0.1s; }
+        thead th { padding: 12px 16px; font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.6px; text-align: left; }
+        tbody tr { border-bottom: 1px solid #f1f5f9; transition: background 0.15s; }
         tbody tr:last-child { border-bottom: none; }
         tbody tr:hover { background: #f8fafc; }
-        tbody td { padding: 11px 14px; font-size: 12px; color: #334155; }
+        tbody td { padding: 13px 16px; font-size: 12.5px; color: #334155; }
 
         /* Badges */
-        .badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 99px; font-size: 10px; font-weight: 700; }
-        .badge-green { background: #dcfce7; color: #16a34a; }
+        .badge { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 99px; font-size: 10.5px; font-weight: 700; }
+        .badge-green { background: #dcfce7; color: #15803d; }
         .badge-blue { background: #dbeafe; color: #1d4ed8; }
         .badge-amber { background: #fef9c3; color: #a16207; }
-        .badge-red { background: #fee2e2; color: #dc2626; }
+        .badge-red { background: #fee2e2; color: #b91c1c; }
         .badge-slate { background: #f1f5f9; color: #475569; }
-        .badge-purple { background: #ede9fe; color: #7c3aed; }
+        .badge-purple { background: #ede9fe; color: #6d28d9; }
 
         /* Buttons */
-        .btn-primary { background: #3b82f6; color: #fff; padding: 8px 16px; border-radius: 10px; font-size: 12px; font-weight: 600; border: none; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: background 0.15s; }
-        .btn-primary:hover { background: #2563eb; }
-        .btn-sm { padding: 5px 10px; border-radius: 7px; font-size: 11px; font-weight: 600; border: none; cursor: pointer; transition: all 0.15s; }
+        .btn-primary { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; padding: 8px 16px; border-radius: 10px; font-size: 12px; font-weight: 600; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; box-shadow: 0 2px 6px rgba(59,130,246,0.25); }
+        .btn-primary:hover { background: linear-gradient(135deg, #2563eb, #1e40af); transform: translateY(-1px); }
+        .btn-sm { padding: 6px 12px; border-radius: 8px; font-size: 11.5px; font-weight: 600; border: none; cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; gap: 4px; }
         .btn-edit { background: #f1f5f9; color: #334155; }
-        .btn-edit:hover { background: #3b82f6; color: #fff; }
+        .btn-edit:hover { background: #e2e8f0; color: #0f172a; }
         .btn-delete { background: #fee2e2; color: #dc2626; }
         .btn-delete:hover { background: #dc2626; color: #fff; }
         .btn-success { background: #dcfce7; color: #16a34a; }
         .btn-success:hover { background: #16a34a; color: #fff; }
 
-        /* Form inputs */
-        .form-input { width: 100%; padding: 9px 12px; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 12px; outline: none; transition: border-color 0.15s, box-shadow 0.15s; background: #fff; }
-        .form-input:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
-        .form-label { font-size: 11px; font-weight: 600; color: #475569; margin-bottom: 4px; display: block; }
-        .form-select { width: 100%; padding: 9px 12px; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 12px; outline: none; background: #fff; }
+        /* Inputs */
+        .form-input { width: 100%; padding: 9.5px 13px; border: 1px solid #cbd5e1; border-radius: 12px; font-size: 12.5px; outline: none; transition: border-color 0.15s, box-shadow 0.15s; background: #fff; }
+        .form-input:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.12); }
+        .form-label { font-size: 11px; font-weight: 700; color: #475569; margin-bottom: 5px; display: block; text-transform: uppercase; letter-spacing: 0.4px; }
+        .form-select { width: 100%; padding: 9.5px 13px; border: 1px solid #cbd5e1; border-radius: 12px; font-size: 12.5px; outline: none; background: #fff; }
         .form-select:focus { border-color: #3b82f6; }
-        textarea.form-input { resize: vertical; min-height: 80px; }
+        textarea.form-input { resize: vertical; min-height: 90px; }
 
-        /* Modal */
-        .modal-overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px); z-index: 700; display: flex; align-items: center; justify-content: center; padding: 16px; }
-        .modal-box { background: #fff; border-radius: 20px; width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 50px rgba(0,0,0,0.15); }
-        .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px 14px; border-bottom: 1px solid #f1f5f9; }
-        .modal-body { padding: 20px; }
-        .modal-footer { display: flex; justify-content: flex-end; gap: 8px; padding: 14px 20px; border-top: 1px solid #f1f5f9; }
-
-        /* Metric cards gradient icons */
-        .metric-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
-        .metric-icon .material-symbols-outlined { font-size: 22px; }
-
-        /* Activity feed */
-        .feed-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid #f1f5f9; }
-        .feed-item:last-child { border-bottom: none; }
-        .feed-dot { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-        .feed-dot .material-symbols-outlined { font-size: 15px; }
+        /* Modals */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.65); backdrop-filter: blur(6px); z-index: 700; display: flex; align-items: center; justify-content: center; padding: 16px; }
+        .modal-box { background: #fff; border-radius: 24px; width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); border: 1px solid #e2e8f0; }
+        .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px 16px; border-bottom: 1px solid #f1f5f9; }
+        .modal-body { padding: 24px; }
+        .modal-footer { display: flex; justify-content: flex-end; gap: 10px; padding: 16px 24px; border-top: 1px solid #f1f5f9; background: #f8fafc; border-bottom-left-radius: 24px; border-bottom-right-radius: 24px; }
 
         /* Toast */
         #toast-container { position: fixed; top: 20px; right: 20px; z-index: 999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
-        .toast { padding: 12px 16px; border-radius: 12px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); pointer-events: auto; transform: translateX(120%); transition: transform 0.3s; }
+        .toast { padding: 12px 18px; border-radius: 14px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); pointer-events: auto; transform: translateX(120%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
         .toast.show { transform: translateX(0); }
 
-        /* Section header */
+        /* Header & Search */
         .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
-        .section-title { font-size: 15px; font-weight: 700; color: #0f172a; }
-        .section-subtitle { font-size: 11px; color: #64748b; margin-top: 2px; }
+        .section-title { font-size: 17px; font-weight: 800; color: #0f172a; letter-spacing: -0.3px; }
+        .section-subtitle { font-size: 11.5px; color: #64748b; margin-top: 2px; }
 
-        /* Search bar */
-        .search-bar { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px 12px; }
-        .search-bar input { outline: none; font-size: 12px; background: transparent; flex: 1; }
-        .search-bar .material-symbols-outlined { color: #94a3b8; font-size: 18px; }
+        .search-bar { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 8px 14px; transition: border-color 0.15s; }
+        .search-bar:focus-within { border-color: #3b82f6; }
+        .search-bar input { outline: none; font-size: 12px; background: transparent; flex: 1; border: none; }
+        .search-bar .material-symbols-outlined { color: #94a3b8; font-size: 19px; }
 
-        /* Pulse dot */
-        .pulse-dot { width: 6px; height: 6px; background: #10b981; border-radius: 50%; animation: pulse 2s infinite; display: inline-block; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        /* Pulsing Dot */
+        .pulse-dot { width: 7px; height: 7px; background: #10b981; border-radius: 50%; animation: pulse 2s infinite; display: inline-block; }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } }
 
-        /* Tab content hidden */
+        /* Tab Content Control */
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* Order status select */
-        .status-select { font-size: 11px; padding: 3px 8px; border-radius: 6px; border: 1px solid #e2e8f0; outline: none; cursor: pointer; }
+        .subpanel-content { display: none; }
+        .subpanel-content.active { display: block; }
 
-        /* Empty state */
-        .empty-state { text-align: center; padding: 40px 20px; color: #94a3b8; }
-        .empty-state .material-symbols-outlined { font-size: 40px; margin-bottom: 8px; display: block; }
-        .empty-state p { font-size: 12px; }
+        .status-select { font-size: 11.5px; padding: 4px 10px; border-radius: 8px; border: 1px solid #cbd5e1; outline: none; cursor: pointer; background: #fff; }
 
-        /* Toggle switch */
-        .toggle { position: relative; display: inline-block; width: 36px; height: 20px; }
-        .toggle input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #cbd5e1; border-radius: 20px; transition: 0.2s; }
-        .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.2s; }
-        input:checked + .slider { background: #3b82f6; }
-        input:checked + .slider:before { transform: translateX(16px); }
+        .empty-state { text-align: center; padding: 48px 20px; color: #94a3b8; }
+        .empty-state .material-symbols-outlined { font-size: 44px; margin-bottom: 10px; display: block; color: #cbd5e1; }
+        .empty-state p { font-size: 12.5px; font-weight: 500; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -167,14 +156,14 @@
 <div id="toast-container"></div>
 
 <!-- ==================== LOGIN SCREEN ==================== -->
-<div id="admin-login-screen" class="fixed inset-0 z-[800] flex items-center justify-center p-4" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);">
-    <div class="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-sm space-y-6">
+<div id="admin-login-screen" class="fixed inset-0 z-[800] flex items-center justify-center p-4" style="background: linear-gradient(135deg, #090d16 0%, #1e293b 100%);">
+    <div class="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-sm space-y-6 border border-slate-100">
         <div class="text-center">
             <div class="w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center text-white font-black text-xl shadow-xl" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
                 GEMS
             </div>
             <h2 class="text-xl font-bold text-slate-900">GEMS Admin Portal</h2>
-            <p class="text-xs text-slate-500 mt-1">Hệ thống quản trị nội bộ v3.0</p>
+            <p class="text-xs text-slate-500 mt-1">Hệ thống quản trị nội bộ v3.5</p>
         </div>
         <form onsubmit="handleAdminLogin(event)" class="space-y-4">
             <div>
@@ -184,7 +173,7 @@
                     <span class="material-symbols-outlined absolute right-3 top-2.5 text-slate-400" style="font-size:18px">key</span>
                 </div>
             </div>
-            <button type="submit" class="w-full py-3 rounded-xl text-white font-bold text-sm flex items-center justify-center gap-2 transition" style="background:#3b82f6">
+            <button type="submit" class="w-full py-3 rounded-xl text-white font-bold text-sm flex items-center justify-center gap-2 transition shadow-lg shadow-blue-500/30" style="background:linear-gradient(135deg, #3b82f6, #1d4ed8)">
                 <span class="material-symbols-outlined text-base">login</span>
                 Vào Trang Quản Trị
             </button>
@@ -199,258 +188,518 @@
     <!-- SIDEBAR -->
     <aside id="admin-sidebar" class="flex flex-col flex-shrink-0 overflow-y-auto">
         <!-- Logo -->
-        <div class="p-5 border-b border-slate-800 flex items-center gap-3 flex-shrink-0">
-            <div class="w-9 h-9 rounded-xl flex items-center justify-center text-white font-black text-xs flex-shrink-0" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8)">GEMS</div>
+        <div class="p-5 border-b border-slate-800/80 flex items-center gap-3 flex-shrink-0">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center text-white font-black text-xs flex-shrink-0 shadow-md shadow-blue-500/20" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8)">GEMS</div>
             <div class="min-w-0">
-                <p class="text-white font-bold text-xs leading-tight">Admin Dashboard</p>
-                <p class="text-[10px] text-slate-500 flex items-center gap-1 mt-0.5">
+                <p class="text-white font-bold text-xs leading-tight tracking-wide">Admin Portal</p>
+                <p class="text-[10px] text-slate-400 flex items-center gap-1.5 mt-0.5 font-medium">
                     <span class="pulse-dot"></span> Firebase Live
                 </p>
             </div>
         </div>
 
-        <!-- Nav -->
+        <!-- Navigation items (4 Core Hubs) -->
         <nav class="flex-grow p-3 overflow-y-auto">
-            <div class="nav-section-label">Tổng quan</div>
+            <div class="nav-section-label">Bảng Điều Khiển</div>
             <div class="nav-item active" id="nav-overview" onclick="switchTab('overview')">
                 <span class="material-symbols-outlined">dashboard</span>
                 <span>Tổng Quan</span>
             </div>
 
-            <div class="nav-section-label mt-2">Người dùng</div>
+            <div class="nav-section-label mt-3">Quản Lý Nền Tảng</div>
+            <div class="nav-item" id="nav-content" onclick="switchTab('content')">
+                <span class="material-symbols-outlined">library_books</span>
+                <span>Kho Nội Dung</span>
+                <span id="badge-content" class="ml-auto bg-blue-500/80 text-white text-[9.5px] font-bold px-2 py-0.5 rounded-full">0</span>
+            </div>
+
+            <div class="nav-item" id="nav-commerce" onclick="switchTab('commerce')">
+                <span class="material-symbols-outlined">shopping_bag</span>
+                <span>Cửa Hàng &amp; Đơn Hàng</span>
+                <span id="badge-orders" class="ml-auto bg-amber-500 text-white text-[9.5px] font-bold px-2 py-0.5 rounded-full hidden">0</span>
+            </div>
+
             <div class="nav-item" id="nav-users" onclick="switchTab('users')">
                 <span class="material-symbols-outlined">group</span>
-                <span>Quản Lý Người Dùng</span>
-                <span id="badge-users" class="ml-auto bg-blue-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
+                <span>Tài Khoản Người Dùng</span>
+                <span id="badge-users" class="ml-auto bg-teal-500 text-white text-[9.5px] font-bold px-2 py-0.5 rounded-full hidden">0</span>
             </div>
 
-            <div class="nav-section-label mt-2">Nội dung</div>
-            <div class="nav-item" id="nav-books" onclick="switchTab('books')">
-                <span class="material-symbols-outlined">menu_book</span>
-                <span>Sách &amp; Audiobook</span>
-            </div>
-            <div class="nav-item" id="nav-chapters" onclick="switchTab('chapters')">
-                <span class="material-symbols-outlined">library_books</span>
-                <span>Quản Lý Chương ND</span>
-            </div>
-            <div class="nav-item" id="nav-dictionary" onclick="switchTab('dictionary')">
-                <span class="material-symbols-outlined">auto_stories</span>
-                <span>Từ Điển Y Khoa</span>
-            </div>
-
-            <div class="nav-section-label mt-2">Thương mại</div>
-            <div class="nav-item" id="nav-shop" onclick="switchTab('shop')">
-                <span class="material-symbols-outlined">storefront</span>
-                <span>Sản Phẩm Shop</span>
-            </div>
-            <div class="nav-item" id="nav-orders" onclick="switchTab('orders')">
-                <span class="material-symbols-outlined">receipt_long</span>
-                <span>Đơn Hàng</span>
-                <span id="badge-orders" class="ml-auto bg-amber-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
-            </div>
-            <div class="nav-item" id="nav-promotions" onclick="switchTab('promotions')">
-                <span class="material-symbols-outlined">sell</span>
-                <span>Voucher &amp; Sale</span>
-            </div>
-
-            <div class="nav-section-label mt-2">Kiểm duyệt</div>
-            <div class="nav-item" id="nav-moderation" onclick="switchTab('moderation')">
-                <span class="material-symbols-outlined">shield_check</span>
-                <span>Kiểm Duyệt ND</span>
-                <span id="badge-mod" class="ml-auto bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
-            </div>
-
-            <div class="nav-section-label mt-2">Hệ thống</div>
+            <div class="nav-section-label mt-3">Hệ Thống</div>
             <div class="nav-item" id="nav-system" onclick="switchTab('system')">
-                <span class="material-symbols-outlined">cloud_sync</span>
-                <span>Cấu Hình &amp; Sync</span>
+                <span class="material-symbols-outlined">tune</span>
+                <span>Kiểm Duyệt &amp; Cấu Hình</span>
+                <span id="badge-mod" class="ml-auto bg-red-500 text-white text-[9.5px] font-bold px-2 py-0.5 rounded-full hidden">0</span>
             </div>
         </nav>
 
-        <!-- Sidebar footer -->
-        <div class="p-3 border-t border-slate-800 flex-shrink-0">
-            <div class="flex items-center gap-2 p-2 mb-2">
-                <div class="w-7 h-7 rounded-full bg-blue-500 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-white" style="font-size:14px">person</span>
+        <!-- Sidebar Footer -->
+        <div class="p-3 border-t border-slate-800/80 flex-shrink-0">
+            <div class="flex items-center gap-2.5 p-2 mb-2 bg-slate-900/60 rounded-xl border border-slate-800/60">
+                <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0">
+                    <span class="material-symbols-outlined text-white" style="font-size:16px">shield_person</span>
                 </div>
                 <div class="min-w-0">
-                    <p class="text-white text-[11px] font-semibold leading-tight">Admin</p>
-                    <p class="text-slate-500 text-[9px]">gems2026 session</p>
+                    <p class="text-white text-[11.5px] font-bold leading-tight">Admin Administrator</p>
+                    <p class="text-slate-400 text-[9.5px] font-medium">Session: active</p>
                 </div>
             </div>
-            <button onclick="handleAdminLogout()" class="nav-item w-full hover:bg-red-900/30 hover:text-red-400">
+            <button onclick="handleAdminLogout()" class="nav-item w-full hover:bg-red-950/40 hover:text-red-400 justify-center text-center">
                 <span class="material-symbols-outlined">logout</span>
                 <span>Đăng Xuất</span>
             </button>
         </div>
     </aside>
 
-    <!-- MAIN CONTENT -->
+    <!-- MAIN CONTENT AREA -->
     <div class="flex-grow flex flex-col min-w-0">
 
         <!-- TOP HEADER -->
-        <header class="h-14 bg-white border-b border-slate-200 px-4 md:px-6 flex items-center justify-between sticky top-0 z-40 flex-shrink-0">
+        <header class="h-15 bg-white border-b border-slate-200 px-4 md:px-7 flex items-center justify-between sticky top-0 z-40 flex-shrink-0 shadow-sm shadow-slate-100">
             <div class="flex items-center gap-3">
                 <button onclick="toggleMobileSidebar()" class="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-xl transition flex items-center justify-center">
                     <span class="material-symbols-outlined text-xl">menu</span>
                 </button>
-                <span id="header-title" class="text-sm font-bold text-slate-900">Tổng Quan Hệ Thống</span>
-                <span class="badge badge-green text-[10px] items-center gap-1 hidden sm:inline-flex">
-                    <span class="pulse-dot" style="width:5px;height:5px;background:#22c55e"></span>
-                    Trực tuyến
-                </span>
+                <div>
+                    <h1 id="header-title" class="text-sm font-extrabold text-slate-900">Tổng Quan Hệ Thống</h1>
+                    <p class="text-[10px] text-slate-400 hidden sm:block">GEMS Platform Admin System</p>
+                </div>
             </div>
-            <div class="flex items-center gap-2">
-                <button onclick="refreshAllData()" title="Làm mới" class="p-2 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition flex items-center gap-1 text-xs font-medium">
+
+            <div class="flex items-center gap-2.5">
+                <button onclick="refreshAllData()" title="Làm mới" class="p-2 text-slate-600 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition flex items-center gap-1.5 text-xs font-semibold">
                     <span class="material-symbols-outlined text-lg">refresh</span>
-                    <span class="hidden sm:inline">Làm mới</span>
+                    <span class="hidden sm:inline">Làm Mới</span>
                 </button>
-                <a href="index.html" target="_blank" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition">
+                <a href="index.html" target="_blank" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
                     <span class="material-symbols-outlined text-sm">open_in_new</span>
                     <span>Xem App</span>
                 </a>
             </div>
         </header>
 
-        <!-- PAGE CONTENT -->
-        <main class="flex-grow overflow-y-auto p-6 space-y-6">
+        <!-- PAGE CONTAINER -->
+        <main class="flex-grow overflow-y-auto p-4 md:p-7 space-y-6">
 
-            <!-- ====== TAB: OVERVIEW ====== -->
+            <!-- ====== TAB 1: OVERVIEW (DASHBOARD) ====== -->
             <div id="tab-overview" class="tab-content active space-y-6">
-                <!-- Metric Cards -->
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="stat-card flex items-center justify-between">
+                <!-- 4 Consolidated KPI Metric Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="stat-card flex items-center justify-between cursor-pointer" onclick="switchTab('content')">
                         <div>
-                            <p class="text-[11px] font-semibold text-slate-500">Tổng Sách</p>
-                            <p id="m-books" class="text-2xl font-black text-slate-900 mt-1">—</p>
-                            <p class="text-[10px] text-blue-600 mt-1">Ebook & Audiobook</p>
+                            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Kho Tri Thức</p>
+                            <p id="m-content-total" class="text-2xl font-black text-slate-900 mt-1">—</p>
+                            <p class="text-[10px] text-blue-600 font-semibold mt-1 flex items-center gap-1">
+                                <span id="m-books-sub">0 Sách</span> • <span id="m-chaps-sub">0 Chương</span>
+                            </p>
                         </div>
-                        <div class="metric-icon bg-blue-50 text-blue-600"><span class="material-symbols-outlined">menu_book</span></div>
-                    </div>
-                    <div class="stat-card flex items-center justify-between">
-                        <div>
-                            <p class="text-[11px] font-semibold text-slate-500">Từ Điển</p>
-                            <p id="m-terms" class="text-2xl font-black text-slate-900 mt-1">—</p>
-                            <p class="text-[10px] text-amber-600 mt-1">Thuật ngữ Y khoa</p>
+                        <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
+                            <span class="material-symbols-outlined" style="font-size:24px">library_books</span>
                         </div>
-                        <div class="metric-icon bg-amber-50 text-amber-600"><span class="material-symbols-outlined">auto_stories</span></div>
                     </div>
-                    <div class="stat-card flex items-center justify-between">
+
+                    <div class="stat-card flex items-center justify-between cursor-pointer" onclick="switchTab('commerce'); switchSubTab('commerce','orders')">
                         <div>
-                            <p class="text-[11px] font-semibold text-slate-500">Chương ND</p>
-                            <p id="m-chapters" class="text-2xl font-black text-slate-900 mt-1">—</p>
-                            <p class="text-[10px] text-indigo-600 mt-1">Nội dung HTML</p>
-                        </div>
-                        <div class="metric-icon bg-indigo-50 text-indigo-600"><span class="material-symbols-outlined">library_books</span></div>
-                    </div>
-                    <div class="stat-card flex items-center justify-between">
-                        <div>
-                            <p class="text-[11px] font-semibold text-slate-500">Sản Phẩm</p>
-                            <p id="m-products" class="text-2xl font-black text-slate-900 mt-1">—</p>
-                            <p class="text-[10px] text-emerald-600 mt-1">Shop online</p>
-                        </div>
-                        <div class="metric-icon bg-emerald-50 text-emerald-600"><span class="material-symbols-outlined">storefront</span></div>
-                    </div>
-                    <div class="stat-card flex items-center justify-between">
-                        <div>
-                            <p class="text-[11px] font-semibold text-slate-500">Đơn Hàng</p>
+                            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Đơn Hàng &amp; Shop</p>
                             <p id="m-orders" class="text-2xl font-black text-slate-900 mt-1">—</p>
-                            <p class="text-[10px] text-purple-600 mt-1">Tổng đơn</p>
+                            <p class="text-[10px] text-emerald-600 font-semibold mt-1 flex items-center gap-1">
+                                <span id="m-orders-pending-sub">0 chờ xử lý</span>
+                            </p>
                         </div>
-                        <div class="metric-icon bg-purple-50 text-purple-600"><span class="material-symbols-outlined">receipt_long</span></div>
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                            <span class="material-symbols-outlined" style="font-size:24px">shopping_bag</span>
+                        </div>
                     </div>
-                    <div class="stat-card flex items-center justify-between">
+
+                    <div class="stat-card flex items-center justify-between cursor-pointer" onclick="switchTab('commerce'); switchSubTab('commerce','promotions')">
                         <div>
-                            <p class="text-[11px] font-semibold text-slate-500">Voucher</p>
+                            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Voucher &amp; Sale</p>
                             <p id="m-vouchers" class="text-2xl font-black text-slate-900 mt-1">—</p>
-                            <p class="text-[10px] text-rose-600 mt-1">Khuyến mãi</p>
+                            <p class="text-[10px] text-purple-600 font-semibold mt-1 flex items-center gap-1">
+                                <span id="m-flashsale-sub">0 Flash sale</span>
+                            </p>
                         </div>
-                        <div class="metric-icon bg-rose-50 text-rose-600"><span class="material-symbols-outlined">sell</span></div>
+                        <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center flex-shrink-0">
+                            <span class="material-symbols-outlined" style="font-size:24px">sell</span>
+                        </div>
                     </div>
-                    <div class="stat-card flex items-center justify-between">
+
+                    <div class="stat-card flex items-center justify-between cursor-pointer" onclick="switchTab('system')">
                         <div>
-                            <p class="text-[11px] font-semibold text-slate-500">Người Dùng</p>
+                            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Tài Khoản &amp; Duyệt</p>
                             <p id="m-users" class="text-2xl font-black text-slate-900 mt-1">—</p>
-                            <p class="text-[10px] text-teal-600 mt-1">Registered</p>
+                            <p class="text-[10px] text-amber-600 font-semibold mt-1 flex items-center gap-1">
+                                <span id="m-pending-sub">0 chờ duyệt</span>
+                            </p>
                         </div>
-                        <div class="metric-icon bg-teal-50 text-teal-600"><span class="material-symbols-outlined">group</span></div>
-                    </div>
-                    <div class="stat-card flex items-center justify-between">
-                        <div>
-                            <p class="text-[11px] font-semibold text-slate-500">Chờ Duyệt</p>
-                            <p id="m-pending" class="text-2xl font-black text-slate-900 mt-1">—</p>
-                            <p class="text-[10px] text-orange-600 mt-1">Ghi chú ND</p>
+                        <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0">
+                            <span class="material-symbols-outlined" style="font-size:24px">shield_person</span>
                         </div>
-                        <div class="metric-icon bg-orange-50 text-orange-600"><span class="material-symbols-outlined">shield_check</span></div>
                     </div>
                 </div>
 
-                <!-- Banner + Quick Actions -->
-                <div class="rounded-2xl p-6 text-white flex flex-col md:flex-row items-center justify-between gap-6" style="background:linear-gradient(135deg,#1e40af,#3b82f6,#0ea5e9)">
-                    <div class="space-y-2">
-                        <span class="bg-white/20 text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">Admin v3.0</span>
-                        <h2 class="text-lg font-bold">Quản Lý Toàn Bộ Nền Tảng GEMS</h2>
-                        <p class="text-xs text-blue-100 leading-relaxed max-w-lg">Mọi thay đổi được đồng bộ realtime lên Firebase Cloud Firestore và cập nhật ngay cho người dùng ứng dụng.</p>
+                <!-- Banner Quick Action -->
+                <div class="rounded-3xl p-6 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl shadow-blue-900/10" style="background:linear-gradient(135deg, #090d16 0%, #1e293b 50%, #1e40af 100%);">
+                    <div class="space-y-2 text-center md:text-left">
+                        <span class="bg-white/10 border border-white/20 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">Admin Dashboard v3.5</span>
+                        <h2 class="text-lg font-bold">Hệ Thống Quản Trị Toàn Diện GEMS</h2>
+                        <p class="text-xs text-slate-300 leading-relaxed max-w-xl">Đồng bộ dữ liệu thời gian thực lên Cloud Firestore, quản lý nội dung sách, bài viết từ điển, sản phẩm shop và đơn hàng dễ dàng.</p>
                     </div>
-                    <div class="flex flex-wrap gap-2 shrink-0">
-                        <button onclick="openAddBookModal()" class="px-4 py-2 bg-white text-blue-700 font-bold rounded-xl text-xs hover:bg-blue-50 transition flex items-center gap-1.5">
-                            <span class="material-symbols-outlined text-sm">add</span> Thêm Sách
+                    <div class="flex flex-wrap gap-2.5 shrink-0">
+                        <button onclick="switchTab('content'); openAddBookModal()" class="px-4 py-2.5 bg-blue-600 text-white font-bold rounded-xl text-xs hover:bg-blue-500 transition shadow-lg flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-sm">add_box</span> Thêm Sách
                         </button>
-                        <button onclick="switchTab('shop'); setTimeout(openAddProductModal,100)" class="px-4 py-2 bg-blue-900/40 hover:bg-blue-900/60 text-white font-bold rounded-xl text-xs transition flex items-center gap-1.5">
+                        <button onclick="switchTab('commerce'); switchSubTab('commerce','products'); setTimeout(openAddProductModal,100)" class="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl text-xs border border-white/20 transition flex items-center gap-1.5">
                             <span class="material-symbols-outlined text-sm">add_shopping_cart</span> Thêm SP
                         </button>
-                        <button onclick="switchTab('promotions'); setTimeout(openAddVoucherModal,100)" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-white font-bold rounded-xl text-xs transition flex items-center gap-1.5">
+                        <button onclick="switchTab('commerce'); switchSubTab('commerce','promotions'); setTimeout(openAddVoucherModal,100)" class="px-4 py-2.5 bg-amber-500 hover:bg-amber-400 text-white font-bold rounded-xl text-xs transition flex items-center gap-1.5">
                             <span class="material-symbols-outlined text-sm">sell</span> Tạo Voucher
                         </button>
                     </div>
                 </div>
 
-                <!-- Recent Books + Recent Orders (2 cols) -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                <!-- Recent Grid: Books & Orders -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div class="content-card overflow-hidden">
-                        <div class="flex items-center justify-between p-4 border-b border-slate-100">
-                            <h3 class="text-sm font-bold text-slate-900">Sách Mới Nhất</h3>
-                            <button onclick="switchTab('books')" class="text-xs text-blue-600 font-semibold hover:underline">Xem tất cả →</button>
+                        <div class="flex items-center justify-between p-5 border-b border-slate-100">
+                            <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-blue-600">menu_book</span> Sách Mới Nhất
+                            </h3>
+                            <button onclick="switchTab('content')" class="text-xs text-blue-600 font-semibold hover:underline">Xem tất cả →</button>
                         </div>
-                        <div id="overview-books-list" class="p-2">
-                            <div class="empty-state"><span class="material-symbols-outlined">hourglass_empty</span><p>Đang tải...</p></div>
+                        <div id="overview-books-list" class="p-3">
+                            <div class="empty-state"><span class="material-symbols-outlined">hourglass_empty</span><p>Đang tải dữ liệu...</p></div>
                         </div>
                     </div>
 
                     <div class="content-card overflow-hidden">
-                        <div class="flex items-center justify-between p-4 border-b border-slate-100">
-                            <h3 class="text-sm font-bold text-slate-900">Đơn Hàng Gần Đây</h3>
-                            <button onclick="switchTab('orders')" class="text-xs text-blue-600 font-semibold hover:underline">Xem tất cả →</button>
+                        <div class="flex items-center justify-between p-5 border-b border-slate-100">
+                            <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-purple-600">receipt_long</span> Đơn Hàng Gần Đây
+                            </h3>
+                            <button onclick="switchTab('commerce'); switchSubTab('commerce','orders')" class="text-xs text-blue-600 font-semibold hover:underline">Xem tất cả →</button>
                         </div>
-                        <div id="overview-orders-list" class="p-2">
-                            <div class="empty-state"><span class="material-symbols-outlined">hourglass_empty</span><p>Đang tải...</p></div>
+                        <div id="overview-orders-list" class="p-3">
+                            <div class="empty-state"><span class="material-symbols-outlined">hourglass_empty</span><p>Đang tải dữ liệu...</p></div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Activity Feed -->
-                <div class="content-card p-5">
-                    <h3 class="text-sm font-bold text-slate-900 mb-4">Hoạt Động Hệ Thống</h3>
+                <div class="content-card p-6">
+                    <h3 class="text-sm font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-slate-600">history</span> Hoạt Động Hệ Thống
+                    </h3>
                     <div id="activity-feed">
                         <div class="empty-state"><span class="material-symbols-outlined">history</span><p>Chưa có hoạt động</p></div>
                     </div>
                 </div>
             </div>
 
-            <!-- ====== TAB: USERS ====== -->
+            <!-- ====== TAB 2: CONTENT HUB (NỘI DUNG) ====== -->
+            <div id="tab-content" class="tab-content space-y-6">
+                <!-- Segmented Control Bar -->
+                <div class="flex items-center justify-between flex-wrap gap-4 border-b border-slate-200 pb-4">
+                    <div class="inline-flex p-1.5 bg-slate-200/70 rounded-2xl border border-slate-300/60">
+                        <button id="sub-content-books" onclick="switchSubTab('content', 'books')" class="subtab-pill active">
+                            <span class="material-symbols-outlined text-base">menu_book</span>
+                            <span>Sách &amp; Audiobook</span>
+                        </button>
+                        <button id="sub-content-chapters" onclick="switchSubTab('content', 'chapters')" class="subtab-pill">
+                            <span class="material-symbols-outlined text-base">library_books</span>
+                            <span>Chương Nội Dung</span>
+                        </button>
+                        <button id="sub-content-dictionary" onclick="switchSubTab('content', 'dictionary')" class="subtab-pill">
+                            <span class="material-symbols-outlined text-base">auto_stories</span>
+                            <span>Từ Điển Y Khoa</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SUBPANEL: BOOKS -->
+                <div id="subpanel-content-books" class="subpanel-content active space-y-5">
+                    <div class="section-header">
+                        <div>
+                            <h2 class="section-title">Danh Mục Sách &amp; Audiobook</h2>
+                            <p class="section-subtitle">Quản lý sách y khoa, bìa sách, đánh giá và lượt đọc • Collection: <code>books</code></p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="exportToCSV('books')" class="btn-sm btn-edit"><span class="material-symbols-outlined text-sm">download</span> Xuất CSV</button>
+                            <button onclick="openAddBookModal()" class="btn-primary"><span class="material-symbols-outlined text-sm">add_box</span> Thêm Sách Mới</button>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 flex-wrap">
+                        <div class="search-bar flex-grow max-w-sm">
+                            <span class="material-symbols-outlined">search</span>
+                            <input type="text" id="search-books" oninput="filterBooks()" placeholder="Tìm tên sách, tác giả, ID..."/>
+                        </div>
+                        <select id="filter-books-type" onchange="filterBooks()" class="form-select w-40">
+                            <option value="">Tất cả loại</option>
+                            <option value="ebook">Ebook</option>
+                            <option value="audiobook">Audiobook</option>
+                        </select>
+                    </div>
+                    <div class="content-card overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table>
+                                <thead><tr>
+                                    <th>Bìa Sách</th>
+                                    <th>ID Sách</th>
+                                    <th>Tên &amp; Tác Giả</th>
+                                    <th>Loại</th>
+                                    <th>Đánh Giá</th>
+                                    <th>Lượt Đọc</th>
+                                    <th class="text-right">Thao Tác</th>
+                                </tr></thead>
+                                <tbody id="books-tbody">
+                                    <tr><td colspan="7" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUBPANEL: CHAPTERS -->
+                <div id="subpanel-content-chapters" class="subpanel-content space-y-5">
+                    <div class="section-header">
+                        <div>
+                            <h2 class="section-title">Quản Lý Chương Nội Dung HTML</h2>
+                            <p class="section-subtitle">Chỉnh sửa nội dung văn bản HTML từng chương sách • Collection: <code>chapters</code></p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="exportToCSV('chapters')" class="btn-sm btn-edit"><span class="material-symbols-outlined text-sm">download</span> Xuất CSV</button>
+                            <button onclick="openAddChapterModal()" class="btn-primary" style="background:linear-gradient(135deg,#4f46e5,#3730a3)"><span class="material-symbols-outlined text-sm">add_circle</span> Thêm Chương Mới</button>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 flex-wrap">
+                        <div class="search-bar flex-grow max-w-sm">
+                            <span class="material-symbols-outlined">search</span>
+                            <input type="text" id="search-chapters" oninput="filterChapters()" placeholder="Tìm tiêu đề chương, ID..."/>
+                        </div>
+                        <select id="filter-chapters-book" onchange="filterChapters()" class="form-select w-48">
+                            <option value="">Tất cả sách</option>
+                        </select>
+                    </div>
+                    <div class="content-card overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table>
+                                <thead><tr>
+                                    <th>Mã Chương (ID)</th>
+                                    <th>Sách Áp Dụng</th>
+                                    <th>Tiêu Đề Chương</th>
+                                    <th>Độ Dài HTML</th>
+                                    <th>Cập Nhật</th>
+                                    <th class="text-right">Thao Tác</th>
+                                </tr></thead>
+                                <tbody id="chapters-tbody">
+                                    <tr><td colspan="6" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUBPANEL: DICTIONARY -->
+                <div id="subpanel-content-dictionary" class="subpanel-content space-y-5">
+                    <div class="section-header">
+                        <div>
+                            <h2 class="section-title">Từ Điển Thuật Ngữ Y Khoa</h2>
+                            <p class="section-subtitle">Tra cứu và biên tập thuật ngữ y học • Collection: <code>dictionary</code></p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="exportToCSV('dictionary')" class="btn-sm btn-edit"><span class="material-symbols-outlined text-sm">download</span> Xuất CSV</button>
+                            <button onclick="openAddTermModal()" class="btn-primary" style="background:linear-gradient(135deg,#f59e0b,#d97706)"><span class="material-symbols-outlined text-sm">library_add</span> Thêm Thuật Ngữ</button>
+                        </div>
+                    </div>
+                    <div class="search-bar max-w-sm">
+                        <span class="material-symbols-outlined">search</span>
+                        <input type="text" id="search-dict" oninput="filterDict()" placeholder="Tìm thuật ngữ..."/>
+                    </div>
+                    <div class="content-card overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table>
+                                <thead><tr>
+                                    <th>Thuật Ngữ (Key)</th>
+                                    <th>Phiên Âm</th>
+                                    <th>Triệu Chứng</th>
+                                    <th>Chẩn Đoán</th>
+                                    <th>Điều Trị</th>
+                                    <th class="text-right">Thao Tác</th>
+                                </tr></thead>
+                                <tbody id="dict-tbody">
+                                    <tr><td colspan="6" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====== TAB 3: COMMERCE HUB (CỬA HÀNG & ĐƠN HÀNG) ====== -->
+            <div id="tab-commerce" class="tab-content space-y-6">
+                <!-- Segmented Control Bar -->
+                <div class="flex items-center justify-between flex-wrap gap-4 border-b border-slate-200 pb-4">
+                    <div class="inline-flex p-1.5 bg-slate-200/70 rounded-2xl border border-slate-300/60">
+                        <button id="sub-commerce-orders" onclick="switchSubTab('commerce', 'orders')" class="subtab-pill active">
+                            <span class="material-symbols-outlined text-base">receipt_long</span>
+                            <span>Quản Lý Đơn Hàng</span>
+                        </button>
+                        <button id="sub-commerce-products" onclick="switchSubTab('commerce', 'products')" class="subtab-pill">
+                            <span class="material-symbols-outlined text-base">storefront</span>
+                            <span>Sản Phẩm Shop</span>
+                        </button>
+                        <button id="sub-commerce-promotions" onclick="switchSubTab('commerce', 'promotions')" class="subtab-pill">
+                            <span class="material-symbols-outlined text-base">sell</span>
+                            <span>Voucher &amp; Sale</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SUBPANEL: ORDERS -->
+                <div id="subpanel-commerce-orders" class="subpanel-content active space-y-5">
+                    <div class="section-header">
+                        <div>
+                            <h2 class="section-title">Quản Lý Đơn Hàng</h2>
+                            <p class="section-subtitle">Xem chi tiết và xử lý trạng thái giao hàng • Collection: <code>orders</code></p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="exportToCSV('orders')" class="btn-sm btn-edit"><span class="material-symbols-outlined text-sm">download</span> Xuất CSV</button>
+                            <span id="orders-summary-badge" class="badge badge-amber text-xs">0 chờ xử lý</span>
+                            <button onclick="fetchOrders()" class="btn-primary"><span class="material-symbols-outlined text-sm">refresh</span> Làm mới</button>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 flex-wrap items-center justify-between">
+                        <div class="search-bar max-w-xs flex-grow">
+                            <span class="material-symbols-outlined">search</span>
+                            <input type="text" id="search-orders" oninput="renderOrdersTable()" placeholder="Tìm mã đơn, tên, SĐT, email..."/>
+                        </div>
+                        <div class="flex gap-2 flex-wrap">
+                            <button onclick="filterOrders('')" id="order-filter-all" class="btn-sm btn-edit">Tất cả</button>
+                            <button onclick="filterOrders('pending')" id="order-filter-pending" class="btn-sm" style="background:#fef3c7;color:#92400e">Chờ xử lý</button>
+                            <button onclick="filterOrders('processing')" id="order-filter-processing" class="btn-sm" style="background:#dbeafe;color:#1e40af">Đang xử lý</button>
+                            <button onclick="filterOrders('shipping')" id="order-filter-shipping" class="btn-sm" style="background:#ede9fe;color:#6d28d9">Đang giao</button>
+                            <button onclick="filterOrders('completed')" id="order-filter-completed" class="btn-sm btn-success">Hoàn thành</button>
+                            <button onclick="filterOrders('cancelled')" id="order-filter-cancelled" class="btn-sm btn-delete">Đã huỷ</button>
+                        </div>
+                    </div>
+                    <div class="content-card overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table>
+                                <thead><tr>
+                                    <th>Mã Đơn</th>
+                                    <th>Khách Hàng</th>
+                                    <th>Sản Phẩm</th>
+                                    <th>Tổng Tiền</th>
+                                    <th>Ngày Đặt</th>
+                                    <th>Trạng Thái</th>
+                                    <th class="text-right">Thao Tác</th>
+                                </tr></thead>
+                                <tbody id="orders-tbody">
+                                    <tr><td colspan="7" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUBPANEL: PRODUCTS -->
+                <div id="subpanel-commerce-products" class="subpanel-content space-y-5">
+                    <div class="section-header">
+                        <div>
+                            <h2 class="section-title">Sản Phẩm Cửa Hàng</h2>
+                            <p class="section-subtitle">Danh mục sản phẩm bán hàng • Collection: <code>shop_products</code></p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="exportToCSV('products')" class="btn-sm btn-edit"><span class="material-symbols-outlined text-sm">download</span> Xuất CSV</button>
+                            <button onclick="openAddProductModal()" class="btn-primary"><span class="material-symbols-outlined text-sm">add_shopping_cart</span> Thêm Sản Phẩm</button>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 flex-wrap">
+                        <div class="search-bar flex-grow max-w-sm">
+                            <span class="material-symbols-outlined">search</span>
+                            <input type="text" id="search-products" oninput="filterProducts()" placeholder="Tìm tên sản phẩm, danh mục..."/>
+                        </div>
+                        <select id="filter-product-status" onchange="filterProducts()" class="form-select w-40">
+                            <option value="">Tất cả trạng thái</option>
+                            <option value="active">Đang bán</option>
+                            <option value="out_of_stock">Hết hàng</option>
+                            <option value="hidden">Ẩn</option>
+                        </select>
+                    </div>
+                    <div class="content-card overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table>
+                                <thead><tr>
+                                    <th>Ảnh</th>
+                                    <th>Tên Sản Phẩm</th>
+                                    <th>Danh Mục</th>
+                                    <th>Giá Bán</th>
+                                    <th>Giá Gốc</th>
+                                    <th>Phân Loại</th>
+                                    <th>Trạng Thái</th>
+                                    <th class="text-right">Thao Tác</th>
+                                </tr></thead>
+                                <tbody id="products-tbody">
+                                    <tr><td colspan="8" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUBPANEL: PROMOTIONS -->
+                <div id="subpanel-commerce-promotions" class="subpanel-content space-y-6">
+                    <div class="section-header">
+                        <div>
+                            <h2 class="section-title">Mã Giảm Giá (Vouchers)</h2>
+                            <p class="section-subtitle">Tạo và quản lý voucher • Collection: <code>vouchers</code></p>
+                        </div>
+                        <button onclick="openAddVoucherModal()" class="btn-primary" style="background:linear-gradient(135deg,#f59e0b,#d97706)"><span class="material-symbols-outlined text-sm">add</span> Tạo Voucher</button>
+                    </div>
+                    <div class="content-card overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table>
+                                <thead><tr>
+                                    <th>Mã Code</th>
+                                    <th>Loại Giảm</th>
+                                    <th>Giá Trị</th>
+                                    <th>Đơn Tối Thiểu</th>
+                                    <th>Hạn Dùng</th>
+                                    <th>Đã Dùng</th>
+                                    <th>Trạng Thái</th>
+                                    <th class="text-right">Thao Tác</th>
+                                </tr></thead>
+                                <tbody id="vouchers-tbody">
+                                    <tr><td colspan="8" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Flash Sale -->
+                    <div class="section-header mt-6">
+                        <div>
+                            <h2 class="section-title">Chương Trình Flash Sale</h2>
+                            <p class="section-subtitle">Quản lý flash sale giảm giá sốc • Collection: <code>flash_sales</code></p>
+                        </div>
+                        <button onclick="openAddFlashSaleModal()" class="btn-primary" style="background:linear-gradient(135deg,#ef4444,#b91c1c)"><span class="material-symbols-outlined text-sm">local_fire_department</span> Tạo Flash Sale</button>
+                    </div>
+                    <div id="flash-sales-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="empty-state content-card p-6"><span class="material-symbols-outlined">local_fire_department</span><p>Chưa có flash sale nào</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====== TAB 4: USERS HUB ====== -->
             <div id="tab-users" class="tab-content space-y-5">
                 <div class="section-header">
                     <div>
-                        <h2 class="section-title">Quản Lý Người Dùng</h2>
-                        <p class="section-subtitle">Danh sách tài khoản đã đăng ký • Firestore collection: <code>users</code></p>
+                        <h2 class="section-title">Tài Khoản Người Dùng</h2>
+                        <p class="section-subtitle">Danh sách người dùng đăng ký ứng dụng • Collection: <code>users</code></p>
                     </div>
                     <div class="flex gap-2">
-                        <button onclick="exportToCSV('users')" class="btn-sm btn-edit flex items-center gap-1">
-                            <span class="material-symbols-outlined text-sm">download</span> Xuất CSV
-                        </button>
-                        <button onclick="openAddUserModal()" class="btn-primary">
-                            <span class="material-symbols-outlined text-sm">person_add</span> Thêm Người Dùng
-                        </button>
+                        <button onclick="exportToCSV('users')" class="btn-sm btn-edit"><span class="material-symbols-outlined text-sm">download</span> Xuất CSV</button>
+                        <button onclick="openAddUserModal()" class="btn-primary"><span class="material-symbols-outlined text-sm">person_add</span> Thêm Người Dùng</button>
                     </div>
                 </div>
                 <div class="flex gap-3 flex-wrap">
@@ -489,405 +738,125 @@
                 </div>
             </div>
 
-            <!-- ====== TAB: BOOKS ====== -->
-            <div id="tab-books" class="tab-content space-y-5">
-                <div class="section-header">
-                    <div>
-                        <h2 class="section-title">Sách &amp; Audiobook</h2>
-                        <p class="section-subtitle">Quản lý toàn bộ danh mục sách • Firestore collection: <code>books</code></p>
-                    </div>
-                    <div class="flex gap-2">
-                        <button onclick="exportToCSV('books')" class="btn-sm btn-edit flex items-center gap-1">
-                            <span class="material-symbols-outlined text-sm">download</span> Xuất CSV
+            <!-- ====== TAB 5: SYSTEM & MODERATION HUB ====== -->
+            <div id="tab-system" class="tab-content space-y-6">
+                <!-- Segmented Control Bar -->
+                <div class="flex items-center justify-between flex-wrap gap-4 border-b border-slate-200 pb-4">
+                    <div class="inline-flex p-1.5 bg-slate-200/70 rounded-2xl border border-slate-300/60">
+                        <button id="sub-system-mod" onclick="switchSubTab('system', 'mod')" class="subtab-pill active">
+                            <span class="material-symbols-outlined text-base">shield_check</span>
+                            <span>Kiểm Duyệt Ghi Chú</span>
                         </button>
-                        <button onclick="openAddBookModal()" class="btn-primary">
-                            <span class="material-symbols-outlined text-sm">add_box</span> Thêm Sách Mới
+                        <button id="sub-system-config" onclick="switchSubTab('system', 'config')" class="subtab-pill">
+                            <span class="material-symbols-outlined text-base">cloud_sync</span>
+                            <span>Cấu Hình &amp; Sync Status</span>
                         </button>
                     </div>
                 </div>
-                <div class="flex gap-3 flex-wrap">
-                    <div class="search-bar flex-grow max-w-sm">
-                        <span class="material-symbols-outlined">search</span>
-                        <input type="text" id="search-books" oninput="filterBooks()" placeholder="Tìm tên sách, tác giả, ID..."/>
-                    </div>
-                    <select id="filter-books-type" onchange="filterBooks()" class="form-select w-40">
-                        <option value="">Tất cả loại</option>
-                        <option value="ebook">Ebook</option>
-                        <option value="audiobook">Audiobook</option>
-                    </select>
-                </div>
-                <div class="content-card overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table>
-                            <thead><tr>
-                                <th>Bìa Sách</th>
-                                <th>ID Sách</th>
-                                <th>Tên &amp; Tác Giả</th>
-                                <th>Loại</th>
-                                <th>Đánh Giá</th>
-                                <th>Lượt Đọc</th>
-                                <th class="text-right">Thao Tác</th>
-                            </tr></thead>
-                            <tbody id="books-tbody">
-                                <tr><td colspan="7" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
 
-            <!-- ====== TAB: CHAPTERS ====== -->
-            <div id="tab-chapters" class="tab-content space-y-5">
-                <div class="section-header">
-                    <div>
-                        <h2 class="section-title">Quản Lý Chương Nội Dung</h2>
-                        <p class="section-subtitle">Quản lý nội dung HTML từng chương sách • Firestore collection: <code>chapters</code></p>
-                    </div>
-                    <div class="flex gap-2">
-                        <button onclick="exportToCSV('chapters')" class="btn-sm btn-edit flex items-center gap-1">
-                            <span class="material-symbols-outlined text-sm">download</span> Xuất CSV
-                        </button>
-                        <button onclick="openAddChapterModal()" class="btn-primary" style="background:#4f46e5">
-                            <span class="material-symbols-outlined text-sm">add_circle</span> Thêm Chương Mới
-                        </button>
-                    </div>
-                </div>
-                <div class="flex gap-3 flex-wrap">
-                    <div class="search-bar flex-grow max-w-sm">
-                        <span class="material-symbols-outlined">search</span>
-                        <input type="text" id="search-chapters" oninput="filterChapters()" placeholder="Tìm tiêu đề chương, ID..."/>
-                    </div>
-                    <select id="filter-chapters-book" onchange="filterChapters()" class="form-select w-48">
-                        <option value="">Tất cả sách</option>
-                    </select>
-                </div>
-                <div class="content-card overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table>
-                            <thead><tr>
-                                <th>Mã Chương (ID)</th>
-                                <th>Sách Áp Dụng</th>
-                                <th>Tiêu Đề Chương</th>
-                                <th>Độ Dài HTML</th>
-                                <th>Cập Nhật</th>
-                                <th class="text-right">Thao Tác</th>
-                            </tr></thead>
-                            <tbody id="chapters-tbody">
-                                <tr><td colspan="6" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ====== TAB: DICTIONARY ====== -->
-            <div id="tab-dictionary" class="tab-content space-y-5">
-                <div class="section-header">
-                    <div>
-                        <h2 class="section-title">Từ Điển Y Khoa</h2>
-                        <p class="section-subtitle">Quản lý thuật ngữ, phiên âm, triệu chứng • Firestore collection: <code>dictionary</code></p>
-                    </div>
-                    <div class="flex gap-2">
-                        <button onclick="exportToCSV('dictionary')" class="btn-sm btn-edit flex items-center gap-1">
-                            <span class="material-symbols-outlined text-sm">download</span> Xuất CSV
-                        </button>
-                        <button onclick="openAddTermModal()" class="btn-primary" style="background:#f59e0b">
-                            <span class="material-symbols-outlined text-sm">library_add</span> Thêm Thuật Ngữ
-                        </button>
-                    </div>
-                </div>
-                <div class="search-bar max-w-sm">
-                    <span class="material-symbols-outlined">search</span>
-                    <input type="text" id="search-dict" oninput="filterDict()" placeholder="Tìm thuật ngữ..."/>
-                </div>
-                <div class="content-card overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table>
-                            <thead><tr>
-                                <th>Thuật Ngữ (Key)</th>
-                                <th>Phiên Âm</th>
-                                <th>Triệu Chứng</th>
-                                <th>Chẩn Đoán</th>
-                                <th>Điều Trị</th>
-                                <th class="text-right">Thao Tác</th>
-                            </tr></thead>
-                            <tbody id="dict-tbody">
-                                <tr><td colspan="6" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ====== TAB: SHOP ====== -->
-            <div id="tab-shop" class="tab-content space-y-5">
-                <div class="section-header">
-                    <div>
-                        <h2 class="section-title">Sản Phẩm Shop</h2>
-                        <p class="section-subtitle">Quản lý sản phẩm bán hàng • Firestore collection: <code>shop_products</code></p>
-                    </div>
-                    <div class="flex gap-2">
-                        <button onclick="exportToCSV('products')" class="btn-sm btn-edit flex items-center gap-1">
-                            <span class="material-symbols-outlined text-sm">download</span> Xuất CSV
-                        </button>
-                        <button onclick="openAddProductModal()" class="btn-primary">
-                            <span class="material-symbols-outlined text-sm">add_shopping_cart</span> Thêm Sản Phẩm
-                        </button>
-                    </div>
-                </div>
-                <div class="flex gap-3 flex-wrap">
-                    <div class="search-bar flex-grow max-w-sm">
-                        <span class="material-symbols-outlined">search</span>
-                        <input type="text" id="search-products" oninput="filterProducts()" placeholder="Tìm tên sản phẩm, danh mục..."/>
-                    </div>
-                    <select id="filter-product-status" onchange="filterProducts()" class="form-select w-40">
-                        <option value="">Tất cả trạng thái</option>
-                        <option value="active">Đang bán</option>
-                        <option value="out_of_stock">Hết hàng</option>
-                        <option value="hidden">Ẩn</option>
-                    </select>
-                </div>
-                <div class="content-card overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table>
-                            <thead><tr>
-                                <th>Ảnh</th>
-                                <th>Tên Sản Phẩm</th>
-                                <th>Danh Mục</th>
-                                <th>Giá Bán</th>
-                                <th>Giá Gốc</th>
-                                <th>Phân Loại</th>
-                                <th>Trạng Thái</th>
-                                <th class="text-right">Thao Tác</th>
-                            </tr></thead>
-                            <tbody id="products-tbody">
-                                <tr><td colspan="8" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ====== TAB: ORDERS ====== -->
-            <div id="tab-orders" class="tab-content space-y-5">
-                <div class="section-header">
-                    <div>
-                        <h2 class="section-title">Quản Lý Đơn Hàng</h2>
-                        <p class="section-subtitle">Xem và cập nhật trạng thái đơn • Firestore collection: <code>orders</code></p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <button onclick="exportToCSV('orders')" class="btn-sm btn-edit flex items-center gap-1">
-                            <span class="material-symbols-outlined text-sm">download</span> Xuất CSV
-                        </button>
-                        <span id="orders-summary-badge" class="badge badge-amber text-xs">0 chờ xử lý</span>
-                        <button onclick="fetchOrders()" class="btn-primary">
-                            <span class="material-symbols-outlined text-sm">refresh</span> Làm mới
-                        </button>
-                    </div>
-                </div>
-                <div class="flex gap-3 flex-wrap items-center justify-between">
-                    <div class="search-bar max-w-xs flex-grow">
-                        <span class="material-symbols-outlined">search</span>
-                        <input type="text" id="search-orders" oninput="renderOrdersTable()" placeholder="Tìm mã đơn, tên, SĐT, email..."/>
+                <!-- SUBPANEL: MODERATION -->
+                <div id="subpanel-system-mod" class="subpanel-content active space-y-5">
+                    <div class="section-header">
+                        <div>
+                            <h2 class="section-title">Kiểm Duyệt Ghi Chú &amp; Highlight</h2>
+                            <p class="section-subtitle">Duyệt nội dung chia sẻ của độc giả • Collection: <code>user_notes</code></p>
+                        </div>
+                        <span id="mod-pending-count" class="badge badge-red text-xs">0 chờ duyệt</span>
                     </div>
                     <div class="flex gap-2 flex-wrap">
-                        <button onclick="filterOrders('')" id="order-filter-all" class="btn-sm btn-edit">Tất cả</button>
-                        <button onclick="filterOrders('pending')" id="order-filter-pending" class="btn-sm" style="background:#fef3c7;color:#92400e">Chờ xử lý</button>
-                        <button onclick="filterOrders('processing')" id="order-filter-processing" class="btn-sm" style="background:#dbeafe;color:#1e40af">Đang xử lý</button>
-                        <button onclick="filterOrders('shipping')" id="order-filter-shipping" class="btn-sm" style="background:#ede9fe;color:#6d28d9">Đang giao</button>
-                        <button onclick="filterOrders('completed')" id="order-filter-completed" class="btn-sm btn-success">Hoàn thành</button>
-                        <button onclick="filterOrders('cancelled')" id="order-filter-cancelled" class="btn-sm btn-delete">Đã huỷ</button>
+                        <button onclick="filterMod('')" class="btn-sm btn-edit">Tất cả</button>
+                        <button onclick="filterMod('pending')" class="btn-sm" style="background:#fef3c7;color:#92400e">Chờ duyệt</button>
+                        <button onclick="filterMod('approved')" class="btn-sm btn-success">Đã duyệt</button>
+                        <button onclick="filterMod('rejected')" class="btn-sm btn-delete">Từ chối</button>
                     </div>
-                </div>
-                <div class="content-card overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table>
-                            <thead><tr>
-                                <th>Mã Đơn</th>
-                                <th>Khách Hàng</th>
-                                <th>Sản Phẩm</th>
-                                <th>Tổng Tiền</th>
-                                <th>Ngày Đặt</th>
-                                <th>Trạng Thái</th>
-                                <th class="text-right">Thao Tác</th>
-                            </tr></thead>
-                            <tbody id="orders-tbody">
-                                <tr><td colspan="7" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ====== TAB: PROMOTIONS ====== -->
-            <div id="tab-promotions" class="tab-content space-y-5">
-                <!-- Vouchers -->
-                <div class="section-header">
-                    <div>
-                        <h2 class="section-title">Voucher &amp; Khuyến Mãi</h2>
-                        <p class="section-subtitle">Tạo và quản lý mã giảm giá • Firestore collection: <code>vouchers</code></p>
-                    </div>
-                    <button onclick="openAddVoucherModal()" class="btn-primary" style="background:#f59e0b">
-                        <span class="material-symbols-outlined text-sm">add</span> Tạo Voucher
-                    </button>
-                </div>
-                <div class="content-card overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table>
-                            <thead><tr>
-                                <th>Mã Code</th>
-                                <th>Loại Giảm</th>
-                                <th>Giá Trị</th>
-                                <th>Đơn Tối Thiểu</th>
-                                <th>Hạn Dùng</th>
-                                <th>Đã Dùng</th>
-                                <th>Trạng Thái</th>
-                                <th class="text-right">Thao Tác</th>
-                            </tr></thead>
-                            <tbody id="vouchers-tbody">
-                                <tr><td colspan="8" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Flash Sale Section -->
-                <div class="section-header mt-4">
-                    <div>
-                        <h2 class="section-title">Flash Sale</h2>
-                        <p class="section-subtitle">Cấu hình và bật/tắt flash sale • Firestore: <code>flash_sales</code></p>
-                    </div>
-                    <button onclick="openAddFlashSaleModal()" class="btn-primary" style="background:#ef4444">
-                        <span class="material-symbols-outlined text-sm">local_fire_department</span> Tạo Flash Sale
-                    </button>
-                </div>
-                <div id="flash-sales-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div class="empty-state content-card p-6"><span class="material-symbols-outlined">local_fire_department</span><p>Chưa có flash sale nào</p></div>
-                </div>
-            </div>
-
-            <!-- ====== TAB: MODERATION ====== -->
-            <div id="tab-moderation" class="tab-content space-y-5">
-                <div class="section-header">
-                    <div>
-                        <h2 class="section-title">Kiểm Duyệt Nội Dung</h2>
-                        <p class="section-subtitle">Duyệt ghi chú và highlight của người dùng • Firestore: <code>user_notes</code></p>
-                    </div>
-                    <span id="mod-pending-count" class="badge badge-red text-xs">0 chờ duyệt</span>
-                </div>
-                <div class="flex gap-2 flex-wrap">
-                    <button onclick="filterMod('')" class="btn-sm btn-edit">Tất cả</button>
-                    <button onclick="filterMod('pending')" class="btn-sm" style="background:#fef3c7;color:#92400e">Chờ duyệt</button>
-                    <button onclick="filterMod('approved')" class="btn-sm btn-success">Đã duyệt</button>
-                    <button onclick="filterMod('rejected')" class="btn-sm btn-delete">Từ chối</button>
-                </div>
-                <div class="content-card overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table>
-                            <thead><tr>
-                                <th>Người Dùng</th>
-                                <th>Loại</th>
-                                <th>Nội Dung</th>
-                                <th>Sách</th>
-                                <th>Ngày</th>
-                                <th>Trạng Thái</th>
-                                <th class="text-right">Thao Tác</th>
-                            </tr></thead>
-                            <tbody id="mod-tbody">
-                                <tr><td colspan="7" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ====== TAB: SYSTEM ====== -->
-            <div id="tab-system" class="tab-content space-y-5">
-                <div class="section-header">
-                    <h2 class="section-title">Cấu Hình &amp; Đồng Bộ Hệ Thống</h2>
-                </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                    <!-- Firebase Status -->
-                    <div class="content-card p-5 space-y-4">
-                        <h3 class="font-bold text-sm text-slate-900">🔥 Firebase Firestore Status</h3>
-                        <div id="firebase-status-list" class="space-y-2">
-                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
-                                <span class="text-xs font-medium text-slate-700">Collection: <code>books</code></span>
-                                <span id="sys-books-count" class="badge badge-blue">—</span>
-                            </div>
-                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
-                                <span class="text-xs font-medium text-slate-700">Collection: <code>dictionary</code></span>
-                                <span id="sys-dict-count" class="badge badge-amber">—</span>
-                            </div>
-                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
-                                <span class="text-xs font-medium text-slate-700">Collection: <code>chapters</code></span>
-                                <span id="sys-chapters-count" class="badge badge-blue">—</span>
-                            </div>
-                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
-                                <span class="text-xs font-medium text-slate-700">Collection: <code>shop_products</code></span>
-                                <span id="sys-products-count" class="badge badge-green">—</span>
-                            </div>
-                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
-                                <span class="text-xs font-medium text-slate-700">Collection: <code>orders</code></span>
-                                <span id="sys-orders-count" class="badge badge-purple">—</span>
-                            </div>
-                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
-                                <span class="text-xs font-medium text-slate-700">Collection: <code>vouchers</code></span>
-                                <span id="sys-vouchers-count" class="badge badge-red">—</span>
-                            </div>
-                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
-                                <span class="text-xs font-medium text-slate-700">Collection: <code>users</code></span>
-                                <span id="sys-users-count" class="badge badge-slate">—</span>
-                            </div>
+                    <div class="content-card overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table>
+                                <thead><tr>
+                                    <th>Người Dùng</th>
+                                    <th>Loại</th>
+                                    <th>Nội Dung</th>
+                                    <th>Sách</th>
+                                    <th>Ngày</th>
+                                    <th>Trạng Thái</th>
+                                    <th class="text-right">Thao Tác</th>
+                                </tr></thead>
+                                <tbody id="mod-tbody">
+                                    <tr><td colspan="7" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <button onclick="refreshAllData()" class="btn-primary w-full justify-center">
-                            <span class="material-symbols-outlined text-sm">refresh</span> Làm Mới Toàn Bộ
-                        </button>
                     </div>
+                </div>
 
-                    <!-- Seed & Export -->
-                    <div class="space-y-4">
-                        <div class="content-card p-5 space-y-3">
-                            <h3 class="font-bold text-sm text-slate-900">📦 Lệnh Seed Dữ Liệu</h3>
-                            <p class="text-xs text-slate-500">Để đồng bộ lại dữ liệu gốc lên Firestore:</p>
-                            <div class="bg-slate-900 text-green-400 p-4 rounded-xl text-xs font-mono">
-                                <p class="text-slate-400"># Cài dependencies (nếu chưa)</p>
-                                <p>npm install</p>
-                                <br>
-                                <p class="text-slate-400"># Chạy seed script</p>
-                                <p>node scripts/seed_firebase.js</p>
+                <!-- SUBPANEL: SYSTEM CONFIG -->
+                <div id="subpanel-system-config" class="subpanel-content space-y-5">
+                    <div class="section-header">
+                        <h2 class="section-title">Cấu Hình &amp; Trạng Thái Đồng Bộ Firestore</h2>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Firebase Status -->
+                        <div class="content-card p-6 space-y-4">
+                            <h3 class="font-bold text-sm text-slate-900 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-amber-500">local_fire_department</span>
+                                Firebase Firestore Status
+                            </h3>
+                            <div id="firebase-status-list" class="space-y-2">
+                                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                                    <span class="text-xs font-semibold text-slate-700">Collection: <code>books</code></span>
+                                    <span id="sys-books-count" class="badge badge-blue">—</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                                    <span class="text-xs font-semibold text-slate-700">Collection: <code>chapters</code></span>
+                                    <span id="sys-chapters-count" class="badge badge-purple">—</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                                    <span class="text-xs font-semibold text-slate-700">Collection: <code>dictionary</code></span>
+                                    <span id="sys-dict-count" class="badge badge-amber">—</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                                    <span class="text-xs font-semibold text-slate-700">Collection: <code>shop_products</code></span>
+                                    <span id="sys-products-count" class="badge badge-green">—</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                                    <span class="text-xs font-semibold text-slate-700">Collection: <code>orders</code></span>
+                                    <span id="sys-orders-count" class="badge badge-purple">—</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                                    <span class="text-xs font-semibold text-slate-700">Collection: <code>vouchers</code></span>
+                                    <span id="sys-vouchers-count" class="badge badge-red">—</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                                    <span class="text-xs font-semibold text-slate-700">Collection: <code>users</code></span>
+                                    <span id="sys-users-count" class="badge badge-slate">—</span>
+                                </div>
                             </div>
-                            <div class="flex items-center gap-2 text-xs text-emerald-600 font-medium">
-                                <span class="material-symbols-outlined text-base">check_circle</span>
-                                Firestore Connection Active
-                            </div>
-                        </div>
-
-                        <div class="content-card p-5 space-y-3">
-                            <h3 class="font-bold text-sm text-slate-900">🔗 Links Nhanh</h3>
-                            <div class="space-y-2">
-                                <a href="index.html" target="_blank" class="flex items-center gap-2 p-3 bg-blue-50 rounded-xl text-xs font-semibold text-blue-700 hover:bg-blue-100 transition">
-                                    <span class="material-symbols-outlined text-base">phone_iphone</span>
-                                    Xem App Người Dùng
-                                </a>
-                                <a href="https://console.firebase.google.com/project/gems-ebook/firestore" target="_blank" class="flex items-center gap-2 p-3 bg-orange-50 rounded-xl text-xs font-semibold text-orange-700 hover:bg-orange-100 transition">
-                                    <span class="material-symbols-outlined text-base">database</span>
-                                    Firebase Console
-                                </a>
-                                <a href="https://vercel.com/hoangs-projects-c7c8f0ae/gems-ebook" target="_blank" class="flex items-center gap-2 p-3 bg-slate-50 rounded-xl text-xs font-semibold text-slate-700 hover:bg-slate-100 transition">
-                                    <span class="material-symbols-outlined text-base">cloud</span>
-                                    Vercel Dashboard
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="content-card p-5 space-y-3">
-                            <h3 class="font-bold text-sm text-slate-900">⚠️ Vùng Nguy Hiểm</h3>
-                            <p class="text-xs text-slate-500">Các thao tác này không thể hoàn tác.</p>
-                            <button onclick="if(confirm('Xoá toàn bộ dữ liệu orders? Không thể hoàn tác!')) clearCollection('orders')" class="w-full py-2 px-3 bg-red-50 hover:bg-red-100 text-red-600 rounded-xl text-xs font-semibold flex items-center gap-2 transition">
-                                <span class="material-symbols-outlined text-base">delete_sweep</span>
-                                Xoá Toàn Bộ Đơn Hàng Cũ
+                            <button onclick="refreshAllData()" class="btn-primary w-full justify-center py-2.5">
+                                <span class="material-symbols-outlined text-sm">refresh</span> Làm Mới Toàn Bộ Status
                             </button>
+                        </div>
+
+                        <!-- Seed & Danger Zone -->
+                        <div class="space-y-4">
+                            <div class="content-card p-6 space-y-3">
+                                <h3 class="font-bold text-sm text-slate-900">📦 Seed Dữ Liệu Lên Firestore</h3>
+                                <p class="text-xs text-slate-500">Chạy lệnh để đồng bộ lại dữ liệu khởi tạo:</p>
+                                <div class="bg-slate-950 text-emerald-400 p-4 rounded-2xl text-xs font-mono border border-slate-800">
+                                    <p class="text-slate-500"># Chạy lệnh seed Firebase</p>
+                                    <p>node scripts/seed_firebase.js</p>
+                                </div>
+                            </div>
+
+                            <div class="content-card p-6 space-y-3 border-red-200 bg-red-50/20">
+                                <h3 class="font-bold text-sm text-red-600 flex items-center gap-1.5">
+                                    <span class="material-symbols-outlined text-base">warning</span> Vùng Nguy Hiểm
+                                </h3>
+                                <p class="text-xs text-slate-500">Thao tác không thể hoàn tác:</p>
+                                <button onclick="if(confirm('Xoá toàn bộ đơn hàng cũ? Không thể phục hồi!')) clearCollection('orders')" class="w-full py-2.5 px-4 bg-red-100 hover:bg-red-200 text-red-700 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition">
+                                    <span class="material-symbols-outlined text-base">delete_sweep</span>
+                                    Xoá Toàn Bộ Đơn Hàng Cũ
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -899,7 +868,7 @@
 
 <!-- ============================== MODALS ============================== -->
 
-<!-- MODAL: ADD/EDIT BOOK -->
+<!-- MODAL: BOOK -->
 <div id="modal-book" class="modal-overlay hidden">
     <div class="modal-box">
         <div class="modal-header">
@@ -947,13 +916,50 @@
             </div>
             <div class="modal-footer">
                 <button type="button" onclick="closeModal('modal-book')" class="btn-sm btn-edit">Huỷ</button>
-                <button type="submit" class="btn-sm" style="background:#3b82f6;color:#fff">Lưu Vào Firestore</button>
+                <button type="submit" class="btn-primary">Lưu Vào Firestore</button>
             </div>
         </form>
     </div>
 </div>
 
-<!-- MODAL: ADD/EDIT USER -->
+<!-- MODAL: CHAPTER -->
+<div id="modal-chapter" class="modal-overlay hidden">
+    <div class="modal-box" style="max-width:650px">
+        <div class="modal-header">
+            <h3 id="chapter-modal-title" class="font-bold text-sm text-slate-900">Thêm Chương Nội Dung Mới</h3>
+            <button onclick="closeModal('modal-chapter')" class="p-1 text-slate-400 hover:text-slate-600 rounded-lg"><span class="material-symbols-outlined">close</span></button>
+        </div>
+        <form id="chapter-form" onsubmit="saveChapter(event)" class="modal-body space-y-4">
+            <input type="hidden" id="chapter-edit-mode" value="false">
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="form-label">Mã Chương ID (vd: chuong-1) *</label>
+                    <input type="text" id="chapter-id" placeholder="vd: nhansam_c1" required class="form-input">
+                </div>
+                <div>
+                    <label class="form-label">Sách Áp Dụng *</label>
+                    <select id="chapter-book-id" required class="form-select">
+                        <option value="">-- Chọn Sách --</option>
+                    </select>
+                </div>
+                <div class="col-span-2">
+                    <label class="form-label">Tiêu Đề Chương *</label>
+                    <input type="text" id="chapter-title" placeholder="Chương 1: Tổng quan..." required class="form-input">
+                </div>
+                <div class="col-span-2">
+                    <label class="form-label">Nội Dung HTML Chương *</label>
+                    <textarea id="chapter-html" placeholder="<p>Nội dung dạng HTML...</p>" required class="form-input font-mono text-xs" style="min-height:160px"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="closeModal('modal-chapter')" class="btn-sm btn-edit">Huỷ</button>
+                <button type="submit" class="btn-primary" style="background:linear-gradient(135deg,#4f46e5,#3730a3)">Lưu Chương Sách</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL: USER -->
 <div id="modal-user" class="modal-overlay hidden">
     <div class="modal-box">
         <div class="modal-header">
@@ -987,19 +993,19 @@
                     </select>
                 </div>
                 <div class="col-span-2">
-                    <label class="form-label">Ghi Chú (tuỳ chọn)</label>
+                    <label class="form-label">Ghi Chú</label>
                     <input type="text" id="user-note" placeholder="Ghi chú về tài khoản..." class="form-input">
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" onclick="closeModal('modal-user')" class="btn-sm btn-edit">Huỷ</button>
-                <button type="submit" class="btn-sm" style="background:#3b82f6;color:#fff">Lưu</button>
+                <button type="submit" class="btn-primary">Lưu Người Dùng</button>
             </div>
         </form>
     </div>
 </div>
 
-<!-- MODAL: ADD/EDIT DICTIONARY TERM -->
+<!-- MODAL: DICTIONARY TERM -->
 <div id="modal-term" class="modal-overlay hidden">
     <div class="modal-box">
         <div class="modal-header">
@@ -1009,7 +1015,7 @@
         <form id="term-form" onsubmit="saveTerm(event)" class="modal-body space-y-4">
             <input type="hidden" id="term-edit-mode" value="false">
             <div>
-                <label class="form-label">Thuật Ngữ Key (Tiếng Anh) *</label>
+                <label class="form-label">Thuật Ngữ Key *</label>
                 <input type="text" id="term-key" placeholder="vd: Aneurysm" required class="form-input">
             </div>
             <div>
@@ -1030,13 +1036,13 @@
             </div>
             <div class="modal-footer">
                 <button type="button" onclick="closeModal('modal-term')" class="btn-sm btn-edit">Huỷ</button>
-                <button type="submit" class="btn-sm" style="background:#f59e0b;color:#fff">Lưu Từ Điển</button>
+                <button type="submit" class="btn-primary" style="background:linear-gradient(135deg,#f59e0b,#d97706)">Lưu Từ Điển</button>
             </div>
         </form>
     </div>
 </div>
 
-<!-- MODAL: ADD/EDIT PRODUCT -->
+<!-- MODAL: PRODUCT -->
 <div id="modal-product" class="modal-overlay hidden">
     <div class="modal-box" style="max-width:580px">
         <div class="modal-header">
@@ -1073,7 +1079,7 @@
                     <input type="number" id="product-price" placeholder="150000" required class="form-input">
                 </div>
                 <div>
-                    <label class="form-label">Giá Gốc / Giá Cũ (VNĐ)</label>
+                    <label class="form-label">Giá Gốc (VNĐ)</label>
                     <input type="number" id="product-old-price" placeholder="200000" class="form-input">
                 </div>
                 <div class="col-span-2">
@@ -1085,19 +1091,19 @@
                     <textarea id="product-desc" placeholder="Mô tả sản phẩm..." class="form-input"></textarea>
                 </div>
                 <div class="col-span-2">
-                    <label class="form-label">Phân Loại (Variants) — mỗi dòng: Tên|Giá</label>
-                    <textarea id="product-variants" placeholder="Loại thường|150000&#10;Loại cao cấp|250000" class="form-input" style="min-height:60px"></textarea>
+                    <label class="form-label">Phân Loại (mỗi dòng: Tên|Giá)</label>
+                    <textarea id="product-variants" placeholder="Loại 1|150000&#10;Loại 2|250000" class="form-input" style="min-height:60px"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" onclick="closeModal('modal-product')" class="btn-sm btn-edit">Huỷ</button>
-                <button type="submit" class="btn-sm" style="background:#3b82f6;color:#fff">Lưu Sản Phẩm</button>
+                <button type="submit" class="btn-primary">Lưu Sản Phẩm</button>
             </div>
         </form>
     </div>
 </div>
 
-<!-- MODAL: ADD VOUCHER -->
+<!-- MODAL: VOUCHER -->
 <div id="modal-voucher" class="modal-overlay hidden">
     <div class="modal-box">
         <div class="modal-header">
@@ -1120,10 +1126,10 @@
                 </div>
                 <div>
                     <label class="form-label">Giá Trị *</label>
-                    <input type="number" id="voucher-value" placeholder="20 (%) hoặc 50000 (VNĐ)" required class="form-input">
+                    <input type="number" id="voucher-value" placeholder="20 hoặc 50000" required class="form-input">
                 </div>
                 <div>
-                    <label class="form-label">Đơn Hàng Tối Thiểu</label>
+                    <label class="form-label">Đơn Tối Thiểu</label>
                     <input type="number" id="voucher-min-order" placeholder="100000" class="form-input">
                 </div>
                 <div>
@@ -1132,22 +1138,22 @@
                 </div>
                 <div>
                     <label class="form-label">Giới Hạn Dùng</label>
-                    <input type="number" id="voucher-max-uses" placeholder="100 (0 = không giới hạn)" class="form-input">
+                    <input type="number" id="voucher-max-uses" placeholder="100" class="form-input">
                 </div>
                 <div class="col-span-2">
-                    <label class="form-label">Mô Tả (tuỳ chọn)</label>
+                    <label class="form-label">Mô Tả</label>
                     <input type="text" id="voucher-desc" placeholder="Mô tả voucher..." class="form-input">
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" onclick="closeModal('modal-voucher')" class="btn-sm btn-edit">Huỷ</button>
-                <button type="submit" class="btn-sm" style="background:#f59e0b;color:#fff">Tạo Voucher</button>
+                <button type="submit" class="btn-primary" style="background:linear-gradient(135deg,#f59e0b,#d97706)">Lưu Voucher</button>
             </div>
         </form>
     </div>
 </div>
 
-<!-- MODAL: ADD FLASH SALE -->
+<!-- MODAL: FLASH SALE -->
 <div id="modal-flashsale" class="modal-overlay hidden">
     <div class="modal-box">
         <div class="modal-header">
@@ -1182,49 +1188,12 @@
                 </div>
                 <div class="col-span-2">
                     <label class="form-label">ID Sản Phẩm Áp Dụng (phân cách bằng dấu phẩy)</label>
-                    <input type="text" id="fs-products" placeholder="sp001, sp002, sp003" class="form-input">
+                    <input type="text" id="fs-products" placeholder="sp001, sp002" class="form-input">
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" onclick="closeModal('modal-flashsale')" class="btn-sm btn-edit">Huỷ</button>
-                <button type="submit" class="btn-sm" style="background:#ef4444;color:#fff">Lưu Flash Sale</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<!-- MODAL: ADD/EDIT CHAPTER -->
-<div id="modal-chapter" class="modal-overlay hidden">
-    <div class="modal-box" style="max-width:650px">
-        <div class="modal-header">
-            <h3 id="chapter-modal-title" class="font-bold text-sm text-slate-900">Thêm Chương Nội Dung Mới</h3>
-            <button onclick="closeModal('modal-chapter')" class="p-1 text-slate-400 hover:text-slate-600 rounded-lg"><span class="material-symbols-outlined">close</span></button>
-        </div>
-        <form id="chapter-form" onsubmit="saveChapter(event)" class="modal-body space-y-4">
-            <input type="hidden" id="chapter-edit-mode" value="false">
-            <div class="grid grid-cols-2 gap-3">
-                <div>
-                    <label class="form-label">Mã Chương ID (vd: chuong-1) *</label>
-                    <input type="text" id="chapter-id" placeholder="vd: nhansam_c1" required class="form-input">
-                </div>
-                <div>
-                    <label class="form-label">Sách Áp Dụng *</label>
-                    <select id="chapter-book-id" required class="form-select">
-                        <option value="">-- Chọn Sách --</option>
-                    </select>
-                </div>
-                <div class="col-span-2">
-                    <label class="form-label">Tiêu Đề Chương *</label>
-                    <input type="text" id="chapter-title" placeholder="Chương 1: Tổng quan về..." required class="form-input">
-                </div>
-                <div class="col-span-2">
-                    <label class="form-label">Nội Dung HTML Chương *</label>
-                    <textarea id="chapter-html" placeholder="<p>Nội dung chương sách dạng HTML...</p>" required class="form-input font-mono text-xs" style="min-height:160px"></textarea>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" onclick="closeModal('modal-chapter')" class="btn-sm btn-edit">Huỷ</button>
-                <button type="submit" class="btn-sm" style="background:#4f46e5;color:#fff">Lưu Chương Sách</button>
+                <button type="submit" class="btn-primary" style="background:linear-gradient(135deg,#ef4444,#b91c1c)">Lưu Flash Sale</button>
             </div>
         </form>
     </div>
@@ -1267,11 +1236,11 @@
 
             <div class="flex items-center justify-between p-3 bg-blue-50/70 border border-blue-100 rounded-xl text-xs">
                 <div>
-                    <p class="text-slate-500">Trạng Thái Đơn Hàng:</p>
+                    <p class="text-slate-500 font-medium">Trạng Thái Đơn Hàng:</p>
                     <div id="od-status-badge" class="mt-1"></div>
                 </div>
                 <div class="text-right">
-                    <p class="text-slate-500">Tổng Thành Tiền:</p>
+                    <p class="text-slate-500 font-medium">Tổng Thành Tiền:</p>
                     <p id="od-total" class="text-base font-black text-blue-600 mt-0.5">—</p>
                 </div>
             </div>
@@ -1282,9 +1251,9 @@
     </div>
 </div>
 
-<!-- ============================== JAVASCRIPT ============================== -->
+<!-- ============================== JAVASCRIPT LOGIC ============================== -->
 <script>
-    // ===================== GLOBAL STATE =====================
+    // Global Cache State
     let adminCache = {
         books: {},
         dict: {},
@@ -1300,7 +1269,7 @@
     let currentOrderFilter = '';
     let currentModFilter = '';
 
-    // ===================== AUTH =====================
+    // Auth Handlers
     function handleAdminLogin(e) {
         e.preventDefault();
         const passcode = document.getElementById('admin-passcode').value;
@@ -1308,7 +1277,7 @@
             sessionStorage.setItem('gems_admin', 'true');
             document.getElementById('admin-login-screen').classList.add('hidden');
             document.getElementById('admin-main-layout').classList.remove('hidden');
-            showToast('Đăng nhập thành công! Đang tải dữ liệu...', 'success');
+            showToast('Đăng nhập thành công! Đang đồng bộ...', 'success');
             refreshAllData();
         } else {
             showToast('Passcode sai! Thử: gems2026', 'error');
@@ -1330,7 +1299,7 @@
         }
     });
 
-    // ===================== MOBILE SIDEBAR =====================
+    // Mobile Sidebar Toggle
     function toggleMobileSidebar() {
         const sidebar = document.getElementById('admin-sidebar');
         if (!sidebar) return;
@@ -1343,13 +1312,11 @@
         }
     }
 
-    // ===================== TAB SWITCHING =====================
+    // Main Tab Switching
     function switchTab(tabName) {
-        // Deactivate all
         document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
         document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
 
-        // Activate selected
         const navEl = document.getElementById('nav-' + tabName);
         const tabEl = document.getElementById('tab-' + tabName);
         if (navEl) navEl.classList.add('active');
@@ -1357,28 +1324,36 @@
 
         const titles = {
             overview: 'Tổng Quan Hệ Thống',
-            users: 'Quản Lý Người Dùng',
-            books: 'Sách & Audiobook',
-            chapters: 'Quản Lý Chương Nội Dung',
-            dictionary: 'Từ Điển Y Khoa',
-            shop: 'Sản Phẩm Shop',
-            orders: 'Quản Lý Đơn Hàng',
-            promotions: 'Voucher & Khuyến Mãi',
-            moderation: 'Kiểm Duyệt Nội Dung',
-            system: 'Cấu Hình & Đồng Bộ'
+            content: 'Kho Quản Lý Nội Dung',
+            commerce: 'Quản Lý Cửa Hàng & Đơn Hàng',
+            users: 'Tài Khoản Người Dùng',
+            system: 'Kiểm Duyệt & Cấu Hình'
         };
-        document.getElementById('header-title').textContent = titles[tabName] || 'GEMS Admin';
+        document.getElementById('header-title').textContent = titles[tabName] || 'GEMS Admin Portal';
 
-        // Auto close mobile sidebar after switching tab
         if (window.innerWidth < 768) {
             const sidebar = document.getElementById('admin-sidebar');
             if (sidebar) { sidebar.classList.add('hidden'); sidebar.classList.remove('fixed', 'inset-y-0', 'left-0', 'z-[600]'); }
         }
     }
 
-    // ===================== DATA FETCH =====================
+    // Sub-tab Switching (Segmented Control)
+    function switchSubTab(parentTab, subName) {
+        const container = document.getElementById('tab-' + parentTab);
+        if (!container) return;
+
+        container.querySelectorAll('.subtab-pill').forEach(btn => btn.classList.remove('active'));
+        container.querySelectorAll('.subpanel-content').forEach(panel => panel.classList.remove('active'));
+
+        const targetBtn = document.getElementById(`sub-${parentTab}-${subName}`);
+        const targetPanel = document.getElementById(`subpanel-${parentTab}-${subName}`);
+        if (targetBtn) targetBtn.classList.add('active');
+        if (targetPanel) targetPanel.classList.add('active');
+    }
+
+    // Data Fetching
     async function refreshAllData() {
-        if (!window.db) { showToast('Không kết nối được Firestore!', 'error'); return; }
+        if (!window.db) { showToast('Firestore chưa sẵn sàng!', 'error'); return; }
         try {
             const [booksSnap, dictSnap, chapSnap, prodSnap, ordSnap, vouchSnap, usersSnap, notesSnap, fsSnap] = await Promise.all([
                 window.db.collection('books').get(),
@@ -1392,44 +1367,27 @@
                 window.db.collection('flash_sales').get()
             ]);
 
-            adminCache.books = {};
-            booksSnap.forEach(d => adminCache.books[d.id] = d.data());
-
-            adminCache.dict = {};
-            dictSnap.forEach(d => adminCache.dict[d.id] = d.data());
-
-            adminCache.chapters = {};
-            chapSnap.forEach(d => adminCache.chapters[d.id] = d.data());
-
-            adminCache.products = [];
-            prodSnap.forEach(d => adminCache.products.push({ id: d.id, ...d.data() }));
-
-            adminCache.orders = [];
-            ordSnap.forEach(d => adminCache.orders.push({ id: d.id, ...d.data() }));
-
-            adminCache.vouchers = [];
-            vouchSnap.forEach(d => adminCache.vouchers.push({ id: d.id, ...d.data() }));
-
-            adminCache.users = [];
-            usersSnap.forEach(d => adminCache.users.push({ id: d.id, ...d.data() }));
-
-            adminCache.modItems = [];
-            notesSnap.forEach(d => adminCache.modItems.push({ id: d.id, ...d.data() }));
-
-            adminCache.flashSales = [];
-            fsSnap.forEach(d => adminCache.flashSales.push({ id: d.id, ...d.data() }));
+            adminCache.books = {}; booksSnap.forEach(d => adminCache.books[d.id] = d.data());
+            adminCache.dict = {}; dictSnap.forEach(d => adminCache.dict[d.id] = d.data());
+            adminCache.chapters = {}; chapSnap.forEach(d => adminCache.chapters[d.id] = d.data());
+            adminCache.products = []; prodSnap.forEach(d => adminCache.products.push({ id: d.id, ...d.data() }));
+            adminCache.orders = []; ordSnap.forEach(d => adminCache.orders.push({ id: d.id, ...d.data() }));
+            adminCache.vouchers = []; vouchSnap.forEach(d => adminCache.vouchers.push({ id: d.id, ...d.data() }));
+            adminCache.users = []; usersSnap.forEach(d => adminCache.users.push({ id: d.id, ...d.data() }));
+            adminCache.modItems = []; notesSnap.forEach(d => adminCache.modItems.push({ id: d.id, ...d.data() }));
+            adminCache.flashSales = []; fsSnap.forEach(d => adminCache.flashSales.push({ id: d.id, ...d.data() }));
 
             renderAll();
-            showToast('Dữ liệu đã được làm mới!', 'success');
+            showToast('Dữ liệu đã cập nhật thành công!', 'success');
         } catch (err) {
             console.error(err);
-            showToast('Lỗi tải dữ liệu Firestore: ' + err.message, 'error');
+            showToast('Lỗi nạp dữ liệu: ' + err.message, 'error');
             renderFallbackCounts();
         }
     }
 
     function renderFallbackCounts() {
-        ['m-books','m-terms','m-chapters','m-products','m-orders','m-vouchers','m-users','m-pending'].forEach(id => {
+        ['m-content-total','m-orders','m-vouchers','m-users'].forEach(id => {
             const el = document.getElementById(id);
             if (el && el.textContent === '—') el.textContent = '0';
         });
@@ -1452,40 +1410,52 @@
         updateBadges();
     }
 
-    // ===================== METRICS =====================
+    // Metrics & Badges
     function updateMetrics() {
         const totalBooks = Object.keys(adminCache.books).length;
         const totalTerms = Object.keys(adminCache.dict).length;
         const totalChaps = Object.keys(adminCache.chapters).length;
-        const totalProducts = adminCache.products.length;
+        const totalContent = totalBooks + totalTerms + totalChaps;
+
         const totalOrders = adminCache.orders.length;
+        const pendingOrders = adminCache.orders.filter(o => o.status === 'pending').length;
+
         const totalVouchers = adminCache.vouchers.length;
+        const activeFlash = adminCache.flashSales.filter(f => f.active === true || f.active === 'true').length;
+
         const totalUsers = adminCache.users.length;
         const pendingMod = adminCache.modItems.filter(i => !i.status || i.status === 'pending').length;
 
-        document.getElementById('m-books').textContent = totalBooks;
-        document.getElementById('m-terms').textContent = totalTerms;
-        document.getElementById('m-chapters').textContent = totalChaps;
-        document.getElementById('m-products').textContent = totalProducts;
+        document.getElementById('m-content-total').textContent = totalContent;
+        document.getElementById('m-books-sub').textContent = totalBooks + ' Sách';
+        document.getElementById('m-chaps-sub').textContent = totalChaps + ' Chương';
+
         document.getElementById('m-orders').textContent = totalOrders;
+        document.getElementById('m-orders-pending-sub').textContent = pendingOrders + ' chờ xử lý';
+
         document.getElementById('m-vouchers').textContent = totalVouchers;
+        document.getElementById('m-flashsale-sub').textContent = activeFlash + ' Flash sale';
+
         document.getElementById('m-users').textContent = totalUsers;
-        document.getElementById('m-pending').textContent = pendingMod;
+        document.getElementById('m-pending-sub').textContent = pendingMod + ' chờ duyệt';
     }
 
     function updateBadges() {
+        const totalContent = Object.keys(adminCache.books).length + Object.keys(adminCache.chapters).length;
         const pendingOrders = adminCache.orders.filter(o => o.status === 'pending').length;
         const pendingMod = adminCache.modItems.filter(i => !i.status || i.status === 'pending').length;
         const totalUsers = adminCache.users.length;
 
-        const badgeOrders = document.getElementById('badge-orders');
-        if (pendingOrders > 0) { badgeOrders.textContent = pendingOrders; badgeOrders.classList.remove('hidden'); }
+        document.getElementById('badge-content').textContent = totalContent;
 
-        const badgeMod = document.getElementById('badge-mod');
-        if (pendingMod > 0) { badgeMod.textContent = pendingMod; badgeMod.classList.remove('hidden'); }
+        const bOrders = document.getElementById('badge-orders');
+        if (pendingOrders > 0) { bOrders.textContent = pendingOrders; bOrders.classList.remove('hidden'); }
 
-        const badgeUsers = document.getElementById('badge-users');
-        if (totalUsers > 0) { badgeUsers.textContent = totalUsers; badgeUsers.classList.remove('hidden'); }
+        const bMod = document.getElementById('badge-mod');
+        if (pendingMod > 0) { bMod.textContent = pendingMod; bMod.classList.remove('hidden'); }
+
+        const bUsers = document.getElementById('badge-users');
+        if (totalUsers > 0) { bUsers.textContent = totalUsers; bUsers.classList.remove('hidden'); }
 
         document.getElementById('mod-pending-count').textContent = pendingMod + ' chờ duyệt';
         document.getElementById('orders-summary-badge').textContent = pendingOrders + ' chờ xử lý';
@@ -1493,24 +1463,23 @@
 
     function updateSystemCounts() {
         document.getElementById('sys-books-count').textContent = Object.keys(adminCache.books).length + ' docs';
-        document.getElementById('sys-dict-count').textContent = Object.keys(adminCache.dict).length + ' docs';
         document.getElementById('sys-chapters-count').textContent = Object.keys(adminCache.chapters).length + ' docs';
+        document.getElementById('sys-dict-count').textContent = Object.keys(adminCache.dict).length + ' docs';
         document.getElementById('sys-products-count').textContent = adminCache.products.length + ' docs';
         document.getElementById('sys-orders-count').textContent = adminCache.orders.length + ' docs';
         document.getElementById('sys-vouchers-count').textContent = adminCache.vouchers.length + ' docs';
         document.getElementById('sys-users-count').textContent = adminCache.users.length + ' docs';
     }
 
-    // ===================== OVERVIEW =====================
+    // Overview Render
     function renderOverview() {
-        // Books preview
         const booksEl = document.getElementById('overview-books-list');
         const bookEntries = Object.entries(adminCache.books).slice(0, 5);
         if (bookEntries.length === 0) {
             booksEl.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">menu_book</span><p>Chưa có sách nào</p></div>';
         } else {
             booksEl.innerHTML = bookEntries.map(([id, b]) => `
-                <div class="flex items-center gap-3 p-3 hover:bg-slate-50 rounded-xl transition cursor-pointer" onclick="switchTab('books')">
+                <div class="flex items-center gap-3 p-2.5 hover:bg-slate-50 rounded-xl transition cursor-pointer" onclick="switchTab('content')">
                     <img src="${b.cover || 'covers/thaoduoc.png'}" class="w-9 h-12 object-cover rounded-lg border border-slate-200" onerror="this.src='covers/thaoduoc.png'">
                     <div class="flex-grow min-w-0">
                         <p class="font-bold text-xs text-slate-800 truncate">${b.title || id}</p>
@@ -1521,155 +1490,49 @@
             `).join('');
         }
 
-        // Orders preview
         const ordersEl = document.getElementById('overview-orders-list');
         const recentOrders = adminCache.orders.slice(-5).reverse();
         if (recentOrders.length === 0) {
-            ordersEl.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">receipt_long</span><p>Chưa có đơn hàng</p></div>';
+            ordersEl.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">receipt_long</span><p>Chưa có đơn hàng nào</p></div>';
         } else {
             ordersEl.innerHTML = recentOrders.map(o => `
-                <div class="flex items-center justify-between p-3 hover:bg-slate-50 rounded-xl transition">
+                <div class="flex items-center justify-between p-2.5 hover:bg-slate-50 rounded-xl transition cursor-pointer" onclick="switchTab('commerce'); switchSubTab('commerce','orders')">
                     <div>
                         <p class="font-bold text-xs text-slate-800">#${o.id.slice(-6).toUpperCase()}</p>
-                        <p class="text-[10px] text-slate-400">${o.customerName || o.email || 'Ẩn danh'}</p>
+                        <p class="text-[10px] text-slate-400">${o.customerName || o.name || 'Ẩn danh'}</p>
                     </div>
                     <div class="text-right">
-                        <p class="font-bold text-xs text-blue-600">${formatCurrency(o.total)}</p>
+                        <p class="font-bold text-xs text-blue-600">${formatCurrency(o.total || o.totalAmount)}</p>
                         ${statusBadge(o.status)}
                     </div>
                 </div>
             `).join('');
         }
 
-        // Activity feed
         const feedEl = document.getElementById('activity-feed');
         const activities = [];
-        Object.entries(adminCache.books).slice(-3).forEach(([id, b]) => activities.push({ type: 'book', text: `Sách "${b.title || id}" trong hệ thống`, color: 'bg-blue-100 text-blue-600', icon: 'menu_book' }));
-        adminCache.orders.slice(-3).forEach(o => activities.push({ type: 'order', text: `Đơn hàng #${o.id.slice(-6).toUpperCase()} — ${formatCurrency(o.total)}`, color: 'bg-purple-100 text-purple-600', icon: 'receipt_long' }));
-        adminCache.modItems.filter(m => m.status === 'pending').slice(0, 2).forEach(m => activities.push({ type: 'mod', text: `Ghi chú chờ duyệt từ "${m.userName || 'Người dùng'}"`, color: 'bg-orange-100 text-orange-600', icon: 'shield_check' }));
+        Object.entries(adminCache.books).slice(-3).forEach(([id, b]) => activities.push({ text: `Sách mới: "${b.title || id}" đã được thêm vào kho`, color: 'bg-blue-100 text-blue-600', icon: 'menu_book' }));
+        adminCache.orders.slice(-3).forEach(o => activities.push({ text: `Đơn hàng mới #${o.id.slice(-6).toUpperCase()} — ${formatCurrency(o.total||o.totalAmount)}`, color: 'bg-purple-100 text-purple-600', icon: 'receipt_long' }));
+        adminCache.modItems.filter(m => m.status === 'pending').slice(0, 2).forEach(m => activities.push({ text: `Ghi chú chờ duyệt từ "${m.userName || 'Người dùng'}"`, color: 'bg-amber-100 text-amber-600', icon: 'shield_person' }));
 
         if (activities.length === 0) {
             feedEl.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">history</span><p>Chưa có hoạt động</p></div>';
         } else {
             feedEl.innerHTML = activities.slice(0, 8).map(a => `
-                <div class="feed-item">
-                    <div class="feed-dot ${a.color}"><span class="material-symbols-outlined">${a.icon}</span></div>
+                <div class="flex items-center gap-3 py-2.5 border-b border-slate-100 last:border-none">
+                    <div class="w-8 h-8 rounded-full ${a.color} flex items-center justify-center flex-shrink-0">
+                        <span class="material-symbols-outlined" style="font-size:16px">${a.icon}</span>
+                    </div>
                     <div>
                         <p class="text-xs text-slate-700 font-medium">${a.text}</p>
-                        <p class="text-[10px] text-slate-400 mt-0.5">Hệ thống GEMS</p>
+                        <p class="text-[9.5px] text-slate-400">Hệ thống GEMS Cloud</p>
                     </div>
                 </div>
             `).join('');
         }
     }
 
-    // ===================== USERS =====================
-    function renderUsersTable(data) {
-        const arr = data || adminCache.users;
-        const tbody = document.getElementById('users-tbody');
-        if (arr.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><span class="material-symbols-outlined">group</span><p>Chưa có người dùng nào trong collection "users"</p></div></td></tr>';
-            return;
-        }
-        tbody.innerHTML = arr.map(u => `
-            <tr>
-                <td>
-                    <div class="flex items-center gap-2">
-                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
-                            <span class="material-symbols-outlined text-blue-600" style="font-size:16px">person</span>
-                        </div>
-                        <span class="font-semibold text-slate-800">${u.name || u.displayName || 'N/A'}</span>
-                    </div>
-                </td>
-                <td>
-                    <p class="text-xs">${u.email || '—'}</p>
-                    <p class="text-[10px] text-slate-400 font-mono">${u.id || u.uid || ''}</p>
-                </td>
-                <td>${roleBadge(u.role)}</td>
-                <td class="text-[11px] text-slate-500">${formatDate(u.createdAt)}</td>
-                <td>${u.status === 'blocked' ? '<span class="badge badge-red">Bị khoá</span>' : '<span class="badge badge-green">Hoạt động</span>'}</td>
-                <td class="text-right space-x-1">
-                    <button onclick="editUserModal('${u.id}')" class="btn-sm btn-edit">Sửa</button>
-                    <button onclick="toggleUserBlock('${u.id}', '${u.status}')" class="btn-sm ${u.status === 'blocked' ? 'btn-success' : 'btn-delete'}">${u.status === 'blocked' ? 'Mở khoá' : 'Khoá'}</button>
-                    <button onclick="deleteUser('${u.id}')" class="btn-sm btn-delete">Xoá</button>
-                </td>
-            </tr>
-        `).join('');
-    }
-
-    function filterUsers() {
-        const q = document.getElementById('search-users').value.toLowerCase();
-        const role = document.getElementById('filter-users-role').value;
-        const status = document.getElementById('filter-users-status').value;
-        let arr = adminCache.users;
-        if (q) arr = arr.filter(u => (u.name||'').toLowerCase().includes(q) || (u.email||'').toLowerCase().includes(q) || (u.id||'').toLowerCase().includes(q));
-        if (role) arr = arr.filter(u => u.role === role);
-        if (status) arr = arr.filter(u => u.status === status);
-        renderUsersTable(arr);
-    }
-
-    function openAddUserModal() {
-        document.getElementById('user-modal-title').textContent = 'Thêm Người Dùng';
-        document.getElementById('user-edit-id').value = '';
-        document.getElementById('user-name').value = '';
-        document.getElementById('user-email').value = '';
-        document.getElementById('user-role').value = 'user';
-        document.getElementById('user-status').value = 'active';
-        document.getElementById('user-note').value = '';
-        openModal('modal-user');
-    }
-
-    function editUserModal(id) {
-        const u = adminCache.users.find(u => u.id === id);
-        if (!u) return;
-        document.getElementById('user-modal-title').textContent = 'Chỉnh Sửa: ' + (u.name || id);
-        document.getElementById('user-edit-id').value = id;
-        document.getElementById('user-name').value = u.name || u.displayName || '';
-        document.getElementById('user-email').value = u.email || '';
-        document.getElementById('user-role').value = u.role || 'user';
-        document.getElementById('user-status').value = u.status || 'active';
-        document.getElementById('user-note').value = u.note || '';
-        openModal('modal-user');
-    }
-
-    async function saveUser(e) {
-        e.preventDefault();
-        const id = document.getElementById('user-edit-id').value || Date.now().toString();
-        const obj = {
-            name: document.getElementById('user-name').value.trim(),
-            email: document.getElementById('user-email').value.trim(),
-            role: document.getElementById('user-role').value,
-            status: document.getElementById('user-status').value,
-            note: document.getElementById('user-note').value.trim(),
-            updatedAt: new Date().toISOString()
-        };
-        try {
-            await window.db.collection('users').doc(id).set(obj, { merge: true });
-            showToast(`Đã lưu người dùng "${obj.name}"!`, 'success');
-            closeModal('modal-user');
-            refreshAllData();
-        } catch (err) { showToast('Lỗi: ' + err.message, 'error'); }
-    }
-
-    async function toggleUserBlock(id, currentStatus) {
-        const newStatus = currentStatus === 'blocked' ? 'active' : 'blocked';
-        try {
-            await window.db.collection('users').doc(id).update({ status: newStatus });
-            showToast(newStatus === 'blocked' ? 'Đã khoá tài khoản!' : 'Đã mở khoá tài khoản!', 'success');
-            refreshAllData();
-        } catch (err) { showToast('Lỗi: ' + err.message, 'error'); }
-    }
-
-    async function deleteUser(id) {
-        if (!confirm('Xoá người dùng này?')) return;
-        try {
-            await window.db.collection('users').doc(id).delete();
-            showToast('Đã xoá người dùng!', 'success');
-            refreshAllData();
-        } catch (err) { showToast('Lỗi: ' + err.message, 'error'); }
-    }
-
-    // ===================== BOOKS =====================
+    // ===================== BOOKS & CHAPTERS =====================
     function renderBooksTable(data) {
         const entries = data || Object.entries(adminCache.books);
         const tbody = document.getElementById('books-tbody');
@@ -1765,7 +1628,7 @@
         } catch (err) { showToast('Lỗi: ' + err.message, 'error'); }
     }
 
-    // ===================== CHAPTERS =====================
+    // Chapters Management
     function populateBookSelects() {
         const selectFilter = document.getElementById('filter-chapters-book');
         const selectModal = document.getElementById('chapter-book-id');
@@ -1790,7 +1653,7 @@
         const tbody = document.getElementById('chapters-tbody');
         if (!tbody) return;
         if (!entries || entries.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><span class="material-symbols-outlined">library_books</span><p>Chưa có chương nội dung nào trong collection "chapters"</p></div></td></tr>';
+            tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><span class="material-symbols-outlined">library_books</span><p>Chưa có chương nội dung nào</p></div></td></tr>';
             return;
         }
         tbody.innerHTML = entries.map(([id, c]) => {
@@ -1959,7 +1822,7 @@
         const arr = data || adminCache.products;
         const tbody = document.getElementById('products-tbody');
         if (arr.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="8"><div class="empty-state"><span class="material-symbols-outlined">storefront</span><p>Chưa có sản phẩm nào trong collection "shop_products"</p></div></td></tr>';
+            tbody.innerHTML = '<tr><td colspan="8"><div class="empty-state"><span class="material-symbols-outlined">storefront</span><p>Chưa có sản phẩm nào</p></div></td></tr>';
             return;
         }
         tbody.innerHTML = arr.map(p => `
@@ -2150,12 +2013,12 @@
         } catch (err) { showToast('Lỗi: ' + err.message, 'error'); }
     }
 
-    // ===================== VOUCHERS =====================
+    // ===================== VOUCHERS & FLASH SALES =====================
     function renderVouchersTable(data) {
         const arr = data || adminCache.vouchers;
         const tbody = document.getElementById('vouchers-tbody');
         if (arr.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="8"><div class="empty-state"><span class="material-symbols-outlined">sell</span><p>Chưa có voucher nào. Tạo voucher đầu tiên!</p></div></td></tr>';
+            tbody.innerHTML = '<tr><td colspan="8"><div class="empty-state"><span class="material-symbols-outlined">sell</span><p>Chưa có voucher nào</p></div></td></tr>';
             return;
         }
         tbody.innerHTML = arr.map(v => `
@@ -2217,7 +2080,7 @@
         };
         try {
             await window.db.collection('vouchers').doc(id).set(obj, { merge: true });
-            showToast(`Đã tạo voucher "${code}"!`, 'success');
+            showToast(`Đã lưu voucher "${code}"!`, 'success');
             closeModal('modal-voucher');
             refreshAllData();
         } catch (err) { showToast('Lỗi: ' + err.message, 'error'); }
@@ -2240,7 +2103,6 @@
         } catch (err) { showToast('Lỗi: ' + err.message, 'error'); }
     }
 
-    // Flash Sales
     function renderFlashSales(data) {
         const arr = data || adminCache.flashSales;
         const container = document.getElementById('flash-sales-container');
@@ -2263,9 +2125,9 @@
                     <p>📦 Sản phẩm: ${fs.productIds ? fs.productIds.length + ' sản phẩm' : '—'}</p>
                 </div>
                 <div class="flex gap-2">
-                    <button onclick="editFlashSaleModal('${fs.id}')" class="btn-sm btn-edit flex-1 text-center">Sửa</button>
-                    <button onclick="toggleFlashSale('${fs.id}', ${!!fs.active})" class="btn-sm flex-1 text-center ${fs.active ? 'btn-delete' : 'btn-success'}">${fs.active ? 'Tắt' : 'Bật'}</button>
-                    <button onclick="deleteFlashSale('${fs.id}')" class="btn-sm btn-delete">Xoá</button>
+                    <button onclick="editFlashSaleModal('${fs.id}')" class="btn-sm btn-edit flex-1 text-center justify-center">Sửa</button>
+                    <button onclick="toggleFlashSale('${fs.id}', ${!!fs.active})" class="btn-sm flex-1 text-center justify-center ${fs.active ? 'btn-delete' : 'btn-success'}">${fs.active ? 'Tắt' : 'Bật'}</button>
+                    <button onclick="deleteFlashSale('${fs.id}')" class="btn-sm btn-delete justify-center">Xoá</button>
                 </div>
             </div>
         `).join('');
@@ -2332,12 +2194,116 @@
         } catch (err) { showToast('Lỗi: ' + err.message, 'error'); }
     }
 
-    // ===================== MODERATION =====================
+    // ===================== USERS =====================
+    function renderUsersTable(data) {
+        const arr = data || adminCache.users;
+        const tbody = document.getElementById('users-tbody');
+        if (arr.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><span class="material-symbols-outlined">group</span><p>Chưa có người dùng nào</p></div></td></tr>';
+            return;
+        }
+        tbody.innerHTML = arr.map(u => `
+            <tr>
+                <td>
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                            <span class="material-symbols-outlined text-blue-600" style="font-size:16px">person</span>
+                        </div>
+                        <span class="font-semibold text-slate-800">${u.name || u.displayName || 'N/A'}</span>
+                    </div>
+                </td>
+                <td>
+                    <p class="text-xs font-medium">${u.email || '—'}</p>
+                    <p class="text-[10px] text-slate-400 font-mono">${u.id || u.uid || ''}</p>
+                </td>
+                <td>${roleBadge(u.role)}</td>
+                <td class="text-[11px] text-slate-500">${formatDate(u.createdAt)}</td>
+                <td>${u.status === 'blocked' ? '<span class="badge badge-red">Bị khoá</span>' : '<span class="badge badge-green">Hoạt động</span>'}</td>
+                <td class="text-right space-x-1">
+                    <button onclick="editUserModal('${u.id}')" class="btn-sm btn-edit">Sửa</button>
+                    <button onclick="toggleUserBlock('${u.id}', '${u.status}')" class="btn-sm ${u.status === 'blocked' ? 'btn-success' : 'btn-delete'}">${u.status === 'blocked' ? 'Mở khoá' : 'Khoá'}</button>
+                    <button onclick="deleteUser('${u.id}')" class="btn-sm btn-delete">Xoá</button>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    function filterUsers() {
+        const q = document.getElementById('search-users').value.toLowerCase();
+        const role = document.getElementById('filter-users-role').value;
+        const status = document.getElementById('filter-users-status').value;
+        let arr = adminCache.users;
+        if (q) arr = arr.filter(u => (u.name||'').toLowerCase().includes(q) || (u.email||'').toLowerCase().includes(q) || (u.id||'').toLowerCase().includes(q));
+        if (role) arr = arr.filter(u => u.role === role);
+        if (status) arr = arr.filter(u => u.status === status);
+        renderUsersTable(arr);
+    }
+
+    function openAddUserModal() {
+        document.getElementById('user-modal-title').textContent = 'Thêm Người Dùng';
+        document.getElementById('user-edit-id').value = '';
+        ['user-name','user-email','user-note'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('user-role').value = 'user';
+        document.getElementById('user-status').value = 'active';
+        openModal('modal-user');
+    }
+
+    function editUserModal(id) {
+        const u = adminCache.users.find(u => u.id === id);
+        if (!u) return;
+        document.getElementById('user-modal-title').textContent = 'Chỉnh Sửa: ' + (u.name || id);
+        document.getElementById('user-edit-id').value = id;
+        document.getElementById('user-name').value = u.name || u.displayName || '';
+        document.getElementById('user-email').value = u.email || '';
+        document.getElementById('user-role').value = u.role || 'user';
+        document.getElementById('user-status').value = u.status || 'active';
+        document.getElementById('user-note').value = u.note || '';
+        openModal('modal-user');
+    }
+
+    async function saveUser(e) {
+        e.preventDefault();
+        const id = document.getElementById('user-edit-id').value || Date.now().toString();
+        const obj = {
+            name: document.getElementById('user-name').value.trim(),
+            email: document.getElementById('user-email').value.trim(),
+            role: document.getElementById('user-role').value,
+            status: document.getElementById('user-status').value,
+            note: document.getElementById('user-note').value.trim(),
+            updatedAt: new Date().toISOString()
+        };
+        try {
+            await window.db.collection('users').doc(id).set(obj, { merge: true });
+            showToast(`Đã lưu người dùng "${obj.name}"!`, 'success');
+            closeModal('modal-user');
+            refreshAllData();
+        } catch (err) { showToast('Lỗi: ' + err.message, 'error'); }
+    }
+
+    async function toggleUserBlock(id, currentStatus) {
+        const newStatus = currentStatus === 'blocked' ? 'active' : 'blocked';
+        try {
+            await window.db.collection('users').doc(id).update({ status: newStatus });
+            showToast(newStatus === 'blocked' ? 'Đã khoá tài khoản!' : 'Đã mở khoá tài khoản!', 'success');
+            refreshAllData();
+        } catch (err) { showToast('Lỗi: ' + err.message, 'error'); }
+    }
+
+    async function deleteUser(id) {
+        if (!confirm('Xoá người dùng này?')) return;
+        try {
+            await window.db.collection('users').doc(id).delete();
+            showToast('Đã xoá người dùng!', 'success');
+            refreshAllData();
+        } catch (err) { showToast('Lỗi: ' + err.message, 'error'); }
+    }
+
+    // ===================== MODERATION & SYSTEM =====================
     function renderModTable(data) {
         const arr = (data || adminCache.modItems).filter(m => !currentModFilter || m.status === currentModFilter).sort((a,b) => new Date(b.createdAt||0) - new Date(a.createdAt||0));
         const tbody = document.getElementById('mod-tbody');
         if (arr.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state"><span class="material-symbols-outlined">shield_check</span><p>Không có nội dung cần kiểm duyệt</p></div></td></tr>';
+            tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state"><span class="material-symbols-outlined">shield_person</span><p>Không có nội dung cần duyệt</p></div></td></tr>';
             return;
         }
         tbody.innerHTML = arr.map(m => `
@@ -2398,7 +2364,6 @@
         } catch (err) { showToast('Lỗi: ' + err.message, 'error'); }
     }
 
-    // ===================== SYSTEM =====================
     async function clearCollection(collectionName) {
         if (!window.db) return;
         try {
@@ -2409,65 +2374,6 @@
             showToast(`Đã xoá toàn bộ collection "${collectionName}"!`, 'success');
             refreshAllData();
         } catch (err) { showToast('Lỗi: ' + err.message, 'error'); }
-    }
-
-    // ===================== MODAL HELPERS =====================
-    function openModal(id) {
-        document.getElementById(id).classList.remove('hidden');
-    }
-
-    function closeModal(id) {
-        document.getElementById(id).classList.add('hidden');
-    }
-
-    // Close modal on overlay click
-    document.querySelectorAll('.modal-overlay').forEach(overlay => {
-        overlay.addEventListener('click', function(e) {
-            if (e.target === this) this.classList.add('hidden');
-        });
-    });
-
-    // ===================== UTILITIES =====================
-    function formatCurrency(amount) {
-        if (!amount && amount !== 0) return '—';
-        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
-    }
-
-    function formatDate(val) {
-        if (!val) return '—';
-        try {
-            const d = val.toDate ? val.toDate() : new Date(val);
-            return d.toLocaleDateString('vi-VN');
-        } catch { return val; }
-    }
-
-    function statusBadge(status) {
-        const map = {
-            pending: '<span class="badge badge-amber">Chờ xử lý</span>',
-            processing: '<span class="badge badge-blue">Đang xử lý</span>',
-            shipping: '<span class="badge badge-purple">Đang giao</span>',
-            completed: '<span class="badge badge-green">Hoàn thành</span>',
-            cancelled: '<span class="badge badge-red">Đã huỷ</span>'
-        };
-        return map[status] || '<span class="badge badge-slate">' + (status || 'Chưa xác định') + '</span>';
-    }
-
-    function modStatusBadge(status) {
-        if (status === 'approved') return '<span class="badge badge-green">Đã duyệt</span>';
-        if (status === 'rejected') return '<span class="badge badge-red">Từ chối</span>';
-        return '<span class="badge badge-amber">Chờ duyệt</span>';
-    }
-
-    function roleBadge(role) {
-        if (role === 'admin') return '<span class="badge badge-red">Admin</span>';
-        if (role === 'pro') return '<span class="badge badge-purple">Pro</span>';
-        return '<span class="badge badge-blue">User</span>';
-    }
-
-    function productStatusBadge(status) {
-        if (status === 'out_of_stock') return '<span class="badge badge-amber">Hết hàng</span>';
-        if (status === 'hidden') return '<span class="badge badge-slate">Ẩn</span>';
-        return '<span class="badge badge-green">Đang bán</span>';
     }
 
     // ===================== EXPORT CSV =====================
@@ -2512,19 +2418,70 @@
         showToast(`Đã xuất file ${filename}!`, 'success');
     }
 
-    // ===================== TOAST =====================
+    // ===================== UTILS & MODAL HELPERS =====================
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', function(e) {
+            if (e.target === this) this.classList.add('hidden');
+        });
+    });
+
+    function formatCurrency(amount) {
+        if (!amount && amount !== 0) return '—';
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+    }
+
+    function formatDate(val) {
+        if (!val) return '—';
+        try {
+            const d = val.toDate ? val.toDate() : new Date(val);
+            return d.toLocaleDateString('vi-VN');
+        } catch { return val; }
+    }
+
+    function statusBadge(status) {
+        const map = {
+            pending: '<span class="badge badge-amber">Chờ xử lý</span>',
+            processing: '<span class="badge badge-blue">Đang xử lý</span>',
+            shipping: '<span class="badge badge-purple">Đang giao</span>',
+            completed: '<span class="badge badge-green">Hoàn thành</span>',
+            cancelled: '<span class="badge badge-red">Đã huỷ</span>'
+        };
+        return map[status] || '<span class="badge badge-slate">' + (status || 'Chưa xác định') + '</span>';
+    }
+
+    function modStatusBadge(status) {
+        if (status === 'approved') return '<span class="badge badge-green">Đã duyệt</span>';
+        if (status === 'rejected') return '<span class="badge badge-red">Từ chối</span>';
+        return '<span class="badge badge-amber">Chờ duyệt</span>';
+    }
+
+    function roleBadge(role) {
+        if (role === 'admin') return '<span class="badge badge-red">Admin</span>';
+        if (role === 'pro') return '<span class="badge badge-purple">Pro</span>';
+        return '<span class="badge badge-blue">User</span>';
+    }
+
+    function productStatusBadge(status) {
+        if (status === 'out_of_stock') return '<span class="badge badge-amber">Hết hàng</span>';
+        if (status === 'hidden') return '<span class="badge badge-slate">Ẩn</span>';
+        return '<span class="badge badge-green">Đang bán</span>';
+    }
+
     function showToast(msg, type = 'info') {
         const container = document.getElementById('toast-container');
         const toast = document.createElement('div');
         const colors = {
             success: 'background:#059669;color:#fff',
             error: 'background:#dc2626;color:#fff',
-            info: 'background:#3b82f6;color:#fff'
+            info: 'background:#2563eb;color:#fff'
         };
         toast.className = 'toast';
         toast.style.cssText = colors[type] || colors.info;
         const icons = { success: 'check_circle', error: 'error', info: 'info' };
-        toast.innerHTML = `<span class="material-symbols-outlined" style="font-size:16px">${icons[type]||'info'}</span><span>${msg}</span>`;
+        toast.innerHTML = `<span class="material-symbols-outlined" style="font-size:17px">${icons[type]||'info'}</span><span>${msg}</span>`;
         container.appendChild(toast);
         requestAnimationFrame(() => toast.classList.add('show'));
         setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3500);
