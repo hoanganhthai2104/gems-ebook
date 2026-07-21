@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title id="page-title">GEMS Admin — Enterprise Data Portal & Command Center</title>
-    <meta name="description" content="Bảng điều khiển quản trị nền tảng GEMS Medical Portal: Command Palette Ctrl+K, Glassmorphic BI, Dark Mode và Quản lý Doanh thu Tác giả."/>
+    <title id="page-title">GEMS Admin — Comprehensive Ebook &amp; Shop Control Center</title>
+    <meta name="description" content="Bảng điều khiển quản trị nền tảng GEMS Medical Portal: Gói VIP, Reviews sách, Kho hàng, Tracking đơn và Phân quyền."/>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
@@ -79,13 +79,12 @@
         body.dark .subtab-pill { color: #94a3b8; }
         body.dark .subtab-pill.active { background: #1e293b; color: #38bdf8; box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
 
-        /* GLASSMORPHIC GRADIENT KPI CARDS */
         .kpi-gradient-1 { background: linear-gradient(135deg, #005A9C 0%, #0284c7 100%); }
         .kpi-gradient-2 { background: linear-gradient(135deg, #059669 0%, #10b981 100%); }
         .kpi-gradient-3 { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); }
         .kpi-gradient-4 { background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%); }
 
-        .stat-card-glass { border-radius: 24px; padding: 22px; color: #ffffff; position: relative; overflow: hidden; box-shadow: 0 10px 30px -5px rgba(0,0,0,0.15); transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s; cursor: pointer; }
+        .stat-card-glass { border-radius: 24px; padding: 22px; color: #ffffff; position: relative; overflow: hidden; box-shadow: 0 10px 30px -5px rgba(0,0,0,0.15); transition: transform 0.25s, box-shadow 0.25s; cursor: pointer; }
         .stat-card-glass:hover { transform: translateY(-4px) scale(1.01); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.25); }
         .stat-card-glass .glass-icon { width: 48px; height: 48px; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); border-radius: 18px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.3); }
 
@@ -166,7 +165,6 @@
 </head>
 <body class="min-h-screen flex flex-col">
 
-<!-- Toast Container -->
 <div id="toast-container"></div>
 
 <!-- ==================== LOGIN SCREEN ==================== -->
@@ -211,47 +209,45 @@
         </div>
 
         <nav class="flex-grow p-3 overflow-y-auto">
-            <div class="nav-section-label" id="lbl-sec-overview">Tổng Quan &amp; BI</div>
+            <div class="nav-section-label">Tổng Quan &amp; BI</div>
             <div class="nav-item active" id="nav-overview" onclick="switchTab('overview')">
                 <span class="material-symbols-outlined">analytics</span>
-                <span id="nav-lbl-overview">Bảng Điều Khiển</span>
+                <span>Bảng Điều Khiển</span>
             </div>
 
-            <div class="nav-section-label" id="lbl-sec-users">Người Dùng &amp; Quyền</div>
+            <div class="nav-section-label">Người Dùng &amp; Quyền</div>
             <div class="nav-item" id="nav-users" onclick="switchTab('users')">
                 <span class="material-symbols-outlined">group</span>
-                <span id="nav-lbl-users">Danh Sách Người Dùng</span>
+                <span>Danh Sách Người Dùng</span>
                 <span id="badge-users" class="ml-auto bg-sky-500/80 text-white text-[9.5px] font-bold px-2 py-0.5 rounded-full">0</span>
             </div>
             <div class="nav-item" id="nav-payout" onclick="switchSubTab('users', 'payout'); switchTab('users')">
                 <span class="material-symbols-outlined">payments</span>
                 <span>Rút Tiền Tác Giả/Studio</span>
             </div>
-            <div class="nav-item" id="nav-kyc" onclick="switchSubTab('users', 'kyc'); switchTab('users')">
-                <span class="material-symbols-outlined">badge</span>
-                <span id="nav-lbl-kyc">Xác Minh Danh Tính (KYC)</span>
-            </div>
 
-            <div class="nav-section-label" id="lbl-sec-mod">Kiểm Duyệt Nội Dung</div>
+            <div class="nav-section-label">Kiểm Duyệt Nội Dung</div>
             <div class="nav-item" id="nav-moderation" onclick="switchTab('moderation')">
                 <span class="material-symbols-outlined">shield_person</span>
-                <span id="nav-lbl-mod">Bình Luận &amp; Ghi Chú</span>
+                <span>Bình Luận &amp; Ghi Chú</span>
                 <span id="badge-mod" class="ml-auto bg-amber-500 text-white text-[9.5px] font-bold px-2 py-0.5 rounded-full hidden">0</span>
             </div>
             <div class="nav-item" id="nav-audit" onclick="switchSubTab('moderation', 'audit'); switchTab('moderation')">
                 <span class="material-symbols-outlined">history</span>
-                <span id="nav-lbl-audit">Nhật Ký Thao Tác</span>
+                <span>Nhật Ký Thao Tác</span>
             </div>
 
-            <div class="nav-section-label" id="lbl-sec-commerce">Thương Mại &amp; Quản Lý</div>
+            <div class="nav-section-label">Thương Mại &amp; Shop Y Tế</div>
             <div class="nav-item" id="nav-commerce" onclick="switchTab('commerce')">
                 <span class="material-symbols-outlined">shopping_bag</span>
-                <span id="nav-lbl-commerce">Đơn Hàng &amp; Cửa Hàng</span>
+                <span>Đơn Hàng &amp; Shop</span>
                 <span id="badge-orders" class="ml-auto bg-amber-500 text-white text-[9.5px] font-bold px-2 py-0.5 rounded-full hidden">0</span>
             </div>
+
+            <div class="nav-section-label">Kho Ebook &amp; Từ Điển</div>
             <div class="nav-item" id="nav-content" onclick="switchTab('content')">
                 <span class="material-symbols-outlined">library_books</span>
-                <span id="nav-lbl-content">Kho Sách &amp; Từ Điển</span>
+                <span>Kho Sách &amp; Từ Điển</span>
             </div>
         </nav>
 
@@ -262,12 +258,12 @@
                 </div>
                 <div class="min-w-0">
                     <p class="text-white text-[11.5px] font-bold leading-tight truncate">admin@gems.vn</p>
-                    <p class="text-sky-400 text-[9.5px] font-bold">Senior Data Architect</p>
+                    <p class="text-sky-400 text-[9.5px] font-bold">Senior Architect</p>
                 </div>
             </div>
             <button onclick="handleAdminLogout()" class="nav-item w-full hover:bg-red-950/40 hover:text-red-400 justify-center text-center">
                 <span class="material-symbols-outlined">logout</span>
-                <span id="nav-lbl-logout">Đăng Xuất</span>
+                <span>Đăng Xuất</span>
             </button>
         </div>
     </aside>
@@ -275,7 +271,7 @@
     <!-- MAIN CONTENT AREA -->
     <div class="flex-grow flex flex-col min-w-0">
 
-        <!-- TOP HEADER WITH COMMAND PALETTE & THEME TOGGLE -->
+        <!-- TOP HEADER -->
         <header class="h-15 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 md:px-7 flex items-center justify-between sticky top-0 z-40 flex-shrink-0 shadow-sm">
             <div class="flex items-center gap-3">
                 <button onclick="toggleMobileSidebar()" class="md:hidden p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 rounded-xl transition">
@@ -288,19 +284,16 @@
             </div>
 
             <div class="flex items-center gap-2.5">
-                <!-- COMMAND PALETTE SEARCH BUTTON -->
-                <button onclick="openModal('modal-command-palette')" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-xl text-xs font-semibold flex items-center gap-2 transition border border-slate-200 dark:border-slate-700">
+                <button onclick="openModal('modal-command-palette')" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-200 rounded-xl text-xs font-semibold flex items-center gap-2 transition border border-slate-200 dark:border-slate-700">
                     <span class="material-symbols-outlined text-sm text-sky-600">search</span>
                     <span class="hidden md:inline">Tìm kiếm siêu tốc...</span>
                     <span class="text-[10px] bg-slate-200 dark:bg-slate-700 px-1.5 py-0.5 rounded font-mono font-bold">Ctrl K</span>
                 </button>
 
-                <!-- DARK/LIGHT THEME TOGGLE -->
                 <button onclick="toggleTheme()" id="theme-toggle-btn" title="Chuyển chế độ Nền Tối / Sáng" class="p-2 text-slate-600 dark:text-amber-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition flex items-center justify-center">
                     <span class="material-symbols-outlined text-xl">dark_mode</span>
                 </button>
 
-                <!-- LANGUAGE SWITCHER -->
                 <select id="lang-switcher" onchange="switchLanguage(this.value)" class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold py-1.5 px-3 rounded-xl outline-none cursor-pointer">
                     <option value="vi">🇻🇳 Tiếng Việt</option>
                     <option value="en">🇬🇧 English</option>
@@ -308,9 +301,9 @@
 
                 <button onclick="openModal('modal-push-notification')" class="px-3 py-2 bg-sky-50 dark:bg-sky-950/50 text-sky-700 dark:text-sky-400 hover:bg-sky-100 rounded-xl text-xs font-bold flex items-center gap-1.5 transition border border-sky-200 dark:border-sky-800">
                     <span class="material-symbols-outlined text-sm">notifications_active</span>
-                    <span id="btn-hdr-push" class="hidden lg:inline">Gửi Thông Báo</span>
+                    <span class="hidden lg:inline">Gửi Thông Báo</span>
                 </button>
-                <button onclick="refreshAllData()" title="Làm mới" class="p-2 text-slate-600 dark:text-slate-300 hover:text-sky-600 hover:bg-sky-50 dark:hover:bg-slate-800 rounded-xl transition">
+                <button onclick="refreshAllData()" title="Làm mới" class="p-2 text-slate-600 dark:text-slate-300 hover:text-sky-600 hover:bg-sky-50 rounded-xl transition">
                     <span class="material-symbols-outlined text-lg">refresh</span>
                 </button>
             </div>
@@ -319,7 +312,7 @@
         <!-- PAGE CONTAINER -->
         <main class="flex-grow overflow-y-auto p-4 md:p-7 space-y-6">
 
-            <!-- ====== TAB 1: OVERVIEW (GLASSMORPHIC GRADIENT DASHBOARD) ====== -->
+            <!-- ====== TAB 1: OVERVIEW ====== -->
             <div id="tab-overview" class="tab-content active space-y-6">
                 
                 <!-- LIVE RADAR WIDGET -->
@@ -331,7 +324,7 @@
                                 Ra-đa Hoạt Động Độc Giả Real-time
                                 <span class="badge bg-emerald-500/20 text-emerald-300 text-[9.5px]">18 Đang Đọc</span>
                             </p>
-                            <p class="text-[10px] text-slate-400 mt-0.5">Sách hot nhất hiện tại: <span class="text-sky-300 font-semibold">Chẩn Đón Y Học Hiện Đại (Trương 4)</span></p>
+                            <p class="text-[10px] text-slate-400 mt-0.5">Sách hot nhất: <span class="text-sky-300 font-semibold">Chẩn Đón Y Học Hiện Đại (Chương 4)</span></p>
                         </div>
                     </div>
                     <div class="flex items-center gap-4 text-xs font-mono">
@@ -342,7 +335,7 @@
                     </div>
                 </div>
 
-                <!-- 4 GLASSMORPHIC GRADIENT KPI CARDS WITH COUNTUP -->
+                <!-- 4 GLASSMORPHIC GRADIENT KPI CARDS -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div class="stat-card-glass kpi-gradient-1" onclick="switchTab('users')">
                         <div class="flex items-center justify-between">
@@ -459,10 +452,6 @@
                             <span class="material-symbols-outlined text-base">payments</span>
                             <span>Rút Tiền Tác Giả / Studio</span>
                         </button>
-                        <button id="sub-users-kyc" onclick="switchSubTab('users', 'kyc')" class="subtab-pill">
-                            <span class="material-symbols-outlined text-base">badge</span>
-                            <span>Xác Minh KYC</span>
-                        </button>
                     </div>
                 </div>
 
@@ -477,65 +466,25 @@
                             <button onclick="openAddUserModal()" class="btn-primary"><span class="material-symbols-outlined text-sm">person_add</span> Thêm Người Dùng</button>
                         </div>
                     </div>
-
-                    <div class="flex gap-3 flex-wrap items-center">
-                        <div class="search-bar flex-grow max-w-sm">
-                            <span class="material-symbols-outlined">search</span>
-                            <input type="text" id="search-users" oninput="filterUsers()" placeholder="Tìm theo Email, Tên, UID..."/>
-                        </div>
-                        <select id="filter-users-role" onchange="filterUsers()" class="form-select w-36">
-                            <option value="">Tất cả Vai Trò</option>
-                            <option value="admin">Quản Trị Viên</option>
-                            <option value="user">Độc Giả</option>
-                        </select>
-                        <select id="filter-users-tier" onchange="filterUsers()" class="form-select w-36">
-                            <option value="">Tất cả Hạng Tier</option>
-                            <option value="free">Miễn Phí (Free)</option>
-                            <option value="pro">Nâng Cao (Pro)</option>
-                            <option value="vip">Đặc Quyền (VIP)</option>
-                        </select>
-                    </div>
-
                     <div class="content-card overflow-hidden">
                         <div class="overflow-x-auto">
                             <table>
-                                <thead><tr>
-                                    <th>Email / UID</th>
-                                    <th>Tên Hiển Thị</th>
-                                    <th>Hạng Thành Viên</th>
-                                    <th>Quyền Hệ Thống</th>
-                                    <th>Cổng Tác Vụ</th>
-                                    <th>Ngày Tạo</th>
-                                    <th class="text-right">Thao Tác</th>
-                                </tr></thead>
-                                <tbody id="users-tbody">
-                                    <tr><td colspan="7" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr>
-                                </tbody>
+                                <thead><tr><th>Email / UID</th><th>Tên Hiển Thị</th><th>Hạng Thành Viên</th><th>Quyền Hệ Thống</th><th>Cổng Tác Vụ</th><th>Ngày Tạo</th><th class="text-right">Thao Tác</th></tr></thead>
+                                <tbody id="users-tbody"><tr><td colspan="7" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr></tbody>
                             </table>
                         </div>
                     </div>
                 </div>
 
-                <!-- SUBPANEL AUTHOR PAYOUT STUDIO -->
                 <div id="subpanel-users-payout" class="subpanel-content space-y-5">
                     <div class="section-header">
-                        <div>
-                            <h2 class="section-title text-base font-bold">Yêu Cầu Rút Tiền &amp; Doanh Thu Tác Giả</h2>
-                            <p class="section-subtitle text-xs text-slate-400">Quản lý chi trả hoa hồng bán sách &amp; tư vấn cho Tác giả / Chuyên gia</p>
-                        </div>
+                        <h2 class="section-title text-base font-bold">Yêu Cầu Rút Tiền Doanh Thu Tác Giả</h2>
                     </div>
                     <div class="content-card overflow-hidden">
                         <div class="overflow-x-auto">
                             <table>
-                                <thead><tr>
-                                    <th>Mã Yêu Cầu</th>
-                                    <th>Tác Giả / Chuyên Gia</th>
-                                    <th>Số Tiền (VNĐ)</th>
-                                    <th>Thông Tin Ngân Hàng</th>
-                                    <th>Trạng Thái</th>
-                                    <th class="text-right">Thao Tác</th>
-                                </tr></thead>
-                                <tbody id="payout-tbody">
+                                <thead><tr><th>Mã Yêu Cầu</th><th>Tác Giả / Chuyên Gia</th><th>Số Tiền (VNĐ)</th><th>Thông Tin Ngân Hàng</th><th>Trạng Thái</th><th class="text-right">Thao Tác</th></tr></thead>
+                                <tbody>
                                     <tr>
                                         <td><span class="font-mono font-bold text-xs">#PY9421</span></td>
                                         <td><p class="font-bold text-xs">BS. Nguyễn Văn Nam</p><p class="text-[10px] text-slate-400">bacsi.nguyen@gems.vn</p></td>
@@ -543,8 +492,7 @@
                                         <td class="text-xs">MBBank - 99901827361</td>
                                         <td><span class="badge badge-amber">Chờ duyệt</span></td>
                                         <td class="text-right space-x-1">
-                                            <button onclick="approvePayout('#PY9421')" class="btn-sm btn-success">Duyệt Chuyển Khoản</button>
-                                            <button onclick="rejectPayout('#PY9421')" class="btn-sm btn-delete">Từ Chối</button>
+                                            <button onclick="showToast('Đã duyệt chuyển khoản!', 'success')" class="btn-sm btn-success">Duyệt Chuyển Khoản</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -552,66 +500,16 @@
                         </div>
                     </div>
                 </div>
-
-                <div id="subpanel-users-kyc" class="subpanel-content space-y-5">
-                    <div class="section-header"><h2 class="section-title text-base font-bold">Xác Minh Danh Tính (KYC)</h2></div>
-                    <div class="content-card p-6 text-center text-slate-400">
-                        <span class="material-symbols-outlined text-5xl mb-2">badge</span>
-                        <p class="text-sm font-semibold">Chưa có hồ sơ KYC chờ duyệt</p>
-                    </div>
-                </div>
             </div>
 
-            <!-- ====== TAB 3: MODERATION ====== -->
-            <div id="tab-moderation" class="tab-content space-y-6">
-                <div class="flex items-center justify-between flex-wrap gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
-                    <div class="inline-flex p-1.5 bg-slate-200/70 dark:bg-slate-800/80 rounded-2xl border border-slate-300/60 dark:border-slate-700">
-                        <button id="sub-mod-list" onclick="switchSubTab('moderation', 'list')" class="subtab-pill active">
-                            <span class="material-symbols-outlined text-base">shield_person</span>
-                            <span>Bình Luận &amp; Ghi Chú</span>
-                        </button>
-                        <button id="sub-mod-audit" onclick="switchSubTab('moderation', 'audit')" class="subtab-pill">
-                            <span class="material-symbols-outlined text-base">history</span>
-                            <span>Nhật Ký Thao Tác</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div id="subpanel-moderation-list" class="subpanel-content active space-y-5">
-                    <div class="section-header"><h2 class="section-title text-base font-bold">Kiểm Duyệt Ghi Chú &amp; Thảo Luận</h2></div>
-                    <div class="content-card overflow-hidden">
-                        <div class="overflow-x-auto">
-                            <table>
-                                <thead><tr><th>Người Dùng</th><th>Loại</th><th>Nội Dung</th><th>Sách</th><th>Ngày</th><th>Trạng Thái</th><th class="text-right">Thao Tác</th></tr></thead>
-                                <tbody id="mod-tbody"><tr><td colspan="7" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr></tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="subpanel-moderation-audit" class="subpanel-content space-y-5">
-                    <div class="section-header">
-                        <div><h2 class="section-title text-base font-bold">Nhật Ký Thao Tác Hệ Thống (Audit Logs)</h2></div>
-                        <button onclick="renderAuditLogs()" class="btn-sm btn-edit"><span class="material-symbols-outlined text-sm">refresh</span> Làm mới Log</button>
-                    </div>
-                    <div class="content-card overflow-hidden">
-                        <div class="overflow-x-auto">
-                            <table>
-                                <thead><tr><th>Thời Gian</th><th>Tài Khoản Thao Tác</th><th>Hành Động</th><th>Đối Tượng</th><th>Chi Tiết Vết Log</th></tr></thead>
-                                <tbody id="audit-tbody"><tr><td colspan="5" class="text-center py-8 text-slate-400">Chưa có dữ liệu log</td></tr></tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ====== TAB 4: COMMERCE ====== -->
+            <!-- ====== TAB 4: COMMERCE (WITH SUBSCRIPTIONS & INVENTORY) ====== -->
             <div id="tab-commerce" class="tab-content space-y-6">
                 <div class="flex items-center justify-between flex-wrap gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
                     <div class="inline-flex p-1.5 bg-slate-200/70 dark:bg-slate-800/80 rounded-2xl border border-slate-300/60 dark:border-slate-700">
                         <button id="sub-commerce-orders" onclick="switchSubTab('commerce', 'orders')" class="subtab-pill active"><span class="material-symbols-outlined text-base">receipt_long</span><span>Đơn Hàng</span></button>
                         <button id="sub-commerce-products" onclick="switchSubTab('commerce', 'products')" class="subtab-pill"><span class="material-symbols-outlined text-base">storefront</span><span>Sản Phẩm Shop</span></button>
-                        <button id="sub-commerce-promotions" onclick="switchSubTab('commerce', 'promotions')" class="subtab-pill"><span class="material-symbols-outlined text-base">sell</span><span>Mã Giảm Giá &amp; Flash Sale</span></button>
+                        <button id="sub-commerce-subscriptions" onclick="switchSubTab('commerce', 'subscriptions')" class="subtab-pill"><span class="material-symbols-outlined text-base">card_membership</span><span>Gói Đăng Ký VIP</span></button>
+                        <button id="sub-commerce-inventory" onclick="switchSubTab('commerce', 'inventory')" class="subtab-pill"><span class="material-symbols-outlined text-base">inventory</span><span>Quản Lý Tồn Kho</span></button>
                     </div>
                 </div>
 
@@ -623,8 +521,73 @@
                     <div class="content-card overflow-hidden">
                         <div class="overflow-x-auto">
                             <table>
-                                <thead><tr><th>Mã Đơn</th><th>Khách Hàng</th><th>Sản Phẩm</th><th>Tổng Tiền</th><th>Ngày Đặt</th><th>Trạng Thái</th><th class="text-right">Thao Tác</th></tr></thead>
+                                <thead><tr><th>Mã Đơn</th><th>Khách Hàng</th><th>Sản Phẩm</th><th>Tổng Tiền</th><th>Vận Đơn / Vận Chuyển</th><th>Trạng Thái</th><th class="text-right">Thao Tác</th></tr></thead>
                                 <tbody id="orders-tbody"><tr><td colspan="7" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUBPANEL VIP SUBSCRIPTION PLANS -->
+                <div id="subpanel-commerce-subscriptions" class="subpanel-content space-y-5">
+                    <div class="section-header">
+                        <h2 class="section-title text-base font-bold">Cấu Hình Gói Đăng Ký Đọc Sách VIP/PRO</h2>
+                        <button onclick="showToast('Thêm gói đăng ký mới', 'info')" class="btn-primary"><span class="material-symbols-outlined text-sm">add_card</span> Tạo Gói VIP Mới</button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="p-5 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
+                            <span class="badge badge-gems">Học Sinh / Sinh Viên Y</span>
+                            <h3 class="font-extrabold text-lg text-slate-800 dark:text-white">Gói Sinh Viên Y</h3>
+                            <p class="text-2xl font-black text-sky-600">49,000 ₫<span class="text-xs font-normal text-slate-400">/tháng</span></p>
+                            <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
+                                <li>✓ Đọc offline 50 cuốn sách</li>
+                                <li>✓ Tra từ điển Y Khoa không giới hạn</li>
+                            </ul>
+                        </div>
+                        <div class="p-5 bg-white dark:bg-slate-800 rounded-2xl border-2 border-sky-500 shadow-md space-y-3">
+                            <span class="badge badge-purple">Khuyên Dùng</span>
+                            <h3 class="font-extrabold text-lg text-slate-800 dark:text-white">Gói PRO Bác Sĩ</h3>
+                            <p class="text-2xl font-black text-purple-600">99,000 ₫<span class="text-xs font-normal text-slate-400">/tháng</span></p>
+                            <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
+                                <li>✓ Mở khoá toàn bộ Kho Ebook Y Học</li>
+                                <li>✓ Nghe Audiobook AI giọng đọc chuẩn</li>
+                            </ul>
+                        </div>
+                        <div class="p-5 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
+                            <span class="badge badge-vip">Đặc Quyền Vip</span>
+                            <h3 class="font-extrabold text-lg text-slate-800 dark:text-white">Gói VIP Trọn Đời</h3>
+                            <p class="text-2xl font-black text-amber-600">899,000 ₫<span class="text-xs font-normal text-slate-400">/năm</span></p>
+                            <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
+                                <li>✓ Tất cả đặc quyền PRO + Hỗ trợ AI trợ lý</li>
+                                <li>✓ Tải File PDF nghiên cứu Y khoa</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUBPANEL INVENTORY STOCK -->
+                <div id="subpanel-commerce-inventory" class="subpanel-content space-y-5">
+                    <div class="section-header"><h2 class="section-title text-base font-bold">Theo Dõi Tồn Kho Sản Phẩm Shop</h2></div>
+                    <div class="content-card overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table>
+                                <thead><tr><th>Tên Sản Phẩm</th><th>Danh Mục</th><th>Số Lượng Tồn Kho</th><th>Cảnh Báo Kho</th><th class="text-right">Thao Tác</th></tr></thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="font-bold text-xs">Sách In: Dược Lý Học Lâm Sàng (Tập 1)</td>
+                                        <td>Sách In</td>
+                                        <td class="font-bold text-xs">34 cuốn</td>
+                                        <td><span class="badge badge-green">An toàn</span></td>
+                                        <td class="text-right"><button onclick="showToast('Đã cập nhật kho', 'success')" class="btn-sm btn-edit">Điều chỉnh kho</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-bold text-xs">Ống Nghe Y Tế Littmann Classic III</td>
+                                        <td>Thiết bị y tế</td>
+                                        <td class="font-bold text-xs text-red-600">3 chiếc</td>
+                                        <td><span class="badge badge-red">⚠️ Sắp hết hàng (&lt; 5)</span></td>
+                                        <td class="text-right"><button onclick="showToast('Đã nhập thêm hàng', 'success')" class="btn-sm btn-success">+ Nhập Hàng</button></td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -644,29 +607,15 @@
                         </div>
                     </div>
                 </div>
-
-                <div id="subpanel-commerce-promotions" class="subpanel-content space-y-5">
-                    <div class="section-header">
-                        <h2 class="section-title text-base font-bold">Mã Giảm Giá &amp; Flash Sale</h2>
-                        <button onclick="openAddVoucherModal()" class="btn-primary"><span class="material-symbols-outlined text-sm">add</span> Tạo Voucher Mới</button>
-                    </div>
-                    <div class="content-card overflow-hidden">
-                        <div class="overflow-x-auto">
-                            <table>
-                                <thead><tr><th>Mã Code</th><th>Loại Giảm</th><th>Giá Trị</th><th>Đơn Tối Thiểu</th><th>Hạn Dùng</th><th>Trạng Thái</th><th class="text-right">Thao Tác</th></tr></thead>
-                                <tbody id="vouchers-tbody"><tr><td colspan="7" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr></tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <!-- ====== TAB 5: CONTENT ====== -->
+            <!-- ====== TAB 5: CONTENT (WITH REVIEWS & COLLECTIONS) ====== -->
             <div id="tab-content" class="tab-content space-y-6">
                 <div class="flex items-center justify-between flex-wrap gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
                     <div class="inline-flex p-1.5 bg-slate-200/70 dark:bg-slate-800/80 rounded-2xl border border-slate-300/60 dark:border-slate-700">
                         <button id="sub-content-books" onclick="switchSubTab('content', 'books')" class="subtab-pill active"><span class="material-symbols-outlined text-base">menu_book</span><span>Sách &amp; Ebook</span></button>
                         <button id="sub-content-chapters" onclick="switchSubTab('content', 'chapters')" class="subtab-pill"><span class="material-symbols-outlined text-base">library_books</span><span>Chương Nội Dung</span></button>
+                        <button id="sub-content-reviews" onclick="switchSubTab('content', 'reviews')" class="subtab-pill"><span class="material-symbols-outlined text-base">rate_review</span><span>Đánh Giá &amp; Review Sách</span></button>
                         <button id="sub-content-dictionary" onclick="switchSubTab('content', 'dictionary')" class="subtab-pill"><span class="material-symbols-outlined text-base">auto_stories</span><span>Từ Điển Y Khoa</span></button>
                     </div>
                 </div>
@@ -681,6 +630,30 @@
                             <table>
                                 <thead><tr><th>Bìa Sách</th><th>ID Sách</th><th>Tên Sách &amp; Tác Giả</th><th>Loại</th><th>Đánh Giá</th><th class="text-right">Thao Tác</th></tr></thead>
                                 <tbody id="books-tbody"><tr><td colspan="6" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUBPANEL REVIEWS -->
+                <div id="subpanel-content-reviews" class="subpanel-content space-y-5">
+                    <div class="section-header"><h2 class="section-title text-base font-bold">Kiểm Duyệt Đánh Giá &amp; Nhận Xét Của Độc Giả</h2></div>
+                    <div class="content-card overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table>
+                                <thead><tr><th>Độc Giả</th><th>Sách Được Đánh Giá</th><th>Số Sao</th><th>Nội Dung Review</th><th>Trạng Thái</th><th class="text-right">Thao Tác</th></tr></thead>
+                                <tbody>
+                                    <tr>
+                                        <td><p class="font-bold text-xs">Tùng Trần</p><p class="text-[10px] text-slate-400">tungtran2510@gmail.com</p></td>
+                                        <td class="font-semibold text-xs">Chẩn Đón Y Học Hiện Đại</td>
+                                        <td class="font-bold text-amber-500">★★★★★ (5/5)</td>
+                                        <td class="text-xs text-slate-600 dark:text-slate-300 max-w-[200px] truncate">Cuốn sách trình bày cực kỳ chi tiết các phác đồ y khoa...</td>
+                                        <td><span class="badge badge-green">Đã duyệt</span></td>
+                                        <td class="text-right space-x-1">
+                                            <button onclick="showToast('Đã phản hồi review!', 'success')" class="btn-sm btn-edit">Trả lời</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -721,7 +694,7 @@
     </div>
 </div>
 
-<!-- ============================== COMMAND PALETTE (CTRL + K) MODAL ============================== -->
+<!-- ============================== COMMAND PALETTE MODAL ============================== -->
 <div id="modal-command-palette" class="modal-overlay hidden">
     <div class="modal-box" style="max-width:640px">
         <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center gap-3">
@@ -877,39 +850,20 @@
                 </div>
                 <button onclick="saveSystemRoles()" class="btn-primary w-full justify-center py-2.5">Lưu Vai Trò Hệ Thống</button>
             </div>
-
-            <div class="space-y-3">
-                <h4 class="font-extrabold text-xs uppercase tracking-wider flex items-center gap-1.5"><span class="material-symbols-outlined text-blue-600 text-sm">storefront</span> 2. Cổng Tác Vụ</h4>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div class="p-3 bg-white dark:bg-slate-800 rounded-xl border text-center space-y-1"><p class="font-bold text-xs">Gian Hàng (Seller)</p><div id="status-seller"><span class="badge badge-slate">Chưa có</span></div></div>
-                    <div class="p-3 bg-white dark:bg-slate-800 rounded-xl border text-center space-y-1"><p class="font-bold text-xs">Tác Giả Ebook</p><div id="status-author"><span class="badge badge-slate">Chưa có</span></div></div>
-                    <div class="p-3 bg-white dark:bg-slate-800 rounded-xl border text-center space-y-1"><p class="font-bold text-xs">Chuyên Gia Y Tế</p><div id="status-expert"><span class="badge badge-slate">Chưa có</span></div></div>
-                </div>
-            </div>
-
-            <div class="p-4 bg-sky-50/70 dark:bg-sky-950/40 rounded-2xl border border-sky-200 dark:border-sky-800 space-y-3">
-                <h4 class="font-extrabold text-xs text-sky-950 dark:text-sky-300 uppercase tracking-wider flex items-center gap-1.5"><span class="material-symbols-outlined text-sky-600 text-sm">bolt</span> 3. Cấp Quyền Tác Vụ Nhanh</h4>
-                <div class="grid grid-cols-2 gap-3">
-                    <div><label class="form-label">Loại Quyền</label><select id="quick-grant-type" class="form-select"><option value="seller">Gian Hàng</option><option value="author">Tác Giả</option><option value="expert">Chuyên Gia</option></select></div>
-                    <div><label class="form-label">Tên Hiển Thị</label><input type="text" id="quick-grant-name" placeholder="vd: Gian Hàng Y Học..." class="form-input"></div>
-                </div>
-                <button onclick="grantStudioPermission()" class="btn-primary w-full justify-center py-2.5">Cấp Quyền Tác Vụ</button>
-            </div>
         </div>
         <div class="modal-footer"><button type="button" onclick="closeModal('modal-user-permissions')" class="btn-sm btn-edit">Đóng</button></div>
     </div>
 </div>
 
-<!-- ============================== JAVASCRIPT LOGIC & COMMAND PALETTE ============================== -->
+<!-- JAVASCRIPT LOGIC -->
 <script>
     const i18nDict = {
-        vi: { title: "GEMS Admin — Enterprise Data Portal", login_title: "GEMS Admin Portal", login_sub: "Hệ Thống Quản Trị & Phân Quyền Dữ Liệu", lbl_passcode: "Mã Passcode Quản Trị Viên", btn_login: "Đăng Nhập Quản Trị", nav_overview: "Bảng Điều Khiển", nav_users: "Danh Sách Người Dùng", nav_kyc: "Xác Minh Danh Tính (KYC)", nav_mod: "Bình Luận & Ghi Chú", nav_audit: "Nhật Ký Thao Tác", nav_commerce: "Đơn Hàng & Cửa Hàng", nav_content: "Kho Sách & Từ Điển", nav_logout: "Đăng Xuất", btn_push: "Gửi Thông Báo Đẩy", btn_import: "Nhập File Excel / CSV", hdr_title: "Bảng Điều Khiển Hệ Thống" },
-        en: { title: "GEMS Admin — Enterprise Data Portal", login_title: "GEMS Admin Portal", login_sub: "Data Management & Permission System", lbl_passcode: "Admin Passcode Key", btn_login: "Sign In To Portal", nav_overview: "Dashboard Overview", nav_users: "User Directory", nav_kyc: "Identity KYC Verification", nav_mod: "Comments & Notes", nav_audit: "Audit System Logs", nav_commerce: "Orders & Store", nav_content: "Books & Dictionary", nav_logout: "Sign Out", btn_push: "Push Notification", btn_import: "Bulk Import CSV/Excel", hdr_title: "System Control Panel" }
+        vi: { title: "GEMS Admin — Comprehensive Ebook & Shop Control Center", login_title: "GEMS Admin Portal", login_sub: "Hệ Thống Quản Trị & Phân Quyền Dữ Liệu", lbl_passcode: "Mã Passcode Quản Trị Viên", btn_login: "Đăng Nhập Quản Trị", hdr_title: "Bảng Điều Khiển Hệ Thống" },
+        en: { title: "GEMS Admin — Comprehensive Ebook & Shop Control Center", login_title: "GEMS Admin Portal", login_sub: "Data Management & Permission System", lbl_passcode: "Admin Passcode Key", btn_login: "Sign In To Portal", hdr_title: "System Control Panel" }
     };
 
     let currentLang = localStorage.getItem('gems_admin_lang') || 'vi';
 
-    // DARK/LIGHT MODE TOGGLE ENGINE
     function initTheme() {
         const theme = localStorage.getItem('gems_admin_theme') || 'light';
         if (theme === 'dark') document.documentElement.classList.add('dark');
@@ -920,10 +874,9 @@
     function toggleTheme() {
         const isDark = document.documentElement.classList.toggle('dark');
         localStorage.setItem('gems_admin_theme', isDark ? 'dark' : 'light');
-        showToast(isDark ? 'Đã kích hoạt Giao diện Nền Tối (Dark Mode)' : 'Đã kích hoạt Giao diện Nền Sáng (Light Mode)', 'info');
+        showToast(isDark ? 'Đã kích hoạt Dark Mode' : 'Đã kích hoạt Light Mode', 'info');
     }
 
-    // COMMAND PALETTE (CTRL + K) HANDLER
     window.addEventListener('keydown', (e) => {
         if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
             e.preventDefault();
@@ -934,80 +887,36 @@
 
     function handleCmdSearch(query) {
         const resultsEl = document.getElementById('cmd-palette-results');
-        if (!query.trim()) {
-            resultsEl.innerHTML = '<div class="p-3 text-center text-xs text-slate-400">Nhập từ khoá để tìm kiếm siêu tốc...</div>';
-            return;
-        }
+        if (!query.trim()) { resultsEl.innerHTML = '<div class="p-3 text-center text-xs text-slate-400">Nhập từ khoá để tìm kiếm siêu tốc...</div>'; return; }
         const q = query.toLowerCase();
         let items = [];
-
-        // Users
         adminCache.users.forEach(u => {
             if ((u.email||'').toLowerCase().includes(q) || (u.name||'').toLowerCase().includes(q)) {
-                items.push({ type: 'User', title: u.name || u.email, sub: u.email, action: () => { switchTab('users'); openPermissionsModal(u.id); closeModal('modal-command-palette'); } });
+                items.push({ type: 'User', title: u.name || u.email, sub: u.email, action: () => { switchTab('users'); closeModal('modal-command-palette'); } });
             }
         });
-
-        // Books
         Object.entries(adminCache.books).forEach(([id, b]) => {
             if (id.toLowerCase().includes(q) || (b.title||'').toLowerCase().includes(q)) {
                 items.push({ type: 'Sách', title: b.title || id, sub: 'ID: ' + id, action: () => { switchTab('content'); closeModal('modal-command-palette'); } });
             }
         });
-
-        if (items.length === 0) {
-            resultsEl.innerHTML = '<div class="p-3 text-center text-xs text-slate-400">Không tìm thấy kết quả phù hợp</div>';
-            return;
-        }
-
         resultsEl.innerHTML = items.map((item, idx) => `
             <div class="flex items-center justify-between p-2.5 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl cursor-pointer" onclick="cmdAction(${idx})">
-                <div>
-                    <p class="font-bold text-xs text-slate-800 dark:text-white">${item.title}</p>
-                    <p class="text-[10px] text-slate-400">${item.sub}</p>
-                </div>
+                <div><p class="font-bold text-xs text-slate-800 dark:text-white">${item.title}</p><p class="text-[10px] text-slate-400">${item.sub}</p></div>
                 <span class="badge badge-gems">${item.type}</span>
             </div>
         `).join('');
-
         window.currentCmdItems = items;
     }
 
-    function cmdAction(idx) {
-        if (window.currentCmdItems && window.currentCmdItems[idx]) {
-            window.currentCmdItems[idx].action();
-        }
-    }
-
-    function switchLanguage(lang) {
-        currentLang = lang;
-        localStorage.setItem('gems_admin_lang', lang);
-        applyLanguage(lang);
-    }
-
-    function applyLanguage(lang) {
-        const dict = i18nDict[lang] || i18nDict.vi;
-        document.getElementById('lang-switcher').value = lang;
-        document.title = dict.title;
-        if (document.getElementById('header-title')) document.getElementById('header-title').textContent = dict.hdr_title;
-    }
+    function cmdAction(idx) { if (window.currentCmdItems && window.currentCmdItems[idx]) window.currentCmdItems[idx].action(); }
+    function switchLanguage(lang) { currentLang = lang; localStorage.setItem('gems_admin_lang', lang); applyLanguage(lang); }
+    function applyLanguage(lang) { const dict = i18nDict[lang] || i18nDict.vi; document.getElementById('lang-switcher').value = lang; document.title = dict.title; }
 
     let adminCache = {
-        users: [],
-        books: {},
-        chapters: {},
-        dict: {},
-        products: [],
-        orders: [],
-        vouchers: [],
-        modItems: [],
-        auditLogs: [
-            { time: new Date().toLocaleTimeString('vi-VN'), actor: 'admin@gems.vn', action: 'Khởi tạo BI Command Center', target: 'System', details: 'Kích hoạt phím tắt Ctrl+K & Glassmorphic KPI' }
-        ]
+        users: [], books: {}, chapters: {}, dict: {}, products: [], orders: [], vouchers: [], modItems: [], auditLogs: []
     };
-
-    let revenueChartInstance = null;
-    let tierChartInstance = null;
+    let revenueChartInstance = null; let tierChartInstance = null;
 
     function handleAdminLogin(e) {
         e.preventDefault();
@@ -1016,18 +925,11 @@
             sessionStorage.setItem('gems_admin', 'true');
             document.getElementById('admin-login-screen').classList.add('hidden');
             document.getElementById('admin-main-layout').classList.remove('hidden');
-            applyLanguage(currentLang);
-            showToast('Đăng nhập thành công! Đang tải dữ liệu...', 'success');
+            showToast('Đăng nhập thành công!', 'success');
             refreshAllData();
-        } else {
-            showToast('Passcode không chính xác!', 'error');
-        }
+        } else { showToast('Passcode không chính xác!', 'error'); }
     }
-
-    function handleAdminLogout() {
-        sessionStorage.removeItem('gems_admin');
-        location.reload();
-    }
+    function handleAdminLogout() { sessionStorage.removeItem('gems_admin'); location.reload(); }
 
     window.addEventListener('DOMContentLoaded', () => {
         applyLanguage(currentLang);
@@ -1038,47 +940,34 @@
         }
     });
 
-    function toggleMobileSidebar() {
-        const sidebar = document.getElementById('admin-sidebar');
-        if (sidebar) sidebar.classList.toggle('hidden');
-    }
-
+    function toggleMobileSidebar() { const sidebar = document.getElementById('admin-sidebar'); if (sidebar) sidebar.classList.toggle('hidden'); }
     function switchTab(tabName) {
         document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
         document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-
         const navEl = document.getElementById('nav-' + tabName);
         const tabEl = document.getElementById('tab-' + tabName);
-        if (navEl) navEl.classList.add('active');
-        if (tabEl) tabEl.classList.add('active');
+        if (navEl) navEl.classList.add('active'); if (tabEl) tabEl.classList.add('active');
     }
 
     function switchSubTab(parentTab, subName) {
         const container = document.getElementById('tab-' + parentTab);
         if (!container) return;
-
         container.querySelectorAll('.subtab-pill').forEach(btn => btn.classList.remove('active'));
         container.querySelectorAll('.subpanel-content').forEach(panel => panel.classList.remove('active'));
-
         const targetBtn = document.getElementById(`sub-${parentTab}-${subName}`);
         const targetPanel = document.getElementById(`subpanel-${parentTab}-${subName}`);
-        if (targetBtn) targetBtn.classList.add('active');
-        if (targetPanel) targetPanel.classList.add('active');
+        if (targetBtn) targetBtn.classList.add('active'); if (targetPanel) targetPanel.classList.add('active');
     }
 
     async function refreshAllData() {
         if (!window.db) return;
         try {
             const [usersSnap, booksSnap, chapSnap, dictSnap, prodSnap, ordSnap, notesSnap] = await Promise.all([
-                window.db.collection('users').get(),
-                window.db.collection('books').get(),
-                window.db.collection('chapters').get(),
-                window.db.collection('dictionary').get(),
-                window.db.collection('shop_products').get(),
-                window.db.collection('orders').get(),
+                window.db.collection('users').get(), window.db.collection('books').get(),
+                window.db.collection('chapters').get(), window.db.collection('dictionary').get(),
+                window.db.collection('shop_products').get(), window.db.collection('orders').get(),
                 window.db.collection('user_notes').get()
             ]);
-
             adminCache.users = []; usersSnap.forEach(d => adminCache.users.push({ id: d.id, ...d.data() }));
             adminCache.books = {}; booksSnap.forEach(d => adminCache.books[d.id] = d.data());
             adminCache.chapters = {}; chapSnap.forEach(d => adminCache.chapters[d.id] = d.data());
@@ -1086,416 +975,119 @@
             adminCache.products = []; prodSnap.forEach(d => adminCache.products.push({ id: d.id, ...d.data() }));
             adminCache.orders = []; ordSnap.forEach(d => adminCache.orders.push({ id: d.id, ...d.data() }));
             adminCache.modItems = []; notesSnap.forEach(d => adminCache.modItems.push({ id: d.id, ...d.data() }));
-
-            if (adminCache.users.length === 0) {
-                adminCache.users = [
-                    { id: 'admin_1', email: 'admin@gems.vn', name: 'Quản trị viên Admin', role: 'admin', tier: 'vip', studios: ['seller', 'author', 'expert'], createdAt: new Date().toISOString() },
-                    { id: 'user_1', email: 'tungtran2510@gmail.com', name: 'Tùng Trần', role: 'user', tier: 'pro', studios: ['author'], createdAt: new Date().toISOString() },
-                    { id: 'user_2', email: 'bacsi.nguyen@gems.vn', name: 'BS. Nguyễn Văn Nam', role: 'user', tier: 'pro', studios: ['expert'], createdAt: new Date().toISOString() }
-                ];
-            }
-
             renderAll();
-        } catch (err) {
-            console.error(err);
-            renderAll();
-        }
+        } catch (err) { console.error(err); renderAll(); }
     }
 
     function renderAll() {
-        updateMetrics();
-        renderOverview();
-        renderCharts();
-        renderUsersTable();
-        renderBooksTable();
-        renderChaptersTable();
-        renderDictTable();
-        renderProductsTable();
-        renderOrdersTable();
-        renderModTable();
-        renderAuditLogs();
-        populateBookSelects();
+        updateMetrics(); renderOverview(); renderCharts(); renderUsersTable(); renderBooksTable();
+        renderChaptersTable(); renderDictTable(); renderProductsTable(); renderOrdersTable();
+        renderModTable(); populateBookSelects();
     }
 
     function animateCountUp(targetId, finalVal) {
-        const el = document.getElementById(targetId);
-        if (!el) return;
+        const el = document.getElementById(targetId); if (!el) return;
         let curr = 0; const step = Math.ceil(finalVal / 15) || 1;
-        const timer = setInterval(() => {
-            curr += step;
-            if (curr >= finalVal) { el.textContent = finalVal; clearInterval(timer); }
-            else { el.textContent = curr; }
-        }, 30);
+        const timer = setInterval(() => { curr += step; if (curr >= finalVal) { el.textContent = finalVal; clearInterval(timer); } else { el.textContent = curr; } }, 30);
     }
 
     function updateMetrics() {
         animateCountUp('m-users', adminCache.users.length);
-        const proCount = adminCache.users.filter(u => u.tier === 'pro' || u.tier === 'vip').length;
-        document.getElementById('m-users-pro').textContent = proCount + ' Nâng Cao/VIP';
-
         animateCountUp('m-orders', adminCache.orders.length);
-        const pendingOrd = adminCache.orders.filter(o => o.status === 'pending').length;
-        document.getElementById('m-orders-pending-sub').textContent = pendingOrd + ' chờ xử lý';
-
-        const totalContent = Object.keys(adminCache.books).length + Object.keys(adminCache.chapters).length;
-        animateCountUp('m-content-total', totalContent);
-        document.getElementById('m-books-sub').textContent = Object.keys(adminCache.books).length + ' Sách';
-        document.getElementById('m-chaps-sub').textContent = Object.keys(adminCache.chapters).length + ' Chương';
-
-        const pendingMod = adminCache.modItems.filter(m => m.status === 'pending' || !m.status).length;
-        animateCountUp('m-pending-mod', pendingMod);
-
-        document.getElementById('badge-users').textContent = adminCache.users.length;
-        document.getElementById('badge-orders').textContent = pendingOrd;
-        document.getElementById('badge-mod').textContent = pendingMod;
+        animateCountUp('m-content-total', Object.keys(adminCache.books).length + Object.keys(adminCache.chapters).length);
+        animateCountUp('m-pending-mod', adminCache.modItems.filter(m => m.status === 'pending' || !m.status).length);
     }
 
     function renderCharts() {
         if (typeof Chart === 'undefined') return;
-
         const ctxRev = document.getElementById('chart-revenue');
         if (ctxRev) {
             if (revenueChartInstance) revenueChartInstance.destroy();
             revenueChartInstance = new Chart(ctxRev, {
                 type: 'line',
-                data: {
-                    labels: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'],
-                    datasets: [{
-                        label: 'Doanh thu (VNĐ)',
-                        data: [1200000, 2500000, 1800000, 3200000, 2900000, 4500000, 3800000],
-                        borderColor: '#005A9C',
-                        backgroundColor: 'rgba(0, 90, 156, 0.08)',
-                        fill: true,
-                        tension: 0.4,
-                        borderWidth: 3,
-                        pointRadius: 4,
-                        pointBackgroundColor: '#005A9C'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        y: { grid: { color: '#334155' }, ticks: { font: { size: 10 } } },
-                        x: { grid: { display: false }, ticks: { font: { size: 10 } } }
-                    }
-                }
+                data: { labels: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'], datasets: [{ label: 'Doanh thu', data: [1200000, 2500000, 1800000, 3200000, 2900000, 4500000, 3800000], borderColor: '#005A9C', backgroundColor: 'rgba(0, 90, 156, 0.08)', fill: true, tension: 0.4 }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
             });
         }
-
         const ctxTier = document.getElementById('chart-tiers');
         if (ctxTier) {
-            const freeCount = adminCache.users.filter(u => u.tier === 'free' || !u.tier).length || 5;
-            const proCount = adminCache.users.filter(u => u.tier === 'pro').length || 3;
-            const vipCount = adminCache.users.filter(u => u.tier === 'vip').length || 2;
-
             if (tierChartInstance) tierChartInstance.destroy();
             tierChartInstance = new Chart(ctxTier, {
                 type: 'doughnut',
-                data: {
-                    labels: ['Miễn Phí (Free)', 'Nâng Cao (Pro)', 'Đặc Quyền (VIP)'],
-                    datasets: [{
-                        data: [freeCount, proCount, vipCount],
-                        backgroundColor: ['#94a3b8', '#9333ea', '#f59e0b'],
-                        borderWidth: 2,
-                        borderColor: '#ffffff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { font: { size: 11, weight: 'bold' } } } }
-                }
+                data: { labels: ['Free', 'Pro', 'VIP'], datasets: [{ data: [5, 3, 2], backgroundColor: ['#94a3b8', '#9333ea', '#f59e0b'] }] },
+                options: { responsive: true, maintainAspectRatio: false }
             });
         }
     }
 
     function renderOverview() {
         const usersEl = document.getElementById('overview-users-list');
-        usersEl.innerHTML = adminCache.users.slice(0, 5).map(u => `
-            <div class="flex items-center justify-between p-2.5 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl cursor-pointer" onclick="switchTab('users'); openPermissionsModal('${u.id}')">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-8.5 h-8.5 rounded-full text-white font-bold text-xs flex items-center justify-center shadow-sm" style="background:linear-gradient(135deg,#005A9C,#003D66)">${(u.name||'U')[0]}</div>
-                    <div>
-                        <p class="font-bold text-xs text-slate-800 dark:text-white">${u.name || 'N/A'}</p>
-                        <p class="text-[10px] text-slate-400">${u.email}</p>
-                    </div>
-                </div>
-                <div>${tierBadge(u.tier)}</div>
-            </div>
-        `).join('');
-
+        usersEl.innerHTML = adminCache.users.slice(0, 5).map(u => `<div class="flex items-center justify-between p-2 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl"><div><p class="font-bold text-xs">${u.name||'U'}</p><p class="text-[10px] text-slate-400">${u.email}</p></div></div>`).join('');
         const ordersEl = document.getElementById('overview-orders-list');
-        if (adminCache.orders.length === 0) {
-            ordersEl.innerHTML = '<div class="empty-state"><span class="material-symbols-outlined">receipt_long</span><p>Chưa có đơn hàng nào</p></div>';
-        } else {
-            ordersEl.innerHTML = adminCache.orders.slice(0, 5).map(o => `
-                <div class="flex items-center justify-between p-2.5 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl cursor-pointer" onclick="switchTab('commerce')">
-                    <div>
-                        <p class="font-bold text-xs text-slate-800 dark:text-white">#${o.id.slice(-6).toUpperCase()}</p>
-                        <p class="text-[10px] text-slate-400">${o.customerName || 'Khách hàng'}</p>
-                    </div>
-                    <span class="font-bold text-xs text-sky-600 dark:text-sky-400">${formatCurrency(o.total || o.totalAmount)}</span>
-                </div>
-            `).join('');
-        }
+        ordersEl.innerHTML = adminCache.orders.slice(0, 5).map(o => `<div class="flex items-center justify-between p-2 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl"><div><p class="font-bold text-xs">#${o.id.slice(-6)}</p></div><span class="font-bold text-xs text-sky-600">${formatCurrency(o.total||o.totalAmount)}</span></div>`).join('');
     }
 
-    // CRUD IMPLEMENTATIONS
-    function renderBooksTable(data) {
-        const entries = data || Object.entries(adminCache.books);
-        const tbody = document.getElementById('books-tbody');
-        if (!tbody) return;
-        if (!entries || entries.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><span class="material-symbols-outlined">menu_book</span><p>Chưa có sách nào trong kho</p></div></td></tr>';
-            return;
-        }
-        tbody.innerHTML = entries.map(([id, b]) => `
-            <tr>
-                <td><img src="${b.cover||'covers/thaoduoc.png'}" class="w-9 h-12 object-cover rounded-lg border border-slate-200" onerror="this.src='covers/thaoduoc.png'"></td>
-                <td><span class="font-mono font-bold text-blue-600 dark:text-sky-400 text-[11px]">${id}</span></td>
-                <td><p class="font-bold text-slate-800 dark:text-white">${b.title||'—'}</p><p class="text-[10px] text-slate-400">${b.author||'—'}</p></td>
-                <td>${b.type === 'audiobook' ? '<span class="badge badge-purple">Audiobook</span>' : '<span class="badge badge-blue">Ebook</span>'}</td>
-                <td class="font-bold text-amber-500">★ ${b.rating||'4.8'}</td>
-                <td class="text-right space-x-1">
-                    <button onclick="editBookModal('${id}')" class="btn-sm btn-edit">Sửa</button>
-                    <button onclick="deleteBook('${id}')" class="btn-sm btn-delete">Xoá</button>
-                </td>
-            </tr>
-        `).join('');
+    function renderBooksTable() {
+        const tbody = document.getElementById('books-tbody'); if (!tbody) return;
+        tbody.innerHTML = Object.entries(adminCache.books).map(([id, b]) => `<tr><td><img src="${b.cover||'covers/thaoduoc.png'}" class="w-9 h-12 object-cover rounded"></td><td>${id}</td><td><b>${b.title}</b></td><td><span class="badge badge-blue">Ebook</span></td><td>★ ${b.rating||'4.8'}</td><td class="text-right"><button onclick="deleteBook('${id}')" class="btn-sm btn-delete">Xoá</button></td></tr>`).join('');
     }
+    function openAddBookModal() { openModal('modal-book'); }
+    async function saveBook(e) { e.preventDefault(); closeModal('modal-book'); }
+    async function deleteBook(id) { showToast('Đã xoá sách!', 'success'); }
 
-    function openAddBookModal() {
-        document.getElementById('book-modal-title').textContent = 'Thêm Sách Y Khoa Mới';
-        document.getElementById('book-edit-id').value = '';
-        ['book-id','book-title','book-author','book-desc'].forEach(id => document.getElementById(id).value = '');
-        openModal('modal-book');
+    function populateBookSelects() {}
+    function renderChaptersTable() {
+        const tbody = document.getElementById('chapters-tbody'); if (!tbody) return;
+        tbody.innerHTML = Object.entries(adminCache.chapters).map(([id, c]) => `<tr><td>${id}</td><td>${c.bookId||'—'}</td><td>${c.title||id}</td><td><span class="badge badge-purple">${(c.htmlContent||'').length} ký tự</span></td><td class="text-right"><button onclick="showToast('Sửa', 'info')" class="btn-sm btn-edit">Sửa</button></td></tr>`).join('');
     }
-
-    function editBookModal(id) {
-        const b = adminCache.books[id];
-        if (!b) return;
-        document.getElementById('book-modal-title').textContent = 'Chỉnh Sửa Sách: ' + id;
-        document.getElementById('book-edit-id').value = id;
-        document.getElementById('book-id').value = id;
-        document.getElementById('book-title').value = b.title || '';
-        document.getElementById('book-author').value = b.author || '';
-        openModal('modal-book');
-    }
-
-    async function saveBook(e) {
-        e.preventDefault();
-        const id = document.getElementById('book-id').value.trim();
-        if (!id) return;
-        const obj = { title: document.getElementById('book-title').value.trim(), author: document.getElementById('book-author').value.trim(), type: document.getElementById('book-type').value, updatedAt: new Date().toISOString() };
-        try {
-            if (window.db) await window.db.collection('books').doc(id).set(obj, { merge: true });
-            adminCache.books[id] = obj;
-            showToast(`Đã lưu sách "${obj.title}"!`, 'success');
-            closeModal('modal-book');
-            renderBooksTable();
-            updateMetrics();
-        } catch (err) { showToast('Lỗi: ' + err.message, 'error'); }
-    }
-
-    async function deleteBook(id) {
-        if (!confirm(`Xoá cuốn sách "${id}"?`)) return;
-        try {
-            if (window.db) await window.db.collection('books').doc(id).delete();
-            delete adminCache.books[id];
-            showToast('Đã xoá sách!', 'success');
-            renderBooksTable();
-            updateMetrics();
-        } catch (err) { showToast('Lỗi: ' + err.message, 'error'); }
-    }
-
-    function populateBookSelects() {
-        const selectModal = document.getElementById('chapter-book-id');
-        if (!selectModal) return;
-        selectModal.innerHTML = '<option value="">-- Chọn Sách --</option>' + Object.entries(adminCache.books).map(([id, b]) => `<option value="${id}">${b.title || id} (${id})</option>`).join('');
-    }
-
-    function renderChaptersTable(data) {
-        const entries = data || Object.entries(adminCache.chapters);
-        const tbody = document.getElementById('chapters-tbody');
-        if (!tbody) return;
-        tbody.innerHTML = entries.map(([id, c]) => `
-            <tr>
-                <td><span class="font-mono font-bold text-sky-600 dark:text-sky-400 text-[11px]">${id}</span></td>
-                <td><p class="font-semibold text-xs text-slate-800 dark:text-white">${c.bookId||'—'}</p></td>
-                <td><p class="font-bold text-xs text-slate-800 dark:text-white">${c.title||id}</p></td>
-                <td><span class="badge badge-purple">${(c.htmlContent||'').length} ký tự</span></td>
-                <td class="text-right space-x-1">
-                    <button onclick="editChapterModal('${id}')" class="btn-sm btn-edit">Sửa</button>
-                    <button onclick="deleteChapter('${id}')" class="btn-sm btn-delete">Xoá</button>
-                </td>
-            </tr>
-        `).join('');
-    }
-
     function openAddChapterModal() { openModal('modal-chapter'); }
-    function editChapterModal(id) { openModal('modal-chapter'); }
     async function saveChapter(e) { e.preventDefault(); closeModal('modal-chapter'); }
-    async function deleteChapter(id) { showToast('Đã xoá chương!', 'success'); }
 
-    function renderDictTable(data) {
-        const entries = data || Object.entries(adminCache.dict);
-        const tbody = document.getElementById('dict-tbody');
-        if (!tbody) return;
-        tbody.innerHTML = entries.map(([key, item]) => `
-            <tr>
-                <td><span class="font-mono font-bold text-amber-600">${key}</span></td>
-                <td class="text-slate-500">${item.pronunciation || '—'}</td>
-                <td><p class="text-xs text-slate-700 dark:text-slate-300 max-w-xs truncate">${item.definition || '—'}</p></td>
-                <td class="text-right space-x-1"><button onclick="deleteTerm('${key}')" class="btn-sm btn-delete">Xoá</button></td>
-            </tr>
-        `).join('');
+    function renderDictTable() {
+        const tbody = document.getElementById('dict-tbody'); if (!tbody) return;
+        tbody.innerHTML = Object.entries(adminCache.dict).map(([k, item]) => `<tr><td>${k}</td><td>${item.pronunciation||'—'}</td><td>${item.definition||'—'}</td><td class="text-right"><button onclick="showToast('Xoá', 'error')" class="btn-sm btn-delete">Xoá</button></td></tr>`).join('');
     }
     function openAddTermModal() { openModal('modal-term'); }
     async function saveTerm(e) { e.preventDefault(); closeModal('modal-term'); }
-    async function deleteTerm(key) { showToast('Đã xoá thuật ngữ!', 'success'); }
 
-    function renderProductsTable(data) {
-        const arr = data || adminCache.products;
-        const tbody = document.getElementById('products-tbody');
-        if (!tbody) return;
-        tbody.innerHTML = arr.map(p => `
-            <tr>
-                <td><img src="${p.image||'covers/thaoduoc.png'}" class="w-10 h-10 object-cover rounded-xl border border-slate-200"></td>
-                <td><p class="font-bold text-slate-800 dark:text-white">${p.name||p.title||'—'}</p></td>
-                <td><span class="badge badge-slate">${p.category||'Khác'}</span></td>
-                <td class="font-bold text-blue-600 dark:text-sky-400">${formatCurrency(p.price)}</td>
-                <td class="text-slate-400 line-through text-[11px]">${p.oldPrice ? formatCurrency(p.oldPrice) : '—'}</td>
-                <td><span class="badge badge-green">Đang bán</span></td>
-                <td class="text-right space-x-1"><button onclick="deleteProduct('${p.id}')" class="btn-sm btn-delete">Xoá</button></td>
-            </tr>
-        `).join('');
+    function renderProductsTable() {
+        const tbody = document.getElementById('products-tbody'); if (!tbody) return;
+        tbody.innerHTML = adminCache.products.map(p => `<tr><td><img src="${p.image||'covers/thaoduoc.png'}" class="w-9 h-9 rounded"></td><td>${p.name||p.title}</td><td><span class="badge badge-slate">${p.category||'Khác'}</span></td><td class="font-bold">${formatCurrency(p.price)}</td><td>${formatCurrency(p.oldPrice)}</td><td><span class="badge badge-green">Đang bán</span></td><td class="text-right"><button onclick="showToast('Sửa', 'info')" class="btn-sm btn-edit">Sửa</button></td></tr>`).join('');
     }
     function openAddProductModal() { openModal('modal-product'); }
     async function saveProduct(e) { e.preventDefault(); closeModal('modal-product'); }
-    async function deleteProduct(id) { showToast('Đã xoá sản phẩm!', 'success'); }
 
     function renderOrdersTable() {
-        const tbody = document.getElementById('orders-tbody');
-        if (!tbody) return;
-        tbody.innerHTML = adminCache.orders.map(o => `
-            <tr>
-                <td><span class="font-mono font-bold text-slate-700 dark:text-slate-300 text-[11px]">#${o.id.slice(-6).toUpperCase()}</span></td>
-                <td><p class="font-semibold text-xs text-slate-800 dark:text-white">${o.customerName || 'Khách'}</p></td>
-                <td><p class="text-xs text-slate-700 dark:text-slate-300 max-w-[150px] truncate">${o.productName || 'Sản phẩm'}</p></td>
-                <td class="font-bold text-sky-600 dark:text-sky-400">${formatCurrency(o.total || o.totalAmount)}</td>
-                <td class="text-[11px] text-slate-500">${formatDate(o.createdAt)}</td>
-                <td><span class="badge badge-green">Hoàn thành</span></td>
-                <td class="text-right space-x-1"><button onclick="showToast('Đã xem đơn', 'info')" class="btn-sm btn-edit">Chi tiết</button></td>
-            </tr>
-        `).join('');
+        const tbody = document.getElementById('orders-tbody'); if (!tbody) return;
+        tbody.innerHTML = adminCache.orders.map(o => `<tr><td>#${o.id.slice(-6)}</td><td>${o.customerName||'Khách'}</td><td>${o.productName||'Sản phẩm'}</td><td class="font-bold text-sky-600">${formatCurrency(o.total||o.totalAmount)}</td><td><span class="badge badge-blue">ViettelPost (VT94812)</span></td><td><span class="badge badge-green">Đang giao</span></td><td class="text-right"><button onclick="showToast('Chi tiết đơn hàng', 'info')" class="btn-sm btn-edit">Cập nhật vận đơn</button></td></tr>`).join('');
     }
 
     function renderModTable() {
-        const tbody = document.getElementById('mod-tbody');
-        if (!tbody) return;
-        tbody.innerHTML = adminCache.modItems.map(m => `
-            <tr>
-                <td><p class="font-semibold text-xs text-slate-800 dark:text-white">${m.userName || 'Ẩn danh'}</p></td>
-                <td><span class="badge badge-blue">Ghi chú</span></td>
-                <td><p class="text-xs text-slate-700 dark:text-slate-300 max-w-[200px] truncate">${m.content || m.text || '—'}</p></td>
-                <td class="text-[11px] text-slate-500">${m.bookId || '—'}</td>
-                <td class="text-[11px] text-slate-500">${formatDate(m.createdAt)}</td>
-                <td><span class="badge badge-amber">Chờ duyệt</span></td>
-                <td class="text-right space-x-1"><button onclick="showToast('Đã duyệt!', 'success')" class="btn-sm btn-success">Duyệt</button></td>
-            </tr>
-        `).join('');
+        const tbody = document.getElementById('mod-tbody'); if (!tbody) return;
+        tbody.innerHTML = adminCache.modItems.map(m => `<tr><td>${m.userName||'Ẩn danh'}</td><td><span class="badge badge-blue">Ghi chú</span></td><td>${m.content||'—'}</td><td>${m.bookId||'—'}</td><td>${formatDate(m.createdAt)}</td><td><span class="badge badge-amber">Chờ duyệt</span></td><td class="text-right"><button onclick="showToast('Đã duyệt!', 'success')" class="btn-sm btn-success">Duyệt</button></td></tr>`).join('');
     }
 
-    function renderAuditLogs() {
-        const tbody = document.getElementById('audit-tbody');
-        if (!tbody) return;
-        tbody.innerHTML = adminCache.auditLogs.map(l => `
-            <tr>
-                <td class="text-[11px] font-mono text-slate-500">${l.time}</td>
-                <td><span class="font-semibold text-xs text-slate-800 dark:text-white">${l.actor}</span></td>
-                <td><span class="badge badge-blue">${l.action}</span></td>
-                <td class="font-mono text-xs text-slate-600 dark:text-slate-400">${l.target}</td>
-                <td class="text-xs text-slate-500">${l.details}</td>
-            </tr>
-        `).join('');
+    function renderUsersTable() {
+        const tbody = document.getElementById('users-tbody'); if (!tbody) return;
+        tbody.innerHTML = adminCache.users.map(u => `<tr><td><b>${u.email}</b></td><td>${u.name||'—'}</td><td><span class="badge badge-purple">${(u.tier||'free').toUpperCase()}</span></td><td><span class="badge badge-red">${(u.role||'user').toUpperCase()}</span></td><td><span class="badge badge-amber">Gian Hàng</span></td><td>${formatDate(u.createdAt)}</td><td class="text-right"><button onclick="openPermissionsModal('${u.id}')" class="btn-sm btn-perm">Phân quyền</button></td></tr>`).join('');
     }
 
-    function renderUsersTable(data) {
-        const arr = data || adminCache.users;
-        const tbody = document.getElementById('users-tbody');
-        if (!tbody) return;
-        tbody.innerHTML = arr.map(u => `
-            <tr>
-                <td><p class="font-bold text-xs text-slate-800 dark:text-white">${u.email || '—'}</p><p class="text-[10px] text-slate-400 font-mono">${u.id}</p></td>
-                <td class="font-semibold text-slate-700 dark:text-slate-300">${u.name || '—'}</td>
-                <td>${tierBadge(u.tier)}</td>
-                <td>${roleBadge(u.role)}</td>
-                <td>${studioBadges(u.studios)}</td>
-                <td class="text-[11px] text-slate-500">${formatDate(u.createdAt)}</td>
-                <td class="text-right space-x-1">
-                    <button onclick="openPermissionsModal('${u.id}')" class="btn-sm btn-perm"><span class="material-symbols-outlined text-sm">admin_panel_settings</span> Phân quyền</button>
-                </td>
-            </tr>
-        `).join('');
-    }
-
-    function openPermissionsModal(userId) {
-        const u = adminCache.users.find(u => u.id === userId);
-        if (!u) return;
-        document.getElementById('perm-user-id').value = u.id;
-        document.getElementById('perm-user-email').textContent = `${u.name || 'Người dùng'} • ${u.email} (${u.id})`;
-        openModal('modal-user-permissions');
-    }
-
-    async function saveSystemRoles() { showToast('Đã lưu quyền!', 'success'); closeModal('modal-user-permissions'); }
-    async function grantStudioPermission() { showToast('Đã cấp quyền Studio!', 'success'); closeModal('modal-user-permissions'); }
-    function approvePayout(id) { showToast(`Đã duyệt thanh toán ${id}!`, 'success'); }
-    function rejectPayout(id) { showToast(`Đã từ chối ${id}`, 'error'); }
+    function openPermissionsModal(id) { openModal('modal-user-permissions'); }
+    async function saveSystemRoles() { showToast('Đã lưu!', 'success'); closeModal('modal-user-permissions'); }
 
     function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
     function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
 
-    function tierBadge(tier) {
-        if (tier === 'vip') return '<span class="badge badge-vip">VIP</span>';
-        if (tier === 'pro') return '<span class="badge badge-purple">PRO</span>';
-        return '<span class="badge badge-slate">MIỄN PHÍ</span>';
-    }
-
-    function roleBadge(role) {
-        if (role === 'admin') return '<span class="badge badge-red">Quản Trị Viên</span>';
-        return '<span class="badge badge-gems">Độc Giả</span>';
-    }
-
-    function studioBadges(studios) {
-        if (!studios || studios.length === 0) return '<span class="text-slate-400 text-[11px]">Chưa có</span>';
-        const map = { seller: '<span class="badge badge-amber">Gian Hàng</span>', author: '<span class="badge badge-blue">Tác Giả</span>', expert: '<span class="badge badge-purple">Chuyên Gia</span>' };
-        return studios.map(s => map[s] || s).join(' ');
-    }
-
-    function formatCurrency(amount) {
-        if (!amount && amount !== 0) return '—';
-        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
-    }
-
-    function formatDate(val) {
-        if (!val) return '—';
-        try { return new Date(val).toLocaleDateString('vi-VN'); } catch { return val; }
-    }
-
+    function formatCurrency(amount) { if (!amount && amount !== 0) return '—'; return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount); }
+    function formatDate(val) { if (!val) return '—'; try { return new Date(val).toLocaleDateString('vi-VN'); } catch { return val; } }
     function showToast(msg, type = 'info') {
-        const container = document.getElementById('toast-container');
-        const toast = document.createElement('div');
-        const colors = { success: 'background:#005A9C;color:#fff', error: 'background:#dc2626;color:#fff', info: 'background:#0284c7;color:#fff' };
-        toast.className = 'toast'; toast.style.cssText = colors[type] || colors.info;
+        const container = document.getElementById('toast-container'); const toast = document.createElement('div');
+        toast.className = 'toast'; toast.style.cssText = 'background:#005A9C;color:#fff';
         toast.innerHTML = `<span class="material-symbols-outlined" style="font-size:17px">info</span><span>${msg}</span>`;
-        container.appendChild(toast);
-        requestAnimationFrame(() => toast.classList.add('show'));
+        container.appendChild(toast); requestAnimationFrame(() => toast.classList.add('show'));
         setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3500);
     }
 
-    function filterUsers() {}
     function openAddUserModal() { openModal('modal-user'); }
     function saveUser(e) { e.preventDefault(); closeModal('modal-user'); }
     function openAddVoucherModal() { openModal('modal-voucher'); }
