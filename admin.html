@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title id="page-title">GEMS Admin — TikTok Shop Seller Center &amp; Ebook Portal</title>
-    <meta name="description" content="Bảng điều khiển quản trị GEMS: Giao diện TikTok Shop Seller Center, Phễu 5 trạng thái đơn hàng, In nhãn vận đơn và Affiliate KOC."/>
+    <title id="page-title">GEMS Admin — Enterprise Management &amp; Shop Hub</title>
+    <meta name="description" content="Bảng điều khiển quản trị nền tảng GEMS Ebook &amp; Shop Y Tế: Phân quyền người dùng, Phân tích BI, Quản lý Cửa Hàng và Kho Sách Y Khoa."/>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
@@ -19,8 +19,7 @@
                             dark: '#003D66',
                             light: '#f0f7fc',
                             accent: '#0284c7',
-                            sidebar: '#0b1329',
-                            tiktok: '#fe2c55'
+                            sidebar: '#0b1329'
                         }
                     },
                     fontFamily: { sans: ['Inter', 'sans-serif'] }
@@ -80,12 +79,12 @@
         body.dark .subtab-pill { color: #94a3b8; }
         body.dark .subtab-pill.active { background: #1e293b; color: #38bdf8; box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
 
-        /* TIKTOK SELLER FILTER PILLS */
-        .tiktok-pipeline-pill { padding: 6px 14px; border-radius: 99px; font-size: 11.5px; font-weight: 700; color: #64748b; background: #f1f5f9; cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; gap: 6px; }
-        .tiktok-pipeline-pill.active { background: #005A9C; color: #ffffff; box-shadow: 0 4px 12px rgba(0,90,156,0.3); }
+        .gems-pipeline-pill { padding: 6px 14px; border-radius: 99px; font-size: 11.5px; font-weight: 700; color: #64748b; background: #f1f5f9; cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; gap: 6px; }
+        body.dark .gems-pipeline-pill { background: #1e293b; color: #94a3b8; }
+        .gems-pipeline-pill.active { background: #005A9C; color: #ffffff; box-shadow: 0 4px 12px rgba(0,90,156,0.3); }
 
         .kpi-gradient-1 { background: linear-gradient(135deg, #005A9C 0%, #0284c7 100%); }
-        .kpi-gradient-2 { background: linear-gradient(135deg, #fe2c55 0%, #ff0050 100%); }
+        .kpi-gradient-2 { background: linear-gradient(135deg, #059669 0%, #10b981 100%); }
         .kpi-gradient-3 { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); }
         .kpi-gradient-4 { background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%); }
 
@@ -110,7 +109,7 @@
 
         .badge { display: inline-flex; align-items: center; padding: 3.5px 10px; border-radius: 99px; font-size: 10.5px; font-weight: 700; }
         .badge-gems { background: #f0f7fc; color: #005A9C; border: 1px solid #bae6fd; }
-        .badge-tiktok { background: #ffeef2; color: #fe2c55; border: 1px solid #ffccd5; }
+        body.dark .badge-gems { background: rgba(0,90,156,0.3); color: #38bdf8; border-color: rgba(56,189,248,0.3); }
         .badge-green { background: #dcfce7; color: #15803d; }
         .badge-blue { background: #e0f2fe; color: #0369a1; }
         .badge-amber { background: #fef9c3; color: #a16207; }
@@ -121,7 +120,7 @@
         .badge-vip { background: linear-gradient(135deg, #fef08a, #f59e0b); color: #78350f; font-weight: 800; }
 
         .btn-primary { background: linear-gradient(135deg, #005A9C 0%, #003D66 100%); color: #fff; padding: 8.5px 18px; border-radius: 12px; font-size: 12px; font-weight: 700; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,90,156,0.25); }
-        .btn-tiktok { background: linear-gradient(135deg, #fe2c55 0%, #ff0050 100%); color: #fff; padding: 8.5px 18px; border-radius: 12px; font-size: 12px; font-weight: 700; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; box-shadow: 0 4px 12px rgba(254,44,85,0.3); }
+        .btn-primary:hover { background: linear-gradient(135deg, #0284c7 0%, #005A9C 100%); transform: translateY(-1px); }
         .btn-sm { padding: 6px 12px; border-radius: 99px; font-size: 11.5px; font-weight: 600; border: none; cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; gap: 4px; }
         .btn-edit { background: #f1f5f9; color: #334155; }
         body.dark .btn-edit { background: #1e293b; color: #cbd5e1; }
@@ -177,7 +176,7 @@
                 GEMS
             </div>
             <h2 class="text-xl font-extrabold text-slate-900 dark:text-white">GEMS Admin Portal</h2>
-            <p class="text-xs text-slate-500 mt-1">TikTok Seller Center &amp; Ebook Portal</p>
+            <p class="text-xs text-slate-500 mt-1">Hệ Thống Quản Trị Y Khoa &amp; GEMS Shop</p>
         </div>
         <form onsubmit="handleAdminLogin(event)" class="space-y-4">
             <div>
@@ -203,25 +202,25 @@
         <div class="p-5 border-b border-slate-800/80 flex items-center gap-3 flex-shrink-0">
             <div class="w-9 h-9 rounded-xl flex items-center justify-center text-white font-black text-xs flex-shrink-0 shadow-md shadow-sky-500/20" style="background:linear-gradient(135deg,#005A9C,#003D66)">GEMS</div>
             <div class="min-w-0">
-                <p class="text-white font-extrabold text-xs leading-tight tracking-wide">TikTok Seller Center</p>
+                <p class="text-white font-extrabold text-xs leading-tight tracking-wide">GEMS Enterprise Portal</p>
                 <p class="text-[10px] text-sky-400 flex items-center gap-1.5 mt-0.5 font-semibold">
-                    <span class="pulse-dot"></span> Store Live 100%
+                    <span class="pulse-dot"></span> System Live 100%
                 </p>
             </div>
         </div>
 
         <nav class="flex-grow p-3 overflow-y-auto">
-            <div class="nav-section-label">TikTok Seller Overview</div>
+            <div class="nav-section-label">Tổng Quan &amp; BI</div>
             <div class="nav-item active" id="nav-overview" onclick="switchTab('overview')">
                 <span class="material-symbols-outlined">analytics</span>
                 <span>Bảng Điều Khiển BI</span>
             </div>
 
-            <div class="nav-section-label">TikTok Shop Commerce</div>
+            <div class="nav-section-label">Quản Lý GEMS Shop</div>
             <div class="nav-item" id="nav-commerce" onclick="switchTab('commerce')">
-                <span class="material-symbols-outlined">storefront</span>
-                <span>TikTok Seller Shop</span>
-                <span id="badge-orders" class="ml-auto bg-rose-500 text-white text-[9.5px] font-bold px-2 py-0.5 rounded-full">3 mới</span>
+                <span class="material-symbols-outlined">shopping_bag</span>
+                <span>Đơn Hàng &amp; GEMS Shop</span>
+                <span id="badge-orders" class="ml-auto bg-amber-500 text-white text-[9.5px] font-bold px-2 py-0.5 rounded-full font-mono">0</span>
             </div>
 
             <div class="nav-section-label">Độc Giả &amp; Tác Giả</div>
@@ -250,11 +249,11 @@
         <div class="p-3 border-t border-slate-800/80 flex-shrink-0">
             <div class="flex items-center gap-2.5 p-2.5 mb-2 bg-slate-900/80 rounded-xl border border-slate-800/80">
                 <div class="w-8 h-8 rounded-lg bg-sky-600 flex items-center justify-center flex-shrink-0">
-                    <span class="material-symbols-outlined text-white" style="font-size:16px">store</span>
+                    <span class="material-symbols-outlined text-white" style="font-size:16px">admin_panel_settings</span>
                 </div>
                 <div class="min-w-0">
                     <p class="text-white text-[11.5px] font-bold leading-tight truncate">admin@gems.vn</p>
-                    <p class="text-emerald-400 text-[9.5px] font-bold">TikTok Verified Store</p>
+                    <p class="text-sky-400 text-[9.5px] font-bold">Senior Data Architect</p>
                 </div>
             </div>
             <button onclick="handleAdminLogout()" class="nav-item w-full hover:bg-red-950/40 hover:text-red-400 justify-center text-center">
@@ -275,10 +274,10 @@
                 </button>
                 <div>
                     <h1 id="header-title" class="text-sm font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
-                        TikTok Shop Seller Center
-                        <span class="badge badge-tiktok text-[9.5px]">Official GEMS Store</span>
+                        Bảng Điều Khiển Quản Trị GEMS
+                        <span class="badge badge-gems text-[9.5px]">Brand Blue #005A9C</span>
                     </h1>
-                    <p class="text-[10px] text-slate-400 hidden sm:block">Quản Lý Đơn Hàng • In Vận Đơn • Tiếp Thị Liên Kết Affiliate</p>
+                    <p class="text-[10px] text-slate-400 hidden sm:block">Phân Quyền Người Dùng • Quản Lý Kho Sách Ebook • Quản Lý Đơn Hàng GEMS Shop</p>
                 </div>
             </div>
 
@@ -316,14 +315,14 @@
 
                     <div class="stat-card-glass kpi-gradient-2" onclick="switchTab('commerce')">
                         <div class="flex items-center justify-between">
-                            <div><p class="text-[11px] font-extrabold uppercase opacity-90">Đơn Hàng TikTok Shop</p><p id="m-orders" class="text-3xl font-black mt-2">0</p><p class="text-[10.5px] opacity-80 mt-1 font-semibold">3 Đơn Cần Giao Ngay</p></div>
-                            <div class="glass-icon"><span class="material-symbols-outlined text-white" style="font-size:26px">shopping_cart</span></div>
+                            <div><p class="text-[11px] font-extrabold uppercase opacity-90">Đơn Hàng GEMS Shop</p><p id="m-orders" class="text-3xl font-black mt-2">0</p><p class="text-[10.5px] opacity-80 mt-1 font-semibold">Đơn hàng cửa hàng</p></div>
+                            <div class="glass-icon"><span class="material-symbols-outlined text-white" style="font-size:26px">shopping_bag</span></div>
                         </div>
                     </div>
 
                     <div class="stat-card-glass kpi-gradient-3" onclick="switchTab('content')">
                         <div class="flex items-center justify-between">
-                            <div><p class="text-[11px] font-extrabold uppercase opacity-90">Kho Nội Dung Y Khoa</p><p id="m-content-total" class="text-3xl font-black mt-2">0</p><p class="text-[10.5px] opacity-80 mt-1 font-semibold">Sách &amp; Bài Viết</p></div>
+                            <div><p class="text-[11px] font-extrabold uppercase opacity-90">Kho Nội Dung Y Khoa</p><p id="m-content-total" class="text-3xl font-black mt-2">0</p><p class="text-[10.5px] opacity-80 mt-1 font-semibold">Sách &amp; Từ Điển</p></div>
                             <div class="glass-icon"><span class="material-symbols-outlined text-white" style="font-size:26px">library_books</span></div>
                         </div>
                     </div>
@@ -340,115 +339,93 @@
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div class="content-card p-5 lg:col-span-2 space-y-4">
                         <div class="flex items-center justify-between">
-                            <div><h3 class="text-sm font-bold flex items-center gap-2"><span class="material-symbols-outlined text-sky-600">show_chart</span> Xu Hướng Doanh Thu TikTok Shop</h3><p class="text-[11px] text-slate-400">Doanh số 7 ngày gần nhất</p></div>
-                            <span class="badge badge-tiktok text-[10px]">TikTok Analytics</span>
+                            <div><h3 class="text-sm font-bold flex items-center gap-2"><span class="material-symbols-outlined text-sky-600">show_chart</span> Xu Hướng Doanh Thu GEMS Shop</h3><p class="text-[11px] text-slate-400">Doanh số 7 ngày gần nhất</p></div>
+                            <span class="badge badge-gems text-[10px]">GEMS BI Analytics</span>
                         </div>
                         <div class="h-64 relative"><canvas id="chart-revenue"></canvas></div>
                     </div>
 
                     <div class="content-card p-5 space-y-4">
                         <div class="flex items-center justify-between">
-                            <h3 class="text-sm font-bold flex items-center gap-2"><span class="material-symbols-outlined text-purple-600">pie_chart</span> Phân Bổ Tỷ Lệ Đơn Hàng</h3>
-                            <span class="badge badge-purple text-[10px]">Tỷ Lệ Channel</span>
+                            <h3 class="text-sm font-bold flex items-center gap-2"><span class="material-symbols-outlined text-purple-600">pie_chart</span> Cơ Cấu Hạng Thành Viên</h3>
+                            <span class="badge badge-purple text-[10px]">Tỷ Lệ Tier</span>
                         </div>
                         <div class="h-64 flex items-center justify-center relative"><canvas id="chart-tiers"></canvas></div>
                     </div>
                 </div>
             </div>
 
-            <!-- ====== TAB 4: COMMERCE (TIKTOK SHOP SELLER CENTER DASHBOARD) ====== -->
+            <!-- ====== TAB 4: GEMS SHOP COMMERCE ====== -->
             <div id="tab-commerce" class="tab-content space-y-6">
                 <div class="flex items-center justify-between flex-wrap gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
                     <div class="inline-flex p-1.5 bg-slate-200/70 dark:bg-slate-800/80 rounded-2xl border border-slate-300/60 dark:border-slate-700">
                         <button id="sub-commerce-orders" onclick="switchSubTab('commerce', 'orders')" class="subtab-pill active">
                             <span class="material-symbols-outlined text-base">receipt_long</span>
-                            <span>Đơn Hàng TikTok Seller</span>
+                            <span>Đơn Hàng GEMS Shop</span>
                         </button>
                         <button id="sub-commerce-products" onclick="switchSubTab('commerce', 'products')" class="subtab-pill">
                             <span class="material-symbols-outlined text-base">storefront</span>
-                            <span>Sản Phẩm &amp; Điểm Chất Lượng</span>
+                            <span>Sản Phẩm GEMS Shop</span>
                         </button>
-                        <button id="sub-commerce-affiliate" onclick="switchSubTab('commerce', 'affiliate')" class="subtab-pill">
-                            <span class="material-symbols-outlined text-base">campaign</span>
-                            <span>Tiếp Thị Liên Kết (Affiliate)</span>
+                        <button id="sub-commerce-promotions" onclick="switchSubTab('commerce', 'promotions')" class="subtab-pill">
+                            <span class="material-symbols-outlined text-base">sell</span>
+                            <span>Mã Giảm Giá &amp; Flash Sale</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- SUBPANEL: TIKTOK SELLER ORDERS WITH 5-STATUS PIPELINE -->
+                <!-- SUBPANEL: GEMS SHOP ORDERS PIPELINE -->
                 <div id="subpanel-commerce-orders" class="subpanel-content active space-y-5">
                     <div class="section-header">
                         <div>
                             <h2 class="section-title text-base font-bold flex items-center gap-2">
-                                Quản Lý Đơn Hàng TikTok Seller Center
-                                <span class="badge badge-tiktok">Fullfillment Hub</span>
+                                Quản Lý Đơn Hàng GEMS Shop
+                                <span class="badge badge-gems">E-Commerce Hub</span>
                             </h2>
-                            <p class="section-subtitle text-xs text-slate-400">Xử lý đơn hàng, in nhãn vận đơn và xác nhận hoàn tiền</p>
+                            <p class="section-subtitle text-xs text-slate-400">Theo dõi phễu đơn hàng, cập nhật phương thức thanh toán VietQR / COD và mã vận đơn</p>
                         </div>
                         <div class="flex gap-2">
-                            <button onclick="openModal('modal-print-waybill')" class="btn-tiktok"><span class="material-symbols-outlined text-sm">print</span> In Nhãn Vận Đơn Hàng Loạt</button>
+                            <button onclick="exportToCSV('orders')" class="btn-sm btn-edit"><span class="material-symbols-outlined text-sm">download</span> Xuất Báo Cáo CSV</button>
                         </div>
                     </div>
 
-                    <!-- TIKTOK 5-STATUS PIPELINE FILTER PILLS -->
+                    <!-- GEMS PIPELINE FILTER PILLS -->
                     <div class="flex items-center gap-2 overflow-x-auto pb-2">
-                        <button onclick="filterTikTokOrders('all')" class="tiktok-pipeline-pill active" id="tt-filter-all">Tất cả đơn (5)</button>
-                        <button onclick="filterTikTokOrders('to_ship')" class="tiktok-pipeline-pill" id="tt-filter-to-ship">Chờ chuẩn bị / Giao ngay (2) <span class="bg-rose-500 text-white text-[9px] px-1.5 py-0.2 rounded-full">⏱️ Gấp</span></button>
-                        <button onclick="filterTikTokOrders('in_transit')" class="tiktok-pipeline-pill" id="tt-filter-in-transit">Đang vận chuyển (2)</button>
-                        <button onclick="filterTikTokOrders('completed')" class="tiktok-pipeline-pill" id="tt-filter-completed">Đã giao thành công (1)</button>
-                        <button onclick="filterTikTokOrders('refund')" class="tiktok-pipeline-pill" id="tt-filter-refund">Trả hàng &amp; Hoàn tiền (0)</button>
+                        <button onclick="filterGemsOrders('all')" class="gems-pipeline-pill active" id="gems-filter-all">Tất cả đơn hàng</button>
+                        <button onclick="filterGemsOrders('pending')" class="gems-pipeline-pill" id="gems-filter-pending">Chờ xác nhận / Đóng gói</button>
+                        <button onclick="filterGemsOrders('shipping')" class="gems-pipeline-pill" id="gems-filter-shipping">Đang giao hàng (ViettelPost/GHTK)</button>
+                        <button onclick="filterGemsOrders('completed')" class="gems-pipeline-pill" id="gems-filter-completed">Giao thành công</button>
+                        <button onclick="filterGemsOrders('cancelled')" class="gems-pipeline-pill" id="gems-filter-cancelled">Đã huỷ / Hoàn tiền</button>
                     </div>
 
                     <div class="content-card overflow-hidden">
                         <div class="overflow-x-auto">
                             <table>
                                 <thead><tr>
-                                    <th>Mã Đơn TikTok</th>
-                                    <th>Khách Hàng &amp; Địa Chỉ</th>
-                                    <th>Sản Phẩm Đặt Mua</th>
+                                    <th>Mã Đơn GEMS</th>
+                                    <th>Khách Hàng</th>
+                                    <th>Sản Phẩm Mua</th>
                                     <th>Tổng Tiền</th>
-                                    <th>Hạn Giao Hàng TikTok</th>
-                                    <th>Trạng Thái</th>
-                                    <th class="text-right">Thao Tác TikTok Seller</th>
+                                    <th>Phương Thức Thanh Toán</th>
+                                    <th>Trạng Thái Giao Hàng</th>
+                                    <th class="text-right">Thao Tác Quản Lý</th>
                                 </tr></thead>
-                                <tbody id="tiktok-orders-tbody">
-                                    <tr>
-                                        <td><span class="font-mono font-bold text-xs text-rose-600">#TT948210</span></td>
-                                        <td><p class="font-bold text-xs">BS. Nguyễn Văn Nam</p><p class="text-[10px] text-slate-400">Quận 1, TP. Hồ Chí Minh</p></td>
-                                        <td><p class="text-xs font-semibold">Ống Nghe Y Tế Littmann Classic III</p><p class="text-[10px] text-slate-400">SL: x1 • Màu Xanh Đen</p></td>
-                                        <td class="font-bold text-emerald-600">3,450,000 ₫</td>
-                                        <td><span class="badge badge-red font-mono">⏱️ Còn 3 giờ (Hạn 23:59)</span></td>
-                                        <td><span class="badge badge-amber">Chờ vận chuyển</span></td>
-                                        <td class="text-right space-x-1">
-                                            <button onclick="openModal('modal-print-waybill')" class="btn-sm btn-edit"><span class="material-symbols-outlined text-sm">print</span> In nhãn</button>
-                                            <button onclick="showToast('Đã chuyển cho Đơn vị vận chuyển GHTK!', 'success')" class="btn-sm btn-success">Giao cho ĐVVC</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="font-mono font-bold text-xs text-slate-700">#TT882104</span></td>
-                                        <td><p class="font-bold text-xs">Phạm Thị Mai</p><p class="text-[10px] text-slate-400">Cầu Giấy, Hà Nội</p></td>
-                                        <td><p class="text-xs font-semibold">Sách In: Dược Lý Học Lâm Sàng (Tập 1)</p><p class="text-[10px] text-slate-400">SL: x2 • Bìa Cứng</p></td>
-                                        <td class="font-bold text-emerald-600">480,000 ₫</td>
-                                        <td><span class="badge badge-slate font-mono">GHTK (Mã: VT94812)</span></td>
-                                        <td><span class="badge badge-blue">Đang vận chuyển</span></td>
-                                        <td class="text-right space-x-1">
-                                            <button onclick="showToast('Đang mở tracking hành trình GHTK', 'info')" class="btn-sm btn-edit">Xem hành trình</button>
-                                        </td>
-                                    </tr>
+                                <tbody id="gems-orders-tbody">
+                                    <tr><td colspan="7" class="text-center py-8 text-slate-400">Đang tải dữ liệu đơn hàng GEMS Shop...</td></tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
 
-                <!-- SUBPANEL: PRODUCTS & QUALITY SCORE -->
+                <!-- SUBPANEL: GEMS PRODUCTS -->
                 <div id="subpanel-commerce-products" class="subpanel-content space-y-5">
                     <div class="section-header">
                         <div>
-                            <h2 class="section-title text-base font-bold">Danh Mục Sản Phẩm &amp; Điểm Chất Lượng (Quality Score)</h2>
-                            <p class="section-subtitle text-xs text-slate-400">Kiểm tra điểm chất lượng sản phẩm TikTok Shop và trạng thái kiểm duyệt</p>
+                            <h2 class="section-title text-base font-bold">Danh Mục Sản Phẩm GEMS Shop</h2>
+                            <p class="section-subtitle text-xs text-slate-400">Quản lý Sách in Y học, Thiết bị Y tế, Thực phẩm bổ sung &amp; Khoá học Y khoa</p>
                         </div>
-                        <button onclick="openAddProductModal()" class="btn-tiktok"><span class="material-symbols-outlined text-sm">add</span> Đăng Sản Phẩm Mới</button>
+                        <button onclick="openAddProductModal()" class="btn-primary"><span class="material-symbols-outlined text-sm">add_shopping_cart</span> Thêm Sản Phẩm Mới</button>
                     </div>
                     <div class="content-card overflow-hidden">
                         <div class="overflow-x-auto">
@@ -456,71 +433,38 @@
                                 <thead><tr>
                                     <th>Ảnh</th>
                                     <th>Tên Sản Phẩm</th>
-                                    <th>Giá Bán TikTok</th>
-                                    <th>Kho Còn Lại</th>
-                                    <th>Điểm Chất Lượng (Quality)</th>
-                                    <th>Trạng Thái TikTok</th>
+                                    <th>Danh Mục</th>
+                                    <th>Giá Bán GEMS</th>
+                                    <th>Giá Gốc</th>
+                                    <th>Trạng Thái</th>
                                     <th class="text-right">Thao Tác</th>
                                 </tr></thead>
-                                <tbody>
-                                    <tr>
-                                        <td><img src="covers/thaoduoc.png" class="w-10 h-10 object-cover rounded-xl border"></td>
-                                        <td><p class="font-bold text-xs">Ống Nghe Y Tế Littmann Classic III</p><p class="text-[10px] text-slate-400">Danh mục: Thiết bị y tế</p></td>
-                                        <td class="font-bold text-emerald-600">3,450,000 ₫</td>
-                                        <td class="font-bold text-xs">15 sản phẩm</td>
-                                        <td><span class="badge badge-green font-bold">💯 98/100 (Tuyệt vời)</span></td>
-                                        <td><span class="badge badge-tiktok">Đã duyệt TikTok</span></td>
-                                        <td class="text-right space-x-1">
-                                            <button onclick="showToast('Sửa sản phẩm', 'info')" class="btn-sm btn-edit">Sửa</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                <tbody id="products-tbody"><tr><td colspan="7" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr></tbody>
                             </table>
                         </div>
                     </div>
                 </div>
 
-                <!-- SUBPANEL: TIKTOK AFFILIATE & CREATOR COLLAB -->
-                <div id="subpanel-commerce-affiliate" class="subpanel-content space-y-5">
+                <!-- SUBPANEL: VOUCHERS -->
+                <div id="subpanel-commerce-promotions" class="subpanel-content space-y-5">
                     <div class="section-header">
-                        <div>
-                            <h2 class="section-title text-base font-bold">Tiếp Thị Liên Kết TikTok Affiliate &amp; KOC Bác Sĩ</h2>
-                            <p class="section-subtitle text-xs text-slate-400">Cấu hình % hoa hồng Tiếp thị liên kết và duyệt mẫu sản phẩm cho KOC / Bác sĩ review</p>
-                        </div>
+                        <h2 class="section-title text-base font-bold">Mã Giảm Giá &amp; Flash Sale GEMS Shop</h2>
+                        <button onclick="openAddVoucherModal()" class="btn-primary"><span class="material-symbols-outlined text-sm">add</span> Tạo Voucher Mới</button>
                     </div>
                     <div class="content-card overflow-hidden">
                         <div class="overflow-x-auto">
                             <table>
-                                <thead><tr>
-                                    <th>KOC / Bác Sĩ TikTok</th>
-                                    <th>Kênh TikTok</th>
-                                    <th>Sản Phẩm Đăng Ký Mẫu</th>
-                                    <th>Tỷ Lệ Hoa Hồng Offer</th>
-                                    <th>Trạng Thái Yêu Cầu</th>
-                                    <th class="text-right">Thao Tác Duyệt Mẫu</th>
-                                </tr></thead>
-                                <tbody>
-                                    <tr>
-                                        <td><p class="font-bold text-xs">BS. Trần Đức Minh</p><p class="text-[10px] text-slate-400">@bacsidesign_official (150K Follows)</p></td>
-                                        <td class="font-semibold text-xs text-rose-600">TikTok Medical Verified</td>
-                                        <td class="font-bold text-xs">Sách In: Dược Lý Học Lâm Sàng</td>
-                                        <td><span class="badge badge-purple font-bold">Hoa hồng 15%</span></td>
-                                        <td><span class="badge badge-amber">Chờ duyệt gửi mẫu</span></td>
-                                        <td class="text-right space-x-1">
-                                            <button onclick="showToast('Đã chấp nhận duyệt gửi sản phẩm mẫu cho Bác sĩ!', 'success')" class="btn-sm btn-success">Duyệt Gửi Mẫu</button>
-                                            <button onclick="showToast('Đã từ chối yêu cầu', 'error')" class="btn-sm btn-delete">Từ Chối</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                <thead><tr><th>Mã Code</th><th>Loại Giảm</th><th>Giá Trị Giảm</th><th>Đơn Tối Thiểu</th><th>Hạn Dùng</th><th>Trạng Thái</th><th class="text-right">Thao Tác</th></tr></thead>
+                                <tbody id="vouchers-tbody"><tr><td colspan="7" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr></tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- OTHER TABS (USERS, CONTENT, MODERATION) -->
+            <!-- ====== OTHER TABS ====== -->
             <div id="tab-users" class="tab-content space-y-6">
-                <div class="section-header"><h2 class="section-title text-base font-bold">Danh Sách Người Dùng</h2></div>
+                <div class="section-header"><h2 class="section-title text-base font-bold">Danh Sách Người Dùng &amp; Phân Quyền</h2></div>
                 <div class="content-card overflow-hidden">
                     <div class="overflow-x-auto">
                         <table>
@@ -559,46 +503,12 @@
     </div>
 </div>
 
-<!-- MODAL: PRINT SHIPPING WAYBILL LABEL -->
-<div id="modal-print-waybill" class="modal-overlay hidden">
-    <div class="modal-box" style="max-width:500px">
-        <div class="modal-header">
-            <h3 class="font-bold text-sm text-slate-900 flex items-center gap-2">
-                <span class="material-symbols-outlined text-rose-600">print</span> In Nhãn Vận Đơn TikTok Shop Seller
-            </h3>
-            <button onclick="closeModal('modal-print-waybill')" class="p-1 text-slate-400 hover:text-slate-600 rounded-lg"><span class="material-symbols-outlined">close</span></button>
-        </div>
-        <div class="modal-body space-y-4 font-mono">
-            <div class="p-4 bg-white border-2 border-dashed border-slate-400 text-slate-900 rounded-2xl space-y-3">
-                <div class="flex items-center justify-between border-b pb-2">
-                    <span class="font-black text-lg text-rose-600">TikTok Shop Seller</span>
-                    <span class="font-bold text-xs">Mã Đơn: #TT948210</span>
-                </div>
-                <div class="text-center py-2">
-                    <div class="text-2xl font-black tracking-widest">||| | |||| ||| |||||</div>
-                    <p class="text-[10px] font-bold mt-1">Mã Vận Đơn: GHTK-VN-94821099</p>
-                </div>
-                <div class="text-xs space-y-1 border-t pt-2">
-                    <p><b>Người Gửi:</b> GEMS Medical Store - 0985.471.xxx</p>
-                    <p><b>Người Nhận:</b> BS. Nguyễn Văn Nam - 0912.345.xxx</p>
-                    <p><b>Địa Chỉ:</b> 124 Nguyễn Thị Minh Khai, Q.1, TP. Hồ Chí Minh</p>
-                    <p><b>Sản Phẩm:</b> Ống Nghe Y Tế Littmann Classic III (x1)</p>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" onclick="closeModal('modal-print-waybill')" class="btn-sm btn-edit">Đóng</button>
-            <button type="button" onclick="window.print()" class="btn-tiktok"><span class="material-symbols-outlined text-sm">print</span> In Vận Đơn Ngay</button>
-        </div>
-    </div>
-</div>
-
 <!-- COMMAND PALETTE MODAL -->
 <div id="modal-command-palette" class="modal-overlay hidden">
     <div class="modal-box" style="max-width:640px">
         <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center gap-3">
             <span class="material-symbols-outlined text-sky-600">search</span>
-            <input type="text" id="cmd-palette-input" oninput="handleCmdSearch(this.value)" placeholder="Gõ từ khoá tìm nhanh độc giả, đơn hàng TikTok, sách..." class="w-full bg-transparent outline-none text-sm font-semibold"/>
+            <input type="text" id="cmd-palette-input" oninput="handleCmdSearch(this.value)" placeholder="Gõ từ khoá tìm nhanh độc giả, đơn hàng GEMS Shop, sách..." class="w-full bg-transparent outline-none text-sm font-semibold"/>
         </div>
         <div id="cmd-palette-results" class="p-3 max-h-80 overflow-y-auto space-y-1">
             <div class="p-3 text-center text-xs text-slate-400">Nhập từ khoá để tìm kiếm...</div>
@@ -606,7 +516,43 @@
     </div>
 </div>
 
-<!-- JAVASCRIPT LOGIC -->
+<!-- FORMS MODALS -->
+<div id="modal-product" class="modal-overlay hidden">
+    <div class="modal-box">
+        <div class="modal-header"><h3 class="font-bold text-sm">Thêm Sản Phẩm GEMS Shop</h3><button onclick="closeModal('modal-product')" class="p-1 text-slate-400 hover:text-slate-600 rounded-lg"><span class="material-symbols-outlined">close</span></button></div>
+        <form onsubmit="saveProduct(event)" class="modal-body space-y-4">
+            <input type="hidden" id="product-edit-id" value="">
+            <div class="grid grid-cols-2 gap-3">
+                <div class="col-span-2"><label class="form-label">Tên Sản Phẩm *</label><input type="text" id="product-name" required class="form-input"></div>
+                <div><label class="form-label">Danh Mục</label><select id="product-category" class="form-select"><option value="book">Sách In Y Học</option><option value="equipment">Thiết Bị Y Tế</option><option value="supplement">Thực Phẩm Bổ Sung</option><option value="course">Khoá Học Y Khoa</option></select></div>
+                <div><label class="form-label">Giá Bán (VNĐ) *</label><input type="number" id="product-price" required class="form-input"></div>
+            </div>
+            <div class="modal-footer"><button type="button" onclick="closeModal('modal-product')" class="btn-sm btn-edit">Huỷ</button><button type="submit" class="btn-primary">Lưu Sản Phẩm</button></div>
+        </form>
+    </div>
+</div>
+
+<div id="modal-user-permissions" class="modal-overlay hidden">
+    <div class="modal-box" style="max-width:620px">
+        <div class="modal-header bg-slate-50 dark:bg-slate-800">
+            <div><h3 class="font-bold text-base flex items-center gap-2"><span class="material-symbols-outlined text-sky-600">admin_panel_settings</span> Phân Quyền Cho Người Dùng</h3><p id="perm-user-email" class="text-xs text-slate-500 font-mono mt-0.5">—</p></div>
+            <button onclick="closeModal('modal-user-permissions')" class="p-1 text-slate-400 hover:text-slate-600 rounded-lg"><span class="material-symbols-outlined">close</span></button>
+        </div>
+        <div class="modal-body space-y-6">
+            <input type="hidden" id="perm-user-id" value="">
+            <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200/80 dark:border-slate-700 space-y-4">
+                <h4 class="font-extrabold text-xs uppercase tracking-wider flex items-center gap-1.5"><span class="material-symbols-outlined text-sky-600 text-sm">shield</span> 1. Vai Trò Hệ Thống</h4>
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="form-label">Quyền Quản Trị</label><select id="perm-role-select" class="form-select"><option value="user">Độc Giả</option><option value="admin">Quản Trị Viên</option></select></div>
+                    <div><label class="form-label">Hạng Thành Viên</label><select id="perm-tier-select" class="form-select"><option value="free">Miễn Phí</option><option value="pro">Nâng Cao</option><option value="vip">Đặc Quyền</option></select></div>
+                </div>
+                <button onclick="saveSystemRoles()" class="btn-primary w-full justify-center py-2.5">Lưu Vai Trò Hệ Thống</button>
+            </div>
+        </div>
+        <div class="modal-footer"><button type="button" onclick="closeModal('modal-user-permissions')" class="btn-sm btn-edit">Đóng</button></div>
+    </div>
+</div>
+
 <script>
     let currentLang = localStorage.getItem('gems_admin_lang') || 'vi';
 
@@ -635,7 +581,7 @@
             sessionStorage.setItem('gems_admin', 'true');
             document.getElementById('admin-login-screen').classList.add('hidden');
             document.getElementById('admin-main-layout').classList.remove('hidden');
-            showToast('Đăng nhập thành công TikTok Seller Center!', 'success');
+            showToast('Đăng nhập thành công GEMS Admin!', 'success');
             refreshAllData();
         } else { showToast('Passcode không chính xác!', 'error'); }
     }
@@ -669,31 +615,32 @@
         if (targetBtn) targetBtn.classList.add('active'); if (targetPanel) targetPanel.classList.add('active');
     }
 
-    function filterTikTokOrders(status) {
-        document.querySelectorAll('.tiktok-pipeline-pill').forEach(el => el.classList.remove('active'));
-        const activeBtn = document.getElementById('tt-filter-' + status.replace('_', '-'));
+    function filterGemsOrders(status) {
+        document.querySelectorAll('.gems-pipeline-pill').forEach(el => el.classList.remove('active'));
+        const activeBtn = document.getElementById('gems-filter-' + status);
         if (activeBtn) activeBtn.classList.add('active');
-        showToast(`Đã lọc danh sách đơn TikTok: [${status.toUpperCase()}]`, 'info');
+        showToast(`Đã lọc danh sách đơn hàng GEMS: [${status.toUpperCase()}]`, 'info');
     }
 
     async function refreshAllData() {
         if (!window.db) return;
         try {
-            const [usersSnap, booksSnap, ordSnap] = await Promise.all([
-                window.db.collection('users').get(), window.db.collection('books').get(), window.db.collection('orders').get()
+            const [usersSnap, booksSnap, ordSnap, prodSnap] = await Promise.all([
+                window.db.collection('users').get(), window.db.collection('books').get(), window.db.collection('orders').get(), window.db.collection('shop_products').get()
             ]);
             adminCache.users = []; usersSnap.forEach(d => adminCache.users.push({ id: d.id, ...d.data() }));
             adminCache.books = {}; booksSnap.forEach(d => adminCache.books[d.id] = d.data());
             adminCache.orders = []; ordSnap.forEach(d => adminCache.orders.push({ id: d.id, ...d.data() }));
+            adminCache.products = []; prodSnap.forEach(d => adminCache.products.push({ id: d.id, ...d.data() }));
             renderAll();
         } catch (err) { console.error(err); renderAll(); }
     }
 
-    function renderAll() { updateMetrics(); renderCharts(); renderUsersTable(); renderBooksTable(); }
+    function renderAll() { updateMetrics(); renderCharts(); renderUsersTable(); renderBooksTable(); renderProductsTable(); renderOrdersTable(); }
     function updateMetrics() {
         document.getElementById('m-users').textContent = adminCache.users.length;
-        document.getElementById('m-orders').textContent = adminCache.orders.length || 5;
-        document.getElementById('m-content-total').textContent = Object.keys(adminCache.books).length || 12;
+        document.getElementById('m-orders').textContent = adminCache.orders.length || 3;
+        document.getElementById('m-content-total').textContent = Object.keys(adminCache.books).length || 10;
     }
 
     function renderCharts() {
@@ -703,7 +650,7 @@
             if (revenueChartInstance) revenueChartInstance.destroy();
             revenueChartInstance = new Chart(ctxRev, {
                 type: 'line',
-                data: { labels: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'], datasets: [{ label: 'Doanh thu TikTok (VNĐ)', data: [2200000, 3500000, 2800000, 4200000, 3900000, 6500000, 5800000], borderColor: '#fe2c55', backgroundColor: 'rgba(254, 44, 85, 0.08)', fill: true, tension: 0.4 }] },
+                data: { labels: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'], datasets: [{ label: 'Doanh thu GEMS (VNĐ)', data: [1200000, 2500000, 1800000, 3200000, 2900000, 4500000, 3800000], borderColor: '#005A9C', backgroundColor: 'rgba(0, 90, 156, 0.08)', fill: true, tension: 0.4 }] },
                 options: { responsive: true, maintainAspectRatio: false }
             });
         }
@@ -712,15 +659,63 @@
             if (tierChartInstance) tierChartInstance.destroy();
             tierChartInstance = new Chart(ctxTier, {
                 type: 'doughnut',
-                data: { labels: ['TikTok Shop', 'App Ebook', 'Website Direct'], datasets: [{ data: [65, 25, 10], backgroundColor: ['#fe2c55', '#005A9C', '#9333ea'] }] },
+                data: { labels: ['Free Tier', 'Pro Member', 'VIP Member'], datasets: [{ data: [5, 3, 2], backgroundColor: ['#94a3b8', '#9333ea', '#f59e0b'] }] },
                 options: { responsive: true, maintainAspectRatio: false }
             });
         }
     }
 
+    function renderOrdersTable() {
+        const tbody = document.getElementById('gems-orders-tbody'); if (!tbody) return;
+        if (adminCache.orders.length === 0) {
+            tbody.innerHTML = `
+                <tr>
+                    <td><span class="font-mono font-bold text-xs text-sky-600">#GEMS94821</span></td>
+                    <td><p class="font-bold text-xs">BS. Nguyễn Văn Nam</p><p class="text-[10px] text-slate-400">bacsi.nguyen@gems.vn</p></td>
+                    <td><p class="text-xs font-semibold">Ống Nghe Y Tế Littmann Classic III</p><p class="text-[10px] text-slate-400">SL: x1</p></td>
+                    <td class="font-bold text-emerald-600">3,450,000 ₫</td>
+                    <td><span class="badge badge-gems">VietQR Chuyển Khoản</span></td>
+                    <td><span class="badge badge-green">Đang giao (GHTK: VT94812)</span></td>
+                    <td class="text-right"><button onclick="showToast('Đã xem chi tiết đơn hàng GEMS', 'info')" class="btn-sm btn-edit">Chi tiết</button></td>
+                </tr>
+            `;
+            return;
+        }
+        tbody.innerHTML = adminCache.orders.map(o => `
+            <tr>
+                <td><span class="font-mono font-bold text-xs text-sky-600">#${o.id.slice(-6).toUpperCase()}</span></td>
+                <td><p class="font-bold text-xs">${o.customerName || 'Khách'}</p></td>
+                <td><p class="text-xs font-semibold">${o.productName || 'Sản phẩm GEMS'}</p></td>
+                <td class="font-bold text-emerald-600">${formatCurrency(o.total || o.totalAmount)}</td>
+                <td><span class="badge badge-gems">VietQR</span></td>
+                <td><span class="badge badge-green">Đang giao hàng</span></td>
+                <td class="text-right"><button onclick="showToast('Chi tiết đơn', 'info')" class="btn-sm btn-edit">Chi tiết</button></td>
+            </tr>
+        `).join('');
+    }
+
+    function renderProductsTable() {
+        const tbody = document.getElementById('products-tbody'); if (!tbody) return;
+        if (adminCache.products.length === 0) {
+            tbody.innerHTML = `
+                <tr>
+                    <td><img src="covers/thaoduoc.png" class="w-10 h-10 object-cover rounded-xl border"></td>
+                    <td><p class="font-bold text-xs">Ống Nghe Y Tế Littmann Classic III</p><p class="text-[10px] text-slate-400">ID: sp_1</p></td>
+                    <td><span class="badge badge-slate">Thiết bị y tế</span></td>
+                    <td class="font-bold text-blue-600">3,450,000 ₫</td>
+                    <td class="text-slate-400 line-through text-[11px]">3,900,000 ₫</td>
+                    <td><span class="badge badge-green">Đang bán</span></td>
+                    <td class="text-right"><button onclick="showToast('Chỉnh sửa sản phẩm', 'info')" class="btn-sm btn-edit">Sửa</button></td>
+                </tr>
+            `;
+            return;
+        }
+        tbody.innerHTML = adminCache.products.map(p => `<tr><td><img src="${p.image||'covers/thaoduoc.png'}" class="w-10 h-10 object-cover rounded-xl border"></td><td><b>${p.name||p.title}</b></td><td><span class="badge badge-slate">${p.category||'Khác'}</span></td><td class="font-bold text-blue-600">${formatCurrency(p.price)}</td><td class="text-slate-400 line-through text-[11px]">${p.oldPrice ? formatCurrency(p.oldPrice) : '—'}</td><td><span class="badge badge-green">Đang bán</span></td><td class="text-right"><button onclick="showToast('Sửa', 'info')" class="btn-sm btn-edit">Sửa</button></td></tr>`).join('');
+    }
+
     function renderUsersTable() {
         const tbody = document.getElementById('users-tbody'); if (!tbody) return;
-        tbody.innerHTML = adminCache.users.map(u => `<tr><td><b>${u.email}</b></td><td>${u.name||'—'}</td><td><span class="badge badge-purple">${(u.tier||'free').toUpperCase()}</span></td><td><span class="badge badge-red">${(u.role||'user').toUpperCase()}</span></td><td><span class="badge badge-amber">Gian Hàng</span></td><td>${u.createdAt||'—'}</td><td class="text-right"><button onclick="showToast('Phân quyền', 'info')" class="btn-sm btn-perm">Phân quyền</button></td></tr>`).join('');
+        tbody.innerHTML = adminCache.users.map(u => `<tr><td><b>${u.email}</b></td><td>${u.name||'—'}</td><td><span class="badge badge-purple">${(u.tier||'free').toUpperCase()}</span></td><td><span class="badge badge-red">${(u.role||'user').toUpperCase()}</span></td><td><span class="badge badge-amber">Gian Hàng</span></td><td>${u.createdAt||'—'}</td><td class="text-right"><button onclick="openPermissionsModal('${u.id}')" class="btn-sm btn-perm">Phân quyền</button></td></tr>`).join('');
     }
 
     function renderBooksTable() {
@@ -731,9 +726,16 @@
     function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
     function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
 
+    function openPermissionsModal(id) { openModal('modal-user-permissions'); }
+    function saveSystemRoles() { showToast('Đã lưu quyền!', 'success'); closeModal('modal-user-permissions'); }
+
+    function openAddProductModal() { openModal('modal-product'); }
+    function saveProduct(e) { e.preventDefault(); closeModal('modal-product'); }
+
+    function formatCurrency(amount) { if (!amount && amount !== 0) return '—'; return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount); }
     function showToast(msg, type = 'info') {
         const container = document.getElementById('toast-container'); const toast = document.createElement('div');
-        toast.className = 'toast'; toast.style.cssText = 'background:#fe2c55;color:#fff';
+        toast.className = 'toast'; toast.style.cssText = 'background:#005A9C;color:#fff';
         toast.innerHTML = `<span class="material-symbols-outlined" style="font-size:17px">shopping_bag</span><span>${msg}</span>`;
         container.appendChild(toast); requestAnimationFrame(() => toast.classList.add('show'));
         setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3500);
