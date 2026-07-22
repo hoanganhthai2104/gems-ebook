@@ -313,6 +313,17 @@
 
     <style>
 
+        /* === GLOBAL VIEWPORT LOCK === */
+        html {
+            height: 100%;
+            max-height: 100dvh;
+            overflow: hidden;
+        }
+        html, body {
+            touch-action: none;
+            overscroll-behavior: none;
+        }
+
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-8px); }
@@ -1941,7 +1952,7 @@
 
 </head>
 
-<body class="bg-slate-100 antialiased h-[100dvh] overflow-hidden flex items-center justify-center" style="background: radial-gradient(circle at 10% 20%, rgb(240, 243, 248) 0%, rgb(218, 226, 240) 90.1%);">
+<body class="bg-slate-100 antialiased h-[100dvh] overflow-hidden flex items-center justify-center" style="background: radial-gradient(circle at 10% 20%, rgb(240, 243, 248) 0%, rgb(218, 226, 240) 90.1%); height: 100dvh; overflow: hidden; max-height: 100dvh;">
 
 
 
@@ -4641,7 +4652,7 @@
 
                                     </div>
 
-                                    <div onclick="openShopPayLater()" class="flex flex-col items-center gap-1 cursor-pointer select-none w-14 active:opacity-50 transition-opacity">
+                                    <div onclick="openShopAddress()" class="flex flex-col items-center gap-1 cursor-pointer select-none w-14 active:opacity-50 transition-opacity">
 
                                         <div class="w-10 h-10 rounded-xl bg-blue-50/60 border border-blue-100/30 flex items-center justify-center">
 
@@ -4902,6 +4913,7 @@
 
 
                         </div>
+                    </div>
 
                         <!-- VIEW: SHOP SEARCH OVERLAY -->
 
@@ -5628,6 +5640,46 @@
                             </div>
 
 
+                            <!-- GEMS Xu Loyalty Option -->
+
+                            <div class="bg-white p-4 flex items-center justify-between border-y border-slate-150 select-none">
+
+                                <div class="flex items-center gap-2.5">
+
+                                    <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-400 to-yellow-300 flex items-center justify-center shrink-0 shadow-sm border border-amber-200">
+
+                                        <span class="material-symbols-outlined text-amber-900 text-lg font-black">monetization_on</span>
+
+                                    </div>
+
+                                    <div class="flex flex-col">
+
+                                        <div class="flex items-center gap-1.5">
+
+                                            <span class="text-xs font-black text-slate-800">Dùng GEMS Xu</span>
+
+                                            <span id="checkout-coins-balance" class="text-[9px] font-extrabold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/80">Đang có: 2.450 xu</span>
+
+                                        </div>
+
+                                        <span id="checkout-coins-discount-hint" class="text-[9px] text-slate-450 font-bold">1 xu = 10đ (Quy đổi tối đa trừ trực tiếp hóa đơn)</span>
+
+                                    </div>
+
+                                </div>
+
+                                <label class="relative inline-flex items-center cursor-pointer">
+
+                                    <input type="checkbox" id="checkout-use-coins-checkbox" class="sr-only peer" onchange="toggleCheckoutCoinsUsage()">
+
+                                    <div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-500"></div>
+
+                                </label>
+
+                            </div>
+
+
+
                             <!-- Payment Method Card -->
 
                             <div class="bg-white p-4 space-y-3 border-y border-slate-150">
@@ -5726,6 +5778,14 @@
                                         <span>Giảm giá voucher</span>
 
                                         <span id="checkout-discount">-50.000đ</span>
+
+                                    </div>
+
+                                    <div id="checkout-coins-row" class="flex justify-between text-amber-600 font-extrabold hidden">
+
+                                        <span>Trừ GEMS Xu</span>
+
+                                        <span id="checkout-coins-discount">-0đ</span>
 
                                     </div>
 
@@ -6278,7 +6338,7 @@
 
                                 <!-- Conversation item 1 -->
 
-                                <div onclick="showToast('Đang mở cuộc trò chuyện...')" class="flex items-center gap-3 bg-white px-4 py-3 cursor-pointer active:bg-slate-50 transition-colors">
+                                <div onclick="openShopChatDetail('GEMS Tech Store', 'store')" class="flex items-center gap-3 bg-white px-4 py-3 cursor-pointer active:bg-slate-50 transition-colors">
 
                                     <div class="relative shrink-0">
 
@@ -6312,7 +6372,7 @@
 
                                 <!-- Conversation item 2 -->
 
-                                <div onclick="showToast('Đang mở cuộc trò chuyện...')" class="flex items-center gap-3 bg-white px-4 py-3 cursor-pointer active:bg-slate-50 transition-colors">
+                                <div onclick="openShopChatDetail('GEMS Fashion House', 'checkroom')" class="flex items-center gap-3 bg-white px-4 py-3 cursor-pointer active:bg-slate-50 transition-colors">
 
                                     <div class="relative shrink-0">
 
@@ -6342,7 +6402,7 @@
 
                                 <!-- Conversation item 3 -->
 
-                                <div onclick="showToast('Đang mở cuộc trò chuyện...')" class="flex items-center gap-3 bg-white px-4 py-3 cursor-pointer active:bg-slate-50 transition-colors">
+                                <div onclick="openShopChatDetail('GEMS Books & Education', 'menu_book')" class="flex items-center gap-3 bg-white px-4 py-3 cursor-pointer active:bg-slate-50 transition-colors">
 
                                     <div class="relative shrink-0">
 
@@ -6390,6 +6450,67 @@
 
                     </div>
 
+                    <!-- ============================================== -->
+                    <!-- VIEW: CHAT DETAIL (Hội thoại tin nhắn)         -->
+                    <!-- ============================================== -->
+                    <div id="view-shop-chat-detail" class="absolute inset-0 z-[133] bg-slate-50 text-on-surface flex flex-col overflow-hidden hidden select-none animate-fade-in">
+                        <!-- Chat Header -->
+                        <header class="glass-header w-full top-0 sticky flex items-center justify-between px-3 py-3 z-50 shrink-0 border-b border-slate-200/80">
+                            <div class="flex items-center gap-2">
+                                <button onclick="closeShopChatDetail()" aria-label="Go back" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-xl">arrow_back</span>
+                                </button>
+                                <div class="relative shrink-0">
+                                    <div id="chat-detail-avatar" class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-primary flex items-center justify-center text-white">
+                                        <span id="chat-detail-avatar-icon" class="material-symbols-outlined text-base">store</span>
+                                    </div>
+                                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full"></span>
+                                </div>
+                                <div class="flex flex-col min-w-0">
+                                    <h1 id="chat-detail-title" class="font-sans text-xs font-black text-slate-900 truncate max-w-[160px]">GEMS Tech Store</h1>
+                                    <span class="text-[8.5px] text-emerald-600 font-bold flex items-center gap-1">Đang hoạt động</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <button onclick="showToast('Đang gọi cho nhà bán hàng...', 'info')" class="p-2 text-slate-600 hover:bg-slate-100 rounded-full flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-lg">call</span>
+                                </button>
+                                <button onclick="showToast('Thông tin shop GEMS Mall', 'info')" class="p-2 text-slate-600 hover:bg-slate-100 rounded-full flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-lg">more_vert</span>
+                                </button>
+                            </div>
+                        </header>
+
+                        <!-- Messages Scroll Container -->
+                        <div id="chat-messages-container" class="flex-grow overflow-y-auto p-3 space-y-3">
+                            <!-- Dynamic chat bubbles will be rendered here -->
+                        </div>
+
+                        <!-- Typing Indicator (Hidden by default) -->
+                        <div id="chat-typing-indicator" class="hidden px-4 py-1.5 flex items-center gap-2 text-[10px] text-slate-400 font-medium">
+                            <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
+                            <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:0.2s]"></span>
+                            <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:0.4s]"></span>
+                            <span>Shop đang soạn tin...</span>
+                        </div>
+
+                        <!-- Quick Chips Row -->
+                        <div class="bg-white px-3 py-2 border-t border-slate-100 flex gap-2 overflow-x-auto scrollbar-none shrink-0" id="chat-quick-chips">
+                            <button onclick="sendQuickChatChip('Sách/sản phẩm này còn hàng không?')" class="shrink-0 text-[9.5px] font-bold text-primary bg-blue-50 hover:bg-blue-100 border border-blue-200/60 px-3 py-1.5 rounded-full transition-colors">Sách còn hàng không?</button>
+                            <button onclick="sendQuickChatChip('Bao giờ đơn hàng của mình được giao?')" class="shrink-0 text-[9.5px] font-bold text-primary bg-blue-50 hover:bg-blue-100 border border-blue-200/60 px-3 py-1.5 rounded-full transition-colors">Bao giờ giao hàng?</button>
+                            <button onclick="sendQuickChatChip('Shop có mã giảm giá hoặc Freeship thêm không?')" class="shrink-0 text-[9.5px] font-bold text-primary bg-blue-50 hover:bg-blue-100 border border-blue-200/60 px-3 py-1.5 rounded-full transition-colors">Mã giảm giá/Freeship?</button>
+                        </div>
+
+                        <!-- Chat Bottom Input Bar -->
+                        <div class="p-2.5 bg-white border-t border-slate-200/80 flex items-center gap-2 shrink-0">
+                            <input type="text" id="chat-input-text" placeholder="Nhập tin nhắn..." onkeydown="if(event.key==='Enter') sendShopChatMessage()" class="flex-grow bg-slate-100 border border-slate-200 focus:bg-white focus:border-primary rounded-full px-4 py-2 text-xs text-slate-800 focus:outline-none transition-all placeholder-slate-400" />
+                            <button onclick="sendShopChatMessage()" class="w-9 h-9 rounded-full bg-primary hover:bg-primary-dark text-white flex items-center justify-center shrink-0 active:scale-95 transition-all shadow-sm">
+                                <span class="material-symbols-outlined text-sm">send</span>
+                            </button>
+                        </div>
+                    </div>
+
+
 
 
                     <!-- ============================================== -->
@@ -6398,13 +6519,13 @@
 
                     <!-- ============================================== -->
 
-                    <div id="view-shop-paylater" class="absolute inset-0 z-[133] bg-surface text-on-surface flex flex-col overflow-hidden hidden select-none animate-fade-in">
+                    <div id="view-shop-address" class="absolute inset-0 z-[133] bg-surface text-on-surface flex flex-col overflow-hidden hidden select-none animate-fade-in">
 
                         <!-- VIEW: ADDRESS LIST VIEW -->
                         <div id="shop-address-list-view" class="flex flex-col h-full w-full">
                             <header class="glass-header w-full top-0 sticky flex items-center justify-between px-3 py-3 z-50 shrink-0">
                                 <div class="w-10">
-                                    <button onclick="closeShopPayLater()" aria-label="Go back" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+                                    <button onclick="closeShopAddress()" aria-label="Go back" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
                                         <span class="material-symbols-outlined text-xl">arrow_back</span>
                                     </button>
                                 </div>
@@ -7710,9 +7831,11 @@
 
                                 </div>
 
-                                <button onclick="redeemVoucher()" class="bg-brand-blue text-white text-[10px] font-bold px-3 py-1.5 rounded-full hover:bg-brand-blue-dark transition-colors shadow-sm">
+                                <button onclick="openRewardStore()" class="bg-gradient-to-r from-amber-500 to-yellow-500 text-white text-[10px] font-black px-3.5 py-1.5 rounded-full hover:shadow-md transition-all active:scale-95 shadow-sm flex items-center gap-1">
 
-                                    Đổi Voucher
+                                    <span class="material-symbols-outlined text-xs">card_giftcard</span>
+
+                                    Đổi quà & Voucher
 
                                 </button>
 
@@ -7874,7 +7997,7 @@
 
                     <!-- ============================================== -->
 
-                    <div id="view-book-detail" class="absolute inset-0 z-[60] bg-surface text-on-surface flex flex-col overflow-hidden select-none">
+                    <div id="view-book-detail" class="absolute inset-0 z-[180] bg-surface text-on-surface flex flex-col overflow-hidden select-none">
 
                         <!-- Navigation Header -->
 
@@ -8222,7 +8345,7 @@
 
                     <!-- ============================================== -->
 
-                    <div id="view-author-profile" class="absolute inset-0 z-[70] bg-surface text-on-background flex flex-col overflow-hidden select-none">
+                    <div id="view-author-profile" class="absolute inset-0 z-[185] bg-surface text-on-background flex flex-col overflow-hidden select-none">
 
                         <!-- TopAppBar -->
 
@@ -8430,7 +8553,7 @@
 
                     <!-- ============================================== -->
 
-                    <div id="view-reader" class="absolute inset-0 z-[80] bg-white flex flex-col hidden overflow-hidden transition-colors duration-300">
+                    <div id="view-reader" class="absolute inset-0 z-[300] bg-white flex flex-col hidden overflow-hidden transition-colors duration-300">
 
                         <!-- Reader Top Header bar -->
 
@@ -9162,7 +9285,7 @@
 
                     <!-- ============================================== -->
 
-                    <div id="view-dictionary" class="absolute inset-0 z-[68] bg-surface flex flex-col hidden overflow-hidden">
+                    <div id="view-dictionary" class="absolute inset-0 z-[190] bg-surface flex flex-col hidden overflow-hidden">
 
                         <!-- Header -->
 
@@ -9558,7 +9681,7 @@
 
                         <!-- Term Detail Full-Page View (slides in) -->
 
-                        <div id="view-dict-term" class="hidden absolute inset-0 z-[80] bg-surface flex flex-col overflow-hidden">
+                        <div id="view-dict-term" class="hidden absolute inset-0 z-[195] bg-surface flex flex-col overflow-hidden">
 
                             <!-- Header -->
 
@@ -10684,7 +10807,7 @@
 
 
 
-                    <div id="view-quiz" class="absolute inset-0 z-[70] bg-surface flex flex-col hidden overflow-hidden">
+                    <div id="view-quiz" class="absolute inset-0 z-[190] bg-surface flex flex-col hidden overflow-hidden">
 
 
 
@@ -10848,15 +10971,115 @@
 
                     <!-- ============================================== -->
 
-                    <!-- VIEW 5: SÁCH NÓI PLAYER (Audiobook Player)        -->
+                    <!-- VIEW: CỬA HÀNG ĐỔI THƯỞNG GEMS XU (Reward Store) -->
 
                     <!-- ============================================== -->
 
+                    <div id="view-profile-rewards" class="absolute inset-0 z-[135] bg-slate-50 text-on-surface flex flex-col hidden overflow-hidden select-none animate-fade-in">
+
+                        <!-- Top App Bar -->
+                        <header class="glass-header w-full top-0 sticky flex items-center justify-between px-3 py-3 z-50 shrink-0 border-b border-slate-200/80">
+
+                            <div class="w-10">
+
+                                <button onclick="closeRewardStore()" aria-label="Go back" class="text-on-surface-variant hover:bg-slate-100 transition-colors rounded-full p-2 flex items-center justify-center">
+
+                                    <span class="material-symbols-outlined text-xl">arrow_back</span>
+
+                                </button>
+
+                            </div>
+
+                            <div class="flex flex-col items-center">
+
+                                <h1 class="font-sans text-xs font-black tracking-tight text-slate-900 mx-auto text-center truncate">Cửa Hàng Đổi Thưởng</h1>
+
+                                <span class="text-[8px] text-amber-600 font-extrabold flex items-center gap-1 mt-0.5">
+
+                                    <span class="material-symbols-outlined text-[10px] filled-icon">toll</span> Tích xu nhận quà Y Khoa
+
+                                </span>
+
+                            </div>
+
+                            <div class="w-10 flex justify-end">
+
+                                <button onclick="showToast('Thực hiện bài Quiz hoặc mua hàng để nhận thêm GEMS Xu!', 'info')" class="p-2 text-amber-600 hover:bg-amber-50 rounded-full flex items-center justify-center">
+
+                                    <span class="material-symbols-outlined text-lg">help_outline</span>
+
+                                </button>
+
+                            </div>
+
+                        </header>
 
 
 
+                        <!-- Coin Balance Hero Card -->
+                        <div class="p-4 bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-slate-950 shrink-0 shadow-sm flex items-center justify-between">
 
-                </div>
+                            <div class="flex items-center gap-3">
+
+                                <div class="w-11 h-11 rounded-2xl bg-white/30 backdrop-blur-md flex items-center justify-center border border-white/40 shadow-inner shrink-0">
+
+                                    <span class="material-symbols-outlined text-slate-950 text-2xl filled-icon">toll</span>
+
+                                </div>
+
+                                <div class="flex flex-col">
+
+                                    <span class="text-[9.5px] font-extrabold uppercase tracking-wider text-slate-900/80">Số xu hiện có</span>
+
+                                    <span id="reward-store-coins" class="text-lg font-black leading-none mt-0.5">2.450 xu</span>
+
+                                </div>
+
+                            </div>
+
+                            <button onclick="showToast('Đã nhận nhiệm vụ học tập +15 Xu hôm nay!', 'success')" class="bg-slate-950 text-amber-300 font-black text-[9.5px] px-3 py-2 rounded-full shadow-md active:scale-95 transition-all">
+
+                                Nhiệm vụ +15 Xu
+
+                            </button>
+
+                        </div>
+
+
+
+                        <!-- Category Filter Tabs -->
+                        <div class="bg-white px-3 py-2.5 border-b border-slate-100 flex items-center gap-2 overflow-x-auto scrollbar-none shrink-0" id="reward-category-tabs">
+
+                            <button onclick="filterRewardCategory(this, 'all')" class="reward-tab-btn shrink-0 text-xs font-black text-primary bg-blue-50 border border-blue-200/60 px-3.5 py-1.5 rounded-full transition-all">Tất cả</button>
+
+                            <button onclick="filterRewardCategory(this, 'voucher')" class="reward-tab-btn shrink-0 text-xs font-bold text-slate-600 hover:bg-slate-100 px-3.5 py-1.5 rounded-full transition-all">Voucher</button>
+
+                            <button onclick="filterRewardCategory(this, 'ebook')" class="reward-tab-btn shrink-0 text-xs font-bold text-slate-600 hover:bg-slate-100 px-3.5 py-1.5 rounded-full transition-all">Sách & Ebook</button>
+
+                            <button onclick="filterRewardCategory(this, 'gift')" class="reward-tab-btn shrink-0 text-xs font-bold text-slate-600 hover:bg-slate-100 px-3.5 py-1.5 rounded-full transition-all">Quà Y Khoa</button>
+
+                        </div>
+
+
+
+                        <!-- Rewards Catalog Grid -->
+                        <div class="flex-grow overflow-y-auto p-4">
+
+                            <div class="grid grid-cols-2 gap-3" id="reward-items-grid">
+
+                                <!-- Dynamic rewards list populated by JS -->
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ============================================== -->
+
+                    <!-- VIEW 5: SÁCH NÓI PLAYER (Audiobook Player)        -->
+
+                    <!-- ============================================== -->
 
 
 
@@ -12209,8 +12432,10 @@
     <script>
         // Global error handler to catch and alert any runtime errors
         window.onerror = function(message, source, lineno, colno, error) {
-            alert("Lỗi JS: " + message + " (dòng: " + lineno + ", cột: " + colno + ")");
-            console.error(error);
+            console.error("Lỗi JS:", message, "tại dòng:", lineno, "cột:", colno, error);
+            if (typeof showToast === 'function') {
+                showToast("Lỗi hệ thống: " + message, "error");
+            }
         };
 
         // Global variables state
@@ -12713,48 +12938,29 @@
                 return el && (!el.classList.contains('hidden') || el.classList.contains('active'));
             };
 
-            if (isVisible('view-group-detail')) closeGroupDetail();
-            if (isVisible('view-book-detail')) closeBookDetails();
-            if (isVisible('view-author-profile')) closeAuthorProfile();
-            if (isVisible('view-reader')) closeEreaderScreen();
-            if (isVisible('view-quiz')) closeQuizScreen();
-            if (isVisible('view-audiobook')) closeAudiobookPlayer();
-            if (isVisible('view-dictionary')) closeDictionary();
-            if (isVisible('view-library-search')) closeLibrarySearch();
-            if (isVisible('view-shop-search')) closeShopSearch();
-            if (isVisible('view-shop-search-results')) closeShopSearchResults();
-            if (isVisible('view-knowledge-details')) closeKnowledgeDetails();
-            if (isVisible('view-blog-view')) closeBlogView();
-            if (isVisible('view-knowledge-experience')) closeKnowledgeExperience();
-            if (isVisible('view-reading-habit')) closeReadingHabit();
-            if (isVisible('payment-modal-qr')) return closePaymentQrModal();
-            if (isVisible('payment-modal-visa')) return closeVisaPaymentModal();
-            if (isVisible('view-checkout-voucher-selector')) return closeCheckoutVoucherSelector();
-            if (isVisible('shop-variant-drawer')) return closeVariantDrawer();
-            if (isVisible('view-shop-product-detail')) closeShopProductDetail();
-            if (isVisible('view-shop-cart')) closeShopCart();
-            if (isVisible('view-shop-checkout')) closeShopCheckout();
-            if (isVisible('view-shop-orders')) closeShopOrders();
-            if (isVisible('view-shop-vouchers')) closeShopVouchers();
-            if (isVisible('view-shop-messages')) closeShopMessages();
-            if (isVisible('view-shop-paylater')) closeShopPayLater();
-            if (isVisible('view-shop-local')) closeShopLocal();
-            if (isVisible('view-shop-xtracoupons')) closeShopXtraCoupons();
-            if (isVisible('view-shop-freeship')) closeShopFreeShip();
-            if (isVisible('view-shop-mall')) closeShopMall();
-            if (isVisible('view-shop-gifts')) closeShopGifts();
-            if (isVisible('view-shop-flashsale')) closeShopFlashSale();
-            if (isVisible('view-profile-sublist')) closeProfileSublist();
+            // Close slide-over panels (use 'active' toggle, CSS handles visibility)
+            ['view-book-detail', 'view-author-profile', 'view-group-detail'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.remove('active');
+            });
 
-            const successView = document.getElementById('view-shop-success');
-
-            if (successView) successView.classList.add('hidden');
-
-            const dictTermView = document.getElementById('view-dict-term');
-
-            if (dictTermView) dictTermView.classList.add('hidden');
-
-
+            // Hide all other overlays (use 'hidden' toggle)
+            const allOverlays = [
+                'view-reader', 'view-quiz', 'view-audiobook', 'view-dictionary',
+                'view-library-search', 'view-shop-search', 'view-shop-search-results',
+                'view-knowledge-details', 'view-blog-view', 'view-knowledge-experience',
+                'view-reading-habit', 'view-dict-term', 'view-shop-product-detail',
+                'view-shop-cart', 'view-shop-checkout', 'view-shop-success',
+                'view-checkout-voucher-selector', 'view-shop-orders', 'view-shop-vouchers',
+                'view-shop-messages', 'view-shop-chat-detail', 'view-shop-address',
+                'view-shop-paylater', 'view-shop-local', 'view-shop-xtra',
+                'view-shop-freeship', 'view-shop-mall', 'view-shop-global',
+                'view-shop-flashsale', 'view-profile-sublist', 'view-profile-rewards'
+            ];
+            allOverlays.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('hidden');
+            });
 
             // Panels show/hide
 
@@ -12981,78 +13187,60 @@
         // Book details view opening
 
         async function openBookDetails(bookId) {
-    if (Object.keys(appState.bookData).length === 0) {
-        await loadBooksData();
-    }
+            if (!appState.bookData || Object.keys(appState.bookData).length === 0) {
+                await loadBooksData();
+            }
 
-            appState.currentBookId = bookId;
+            appState.currentBookId = bookId || 'thaoduoc';
 
-            const book = appState.bookData[bookId];
+            const book = appState.bookData ? appState.bookData[appState.currentBookId] : null;
 
-            if (!book) return;
-
-
-
-            document.getElementById('detail-title').innerText = book.title;
-
-            document.getElementById('detail-author').innerText = book.author;
-
-            document.getElementById('detail-rating').innerText = book.rating;
-
-            document.getElementById('detail-reads').innerText = `${book.reads} lượt đọc`;
-
-            document.getElementById('detail-cover').innerHTML = `<img src="${getBookCoverURL(bookId)}" class="w-full h-full object-cover rounded-xl" alt="${book.title}" />`;
-
-            document.getElementById('detail-desc').innerText = book.desc;
-
-
+            if (book) {
+                const titleEl = document.getElementById('detail-title');
+                if (titleEl) titleEl.innerText = book.title;
+                const authorEl = document.getElementById('detail-author');
+                if (authorEl) authorEl.innerText = book.author;
+                const ratingEl = document.getElementById('detail-rating');
+                if (ratingEl) ratingEl.innerText = book.rating;
+                const readsEl = document.getElementById('detail-reads');
+                if (readsEl) readsEl.innerText = `${book.reads} lượt đọc`;
+                const coverEl = document.getElementById('detail-cover');
+                if (coverEl) coverEl.innerHTML = `<img src="${getBookCoverURL(appState.currentBookId)}" class="w-full h-full object-cover rounded-xl" alt="${book.title}" />`;
+                const descEl = document.getElementById('detail-desc');
+                if (descEl) descEl.innerText = book.desc;
+            }
 
             // Change author details depending on author
-
             const authName = document.getElementById('detail-author-name');
-
             const authAvatar = document.getElementById('detail-author-avatar');
-
-            if (bookId === 'trathaomoc') {
-
-                authName.innerText = 'Lê Minh';
-
-                authAvatar.src = 'https://lh3.googleusercontent.com/aida-public/AB6AXuCYYfUOY4ohiAvVl30o7RMcJAjLF2LIySm4WY-VlEM-lH83J_wlRC1ukHLc75-ewYF_Dh6TfWCT9fKT8u1FPgu3AbTqzSLlJRQS_Zfkpoi-2sGi_oVjo2lp7byQipzEgxwUrFuB7HjKOg5hKZJUvqZhAABDWcu4JXS2zETY4w_yIBtEnffKy8Ff_Z_YPQjMruJE7lhoWl3jjG8shZY9csIu7PCyyr_ucM237VPaBrz8dBPaTp7ewdOqoytgC_aaUUZSAtc_XeweTYA';
-
-            } else {
-
-                authName.innerText = 'GS. TS. Nguyễn Văn Anh';
-
-                authAvatar.src = 'https://lh3.googleusercontent.com/aida-public/AB6AXuCYYfUOY4ohiAvVl30o7RMcJAjLF2LIySm4WY-VlEM-lH83J_wlRC1ukHLc75-ewYF_Dh6TfWCT9fKT8u1FPgu3AbTqzSLlJRQS_Zfkpoi-2sGi_oVjo2lp7byQipzEgxwUrFuB7HjKOg5hKZJUvqZhAABDWcu4JXS2zETY4w_yIBtEnffKy8Ff_Z_YPQjMruJE7lhoWl3jjG8shZY9csIu7PCyyr_ucM237VPaBrz8dBPaTp7ewdOqoytgC_aaUUZSAtc_XeweTYA';
-
+            if (authName && authAvatar) {
+                if (bookId === 'trathaomoc') {
+                    authName.innerText = 'Lê Minh';
+                    authAvatar.src = 'https://lh3.googleusercontent.com/aida-public/AB6AXuCYYfUOY4ohiAvVl30o7RMcJAjLF2LIySm4WY-VlEM-lH83J_wlRC1ukHLc75-ewYF_Dh6TfWCT9fKT8u1FPgu3AbTqzSLlJRQS_Zfkpoi-2sGi_oVjo2lp7byQipzEgxwUrFuB7HjKOg5hKZJUvqZhAABDWcu4JXS2zETY4w_yIBtEnffKy8Ff_Z_YPQjMruJE7lhoWl3jjG8shZY9csIu7PCyyr_ucM237VPaBrz8dBPaTp7ewdOqoytgC_aaUUZSAtc_XeweTYA';
+                } else {
+                    authName.innerText = 'GS. TS. Nguyễn Văn Anh';
+                    authAvatar.src = 'https://lh3.googleusercontent.com/aida-public/AB6AXuCYYfUOY4ohiAvVl30o7RMcJAjLF2LIySm4WY-VlEM-lH83J_wlRC1ukHLc75-ewYF_Dh6TfWCT9fKT8u1FPgu3AbTqzSLlJRQS_Zfkpoi-2sGi_oVjo2lp7byQipzEgxwUrFuB7HjKOg5hKZJUvqZhAABDWcu4JXS2zETY4w_yIBtEnffKy8Ff_Z_YPQjMruJE7lhoWl3jjG8shZY9csIu7PCyyr_ucM237VPaBrz8dBPaTp7ewdOqoytgC_aaUUZSAtc_XeweTYA';
+                }
             }
-
-
 
             // Sync state of adding to library button
-
             const addBtn = document.getElementById('btn-library-add');
-
-            if (appState.bookInLibrary) {
-
-                addBtn.innerHTML = `<span class="material-symbols-outlined text-sm filled-icon">done</span> Đã có trong thư viện`;
-
-                addBtn.classList.add('bg-blue-50', 'text-blue-700', 'border-blue-200');
-
-            } else {
-
-                addBtn.innerHTML = `<span class="material-symbols-outlined text-sm">library_add</span> Thêm vào thư viện`;
-
-                addBtn.classList.remove('bg-blue-50', 'text-blue-700', 'border-blue-200');
-
+            if (addBtn) {
+                if (appState.bookInLibrary) {
+                    addBtn.innerHTML = `<span class="material-symbols-outlined text-sm filled-icon">done</span> Đã có trong thư viện`;
+                    addBtn.classList.add('bg-blue-50', 'text-blue-700', 'border-blue-200');
+                } else {
+                    addBtn.innerHTML = `<span class="material-symbols-outlined text-sm">library_add</span> Thêm vào thư viện`;
+                    addBtn.classList.remove('bg-blue-50', 'text-blue-700', 'border-blue-200');
+                }
             }
 
-
-
-            document.getElementById('view-book-detail').classList.add('active');
+            const viewBookDetail = document.getElementById('view-book-detail');
+            if (viewBookDetail) {
+                viewBookDetail.classList.add('active');
+            }
 
             updateBottomNavVisibility();
-
         }
 
 
@@ -14364,11 +14552,12 @@
         // Quiz checking and option active highlights
 
         function openQuizScreen() {
-
-            document.getElementById('view-quiz').classList.remove('hidden');
-
+            if (typeof renderStandaloneQuiz === 'function') {
+                renderStandaloneQuiz();
+            }
+            const view = document.getElementById('view-quiz');
+            if (view) view.classList.remove('hidden');
             updateBottomNavVisibility();
-
         }
 
 
@@ -17667,74 +17856,45 @@
         // Initialize default chapter and standalone quiz on page load
 
         window.addEventListener('DOMContentLoaded', () => {
-    loadBooksData();
+            loadBooksData();
 
             // Initialize Typewriter and Animated User Name Effects
-
             initTypewriter('home-typewriter-greeting', ['Chào buổi sáng', 'Chào ngày mới', 'Chào mừng bác sĩ']);
-
             initAnimatedText('home-username-animated', 'Nguyễn Văn A');
 
-
-
             loadChapter('tamthat');
-
             renderStandaloneQuiz();
-
             renderAllBookCovers();
-
             initDragToScroll();
-
             switchTab('home');
 
-            
-
             // Sync initial state to UI
-
             updateMissionsUI();
 
             const homeStreakEl = document.getElementById('home-streak');
-
             if (homeStreakEl) {
-
                 homeStreakEl.innerText = `${appState.streakDays} Ngày`;
-
             }
 
             const habitStreakValEl = document.getElementById('habit-streak-val');
-
             if (habitStreakValEl) {
-
                 habitStreakValEl.innerText = appState.streakDays;
-
             }
 
-
+            console.log("=== DOMContentLoaded END");
 
             // Update mock phone time dynamically
-
             const mockTimeEl = document.getElementById('mock-phone-time');
-
             if (mockTimeEl) {
-
                 const updateTime = () => {
-
                     const now = new Date();
-
                     const hrs = String(now.getHours()).padStart(2, '0');
-
                     const mins = String(now.getMinutes()).padStart(2, '0');
-
                     mockTimeEl.innerText = `${hrs}:${mins}`;
-
                 };
-
                 updateTime();
-
                 setInterval(updateTime, 60000);
-
             }
-
         });
 
         // =============================================
@@ -19222,9 +19382,10 @@ let currentActiveBookId = 'chandoanykhoa';
 
 
         async function openDictionaryTerm(title, badgeLabel, badgeType, definition, clinical) {
-    if (Object.keys(termData).length === 0) {
-        await loadDictionaryData();
-    }
+            openDictionary();
+            if (Object.keys(termData).length === 0) {
+                await loadDictionaryData();
+            }
 
             incrementLookupCount();
 
@@ -25022,11 +25183,31 @@ let currentActiveBookId = 'chandoanykhoa';
 
             voucherDiscount = shippingDiscount + productDiscount;
 
-            
+            const grandtotalBeforeCoins = Math.max(0, subtotal + totalShipping - voucherDiscount);
 
-            const grandtotal = subtotal + totalShipping - voucherDiscount;
+            // GEMS Xu Discount calculation
+            let coinsDiscount = 0;
+            let userCoins = appState.userCoins || 0;
+            const coinsBalanceEl = document.getElementById('checkout-coins-balance');
+            if (coinsBalanceEl) coinsBalanceEl.textContent = `Đang có: ${userCoins.toLocaleString()} xu`;
 
-            
+            if (isCheckoutCoinsApplied && userCoins > 0) {
+                const maxCoinVal = userCoins * 10; // 1 xu = 10đ
+                coinsDiscount = Math.min(maxCoinVal, grandtotalBeforeCoins);
+            }
+
+            const grandtotal = Math.max(0, grandtotalBeforeCoins - coinsDiscount);
+
+            const coinsRow = document.getElementById('checkout-coins-row');
+            const coinsDiscountEl = document.getElementById('checkout-coins-discount');
+            if (coinsRow && coinsDiscountEl) {
+                if (isCheckoutCoinsApplied && coinsDiscount > 0) {
+                    coinsRow.classList.remove('hidden');
+                    coinsDiscountEl.textContent = '-' + coinsDiscount.toLocaleString() + 'đ';
+                } else {
+                    coinsRow.classList.add('hidden');
+                }
+            }
 
             const subtotalEl = document.getElementById('checkout-subtotal');
 
@@ -25040,8 +25221,6 @@ let currentActiveBookId = 'chandoanykhoa';
 
             const appliedVoucherText = document.getElementById('checkout-applied-voucher-text');
 
-            
-
             if (subtotalEl) subtotalEl.textContent = subtotal.toLocaleString() + 'đ';
 
             if (shippingEl) shippingEl.textContent = totalShipping === 0 ? 'Miễn phí' : totalShipping.toLocaleString() + 'đ';
@@ -25051,8 +25230,6 @@ let currentActiveBookId = 'chandoanykhoa';
             if (grandtotalEl) grandtotalEl.textContent = grandtotal.toLocaleString() + 'đ';
 
             if (grandtotalSticky) grandtotalSticky.textContent = grandtotal.toLocaleString() + 'đ';
-
-            
 
             if (appliedVoucherText) {
                 let count = 0;
@@ -25547,6 +25724,14 @@ let currentActiveBookId = 'chandoanykhoa';
             });
         }
 
+        let isCheckoutCoinsApplied = false;
+
+        function toggleCheckoutCoinsUsage() {
+            const checkbox = document.getElementById('checkout-use-coins-checkbox');
+            isCheckoutCoinsApplied = checkbox ? checkbox.checked : false;
+            renderCheckout();
+        }
+
         function completeOrderAndSave(payload) {
             let orders = JSON.parse(localStorage.getItem('gems_shop_orders')) || [];
             orders.unshift(payload);
@@ -25565,6 +25750,26 @@ let currentActiveBookId = 'chandoanykhoa';
             
             localStorage.setItem('gems_shop_cart', JSON.stringify(ShopCart));
             updateCartBadge();
+
+            // Deduct GEMS Xu if applied
+            if (isCheckoutCoinsApplied && (appState.userCoins || 0) > 0) {
+                const grandTotalEl = document.getElementById('checkout-grandtotal');
+                const finalPaid = parseInt(grandTotalEl ? grandTotalEl.textContent.replace(/\D/g, '') : '0') || 0;
+                
+                const coinsUsed = Math.min(appState.userCoins, Math.ceil((payload.total - finalPaid) / 10));
+                if (coinsUsed > 0) {
+                    appState.userCoins = Math.max(0, appState.userCoins - coinsUsed);
+                    const profileCoinsEl = document.getElementById('profile-coins');
+                    if (profileCoinsEl) profileCoinsEl.innerText = `${appState.userCoins} xu`;
+                    const desktopCoinsEl = document.getElementById('desktop-coins');
+                    if (desktopCoinsEl) desktopCoinsEl.innerText = `${appState.userCoins} xu`;
+                }
+
+                // Reset checkbox state
+                isCheckoutCoinsApplied = false;
+                const checkbox = document.getElementById('checkout-use-coins-checkbox');
+                if (checkbox) checkbox.checked = false;
+            }
 
             const successTotal = document.getElementById('success-total-price');
             const successId = document.getElementById('success-order-id');
@@ -26227,6 +26432,165 @@ let currentActiveBookId = 'chandoanykhoa';
 
 
 
+        // ============ GEMS XU REWARD STORE LOGIC ============
+        let currentRewardCategory = 'all';
+        const mockRewardCatalog = [
+            {
+                id: 'rw-1',
+                title: 'Voucher Giảm 30K GEMS Shop',
+                category: 'voucher',
+                cost: 300,
+                icon: 'confirmation_number',
+                iconBg: 'bg-amber-100 text-amber-600',
+                desc: 'Áp dụng cho mọi đơn sách in từ 150K',
+                badge: 'Voucher Hot'
+            },
+            {
+                id: 'rw-2',
+                title: 'Mã Miễn Phí Vận Chuyển 0Đ',
+                category: 'voucher',
+                cost: 200,
+                icon: 'local_shipping',
+                iconBg: 'bg-emerald-100 text-emerald-600',
+                desc: 'Tối đa 30K phí vận chuyển toàn quốc',
+                badge: 'Freeship'
+            },
+            {
+                id: 'rw-3',
+                title: 'Ebook ECG Lâm Sàng Toàn Tập',
+                category: 'ebook',
+                cost: 1000,
+                icon: 'menu_book',
+                iconBg: 'bg-blue-100 text-blue-600',
+                desc: 'Mở khóa bản quyền đọc vĩnh viễn',
+                badge: 'Thư viện Ebook'
+            },
+            {
+                id: 'rw-4',
+                title: 'Bút Highlight Y Khoa 6 Màu',
+                category: 'gift',
+                cost: 800,
+                icon: 'edit_note',
+                iconBg: 'bg-purple-100 text-purple-600',
+                desc: 'Quà tặng vật lý giao hàng tận nhà',
+                badge: 'Quà độc quyền'
+            },
+            {
+                id: 'rw-5',
+                title: 'Voucher Giảm 100K GEMS Mall',
+                category: 'voucher',
+                cost: 1500,
+                icon: 'loyalty',
+                iconBg: 'bg-rose-100 text-rose-600',
+                desc: 'Áp dụng cho gian hàng chính hãng',
+                badge: 'Vip Coupon'
+            },
+            {
+                id: 'rw-6',
+                title: 'Sổ Tay Ghi Chép Bệnh Án Lâm Sàng',
+                category: 'gift',
+                cost: 1200,
+                icon: 'clinical_notes',
+                iconBg: 'bg-indigo-100 text-indigo-600',
+                desc: 'Sổ bìa da cao cấp dành cho sinh viên Y',
+                badge: 'Quà hot'
+            }
+        ];
+
+        function openRewardStore() {
+            updateRewardCoinsBadge();
+            renderRewardItems();
+            const view = document.getElementById('view-profile-rewards');
+            if (view) view.classList.remove('hidden');
+        }
+
+        function closeRewardStore() {
+            const view = document.getElementById('view-profile-rewards');
+            if (view) view.classList.add('hidden');
+        }
+
+        function updateRewardCoinsBadge() {
+            const userCoins = appState.userCoins || 0;
+            const storeCoinsEl = document.getElementById('reward-store-coins');
+            if (storeCoinsEl) storeCoinsEl.textContent = `${userCoins.toLocaleString()} xu`;
+            const profileCoinsEl = document.getElementById('profile-coins');
+            if (profileCoinsEl) profileCoinsEl.textContent = `${userCoins.toLocaleString()} xu`;
+            const desktopCoinsEl = document.getElementById('desktop-coins');
+            if (desktopCoinsEl) desktopCoinsEl.textContent = `${userCoins.toLocaleString()} xu`;
+        }
+
+        function filterRewardCategory(btn, category) {
+            currentRewardCategory = category;
+            document.querySelectorAll('.reward-tab-btn').forEach(b => {
+                b.className = 'reward-tab-btn shrink-0 text-xs font-bold text-slate-600 hover:bg-slate-100 px-3.5 py-1.5 rounded-full transition-all';
+            });
+            btn.className = 'reward-tab-btn shrink-0 text-xs font-black text-primary bg-blue-50 border border-blue-200/60 px-3.5 py-1.5 rounded-full transition-all';
+            renderRewardItems();
+        }
+
+        function renderRewardItems() {
+            const grid = document.getElementById('reward-items-grid');
+            if (!grid) return;
+
+            let filtered = mockRewardCatalog;
+            if (currentRewardCategory !== 'all') {
+                filtered = mockRewardCatalog.filter(r => r.category === currentRewardCategory);
+            }
+
+            const userCoins = appState.userCoins || 0;
+
+            grid.innerHTML = filtered.map(item => {
+                const canAfford = userCoins >= item.cost;
+                return `
+                    <div class="bg-white rounded-2xl p-3 border border-slate-200/80 shadow-xs flex flex-col justify-between space-y-2 hover:shadow-md transition-all">
+                        <div class="space-y-1.5">
+                            <div class="flex items-center justify-between">
+                                <div class="w-8 h-8 rounded-xl ${item.iconBg} flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-base">${item.icon}</span>
+                                </div>
+                                <span class="text-[8px] font-black uppercase bg-amber-50 text-amber-700 px-1.5 py-0.5 rounded-md border border-amber-200/60">${item.badge}</span>
+                            </div>
+                            <h4 class="text-xs font-black text-slate-800 line-clamp-2 leading-tight">${escapeHtml(item.title)}</h4>
+                            <p class="text-[9px] text-slate-450 font-medium leading-snug line-clamp-2">${escapeHtml(item.desc)}</p>
+                        </div>
+                        <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-xs font-black text-amber-600 flex items-center gap-0.5">
+                                <span class="material-symbols-outlined text-sm filled-icon">toll</span>
+                                ${item.cost}
+                            </span>
+                            <button onclick="redeemRewardItem('${item.id}', ${item.cost}, '${escapeHtml(item.title)}', '${item.category}')" 
+                                class="px-2.5 py-1 rounded-full text-[9.5px] font-black transition-all ${canAfford ? 'bg-primary text-white hover:bg-primary-dark active:scale-95 shadow-xs' : 'bg-slate-100 text-slate-400 cursor-not-allowed'}">
+                                ${canAfford ? 'Đổi ngay' : 'Thiếu xu'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function redeemRewardItem(id, cost, title, category) {
+            const userCoins = appState.userCoins || 0;
+            if (userCoins < cost) {
+                const diff = cost - userCoins;
+                showToast(`Bạn cần tích thêm ${diff.toLocaleString()} GEMS Xu nữa để đổi món quà này!`, "warning");
+                return;
+            }
+
+            // Deduct coins
+            appState.userCoins -= cost;
+            updateRewardCoinsBadge();
+
+            if (category === 'voucher') {
+                showToast(`Chúc mừng! Bạn đã đổi thành công [${title}]. Mã đã được thêm vào Ví Voucher của bạn!`, "success");
+            } else if (category === 'ebook') {
+                showToast(`Tuyệt vời! Bản quyền [${title}] đã được mở khóa vào Thư viện của bạn!`, "success");
+            } else {
+                showToast(`Đăng ký nhận quà [${title}] thành công! Bộ phận CSKH sẽ liên hệ giao hàng tận nơi.`, "success");
+            }
+
+            renderRewardItems();
+        }
+
         // ============ PAYLATER / ADDRESS ============
 
         let ShippingAddresses = JSON.parse(localStorage.getItem('gems_shipping_addresses')) || [];
@@ -26256,7 +26620,124 @@ let currentActiveBookId = 'chandoanykhoa';
                 .replace(/'/g, "&#039;");
         }
 
-        function openShopPayLater() {
+        // ============ CHAT DETAIL LOGIC ============
+        let activeChatShop = 'GEMS Tech Store';
+        const mockChatHistory = {
+            'GEMS Tech Store': [
+                { sender: 'shop', text: 'Xin chào! Cảm ơn bạn đã ghé thăm GEMS Tech Store. Shop có thể hỗ trợ gì cho bạn hôm nay?', time: '10:30' },
+                { sender: 'shop', text: 'Đơn hàng tai nghe Bluetooth của bạn đã được xác nhận và đang chuẩn bị đóng gói nhé!', time: '10:32' }
+            ],
+            'GEMS Fashion House': [
+                { sender: 'shop', text: 'Chào bạn! GEMS Fashion House xin chào. Bạn cần tư vấn chọn size áo hay chất liệu vải ạ?', time: 'Hôm qua' },
+                { sender: 'user', text: 'Cảm ơn shop nhé, sản phẩm áo Hoodie đợt trước rất đẹp!', time: 'Hôm qua' },
+                { sender: 'shop', text: 'Dạ shop cảm ơn bạn nhiều ạ! Chúc bạn mặc đẹp và tiếp tục ủng hộ shop nhé ❤️', time: 'Hôm qua' }
+            ],
+            'GEMS Books & Education': [
+                { sender: 'shop', text: 'Xin chào! Bạn đang quan tâm đến dòng sách Y khoa hay tài liệu lâm sàng nào của GEMS Books ạ?', time: '2 ngày trước' }
+            ]
+        };
+
+        function openShopChatDetail(shopName, avatarIcon = 'store') {
+            activeChatShop = shopName;
+            const titleEl = document.getElementById('chat-detail-title');
+            const iconEl = document.getElementById('chat-detail-avatar-icon');
+            if (titleEl) titleEl.textContent = shopName;
+            if (iconEl) iconEl.textContent = avatarIcon;
+
+            if (!mockChatHistory[shopName]) {
+                mockChatHistory[shopName] = [
+                    { sender: 'shop', text: `Xin chào! Cảm ơn bạn đã liên hệ ${shopName}. Shop có thể giúp gì cho bạn?`, time: 'Vừa xong' }
+                ];
+            }
+
+            renderChatMessages();
+
+            const view = document.getElementById('view-shop-chat-detail');
+            if (view) view.classList.remove('hidden');
+        }
+
+        function closeShopChatDetail() {
+            const view = document.getElementById('view-shop-chat-detail');
+            if (view) view.classList.add('hidden');
+        }
+
+        function renderChatMessages() {
+            const container = document.getElementById('chat-messages-container');
+            if (!container) return;
+
+            const history = mockChatHistory[activeChatShop] || [];
+            container.innerHTML = history.map(msg => {
+                if (msg.sender === 'user') {
+                    return `
+                        <div class="flex flex-col items-end space-y-1">
+                            <div class="bg-primary text-white px-3.5 py-2 rounded-2xl rounded-tr-xs text-xs max-w-[80%] shadow-xs leading-relaxed">
+                                ${escapeHtml(msg.text)}
+                            </div>
+                            <span class="text-[8px] text-slate-400 font-bold px-1">${msg.time}</span>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div class="flex items-start gap-2 max-w-[85%]">
+                            <div class="w-7 h-7 rounded-full bg-blue-100 text-primary flex items-center justify-center shrink-0 mt-0.5 border border-blue-200">
+                                <span class="material-symbols-outlined text-xs">store</span>
+                            </div>
+                            <div class="flex flex-col space-y-1">
+                                <div class="bg-white text-slate-800 border border-slate-200/80 px-3.5 py-2 rounded-2xl rounded-tl-xs text-xs shadow-xs leading-relaxed">
+                                    ${escapeHtml(msg.text)}
+                                </div>
+                                <span class="text-[8px] text-slate-400 font-bold px-1">${msg.time}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+            }).join('');
+
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function sendShopChatMessage(text = null) {
+            const input = document.getElementById('chat-input-text');
+            const msgText = text || (input ? input.value.trim() : '');
+            if (!msgText) return;
+
+            if (input) input.value = '';
+
+            const history = mockChatHistory[activeChatShop] || [];
+            const timeStr = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+            history.push({ sender: 'user', text: msgText, time: timeStr });
+            mockChatHistory[activeChatShop] = history;
+
+            renderChatMessages();
+
+            // Auto reply logic
+            const indicator = document.getElementById('chat-typing-indicator');
+            if (indicator) indicator.classList.remove('hidden');
+
+            setTimeout(() => {
+                if (indicator) indicator.classList.add('hidden');
+                let replyText = "Cảm ơn bạn đã nhắn tin! Shop đã nhận được thông tin và sẽ hỗ trợ ngay trong ít phút nhé.";
+                const lower = msgText.toLowerCase();
+                if (lower.includes('còn hàng') || lower.includes('sách')) {
+                    replyText = "Dạ sản phẩm/sách này hiện vẫn đang còn sẵn hàng ạ! Bạn có thể đặt mua ngay để nhận ưu đãi Freeship hôm nay nhé.";
+                } else if (lower.includes('giao') || lower.includes('bao giờ')) {
+                    replyText = "Đơn hàng của bạn sẽ được bàn giao cho đơn vị vận chuyển trong 24h tới và dự kiến giao đến bạn sau 1-3 ngày làm việc ạ.";
+                } else if (lower.includes('mã') || lower.includes('giảm') || lower.includes('freeship')) {
+                    replyText = "Shop vừa tặng bạn mã Freeship 0Đ và Voucher giảm 30K trực tiếp trong Ví Voucher đó ạ! Bạn nhớ áp dụng khi thanh toán nhé.";
+                }
+
+                history.push({ sender: 'shop', text: replyText, time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }) });
+                renderChatMessages();
+            }, 1000);
+        }
+
+        function sendQuickChatChip(chipText) {
+            sendShopChatMessage(chipText);
+        }
+
+        // ============ PAYLATER / ADDRESS ============
+
+        function openShopAddress() {
             // Show list view, hide form view
             const listView = document.getElementById('shop-address-list-view');
             const formView = document.getElementById('shop-address-form-view');
@@ -26265,13 +26746,21 @@ let currentActiveBookId = 'chandoanykhoa';
 
             renderAddressList();
 
-            const view = document.getElementById('view-shop-paylater');
+            const view = document.getElementById('view-shop-address') || document.getElementById('view-shop-paylater');
             if (view) view.classList.remove('hidden');
         }
 
-        function closeShopPayLater() {
-            const view = document.getElementById('view-shop-paylater');
+        function closeShopAddress() {
+            const view = document.getElementById('view-shop-address') || document.getElementById('view-shop-paylater');
             if (view) view.classList.add('hidden');
+        }
+
+        function openShopPayLater() {
+            openShopAddress();
+        }
+
+        function closeShopPayLater() {
+            closeShopAddress();
         }
 
         function renderAddressList() {
@@ -28965,23 +29454,23 @@ let currentActiveBookId = 'chandoanykhoa';
 
             // 3. Register Back to Top Scroll Event Listeners
             const shopScroll = document.getElementById('shop-scroll-content');
-            if (shopScroll) {
+            if (shopScroll && typeof handleShopScroll === 'function') {
                 shopScroll.addEventListener('scroll', handleShopScroll);
             }
             const localScroll = document.getElementById('local-scroll-content');
-            if (localScroll) {
+            if (localScroll && typeof handleLocalScroll === 'function') {
                 localScroll.addEventListener('scroll', handleLocalScroll);
             }
             const xtraScroll = document.getElementById('view-shop-xtra-scroll');
-            if (xtraScroll) {
+            if (xtraScroll && typeof handleXtraScroll === 'function') {
                 xtraScroll.addEventListener('scroll', handleXtraScroll);
             }
             const homeScroll = document.getElementById('home-scroll-content');
-            if (homeScroll) {
+            if (homeScroll && typeof handleHomeScroll === 'function') {
                 homeScroll.addEventListener('scroll', handleHomeScroll);
             }
             const globalScroll = document.getElementById('global-scroll-content');
-            if (globalScroll) {
+            if (globalScroll && typeof handleGlobalScroll === 'function') {
                 globalScroll.addEventListener('scroll', handleGlobalScroll);
             }
 

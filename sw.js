@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gems-pwa-cache-v80';
+const CACHE_NAME = 'gems-pwa-cache-v81';
 const urlsToCache = [
   '/',
   '/index.html',
