@@ -151,6 +151,19 @@
         .subpanel-content { display: none; }
         .subpanel-content.active { display: block; }
         .empty-state { text-align: center; padding: 48px 20px; color: #94a3b8; }
+
+        /* SKELETON SHIMMER LOADING */
+        .skeleton-shimmer {
+            background: linear-gradient(90deg, rgba(226, 232, 240, 0.6) 25%, rgba(241, 245, 249, 0.95) 50%, rgba(226, 232, 240, 0.6) 75%);
+            background-size: 200% 100%;
+            animation: skeletonShimmer 1.5s infinite ease-in-out;
+            border-radius: 8px;
+        }
+        body.dark .skeleton-shimmer {
+            background: linear-gradient(90deg, rgba(30, 41, 59, 0.6) 25%, rgba(51, 65, 85, 0.95) 50%, rgba(30, 41, 59, 0.6) 75%);
+            background-size: 200% 100%;
+        }
+        @keyframes skeletonShimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -268,6 +281,14 @@
             </div>
 
             <div class="flex items-center gap-2.5">
+                <button onclick="exportAdminReport()" title="Xuất báo cáo Excel / CSV" class="btn-primary py-1.5 px-3 text-xs">
+                    <span class="material-symbols-outlined text-base">download</span>
+                    <span class="hidden sm:inline">Xuất Báo Cáo</span>
+                </button>
+                <button onclick="openModal('modal-push-notification')" title="Phát thông báo đẩy toàn hệ thống" class="bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs py-1.5 px-3 rounded-xl flex items-center gap-1.5 shadow-sm transition">
+                    <span class="material-symbols-outlined text-base">notifications_active</span>
+                    <span class="hidden sm:inline">Thông Báo Đẩy</span>
+                </button>
                 <button onclick="toggleTheme()" title="Chuyển chế độ Nền Tối / Sáng" class="p-2 text-slate-600 dark:text-amber-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition">
                     <span class="material-symbols-outlined text-xl">dark_mode</span>
                 </button>
@@ -448,6 +469,46 @@
     </div>
 </div>
 
+<!-- PUSH NOTIFICATION BROADCAST MODAL -->
+<div id="modal-push-notification" class="modal-overlay hidden">
+    <div class="modal-box" style="max-width:540px">
+        <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+            <h3 class="text-sm font-extrabold flex items-center gap-2 text-slate-900 dark:text-white">
+                <span class="material-symbols-outlined text-amber-500">notifications_active</span>
+                <span>Phát Thông Báo Đẩy (Push Broadcast)</span>
+            </h3>
+            <button onclick="closeModal('modal-push-notification')" class="p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <form onsubmit="handleSendPushNotification(event)" class="p-5 space-y-4">
+            <div>
+                <label class="form-label text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">Tiêu Đề Thông Báo</label>
+                <input type="text" id="push-title" required placeholder="Ví dụ: 🔥 FLASH SALE GEMS MALL - Giảm 50% hôm nay!" class="form-input text-xs w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800"/>
+            </div>
+            <div>
+                <label class="form-label text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">Đối Tượng Nhận Thông Báo</label>
+                <select id="push-target" class="form-select text-xs w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                    <option value="Tất cả độc giả & người dùng">Tất cả độc giả & người dùng (Toàn hệ thống)</option>
+                    <option value="Độc giả VIP GEMS">Độc giả đăng ký GEMS VIP</option>
+                    <option value="Gian hàng đối tác (THÁI NHÂN SÂM...)">Gian hàng đối tác (THÁI NHÂN SÂM...)</option>
+                </select>
+            </div>
+            <div>
+                <label class="form-label text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">Nội Dung Chi Tiết</label>
+                <textarea id="push-message" rows="3" required placeholder="Nhập nội dung khuyến mãi hoặc thông báo ra mắt sách y khoa mới..." class="form-input text-xs w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800"></textarea>
+            </div>
+            <div class="flex items-center justify-end gap-2 pt-2">
+                <button type="button" onclick="closeModal('modal-push-notification')" class="btn-sm btn-edit py-2 px-4 text-xs">Hủy</button>
+                <button type="submit" class="bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs py-2 px-5 rounded-xl flex items-center gap-1.5 shadow-md transition">
+                    <span class="material-symbols-outlined text-base">send</span>
+                    <span>Phát Thông Báo</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <!-- JAVASCRIPT LOGIC -->
 <script>
     let currentLang = localStorage.getItem('gems_admin_lang') || 'vi';
@@ -517,8 +578,58 @@
         resultsEl.innerHTML = `<div class="p-2 hover:bg-slate-100 rounded cursor-pointer" onclick="switchTab('account-health')"><b>Hồ sơ người bán: THÁI NHÂN SÂM</b></div>`;
     }
 
+    function renderTableSkeletons() {
+        const skeletonRow = (cols) => `
+            <tr>
+                ${Array(cols).fill(0).map(() => `
+                    <td><div class="h-4 skeleton-shimmer rounded-lg w-full my-1.5"></div></td>
+                `).join('')}
+            </tr>
+        `;
+        const ordersTbody = document.getElementById('gems-orders-tbody');
+        if (ordersTbody) ordersTbody.innerHTML = Array(4).fill(0).map(() => skeletonRow(7)).join('');
+
+        const prodsTbody = document.getElementById('products-tbody');
+        if (prodsTbody) prodsTbody.innerHTML = Array(4).fill(0).map(() => skeletonRow(7)).join('');
+
+        const usersTbody = document.getElementById('users-tbody');
+        if (usersTbody) usersTbody.innerHTML = Array(4).fill(0).map(() => skeletonRow(7)).join('');
+    }
+
+    function exportAdminReport() {
+        showToast('Đang tạo báo cáo doanh thu & kho hàng cho THÁI NHÂN SÂM...', 'info');
+        setTimeout(() => {
+            const csvRows = [
+                ["Ma Don", "Khach Hang", "San Pham", "Doanh Thu (VND)", "Phuong Thuc", "Trang Thai"],
+                ["#GEMS94821", "BS. Nguyen Van Nam", "Ong Nghe Y Te Littmann Classic III", "3450000", "VietQR", "Dang giao"],
+                ["#GEMS94822", "Thai Nhan Sam", "Sam Duoc Lieu Quy GEMS 500g", "1250000", "Momo", "Hoan thanh"],
+                ["#GEMS94823", "Dr. Elena Rostova", "Cam Nang Bao Che Duoc Pham", "450000", "The Quoc Te", "Hoan thanh"]
+            ];
+            const csvString = csvRows.map(e => e.join(",")).join("\n");
+            const blob = new Blob(["\ufeff" + csvString], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", "Bao_Cao_Doanh_Thu_GEMS_ThaiNhanSam.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast('Đã tải xuống báo cáo doanh thu Excel/CSV thành công!', 'success');
+        }, 600);
+    }
+
+    function handleSendPushNotification(e) {
+        e.preventDefault();
+        const title = document.getElementById('push-title').value;
+        const target = document.getElementById('push-target').value;
+        closeModal('modal-push-notification');
+        showToast(`Đã phát thông báo: "${title}" tới nhóm [${target}]!`, 'success');
+    }
+
     async function refreshAllData() {
-        if (!window.db) return;
+        renderTableSkeletons();
+        await new Promise(r => setTimeout(r, 350));
+        if (!window.db) { renderAll(); return; }
         try {
             const [usersSnap, booksSnap, ordSnap, prodSnap] = await Promise.all([
                 window.db.collection('users').get(), window.db.collection('books').get(), window.db.collection('orders').get(), window.db.collection('shop_products').get()
