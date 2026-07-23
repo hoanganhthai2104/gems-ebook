@@ -51,6 +51,17 @@
       }
     </script>
 
+    <!-- Application Styles -->
+    <link rel="stylesheet" href="css/components/theme.css" />
+
+    <!-- Application Modules -->
+    <script src="js/modules/dictionary.js"></script>
+    <script src="js/modules/audio.js"></script>
+    <script src="js/modules/nav.js"></script>
+    <script src="js/modules/reader.js"></script>
+    <script src="js/modules/shop.js"></script>
+    <script src="js/app.js"></script>
+
     <!-- Fonts -->
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet"/>
@@ -2289,7 +2300,7 @@
                     </div>
 
                     <!-- BUY NOW Button (Positioned half-inside, half-outside bottom border) -->
-                    <button onclick="closeShopPopup(); showToast('Chào mừng bạn đến với hội sản phẩm mới GEMS Mall!', 'success');" class="absolute bottom-0 translate-y-1/2 w-[70%] bg-gradient-to-r from-[#005A9C] via-blue-600 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-black text-[10px] py-3 rounded-full tracking-wider shadow-[0_8px_20px_rgba(0,90,156,0.5)] border-2 border-white active:scale-95 transition-all duration-200 uppercase flex items-center justify-center gap-1.5 z-30 cursor-pointer">
+                    <button onclick="closeShopPopup(); setTimeout(() => openShopXtraCoupons(), 220);" class="absolute bottom-0 translate-y-1/2 w-[70%] bg-gradient-to-r from-[#005A9C] via-blue-600 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-black text-[10px] py-3 rounded-full tracking-wider shadow-[0_8px_20px_rgba(0,90,156,0.5)] border-2 border-white active:scale-95 transition-all duration-200 uppercase flex items-center justify-center gap-1.5 z-30 cursor-pointer">
                         <span>XEM NGAY</span>
                         <span class="text-[8px] font-black">▶</span>
                     </button>
@@ -22272,6 +22283,33 @@ let currentActiveBookId = 'chandoanykhoa';
                 if (lower.includes("thảm")) {
                     return 'assets/shop/yoga_mat.png';
                 }
+                if (lower.includes("nước hoa") || lower.includes("parfum") || lower.includes("cologne")) {
+                    return 'assets/shop/perfume_bottle.png';
+                }
+                if (lower.includes("kính bơi") || lower.includes("kính lặn") || lower.includes("swim goggle")) {
+                    return 'assets/shop/swim_goggles.png';
+                }
+                if (lower.includes("vợt") || lower.includes("cầu lông") || lower.includes("badminton")) {
+                    return 'assets/shop/badminton_racket.png';
+                }
+                if (lower.includes("đồng hồ bấm") || lower.includes("stopwatch") || lower.includes("bấm giờ")) {
+                    return 'assets/shop/stopwatch.png';
+                }
+                if (lower.includes("túi trống") || lower.includes("gym bag") || lower.includes("túi gym")) {
+                    return 'assets/shop/gym_bag.png';
+                }
+                if (lower.includes("xe đẩy") || lower.includes("stroller")) {
+                    return 'assets/shop/baby_stroller.png';
+                }
+                if (lower.includes("kính mát") || lower.includes("kính râm") || lower.includes("sunglasses")) {
+                    return 'assets/shop/sunglasses.png';
+                }
+                if (lower.includes("ô dù") || lower.includes("dù gấp") || lower.includes("umbrella")) {
+                    return 'assets/shop/umbrella.png';
+                }
+                if (lower.includes("ví da") || lower.includes("ví nam") || lower.includes("wallet")) {
+                    return 'assets/shop/wallet.png';
+                }
                 if (lower.includes("tai nghe") || lower.includes("headphones") || lower.includes("loa") || lower.includes("soundbar")) {
                     const imgs = ['assets/shop/headphones_black.png', 'assets/shop/headphones_white.png', 'assets/shop/headphones_blue.png', 'assets/shop/headphones.png'];
                     return imgs[title.length % imgs.length];
@@ -22331,6 +22369,18 @@ let currentActiveBookId = 'chandoanykhoa';
                 }
                 if (lower.includes("sách") || lower.includes("book") || lower.includes("cẩm nang") || lower.includes("từ điển") || lower.includes("atlas")) {
                     return 'assets/shop/book.png';
+                }
+                if (lower.includes("huyết áp")) {
+                    return 'assets/shop/bp_monitor.png';
+                }
+                if (lower.includes("nhiệt kế")) {
+                    return 'assets/shop/infrared_thermometer.png';
+                }
+                if (lower.includes("vòng tay") || lower.includes("bạc") || lower.includes("trang sức") || lower.includes("dây chuyền") || lower.includes("khuyên tai")) {
+                    return 'assets/shop/silver_bracelet.png';
+                }
+                if (lower.includes("băng cá nhân") || lower.includes("băng gạc") || lower.includes("plaster")) {
+                    return 'assets/shop/cosnori_remover.png';
                 }
                 if (lower.includes("bình nước") || lower.includes("bình giữ nhiệt") || lower.includes("thermos")) {
                     return 'assets/shop/fj_thermos.png';
@@ -22670,8 +22720,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Beauty Store",
                         desc: "Nước hoa nữ hương hoa cỏ ngọt ngào quyến rũ, độ lưu hương cực lâu từ 8-12 tiếng.",
                         specs: { "Dung tích": "50ml", "Nồng độ": "EDP", "Hương chủ đạo": "Nhài, Hồng, Xạ hương" },
-                        images: ["assets/shop/headphones_white.png"],
-                        variants: [{ id: "beauty_perfume", name: "EDP 50ml", price: 617500, originalPrice: 950000, image: "assets/shop/headphones_white.png", stock: 40 }]
+                        images: ["assets/shop/perfume_bottle.png"],
+                        variants: [{ id: "beauty_perfume", name: "EDP 50ml", price: 617500, originalPrice: 950000, image: "assets/shop/perfume_bottle.png", stock: 40 }]
                     }
                 ],
                 sports: [
@@ -22712,8 +22762,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Sportswear",
                         desc: "Quả bóng rổ size 7 tiêu chuẩn thi đấu chất liệu da PU bám tay cực tốt, độ nảy ổn định bền bỉ.",
                         specs: { "Kích thước": "Size 7 tiêu chuẩn", "Chất liệu": "Da PU cao cấp", "Sử dụng": "Trong nhà & Ngoài trời" },
-                        images: ["assets/shop/sneaker_black.png"],
-                        variants: [{ id: "sports_basketball", name: "Size 7 Da Nâu", price: 384000, originalPrice: 480000, image: "assets/shop/sneaker_black.png", stock: 65 }]
+                        images: ["assets/shop/basketball.png"],
+                        variants: [{ id: "sports_basketball", name: "Size 7 Da Nâu", price: 384000, originalPrice: 480000, image: "assets/shop/basketball.png", stock: 65 }]
                     },
                     {
                         title: "Kính Bơi Chống Sương Mù GEMS Swim Pro",
@@ -22722,8 +22772,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Sportswear",
                         desc: "Kính bơi chống đọng sương mù và tia UV mắt kính trong suốt. Đệm silicon mềm ôm khít chống nước vào mắt.",
                         specs: { "Mắt kính": "Polycarbonate chống sương", "Đệm mắt": "Silicon co giãn", "Độ tuổi": "Người lớn & Trẻ em" },
-                        images: ["assets/shop/headphones_black.png"],
-                        variants: [{ id: "sports_goggles", name: "Đen Chuẩn", price: 225000, originalPrice: 250000, image: "assets/shop/headphones_black.png", stock: 100 }]
+                        images: ["assets/shop/swim_goggles.png"],
+                        variants: [{ id: "sports_goggles", name: "Đen Chuẩn", price: 225000, originalPrice: 250000, image: "assets/shop/swim_goggles.png", stock: 100 }]
                     },
                     {
                         title: "Băng Bảo Vệ Đầu Gối Thể Thao GEMS Pad",
@@ -22742,8 +22792,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Sportswear",
                         desc: "Túi trống tập gym du lịch ngắn ngày vải dù chống nước có ngăn để giày riêng biệt sạch sẽ.",
                         specs: { "Kích thước": "45 x 25 x 23 cm", "Chất liệu": "Vải dù Oxford", "Ngăn phụ": "Ngăn giày riêng" },
-                        images: ["assets/shop/keyboard.png"],
-                        variants: [{ id: "sports_gym_bag", name: "Đen Classic", price: 285000, originalPrice: 380000, image: "assets/shop/keyboard.png", stock: 90 }]
+                        images: ["assets/shop/gym_bag.png"],
+                        variants: [{ id: "sports_gym_bag", name: "Đen Classic", price: 285000, originalPrice: 380000, image: "assets/shop/gym_bag.png", stock: 90 }]
                     },
                     {
                         title: "Vợt Cầu Lông Cacbon Siêu Nhẹ GEMS Nano 88",
@@ -22752,8 +22802,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Sportswear",
                         desc: "Cặp vợt cầu lông khung sợi cacbon siêu nhẹ trợ lực tốt, độ căng dây cao phù hợp luyện tập chuyên nghiệp.",
                         specs: { "Khung vợt": "Cacbon siêu nhẹ", "Trọng lượng": "4U (82-84g)", "Sức căng": "24-26 Lbs" },
-                        images: ["assets/shop/headphones_blue.png"],
-                        variants: [{ id: "sports_racket", name: "Cặp vợt GEMS", price: 693000, originalPrice: 990000, image: "assets/shop/headphones_blue.png", stock: 50 }]
+                        images: ["assets/shop/badminton_racket.png"],
+                        variants: [{ id: "sports_racket", name: "Cặp vợt GEMS", price: 693000, originalPrice: 990000, image: "assets/shop/badminton_racket.png", stock: 50 }]
                     },
                     {
                         title: "Bộ Tạ Tay Điều Chỉnh GEMS Hex Dumbbell 10kg",
@@ -22762,8 +22812,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Sportswear",
                         desc: "Cặp tạ tay cao su đúc hình lục giác chống lăn, lõi thép tay cầm vân sần chống trơn trượt hiệu quả.",
                         specs: { "Khối lượng": "5kg x 2 chiếc", "Lõi": "Thép mạ crom", "Vỏ bọc": "Cao su giảm ồn" },
-                        images: ["assets/shop/desklamp.png"],
-                        variants: [{ id: "sports_dumbbell_10k", name: "Cặp 10kg", price: 440000, originalPrice: 550000, image: "assets/shop/desklamp.png", stock: 35 }]
+                        images: ["assets/shop/dumbbell.png"],
+                        variants: [{ id: "sports_dumbbell_10k", name: "Cặp 10kg", price: 440000, originalPrice: 550000, image: "assets/shop/dumbbell.png", stock: 35 }]
                     },
                     {
                         title: "Đồng Hồ Bấm Giờ Thể Thao GEMS Stopwatch",
@@ -22772,8 +22822,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Sportswear",
                         desc: "Đồng hồ bấm giờ thể thao điện tử chuyên nghiệp đo chính xác phần trăm giây, chống va đập và chống nước.",
                         specs: { "Độ chính xác": "1/100 giây", "Tính năng": "Đếm giây, báo thức, lịch", "Chống nước": "Chống mưa nhẹ" },
-                        images: ["assets/shop/headphones_black.png"],
-                        variants: [{ id: "sports_stopwatch", name: "Đen Điện Tử", price: 198000, originalPrice: 220000, image: "assets/shop/headphones_black.png", stock: 80 }]
+                        images: ["assets/shop/stopwatch.png"],
+                        variants: [{ id: "sports_stopwatch", name: "Đen Điện Tử", price: 198000, originalPrice: 220000, image: "assets/shop/stopwatch.png", stock: 80 }]
                     }
                 ],
                 food: [
@@ -22936,8 +22986,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Medical Equipment",
                         desc: "Máy đo huyết áp điện tử tự động đo bắp tay chính xác cao có giọng nói tiếng Việt dễ sử dụng cho người già.",
                         specs: { "Công nghệ": "Intellisense đo nhanh", "Nguồn": "Pin AA hoặc sạc USB", "Bảo hành": "36 tháng" },
-                        images: ["assets/shop/headphones_black.png"],
-                        variants: [{ id: "health_bp_monitor", name: "Máy Đo Bắp Tay", price: 578500, originalPrice: 890000, image: "assets/shop/headphones_black.png", stock: 45 }]
+                        images: ["assets/shop/bp_monitor.png"],
+                        variants: [{ id: "health_bp_monitor", name: "Máy Đo Bắp Tay", price: 578500, originalPrice: 890000, image: "assets/shop/bp_monitor.png", stock: 45 }]
                     },
                     {
                         title: "Nhiệt Kế Hồng Ngoại Đo Trán GEMS Temp",
@@ -22946,8 +22996,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Medical Equipment",
                         desc: "Nhiệt kế đo trán hồng ngoại không chạm, đo nhiệt độ chính xác cực nhanh chỉ trong 1 giây.",
                         specs: { "Khoảng cách đo": "1 - 3 cm", "Tốc độ": "1 giây", "Độ chính xác": "±0.2°C" },
-                        images: ["assets/shop/headphones_white.png"],
-                        variants: [{ id: "health_thermometer", name: "Nhiệt Kế GEMS", price: 396000, originalPrice: 550000, image: "assets/shop/headphones_white.png", stock: 60 }]
+                        images: ["assets/shop/infrared_thermometer.png"],
+                        variants: [{ id: "health_thermometer", name: "Nhiệt Kế GEMS", price: 396000, originalPrice: 550000, image: "assets/shop/infrared_thermometer.png", stock: 60 }]
                     },
                     {
                         title: "Dầu Cá Omega-3 GEMS Fish Oil 1000mg",
@@ -23048,8 +23098,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Baby Care",
                         desc: "Thanh chặn cửa cầu thang khung sắt chịu lực lắp đặt không cần khoan đục bảo vệ bé an toàn.",
                         specs: { "Chất liệu": "Khung thép tĩnh điện", "Chiều rộng": "Chỉnh từ 75-85 cm", "Khóa": "Khóa kép an toàn" },
-                        images: ["assets/shop/keyboard.png"],
-                        variants: [{ id: "baby_gate_guard", name: "Thanh Chặn Trắng", price: 360000, originalPrice: 450000, image: "assets/shop/keyboard.png", stock: 40 }]
+                        images: ["assets/shop/resistance_band.png"],
+                        variants: [{ id: "baby_gate_guard", name: "Thanh Chặn Trắng", price: 360000, originalPrice: 450000, image: "assets/shop/resistance_band.png", stock: 40 }]
                     },
                     {
                         title: "Xe Đẩy Gấp Gọn Du Lịch GEMS Baby Stroller",
@@ -23058,8 +23108,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Baby Care",
                         desc: "Xe đẩy em bé siêu nhẹ gấp cực gọn tiện mang lên máy bay, ô tô. Khung xe nhôm chắc chắn giảm xóc êm ái.",
                         specs: { "Trọng lượng xe": "4.8kg", "Tải trọng": "25kg", "Độ nghiêng lưng": "Điều chỉnh 3 tư thế" },
-                        images: ["assets/shop/headphones_black.png"],
-                        variants: [{ id: "baby_stroller_light", name: "Xe Đẩy Xám", price: 780000, originalPrice: 1200000, image: "assets/shop/headphones_black.png", stock: 25 }]
+                        images: ["assets/shop/baby_stroller.png"],
+                        variants: [{ id: "baby_stroller_light", name: "Xe Đẩy Xám", price: 780000, originalPrice: 1200000, image: "assets/shop/baby_stroller.png", stock: 25 }]
                     },
                     {
                         title: "Phao Đỡ Cổ Tập Bơi GEMS Baby Neck Float",
@@ -23068,8 +23118,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Baby Care",
                         desc: "Phao cổ tập bơi cho bé có tay cầm thiết kế thông minh nâng đỡ đầu an toàn không gây khó chịu cho bé.",
                         specs: { "Đường kính trong": "9.5cm", "Độ tuổi": "Trẻ 3-18 tháng", "Khóa": "Khóa cài an toàn" },
-                        images: ["assets/shop/headphones_blue.png"],
-                        variants: [{ id: "baby_neck_float", name: "Phao Cổ Hồng", price: 135000, originalPrice: 150000, image: "assets/shop/headphones_blue.png", stock: 95 }]
+                        images: ["assets/shop/face_mask.png"],
+                        variants: [{ id: "baby_neck_float", name: "Phao Cổ Hồng", price: 135000, originalPrice: 150000, image: "assets/shop/face_mask.png", stock: 95 }]
                     },
                     {
                         title: "Bộ Xếp Hình Khối Gỗ Giáo Dục GEMS Baby Toy",
@@ -23090,8 +23140,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Accessories",
                         desc: "Kính mát thời trang thiết kế mắt vuông sang trọng, tròng kính chống tia cực tím UV400 bảo vệ mắt tối đa.",
                         specs: { "Chống UV": "UV400 chuẩn", "Gọng kính": "Nhựa Acetate dẻo dai", "Tròng kính": "Phân cực chống chói" },
-                        images: ["assets/shop/headphones_black.png"],
-                        variants: [{ id: "acc_glasses_black", name: "Màu Đen Matte", price: 228000, originalPrice: 380000, image: "assets/shop/headphones_black.png", stock: 120 }]
+                        images: ["assets/shop/sunglasses.png"],
+                        variants: [{ id: "acc_glasses_black", name: "Màu Đen Matte", price: 228000, originalPrice: 380000, image: "assets/shop/sunglasses.png", stock: 120 }]
                     },
                     {
                         title: "Vòng Tay Bạc Ý S925 Đính Đá GEMS Jewelry",
@@ -23100,8 +23150,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Accessories",
                         desc: "Vòng tay bạc ý S925 đính đá pha lê lấp lánh sang trọng, thiết kế thanh mảnh tôn dáng cổ tay.",
                         specs: { "Chất liệu": "Bạc S925 chuẩn", "Đá đính": "Zirconia nhân tạo", "Chiều dài": "16cm + 3cm nối" },
-                        images: ["assets/shop/headphones_white.png"],
-                        variants: [{ id: "acc_bracelet_silver", name: "Bạc S925", price: 337500, originalPrice: 450000, image: "assets/shop/headphones_white.png", stock: 80 }]
+                        images: ["assets/shop/silver_bracelet.png"],
+                        variants: [{ id: "acc_bracelet_silver", name: "Bạc S925", price: 337500, originalPrice: 450000, image: "assets/shop/silver_bracelet.png", stock: 80 }]
                     },
                     {
                         title: "Thắt Lưng Da Nam Khóa Tự Động GEMS Belt",
@@ -23130,8 +23180,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Accessories",
                         desc: "Ví da nam thiết kế nhỏ gọn mini đựng thẻ tiện dụng, chất da saffiano chống trầy xước nước hiệu quả.",
                         specs: { "Kích thước": "11 x 8 cm", "Chất da": "Saffiano nhân tạo", "Sức chứa": "8 ngăn thẻ & tiền mặt" },
-                        images: ["assets/shop/keyboard.png"],
-                        variants: [{ id: "acc_wallet_mini", name: "Ví Đen Saffiano", price: 238000, originalPrice: 280000, image: "assets/shop/keyboard.png", stock: 140 }]
+                        images: ["assets/shop/wallet.png"],
+                        variants: [{ id: "acc_wallet_mini", name: "Ví Đen Saffiano", price: 238000, originalPrice: 280000, image: "assets/shop/wallet.png", stock: 140 }]
                     },
                     {
                         title: "Dây Chuyền Titan Nam GEMS Chain Necklace",
@@ -23140,8 +23190,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Accessories",
                         desc: "Dây chuyền titan mắt xích kiểu cuban cực ngầu, không gỉ không kích ứng da phù hợp phong cách streetwear.",
                         specs: { "Chất liệu": "Titan không gỉ", "Kiểu dáng": "Mắt xích Cuban", "Chiều dài": "55 cm" },
-                        images: ["assets/shop/headphones_black.png"],
-                        variants: [{ id: "acc_chain_necklace", name: "Xích Titan Bạc", price: 171000, originalPrice: 190000, image: "assets/shop/headphones_black.png", stock: 190 }]
+                        images: ["assets/shop/silver_bracelet.png"],
+                        variants: [{ id: "acc_chain_necklace", name: "Xích Titan Bạc", price: 171000, originalPrice: 190000, image: "assets/shop/silver_bracelet.png", stock: 190 }]
                     },
                     {
                         title: "Bông Tai Bạc Nữ GEMS Earrings Nụ Đá",
@@ -23150,8 +23200,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Accessories",
                         desc: "Khuyên tai bạc nụ đính đá nhỏ xinh, thiết kế tối giản trẻ trung phù hợp đeo hàng ngày đi học đi chơi.",
                         specs: { "Chất liệu": "Bạc S925", "Đá đính": "Cz lấp lánh", "Dạng khóa": "Khóa chốt đẩy" },
-                        images: ["assets/shop/headphones_white.png"],
-                        variants: [{ id: "acc_earrings_nup", name: "Cặp Khuyên Tròn", price: 102000, originalPrice: 120000, image: "assets/shop/headphones_white.png", stock: 210 }]
+                        images: ["assets/shop/silver_bracelet.png"],
+                        variants: [{ id: "acc_earrings_nup", name: "Cặp Khuyên Tròn", price: 102000, originalPrice: 120000, image: "assets/shop/silver_bracelet.png", stock: 210 }]
                     },
                     {
                         title: "Khăn Choàng Cổ Len Thu Đông GEMS Scarf",
@@ -23180,8 +23230,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Accessories",
                         desc: "Dù gấp gọn đóng mở tự động 1 nút bấm thông minh. Vải dù 2 lớp chống thấm nước và chống tia cực tím UV cực tốt.",
                         specs: { "Đóng mở": "Tự động 1 nút nhấn", "Màng chắn": "Phủ lớp keo đen chống UV", "Xương ô": "10 nan thép cứng cáp" },
-                        images: ["assets/shop/headphones_black.png"],
-                        variants: [{ id: "acc_umbrella_auto", name: "Xanh Navy Tự Động", price: 196000, originalPrice: 280000, image: "assets/shop/headphones_black.png", stock: 85 }]
+                        images: ["assets/shop/umbrella.png"],
+                        variants: [{ id: "acc_umbrella_auto", name: "Xanh Navy Tự Động", price: 196000, originalPrice: 280000, image: "assets/shop/umbrella.png", stock: 85 }]
                     }
                 ]
             };
