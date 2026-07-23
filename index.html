@@ -22057,7 +22057,7 @@ let currentActiveBookId = 'chandoanykhoa';
             {
                 id: "new_olay_cream",
                 title: "Kem Dưỡng Sáng Da Cao Cấp Olay Active",
-                category: "fashion",
+                category: "beauty",
                 rating: 4.8,
                 sold: "1.1k+",
                 basePrice: 450000,
@@ -22066,9 +22066,10 @@ let currentActiveBookId = 'chandoanykhoa';
                 shopName: "Olay Beauty Store",
                 desc: "Kem dưỡng ẩm sáng da Olay Active Hydrating Cream giúp cung cấp độ ẩm tối ưu cho làn da mịn màng, hỗ trợ làm mờ các vết thâm sạm và cải thiện sắc tố da sáng hồng rạng rỡ.",
                 specs: { "Khối lượng": "50g", "Thành phần chính": "Niacinamide, Glycerin", "Công dụng": "Dưỡng ẩm, làm sáng da", "Thương hiệu": "Olay" },
-                images: ["assets/shop/artichoke_resin.png"],
+                images: ["assets/shop/olay_cream.png"],
                 variants: [
-                    { id: "olay_50g", name: "Hũ 50g", price: 315000, originalPrice: 450000, image: "assets/shop/artichoke_resin.png", stock: 90 }
+                    { id: "olay_50g", name: "Hũ 50g", price: 315000, originalPrice: 450000, image: "assets/shop/olay_cream.png", stock: 90 },
+                    { id: "olay_100g", name: "Hũ 100g (Tiết Kiệm)", price: 580000, originalPrice: 820000, image: "assets/shop/olay_cream.png", stock: 50 }
                 ],
                 reviews: [
                     { user: "Minh Tú", avatar: "MT", stars: 5, text: "Kem dưỡng ẩm cực tốt, dùng một thời gian thấy da sáng mịn hẳn lên.", date: "05/07/2026", hasImg: false }
@@ -22273,86 +22274,100 @@ let currentActiveBookId = 'chandoanykhoa';
         (function() {
             function getMatchingImage(title, category = '') {
                 const lower = title.toLowerCase();
-                
-                // Specific keyword matches - Sports & Fitness
-                if (lower.includes("kháng lực") || lower.includes("dây kéo")) return 'assets/shop/resistance_band.png';
-                if (lower.includes("bóng rổ") || lower.includes("basketball")) return 'assets/shop/basketball.png';
-                if (lower.includes("tạ") || lower.includes("dumbbell")) return 'assets/shop/dumbbell.png';
-                if (lower.includes("thảm") || lower.includes("yoga")) return 'assets/shop/yoga_mat.png';
-                if (lower.includes("kính bơi") || lower.includes("swim goggle")) return 'assets/shop/swim_goggles.png';
-                if (lower.includes("vợt") || lower.includes("cầu lông") || lower.includes("badminton")) return 'assets/shop/badminton_racket.png';
-                if (lower.includes("đồng hồ bấm") || lower.includes("stopwatch") || lower.includes("bấm giờ")) return 'assets/shop/stopwatch.png';
-                if (lower.includes("túi trống") || lower.includes("gym bag") || lower.includes("túi gym") || lower.includes("túi thể thao")) return 'assets/shop/gym_bag.png';
-                if (lower.includes("đầu gối") || lower.includes("băng đầu gối") || lower.includes("knee pad")) return 'assets/shop/resistance_band.png';
 
-                // Medical & Health
-                if (lower.includes("khẩu trang") || lower.includes("mask")) return 'assets/shop/face_mask.png';
-                if (lower.includes("huyết áp") || lower.includes("bp monitor")) return 'assets/shop/bp_monitor.png';
-                if (lower.includes("nhiệt kế") || lower.includes("thermometer")) return 'assets/shop/infrared_thermometer.png';
-                if (lower.includes("rửa tay") || lower.includes("sát khuẩn") || lower.includes("clean gel")) return 'assets/shop/cosnori_remover.png';
-                if (lower.includes("băng cá nhân") || lower.includes("plaster")) return 'assets/shop/cosnori_remover.png';
-                if (lower.includes("dầu cá") || lower.includes("omega-3") || lower.includes("fish oil")) return 'assets/shop/artichoke_resin.png';
-                if (lower.includes("viên sủi") || lower.includes("multivitamin") || lower.includes("probiotics") || lower.includes("men vi sinh")) return 'assets/shop/new_simple.png';
+                // ── SPORTS & FITNESS ──────────────────────────────────────────────────
+                if (lower.includes('kháng lực') || lower.includes('dây kéo')) return 'assets/shop/resistance_band.png';
+                if (lower.includes('bóng rổ') || lower.includes('basketball')) return 'assets/shop/basketball.png';
+                if (lower.includes('tạ') || lower.includes('dumbbell')) return 'assets/shop/dumbbell.png';
+                if (lower.includes('thảm yoga') || lower.includes('yoga mat')) return 'assets/shop/yoga_mat.png';
+                if (lower.includes('kính bơi') || lower.includes('swim goggle')) return 'assets/shop/swim_goggles.png';
+                if (lower.includes('vợt') || lower.includes('cầu lông') || lower.includes('badminton')) return 'assets/shop/badminton_racket.png';
+                if (lower.includes('đồng hồ bấm') || lower.includes('stopwatch') || lower.includes('bấm giờ')) return 'assets/shop/stopwatch.png';
+                if (lower.includes('túi gym') || lower.includes('gym bag') || lower.includes('túi thể thao') || lower.includes('túi trống')) return 'assets/shop/gym_bag.png';
+                if (lower.includes('băng đầu gối') || lower.includes('knee pad')) return 'assets/shop/resistance_band.png';
 
-                // Mom & Baby
-                if (lower.includes("xe đẩy") || lower.includes("stroller")) return 'assets/shop/baby_stroller.png';
-                if (lower.includes("khối gỗ") || lower.includes("xếp hình") || lower.includes("wood blocks") || lower.includes("đồ chơi") || lower.includes("toy")) return 'assets/shop/wooden_toy.png';
-                if (lower.includes("tã") || lower.includes("bỉm") || lower.includes("diaper")) return 'assets/shop/baby_stroller.png';
-                if (lower.includes("khăn ướt") || lower.includes("wipes")) return 'assets/shop/cosnori_remover.png';
-                if (lower.includes("sữa tắm gội") || lower.includes("baby wash")) return 'assets/shop/cosnori_remover.png';
-                if (lower.includes("núm ti") || lower.includes("bình sữa") || lower.includes("nipple") || lower.includes("máy hâm")) return 'assets/shop/fj_thermos.png';
-                if (lower.includes("bát ăn dặm") || lower.includes("ăn dặm") || lower.includes("bát silicon")) return 'assets/shop/cookware.png';
-                if (lower.includes("thanh chặn") || lower.includes("chặn cửa")) return 'assets/shop/leego_wardrobe.png';
-                if (lower.includes("phao") || lower.includes("float")) return 'assets/shop/swim_goggles.png';
+                // ── MEDICAL & HEALTH ──────────────────────────────────────────────────
+                if (lower.includes('khẩu trang') || lower.includes('face mask')) return 'assets/shop/face_mask.png';
+                if (lower.includes('huyết áp') || lower.includes('bp monitor')) return 'assets/shop/bp_monitor.png';
+                if (lower.includes('nhiệt kế') || lower.includes('thermometer')) return 'assets/shop/infrared_thermometer.png';
+                if (lower.includes('rửa tay') || lower.includes('sát khuẩn') || lower.includes('clean gel')) return 'assets/shop/cosnori_remover.png';
+                if (lower.includes('băng cá nhân') || lower.includes('plaster')) return 'assets/shop/face_mask.png';
+                if (lower.includes('dầu cá') || lower.includes('omega-3') || lower.includes('fish oil')) return 'assets/shop/vitamin_supplement.png';
+                if (lower.includes('viên sủi') || lower.includes('vitamin') || lower.includes('multivitamin')) return 'assets/shop/vitamin_supplement.png';
+                if (lower.includes('probiotics') || lower.includes('men vi sinh') || lower.includes('tiêu hóa')) return 'assets/shop/vitamin_supplement.png';
+                if (lower.includes('dầu xoa') || lower.includes('relief oil') || lower.includes('thảo dược')) return 'assets/shop/essential_oil_hue.png';
+                if (lower.includes('trà thảo mộc') || lower.includes('herbal tea')) return 'assets/shop/lotus_tea.png';
 
-                // Beauty & Skincare
-                if (lower.includes("nước hoa") || lower.includes("parfum") || lower.includes("cologne")) return 'assets/shop/perfume_bottle.png';
-                if (lower.includes("kem chống nắng") || lower.includes("sunscreen")) return 'assets/shop/dalba_sunscreen.png';
-                if (lower.includes("serum") || lower.includes("tinh chất")) return 'assets/shop/torriden_serum.png';
-                if (lower.includes("sữa rửa mặt") || lower.includes("tẩy trang") || lower.includes("remover") || lower.includes("cleansing")) return 'assets/shop/cosnori_remover.png';
-                if (lower.includes("má hồng") || lower.includes("blush") || lower.includes("son")) return 'assets/shop/sace_lady_blush.png';
-                if (lower.includes("mặt nạ") || lower.includes("đất sét") || lower.includes("clay")) return 'assets/shop/cosnori_remover.png';
-                if (lower.includes("tẩy tế bào chết") || lower.includes("scrub") || lower.includes("cà phê")) return 'assets/shop/artichoke_resin.png';
-                if (lower.includes("dưỡng tóc") || lower.includes("tóc") || lower.includes("hair")) return 'assets/shop/essential_oil_hue.png';
-                if (lower.includes("kem dưỡng") || lower.includes("brightening cream") || lower.includes("cream")) return 'assets/shop/dalba_sunscreen.png';
+                // ── MOM & BABY ────────────────────────────────────────────────────────
+                if (lower.includes('xe đẩy') || lower.includes('stroller')) return 'assets/shop/baby_stroller.png';
+                if (lower.includes('đồ chơi') || lower.includes('xếp hình') || lower.includes('khối gỗ') || lower.includes('wood block') || lower.includes('toy')) return 'assets/shop/wooden_toy.png';
+                if (lower.includes('tã') || lower.includes('bỉm') || lower.includes('diaper')) return 'assets/shop/baby_diapers.png';
+                if (lower.includes('khăn ướt') || lower.includes('baby wipes') || lower.includes('wipes')) return 'assets/shop/face_mask.png';
+                if (lower.includes('sữa tắm') || lower.includes('baby wash') || lower.includes('tắm gội')) return 'assets/shop/cosnori_remover.png';
+                if (lower.includes('núm ti') || lower.includes('nipple') || lower.includes('bình sữa')) return 'assets/shop/fj_thermos.png';
+                if (lower.includes('máy hâm') || lower.includes('tiệt trùng')) return 'assets/shop/cookware.png';
+                if (lower.includes('bát ăn dặm') || lower.includes('bát silicon') || lower.includes('ăn dặm')) return 'assets/shop/cookware.png';
+                if (lower.includes('thanh chặn') || lower.includes('cầu thang an toàn')) return 'assets/shop/leego_wardrobe.png';
+                if (lower.includes('phao') || lower.includes('float')) return 'assets/shop/swim_goggles.png';
+                if (lower.includes('sữa bột') || lower.includes('growplus') || lower.includes('milk powder') || lower.includes('nutifood')) return 'assets/shop/milk_powder.png';
 
-                // Accessories & Fashion
-                if (lower.includes("kính mát") || lower.includes("kính râm") || lower.includes("sunglasses")) return 'assets/shop/sunglasses.png';
-                if (lower.includes("ô dù") || lower.includes("dù gấp") || lower.includes("umbrella")) return 'assets/shop/umbrella.png';
-                if (lower.includes("ví da") || lower.includes("ví nam") || lower.includes("wallet")) return 'assets/shop/wallet.png';
-                if (lower.includes("thắt lưng") || lower.includes("dây nịt") || lower.includes("belt")) return 'assets/shop/wallet.png';
-                if (lower.includes("vòng tay") || lower.includes("bạc") || lower.includes("trang sức") || lower.includes("dây chuyền") || lower.includes("khuyên tai")) return 'assets/shop/silver_bracelet.png';
-                if (lower.includes("mũ") || lower.includes("nón") || lower.includes("cap")) return 'assets/shop/cap.png';
-                if (lower.includes("balo") || lower.includes("backpack")) return 'assets/shop/backpack.png';
-                if (lower.includes("khăn choàng") || lower.includes("khăn quàng") || lower.includes("scarf")) return 'assets/shop/hoodie_sage.png';
-                if (lower.includes("móc khóa") || lower.includes("keyring")) return 'assets/shop/wallet.png';
+                // ── BEAUTY & SKINCARE ─────────────────────────────────────────────────
+                if (lower.includes('nước hoa') || lower.includes('parfum') || lower.includes('cologne')) return 'assets/shop/perfume_bottle.png';
+                if (lower.includes('kem chống nắng') || lower.includes('sunscreen') || lower.includes('spf')) return 'assets/shop/dalba_sunscreen.png';
+                if (lower.includes('serum') || lower.includes('tinh chất cấp nước')) return 'assets/shop/torriden_serum.png';
+                if (lower.includes('tẩy trang') || lower.includes('nước tẩy') || lower.includes('cleansing water') || lower.includes('remover')) return 'assets/shop/cosnori_remover.png';
+                if (lower.includes('sữa rửa mặt') || lower.includes('face wash')) return 'assets/shop/cosnori_remover.png';
+                if (lower.includes('má hồng') || lower.includes('blush') || lower.includes('phấn má')) return 'assets/shop/sace_lady_blush.png';
+                if (lower.includes('son môi') || lower.includes('lipstick') || lower.includes('son')) return 'assets/shop/sace_lady_blush.png';
+                if (lower.includes('mặt nạ đất sét') || lower.includes('clay mask')) return 'assets/shop/cosnori_remover.png';
+                if (lower.includes('dưỡng tóc') || lower.includes('dầu gội') || lower.includes('shampoo') || lower.includes('hair')) return 'assets/shop/new_unilever.png';
+                if (lower.includes('kem dưỡng') || lower.includes('moisturizer') || lower.includes('olay') || lower.includes('dưỡng sáng') || lower.includes('brightening')) return 'assets/shop/olay_cream.png';
+                if (lower.includes('sữa chống nắng') || lower.includes('simple spf')) return 'assets/shop/new_simple.png';
 
-                // Tech & Gadgets
-                if (lower.includes("đồng hồ thông minh") || lower.includes("smartwatch") || lower.includes("watch fit") || lower.includes("đồng hồ")) return 'assets/shop/smartwatch.png';
-                if (lower.includes("tai nghe") || lower.includes("headphones") || lower.includes("loa") || lower.includes("soundbar")) return 'assets/shop/headphones_black.png';
-                if (lower.includes("đế sạc") || lower.includes("sạc nhanh") || lower.includes("củ sạc") || lower.includes("cáp sạc") || lower.includes("sạc")) return 'assets/shop/ugreen_charger.png';
-                if (lower.includes("bàn phím") || lower.includes("keyboard") || lower.includes("chuột") || lower.includes("mouse")) return 'assets/shop/keyboard.png';
-                if (lower.includes("ấm siêu tốc") || lower.includes("kettle") || lower.includes("smartkettle")) return 'assets/shop/electric_kettle.png';
-                if (lower.includes("đèn")) return 'assets/shop/desklamp.png';
-                if (lower.includes("ốp") || lower.includes("case")) return 'assets/shop/magnetic_phone_case.png';
+                // ── ACCESSORIES & FASHION ─────────────────────────────────────────────
+                if (lower.includes('kính mát') || lower.includes('kính râm') || lower.includes('sunglasses')) return 'assets/shop/sunglasses.png';
+                if (lower.includes('ô dù') || lower.includes('dù gấp') || lower.includes('umbrella')) return 'assets/shop/umbrella.png';
+                if (lower.includes('ví da') || lower.includes('ví nam') || lower.includes('mini wallet') || lower.includes('wallet')) return 'assets/shop/wallet.png';
+                if (lower.includes('thắt lưng') || lower.includes('dây nịt') || lower.includes('belt')) return 'assets/shop/wallet.png';
+                if (lower.includes('móc khóa') || lower.includes('keyring')) return 'assets/shop/wallet.png';
+                if (lower.includes('vòng tay') || lower.includes('dây chuyền') || lower.includes('khuyên tai') || lower.includes('bông tai') || lower.includes('trang sức') || lower.includes('bạc s925') || lower.includes('necklace') || lower.includes('bracelet') || lower.includes('earring')) return 'assets/shop/silver_bracelet.png';
+                if (lower.includes('mũ') || lower.includes('nón lưỡi trai') || lower.includes('cap')) return 'assets/shop/cap.png';
+                if (lower.includes('balo') || lower.includes('backpack')) return 'assets/shop/backpack.png';
+                if (lower.includes('khăn choàng') || lower.includes('khăn quàng') || lower.includes('scarf')) return 'assets/shop/hoodie_sage.png';
 
-                // Apparel & Footwear
-                if (lower.includes("áo thun") || lower.includes("essential tee") || lower.includes("tee")) return 'assets/shop/tshirt_cotton.png';
-                if (lower.includes("áo") || lower.includes("quần") || lower.includes("scrubs") || lower.includes("blouse") || lower.includes("hoodie") || lower.includes("sweater") || lower.includes("short")) return 'assets/shop/hoodie_black.png';
-                if (lower.includes("giày") || lower.includes("sneaker")) return 'assets/shop/sneaker_black.png';
+                // ── TECH & GADGETS ────────────────────────────────────────────────────
+                if (lower.includes('đồng hồ thông minh') || lower.includes('smartwatch') || lower.includes('watch fit')) return 'assets/shop/smartwatch.png';
+                if (lower.includes('tai nghe') || lower.includes('headphone') || lower.includes('airpod') || lower.includes('soundbar') || lower.includes('loa bluetooth')) return 'assets/shop/headphones_black.png';
+                if (lower.includes('củ sạc') || lower.includes('bộ sạc') || lower.includes('sạc nhanh') || lower.includes('đế sạc') || lower.includes('cáp sạc') || lower.includes('gan ')) return 'assets/shop/ugreen_charger.png';
+                if (lower.includes('bàn phím') || lower.includes('keyboard') || lower.includes('chuột') || lower.includes('mouse')) return 'assets/shop/keyboard.png';
+                if (lower.includes('ấm siêu tốc') || lower.includes('kettle') || lower.includes('smartkettle')) return 'assets/shop/electric_kettle.png';
+                if (lower.includes('đèn bàn') || lower.includes('đèn học') || lower.includes('desk lamp')) return 'assets/shop/desklamp.png';
+                if (lower.includes('ốp lưng') || lower.includes('ốp điện thoại') || lower.includes('phone case')) return 'assets/shop/magnetic_phone_case.png';
 
-                // Food & Beverages
-                if (lower.includes("mật ong") || lower.includes("honey") || lower.includes("mật dừa") || lower.includes("bánh quy") || lower.includes("cookies") || lower.includes("khô gà") || lower.includes("trái cây sấy") || lower.includes("hạt điều") || lower.includes("granola")) return 'assets/shop/honey_sokfarm.png';
-                if (lower.includes("trà sữa") || lower.includes("matcha") || lower.includes("trà") || lower.includes("tea")) return 'assets/shop/lotus_tea.png';
-                if (lower.includes("cà phê") || lower.includes("coffee") || lower.includes("chocolate") || lower.includes("socola") || lower.includes("cacao")) return 'assets/shop/artichoke_resin.png';
-                if (lower.includes("tinh dầu") || lower.includes("oil")) return 'assets/shop/essential_oil_hue.png';
-                if (lower.includes("ấm trà") || lower.includes("teapot")) return 'assets/shop/battrang_teapot.png';
-                if (lower.includes("lồng đèn") || lower.includes("lantern")) return 'assets/shop/hoian_lantern.png';
-                if (lower.includes("nồi") || lower.includes("chảo") || lower.includes("cookware")) return 'assets/shop/cookware.png';
-                if (lower.includes("tủ") || lower.includes("kệ") || lower.includes("wardrobe")) return 'assets/shop/leego_wardrobe.png';
-                if (lower.includes("điện tâm đồ") || lower.includes("ecg") || lower.includes("sách") || lower.includes("book") || lower.includes("cẩm nang") || lower.includes("từ điển") || lower.includes("atlas")) return 'covers/chandoanykhoa.png';
-                if (lower.includes("bình nước") || lower.includes("bình giữ nhiệt") || lower.includes("thermos")) return 'assets/shop/fj_thermos.png';
-                if (lower.includes("bút") || lower.includes("sổ") || lower.includes("pen") || lower.includes("gelpen")) return 'assets/shop/gelpen.png';
+                // ── APPAREL & FOOTWEAR ────────────────────────────────────────────────
+                if (lower.includes('áo thun') || lower.includes('essential tee') || lower.includes('cotton tee')) return 'assets/shop/tshirt_cotton.png';
+                if (lower.includes('hoodie') || lower.includes('áo nỉ') || lower.includes('sweater') || lower.includes('sweatshirt')) return 'assets/shop/hoodie_black.png';
+                if (lower.includes('quần') || lower.includes('scrubs') || lower.includes('blouse') || lower.includes('short')) return 'assets/shop/hoodie_black.png';
+                if (lower.includes('giày') || lower.includes('sneaker') || lower.includes('puma') || lower.includes('adidas') || lower.includes('nike')) return 'assets/shop/sneaker_premium.png';
+
+                // ── FOOD & BEVERAGES ──────────────────────────────────────────────────
+                if (lower.includes('mật ong') || lower.includes('honey')) return 'assets/shop/honey_sokfarm.png';
+                if (lower.includes('hạt điều') || lower.includes('cashew') || lower.includes('trái cây sấy') || lower.includes('dried fruit') || lower.includes('khô gà') || lower.includes('bánh quy') || lower.includes('cookie') || lower.includes('granola') || lower.includes('ngũ cốc') || lower.includes('sữa chua sấy') || lower.includes('yogurt bite') || lower.includes('chocolate') || lower.includes('socola') || lower.includes('cacao')) return 'assets/shop/honey_sokfarm.png';
+                if (lower.includes('cà phê') || lower.includes('coffee') || lower.includes('robusta') || lower.includes('arabica')) return 'assets/shop/coffee_beans.png';
+                if (lower.includes('trà sữa') || lower.includes('matcha') || lower.includes('trà') || lower.includes('tea')) return 'assets/shop/lotus_tea.png';
+                if (lower.includes('tinh dầu') || lower.includes('essential oil')) return 'assets/shop/essential_oil_hue.png';
+                if (lower.includes('ấm trà') || lower.includes('teapot')) return 'assets/shop/battrang_teapot.png';
+                if (lower.includes('lồng đèn') || lower.includes('lantern')) return 'assets/shop/hoian_lantern.png';
+                if (lower.includes('nồi') || lower.includes('chảo') || lower.includes('cookware')) return 'assets/shop/cookware.png';
+                if (lower.includes('tủ quần') || lower.includes('tủ vải') || lower.includes('kệ') || lower.includes('wardrobe')) return 'assets/shop/leego_wardrobe.png';
+
+                // ── BOOKS & STATIONERY ────────────────────────────────────────────────
+                if (lower.includes('điện tâm đồ') || lower.includes('ecg') || lower.includes('lâm sàng') || lower.includes('dược lý') || lower.includes('y khoa')) return 'covers/chandoanykhoa.png';
+                if (lower.includes('sách') || lower.includes('book') || lower.includes('cẩm nang') || lower.includes('từ điển') || lower.includes('atlas') || lower.includes('tư duy')) return 'assets/shop/book.png';
+                if (lower.includes('bút') || lower.includes('sổ tay') || lower.includes('gel pen') || lower.includes('gelpen')) return 'assets/shop/gelpen.png';
+
+                // ── HOME & LIVING ─────────────────────────────────────────────────────
+                if (lower.includes('bình giữ nhiệt') || lower.includes('bình nước') || lower.includes('thermos') || lower.includes('vacuum flask')) return 'assets/shop/fj_thermos.png';
 
                 // Category-based fallbacks
                 let fallbacks = ['assets/logo.png'];
@@ -22799,8 +22814,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Food & Living",
                         desc: "Hạt điều Bình Phước loại A nguyên hạt rang củi thơm ngon giòn rụm béo bùi, giàu dinh dưỡng.",
                         specs: { "Khối lượng": "500g", "Quy cách": "Hũ pet niêm phong", "Hạn dùng": "12 tháng" },
-                        images: ["assets/shop/new_nutifood.png"],
-                        variants: [{ id: "food_cashew_500", name: "Hũ 500g", price: 153000, originalPrice: 180000, image: "assets/shop/new_nutifood.png", stock: 150 }]
+                        images: ["assets/shop/honey_sokfarm.png"],
+                        variants: [{ id: "food_cashew_500", name: "Hũ 500g", price: 153000, originalPrice: 180000, image: "assets/shop/honey_sokfarm.png", stock: 150 }]
                     },
                     {
                         title: "Set Trà Sữa Matcha GEMS Tự Pha Tại Nhà",
@@ -22809,8 +22824,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Food & Living",
                         desc: "Set nguyên liệu trà sữa matcha Nhật Bản tự pha cực dễ kèm trân châu đen dai giòn sần sật.",
                         specs: { "Số lượng": "Pha được 6-8 ly", "Thành phần": "Bột Matcha, trân châu, bột béo", "Xuất xứ": "Việt Nam" },
-                        images: ["assets/shop/cookware.png"],
-                        variants: [{ id: "food_milktea_set", name: "Set Matcha", price: 117000, originalPrice: 130000, image: "assets/shop/cookware.png", stock: 200 }]
+                        images: ["assets/shop/lotus_tea.png"],
+                        variants: [{ id: "food_milktea_set", name: "Set Matcha", price: 117000, originalPrice: 130000, image: "assets/shop/lotus_tea.png", stock: 200 }]
                     },
                     {
                         title: "Cà Phê Robusta Nguyên Chất GEMS Coffee 1kg",
@@ -22819,8 +22834,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Food & Living",
                         desc: "Hạt cà phê Robusta Buôn Ma Thuột rang mộc nguyên chất thơm nồng nàn vị đậm đà truyền thống.",
                         specs: { "Khối lượng": "1kg", "Dạng": "Nguyên hạt / Xay bột", "Mức rang": "Medium Dark" },
-                        images: ["assets/shop/artichoke_resin.png"],
-                        variants: [{ id: "food_coffee_1kg", name: "Dạng Bột Xay", price: 256000, originalPrice: 320000, image: "assets/shop/artichoke_resin.png", stock: 110 }]
+                        images: ["assets/shop/coffee_beans.png"],
+                        variants: [{ id: "food_coffee_1kg", name: "Dạng Bột Xay", price: 256000, originalPrice: 320000, image: "assets/shop/coffee_beans.png", stock: 110 }]
                     },
                     {
                         title: "Bánh Quy Bơ Pháp GEMS Butter Cookies Hộp Thiếc",
@@ -22829,8 +22844,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Food & Living",
                         desc: "Bánh quy bơ cao cấp công thức Pháp giòn tan béo ngậy. Hộp thiếc sang trọng thích hợp làm quà tặng.",
                         specs: { "Khối lượng": "450g", "Bao bì": "Hộp thiếc tròn", "Thương hiệu": "GEMS Food" },
-                        images: ["assets/shop/new_unilever.png"],
-                        variants: [{ id: "food_cookies", name: "Hộp Thiếc Đỏ", price: 165000, originalPrice: 220000, image: "assets/shop/new_unilever.png", stock: 140 }]
+                        images: ["assets/shop/honey_sokfarm.png"],
+                        variants: [{ id: "food_cookies", name: "Hộp Thiếc Đỏ", price: 165000, originalPrice: 220000, image: "assets/shop/honey_sokfarm.png", stock: 140 }]
                     },
                     {
                         title: "Mật Ong Rừng Tự Nhiên GEMS Wild Honey 500ml",
@@ -22849,8 +22864,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Food & Living",
                         desc: "Hộp trái cây sấy dẻo gồm xoài, mít, chuối, đu đủ vị ngọt tự nhiên không đường hóa học.",
                         specs: { "Khối lượng": "300g", "Hạn dùng": "6 tháng", "Thành phần": "Xoài, Mít, Chuối, Đu đủ" },
-                        images: ["assets/shop/new_nutifood.png"],
-                        variants: [{ id: "food_mixed_fruit", name: "Hộp 300g", price: 135000, originalPrice: 150000, image: "assets/shop/new_nutifood.png", stock: 160 }]
+                        images: ["assets/shop/honey_sokfarm.png"],
+                        variants: [{ id: "food_mixed_fruit", name: "Hộp 300g", price: 135000, originalPrice: 150000, image: "assets/shop/honey_sokfarm.png", stock: 160 }]
                     },
                     {
                         title: "Khô Gà Lá Chanh GEMS Cay Giòn 300g",
@@ -22859,8 +22874,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Food & Living",
                         desc: "Khô gà lá chanh cay cay giòn giòn làm từ 100% ức gà tươi sạch, hương vị đậm đà bắt miệng.",
                         specs: { "Khối lượng": "300g", "Độ cay": "Vừa", "Bao bì": "Hũ nhựa có nắp" },
-                        images: ["assets/shop/new_nutifood.png"],
-                        variants: [{ id: "food_chicken_300g", name: "Hũ 300g", price: 96000, originalPrice: 120000, image: "assets/shop/new_nutifood.png", stock: 180 }]
+                        images: ["assets/shop/honey_sokfarm.png"],
+                        variants: [{ id: "food_chicken_300g", name: "Hũ 300g", price: 96000, originalPrice: 120000, image: "assets/shop/honey_sokfarm.png", stock: 180 }]
                     },
                     {
                         title: "Ngũ Cốc Dinh Dưỡng GEMS Granola Siêu Hạt",
@@ -22869,8 +22884,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Food & Living",
                         desc: "Ngũ cốc yến mạch nướng mật ong sấy kèm hạt óc chó, hạnh nhân, hạt bí cho bữa sáng ăn kiêng lành mạnh.",
                         specs: { "Khối lượng": "500g", "Tỷ lệ hạt": "85% hạt & quả khô", "Phù hợp": "Ăn kiêng, giảm cân" },
-                        images: ["assets/shop/new_nutifood.png"],
-                        variants: [{ id: "food_granola_500g", name: "Hũ 500g", price: 175000, originalPrice: 250000, image: "assets/shop/new_nutifood.png", stock: 100 }]
+                        images: ["assets/shop/honey_sokfarm.png"],
+                        variants: [{ id: "food_granola_500g", name: "Hũ 500g", price: 175000, originalPrice: 250000, image: "assets/shop/honey_sokfarm.png", stock: 100 }]
                     },
                     {
                         title: "Sữa Chua Sấy Thăng Hoa GEMS Yogurt Bites",
@@ -22879,8 +22894,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Food & Living",
                         desc: "Sữa chua sấy lạnh thăng hoa giữ nguyên lợi khuẩn và dưỡng chất vị trái cây thơm ngon dễ ăn.",
                         specs: { "Khối lượng": "50g", "Vị": "Dâu tây & Việt quất", "Quy cách": "Túi zip khóa" },
-                        images: ["assets/shop/new_simple.png"],
-                        variants: [{ id: "food_yogurt_bite", name: "Gói 50g Vị Dâu", price: 81000, originalPrice: 90000, image: "assets/shop/new_simple.png", stock: 220 }]
+                        images: ["assets/shop/honey_sokfarm.png"],
+                        variants: [{ id: "food_yogurt_bite", name: "Gói 50g Vị Dâu", price: 81000, originalPrice: 90000, image: "assets/shop/honey_sokfarm.png", stock: 220 }]
                     },
                     {
                         title: "Chocolate Đen Nguyên Chất GEMS Kakao 75%",
@@ -22889,8 +22904,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Food & Living",
                         desc: "Thanh socola đen nguyên chất 75% cacao tự nhiên đắng nhẹ hậu ngọt, tốt cho sức khỏe tim mạch.",
                         specs: { "Khối lượng": "100g", "Hàm lượng Cacao": "75%", "Xuất xứ": "Việt Nam" },
-                        images: ["assets/shop/new_unilever.png"],
-                        variants: [{ id: "food_chocolate_bar", name: "Thanh 100g", price: 127500, originalPrice: 150000, image: "assets/shop/new_unilever.png", stock: 150 }]
+                        images: ["assets/shop/coffee_beans.png"],
+                        variants: [{ id: "food_chocolate_bar", name: "Thanh 100g", price: 127500, originalPrice: 150000, image: "assets/shop/coffee_beans.png", stock: 150 }]
                     }
                 ],
                 health: [
@@ -22901,8 +22916,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Pharmacy",
                         desc: "Viên sủi bổ sung Vitamin C và khoáng chất thiết yếu hỗ trợ tăng cường sức đề kháng và giảm mệt mỏi.",
                         specs: { "Quy cách": "Tuýp 20 viên", "Hàm lượng C": "1000mg", "Xuất xứ": "Đức" },
-                        images: ["assets/shop/new_simple.png"],
-                        variants: [{ id: "health_vitc_tube", name: "Tuýp 20 viên", price: 64000, originalPrice: 80000, image: "assets/shop/new_simple.png", stock: 300 }]
+                        images: ["assets/shop/vitamin_supplement.png"],
+                        variants: [{ id: "health_vitc_tube", name: "Tuýp 20 viên", price: 64000, originalPrice: 80000, image: "assets/shop/vitamin_supplement.png", stock: 300 }]
                     },
                     {
                         title: "Khẩu Trang Y Tế 4 Lớp GEMS Mask Kháng Khuẩn",
@@ -22911,8 +22926,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Pharmacy",
                         desc: "Hộp 50 chiếc khẩu trang y tế 4 lớp dày dặn ôm sát mặt kháng khuẩn và chống bụi mịn siêu tốt.",
                         specs: { "Số lượng": "50 chiếc / hộp", "Độ lọc khuẩn": "BFE ≥ 99%", "Màu sắc": "Xanh y tế" },
-                        images: ["assets/shop/hoodie.png"],
-                        variants: [{ id: "health_masks_box", name: "Hộp 50 chiếc", price: 45000, originalPrice: 50000, image: "assets/shop/hoodie.png", stock: 500 }]
+                        images: ["assets/shop/face_mask.png"],
+                        variants: [{ id: "health_masks_box", name: "Hộp 50 chiếc", price: 45000, originalPrice: 50000, image: "assets/shop/face_mask.png", stock: 500 }]
                     },
                     {
                         title: "Nước Rửa Tay Diệt Khuẩn GEMS Clean Gel",
@@ -22921,8 +22936,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Pharmacy",
                         desc: "Nước rửa tay dạng gel làm sạch nhanh không cần nước hương trà xanh thơm mát dịu nhẹ cho da tay.",
                         specs: { "Dung tích": "500ml", "Tính năng": "Khử trùng 99.9%", "Mùi hương": "Trà xanh tự nhiên" },
-                        images: ["assets/shop/new_simple.png"],
-                        variants: [{ id: "health_hand_wash", name: "Chai vòi nhấn", price: 76500, originalPrice: 90000, image: "assets/shop/new_simple.png", stock: 180 }]
+                        images: ["assets/shop/cosnori_remover.png"],
+                        variants: [{ id: "health_hand_wash", name: "Chai vòi nhấn", price: 76500, originalPrice: 90000, image: "assets/shop/cosnori_remover.png", stock: 180 }]
                     },
                     {
                         title: "Dầu Xoa Bóp Thảo Dược GEMS Relief Oil",
@@ -22941,8 +22956,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Pharmacy",
                         desc: "Hộp 100 miếng băng cá nhân vải co giãn có lỗ thông khí bảo vệ vết thương nhỏ trầy xước nhẹ.",
                         specs: { "Số lượng": "100 miếng / hộp", "Chất liệu": "Vải co giãn thông khí", "Chống thấm nước": "Có" },
-                        images: ["assets/shop/gelpen.png"],
-                        variants: [{ id: "health_plasters", name: "Hộp 100 Miếng", price: 49000, originalPrice: 70000, image: "assets/shop/gelpen.png", stock: 250 }]
+                        images: ["assets/shop/face_mask.png"],
+                        variants: [{ id: "health_plasters", name: "Hộp 100 Miếng", price: 49000, originalPrice: 70000, image: "assets/shop/face_mask.png", stock: 250 }]
                     },
                     {
                         title: "Máy Đo Huyết Áp Bắp Tay Tự Động GEMS BP",
@@ -22971,8 +22986,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Pharmacy",
                         desc: "Viên uống dầu cá hàm lượng cao Omega-3 tự nhiên tốt cho tim mạch, tăng cường thị lực và trí não.",
                         specs: { "Quy cách": "Hũ 100 viên nang", "Hàm lượng": "1000mg", "Xuất xứ": "Úc" },
-                        images: ["assets/shop/artichoke_resin.png"],
-                        variants: [{ id: "health_omega3", name: "Hũ 100 viên", price: 296400, originalPrice: 380000, image: "assets/shop/artichoke_resin.png", stock: 120 }]
+                        images: ["assets/shop/vitamin_supplement.png"],
+                        variants: [{ id: "health_omega3", name: "Hũ 100 viên", price: 296400, originalPrice: 380000, image: "assets/shop/vitamin_supplement.png", stock: 120 }]
                     },
                     {
                         title: "Men Vi Sinh Hỗ Trợ Tiêu Hóa GEMS Probiotics",
@@ -22981,8 +22996,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Pharmacy",
                         desc: "Men vi sinh bổ sung lợi khuẩn đường ruột hỗ trợ hệ tiêu hóa khỏe mạnh, giảm đầy hơi khó tiêu.",
                         specs: { "Quy cách": "Hộp 30 gói bột", "Lượng lợi khuẩn": "10 tỷ CFU / gói", "Sản xuất": "Hàn Quốc" },
-                        images: ["assets/shop/new_simple.png"],
-                        variants: [{ id: "health_probiotics", name: "Hộp 30 Gói", price: 212500, originalPrice: 250000, image: "assets/shop/new_simple.png", stock: 110 }]
+                        images: ["assets/shop/vitamin_supplement.png"],
+                        variants: [{ id: "health_probiotics", name: "Hộp 30 Gói", price: 212500, originalPrice: 250000, image: "assets/shop/vitamin_supplement.png", stock: 110 }]
                     },
                     {
                         title: "Trà Thảo Mộc Thanh Lọc Giải Độc GEMS Herbal",
@@ -22991,8 +23006,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Pharmacy",
                         desc: "Trà thảo mộc kết hợp hoa cúc, kim ngân hoa thanh lọc mát gan, hỗ trợ ngủ ngon sâu giấc.",
                         specs: { "Khối lượng": "20 gói túi lọc", "Thành phần": "Atiso, Hoa cúc, Trà xanh", "Xuất xứ": "Đà Lạt" },
-                        images: ["assets/shop/artichoke_resin.png"],
-                        variants: [{ id: "health_herbal_tea", name: "Hộp 20 túi lọc", price: 158400, originalPrice: 180000, image: "assets/shop/artichoke_resin.png", stock: 150 }]
+                        images: ["assets/shop/lotus_tea.png"],
+                        variants: [{ id: "health_herbal_tea", name: "Hộp 20 túi lọc", price: 158400, originalPrice: 180000, image: "assets/shop/lotus_tea.png", stock: 150 }]
                     }
                 ],
                 mom_baby: [
@@ -23003,8 +23018,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Baby Care",
                         desc: "Tã dán em bé công nghệ hạt gel khóa nước thông minh chống tràn, mềm mại thông thoáng mông bé.",
                         specs: { "Quy cách": "Gói 46 miếng", "Size": "M (trẻ từ 6-11kg)", "Thương hiệu": "GEMS Baby" },
-                        images: ["assets/shop/new_nutifood.png"],
-                        variants: [{ id: "baby_diapers_m", name: "Bịch 46 miếng", price: 280000, originalPrice: 350000, image: "assets/shop/new_nutifood.png", stock: 140 }]
+                        images: ["assets/shop/baby_diapers.png"],
+                        variants: [{ id: "baby_diapers_m", name: "Bịch 46 miếng", price: 280000, originalPrice: 350000, image: "assets/shop/baby_diapers.png", stock: 140 }]
                     },
                     {
                         title: "Khăn Ướt Không Mùi Dịu Nhẹ GEMS Baby Wipes",
@@ -23013,8 +23028,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Baby Care",
                         desc: "Khăn ướt trẻ em chiết xuất lô hội tự nhiên, không chứa cồn hay paraben an toàn tuyệt đối cho bé.",
                         specs: { "Số lượng": "100 tờ / gói", "Tính chất": "Không mùi, không cồn", "Chất liệu": "Vải không dệt dày" },
-                        images: ["assets/shop/new_simple.png"],
-                        variants: [{ id: "baby_wipes_100c", name: "Gói 100 tờ", price: 34000, originalPrice: 40000, image: "assets/shop/new_simple.png", stock: 400 }]
+                        images: ["assets/shop/face_mask.png"],
+                        variants: [{ id: "baby_wipes_100c", name: "Gói 100 tờ", price: 34000, originalPrice: 40000, image: "assets/shop/face_mask.png", stock: 400 }]
                     },
                     {
                         title: "Sữa Tắm Gội Thảo Dược GEMS Baby Wash 2in1",
@@ -23023,8 +23038,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Baby Care",
                         desc: "Sữa tắm gội 2 trong 1 thảo dược cúc la mã dịu nhẹ không cay mắt, giúp ngăn ngừa rôm sảy.",
                         specs: { "Dung tích": "250ml", "Độ cay mắt": "Không cay", "Thành phần": "Cúc la mã tự nhiên" },
-                        images: ["assets/shop/new_simple.png"],
-                        variants: [{ id: "baby_wash_250", name: "Chai vòi xịt", price: 198000, originalPrice: 220000, image: "assets/shop/new_simple.png", stock: 130 }]
+                        images: ["assets/shop/cosnori_remover.png"],
+                        variants: [{ id: "baby_wash_250", name: "Chai vòi xịt", price: 198000, originalPrice: 220000, image: "assets/shop/cosnori_remover.png", stock: 130 }]
                     },
                     {
                         title: "Núm Ti Silicon Siêu Mềm GEMS Baby Núm Tròn",
@@ -23033,8 +23048,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Baby Care",
                         desc: "Núm ti silicon cấp thực phẩm mô phỏng ti mẹ siêu mềm dẻo dai, thiết kế chống sặc sữa đầy hơi.",
                         specs: { "Số lượng": "Hộp 2 cái", "Size núm": "S (cho trẻ 0-3 tháng)", "Chất liệu": "Silicon y tế" },
-                        images: ["assets/shop/gelpen.png"],
-                        variants: [{ id: "baby_nipple_s", name: "Vỉ 2 Cái Size S", price: 68000, originalPrice: 80000, image: "assets/shop/gelpen.png", stock: 180 }]
+                        images: ["assets/shop/fj_thermos.png"],
+                        variants: [{ id: "baby_nipple_s", name: "Vỉ 2 Cái Size S", price: 68000, originalPrice: 80000, image: "assets/shop/fj_thermos.png", stock: 180 }]
                     },
                     {
                         title: "Máy Hâm Sữa Tiệt Trùng GEMS Baby Care Dual",
@@ -23063,8 +23078,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Baby Care",
                         desc: "Thanh chặn cửa cầu thang khung sắt chịu lực lắp đặt không cần khoan đục bảo vệ bé an toàn.",
                         specs: { "Chất liệu": "Khung thép tĩnh điện", "Chiều rộng": "Chỉnh từ 75-85 cm", "Khóa": "Khóa kép an toàn" },
-                        images: ["assets/shop/resistance_band.png"],
-                        variants: [{ id: "baby_gate_guard", name: "Thanh Chặn Trắng", price: 360000, originalPrice: 450000, image: "assets/shop/resistance_band.png", stock: 40 }]
+                        images: ["assets/shop/leego_wardrobe.png"],
+                        variants: [{ id: "baby_gate_guard", name: "Thanh Chặn Trắng", price: 360000, originalPrice: 450000, image: "assets/shop/leego_wardrobe.png", stock: 40 }]
                     },
                     {
                         title: "Xe Đẩy Gấp Gọn Du Lịch GEMS Baby Stroller",
@@ -23083,8 +23098,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Baby Care",
                         desc: "Phao cổ tập bơi cho bé có tay cầm thiết kế thông minh nâng đỡ đầu an toàn không gây khó chịu cho bé.",
                         specs: { "Đường kính trong": "9.5cm", "Độ tuổi": "Trẻ 3-18 tháng", "Khóa": "Khóa cài an toàn" },
-                        images: ["assets/shop/face_mask.png"],
-                        variants: [{ id: "baby_neck_float", name: "Phao Cổ Hồng", price: 135000, originalPrice: 150000, image: "assets/shop/face_mask.png", stock: 95 }]
+                        images: ["assets/shop/swim_goggles.png"],
+                        variants: [{ id: "baby_neck_float", name: "Phao Cổ Hồng", price: 135000, originalPrice: 150000, image: "assets/shop/swim_goggles.png", stock: 95 }]
                     },
                     {
                         title: "Bộ Xếp Hình Khối Gỗ Giáo Dục GEMS Baby Toy",
@@ -23093,8 +23108,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Baby Care",
                         desc: "Bộ xếp hình 50 khối gỗ sơn nước tự nhiên an toàn giúp bé nhận biết hình khối và phát triển tư duy logic.",
                         specs: { "Số lượng": "50 khối gỗ", "Sơn": "Sơn nước an toàn", "Hộp đựng": "Xô nhựa tròn" },
-                        images: ["assets/shop/book.png"],
-                        variants: [{ id: "baby_wood_blocks", name: "Hộp 50 Khối", price: 238000, originalPrice: 280000, image: "assets/shop/book.png", stock: 70 }]
+                        images: ["assets/shop/wooden_toy.png"],
+                        variants: [{ id: "baby_wood_blocks", name: "Hộp 50 Khối", price: 238000, originalPrice: 280000, image: "assets/shop/wooden_toy.png", stock: 70 }]
                     }
                 ],
                 accessories: [
@@ -23125,8 +23140,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Accessories",
                         desc: "Thắt lưng da bò thật cao cấp nguyên tấm siêu bền, mặt khóa hợp kim chống rỉ sét thiết kế tự động tiện dụng.",
                         specs: { "Chất liệu": "Da bò thật", "Mặt khóa": "Khóa tự động hợp kim", "Bản dây": "3.5 cm" },
-                        images: ["assets/shop/hoodie_black.png"],
-                        variants: [{ id: "acc_belt_leather", name: "Đen Da Thật", price: 245000, originalPrice: 350000, image: "assets/shop/hoodie_black.png", stock: 110 }]
+                        images: ["assets/shop/wallet.png"],
+                        variants: [{ id: "acc_belt_leather", name: "Đen Da Thật", price: 245000, originalPrice: 350000, image: "assets/shop/wallet.png", stock: 110 }]
                     },
                     {
                         title: "Mũ Lưỡi Trai Unisex GEMS Cap Thêu Logo",
@@ -23135,8 +23150,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Accessories",
                         desc: "Mũ lưỡi trai vải cotton 100% dày dặn đứng form thêu logo GEMS tinh tế. Khóa kim loại điều chỉnh độ rộng sau gáy.",
                         specs: { "Chất liệu": "Cotton 100%", "Form": "Lưỡi trai unisex", "Khóa gáy": "Kim loại điều chỉnh" },
-                        images: ["assets/shop/hoodie.png"],
-                        variants: [{ id: "acc_cap_logo", name: "Màu Đen Thêu Trắng", price: 120000, originalPrice: 150000, image: "assets/shop/hoodie.png", stock: 250 }]
+                        images: ["assets/shop/cap.png"],
+                        variants: [{ id: "acc_cap_logo", name: "Màu Đen Thêu Trắng", price: 120000, originalPrice: 150000, image: "assets/shop/cap.png", stock: 250 }]
                     },
                     {
                         title: "Ví Da Nam Cầm Tay GEMS Mini Wallet",
@@ -23185,8 +23200,8 @@ let currentActiveBookId = 'chandoanykhoa';
                         shopName: "GEMS Accessories",
                         desc: "Móc khóa da thật khâu tay handmade tỉ mỉ, móc khóa kim loại chắc chắn tiện đeo đai quần balo.",
                         specs: { "Chất liệu": "Da thuộc thảo mộc (Veg-tan)", "Móc treo": "Hợp kim đồng thau", "Sản xuất": "Thủ công Việt Nam" },
-                        images: ["assets/shop/gelpen.png"],
-                        variants: [{ id: "acc_keyring_da", name: "Da Veg Nâu", price: 81000, originalPrice: 90000, image: "assets/shop/gelpen.png", stock: 150 }]
+                        images: ["assets/shop/wallet.png"],
+                        variants: [{ id: "acc_keyring_da", name: "Da Veg Nâu", price: 81000, originalPrice: 90000, image: "assets/shop/wallet.png", stock: 150 }]
                     },
                     {
                         title: "Ô Dù Gấp Gọn Tự Động Che Mưa GEMS Umbrella",
