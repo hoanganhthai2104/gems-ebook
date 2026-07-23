@@ -22258,136 +22258,82 @@ let currentActiveBookId = 'chandoanykhoa';
             function getMatchingImage(title, category = '') {
                 const lower = title.toLowerCase();
                 
-                // Specific keyword matches
-                if (lower.includes("kháng lực")) {
-                    return 'assets/shop/resistance_band.png';
-                }
-                if (lower.includes("bóng rổ")) {
-                    return 'assets/shop/basketball.png';
-                }
-                if (lower.includes("khẩu trang")) {
-                    return 'assets/shop/face_mask.png';
-                }
-                if (lower.includes("tạ")) {
-                    return 'assets/shop/dumbbell.png';
-                }
-                if (lower.includes("chơi")) {
-                    return 'assets/shop/wooden_toy.png';
-                }
-                if (lower.includes("mũ")) {
-                    return 'assets/shop/cap.png';
-                }
-                if (lower.includes("balo")) {
-                    return 'assets/shop/backpack.png';
-                }
-                if (lower.includes("thảm")) {
-                    return 'assets/shop/yoga_mat.png';
-                }
-                if (lower.includes("nước hoa") || lower.includes("parfum") || lower.includes("cologne")) {
-                    return 'assets/shop/perfume_bottle.png';
-                }
-                if (lower.includes("kính bơi") || lower.includes("kính lặn") || lower.includes("swim goggle")) {
-                    return 'assets/shop/swim_goggles.png';
-                }
-                if (lower.includes("vợt") || lower.includes("cầu lông") || lower.includes("badminton")) {
-                    return 'assets/shop/badminton_racket.png';
-                }
-                if (lower.includes("đồng hồ bấm") || lower.includes("stopwatch") || lower.includes("bấm giờ")) {
-                    return 'assets/shop/stopwatch.png';
-                }
-                if (lower.includes("túi trống") || lower.includes("gym bag") || lower.includes("túi gym")) {
-                    return 'assets/shop/gym_bag.png';
-                }
-                if (lower.includes("xe đẩy") || lower.includes("stroller")) {
-                    return 'assets/shop/baby_stroller.png';
-                }
-                if (lower.includes("kính mát") || lower.includes("kính râm") || lower.includes("sunglasses")) {
-                    return 'assets/shop/sunglasses.png';
-                }
-                if (lower.includes("ô dù") || lower.includes("dù gấp") || lower.includes("umbrella")) {
-                    return 'assets/shop/umbrella.png';
-                }
-                if (lower.includes("ví da") || lower.includes("ví nam") || lower.includes("wallet")) {
-                    return 'assets/shop/wallet.png';
-                }
-                if (lower.includes("tai nghe") || lower.includes("headphones") || lower.includes("loa") || lower.includes("soundbar")) {
-                    const imgs = ['assets/shop/headphones_black.png', 'assets/shop/headphones_white.png', 'assets/shop/headphones_blue.png', 'assets/shop/headphones.png'];
-                    return imgs[title.length % imgs.length];
-                }
-                if (lower.includes("đế sạc") || lower.includes("sạc nhanh") || lower.includes("củ sạc") || lower.includes("cáp sạc") || lower.includes("dock") || lower.includes("sạc")) {
-                    return 'assets/shop/ugreen_charger.png';
-                }
-                if (lower.includes("bàn phím") || lower.includes("keyboard") || lower.includes("chuột") || lower.includes("mouse")) {
-                    return 'assets/shop/keyboard.png';
-                }
-                if (lower.includes("đèn")) {
-                    return 'assets/shop/desklamp.png';
-                }
-                if (lower.includes("ốp") || lower.includes("case")) {
-                    return 'assets/shop/magnetic_phone_case.png';
-                }
-                if (lower.includes("áo") || lower.includes("quần") || lower.includes("scrubs") || lower.includes("blouse") || lower.includes("đồng phục") || lower.includes("hoodie") || lower.includes("sweater") || lower.includes("short")) {
-                    const imgs = ['assets/shop/hoodie_black.png', 'assets/shop/hoodie_sage.png', 'assets/shop/hoodie.png', 'assets/shop/silk_hoodie.png'];
-                    return imgs[title.length % imgs.length];
-                }
-                if (lower.includes("giày") || lower.includes("sneaker")) {
-                    const imgs = ['assets/shop/sneaker_black.png', 'assets/shop/sneaker_grey.png', 'assets/shop/sneaker_white.png', 'assets/shop/sneaker_premium.png', 'assets/shop/sneaker.png'];
-                    return imgs[title.length % imgs.length];
-                }
-                if (lower.includes("mật ong") || lower.includes("honey") || lower.includes("mật dừa")) {
-                    return 'assets/shop/honey_sokfarm.png';
-                }
-                if (lower.includes("trà") || lower.includes("tea")) {
-                    return 'assets/shop/lotus_tea.png';
-                }
-                if (lower.includes("tinh dầu") || lower.includes("oil")) {
-                    return 'assets/shop/essential_oil_hue.png';
-                }
-                if (lower.includes("kem chống nắng") || lower.includes("sunscreen")) {
-                    return 'assets/shop/dalba_sunscreen.png';
-                }
-                if (lower.includes("serum")) {
-                    return 'assets/shop/torriden_serum.png';
-                }
-                if (lower.includes("sữa rửa mặt") || lower.includes("tẩy trang") || lower.includes("remover") || lower.includes("cleansing")) {
-                    return 'assets/shop/cosnori_remover.png';
-                }
-                if (lower.includes("má hồng") || lower.includes("blush") || lower.includes("son")) {
-                    return 'assets/shop/sace_lady_blush.png';
-                }
-                if (lower.includes("ấm trà") || lower.includes("teapot")) {
-                    return 'assets/shop/battrang_teapot.png';
-                }
-                if (lower.includes("lồng đèn") || lower.includes("lantern")) {
-                    return 'assets/shop/hoian_lantern.png';
-                }
-                if (lower.includes("nồi") || lower.includes("chảo") || lower.includes("cookware")) {
-                    return 'assets/shop/cookware.png';
-                }
-                if (lower.includes("tủ") || lower.includes("kệ") || lower.includes("wardrobe")) {
-                    return 'assets/shop/leego_wardrobe.png';
-                }
-                if (lower.includes("sách") || lower.includes("book") || lower.includes("cẩm nang") || lower.includes("từ điển") || lower.includes("atlas")) {
-                    return 'assets/shop/book.png';
-                }
-                if (lower.includes("huyết áp")) {
-                    return 'assets/shop/bp_monitor.png';
-                }
-                if (lower.includes("nhiệt kế")) {
-                    return 'assets/shop/infrared_thermometer.png';
-                }
-                if (lower.includes("vòng tay") || lower.includes("bạc") || lower.includes("trang sức") || lower.includes("dây chuyền") || lower.includes("khuyên tai")) {
-                    return 'assets/shop/silver_bracelet.png';
-                }
-                if (lower.includes("băng cá nhân") || lower.includes("băng gạc") || lower.includes("plaster")) {
-                    return 'assets/shop/cosnori_remover.png';
-                }
-                if (lower.includes("bình nước") || lower.includes("bình giữ nhiệt") || lower.includes("thermos")) {
-                    return 'assets/shop/fj_thermos.png';
-                }
-                if (lower.includes("bút") || lower.includes("sổ") || lower.includes("pen") || lower.includes("gelpen")) {
-                    return 'assets/shop/gelpen.png';
-                }
+                // Specific keyword matches - Sports & Fitness
+                if (lower.includes("kháng lực") || lower.includes("dây kéo")) return 'assets/shop/resistance_band.png';
+                if (lower.includes("bóng rổ") || lower.includes("basketball")) return 'assets/shop/basketball.png';
+                if (lower.includes("tạ") || lower.includes("dumbbell")) return 'assets/shop/dumbbell.png';
+                if (lower.includes("thảm") || lower.includes("yoga")) return 'assets/shop/yoga_mat.png';
+                if (lower.includes("kính bơi") || lower.includes("swim goggle")) return 'assets/shop/swim_goggles.png';
+                if (lower.includes("vợt") || lower.includes("cầu lông") || lower.includes("badminton")) return 'assets/shop/badminton_racket.png';
+                if (lower.includes("đồng hồ bấm") || lower.includes("stopwatch") || lower.includes("bấm giờ")) return 'assets/shop/stopwatch.png';
+                if (lower.includes("túi trống") || lower.includes("gym bag") || lower.includes("túi gym") || lower.includes("túi thể thao")) return 'assets/shop/gym_bag.png';
+                if (lower.includes("đầu gối") || lower.includes("băng đầu gối") || lower.includes("knee pad")) return 'assets/shop/resistance_band.png';
+
+                // Medical & Health
+                if (lower.includes("khẩu trang") || lower.includes("mask")) return 'assets/shop/face_mask.png';
+                if (lower.includes("huyết áp") || lower.includes("bp monitor")) return 'assets/shop/bp_monitor.png';
+                if (lower.includes("nhiệt kế") || lower.includes("thermometer")) return 'assets/shop/infrared_thermometer.png';
+                if (lower.includes("rửa tay") || lower.includes("sát khuẩn") || lower.includes("clean gel")) return 'assets/shop/cosnori_remover.png';
+                if (lower.includes("băng cá nhân") || lower.includes("plaster")) return 'assets/shop/cosnori_remover.png';
+                if (lower.includes("dầu cá") || lower.includes("omega-3") || lower.includes("fish oil")) return 'assets/shop/artichoke_resin.png';
+                if (lower.includes("viên sủi") || lower.includes("multivitamin") || lower.includes("probiotics") || lower.includes("men vi sinh")) return 'assets/shop/new_simple.png';
+
+                // Mom & Baby
+                if (lower.includes("xe đẩy") || lower.includes("stroller")) return 'assets/shop/baby_stroller.png';
+                if (lower.includes("khối gỗ") || lower.includes("xếp hình") || lower.includes("wood blocks") || lower.includes("đồ chơi") || lower.includes("toy")) return 'assets/shop/wooden_toy.png';
+                if (lower.includes("tã") || lower.includes("bỉm") || lower.includes("diaper")) return 'assets/shop/baby_stroller.png';
+                if (lower.includes("khăn ướt") || lower.includes("wipes")) return 'assets/shop/cosnori_remover.png';
+                if (lower.includes("sữa tắm gội") || lower.includes("baby wash")) return 'assets/shop/cosnori_remover.png';
+                if (lower.includes("núm ti") || lower.includes("bình sữa") || lower.includes("nipple") || lower.includes("máy hâm")) return 'assets/shop/fj_thermos.png';
+                if (lower.includes("bát ăn dặm") || lower.includes("ăn dặm") || lower.includes("bát silicon")) return 'assets/shop/cookware.png';
+                if (lower.includes("thanh chặn") || lower.includes("chặn cửa")) return 'assets/shop/leego_wardrobe.png';
+                if (lower.includes("phao") || lower.includes("float")) return 'assets/shop/swim_goggles.png';
+
+                // Beauty & Skincare
+                if (lower.includes("nước hoa") || lower.includes("parfum") || lower.includes("cologne")) return 'assets/shop/perfume_bottle.png';
+                if (lower.includes("kem chống nắng") || lower.includes("sunscreen")) return 'assets/shop/dalba_sunscreen.png';
+                if (lower.includes("serum") || lower.includes("tinh chất")) return 'assets/shop/torriden_serum.png';
+                if (lower.includes("sữa rửa mặt") || lower.includes("tẩy trang") || lower.includes("remover") || lower.includes("cleansing")) return 'assets/shop/cosnori_remover.png';
+                if (lower.includes("má hồng") || lower.includes("blush") || lower.includes("son")) return 'assets/shop/sace_lady_blush.png';
+                if (lower.includes("mặt nạ") || lower.includes("đất sét") || lower.includes("clay")) return 'assets/shop/cosnori_remover.png';
+                if (lower.includes("tẩy tế bào chết") || lower.includes("scrub") || lower.includes("cà phê")) return 'assets/shop/artichoke_resin.png';
+                if (lower.includes("dưỡng tóc") || lower.includes("tóc") || lower.includes("hair")) return 'assets/shop/essential_oil_hue.png';
+                if (lower.includes("kem dưỡng") || lower.includes("brightening cream") || lower.includes("cream")) return 'assets/shop/dalba_sunscreen.png';
+
+                // Accessories & Fashion
+                if (lower.includes("kính mát") || lower.includes("kính râm") || lower.includes("sunglasses")) return 'assets/shop/sunglasses.png';
+                if (lower.includes("ô dù") || lower.includes("dù gấp") || lower.includes("umbrella")) return 'assets/shop/umbrella.png';
+                if (lower.includes("ví da") || lower.includes("ví nam") || lower.includes("wallet")) return 'assets/shop/wallet.png';
+                if (lower.includes("thắt lưng") || lower.includes("dây nịt") || lower.includes("belt")) return 'assets/shop/wallet.png';
+                if (lower.includes("vòng tay") || lower.includes("bạc") || lower.includes("trang sức") || lower.includes("dây chuyền") || lower.includes("khuyên tai")) return 'assets/shop/silver_bracelet.png';
+                if (lower.includes("mũ") || lower.includes("nón") || lower.includes("cap")) return 'assets/shop/cap.png';
+                if (lower.includes("balo") || lower.includes("backpack")) return 'assets/shop/backpack.png';
+                if (lower.includes("khăn choàng") || lower.includes("khăn quàng") || lower.includes("scarf")) return 'assets/shop/hoodie_sage.png';
+                if (lower.includes("móc khóa") || lower.includes("keyring")) return 'assets/shop/wallet.png';
+
+                // Tech & Gadgets
+                if (lower.includes("tai nghe") || lower.includes("headphones") || lower.includes("loa") || lower.includes("soundbar")) return 'assets/shop/headphones_black.png';
+                if (lower.includes("đế sạc") || lower.includes("sạc nhanh") || lower.includes("củ sạc") || lower.includes("cáp sạc") || lower.includes("sạc")) return 'assets/shop/ugreen_charger.png';
+                if (lower.includes("bàn phím") || lower.includes("keyboard") || lower.includes("chuột") || lower.includes("mouse")) return 'assets/shop/keyboard.png';
+                if (lower.includes("đèn")) return 'assets/shop/desklamp.png';
+                if (lower.includes("ốp") || lower.includes("case")) return 'assets/shop/magnetic_phone_case.png';
+
+                // Apparel & Footwear
+                if (lower.includes("áo") || lower.includes("quần") || lower.includes("scrubs") || lower.includes("blouse") || lower.includes("hoodie") || lower.includes("sweater") || lower.includes("short")) return 'assets/shop/hoodie_black.png';
+                if (lower.includes("giày") || lower.includes("sneaker")) return 'assets/shop/sneaker_black.png';
+
+                // Food & Beverages
+                if (lower.includes("mật ong") || lower.includes("honey") || lower.includes("mật dừa") || lower.includes("bánh quy") || lower.includes("cookies") || lower.includes("khô gà") || lower.includes("trái cây sấy") || lower.includes("hạt điều") || lower.includes("granola")) return 'assets/shop/honey_sokfarm.png';
+                if (lower.includes("trà sữa") || lower.includes("matcha") || lower.includes("trà") || lower.includes("tea")) return 'assets/shop/lotus_tea.png';
+                if (lower.includes("cà phê") || lower.includes("coffee") || lower.includes("chocolate") || lower.includes("socola") || lower.includes("cacao")) return 'assets/shop/artichoke_resin.png';
+                if (lower.includes("tinh dầu") || lower.includes("oil")) return 'assets/shop/essential_oil_hue.png';
+                if (lower.includes("ấm trà") || lower.includes("teapot")) return 'assets/shop/battrang_teapot.png';
+                if (lower.includes("lồng đèn") || lower.includes("lantern")) return 'assets/shop/hoian_lantern.png';
+                if (lower.includes("nồi") || lower.includes("chảo") || lower.includes("cookware")) return 'assets/shop/cookware.png';
+                if (lower.includes("tủ") || lower.includes("kệ") || lower.includes("wardrobe")) return 'assets/shop/leego_wardrobe.png';
+                if (lower.includes("sách") || lower.includes("book") || lower.includes("cẩm nang") || lower.includes("từ điển") || lower.includes("atlas")) return 'assets/shop/book.png';
+                if (lower.includes("bình nước") || lower.includes("bình giữ nhiệt") || lower.includes("thermos")) return 'assets/shop/fj_thermos.png';
+                if (lower.includes("bút") || lower.includes("sổ") || lower.includes("pen") || lower.includes("gelpen")) return 'assets/shop/gelpen.png';
 
                 // Category-based fallbacks
                 let fallbacks = ['assets/logo.png'];
@@ -23336,7 +23282,7 @@ let currentActiveBookId = 'chandoanykhoa';
                     adjectives: ["chống trượt TPE", "nhựa Tritan an toàn", "nhiều cấp độ", "tự động", "siêu bền", "GEMS Fit", "chuyên dụng", "siêu bám", "thoáng khí", "gập gọn"],
                     descs: ["Dụng cụ hỗ trợ luyện tập thể thao nâng cao sức khỏe tại nhà và phòng gym.", "Chất liệu cao cấp an toàn cho da, chịu lực tốt chịu mài mòn.", "Đồng hành cùng bạn trên hành trình kiến tạo vóc dáng khỏe đẹp."],
                     basePrices: [90000, 160000, 280000, 350000, 480000, 70000],
-                    images: ['assets/shop/headphones_white.png', 'assets/shop/headphones_black.png']
+                    images: ['assets/shop/yoga_mat.png', 'assets/shop/basketball.png', 'assets/shop/swim_goggles.png', 'assets/shop/gym_bag.png', 'assets/shop/badminton_racket.png', 'assets/shop/dumbbell.png', 'assets/shop/stopwatch.png', 'assets/shop/resistance_band.png']
                 },
                 {
                     id: 'food',
@@ -23345,7 +23291,7 @@ let currentActiveBookId = 'chandoanykhoa';
                     adjectives: ["tự nhiên 100%", "không đường", "giàu chất xơ", "thơm ngon", "organic", "sấy lạnh", "nguyên chất", "tốt cho tim mạch", "loại A tuyển chọn", "GEMS Organic"],
                     descs: ["Thực phẩm dinh dưỡng lành mạnh cho lối sống xanh và eat-clean.", "Nguồn cung cấp năng lượng và dưỡng chất dồi dào từ thiên nhiên.", "Không chứa chất bảo quan hay phụ gia độc hại, an tâm sử dụng hàng ngày."],
                     basePrices: [85000, 125000, 195000, 250000, 380000, 450000],
-                    images: ['assets/shop/honey_sokfarm.png', 'assets/shop/essential_oil_hue.png']
+                    images: ['assets/shop/honey_sokfarm.png', 'assets/shop/lotus_tea.png', 'assets/shop/artichoke_resin.png']
                 },
                 {
                     id: 'health',
@@ -23354,7 +23300,7 @@ let currentActiveBookId = 'chandoanykhoa';
                     adjectives: ["kháng khuẩn", "cao cấp", "chuyên dụng", "chính xác cao", "GEMS Medical", "tiện lợi", "thế hệ mới", "chuẩn Bộ Y Tế", "an toàn", "nhập khẩu"],
                     descs: ["Sản phẩm y tế hỗ trợ theo dõi và chăm sóc sức khỏe gia đình tiện lợi.", "Được chứng nhận an toàn, dễ sử dụng cho mọi thành viên.", "Sản phẩm chính hãng chất lượng cao từ GEMS Health."],
                     basePrices: [45000, 85000, 150000, 350000, 680000, 1200000],
-                    images: ['assets/shop/headphones_white.png', 'assets/logo.png']
+                    images: ['assets/shop/bp_monitor.png', 'assets/shop/infrared_thermometer.png', 'assets/shop/face_mask.png', 'assets/shop/essential_oil_hue.png', 'assets/shop/cosnori_remover.png']
                 },
                 {
                     id: 'mom_baby',
@@ -23363,7 +23309,7 @@ let currentActiveBookId = 'chandoanykhoa';
                     adjectives: ["cho trẻ sơ sinh", "hữu cơ tự nhiên", "siêu thấm hút", "không cay mắt", "silicon an toàn", "GEMS Baby", "phát triển tư duy", "mềm mại", "kháng khuẩn", "nhỏ gọn"],
                     descs: ["Sản phẩm chăm sóc mẹ và bé toàn diện, đảm bảo an toàn tuyệt đối.", "Thành phần tự nhiên, dịu nhẹ và không gây kích ứng cho làn da của bé.", "Giúp bé phát triển khỏe mạnh và thông minh mỗi ngày."],
                     basePrices: [65000, 115000, 245000, 380000, 480000, 520000],
-                    images: ['assets/logo.png', 'assets/shop/headphones_blue.png']
+                    images: ['assets/shop/baby_stroller.png', 'assets/shop/wooden_toy.png', 'assets/shop/fj_thermos.png', 'assets/shop/cosnori_remover.png']
                 },
                 {
                     id: 'accessories',
@@ -23372,7 +23318,7 @@ let currentActiveBookId = 'chandoanykhoa';
                     adjectives: ["dễ thương", "mạ vàng", "bằng da thật", "GEMS Classic", "chống nước", "tiện lợi", "thiết kế độc quyền", "bản đặc biệt", "handmade", "nhỏ xinh"],
                     descs: ["Phụ kiện y khoa xinh xắn dành riêng cho các chiến binh áo trắng.", "Món quà ý nghĩa tặng đồng nghiệp và người thân ngành y.", "Chất liệu thân thiện với môi trường, thiết kế độc quyền GEMS."],
                     basePrices: [25000, 45000, 65000, 95000, 120000, 180000],
-                    images: ['assets/shop/gelpen.png', 'assets/shop/headphones_black.png']
+                    images: ['assets/shop/sunglasses.png', 'assets/shop/silver_bracelet.png', 'assets/shop/wallet.png', 'assets/shop/cap.png', 'assets/shop/umbrella.png', 'assets/shop/gelpen.png']
                 }
             ];
 
@@ -29505,23 +29451,23 @@ let currentActiveBookId = 'chandoanykhoa';
             // 3. Register Back to Top Scroll Event Listeners
             const shopScroll = document.getElementById('shop-scroll-content');
             if (shopScroll && typeof handleShopScroll === 'function') {
-                shopScroll.addEventListener('scroll', handleShopScroll);
+                shopScroll.addEventListener('scroll', handleShopScroll, { passive: true });
             }
             const localScroll = document.getElementById('local-scroll-content');
             if (localScroll && typeof handleLocalScroll === 'function') {
-                localScroll.addEventListener('scroll', handleLocalScroll);
+                localScroll.addEventListener('scroll', handleLocalScroll, { passive: true });
             }
             const xtraScroll = document.getElementById('view-shop-xtra-scroll');
             if (xtraScroll && typeof handleXtraScroll === 'function') {
-                xtraScroll.addEventListener('scroll', handleXtraScroll);
+                xtraScroll.addEventListener('scroll', handleXtraScroll, { passive: true });
             }
             const homeScroll = document.getElementById('home-scroll-content');
             if (homeScroll && typeof handleHomeScroll === 'function') {
-                homeScroll.addEventListener('scroll', handleHomeScroll);
+                homeScroll.addEventListener('scroll', handleHomeScroll, { passive: true });
             }
             const globalScroll = document.getElementById('global-scroll-content');
             if (globalScroll && typeof handleGlobalScroll === 'function') {
-                globalScroll.addEventListener('scroll', handleGlobalScroll);
+                globalScroll.addEventListener('scroll', handleGlobalScroll, { passive: true });
             }
 
         });
