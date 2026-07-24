@@ -1192,6 +1192,87 @@
       .footer-brand span { font-size: 11px; }
       .footer-inner > div:nth-child(2),
       .footer-links { display: none; }
+
+      /* Mobile uses a natural editorial scroll: content first, visual second. */
+      html { scroll-snap-type: none; }
+      body { overscroll-behavior-y: auto; }
+      .snap {
+        height: auto;
+        min-height: 0;
+        overflow: visible;
+        scroll-snap-align: none;
+        scroll-snap-stop: normal;
+      }
+      .section-inner {
+        height: auto;
+        min-height: 0;
+        padding: 94px 0 74px;
+      }
+
+      .hero .section-inner { padding-top: 94px; padding-bottom: 42px; }
+      .hero-stage {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        left: auto;
+        min-height: 390px;
+        margin-top: 28px;
+      }
+      .hero-halo { width: 310px; }
+      .hero-device { width: 184px; }
+
+      .journey .section-inner {
+        display: block;
+        padding-top: 100px;
+        padding-bottom: 82px;
+      }
+      .journey-track { margin-top: 28px; }
+
+      .library .section-inner {
+        display: flex;
+        flex-direction: column;
+        padding-top: 94px;
+        padding-bottom: 68px;
+      }
+      .library-copy { order: 1; }
+      .library-stage {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        left: auto;
+        order: 2;
+        min-height: 365px;
+        margin-top: 34px;
+      }
+      .library-stage::before { width: 300px; height: 300px; }
+      .library-device { width: 174px; }
+
+      .experience .section-inner {
+        display: block;
+        padding-top: 94px;
+        padding-bottom: 66px;
+      }
+      .experience-stage {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        left: auto;
+        min-height: 370px;
+        margin-top: 32px;
+      }
+      .experience-orbit { width: 320px; height: 320px; }
+      .reader-device { width: 166px; }
+      .audio-device { width: 142px; }
+
+      .principles .section-inner,
+      .purpose .section-inner { padding-top: 100px; padding-bottom: 78px; }
+      .closing,
+      .closing .section-inner {
+        height: auto;
+        min-height: 0;
+      }
+      .closing .section-inner { padding: 100px 0 52px; }
+      .site-footer { position: relative; margin-top: 24px; }
     }
 
     @media (max-height: 740px) and (min-width: 921px) {
