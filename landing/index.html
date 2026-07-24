@@ -888,11 +888,26 @@
         padding-top: 88px;
         padding-bottom: 24px;
       }
-      .site-header { top: 3px; }
-      .header-inner { height: 58px; }
-      .brand img { width: 28px; height: 28px; }
+      .site-header { top: 0; }
+      .header-inner { height: 56px; }
+      .brand img { width: 26px; height: 26px; }
       .brand { font-size: 12px; }
-      .menu-toggle { width: 32px; height: 32px; }
+      .menu-toggle {
+        width: 28px;
+        height: 28px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+      }
+      .menu-toggle i,
+      .menu-toggle::before,
+      .menu-toggle::after {
+        width: 16px;
+        background: #17384a;
+      }
+      .menu-toggle i { margin-block: 3px; }
+      .menu-toggle.active::before { transform: translateY(4px) rotate(45deg); }
+      .menu-toggle.active::after { transform: translateY(-4px) rotate(-45deg); }
       .progress { height: 3px; }
 
       .hero .section-inner {
@@ -940,14 +955,14 @@
         position: absolute;
         z-index: 2;
         right: 0;
-        bottom: -126px;
+        bottom: 0;
         left: 0;
-        min-height: 365px;
+        min-height: 310px;
         margin: 0;
       }
-      .hero-halo { width: 330px; }
+      .hero-halo { width: 260px; }
       .hero-device {
-        width: 205px;
+        width: 144px;
         transform: rotate(2.5deg);
       }
       .hero-note { display: none; }
@@ -971,8 +986,8 @@
       .library-copy > p,
       .experience-copy > p,
       .principles-intro {
-        font-size: 12px;
-        line-height: 1.55;
+        font-size: 13px;
+        line-height: 1.6;
       }
       .journey-intro { padding: 0; }
       .journey-track {
@@ -1030,24 +1045,16 @@
       .library-stage {
         position: absolute;
         right: 0;
-        bottom: -122px;
+        bottom: 0;
         left: 0;
-        min-height: 330px;
+        min-height: 280px;
       }
-      .library-stage::before { width: 300px; height: 300px; }
+      .library-stage::before { width: 245px; height: 245px; }
       .library-device {
-        width: 176px;
+        width: 130px;
         transform: rotate(-2deg);
       }
-      .library-shelf {
-        right: 1%;
-        bottom: 36%;
-        width: 142px;
-        padding: 12px;
-        border-radius: 13px;
-      }
-      .library-shelf span { font-size: 7px; }
-      .library-shelf strong { margin-top: 4px; font-size: 10px; line-height: 1.4; }
+      .library-shelf { display: none; }
 
       .experience::before { width: 100%; opacity: .35; }
       .experience .section-inner {
@@ -1071,20 +1078,20 @@
       .experience-stage {
         position: absolute;
         right: 0;
-        bottom: -106px;
+        bottom: 0;
         left: 0;
-        min-height: 390px;
+        min-height: 300px;
       }
-      .experience-orbit { width: 330px; height: 330px; }
+      .experience-orbit { width: 270px; height: 270px; }
       .reader-device {
         left: 4%;
-        width: 185px;
-        transform: translateY(-47%) rotate(-3deg);
+        width: 135px;
+        transform: translateY(-50%) rotate(-3deg);
       }
       .audio-device {
         right: 3%;
-        width: 158px;
-        transform: translateY(-39%) rotate(4deg);
+        width: 115px;
+        transform: translateY(-50%) rotate(4deg);
       }
 
       .principles .section-inner {
