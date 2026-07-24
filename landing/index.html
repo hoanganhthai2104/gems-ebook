@@ -130,34 +130,35 @@
       height: calc(100svh - 130px);
       min-height: 460px;
       max-height: 650px;
-      overflow: hidden;
-      border-radius: 42px 42px 180px 42px;
-      background:
-        linear-gradient(rgba(255, 255, 255, .12) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, .12) 1px, transparent 1px),
-        linear-gradient(145deg, #315faf, #18366f);
-      background-size: 64px 64px, 64px 64px, auto;
+      isolation: isolate;
     }
     .book-stage::before {
       position: absolute;
-      right: -85px;
-      top: -85px;
-      width: 390px;
-      height: 390px;
-      border: 1px solid rgba(255, 255, 255, .24);
-      border-radius: 50%;
-      box-shadow: 0 0 0 58px rgba(255, 255, 255, .035);
+      z-index: -2;
+      right: 0;
+      top: 3%;
+      width: 88%;
+      height: 92%;
+      border-radius: 48% 52% 38% 62% / 44% 42% 58% 56%;
+      background:
+        linear-gradient(rgba(255, 255, 255, .11) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .11) 1px, transparent 1px),
+        linear-gradient(145deg, #376bc2, #18366f);
+      background-size: 68px 68px, 68px 68px, auto;
+      box-shadow: 0 38px 80px rgba(24, 54, 111, .18);
       content: "";
     }
     .book-stage::after {
       position: absolute;
-      left: 38px;
-      bottom: 34px;
-      color: rgba(255, 255, 255, .64);
-      font-family: "Newsreader", serif;
-      font-size: 19px;
-      letter-spacing: .02em;
-      content: "Sách và công cụ đọc trong cùng một mạch học.";
+      z-index: -1;
+      left: 1%;
+      top: 10%;
+      width: 76%;
+      height: 72%;
+      border: 1.5px solid rgba(224, 179, 66, .65);
+      border-radius: 50%;
+      content: "";
+      transform: rotate(-18deg);
     }
     .book {
       position: absolute;
@@ -168,13 +169,13 @@
       transition: transform .9s var(--ease);
     }
     .book img { width: 100%; height: auto; }
-    .book-one { z-index: 2; left: 42px; top: 126px; width: 285px; transform: rotate(-9deg); animation: bookDrift 7s ease-in-out infinite; }
+    .book-one { z-index: 2; left: 12px; top: 142px; width: 310px; transform: rotate(-9deg); animation: bookDrift 7s ease-in-out infinite; }
     .hero-reader {
       position: absolute;
       z-index: 3;
-      right: 62px;
-      top: 38px;
-      width: 270px;
+      right: 12px;
+      top: 24px;
+      width: 310px;
       border: 7px solid rgba(255, 255, 255, .92);
       border-radius: 39px;
       box-shadow: 0 34px 64px rgba(5, 13, 35, .35);
@@ -425,8 +426,8 @@
     .delay-2 { transition-delay: .12s; }
     .delay-3 { transition-delay: .18s; }
 
-    @media (min-width: 1600px) and (min-height: 800px) {
-      :root { --shell: 1480px; }
+    @media (min-width: 1360px) and (min-height: 800px) {
+      :root { --shell: 1440px; }
       .header-inner { height: 90px; }
       .brand { font-size: 15px; }
       .brand img { width: 46px; height: 46px; }
@@ -434,13 +435,12 @@
       .button { min-height: 54px; padding-inline: 26px; font-size: 13px; }
       .hero { padding: 112px 0 34px; }
       .hero-grid { grid-template-columns: .88fr 1.12fr; gap: 100px; }
-      .hero h1 { max-width: 760px; font-size: 88px; }
+      .hero h1 { max-width: 760px; font-size: clamp(78px, 5.2vw, 88px); }
       .hero-lead { max-width: 620px; font-size: 17px; }
       .hero-actions { margin-top: 40px; }
-      .book-stage { height: calc(100svh - 150px); max-height: 760px; border-radius: 52px 52px 210px 52px; }
-      .book-one { left: 58px; top: 154px; width: 340px; }
-      .hero-reader { right: 78px; top: 48px; width: 315px; border-radius: 44px; }
-      .book-stage::after { left: 48px; bottom: 40px; font-size: 21px; }
+      .book-stage { height: calc(100svh - 150px); max-height: 760px; }
+      .book-one { left: 18px; top: 164px; width: 370px; }
+      .hero-reader { right: 22px; top: 26px; width: 365px; border-radius: 48px; }
       .values h2, .audience h2, .dayflow h2, .depth-copy h2 { font-size: 76px; }
       .values-intro, .audience-note, .dayflow-copy p, .depth-copy p { font-size: 15px; }
       .value-item { min-height: 285px; padding: 34px; }
@@ -501,10 +501,11 @@
       .hero { padding: 104px 0 36px; }
       .hero h1 { font-size: 53px; }
       .hero-lead { font-size: 13px; }
-      .book-stage { min-height: 500px; border-radius: 26px 26px 110px 26px; }
-      .book-one { left: 19px; top: 158px; width: 195px; }
-      .hero-reader { right: 26px; top: 34px; width: 205px; border-width: 5px; border-radius: 31px; }
-      .book-stage::after { right: 28px; left: 28px; bottom: 30px; font-size: 15px; }
+      .book-stage { min-height: 500px; overflow: hidden; }
+      .book-stage::before { right: 2%; width: 94%; border-radius: 42% 58% 40% 60% / 38% 42% 58% 62%; }
+      .book-stage::after { left: 4%; top: 13%; width: 82%; height: 68%; }
+      .book-one { left: 20px; top: 168px; width: 220px; }
+      .hero-reader { right: 34px; top: 32px; width: 235px; border-width: 5px; border-radius: 34px; }
       .values { padding: 88px 0; }
       .values h2 { font-size: 43px; }
       .value-list { grid-template-columns: 1fr; gap: 12px; margin-top: 50px; }
