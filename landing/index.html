@@ -8,7 +8,7 @@
   <title>GEMS | Thư viện y khoa số dành cho người Việt</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@1,6..72,500;1,6..72,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --ink: #0c2940;
@@ -158,16 +158,7 @@
         radial-gradient(circle at 82% 28%, rgba(21, 139, 191, .11), transparent 24%),
         linear-gradient(135deg, #fafcfb 0%, #edf5f5 72%, #e4f2f4 100%);
     }
-    .hero::before {
-      position: absolute;
-      top: -34%;
-      right: -12%;
-      width: 770px;
-      height: 770px;
-      border: 1px solid rgba(9, 110, 168, .12);
-      border-radius: 50%;
-      content: "";
-    }
+    .hero::before { display: none; }
     .hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: .93fr 1.07fr; gap: 54px; align-items: center; }
     .hero-copy { padding-top: 20px; }
     .hero h1 {
@@ -178,14 +169,10 @@
       line-height: .95;
       letter-spacing: -.07em;
     }
-    .hero h1 em {
-      display: block;
-      margin-top: 8px;
+    .hero h1 .accent {
       color: var(--blue);
-      font-family: "Newsreader", serif;
-      font-size: .88em;
-      font-weight: 500;
-      letter-spacing: -.055em;
+      font: inherit;
+      letter-spacing: inherit;
     }
     .hero-lead { max-width: 590px; color: var(--ink-soft); font-size: 17px; line-height: 1.75; }
     .hero-actions { display: flex; gap: 12px; margin-top: 34px; }
@@ -217,7 +204,7 @@
       border: 1px solid rgba(9, 110, 168, .2);
       border-radius: 50%;
       color: var(--blue);
-      font-family: "Newsreader", serif;
+      font-family: "Manrope", sans-serif;
       font-size: 14px;
       font-style: normal;
     }
@@ -225,18 +212,11 @@
     .hero-stage::before {
       position: absolute;
       inset: 2% -7% 2% 7%;
-      border-radius: 48% 52% 44% 56% / 42% 44% 56% 58%;
-      background: linear-gradient(145deg, #dff0f2, #cce5ea);
-      content: "";
-      transform: rotate(-4deg);
-    }
-    .hero-stage::after {
-      position: absolute;
-      inset: 12% 6% 10% 18%;
-      border: 1px solid rgba(9, 110, 168, .14);
-      border-radius: 50%;
+      border-radius: 52px;
+      background: linear-gradient(145deg, #dcecef, #c9e3e7);
       content: "";
     }
+    .hero-stage::after { display: none; }
     .hero-phone {
       position: absolute;
       z-index: 3;
@@ -245,6 +225,7 @@
       width: auto;
       height: 94%;
       max-height: 670px;
+      border-radius: 10% / 4.8%;
       filter: drop-shadow(0 35px 40px rgba(12, 41, 64, .25));
       transform: translateX(-46%) rotate(2.3deg);
       transform-origin: center bottom;
@@ -259,14 +240,7 @@
       50% { transform: translateX(-46%) translateY(-10px) rotate(1.4deg); }
     }
     .stage-note {
-      position: absolute;
-      z-index: 5;
-      padding: 16px 18px;
-      border: 1px solid rgba(12, 41, 64, .09);
-      border-radius: 18px;
-      background: rgba(255, 255, 255, .92);
-      box-shadow: 0 20px 42px rgba(12, 41, 64, .12);
-      backdrop-filter: blur(12px);
+      display: none;
     }
     .stage-note strong { display: block; font-size: 14px; }
     .stage-note small { display: block; margin-top: 3px; color: #6f7d88; font-size: 10px; }
@@ -279,16 +253,7 @@
       align-items: center;
       background: var(--paper);
     }
-    .thesis::after {
-      position: absolute;
-      right: -100px;
-      bottom: -220px;
-      width: 560px;
-      height: 560px;
-      border: 1px solid rgba(12, 41, 64, .09);
-      border-radius: 50%;
-      content: "";
-    }
+    .thesis::after { display: none; }
     .thesis-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 100px; align-items: center; }
     .thesis h2 {
       max-width: 780px;
@@ -298,7 +263,7 @@
       line-height: 1.01;
       letter-spacing: -.06em;
     }
-    .thesis h2 em { color: var(--blue); font-family: "Newsreader", serif; font-weight: 500; }
+    .thesis h2 .accent { color: var(--blue); }
     .thesis-list { border-top: 1px solid rgba(12, 41, 64, .18); }
     .thesis-item {
       display: grid;
@@ -323,7 +288,7 @@
       line-height: 1.02;
       letter-spacing: -.06em;
     }
-    .chapter h2 em { display: block; color: var(--gold-light); font-family: "Newsreader", serif; font-weight: 500; }
+    .chapter h2 .accent { color: var(--gold-light); }
     .chapter-copy > p { max-width: 560px; margin-top: 26px; color: rgba(255, 255, 255, .72); font-size: 17px; line-height: 1.75; }
     .chapter-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
     .chapter-tags span {
@@ -353,34 +318,14 @@
       width: auto;
       height: 92%;
       max-height: 630px;
+      border-radius: 10% / 4.8%;
       filter: drop-shadow(0 34px 38px rgba(0, 0, 0, .28));
       transform: translate(-50%, -50%);
     }
     .library { background: #123768; }
-    .library::before {
-      position: absolute;
-      inset: 0 55% 0 0;
-      background: linear-gradient(110deg, rgba(0, 0, 0, .12), transparent);
-      content: "";
-    }
-    .library-stage::before {
-      position: absolute;
-      inset: 7% 3% 5%;
-      border-radius: 50% 50% 42% 58% / 48% 40% 60% 52%;
-      background: rgba(255, 255, 255, .075);
-      content: "";
-    }
-    .library-stage::after {
-      position: absolute;
-      top: 9%;
-      right: 8%;
-      width: 70%;
-      height: 70%;
-      border: 1px solid rgba(244, 215, 123, .24);
-      border-radius: 50%;
-      content: "";
-      transform: rotate(18deg);
-    }
+    .library::before { display: none; }
+    .library-stage::before { display: none; }
+    .library-stage::after { display: none; }
 
     .reader {
       display: flex;
@@ -398,7 +343,7 @@
       line-height: 1.02;
       letter-spacing: -.06em;
     }
-    .reader h2 em { display: block; color: var(--blue); font-family: "Newsreader", serif; font-weight: 500; }
+    .reader h2 .accent { color: var(--blue); }
     .reader-copy > p { max-width: 570px; margin-top: 26px; color: var(--ink-soft); font-size: 17px; line-height: 1.75; }
     .reader-features { display: grid; gap: 0; margin-top: 30px; border-top: 1px solid var(--line); }
     .reader-feature {
@@ -415,10 +360,9 @@
     .reader-stage::before {
       position: absolute;
       inset: 4% 5% 2% 7%;
-      border-radius: 44% 56% 52% 48% / 45% 42% 58% 55%;
+      border-radius: 48px;
       background: linear-gradient(150deg, #e6f0ed, #d7e8e8);
       content: "";
-      transform: rotate(4deg);
     }
     .reader-device {
       position: absolute;
@@ -428,54 +372,19 @@
       width: auto;
       height: 92%;
       max-height: 640px;
+      border-radius: 10% / 4.8%;
       filter: drop-shadow(0 34px 38px rgba(12, 41, 64, .22));
       transform: translate(-50%, -50%) rotate(-2deg);
     }
     .reader-callout {
-      position: absolute;
-      z-index: 5;
-      right: -1%;
-      bottom: 15%;
-      width: 210px;
-      padding: 18px;
-      border-left: 3px solid var(--gold);
-      border-radius: 0 16px 16px 0;
-      background: rgba(255, 255, 255, .94);
-      box-shadow: 0 20px 40px rgba(12, 41, 64, .12);
-      color: #465c6b;
-      font-size: 11px;
-      line-height: 1.6;
+      display: none;
     }
     .reader-callout strong { display: block; margin-bottom: 4px; color: var(--ink); font-size: 13px; }
 
     .audio { background: #104a50; }
-    .audio::after {
-      position: absolute;
-      top: -20%;
-      right: -10%;
-      width: 700px;
-      height: 700px;
-      border: 1px solid rgba(244, 215, 123, .2);
-      border-radius: 50%;
-      content: "";
-    }
-    .audio-stage::before {
-      position: absolute;
-      inset: 6% 2% 5% 5%;
-      border-radius: 54% 46% 60% 40% / 44% 52% 48% 56%;
-      background: rgba(255, 255, 255, .07);
-      content: "";
-    }
-    .audio-wave, .audio-wave::before, .audio-wave::after {
-      position: absolute;
-      inset: 13% 1% 12% 8%;
-      border: 1px solid rgba(244, 215, 123, .24);
-      border-radius: 50%;
-      content: "";
-      transform: rotate(-15deg);
-    }
-    .audio-wave::before { inset: 8%; }
-    .audio-wave::after { inset: 18%; }
+    .audio::after { display: none; }
+    .audio-stage::before { display: none; }
+    .audio-wave { display: none; }
 
     .habit {
       display: flex;
@@ -493,7 +402,7 @@
       line-height: 1.03;
       letter-spacing: -.058em;
     }
-    .habit h2 em, .technology h2 em { display: block; color: var(--blue); font-family: "Newsreader", serif; font-weight: 500; }
+    .habit h2 .accent, .technology h2 .accent { color: var(--blue); }
     .habit-copy > p, .technology-copy > p { max-width: 550px; margin-top: 26px; color: var(--ink-soft); font-size: 17px; line-height: 1.75; }
     .habit-board {
       position: relative;
@@ -547,7 +456,7 @@
     }
     .technology-grid { position: relative; z-index: 2; display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; align-items: center; }
     .technology .kicker { color: var(--gold-light); }
-    .technology h2 em { color: var(--gold-light); }
+    .technology h2 .accent { color: var(--gold-light); }
     .technology-copy > p { color: rgba(255, 255, 255, .7); }
     .tool-stack { border: 1px solid rgba(255, 255, 255, .14); border-radius: 32px; overflow: hidden; background: rgba(255, 255, 255, .055); }
     .tool-row {
@@ -575,16 +484,7 @@
         radial-gradient(circle at 78% 24%, rgba(22, 138, 193, .23), transparent 28%),
         #081f39;
     }
-    .purpose::before {
-      position: absolute;
-      top: -34%;
-      right: -7%;
-      width: 740px;
-      height: 740px;
-      border: 1px solid rgba(255, 255, 255, .09);
-      border-radius: 50%;
-      content: "";
-    }
+    .purpose::before { display: none; }
     .purpose-grid { position: relative; z-index: 2; }
     .purpose .kicker { color: var(--gold-light); }
     .purpose blockquote {
@@ -595,7 +495,7 @@
       line-height: .98;
       letter-spacing: -.065em;
     }
-    .purpose blockquote em { color: var(--gold-light); font-family: "Newsreader", serif; font-weight: 500; }
+    .purpose blockquote .accent { color: var(--gold-light); }
     .purpose-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; max-width: 930px; margin-top: 64px; }
     .purpose-item { padding-top: 19px; border-top: 1px solid rgba(255, 255, 255, .2); }
     .purpose-item span { color: var(--gold-light); font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
@@ -610,7 +510,7 @@
     }
     .closing-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 80px; align-items: center; }
     .closing h2 { max-width: 850px; font-size: clamp(58px, 6vw, 88px); line-height: .98; letter-spacing: -.065em; }
-    .closing h2 em { display: block; color: var(--blue); font-family: "Newsreader", serif; font-weight: 500; }
+    .closing h2 .accent { color: var(--blue); }
     .closing p { max-width: 560px; margin-top: 26px; color: var(--ink-soft); font-size: 17px; line-height: 1.75; }
     .closing-actions { display: flex; gap: 12px; margin-top: 34px; }
     .closing-mark {
@@ -715,7 +615,6 @@
       .kicker { font-size: 9px; line-height: 1.5; }
       .hero { padding: 112px 0 55px; }
       .hero h1 { margin-top: 22px; font-size: 52px; line-height: .98; }
-      .hero h1 em { margin-top: 6px; }
       .hero-lead, .chapter-copy > p, .reader-copy > p, .habit-copy > p, .technology-copy > p, .closing p { font-size: 15px; line-height: 1.7; }
       .hero-actions, .closing-actions { align-items: stretch; flex-direction: column; }
       .hero-actions .button, .closing-actions .button { width: 100%; }
@@ -810,7 +709,7 @@
       <div class="shell hero-grid">
         <div class="hero-copy">
           <div class="kicker" data-reveal>Thư viện y khoa số dành cho người Việt</div>
-          <h1 data-reveal style="--delay:.08s">Kho tri thức y khoa.<em>Được xây để học mỗi ngày.</em></h1>
+          <h1 data-reveal style="--delay:.08s">Kho tri thức y khoa, <span class="accent">xây cho việc học mỗi ngày.</span></h1>
           <p class="hero-lead" data-reveal style="--delay:.16s">Sách chuyên ngành, sách nói và công cụ học tập được đặt trong một trải nghiệm liền mạch, để mỗi lần mở GEMS đều đưa bạn tiến thêm một bước.</p>
           <div class="hero-actions" data-reveal style="--delay:.24s">
             <a class="button button-primary" href="https://gems-ebook.vercel.app/">Trải nghiệm GEMS <span class="button-icon">↗</span></a>
@@ -834,7 +733,7 @@
       <div class="shell thesis-grid">
         <div>
           <div class="kicker" data-reveal>Điểm khác biệt của GEMS</div>
-          <h2 data-reveal style="--delay:.08s">Không chỉ là nơi chứa sách. <em>Là một hệ thống để đọc, hiểu và ghi nhớ.</em></h2>
+          <h2 data-reveal style="--delay:.08s">Không chỉ là nơi chứa sách, mà là một hệ thống để <span class="accent">đọc, hiểu và ghi nhớ.</span></h2>
         </div>
         <div class="thesis-list">
           <article class="thesis-item" data-reveal="right">
@@ -860,7 +759,7 @@
         </div>
         <div class="chapter-copy">
           <div class="kicker" data-reveal>Thư viện chuyên ngành</div>
-          <h2 data-reveal style="--delay:.08s">Một thư viện y khoa. <em>Nhiều lộ trình học.</em></h2>
+          <h2 data-reveal style="--delay:.08s">Một thư viện y khoa cho <span class="accent">nhiều lộ trình học.</span></h2>
           <p data-reveal style="--delay:.16s">Từ giáo trình nền tảng đến cẩm nang lâm sàng và dược liệu, GEMS đưa từng lĩnh vực về đúng một nơi để bạn tìm, đọc và tiếp tục học dễ dàng hơn.</p>
           <div class="chapter-tags" data-reveal style="--delay:.22s">
             <span>Nội khoa</span><span>Dược học</span><span>Y học cổ truyền</span><span>Dinh dưỡng</span>
@@ -874,7 +773,7 @@
       <div class="shell reader-grid">
         <div class="reader-copy">
           <div class="kicker" data-reveal>Không gian đọc</div>
-          <h2 data-reveal style="--delay:.08s">Mọi công cụ cần thiết. <em>Ngay trong trang sách.</em></h2>
+          <h2 data-reveal style="--delay:.08s">Mọi công cụ cần thiết <span class="accent">ngay trong trang sách.</span></h2>
           <p data-reveal style="--delay:.16s">GEMS giữ bạn ở lại với nội dung: đọc tập trung, đánh dấu đoạn quan trọng, tra cứu thuật ngữ và chuyển sang nghe khi cần.</p>
           <div class="reader-features" data-reveal style="--delay:.22s">
             <div class="reader-feature"><span>01</span>Chế độ đọc tập trung, rõ ràng</div>
@@ -897,7 +796,7 @@
         </div>
         <div class="chapter-copy">
           <div class="kicker" data-reveal>Sách nói y khoa</div>
-          <h2 data-reveal style="--delay:.08s">Khi không thể ngồi đọc. <em>Bài học vẫn đi cùng bạn.</em></h2>
+          <h2 data-reveal style="--delay:.08s">Khi không thể ngồi đọc, <span class="accent">bài học vẫn đi cùng bạn.</span></h2>
           <p data-reveal style="--delay:.16s">Cùng một kho nội dung, thêm một cách tiếp nhận. Nghe khi di chuyển, khi nghỉ giữa ca hoặc trong những khoảng thời gian không thể dành cho màn hình.</p>
           <div class="chapter-tags" data-reveal style="--delay:.22s">
             <span>Nghe tiếp</span><span>Đồng bộ tiến độ</span><span>Nội dung chuyên ngành</span>
@@ -911,7 +810,7 @@
       <div class="shell habit-grid">
         <div class="habit-copy">
           <div class="kicker" data-reveal>Học có nhịp</div>
-          <h2 data-reveal style="--delay:.08s">Biến việc đọc thành <em>một tiến trình nhìn thấy được.</em></h2>
+          <h2 data-reveal style="--delay:.08s">Biến việc đọc thành <span class="accent">một tiến trình nhìn thấy được.</span></h2>
           <p data-reveal style="--delay:.16s">Mục tiêu nhỏ mỗi ngày, chuỗi đọc và bài kiểm tra sau chương giúp việc học không còn phụ thuộc vào cảm hứng nhất thời.</p>
         </div>
         <div class="habit-board" data-reveal="right">
@@ -933,7 +832,7 @@
       <div class="shell technology-grid">
         <div class="technology-copy">
           <div class="kicker" data-reveal>Công nghệ hỗ trợ học</div>
-          <h2 data-reveal style="--delay:.08s">Công nghệ chỉ xuất hiện <em>khi giúp bạn hiểu sâu hơn.</em></h2>
+          <h2 data-reveal style="--delay:.08s">Công nghệ chỉ xuất hiện <span class="accent">khi giúp bạn hiểu sâu hơn.</span></h2>
           <p data-reveal style="--delay:.16s">Không thêm tính năng để gây chú ý. GEMS dùng công nghệ để làm rõ ý chính, giải nghĩa thuật ngữ và giúp người đọc tự kiểm tra điều đã hiểu.</p>
         </div>
         <div class="tool-stack" data-reveal="right">
@@ -947,7 +846,7 @@
     <section class="snap purpose" id="purpose">
       <div class="shell purpose-grid">
         <div class="kicker" data-reveal>Điều GEMS theo đuổi</div>
-        <blockquote data-reveal style="--delay:.08s">Tri thức y khoa đáng tin cậy cần <em>dễ tiếp cận và dễ học hơn.</em></blockquote>
+        <blockquote data-reveal style="--delay:.08s">Tri thức y khoa đáng tin cậy cần <span class="accent">dễ tiếp cận và dễ học hơn.</span></blockquote>
         <div class="purpose-columns">
           <div class="purpose-item" data-reveal style="--delay:.16s"><span>Sứ mệnh</span><p>Đưa nội dung y khoa chất lượng đến gần hơn với người học Việt Nam bằng một trải nghiệm đọc, nghe và ôn tập thống nhất.</p></div>
           <div class="purpose-item" data-reveal style="--delay:.24s"><span>Tầm nhìn</span><p>Trở thành không gian tri thức y khoa số nơi mỗi người có thể xây dựng thói quen học tập lâu dài và chủ động.</p></div>
@@ -959,7 +858,7 @@
       <div class="shell closing-grid">
         <div>
           <div class="kicker" data-reveal>Bắt đầu với GEMS</div>
-          <h2 data-reveal style="--delay:.08s">Mở một cuốn sách. <em>Bắt đầu một nhịp học mới.</em></h2>
+          <h2 data-reveal style="--delay:.08s">Mở một cuốn sách, <span class="accent">bắt đầu một nhịp học mới.</span></h2>
           <p data-reveal style="--delay:.16s">Khám phá thư viện y khoa và trải nghiệm cách GEMS đồng hành cùng việc học mỗi ngày.</p>
           <div class="closing-actions" data-reveal style="--delay:.24s">
             <a class="button button-primary" href="https://gems-ebook.vercel.app/">Mở ứng dụng <span class="button-icon">↗</span></a>
