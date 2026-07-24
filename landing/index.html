@@ -13,15 +13,15 @@
     :root {
       --ink: #0a2b3e;
       --ink-soft: #536874;
-      --blue: #087eae;
+      --blue: #066b96;
       --blue-deep: #0b3654;
       --blue-dark: #08283d;
-      --gold: #ddb43f;
-      --gold-soft: #f3df9b;
+      --gold: #d3a934;
+      --gold-soft: #f1dc94;
       --mint: #dcefeb;
       --sky: #dceef4;
-      --paper: #f4f1e8;
-      --paper-light: #fbfaf6;
+      --paper: #f3f0e7;
+      --paper-light: #faf9f4;
       --white: #ffffff;
       --line: rgba(10, 43, 62, .14);
       --shell: 1240px;
@@ -49,6 +49,7 @@
     button { color: inherit; font: inherit; }
     img { display: block; max-width: 100%; }
     h1, h2, h3, p, blockquote { margin: 0; }
+    h1, h2, blockquote { font-kerning: normal; text-wrap: balance; }
     .shell { width: min(calc(100% - 64px), var(--shell)); margin-inline: auto; }
     .snap {
       position: relative;
@@ -78,7 +79,7 @@
       display: block;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, var(--gold), var(--blue));
+      background: var(--gold);
       transform: scaleX(0);
       transform-origin: left;
       will-change: transform;
@@ -187,47 +188,104 @@
       transition: transform .35s var(--ease), box-shadow .35s ease, background .35s ease;
     }
     .button:hover { transform: translateY(-3px); }
-    .button-primary { color: var(--white); background: var(--blue); box-shadow: 0 16px 40px rgba(8,126,174,.24); }
-    .button-primary:hover { background: #066f99; box-shadow: 0 20px 50px rgba(8,126,174,.3); }
+    .button-primary { color: var(--white); background: var(--blue); box-shadow: 0 12px 28px rgba(6,107,150,.18); }
+    .button-primary:hover { background: #055d83; box-shadow: 0 16px 34px rgba(6,107,150,.22); }
     .button-light { color: var(--blue-dark); background: var(--white); box-shadow: 0 14px 36px rgba(0,0,0,.12); }
     .button-ghost { border-color: var(--line); background: rgba(255,255,255,.38); }
     .button svg { width: 16px; transition: transform .35s var(--ease); }
     .button:hover svg { transform: translateX(4px); }
 
-    .eyebrow {
+    .hero-kicker {
+      color: #425b67;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .hero-kicker span {
+      margin-right: 10px;
+      color: var(--blue);
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+    .section-meta {
+      display: inline-grid;
+      grid-template-columns: 30px auto;
+      align-items: center;
+      gap: 12px;
+      color: rgba(255,255,255,.72);
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .section-meta span {
+      color: var(--gold-soft);
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+    }
+    .section-meta p { padding-left: 12px; border-left: 1px solid rgba(255,255,255,.25); }
+    .library-meta {
+      display: flex;
+      max-width: 610px;
+      padding-bottom: 13px;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      color: #425b67;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .library-meta span { color: var(--blue); font-size: 11px; font-variant-numeric: tabular-nums; }
+    .experience-meta {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      color: var(--blue);
-      font-size: 11px;
+      gap: 12px;
+      color: rgba(255,255,255,.74);
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .experience-meta::after { width: 48px; height: 1px; background: rgba(255,255,255,.32); content: ""; }
+    .experience-meta span { color: var(--gold-soft); font-size: 11px; }
+    .principles-index {
+      position: absolute;
+      top: 12%;
+      right: 1%;
+      color: rgba(10,43,62,.055);
+      font-size: clamp(110px, 15vw, 210px);
       font-weight: 800;
-      letter-spacing: .14em;
-      text-transform: uppercase;
+      line-height: 1;
+      letter-spacing: -.07em;
+      pointer-events: none;
     }
-    .eyebrow::before { width: 26px; height: 2px; background: currentColor; content: ""; }
-    .eyebrow.light { color: #8ed2e7; }
-    .eyebrow.gold { color: var(--gold-soft); }
-    .section-number {
-      color: rgba(10,43,62,.42);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .14em;
+    .purpose-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(255,255,255,.7);
+      font-size: 12px;
+      font-weight: 600;
     }
-    .light-text .section-number { color: rgba(255,255,255,.46); }
+    .purpose-label i { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+    .closing-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .06em;
+    }
+    .closing-mark img { width: 32px; height: 32px; object-fit: contain; }
 
     [data-reveal] {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity .85s var(--ease), transform .85s var(--ease);
+      transform: translateY(18px);
+      transition: opacity .75s var(--ease), transform .75s var(--ease);
       transition-delay: var(--delay, 0s);
     }
-    [data-reveal="scale"] { transform: translateY(20px) scale(.96); }
+    [data-reveal="scale"] { transform: translateY(14px) scale(.985); }
     .is-visible [data-reveal] { opacity: 1; transform: translateY(0) scale(1); }
 
     .hero {
-      background:
-        radial-gradient(circle at 86% 16%, rgba(8,126,174,.13), transparent 28%),
-        linear-gradient(135deg, #f7f5ee 0%, #eef5f4 100%);
+      background: #f7f6f0;
     }
     .hero::before {
       position: absolute;
@@ -235,7 +293,7 @@
       right: -11%;
       width: 55vw;
       height: 55vw;
-      border: 1px solid rgba(8,126,174,.1);
+      border: 1px solid rgba(6,107,150,.09);
       border-radius: 50%;
       content: "";
     }
@@ -247,7 +305,7 @@
       height: 8px;
       border-radius: 50%;
       background: var(--gold);
-      box-shadow: 0 0 0 8px rgba(221,180,63,.13), 0 0 0 17px rgba(221,180,63,.06);
+      box-shadow: 0 0 0 8px rgba(211,169,52,.1);
       content: "";
     }
     .hero .section-inner {
@@ -259,11 +317,11 @@
     .hero-copy { padding-top: 18px; }
     .hero h1 {
       max-width: 790px;
-      margin-top: 22px;
+      margin-top: 26px;
       font-size: clamp(58px, 6.35vw, 94px);
       font-weight: 700;
-      line-height: .99;
-      letter-spacing: -.065em;
+      line-height: 1.03;
+      letter-spacing: -.045em;
     }
     .hero h1 span { color: var(--blue); }
     .hero-lead {
@@ -298,8 +356,8 @@
       width: min(42vw, 540px);
       aspect-ratio: 1;
       border-radius: 50%;
-      background: linear-gradient(145deg, rgba(255,255,255,.75), rgba(196,229,234,.88));
-      box-shadow: inset 0 0 0 1px rgba(8,126,174,.09), 0 45px 100px rgba(26,86,106,.16);
+      background: #dfeaec;
+      box-shadow: inset 0 0 0 1px rgba(6,107,150,.07);
     }
     .hero-device {
       position: relative;
@@ -317,29 +375,28 @@
       bottom: 15%;
       width: 210px;
       padding: 18px;
-      border: 1px solid rgba(255,255,255,.8);
-      border-radius: 18px;
-      background: rgba(255,255,255,.78);
-      box-shadow: 0 20px 50px rgba(15,49,64,.13);
-      backdrop-filter: blur(16px);
+      border: 0;
+      border-left: 3px solid var(--gold);
+      border-radius: 0 12px 12px 0;
+      background: rgba(250,249,244,.96);
+      box-shadow: 0 14px 32px rgba(15,49,64,.08);
     }
     .hero-note small { color: var(--blue); font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
     .hero-note strong { display: block; margin-top: 7px; font-size: 15px; line-height: 1.45; }
 
     .journey {
       color: var(--white);
-      background:
-        radial-gradient(circle at 18% 85%, rgba(8,126,174,.32), transparent 34%),
-        var(--blue-dark);
+      background: #092e45;
     }
     .journey::before {
       position: absolute;
-      inset: 0;
-      opacity: .12;
-      background-image: linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px);
-      background-size: 80px 80px;
-      mask-image: linear-gradient(to right, black, transparent 80%);
-      content: "";
+      right: 5%;
+      bottom: -8%;
+      color: rgba(255,255,255,.025);
+      content: "01";
+      font-size: min(34vw, 470px);
+      font-weight: 800;
+      line-height: .8;
     }
     .journey .section-inner { display: flex; flex-direction: column; justify-content: center; }
     .journey-top {
@@ -353,8 +410,8 @@
       margin-top: 22px;
       font-size: clamp(54px, 6.5vw, 92px);
       font-weight: 700;
-      line-height: 1.02;
-      letter-spacing: -.06em;
+      line-height: 1.05;
+      letter-spacing: -.04em;
     }
     .journey-intro {
       padding-bottom: 10px;
@@ -391,10 +448,7 @@
     .journey-step p { max-width: 310px; margin-top: 14px; color: rgba(255,255,255,.62); font-size: 14px; line-height: 1.7; }
 
     .library {
-      background:
-        linear-gradient(90deg, rgba(8,126,174,.035) 1px, transparent 1px),
-        var(--paper-light);
-      background-size: 120px 100%;
+      background: var(--paper-light);
     }
     .library .section-inner {
       display: grid;
@@ -413,7 +467,7 @@
       width: 520px;
       height: 520px;
       border-radius: 46% 54% 62% 38% / 44% 38% 62% 56%;
-      background: var(--mint);
+      background: #dfe9e6;
       content: "";
       transform: rotate(-8deg);
     }
@@ -436,17 +490,17 @@
       border-radius: 20px;
       background: var(--blue-deep);
       color: var(--white);
-      box-shadow: 0 24px 60px rgba(8,40,61,.23);
+      box-shadow: 0 18px 40px rgba(8,40,61,.15);
     }
-    .library-shelf span { color: #82cce5; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .library-shelf span { color: var(--gold-soft); font-size: 10px; font-weight: 700; letter-spacing: .03em; }
     .library-shelf strong { display: block; margin-top: 8px; font-size: 16px; line-height: 1.45; }
     .library-copy h2 {
       max-width: 720px;
-      margin-top: 20px;
+      margin-top: 22px;
       font-size: clamp(54px, 5.8vw, 84px);
       font-weight: 700;
-      line-height: 1.03;
-      letter-spacing: -.06em;
+      line-height: 1.06;
+      letter-spacing: -.04em;
     }
     .library-copy h2 span { color: var(--blue); }
     .library-copy > p {
@@ -477,7 +531,7 @@
 
     .experience {
       color: var(--white);
-      background: linear-gradient(145deg, #096f9f 0%, #0a5477 55%, #08364f 100%);
+      background: #0a6386;
     }
     .experience::before {
       position: absolute;
@@ -485,7 +539,8 @@
       right: 0;
       width: 55%;
       height: 100%;
-      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.13), transparent 48%);
+      border-left: 1px solid rgba(255,255,255,.08);
+      background: rgba(5,42,58,.15);
       content: "";
     }
     .experience .section-inner {
@@ -499,8 +554,8 @@
       margin-top: 20px;
       font-size: clamp(52px, 5.5vw, 80px);
       font-weight: 700;
-      line-height: 1.04;
-      letter-spacing: -.06em;
+      line-height: 1.06;
+      letter-spacing: -.04em;
     }
     .experience-copy h2 span { color: var(--gold-soft); }
     .experience-copy > p {
@@ -561,7 +616,7 @@
       left: 50%;
       width: 590px;
       height: 590px;
-      border: 1px solid rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.12);
       border-radius: 50%;
       transform: translate(-50%, -50%);
     }
@@ -573,7 +628,7 @@
       height: 10px;
       border-radius: 50%;
       background: var(--gold);
-      box-shadow: 0 0 0 8px rgba(221,180,63,.13);
+      box-shadow: none;
       content: "";
     }
 
@@ -587,11 +642,11 @@
     }
     .principles h2 {
       max-width: 840px;
-      margin-top: 20px;
+      margin-top: 0;
       font-size: clamp(55px, 6.2vw, 88px);
       font-weight: 700;
-      line-height: 1.01;
-      letter-spacing: -.06em;
+      line-height: 1.05;
+      letter-spacing: -.04em;
     }
     .principles-head > p {
       padding-bottom: 8px;
@@ -648,8 +703,8 @@
       margin-top: 24px;
       font-size: clamp(58px, 7.4vw, 106px);
       font-weight: 700;
-      line-height: .99;
-      letter-spacing: -.065em;
+      line-height: 1.06;
+      letter-spacing: -.045em;
     }
     .purpose blockquote span { color: var(--gold-soft); }
     .purpose-grid {
@@ -661,15 +716,13 @@
       padding-top: 30px;
       border-top: 1px solid rgba(255,255,255,.2);
     }
-    .purpose-item span { color: #82cce5; font-size: 10px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .purpose-item span { color: var(--gold-soft); font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
     .purpose-item p { margin-top: 12px; color: rgba(255,255,255,.66); font-size: 15px; line-height: 1.75; }
 
     .closing {
       min-height: 100svh;
       color: var(--ink);
-      background:
-        radial-gradient(circle at 50% 35%, rgba(8,126,174,.12), transparent 34%),
-        var(--paper-light);
+      background: var(--paper-light);
     }
     .closing .section-inner {
       min-height: 100svh;
@@ -679,11 +732,11 @@
     }
     .closing-copy { max-width: 970px; }
     .closing h2 {
-      margin-top: 20px;
+      margin-top: 24px;
       font-size: clamp(58px, 7vw, 96px);
       font-weight: 700;
-      line-height: 1;
-      letter-spacing: -.065em;
+      line-height: 1.05;
+      letter-spacing: -.045em;
     }
     .closing h2 span { color: var(--blue); }
     .closing p {
@@ -708,7 +761,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      color: #6a787f;
+      color: #596a72;
       font-size: 11px;
     }
     .footer-brand { display: flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 800; }
@@ -834,7 +887,7 @@
       .header-inner { height: 68px; }
 
       .hero .section-inner { padding-top: 112px; }
-      .hero h1 { margin-top: 18px; font-size: clamp(47px, 14vw, 64px); letter-spacing: -.07em; }
+      .hero h1 { margin-top: 20px; font-size: clamp(47px, 14vw, 64px); letter-spacing: -.045em; }
       .hero-lead { margin-top: 22px; font-size: 15px; line-height: 1.7; }
       .hero-actions { display: grid; grid-template-columns: 1fr; }
       .button { width: 100%; }
@@ -848,6 +901,7 @@
       .journey h2, .library-copy h2, .experience-copy h2, .principles h2 {
         font-size: clamp(45px, 13vw, 60px);
       }
+      .journey::before, .principles-index { display: none; }
       .journey-intro, .library-copy > p, .experience-copy > p, .principles-head > p { font-size: 15px; }
       .journey-track {
         grid-template-columns: 1fr;
@@ -960,7 +1014,7 @@
     <section class="snap hero is-visible" id="top" data-theme="light">
       <div class="shell section-inner">
         <div class="hero-copy">
-          <div class="eyebrow" data-reveal>Ứng dụng đọc sách y khoa dành cho người Việt</div>
+          <p class="hero-kicker" data-reveal><span>GEMS</span>Ứng dụng đọc sách y khoa dành cho người Việt</p>
           <h1 data-reveal style="--delay:.08s">Khi việc học y khoa cần một nơi <span>đủ sâu.</span></h1>
           <p class="hero-lead" data-reveal style="--delay:.16s">GEMS đưa sách chuyên ngành, sách nói và trải nghiệm học từ sách về cùng một nơi, để tri thức không chỉ được lưu lại mà thực sự đi cùng bạn.</p>
           <div class="hero-actions" data-reveal style="--delay:.24s">
@@ -986,7 +1040,7 @@
       <div class="shell section-inner">
         <div class="journey-top">
           <div>
-            <div class="eyebrow gold" data-reveal>Không chỉ cho một kỳ thi</div>
+            <div class="section-meta" data-reveal><span>01</span><p>Hành trình người học</p></div>
             <h2 data-reveal style="--delay:.08s">Đi cùng một hành trình dài.</h2>
           </div>
           <p class="journey-intro" data-reveal style="--delay:.16s">Kiến thức y khoa thay đổi theo từng giai đoạn. GEMS được xây để người học có thể bắt đầu từ nền tảng, tìm lại điều cần thiết và tiếp tục bồi đắp năng lực chuyên môn.</p>
@@ -1021,7 +1075,7 @@
           </div>
         </div>
         <div class="library-copy">
-          <div class="eyebrow" data-reveal>Kho tri thức y khoa</div>
+          <div class="library-meta" data-reveal><p>Kho tri thức y khoa</p><span>02</span></div>
           <h2 data-reveal style="--delay:.08s">Không chỉ nhiều. <span>Phải có chiều sâu.</span></h2>
           <p data-reveal style="--delay:.16s">GEMS hướng đến một thư viện nơi nội dung chuyên ngành được sắp xếp rõ ràng, để người đọc có thể nhìn thấy bức tranh lớn nhưng vẫn tìm được đúng cuốn sách mình cần.</p>
           <div class="catalog" data-reveal style="--delay:.24s">
@@ -1039,7 +1093,7 @@
     <section class="snap experience light-text" id="experience" data-theme="dark">
       <div class="shell section-inner">
         <div class="experience-copy">
-          <div class="eyebrow gold" data-reveal>Một trải nghiệm thống nhất</div>
+          <div class="experience-meta" data-reveal><span>03</span><p>Đọc và nghe liền mạch</p></div>
           <h2 data-reveal style="--delay:.08s">Đọc sâu. Nghe tiếp. <span>Không đứt mạch.</span></h2>
           <p data-reveal style="--delay:.16s">GEMS không đặt từng công cụ cạnh nhau. Mọi thứ được nối thành một dòng trải nghiệm, để bạn có thể đổi cách tiếp cận mà không phải bắt đầu lại.</p>
           <div class="experience-flow" data-reveal style="--delay:.24s">
@@ -1059,8 +1113,8 @@
     <section class="snap principles" id="principles" data-theme="light">
       <div class="shell section-inner">
         <div class="principles-head">
+          <div class="principles-index" aria-hidden="true">04</div>
           <div>
-            <div class="eyebrow" data-reveal>Điều GEMS theo đuổi</div>
             <h2 data-reveal style="--delay:.08s">Tri thức y khoa cần được đối xử nghiêm túc.</h2>
           </div>
           <p data-reveal style="--delay:.16s">Công nghệ chỉ có ý nghĩa khi giúp nội dung rõ hơn, việc đọc tập trung hơn và người học chủ động hơn với hành trình của mình.</p>
@@ -1087,7 +1141,7 @@
 
     <section class="snap purpose light-text" id="purpose" data-theme="dark">
       <div class="shell section-inner">
-        <div class="eyebrow gold" data-reveal>Vì sao GEMS tồn tại</div>
+        <div class="purpose-label" data-reveal><i aria-hidden="true"></i><span>Vì sao GEMS tồn tại</span></div>
         <blockquote data-reveal style="--delay:.08s">Để tri thức y khoa bằng tiếng Việt có một nơi <span>xứng đáng.</span></blockquote>
         <div class="purpose-grid">
           <div class="purpose-item" data-reveal style="--delay:.18s">
@@ -1105,7 +1159,7 @@
     <section class="snap closing" id="start" data-theme="light">
       <div class="shell section-inner">
         <div class="closing-copy">
-          <div class="eyebrow" data-reveal>Bắt đầu hành trình trên GEMS</div>
+          <div class="closing-mark" data-reveal><img src="./assets/logo-GEMS.png" alt=""><span>GEMS</span></div>
           <h2 data-reveal style="--delay:.08s">Đọc sâu hơn. <span>Đi xa hơn trong nghề.</span></h2>
           <p data-reveal style="--delay:.16s">Một thư viện y khoa dành cho người Việt, được xây để mỗi lần mở sách đều là một bước tiến có ý nghĩa.</p>
           <div class="closing-actions" data-reveal style="--delay:.24s">
