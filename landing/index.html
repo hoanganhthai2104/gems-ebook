@@ -122,7 +122,7 @@
         radial-gradient(circle at 79% 28%, rgba(45, 93, 181, .10), transparent 29%),
         linear-gradient(135deg, #fbfdff 0%, #edf3f8 100%);
     }
-    .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 54px; align-items: start; }
+    .hero-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: start; }
     .hero-copy { position: relative; z-index: 3; padding-top: 52px; }
     .hero h1 {
       max-width: 720px;
@@ -155,10 +155,6 @@
       display: inline-block;
       transform-origin: 50% 100%;
     }
-    .kinetic-letters .kinetic-word {
-      display: inline-block;
-      white-space: nowrap;
-    }
     .kinetic-letters .char-space { width: .22em; }
     .motion-ready .kinetic-letters .char {
       opacity: 0;
@@ -179,13 +175,6 @@
     }
     @keyframes accentDraw {
       to { transform: scaleX(1); }
-    }
-    @media (min-width: 701px) {
-      .hero h1 .kinetic-letters {
-        font-size: .82em;
-        letter-spacing: -.07em;
-        white-space: nowrap;
-      }
     }
     .hero-lead { max-width: 590px; color: #58647a; font-size: 18px; line-height: 1.75; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
@@ -224,37 +213,32 @@
       content: "";
       transform: rotate(-18deg);
     }
-    .hero-home {
+    .book {
+      position: absolute;
+      overflow: hidden;
+      border-radius: 7px;
+      filter: drop-shadow(0 32px 28px rgba(5, 13, 35, .34));
+      transform-origin: 50% 100%;
+      transition: transform .9s var(--ease);
+    }
+    .book img { width: 100%; height: auto; }
+    .book-one { z-index: 2; left: 12px; top: 142px; width: 310px; transform: rotate(-9deg); animation: bookDrift 7s ease-in-out infinite; }
+    .hero-reader {
       position: absolute;
       z-index: 3;
-      right: 10%;
-      top: 3%;
-      width: auto;
-      height: 92%;
-      max-height: 650px;
-      border: 7px solid rgba(255, 255, 255, .94);
-      border-radius: 48px;
+      right: 12px;
+      top: 24px;
+      width: 310px;
+      border: 7px solid rgba(255, 255, 255, .92);
+      border-radius: 39px;
       box-shadow: 0 34px 64px rgba(5, 13, 35, .35);
-      animation: deviceDrift 6.5s ease-in-out infinite;
+      animation: readerDrift 6s ease-in-out infinite;
     }
-    .hero-pill {
-      position: absolute;
-      z-index: 4;
-      padding: 11px 16px;
-      border: 1px solid rgba(255, 255, 255, .7);
-      border-radius: 999px;
-      color: var(--blue-deep);
-      background: rgba(255, 255, 255, .9);
-      box-shadow: 0 14px 34px rgba(5, 13, 35, .16);
-      backdrop-filter: blur(12px);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .03em;
+    @keyframes bookDrift {
+      0%, 100% { transform: translateY(0) rotate(-9deg); }
+      50% { transform: translateY(8px) rotate(-11deg); }
     }
-    .hero-pill-one { left: 4%; top: 24%; }
-    .hero-pill-two { right: 1%; top: 39%; }
-    .hero-pill-three { left: 10%; bottom: 15%; }
-    @keyframes deviceDrift {
+    @keyframes readerDrift {
       0%, 100% { transform: translateY(0) rotate(0); }
       50% { transform: translateY(-10px) rotate(1deg); }
     }
@@ -274,58 +258,39 @@
       letter-spacing: -.055em;
     }
     .values-intro { max-width: 500px; padding-bottom: 7px; color: #687184; font-size: 14px; line-height: 1.9; }
-    .collection {
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 50% 92%, rgba(45, 93, 181, .12), transparent 35%),
-        var(--white);
-    }
-    .collection-inner { display: flex; flex-direction: column; justify-content: center; }
-    .category-line {
+    .value-list { display: grid; grid-template-columns: 1.03fr 1.12fr .85fr; gap: 18px; margin-top: 42px; }
+    .value-item {
+      position: relative;
+      min-height: 235px;
       display: flex;
-      margin-top: 24px;
-      padding: 18px 0;
+      padding: 27px;
       overflow: hidden;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      align-items: center;
-      justify-content: space-between;
-      gap: 22px;
-      color: #637087;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .12em;
-      white-space: nowrap;
-      text-transform: uppercase;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: transform .5s var(--ease), box-shadow .4s ease;
     }
-    .category-line i { color: var(--gold); font-style: normal; }
-    .book-rack {
-      height: 350px;
-      display: flex;
-      margin-top: 26px;
-      align-items: flex-end;
-      justify-content: center;
-      gap: 18px;
-      perspective: 1200px;
+    .value-item:nth-child(1) { background: #f6f1e5; }
+    .value-item:nth-child(2) { background: var(--blue-pale); }
+    .value-item:nth-child(3) { color: white; background: var(--blue-deep); }
+    .value-item::after {
+      position: absolute;
+      right: -46px;
+      top: -46px;
+      width: 150px;
+      height: 150px;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      opacity: .1;
+      content: "";
     }
-    .rack-book {
-      flex: 0 0 clamp(126px, 10.7vw, 162px);
-      transform-origin: 50% 100%;
-      transition: transform .65s var(--ease), filter .45s ease;
-    }
-    .rack-book img {
-      width: 100%;
-      border-radius: 8px;
-      filter: drop-shadow(0 22px 22px rgba(18, 31, 61, .2));
-      mix-blend-mode: multiply;
-    }
-    .rack-book:nth-child(1) { transform: translateY(30px) rotate(-7deg); }
-    .rack-book:nth-child(2) { transform: translateY(7px) rotate(-3deg); }
-    .rack-book:nth-child(3) { transform: translateY(-10px); }
-    .rack-book:nth-child(4) { transform: translateY(-3px) rotate(2deg); }
-    .rack-book:nth-child(5) { transform: translateY(17px) rotate(5deg); }
-    .rack-book:nth-child(6) { transform: translateY(34px) rotate(8deg); }
-    .rack-book:hover { z-index: 2; transform: translateY(-24px) rotate(0) scale(1.06); }
+    .value-item:hover { transform: translateY(-8px); box-shadow: 0 24px 48px rgba(29, 42, 76, .10); }
+    .value-item span { color: var(--blue); font-size: 11px; font-weight: 700; letter-spacing: .1em; }
+    .value-item:nth-child(3) span { color: #efc860; }
+    .value-item h3 { max-width: 280px; margin-top: auto; font-size: clamp(23px, 2vw, 29px); font-weight: 500; line-height: 1.2; letter-spacing: -.035em; }
+    .value-item p { max-width: 340px; margin-top: 17px; color: #697286; font-size: 14px; line-height: 1.7; }
+    .value-item:nth-child(3) p { color: rgba(255, 255, 255, .68); }
 
     .manifesto {
       display: flex;
@@ -370,43 +335,19 @@
       letter-spacing: -.055em;
     }
     .audience-note { max-width: 420px; margin-top: 26px; color: var(--ink-soft); font-size: 13px; line-height: 1.8; }
-    .reader-stage {
-      position: relative;
-      min-height: 610px;
-      overflow: hidden;
-      border-radius: 42% 58% 34% 66% / 48% 38% 62% 52%;
-      background:
-        linear-gradient(rgba(255, 255, 255, .1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, .1) 1px, transparent 1px),
-        linear-gradient(145deg, #2f63b9, #18366f);
-      background-size: 62px 62px, 62px 62px, auto;
-      box-shadow: 0 30px 70px rgba(24, 54, 111, .16);
+    .audience-list { border-top: 1px solid var(--line); }
+    .audience-item {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 20px;
+      padding: 27px 22px 27px 0;
+      border-bottom: 1px solid var(--line);
+      transition: padding .45s var(--ease), background .35s ease;
     }
-    .reader-stage img {
-      position: absolute;
-      left: 50%;
-      top: 7%;
-      width: min(355px, 54%);
-      border: 7px solid rgba(255, 255, 255, .94);
-      border-radius: 46px;
-      box-shadow: 0 32px 70px rgba(6, 16, 45, .38);
-      transform: translateX(-50%) rotate(2deg);
-    }
-    .reader-tag {
-      position: absolute;
-      z-index: 2;
-      padding: 12px 16px;
-      border: 1px solid rgba(255, 255, 255, .34);
-      border-radius: 999px;
-      color: white;
-      background: rgba(24, 54, 111, .62);
-      backdrop-filter: blur(14px);
-      font-size: 10px;
-      font-weight: 600;
-    }
-    .reader-tag-one { left: 6%; top: 27%; }
-    .reader-tag-two { right: 4%; top: 48%; }
-    .reader-tag-three { left: 9%; bottom: 16%; }
+    .audience-item:hover { padding-left: 20px; background: var(--blue-pale); }
+    .audience-item span { padding-top: 5px; color: var(--blue); font-size: 10px; font-weight: 700; }
+    .audience-item h3 { font-size: clamp(21px, 2vw, 27px); font-weight: 500; letter-spacing: -.03em; }
+    .audience-item p { max-width: 440px; margin-top: 9px; color: var(--ink-soft); font-size: 13px; line-height: 1.7; }
 
     .dayflow {
       display: flex;
@@ -426,56 +367,56 @@
       letter-spacing: -.055em;
     }
     .dayflow-copy p { max-width: 430px; margin-top: 26px; color: var(--ink-soft); font-size: 13px; line-height: 1.8; }
-    .audio-stage {
+    .flow-stage {
       position: relative;
       min-height: 560px;
+      display: flex;
+      padding: 64px 54px 64px 88px;
       overflow: hidden;
       border-radius: 180px 38px 38px 38px;
+      flex-direction: column;
+      justify-content: center;
+      color: white;
       background:
         radial-gradient(circle at 85% 12%, rgba(224, 179, 66, .26), transparent 24%),
         linear-gradient(145deg, #214886, #18366f);
       box-shadow: 0 30px 70px rgba(24, 54, 111, .16);
     }
-    .audio-stage img {
+    .flow-stage::before {
       position: absolute;
-      z-index: 2;
-      left: 50%;
-      top: 7%;
-      width: min(360px, 54%);
-      border: 7px solid rgba(255, 255, 255, .94);
-      border-radius: 48px;
-      box-shadow: 0 32px 70px rgba(6, 16, 45, .38);
-      transform: translateX(-50%) rotate(-2deg);
-      animation: audioDeviceDrift 6.5s ease-in-out infinite;
+      left: 56px;
+      top: 115px;
+      width: 1px;
+      height: 0;
+      background: linear-gradient(#efc860, rgba(255, 255, 255, .3));
+      content: "";
     }
-    @keyframes audioDeviceDrift {
-      0%, 100% { transform: translateX(-50%) translateY(0) rotate(-2deg); }
-      50% { transform: translateX(-50%) translateY(-10px) rotate(-1deg); }
+    .motion-ready .flow-stage.visible::before { animation: drawFlow 1.15s .25s var(--ease) forwards; }
+    @keyframes drawFlow { to { height: 330px; } }
+    .flow-item {
+      position: relative;
+      min-height: 128px;
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 24px;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, .18);
     }
-    .audio-orbit {
+    .flow-item:last-child { border-bottom: 0; }
+    .flow-item::before {
       position: absolute;
-      left: 8%;
-      top: 14%;
-      width: 82%;
-      height: 70%;
-      border: 1px solid rgba(239, 200, 96, .5);
+      left: -36px;
+      width: 9px;
+      height: 9px;
+      border: 2px solid #efc860;
       border-radius: 50%;
-      transform: rotate(-18deg);
+      background: var(--blue-deep);
+      box-shadow: 0 0 0 7px rgba(239, 200, 96, .1);
+      content: "";
     }
-    .audio-note {
-      position: absolute;
-      z-index: 3;
-      padding: 12px 17px;
-      border: 1px solid rgba(255, 255, 255, .32);
-      border-radius: 999px;
-      color: white;
-      background: rgba(24, 54, 111, .7);
-      backdrop-filter: blur(14px);
-      font-size: 10px;
-      font-weight: 600;
-    }
-    .audio-note-one { left: 6%; top: 30%; }
-    .audio-note-two { right: 4%; bottom: 22%; }
+    .flow-item span { color: #efc860; font-size: 9px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+    .flow-item h3 { font-size: clamp(22px, 2.2vw, 30px); font-weight: 500; letter-spacing: -.035em; }
+    .flow-item p { margin-top: 7px; color: rgba(255, 255, 255, .66); font-size: 13px; line-height: 1.7; }
 
     .depth {
       display: flex;
@@ -625,6 +566,16 @@
     .delay-2 { transition-delay: .16s; }
     .delay-3 { transition-delay: .24s; }
 
+    .motion-ready .flow-stage .flow-item {
+      opacity: 0;
+      transform: translateX(24px);
+      transition: opacity .62s ease, transform .78s var(--ease);
+    }
+    .motion-ready .flow-stage.visible .flow-item { opacity: 1; transform: none; }
+    .motion-ready .flow-stage.visible .flow-item:nth-child(1) { transition-delay: .28s; }
+    .motion-ready .flow-stage.visible .flow-item:nth-child(2) { transition-delay: .42s; }
+    .motion-ready .flow-stage.visible .flow-item:nth-child(3) { transition-delay: .56s; }
+
     @media (min-width: 1360px) and (min-height: 800px) {
       :root { --shell: 1440px; }
       .header-inner { height: 90px; }
@@ -633,19 +584,24 @@
       .nav { gap: 42px; font-size: 13px; }
       .button { min-height: 54px; padding-inline: 26px; font-size: 13px; }
       .hero { padding: 112px 0 34px; }
-      .hero-grid { grid-template-columns: 1.02fr .98fr; gap: 64px; }
+      .hero-grid { grid-template-columns: .88fr 1.12fr; gap: 100px; }
       .hero h1 { max-width: 760px; font-size: clamp(78px, 5.2vw, 88px); }
       .hero-lead { max-width: 620px; font-size: 17px; }
       .hero-actions { margin-top: 40px; }
       .book-stage { height: calc(100svh - 150px); max-height: 760px; }
-      .hero-home { right: 12%; width: auto; max-height: 680px; }
+      .book-one { left: 18px; top: 164px; width: 370px; }
+      .hero-reader { right: 22px; top: 26px; width: 365px; border-radius: 48px; }
       .values h2, .audience h2, .dayflow h2, .depth-copy h2 { font-size: 76px; }
       .values-intro, .audience-note, .dayflow-copy p, .depth-copy p { font-size: 15px; }
-      .book-rack { height: 360px; gap: 20px; }
-      .rack-book { flex-basis: 160px; }
+      .value-item { min-height: 285px; padding: 34px; }
+      .value-item h3 { font-size: 31px; }
+      .value-item p, .audience-item p, .flow-item p { font-size: 13px; }
       .audience-grid { gap: 140px; }
-      .reader-stage, .audio-stage { min-height: 650px; }
-      .reader-stage img, .audio-stage img { width: 390px; }
+      .audience-item { padding-block: 34px; }
+      .flow-stage { min-height: 650px; padding-inline: 105px 68px; }
+      .flow-stage::before { left: 67px; top: 145px; }
+      .flow-item { min-height: 150px; grid-template-columns: 145px 1fr; }
+      .flow-item::before { left: -43px; }
       .learning-stack { width: min(720px, 100%); }
       .learning-row { min-height: 180px; padding-inline: 42px; }
       .manifesto blockquote { font-size: 86px; }
@@ -676,9 +632,11 @@
       .hero-copy { padding-top: 0; }
       .book-stage { height: 620px; min-height: 0; }
       .values-head { gap: 32px; }
+      .value-list { grid-template-columns: 1fr 1fr; }
+      .value-item:nth-child(3) { grid-column: 1 / -1; min-height: 250px; }
       .audience-grid, .dayflow-grid { grid-template-columns: 1fr; gap: 56px; }
       .audience-copy, .dayflow-copy { display: grid; grid-template-columns: .9fr 1.1fr; gap: 45px; align-items: end; }
-      .reader-stage, .audio-stage { min-height: 560px; }
+      .flow-stage { min-height: 520px; }
       .manifesto-grid { grid-template-columns: 1fr; gap: 70px; }
       .depth-grid { grid-template-columns: 1fr; }
       .depth-copy { display: grid; grid-template-columns: .8fr 1.2fr; gap: 50px; align-items: end; }
@@ -697,52 +655,26 @@
       .book-stage { min-height: 500px; overflow: hidden; }
       .book-stage::before { right: 2%; width: 94%; border-radius: 42% 58% 40% 60% / 38% 42% 58% 62%; }
       .book-stage::after { left: 4%; top: 13%; width: 82%; height: 68%; }
-      .hero-home { right: 15%; top: 5%; width: auto; height: 88%; border-width: 5px; border-radius: 34px; }
-      .hero-pill { padding: 9px 12px; font-size: 8px; }
-      .hero-pill-one { left: 2%; top: 25%; }
-      .hero-pill-two { right: 0; top: 43%; }
-      .hero-pill-three { left: 6%; bottom: 17%; }
+      .book-one { left: 20px; top: 168px; width: 220px; }
+      .hero-reader { right: 34px; top: 32px; width: 235px; border-width: 5px; border-radius: 34px; }
       .values { padding: 88px 0; }
       .values h2 { font-size: 43px; }
-      .category-line {
-        width: max-content;
-        min-width: 760px;
-        justify-content: flex-start;
-        animation: categoryDriftMobile 16s ease-in-out infinite alternate;
-      }
-      .book-rack {
-        width: 760px;
-        height: 300px;
-        justify-content: flex-start;
-        gap: 10px;
-        animation: rackDriftMobile 18s ease-in-out infinite alternate;
-      }
-      @keyframes categoryDriftMobile {
-        from { transform: translateX(0); }
-        to { transform: translateX(-390px); }
-      }
-      @keyframes rackDriftMobile {
-        from { transform: translateX(-110px); }
-        to { transform: translateX(-360px); }
-      }
-      .rack-book { flex-basis: 120px; }
+      .value-list { grid-template-columns: 1fr; gap: 12px; margin-top: 50px; }
+      .value-item, .value-item:nth-child(3) { grid-column: auto; min-height: 255px; padding: 28px; }
       .audience { padding: 90px 0; }
       .audience-grid { gap: 55px; }
       .audience-copy, .dayflow-copy { display: block; }
       .audience h2, .dayflow h2 { font-size: 43px; }
-      .reader-stage { min-height: 510px; border-radius: 90px 28px 28px 28px; }
-      .reader-stage img { top: 7%; width: 235px; border-width: 5px; border-radius: 34px; }
-      .reader-tag, .audio-note { padding: 9px 11px; font-size: 8px; }
-      .reader-tag-one { left: 2%; top: 29%; }
-      .reader-tag-two { right: 1%; top: 51%; }
-      .reader-tag-three { left: 4%; bottom: 13%; }
+      .audience-item { grid-template-columns: 40px 1fr; padding-block: 24px; }
       .dayflow { padding: 14px 0; }
       .dayflow-grid { gap: 45px; padding: 75px 0 0; }
       .dayflow-copy { padding-inline: 14px; }
-      .audio-stage { min-height: 510px; border-radius: 100px 28px 28px 28px; }
-      .audio-stage img { top: 7%; width: 235px; border-width: 5px; border-radius: 34px; }
-      .audio-note-one { left: 2%; top: 31%; }
-      .audio-note-two { right: 1%; bottom: 18%; }
+      .flow-stage { min-height: 500px; padding: 76px 26px 54px 66px; border-radius: 100px 26px 26px 26px; }
+      .flow-stage::before { left: 42px; top: 110px; }
+      .motion-ready .flow-stage.visible::before { animation-name: drawFlowMobile; }
+      @keyframes drawFlowMobile { to { height: 300px; } }
+      .flow-item { min-height: 120px; grid-template-columns: 1fr; gap: 7px; align-content: center; }
+      .flow-item::before { left: -29px; }
       .manifesto { padding: 90px 0; }
       .manifesto blockquote { font-size: 46px; }
       .depth { padding: 95px 0 75px; }
@@ -764,7 +696,8 @@
       * { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
       .motion-ready .reveal { opacity: 1; transform: none; }
       .motion-ready .kinetic-letters .char,
-      .motion-ready .kinetic-title .title-line > span {
+      .motion-ready .kinetic-title .title-line > span,
+      .motion-ready .flow-stage .flow-item {
         opacity: 1;
         filter: none;
         transform: none;
@@ -778,10 +711,9 @@
     <div class="shell header-inner">
       <a class="brand" href="#top"><img src="assets/logo-GEMS.png" alt="Biểu trưng GEMS"><span>GEMS</span></a>
       <nav class="nav" id="nav">
-        <a href="#library">Thư viện</a>
-        <a href="#reader">Trình đọc</a>
+        <a href="#ebook">Ebook</a>
         <a href="#audio">Sách nói</a>
-        <a href="#learning">Công nghệ</a>
+        <a href="#learning">Công cụ học</a>
         <a href="#mission">Sứ mệnh</a>
       </nav>
       <div class="header-actions">
@@ -795,63 +727,75 @@
     <section class="section hero" id="top">
       <div class="shell hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow reveal">GEMS · Nền tảng tri thức y khoa số</div>
-          <h1 class="reveal delay-1">Kho tàng y khoa. <em class="kinetic-letters" data-kinetic-letters>Trong một ứng dụng.</em></h1>
-          <p class="hero-lead reveal delay-2">Đọc sách chuyên ngành, nghe sách nói và học cùng công nghệ trong một không gian dành cho người Việt.</p>
+          <div class="eyebrow reveal">GEMS · Thư viện y khoa số</div>
+          <h1 class="reveal delay-1">Tri thức y khoa. <em class="kinetic-letters" data-kinetic-letters>Đọc để hiểu sâu.</em></h1>
+          <p class="hero-lead reveal delay-2">Ebook y khoa, sách nói và công cụ ôn tập trong một hành trình học liền mạch.</p>
           <div class="hero-actions reveal delay-2">
             <a class="button button-primary" href="https://gems-ebook.vercel.app/">Bắt đầu đọc <span>↗</span></a>
-            <a class="button button-quiet" href="#library">Khám phá thư viện <span>↓</span></a>
+            <a class="button button-quiet" href="#values">Khám phá GEMS <span>↓</span></a>
           </div>
         </div>
-        <div class="book-stage reveal delay-1" aria-label="Giao diện chính của ứng dụng GEMS">
-          <img class="hero-home" src="assets/gems-home-device.png" alt="Giao diện chính của ứng dụng GEMS">
-          <span class="hero-pill hero-pill-one">Ebook y khoa</span>
-          <span class="hero-pill hero-pill-two">Sách nói</span>
-          <span class="hero-pill hero-pill-three">AI hỗ trợ học tập</span>
+        <div class="book-stage reveal delay-1" aria-label="Sách và trình đọc trong GEMS">
+          <figure class="book book-one"><img src="assets/book-lam-sang-cutout.png" alt="Bìa sách Lâm sàng nội khoa"></figure>
+          <img class="hero-reader" src="assets/gems-reader-device.png" alt="Trình đọc sách trong ứng dụng GEMS">
         </div>
       </div>
     </section>
 
-    <section class="section values collection" id="library">
-      <div class="shell collection-inner">
-        <div class="values-head collection-head">
+    <section class="section values" id="values">
+      <div class="shell">
+        <div class="values-head">
           <h2 class="kinetic-title reveal">
-            <span class="title-line"><span>Kho tàng sách y khoa</span></span>
-            <span class="title-line"><span class="accent-serif">đa lĩnh vực.</span></span>
+            <span class="title-line"><span>Đọc. Nghe.</span></span>
+            <span class="title-line"><span class="accent-serif">Hiểu sâu.</span></span>
           </h2>
-          <p class="values-intro reveal delay-1">Từ kiến thức nền tảng, lâm sàng, dược học đến dinh dưỡng và y văn cập nhật.</p>
+          <p class="values-intro reveal delay-1">Ba cách tiếp cận tri thức y khoa, được kết nối trong cùng một trải nghiệm.</p>
         </div>
-        <div class="category-line reveal delay-1" aria-label="Các lĩnh vực sách trong GEMS">
-          <span>Nội khoa</span><i>·</i><span>Dược học</span><i>·</i><span>Y học cổ truyền</span><i>·</i><span>Dinh dưỡng</span><i>·</i><span>Cập nhật y văn</span>
-        </div>
-        <div class="book-rack" aria-label="Một số đầu sách trong thư viện GEMS">
-          <figure class="rack-book reveal"><img src="assets/book-bao-che.png" alt="Bìa sách Kỹ thuật bào chế"></figure>
-          <figure class="rack-book reveal delay-1"><img src="assets/book-lam-sang-noi-khoa.png" alt="Bìa sách Lâm sàng nội khoa"></figure>
-          <figure class="rack-book reveal delay-2"><img src="assets/book-cap-nhat-y-van.png" alt="Bìa sách Cập nhật y văn"></figure>
-          <figure class="rack-book reveal delay-1"><img src="assets/book-thao-duoc.png" alt="Bìa sách Thảo dược"></figure>
-          <figure class="rack-book reveal delay-2"><img src="assets/book-thuc-duong.png" alt="Bìa sách Thực dưỡng"></figure>
-          <figure class="rack-book reveal delay-3"><img src="assets/book-tra-thao-moc.png" alt="Bìa sách Trà thảo mộc"></figure>
+        <div class="value-list">
+          <article class="value-item reveal">
+            <span>01</span>
+            <h3>Ebook y khoa</h3>
+            <p>Đọc chuyên sâu từ kiến thức nền tảng đến nội dung lâm sàng.</p>
+          </article>
+          <article class="value-item reveal delay-1">
+            <span>02</span>
+            <h3>Sách nói y khoa</h3>
+            <p>Tiếp tục bài học khi bạn không ở trước màn hình.</p>
+          </article>
+          <article class="value-item reveal delay-2">
+            <span>03</span>
+            <h3>Công cụ học tập</h3>
+            <p>Tóm tắt, tra cứu và tự kiểm tra trong cùng một mạch học.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section audience reader-section" id="reader">
+    <section class="section audience" id="ebook">
       <div class="shell audience-grid">
         <div class="audience-copy">
           <div>
-            <div class="eyebrow reveal">Trình đọc chuyên môn</div>
+            <div class="eyebrow reveal">Ebook y khoa</div>
             <h2 class="kinetic-title reveal delay-1">
-              <span class="title-line"><span>Được xây cho</span></span>
-              <span class="title-line"><span class="accent-serif">tài liệu y khoa.</span></span>
+              <span class="title-line"><span>Nội dung được chọn</span></span>
+              <span class="title-line"><span class="accent-serif">cho việc học nghiêm túc.</span></span>
             </h2>
           </div>
-          <p class="audience-note reveal delay-2">Không chỉ hiển thị trang sách. GEMS kết nối ghi chú, tra cứu thuật ngữ và tiến độ đọc trong cùng một mạch học.</p>
+          <p class="audience-note reveal delay-2">Từ kiến thức nền tảng đến câu hỏi trong thực hành, thư viện giúp người đọc biết nên bắt đầu từ đâu.</p>
         </div>
-        <div class="reader-stage reveal delay-1">
-          <img src="assets/gems-reader-device.png" alt="Trình đọc tài liệu y khoa trong GEMS">
-          <span class="reader-tag reader-tag-one">Ghi chú tại chỗ</span>
-          <span class="reader-tag reader-tag-two">Tra cứu thuật ngữ</span>
-          <span class="reader-tag reader-tag-three">Theo dõi tiến độ</span>
+        <div class="audience-list">
+          <article class="audience-item reveal">
+            <span>01</span>
+            <div><h3>Giáo trình nền tảng</h3><p>Xây hệ thống kiến thức theo từng chủ đề.</p></div>
+          </article>
+          <article class="audience-item reveal delay-1">
+            <span>02</span>
+            <div><h3>Chuyên khảo lâm sàng</h3><p>Đi sâu vào những câu hỏi xuất hiện trong học tập và thực hành.</p></div>
+          </article>
+          <article class="audience-item reveal delay-2">
+            <span>03</span>
+            <div><h3>Y văn cập nhật</h3><p>Theo dõi những thay đổi đáng chú ý của ngành.</p></div>
+          </article>
         </div>
       </div>
     </section>
@@ -868,11 +812,19 @@
           </div>
           <p class="reveal delay-2">Một định dạng khác cho cùng hành trình học, để tri thức có thể tiếp tục trên đường đi hoặc giữa những khoảng nghỉ.</p>
         </div>
-        <div class="audio-stage reveal delay-1">
-          <img src="assets/gems-audio-device.png" alt="Giao diện sách nói trong ứng dụng GEMS">
-          <div class="audio-orbit" aria-hidden="true"></div>
-          <span class="audio-note audio-note-one">Nghe trong cùng thư viện</span>
-          <span class="audio-note audio-note-two">Tiếp tục ngoài màn hình</span>
+        <div class="flow-stage reveal delay-1">
+          <article class="flow-item">
+            <span>Cùng thư viện</span>
+            <div><h3>Mở phiên bản nghe</h3><p>Chọn sách nói ngay tại nội dung đang quan tâm.</p></div>
+          </article>
+          <article class="flow-item">
+            <span>Thêm một cách học</span>
+            <div><h3>Tiếp tục ngoài màn hình</h3><p>Đưa bài học vào những khoảng thời gian khó dành cho việc đọc.</p></div>
+          </article>
+          <article class="flow-item">
+            <span>Một hành trình</span>
+            <div><h3>Trở lại cùng nội dung</h3><p>Sách nghe và ebook được đặt trong cùng một thư viện.</p></div>
+          </article>
         </div>
       </div>
     </section>
@@ -881,13 +833,13 @@
       <div class="shell depth-grid">
         <div class="depth-copy">
           <div>
-            <div class="eyebrow reveal">Công nghệ hỗ trợ học</div>
+            <div class="eyebrow reveal">Công cụ học tập</div>
             <h2 class="kinetic-title reveal delay-1">
-              <span class="title-line"><span>Không chỉ số hóa sách.</span></span>
-              <span class="title-line"><span class="accent-serif">GEMS thiết kế lại cách học.</span></span>
+              <span class="title-line"><span>Đọc để hiểu.</span></span>
+              <span class="title-line"><span class="accent-serif">Ôn để nhớ.</span></span>
             </h2>
           </div>
-          <p class="reveal delay-2">AI làm rõ ý chính, từ điển y khoa giải nghĩa thuật ngữ và trắc nghiệm giúp người đọc biến nội dung thành kiến thức có thể ghi nhớ.</p>
+          <p class="reveal delay-2">Tóm tắt AI làm rõ ý chính, từ điển y khoa giải nghĩa thuật ngữ và trắc nghiệm giúp tự kiểm tra sau khi đọc.</p>
         </div>
         <div class="learning-stack" aria-label="Các công cụ học tập trong GEMS">
           <article class="learning-row reveal">
@@ -985,35 +937,19 @@
       const segmenter = "Segmenter" in Intl
         ? new Intl.Segmenter("vi", { granularity: "grapheme" })
         : null;
+      const characters = segmenter
+        ? [...segmenter.segment(label)].map(part => part.segment)
+        : [...label];
       const fragment = document.createDocumentFragment();
-      let characterIndex = 0;
 
       element.setAttribute("aria-label", label);
-      label.split(/(\s+)/).filter(Boolean).forEach(token => {
-        if (/^\s+$/.test(token)) {
-          const space = document.createElement("span");
-          space.className = "char char-space";
-          space.style.setProperty("--char-index", characterIndex++);
-          space.setAttribute("aria-hidden", "true");
-          space.textContent = "\u00a0";
-          fragment.appendChild(space);
-          return;
-        }
-
-        const word = document.createElement("span");
-        const characters = segmenter
-          ? [...segmenter.segment(token)].map(part => part.segment)
-          : [...token];
-        word.className = "kinetic-word";
-        word.setAttribute("aria-hidden", "true");
-        characters.forEach(character => {
-          const span = document.createElement("span");
-          span.className = "char";
-          span.style.setProperty("--char-index", characterIndex++);
-          span.textContent = character;
-          word.appendChild(span);
-        });
-        fragment.appendChild(word);
+      characters.forEach((character, index) => {
+        const span = document.createElement("span");
+        span.className = character === " " ? "char char-space" : "char";
+        span.style.setProperty("--char-index", index);
+        span.setAttribute("aria-hidden", "true");
+        span.textContent = character === " " ? "\u00a0" : character;
+        fragment.appendChild(span);
       });
       element.replaceChildren(fragment);
     };
