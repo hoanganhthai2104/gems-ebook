@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#e9e6dc">
-  <meta name="description" content="Không gian xem và kiểm duyệt giao diện mobile của landing page GEMS.">
-  <title>GEMS | Xem trước giao diện mobile</title>
+  <meta name="description" content="Không gian xem và kiểm duyệt giao diện điện thoại của landing page GEMS.">
+  <title>GEMS | Xem trước giao diện điện thoại</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -43,34 +43,42 @@
     .workspace {
       min-height: 100vh;
       display: grid;
-      grid-template-columns: minmax(280px, 350px) minmax(0, 1fr);
+      grid-template-rows: auto minmax(0, 1fr);
     }
 
     .sidebar {
-      position: relative;
+      position: sticky;
+      top: 0;
       z-index: 3;
       display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      padding: 30px;
-      border-right: 1px solid var(--line);
+      align-items: center;
+      gap: 24px;
+      min-width: 0;
+      min-height: 72px;
+      padding: 10px 22px;
+      border-bottom: 1px solid var(--line);
       background: var(--panel);
       backdrop-filter: blur(20px);
+      overflow-x: auto;
+      scrollbar-width: none;
     }
 
+    .sidebar::-webkit-scrollbar { display: none; }
+
     .brand {
+      flex: 0 0 auto;
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 54px;
+      margin: 0 12px 0 0;
     }
 
     .brand-mark {
       display: grid;
       place-items: center;
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
       color: white;
       background: var(--ink);
       font-size: 12px;
@@ -81,108 +89,72 @@
     .brand strong { display: block; font-size: 14px; }
     .brand span { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; }
 
-    .eyebrow {
-      margin: 0 0 12px;
-      color: var(--blue);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      max-width: 290px;
-      margin: 0;
-      font-size: clamp(32px, 3vw, 48px);
-      line-height: .98;
-      letter-spacing: -.055em;
-    }
-
-    .intro {
-      max-width: 285px;
-      margin: 22px 0 38px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.75;
-    }
+    .eyebrow, h1, .intro { display: none; }
 
     .control-group {
-      padding: 20px 0;
-      border-top: 1px solid var(--line);
+      flex: 0 0 auto;
+      min-width: 168px;
+      padding: 0;
+      border: 0;
     }
 
     .control-label {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 5px;
       color: var(--muted);
-      font-size: 11px;
+      font-size: 9px;
       font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
     }
 
     .control-label output {
       color: var(--ink);
+      letter-spacing: 0;
+      text-transform: none;
       font-variant-numeric: tabular-nums;
     }
 
-    .choices {
-      display: grid;
-      gap: 8px;
-    }
-
-    .choice {
+    .device-select {
       width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 11px 12px;
-      border: 1px solid transparent;
-      border-radius: 11px;
-      color: var(--muted);
-      background: transparent;
-      cursor: pointer;
-      text-align: left;
-      transition: color .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease);
-    }
-
-    .choice:hover { color: var(--ink); background: rgba(255, 255, 255, .7); }
-
-    .choice.active {
+      height: 34px;
+      padding: 0 34px 0 11px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
       color: var(--ink);
-      border-color: rgba(8, 126, 174, .2);
-      background: white;
-      box-shadow: 0 9px 28px rgba(10, 43, 62, .06);
+      background: rgba(255, 255, 255, .82);
+      font: 600 11px/1 "Be Vietnam Pro", sans-serif;
+      cursor: pointer;
+      outline: none;
     }
-
-    .choice span { font-size: 12px; font-weight: 600; }
-    .choice small { font-size: 10px; font-variant-numeric: tabular-nums; }
 
     .range {
       width: 100%;
       height: 4px;
-      margin: 5px 0;
+      margin: 10px 0;
       border-radius: 99px;
       accent-color: var(--blue);
       cursor: pointer;
     }
 
     .actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      flex: 0 0 auto;
+      display: flex;
       gap: 9px;
-      margin-top: auto;
-      padding-top: 28px;
+      margin: 0 0 0 auto;
+      padding: 0;
     }
 
     .action {
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      min-height: 43px;
-      padding: 0 14px;
+      min-height: 38px;
+      padding: 0 15px;
       border: 1px solid var(--line);
-      border-radius: 12px;
+      border-radius: 11px;
       color: var(--ink);
       background: transparent;
       font-size: 11px;
@@ -198,7 +170,7 @@
     .stage {
       position: relative;
       min-width: 0;
-      min-height: 100vh;
+      min-height: 0;
       overflow: hidden;
     }
 
@@ -217,9 +189,9 @@
 
     .stage-meta {
       position: absolute;
-      top: 30px;
-      left: 34px;
-      right: 34px;
+      top: 18px;
+      left: 22px;
+      right: 22px;
       z-index: 2;
       display: flex;
       justify-content: space-between;
@@ -247,7 +219,7 @@
 
     .device-area {
       position: absolute;
-      inset: 74px 30px 32px;
+      inset: 46px 18px 18px;
       display: grid;
       place-items: center;
       overflow: auto;
@@ -255,8 +227,8 @@
 
     .device-space {
       position: relative;
-      width: calc(var(--device-width) * var(--device-scale));
-      height: calc(var(--device-height) * var(--device-scale));
+      width: calc((var(--device-width) + 10px) * var(--device-scale));
+      height: calc((var(--device-height) + 10px) * var(--device-scale));
       flex: 0 0 auto;
       transition: width .45s var(--ease), height .45s var(--ease);
     }
@@ -265,89 +237,47 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: var(--device-width);
-      height: var(--device-height);
-      padding: 10px;
-      border: 1px solid rgba(255, 255, 255, .8);
-      border-radius: 48px;
-      background: #071b27;
+      width: calc(var(--device-width) + 10px);
+      height: calc(var(--device-height) + 10px);
+      padding: 5px;
+      border: 0;
+      border-radius: 43px;
+      background: #102936;
       box-shadow:
-        0 38px 90px rgba(10, 43, 62, .2),
-        0 8px 24px rgba(10, 43, 62, .18),
-        inset 0 0 0 1px rgba(255, 255, 255, .12);
+        0 30px 72px rgba(10, 43, 62, .18),
+        0 7px 22px rgba(10, 43, 62, .14),
+        inset 0 0 0 1px rgba(255, 255, 255, .18);
       transform: scale(var(--device-scale));
       transform-origin: top left;
       transition: width .45s var(--ease), height .45s var(--ease), transform .45s var(--ease);
     }
 
-    .device::before {
-      content: "";
-      position: absolute;
-      top: 18px;
-      left: 50%;
-      z-index: 4;
-      width: 104px;
-      height: 28px;
-      border-radius: 20px;
-      background: #07161e;
-      transform: translateX(-50%);
-      pointer-events: none;
-    }
+    .device::before { display: none; }
 
     .device iframe {
       display: block;
       width: 100%;
       height: 100%;
       border: 0;
-      border-radius: 39px;
+      border-radius: 38px;
       background: #f3f0e7;
     }
 
     .device-note {
-      position: absolute;
-      right: 24px;
-      bottom: 22px;
-      z-index: 2;
-      max-width: 190px;
-      color: var(--muted);
-      font-size: 10px;
-      line-height: 1.6;
-      text-align: right;
-    }
-
-    @media (min-width: 861px) and (max-height: 820px) {
-      .sidebar { padding: 22px 26px; }
-      .brand { margin-bottom: 26px; }
-      h1 { font-size: 36px; }
-      .intro {
-        margin: 14px 0 20px;
-        font-size: 12px;
-        line-height: 1.6;
-      }
-      .control-group { padding: 13px 0; }
-      .control-label { margin-bottom: 8px; }
-      .choices { gap: 5px; }
-      .choice { padding: 8px 10px; }
-      .actions { padding-top: 16px; }
-      .stage-meta { top: 21px; }
-      .device-area { inset: 56px 24px 20px; }
+      display: none;
     }
 
     @media (max-width: 860px) {
-      .workspace { grid-template-columns: 1fr; }
-      .sidebar { min-height: auto; padding: 22px; }
-      .brand { margin-bottom: 28px; }
-      h1 { max-width: none; font-size: 34px; }
-      .intro { margin: 16px 0 24px; }
-      .choices { grid-template-columns: repeat(3, 1fr); }
-      .choice { align-items: flex-start; flex-direction: column; gap: 5px; }
-      .actions { margin-top: 0; }
-      .stage { min-height: 760px; }
+      .sidebar { gap: 14px; padding-inline: 14px; }
+      .brand span { display: none; }
+      .control-group { min-width: 152px; }
+      .actions { margin-left: 0; }
+      .stage { min-height: 660px; }
       .device-note { display: none; }
     }
 
     @media (max-width: 520px) {
-      .choices { grid-template-columns: 1fr; }
+      .brand { display: none; }
       .stage-meta { left: 18px; right: 18px; }
       .device-area { inset-inline: 8px; }
     }
@@ -359,7 +289,7 @@
       <div class="brand">
         <div class="brand-mark">G</div>
         <div>
-          <strong>GEMS Mobile Lab</strong>
+          <strong>GEMS · Bản điện thoại</strong>
           <span>Không gian kiểm duyệt giao diện</span>
         </div>
       </div>
@@ -373,20 +303,11 @@
           <span>Thiết bị</span>
           <output id="size-output">390 × 844 px</output>
         </div>
-        <div class="choices">
-          <button class="choice" type="button" data-width="375" data-height="812">
-            <span>iPhone nhỏ</span>
-            <small>375 × 812</small>
-          </button>
-          <button class="choice active" type="button" data-width="390" data-height="844">
-            <span>iPhone tiêu chuẩn</span>
-            <small>390 × 844</small>
-          </button>
-          <button class="choice" type="button" data-width="430" data-height="932">
-            <span>Màn hình lớn</span>
-            <small>430 × 932</small>
-          </button>
-        </div>
+        <select class="device-select" id="device-select" aria-label="Chọn kích thước thiết bị">
+          <option value="375x812">iPhone nhỏ · 375 × 812</option>
+          <option value="390x844" selected>iPhone tiêu chuẩn · 390 × 844</option>
+          <option value="430x932">Màn hình lớn · 430 × 932</option>
+        </select>
       </section>
 
       <section class="control-group" aria-labelledby="zoom-label">
@@ -405,19 +326,18 @@
 
     <section class="stage" aria-label="Khung xem giao diện mobile">
       <div class="stage-meta">
-        <span class="status">Đang tải bản trực tiếp</span>
+        <span class="status" id="sync-status">Đang đồng bộ</span>
         <span id="viewport-label">Khung nhìn 390 px</span>
       </div>
 
       <div class="device-area" id="device-area">
         <div class="device-space">
           <div class="device">
-            <iframe id="preview" src="/landing/index.html?preview=mobile" title="Bản xem trước landing page GEMS trên mobile"></iframe>
+            <iframe id="preview" src="/landing/index.html?preview=mobile" title="Bản xem trước landing page GEMS trên điện thoại"></iframe>
           </div>
         </div>
       </div>
 
-      <p class="device-note">Cuộn bên trong màn hình điện thoại để xem toàn bộ hành trình.</p>
     </section>
   </main>
 
@@ -428,7 +348,8 @@
     const zoomOutput = document.getElementById("zoom-output");
     const viewportLabel = document.getElementById("viewport-label");
     const zoom = document.getElementById("zoom");
-    const choices = [...document.querySelectorAll(".choice")];
+    const deviceSelect = document.getElementById("device-select");
+    const preview = document.getElementById("preview");
     let width = 390;
     let height = 844;
     let autoScale = true;
@@ -451,14 +372,10 @@
       zoomOutput.value = "Tự động";
     }
 
-    choices.forEach((choice) => {
-      choice.addEventListener("click", () => {
-        width = Number(choice.dataset.width);
-        height = Number(choice.dataset.height);
-        choices.forEach((item) => item.classList.toggle("active", item === choice));
-        autoScale = true;
-        applyDevice();
-      });
+    deviceSelect.addEventListener("change", () => {
+      [width, height] = deviceSelect.value.split("x").map(Number);
+      autoScale = true;
+      applyDevice();
     });
 
     zoom.addEventListener("input", () => {
@@ -470,8 +387,12 @@
 
     document.getElementById("rotate").addEventListener("click", () => {
       [width, height] = [height, width];
-      choices.forEach((item) => item.classList.remove("active"));
+      deviceSelect.value = "";
       applyDevice();
+    });
+
+    preview.addEventListener("load", () => {
+      document.getElementById("sync-status").textContent = "Bản trực tiếp đã sẵn sàng";
     });
 
     new ResizeObserver(fitDevice).observe(deviceArea);
