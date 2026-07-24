@@ -868,7 +868,9 @@
       html {
         scroll-snap-type: y mandatory;
         scroll-padding-top: 0;
+        scrollbar-width: none;
       }
+      html::-webkit-scrollbar { display: none; }
       body { overscroll-behavior-y: none; }
       .shell { width: min(calc(100% - 32px), var(--shell)); }
       .snap {
@@ -957,19 +959,20 @@
         right: 0;
         bottom: 8px;
         left: 0;
-        min-height: 310px;
+        min-height: 400px;
         margin: 0;
       }
-      .hero-halo { width: 260px; }
+      .hero-halo { width: 300px; }
       .hero-device {
-        width: 144px;
+        width: 172px;
         transform: rotate(2.5deg);
       }
       .hero-note { display: none; }
 
       .journey .section-inner {
-        justify-content: flex-start;
-        padding-top: 94px;
+        justify-content: center;
+        padding-top: 72px;
+        padding-bottom: 72px;
       }
       .journey-top { gap: 14px; }
       .journey-note { font-size: 9px; }
@@ -986,7 +989,7 @@
       .library-copy > p,
       .experience-copy > p,
       .principles-intro {
-        font-size: 13px;
+        font-size: 14px;
         line-height: 1.6;
       }
       .journey-intro { padding: 0; }
@@ -999,17 +1002,17 @@
       .journey-step,
       .journey-step + .journey-step {
         min-height: 0;
-        padding: 12px 0 13px;
+        padding: 13px 0 15px;
         border-top: 1px solid rgba(255,255,255,.18);
         border-right: 0;
       }
       .journey-step span { font-size: 8px; }
-      .journey-step h3 { margin-top: 5px; font-size: 19px; }
+      .journey-step h3 { margin-top: 5px; font-size: 20px; }
       .journey-step p {
         max-width: 340px;
         margin-top: 4px;
-        font-size: 10px;
-        line-height: 1.45;
+        font-size: 11px;
+        line-height: 1.5;
       }
 
       .library .section-inner {
@@ -1047,11 +1050,11 @@
         right: 0;
         bottom: 12px;
         left: 0;
-        min-height: 280px;
+        min-height: 340px;
       }
-      .library-stage::before { width: 245px; height: 245px; }
+      .library-stage::before { width: 280px; height: 280px; }
       .library-device {
-        width: 130px;
+        width: 150px;
         transform: rotate(-2deg);
       }
       .library-shelf { display: none; }
@@ -1080,17 +1083,17 @@
         right: 0;
         bottom: 16px;
         left: 0;
-        min-height: 300px;
+        min-height: 340px;
       }
-      .experience-orbit { width: 270px; height: 270px; }
+      .experience-orbit { width: 300px; height: 300px; }
       .reader-device {
         left: 4%;
-        width: 135px;
+        width: 150px;
         transform: translateY(-50%) rotate(-3deg);
       }
       .audio-device {
         right: 3%;
-        width: 115px;
+        width: 128px;
         transform: translateY(-50%) rotate(4deg);
       }
 
