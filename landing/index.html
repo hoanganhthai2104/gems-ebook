@@ -207,21 +207,12 @@
       font-weight: 800;
       letter-spacing: .08em;
     }
-    .section-meta {
-      display: inline-grid;
-      grid-template-columns: 30px auto;
-      align-items: center;
-      gap: 12px;
+    .journey-note {
       color: rgba(255,255,255,.72);
       font-size: 12px;
       font-weight: 600;
     }
-    .section-meta span {
-      color: var(--gold-soft);
-      font-size: 11px;
-      font-variant-numeric: tabular-nums;
-    }
-    .section-meta p { padding-left: 12px; border-left: 1px solid rgba(255,255,255,.25); }
+    .journey-note::before { display: inline-block; width: 24px; height: 1px; margin: 0 10px 3px 0; background: var(--gold); content: ""; }
     .library-meta {
       display: flex;
       max-width: 610px;
@@ -233,7 +224,7 @@
       font-size: 12px;
       font-weight: 600;
     }
-    .library-meta span { color: var(--blue); font-size: 11px; font-variant-numeric: tabular-nums; }
+    .library-meta span { color: #60727a; font-size: 11px; font-weight: 500; }
     .experience-meta {
       display: inline-flex;
       align-items: center;
@@ -243,18 +234,13 @@
       font-weight: 600;
     }
     .experience-meta::after { width: 48px; height: 1px; background: rgba(255,255,255,.32); content: ""; }
-    .experience-meta span { color: var(--gold-soft); font-size: 11px; }
-    .principles-index {
-      position: absolute;
-      top: 12%;
-      right: 1%;
-      color: rgba(10,43,62,.055);
-      font-size: clamp(110px, 15vw, 210px);
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -.07em;
-      pointer-events: none;
+    .principles-kicker {
+      margin-bottom: 18px;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
     }
+    .principles-kicker::after { display: inline-block; width: 34px; height: 1px; margin: 0 0 3px 12px; background: var(--gold); content: ""; }
     .purpose-label {
       display: inline-flex;
       align-items: center;
@@ -264,16 +250,19 @@
       font-weight: 600;
     }
     .purpose-label i { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
-    .closing-mark {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      color: var(--ink);
+    .closing-label {
+      color: var(--blue);
       font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .06em;
+      font-weight: 700;
     }
-    .closing-mark img { width: 32px; height: 32px; object-fit: contain; }
+    .closing-label::before, .closing-label::after {
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      margin: 0 10px 3px;
+      background: var(--gold);
+      content: "";
+    }
 
     [data-reveal] {
       opacity: 0;
@@ -285,7 +274,9 @@
     .is-visible [data-reveal] { opacity: 1; transform: translateY(0) scale(1); }
 
     .hero {
-      background: #f7f6f0;
+      background:
+        radial-gradient(circle at 82% 43%, rgba(148,203,214,.22), transparent 30%),
+        #f7f6f0;
     }
     .hero::before {
       position: absolute;
@@ -356,8 +347,8 @@
       width: min(42vw, 540px);
       aspect-ratio: 1;
       border-radius: 50%;
-      background: #dfeaec;
-      box-shadow: inset 0 0 0 1px rgba(6,107,150,.07);
+      background: linear-gradient(145deg, #edf3f1, #d4e6e8);
+      box-shadow: inset 0 0 0 1px rgba(6,107,150,.06);
     }
     .hero-device {
       position: relative;
@@ -390,13 +381,9 @@
     }
     .journey::before {
       position: absolute;
-      right: 5%;
-      bottom: -8%;
-      color: rgba(255,255,255,.025);
-      content: "01";
-      font-size: min(34vw, 470px);
-      font-weight: 800;
-      line-height: .8;
+      inset: 0;
+      background: radial-gradient(circle at 12% 92%, rgba(10,99,134,.34), transparent 38%);
+      content: "";
     }
     .journey .section-inner { display: flex; flex-direction: column; justify-content: center; }
     .journey-top {
@@ -448,7 +435,7 @@
     .journey-step p { max-width: 310px; margin-top: 14px; color: rgba(255,255,255,.62); font-size: 14px; line-height: 1.7; }
 
     .library {
-      background: var(--paper-light);
+      background: linear-gradient(90deg, var(--paper-light), #f0f4f1);
     }
     .library .section-inner {
       display: grid;
@@ -531,7 +518,7 @@
 
     .experience {
       color: var(--white);
-      background: #0a6386;
+      background: linear-gradient(135deg, #0a6b91, #08435e);
     }
     .experience::before {
       position: absolute;
@@ -633,54 +620,50 @@
     }
 
     .principles { background: var(--paper); }
-    .principles .section-inner { display: flex; flex-direction: column; justify-content: center; }
-    .principles-head {
+    .principles .section-inner {
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(330px, .65fr);
-      align-items: end;
-      gap: 88px;
+      grid-template-columns: minmax(0, .88fr) minmax(480px, 1.12fr);
+      align-items: center;
+      gap: 100px;
     }
-    .principles h2 {
-      max-width: 840px;
-      margin-top: 0;
-      font-size: clamp(55px, 6.2vw, 88px);
+    .principles-copy h2 {
+      max-width: 650px;
+      font-size: clamp(52px, 5.7vw, 82px);
       font-weight: 700;
       line-height: 1.05;
       letter-spacing: -.04em;
     }
-    .principles-head > p {
-      padding-bottom: 8px;
+    .principles-copy h2 span { color: var(--blue); }
+    .principles-intro {
+      max-width: 580px;
+      margin-top: 28px;
       color: var(--ink-soft);
       font-size: 16px;
       line-height: 1.8;
     }
-    .principle-grid {
+    .manifesto-lines { border-top: 1px solid var(--line); }
+    .manifesto-line {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      margin-top: 70px;
-      border-top: 1px solid var(--line);
+      grid-template-columns: minmax(0, 1fr) 230px;
+      min-height: 126px;
+      padding: 22px 0;
+      align-items: center;
+      gap: 28px;
       border-bottom: 1px solid var(--line);
     }
-    .principle {
-      min-height: 255px;
-      padding: 34px 38px 30px 0;
-      border-right: 1px solid var(--line);
+    .manifesto-line strong {
+      font-size: clamp(32px, 3.6vw, 52px);
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -.035em;
     }
-    .principle + .principle { padding-left: 38px; }
-    .principle:last-child { border-right: 0; }
-    .principle-icon {
-      display: grid;
-      width: 48px;
-      height: 48px;
-      place-items: center;
-      border: 1px solid rgba(8,126,174,.25);
-      border-radius: 50%;
-      color: var(--blue);
-      font-size: 16px;
-      font-weight: 700;
+    .manifesto-line p {
+      color: var(--ink-soft);
+      font-size: 14px;
+      line-height: 1.6;
+      text-align: right;
     }
-    .principle h3 { margin-top: 34px; font-size: 23px; letter-spacing: -.03em; }
-    .principle p { margin-top: 13px; color: var(--ink-soft); font-size: 14px; line-height: 1.75; }
+    .manifesto-line:last-child strong { color: var(--blue); }
 
     .purpose {
       color: var(--white);
@@ -722,7 +705,9 @@
     .closing {
       min-height: 100svh;
       color: var(--ink);
-      background: var(--paper-light);
+      background:
+        radial-gradient(circle at 50% 42%, rgba(126,194,208,.16), transparent 30%),
+        var(--paper-light);
     }
     .closing .section-inner {
       min-height: 100svh;
@@ -809,11 +794,12 @@
       .nav { gap: 20px; }
       .hero .section-inner { grid-template-columns: 1.05fr .75fr; gap: 28px; }
       .hero-note { right: -3%; }
-      .journey-top, .principles-head { gap: 48px; }
+      .journey-top { gap: 48px; }
       .library .section-inner { gap: 48px; }
       .experience .section-inner { grid-template-columns: .9fr 1.1fr; gap: 30px; }
       .experience-stage { min-height: 620px; }
       .experience-orbit { width: 500px; height: 500px; }
+      .principles .section-inner { gap: 60px; }
     }
 
     @media (max-width: 920px) {
@@ -845,7 +831,8 @@
 
       .hero .section-inner,
       .library .section-inner,
-      .experience .section-inner {
+      .experience .section-inner,
+      .principles .section-inner {
         grid-template-columns: 1fr;
       }
       .hero .section-inner { padding-top: 132px; }
@@ -855,9 +842,9 @@
       .hero-device { width: 320px; }
       .hero-note { right: 8%; }
 
-      .journey-top, .principles-head { grid-template-columns: 1fr; gap: 24px; }
-      .journey h2, .library-copy h2, .principles h2 { font-size: clamp(50px, 9vw, 76px); }
-      .journey-intro, .principles-head > p { max-width: 620px; }
+      .journey-top { grid-template-columns: 1fr; gap: 24px; }
+      .journey h2, .library-copy h2, .principles-copy h2 { font-size: clamp(50px, 9vw, 76px); }
+      .journey-intro, .principles-intro { max-width: 620px; }
       .journey-track { margin-top: 50px; }
       .journey-step { padding-right: 24px; }
       .journey-step + .journey-step { padding-left: 24px; }
@@ -872,9 +859,7 @@
       .reader-device { left: 12%; width: 320px; }
       .audio-device { right: 12%; width: 275px; }
 
-      .principle-grid { margin-top: 52px; }
-      .principle { padding-right: 22px; }
-      .principle + .principle { padding-left: 22px; }
+      .manifesto-lines { margin-top: 18px; }
       .purpose blockquote { font-size: clamp(54px, 10vw, 82px); }
       .closing, .closing .section-inner { min-height: 86svh; }
     }
@@ -898,11 +883,11 @@
       .hero-note { right: -2%; bottom: 10%; width: 180px; padding: 15px; }
       .hero-note strong { font-size: 13px; }
 
-      .journey h2, .library-copy h2, .experience-copy h2, .principles h2 {
+      .journey h2, .library-copy h2, .experience-copy h2, .principles-copy h2 {
         font-size: clamp(45px, 13vw, 60px);
       }
-      .journey::before, .principles-index { display: none; }
-      .journey-intro, .library-copy > p, .experience-copy > p, .principles-head > p { font-size: 15px; }
+      .journey::before { display: none; }
+      .journey-intro, .library-copy > p, .experience-copy > p, .principles-intro { font-size: 15px; }
       .journey-track {
         grid-template-columns: 1fr;
         margin-top: 40px;
@@ -931,16 +916,14 @@
       .audio-device { right: -2%; width: 220px; }
       .flow-line { grid-template-columns: 30px 1fr; }
 
-      .principle-grid { grid-template-columns: 1fr; }
-      .principle,
-      .principle + .principle {
+      .manifesto-line {
+        grid-template-columns: 1fr;
         min-height: 0;
-        padding: 28px 0;
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
+        padding: 24px 0;
+        align-items: flex-start;
+        gap: 8px;
       }
-      .principle:last-child { border-bottom: 0; }
-      .principle h3 { margin-top: 22px; }
+      .manifesto-line p { max-width: 280px; text-align: left; }
 
       .purpose blockquote { font-size: clamp(47px, 13vw, 62px); }
       .purpose-grid { grid-template-columns: 1fr; gap: 28px; margin-top: 44px; }
@@ -961,12 +944,11 @@
       .reader-device { width: 265px; }
       .audio-device { width: 230px; }
       .experience-orbit { width: 470px; height: 470px; }
-      .journey h2, .library-copy h2, .experience-copy h2, .principles h2 { font-size: clamp(50px, 5.2vw, 72px); }
+      .journey h2, .library-copy h2, .experience-copy h2, .principles-copy h2 { font-size: clamp(50px, 5.2vw, 72px); }
       .journey-track { margin-top: 42px; }
       .journey-step { min-height: 170px; }
       .journey-step h3 { margin-top: 24px; }
-      .principle-grid { margin-top: 44px; }
-      .principle { min-height: 210px; }
+      .manifesto-line { min-height: 108px; }
       .purpose blockquote { font-size: clamp(58px, 6.5vw, 88px); }
       .purpose-grid { margin-top: 42px; }
     }
@@ -1005,7 +987,7 @@
     <a href="#story" aria-label="Hành trình"></a>
     <a href="#library" aria-label="Kho tri thức"></a>
     <a href="#experience" aria-label="Trải nghiệm"></a>
-    <a href="#principles" aria-label="Nguyên tắc"></a>
+    <a href="#principles" aria-label="Giá trị đọc"></a>
     <a href="#purpose" aria-label="Sứ mệnh"></a>
     <a href="#start" aria-label="Bắt đầu"></a>
   </nav>
@@ -1040,7 +1022,7 @@
       <div class="shell section-inner">
         <div class="journey-top">
           <div>
-            <div class="section-meta" data-reveal><span>01</span><p>Hành trình người học</p></div>
+            <p class="journey-note" data-reveal>Không chỉ cho một kỳ thi</p>
             <h2 data-reveal style="--delay:.08s">Đi cùng một hành trình dài.</h2>
           </div>
           <p class="journey-intro" data-reveal style="--delay:.16s">Kiến thức y khoa thay đổi theo từng giai đoạn. GEMS được xây để người học có thể bắt đầu từ nền tảng, tìm lại điều cần thiết và tiếp tục bồi đắp năng lực chuyên môn.</p>
@@ -1075,7 +1057,7 @@
           </div>
         </div>
         <div class="library-copy">
-          <div class="library-meta" data-reveal><p>Kho tri thức y khoa</p><span>02</span></div>
+          <div class="library-meta" data-reveal><p>Kho tri thức y khoa</p><span>Tuyển chọn · Sắp xếp · Kết nối</span></div>
           <h2 data-reveal style="--delay:.08s">Không chỉ nhiều. <span>Phải có chiều sâu.</span></h2>
           <p data-reveal style="--delay:.16s">GEMS hướng đến một thư viện nơi nội dung chuyên ngành được sắp xếp rõ ràng, để người đọc có thể nhìn thấy bức tranh lớn nhưng vẫn tìm được đúng cuốn sách mình cần.</p>
           <div class="catalog" data-reveal style="--delay:.24s">
@@ -1093,7 +1075,7 @@
     <section class="snap experience light-text" id="experience" data-theme="dark">
       <div class="shell section-inner">
         <div class="experience-copy">
-          <div class="experience-meta" data-reveal><span>03</span><p>Đọc và nghe liền mạch</p></div>
+          <div class="experience-meta" data-reveal><p>Một trải nghiệm thống nhất</p></div>
           <h2 data-reveal style="--delay:.08s">Đọc sâu. Nghe tiếp. <span>Không đứt mạch.</span></h2>
           <p data-reveal style="--delay:.16s">GEMS không đặt từng công cụ cạnh nhau. Mọi thứ được nối thành một dòng trải nghiệm, để bạn có thể đổi cách tiếp cận mà không phải bắt đầu lại.</p>
           <div class="experience-flow" data-reveal style="--delay:.24s">
@@ -1112,29 +1094,24 @@
 
     <section class="snap principles" id="principles" data-theme="light">
       <div class="shell section-inner">
-        <div class="principles-head">
-          <div class="principles-index" aria-hidden="true">04</div>
-          <div>
-            <h2 data-reveal style="--delay:.08s">Tri thức y khoa cần được đối xử nghiêm túc.</h2>
-          </div>
-          <p data-reveal style="--delay:.16s">Công nghệ chỉ có ý nghĩa khi giúp nội dung rõ hơn, việc đọc tập trung hơn và người học chủ động hơn với hành trình của mình.</p>
+        <div class="principles-copy">
+          <p class="principles-kicker" data-reveal>Dành cho những giờ đọc sâu</p>
+          <h2 data-reveal style="--delay:.08s">Đọc không chỉ để xong một cuốn sách. <span>Mà để kiến thức ở lại.</span></h2>
+          <p class="principles-intro" data-reveal style="--delay:.16s">GEMS giữ trải nghiệm đủ yên, nội dung đủ rõ và hành trình đủ liền mạch để mỗi trang sách thực sự bồi đắp năng lực chuyên môn.</p>
         </div>
-        <div class="principle-grid">
-          <article class="principle" data-reveal style="--delay:.16s">
-            <div class="principle-icon">R</div>
-            <h3>Rõ ràng</h3>
-            <p>Nội dung được trình bày mạch lạc, cấu trúc dễ theo dõi và thuận tiện để tìm lại.</p>
-          </article>
-          <article class="principle" data-reveal style="--delay:.24s">
-            <div class="principle-icon">T</div>
-            <h3>Tập trung</h3>
-            <p>Không gian đọc tiết chế để sự chú ý thuộc về trang sách, không thuộc về giao diện.</p>
-          </article>
-          <article class="principle" data-reveal style="--delay:.32s">
-            <div class="principle-icon">B</div>
-            <h3>Bền vững</h3>
-            <p>Một nhịp học vừa sức được duy trì đều đặn có giá trị hơn những lần học thật nhiều rồi bỏ dở.</p>
-          </article>
+        <div class="manifesto-lines">
+          <div class="manifesto-line" data-reveal style="--delay:.14s">
+            <strong>Đọc để hiểu.</strong>
+            <p>Nội dung mạch lạc, thuận tiện để kết nối và tìm lại.</p>
+          </div>
+          <div class="manifesto-line" data-reveal style="--delay:.22s">
+            <strong>Ghi để nhớ.</strong>
+            <p>Những điều quan trọng luôn ở đúng nơi bạn cần.</p>
+          </div>
+          <div class="manifesto-line" data-reveal style="--delay:.30s">
+            <strong>Học để đi xa.</strong>
+            <p>Mỗi trang sách tiếp tục nuôi dưỡng hành trình nghề nghiệp.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -1159,7 +1136,7 @@
     <section class="snap closing" id="start" data-theme="light">
       <div class="shell section-inner">
         <div class="closing-copy">
-          <div class="closing-mark" data-reveal><img src="./assets/logo-GEMS.png" alt=""><span>GEMS</span></div>
+          <p class="closing-label" data-reveal>Bắt đầu trên GEMS</p>
           <h2 data-reveal style="--delay:.08s">Đọc sâu hơn. <span>Đi xa hơn trong nghề.</span></h2>
           <p data-reveal style="--delay:.16s">Một thư viện y khoa dành cho người Việt, được xây để mỗi lần mở sách đều là một bước tiến có ý nghĩa.</p>
           <div class="closing-actions" data-reveal style="--delay:.24s">
