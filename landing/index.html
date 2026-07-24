@@ -758,26 +758,26 @@
       <div class="shell dayflow-grid">
         <div class="dayflow-copy">
           <div>
-            <div class="eyebrow reveal">Một ngày với GEMS</div>
+            <div class="eyebrow reveal">Mạch đọc luôn được giữ lại</div>
             <h2 class="kinetic-title reveal delay-1">
-              <span class="title-line"><span>Kiến thức <span class="accent-gold">không chờ</span></span></span>
-              <span class="title-line"><span>đến khi bạn rảnh.</span></span>
+              <span class="title-line"><span>Dừng ở đâu.</span></span>
+              <span class="title-line"><span class="accent-gold">Đọc tiếp từ đó.</span></span>
             </h2>
           </div>
-          <p class="reveal delay-2">GEMS giữ mạch đọc để bạn có thể trở lại bất cứ khi nào.</p>
+          <p class="reveal delay-2">GEMS ghi nhớ trang đang đọc và những điều quan trọng, để mỗi lần trở lại không phải bắt đầu lại.</p>
         </div>
         <div class="flow-stage reveal delay-1">
           <article class="flow-item">
             <span>Bắt đầu</span>
-            <div><h3>Mở đúng chương</h3><p>Chuẩn bị cho điều sắp học.</p></div>
+            <div><h3>Đi thẳng đến nội dung</h3><p>Mở đúng chương đang cần đọc.</p></div>
           </article>
           <article class="flow-item">
-            <span>Làm rõ</span>
-            <div><h3>Giải quyết điều còn vướng</h3><p>Tra cứu ngay trong mạch đọc.</p></div>
+            <span>Trong khi đọc</span>
+            <div><h3>Giữ lại điều quan trọng</h3><p>Đánh dấu và ghi chú ngay trên trang sách.</p></div>
           </article>
           <article class="flow-item">
-            <span>Tiếp tục</span>
-            <div><h3>Trở về nơi đã dừng</h3><p>Không để một ngày bận làm đứt hành trình.</p></div>
+            <span>Khi trở lại</span>
+            <div><h3>Tiếp tục đúng vị trí</h3><p>Không mất thời gian tìm lại mạch đang đọc.</p></div>
           </article>
         </div>
       </div>
@@ -936,15 +936,15 @@
     );
     const sectionObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (!entry.isIntersecting || !navLinks.has(entry.target.id)) return;
+        if (!entry.isIntersecting) return;
         navLinks.forEach(link => link.classList.remove("active"));
-        navLinks.get(entry.target.id).classList.add("active");
+        const activeLink = navLinks.get(entry.target.id);
+        if (activeLink) activeLink.classList.add("active");
       });
     }, { rootMargin: "-35% 0px -55% 0px", threshold: 0 });
 
-    navLinks.forEach((link, id) => {
-      const section = document.getElementById(id);
-      if (section) sectionObserver.observe(section);
+    document.querySelectorAll("main .section[id]").forEach(section => {
+      sectionObserver.observe(section);
     });
   </script>
 </body>
