@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="GEMS là thư viện y khoa số giúp người Việt đọc sâu, hiểu rõ và duy trì việc học từ sách.">
-  <title>GEMS - Tri thức y khoa để đọc đến cùng</title>
+  <meta name="description" content="GEMS là thư viện y khoa số giúp người Việt đọc, nghe và ôn tập tri thức chuyên môn trong một hành trình học liền mạch.">
+  <title>GEMS - Đọc, nghe và học sâu tri thức y khoa</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
@@ -434,17 +434,61 @@
       letter-spacing: -.055em;
     }
     .depth-copy p { max-width: 490px; margin-top: 27px; color: #687184; font-size: 15px; line-height: 1.8; }
-    .shelf { width: min(570px, 100%); display: grid; grid-template-columns: repeat(2, 1fr); gap: 38px; align-items: end; margin-left: auto; }
-    .shelf-book { position: relative; transition: transform .6s var(--ease); }
-    .shelf-book:nth-child(2) { transform: translateY(-44px); }
-    .shelf-book:hover { transform: translateY(-12px); }
-    .shelf-book:nth-child(2):hover { transform: translateY(-58px); }
-    .shelf-book img {
-      width: 100%;
-      border-radius: 8px;
-      filter: drop-shadow(0 24px 22px rgba(25, 34, 57, .19));
+    .learning-stack {
+      width: min(650px, 100%);
+      margin-left: auto;
+      border: 1px solid rgba(24, 54, 111, .12);
+      border-radius: 34px;
+      overflow: hidden;
+      background: #f4f7fb;
+      box-shadow: 0 30px 70px rgba(24, 54, 111, .1);
     }
-    .shelf-line { height: 11px; margin-top: 30px; border-radius: 50%; background: rgba(23, 33, 59, .12); filter: blur(6px); }
+    .learning-row {
+      min-height: 166px;
+      display: grid;
+      grid-template-columns: 70px 1fr auto;
+      gap: 24px;
+      padding: 32px 36px;
+      align-items: center;
+      border-bottom: 1px solid rgba(24, 54, 111, .12);
+      transition: color .45s ease, background .45s ease;
+    }
+    .learning-row:last-child { border-bottom: 0; }
+    .learning-row:hover { color: white; background: var(--blue-deep); }
+    .learning-row > span {
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+    }
+    .learning-row small {
+      color: #6d7789;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      transition: color .45s ease;
+    }
+    .learning-row h3 {
+      margin-top: 7px;
+      font-size: clamp(25px, 2.5vw, 35px);
+      font-weight: 500;
+      letter-spacing: -.04em;
+    }
+    .learning-row b {
+      width: 45px;
+      height: 45px;
+      display: grid;
+      border: 1px solid rgba(24, 54, 111, .16);
+      border-radius: 50%;
+      place-items: center;
+      font-size: 18px;
+      font-weight: 400;
+      transition: border-color .45s ease, transform .45s var(--ease);
+    }
+    .learning-row:hover > span,
+    .learning-row:hover small { color: #efc860; }
+    .learning-row:hover b { border-color: rgba(255, 255, 255, .3); transform: rotate(-35deg); }
 
     .closing {
       display: flex;
@@ -558,7 +602,8 @@
       .flow-stage::before { left: 67px; top: 145px; }
       .flow-item { min-height: 150px; grid-template-columns: 145px 1fr; }
       .flow-item::before { left: -43px; }
-      .shelf { width: min(650px, 100%); }
+      .learning-stack { width: min(720px, 100%); }
+      .learning-row { min-height: 180px; padding-inline: 42px; }
       .manifesto blockquote { font-size: 86px; }
       .closing h2 { font-size: 96px; }
     }
@@ -636,9 +681,10 @@
       .depth-grid { gap: 62px; }
       .depth-copy { display: block; }
       .depth-copy h2 { font-size: 43px; }
-      .shelf { width: 100%; gap: 20px; }
-      .shelf-book:nth-child(2) { transform: translateY(-25px); }
-      .shelf-book img { border-radius: 5px; }
+      .learning-stack { width: 100%; margin-left: 0; border-radius: 26px; }
+      .learning-row { min-height: 132px; grid-template-columns: 42px 1fr auto; gap: 14px; padding: 24px 20px; }
+      .learning-row h3 { font-size: 25px; }
+      .learning-row b { width: 38px; height: 38px; }
       .closing { min-height: 70svh; padding: 90px 0; }
       .closing-inner { grid-template-columns: 1fr; gap: 50px; align-items: start; }
       .closing h2 { font-size: 50px; }
@@ -665,9 +711,9 @@
     <div class="shell header-inner">
       <a class="brand" href="#top"><img src="assets/logo-GEMS.png" alt="Biểu trưng GEMS"><span>GEMS</span></a>
       <nav class="nav" id="nav">
-        <a href="#values">Giá trị</a>
-        <a href="#audience">Dành cho ai</a>
-        <a href="#library">Thư viện</a>
+        <a href="#ebook">Ebook</a>
+        <a href="#audio">Sách nói</a>
+        <a href="#learning">Công cụ học</a>
         <a href="#mission">Sứ mệnh</a>
       </nav>
       <div class="header-actions">
@@ -683,10 +729,10 @@
         <div class="hero-copy">
           <div class="eyebrow reveal">GEMS · Thư viện y khoa số</div>
           <h1 class="reveal delay-1">Tri thức y khoa. <em class="kinetic-letters" data-kinetic-letters>Đọc để hiểu sâu.</em></h1>
-          <p class="hero-lead reveal delay-2">Từ trang sách đến kiến thức có thể hiểu, nhớ và vận dụng.</p>
+          <p class="hero-lead reveal delay-2">Ebook y khoa, sách nói và công cụ ôn tập trong một hành trình học liền mạch.</p>
           <div class="hero-actions reveal delay-2">
             <a class="button button-primary" href="https://gems-ebook.vercel.app/">Bắt đầu đọc <span>↗</span></a>
-            <a class="button button-quiet" href="#values">Giá trị của GEMS <span>↓</span></a>
+            <a class="button button-quiet" href="#values">Khám phá GEMS <span>↓</span></a>
           </div>
         </div>
         <div class="book-stage reveal delay-1" aria-label="Sách và trình đọc trong GEMS">
@@ -700,107 +746,117 @@
       <div class="shell">
         <div class="values-head">
           <h2 class="kinetic-title reveal">
-            <span class="title-line"><span>Ít thao tác hơn.</span></span>
-            <span class="title-line"><span class="accent-serif">Nhiều tập trung hơn.</span></span>
+            <span class="title-line"><span>Đọc. Nghe.</span></span>
+            <span class="title-line"><span class="accent-serif">Hiểu sâu.</span></span>
           </h2>
-          <p class="values-intro reveal delay-1">Mọi thứ cần cho một mạch đọc. Không hơn.</p>
+          <p class="values-intro reveal delay-1">Ba cách tiếp cận tri thức y khoa, được kết nối trong cùng một trải nghiệm.</p>
         </div>
         <div class="value-list">
           <article class="value-item reveal">
             <span>01</span>
-            <h3>Chọn đúng cuốn</h3>
-            <p>Đi thẳng đến nội dung phù hợp với điều đang cần học.</p>
+            <h3>Ebook y khoa</h3>
+            <p>Đọc chuyên sâu từ kiến thức nền tảng đến nội dung lâm sàng.</p>
           </article>
           <article class="value-item reveal delay-1">
             <span>02</span>
-            <h3>Đọc liền mạch</h3>
-            <p>Ghi chú và tra cứu mà không rời khỏi trang sách.</p>
+            <h3>Sách nói y khoa</h3>
+            <p>Tiếp tục bài học khi bạn không ở trước màn hình.</p>
           </article>
           <article class="value-item reveal delay-2">
             <span>03</span>
-            <h3>Tiếp tục đúng nơi</h3>
-            <p>Mở lại GEMS và trở về đúng mạch đang dang dở.</p>
+            <h3>Công cụ học tập</h3>
+            <p>Tóm tắt, tra cứu và tự kiểm tra trong cùng một mạch học.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section audience" id="audience">
+    <section class="section audience" id="ebook">
       <div class="shell audience-grid">
         <div class="audience-copy">
           <div>
-            <div class="eyebrow reveal">GEMS được tạo ra cho</div>
+            <div class="eyebrow reveal">Ebook y khoa</div>
             <h2 class="kinetic-title reveal delay-1">
-              <span class="title-line"><span>Những người</span></span>
-              <span class="title-line"><span class="accent-serif">chọn học nghiêm túc.</span></span>
+              <span class="title-line"><span>Nội dung được chọn</span></span>
+              <span class="title-line"><span class="accent-serif">cho việc học nghiêm túc.</span></span>
             </h2>
           </div>
-          <p class="audience-note reveal delay-2">Mỗi hành trình khác nhau. Cùng cần một nơi để đọc sâu và đi tiếp.</p>
+          <p class="audience-note reveal delay-2">Từ kiến thức nền tảng đến câu hỏi trong thực hành, thư viện giúp người đọc biết nên bắt đầu từ đâu.</p>
         </div>
         <div class="audience-list">
           <article class="audience-item reveal">
             <span>01</span>
-            <div><h3>Sinh viên y khoa</h3><p>Xây nền tảng từ những nội dung có hệ thống.</p></div>
+            <div><h3>Giáo trình nền tảng</h3><p>Xây hệ thống kiến thức theo từng chủ đề.</p></div>
           </article>
           <article class="audience-item reveal delay-1">
             <span>02</span>
-            <div><h3>Người làm chuyên môn</h3><p>Tìm lại kiến thức khi một câu hỏi xuất hiện.</p></div>
+            <div><h3>Chuyên khảo lâm sàng</h3><p>Đi sâu vào những câu hỏi xuất hiện trong học tập và thực hành.</p></div>
           </article>
           <article class="audience-item reveal delay-2">
             <span>03</span>
-            <div><h3>Người học chủ động</h3><p>Giữ việc đọc trong một lịch trình bận rộn.</p></div>
+            <div><h3>Y văn cập nhật</h3><p>Theo dõi những thay đổi đáng chú ý của ngành.</p></div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section dayflow" id="dayflow">
+    <section class="section dayflow" id="audio">
       <div class="shell dayflow-grid">
         <div class="dayflow-copy">
           <div>
-            <div class="eyebrow reveal">Mạch đọc luôn được giữ lại</div>
+            <div class="eyebrow reveal">Sách nói y khoa</div>
             <h2 class="kinetic-title reveal delay-1">
-              <span class="title-line"><span>Dừng ở đâu.</span></span>
-              <span class="title-line"><span class="accent-gold">Đọc tiếp từ đó.</span></span>
+              <span class="title-line"><span>Mang bài học</span></span>
+              <span class="title-line"><span class="accent-gold">ra khỏi màn hình.</span></span>
             </h2>
           </div>
-          <p class="reveal delay-2">GEMS ghi nhớ trang đang đọc và những điều quan trọng, để mỗi lần trở lại không phải bắt đầu lại.</p>
+          <p class="reveal delay-2">Một định dạng khác cho cùng hành trình học, để tri thức có thể tiếp tục trên đường đi hoặc giữa những khoảng nghỉ.</p>
         </div>
         <div class="flow-stage reveal delay-1">
           <article class="flow-item">
-            <span>Bắt đầu</span>
-            <div><h3>Đi thẳng đến nội dung</h3><p>Mở đúng chương đang cần đọc.</p></div>
+            <span>Cùng thư viện</span>
+            <div><h3>Mở phiên bản nghe</h3><p>Chọn sách nói ngay tại nội dung đang quan tâm.</p></div>
           </article>
           <article class="flow-item">
-            <span>Trong khi đọc</span>
-            <div><h3>Giữ lại điều quan trọng</h3><p>Đánh dấu và ghi chú ngay trên trang sách.</p></div>
+            <span>Thêm một cách học</span>
+            <div><h3>Tiếp tục ngoài màn hình</h3><p>Đưa bài học vào những khoảng thời gian khó dành cho việc đọc.</p></div>
           </article>
           <article class="flow-item">
-            <span>Khi trở lại</span>
-            <div><h3>Tiếp tục đúng vị trí</h3><p>Không mất thời gian tìm lại mạch đang đọc.</p></div>
+            <span>Một hành trình</span>
+            <div><h3>Trở lại cùng nội dung</h3><p>Sách nghe và ebook được đặt trong cùng một thư viện.</p></div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section depth" id="library">
+    <section class="section depth" id="learning">
       <div class="shell depth-grid">
         <div class="depth-copy">
           <div>
-            <div class="eyebrow reveal">Nội dung là cốt lõi</div>
+            <div class="eyebrow reveal">Công cụ học tập</div>
             <h2 class="kinetic-title reveal delay-1">
-              <span class="title-line"><span>Không cần vô tận.</span></span>
-              <span class="title-line"><span class="accent-serif">Cần cuốn đáng đọc.</span></span>
+              <span class="title-line"><span>Đọc để hiểu.</span></span>
+              <span class="title-line"><span class="accent-serif">Ôn để nhớ.</span></span>
             </h2>
           </div>
-          <p class="reveal delay-2">Nội dung y khoa có giá trị học tập rõ ràng, được tổ chức để người đọc biết nên bắt đầu từ đâu.</p>
+          <p class="reveal delay-2">Tóm tắt AI làm rõ ý chính, từ điển y khoa giải nghĩa thuật ngữ và trắc nghiệm giúp tự kiểm tra sau khi đọc.</p>
         </div>
-        <div>
-          <div class="shelf" aria-label="Các đầu sách khác trong thư viện GEMS">
-            <figure class="shelf-book reveal"><img src="assets/book-thao-duoc-cutout.png" alt="Bìa sách Thảo dược"></figure>
-            <figure class="shelf-book reveal delay-1"><img src="assets/book-thuc-duong-cutout.png" alt="Bìa sách Thực dưỡng"></figure>
-          </div>
-          <div class="shelf-line"></div>
+        <div class="learning-stack" aria-label="Các công cụ học tập trong GEMS">
+          <article class="learning-row reveal">
+            <span>01</span>
+            <div><small>Tóm tắt AI</small><h3>Nắm ý chính</h3></div>
+            <b>→</b>
+          </article>
+          <article class="learning-row reveal delay-1">
+            <span>02</span>
+            <div><small>Từ điển y khoa</small><h3>Hiểu thuật ngữ</h3></div>
+            <b>→</b>
+          </article>
+          <article class="learning-row reveal delay-2">
+            <span>03</span>
+            <div><small>Trắc nghiệm</small><h3>Tự kiểm tra</h3></div>
+            <b>→</b>
+          </article>
         </div>
       </div>
     </section>
