@@ -767,7 +767,18 @@
       .reader-stage { min-height: 650px; }
       .reader-screen { width: min(400px, 68vw); }
       .quote-note { left: 4%; }
-      .listen-copy { margin-top: 54px; }
+      .listen-inner {
+        display: flex;
+        flex-direction: column;
+      }
+      .listen-copy {
+        order: 1;
+        margin-top: 0;
+      }
+      .listen-visual {
+        order: 2;
+        margin-top: 44px;
+      }
       .listen-visual { min-height: 540px; }
       .audio-screen { width: min(390px, 66vw); }
       .library-head { display: block; }
@@ -810,8 +821,12 @@
       .scene-caption { display: none; }
       .manifesto, .listen, .library { padding-block: 68px; }
       .manifesto h2, .section-title { font-size: 40px; }
-      .care-step { padding-left: 68px; }
-      .care-step::after { left: 34px; }
+      .care-step { padding-left: 48px; }
+      .care-step::before { display: none; }
+      .care-step::after {
+        left: 9px;
+        top: 26px;
+      }
       .reading { padding-block: 68px; }
       .reading-principles { grid-template-columns: 1fr; gap: 0; }
       .reading-principle { padding-block: 16px; border-bottom: 1px solid rgba(255,255,255,.15); }
