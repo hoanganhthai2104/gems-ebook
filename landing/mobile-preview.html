@@ -18,6 +18,10 @@
 </head>
 <body>
   <header><h1>GEMS · Phiên bản mobile</h1><p>390 × 844</p></header>
-  <div class="viewport"><iframe src="./?mobile-preview=1" title="GEMS phiên bản mobile"></iframe></div>
+  <div class="viewport"><iframe id="preview" src="./?mobile-preview=1" title="GEMS phiên bản mobile"></iframe></div>
+  <script>
+    const version = new URLSearchParams(location.search).get('v');
+    if (version) document.getElementById('preview').src = `./?mobile-preview=1&v=${encodeURIComponent(version)}`;
+  </script>
 </body>
 </html>
