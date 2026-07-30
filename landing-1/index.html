@@ -1,0 +1,1060 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GEMS giúp kiến thức sức khỏe trở nên dễ hiểu, dễ nhớ và dễ áp dụng mỗi ngày.">
+  <title>GEMS - Hiểu sức khỏe, sống chủ động</title>
+  <style>
+    :root {
+      --ink: #073f5e;
+      --ink-2: #315e70;
+      --blue: #007ba8;
+      --blue-bright: #00a6c8;
+      --deep: #063e59;
+      --paper: #f7faf5;
+      --mist: #e8f7f7;
+      --aqua: #c8edef;
+      --gold: #e2ad26;
+      --gold-soft: #f7e7ad;
+      --line: rgba(7, 63, 94, .16);
+      --glass: rgba(255, 255, 255, .72);
+      --shadow: 0 24px 70px rgba(3, 57, 80, .16);
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --display: "Aptos Display", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+      --page: min(1240px, calc(100% - 48px));
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--sans);
+      background: var(--paper);
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 100;
+      padding: 10px 14px;
+      background: white;
+      transform: translateY(-150%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .site-header {
+      position: fixed;
+      inset: 18px 0 auto;
+      z-index: 50;
+      pointer-events: none;
+    }
+    .nav-shell {
+      width: var(--page);
+      min-height: 62px;
+      margin: 0 auto;
+      padding: 8px 10px 8px 18px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      border: 1px solid rgba(255,255,255,.65);
+      border-radius: 8px;
+      background: rgba(248, 253, 251, .74);
+      box-shadow: 0 14px 46px rgba(8, 59, 76, .10);
+      backdrop-filter: blur(20px) saturate(145%);
+      -webkit-backdrop-filter: blur(20px) saturate(145%);
+      pointer-events: auto;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+    .brand img { width: 31px; height: 31px; object-fit: contain; }
+    .nav-links {
+      margin-left: auto;
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-2);
+    }
+    .nav-links a { padding: 12px 2px; }
+    .nav-links a:hover { color: var(--blue); }
+    .button {
+      min-height: 44px;
+      padding: 0 19px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      font: 800 14px/1 var(--sans);
+      cursor: pointer;
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary {
+      color: #fff;
+      background: var(--blue);
+      box-shadow: 0 12px 28px rgba(0, 123, 168, .20);
+    }
+    .button-primary:hover { background: #006d95; box-shadow: 0 16px 36px rgba(0, 123, 168, .28); }
+    .button-secondary {
+      color: var(--ink);
+      border-color: var(--line);
+      background: rgba(255,255,255,.56);
+    }
+    .arrow { font-size: 18px; line-height: 0; }
+
+    .hero {
+      min-height: 100svh;
+      padding: 132px 0 66px;
+      position: relative;
+      display: grid;
+      align-items: center;
+      background:
+        radial-gradient(circle at 78% 30%, rgba(0,166,200,.13), transparent 28%),
+        linear-gradient(112deg, #f8faf4 0 49%, #e9f7f7 49.2% 100%);
+      isolation: isolate;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        linear-gradient(rgba(7,63,94,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(7,63,94,.045) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, transparent 4%, black 32%, transparent 96%);
+    }
+    .hero-inner {
+      width: var(--page);
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 24px;
+      align-items: center;
+    }
+    .hero-copy {
+      grid-column: 1 / span 6;
+      position: relative;
+      z-index: 4;
+      padding: 22px 0;
+    }
+    .eyebrow {
+      margin: 0 0 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--blue);
+      font-size: 12px;
+      line-height: 1.3;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: var(--gold);
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 780px;
+      margin-bottom: 26px;
+      font: 800 clamp(54px, 5.5vw, 78px)/1.01 var(--display);
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+    .accent {
+      color: var(--blue);
+      position: relative;
+      white-space: nowrap;
+    }
+    .accent::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: .03em;
+      height: .12em;
+      background: var(--gold);
+      opacity: .82;
+      z-index: -1;
+    }
+    .hero-lead {
+      max-width: 610px;
+      margin-bottom: 30px;
+      color: var(--ink-2);
+      font-size: clamp(17px, 1.5vw, 20px);
+      line-height: 1.7;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-actions .button { min-height: 52px; padding-inline: 24px; }
+    .hero-proof {
+      margin-top: 38px;
+      display: flex;
+      gap: 28px;
+      color: var(--ink-2);
+      font-size: 13px;
+      font-weight: 720;
+    }
+    .hero-proof span {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .hero-proof span::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 5px rgba(226,173,38,.13);
+    }
+
+    .hero-scene {
+      grid-column: 7 / -1;
+      min-height: 630px;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+    .scene-orbit {
+      position: absolute;
+      width: min(650px, 54vw);
+      aspect-ratio: 1;
+      border: 1px solid rgba(7,63,94,.14);
+      border-radius: 50%;
+    }
+    .scene-orbit::before {
+      content: "";
+      position: absolute;
+      inset: 14%;
+      border: 1px solid rgba(226,173,38,.4);
+      border-radius: inherit;
+    }
+    .product-window {
+      width: min(440px, 38vw);
+      aspect-ratio: .73;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.9);
+      border-radius: 8px 8px 34px 34px;
+      background: white;
+      box-shadow: 0 38px 80px rgba(5,62,83,.22);
+      transform: rotate(2.4deg);
+      animation: float-scene 7s ease-in-out infinite;
+    }
+    .product-window img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .book-marker {
+      position: absolute;
+      right: -2%;
+      top: 12%;
+      width: 210px;
+      padding: 18px;
+      background: rgba(247,250,245,.82);
+      border: 1px solid rgba(255,255,255,.85);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      transform: rotate(-4deg);
+    }
+    .book-marker img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+    .scene-caption {
+      position: absolute;
+      left: -6%;
+      bottom: 8%;
+      width: 250px;
+      padding: 22px 24px;
+      border-left: 3px solid var(--gold);
+      background: rgba(255,255,255,.78);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .scene-caption small {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--gold);
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .scene-caption strong {
+      display: block;
+      font-size: 21px;
+      line-height: 1.25;
+    }
+
+    .manifesto {
+      padding: 112px 0 92px;
+      background: #fff;
+    }
+    .manifesto-inner {
+      width: var(--page);
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .manifesto-intro { grid-column: 1 / span 5; }
+    .manifesto h2,
+    .section-title {
+      margin-bottom: 26px;
+      font: 800 clamp(42px, 4.8vw, 70px)/1.03 var(--display);
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+    .manifesto-copy {
+      max-width: 500px;
+      color: var(--ink-2);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+    .care-path {
+      grid-column: 7 / -1;
+      display: grid;
+      gap: 0;
+      counter-reset: care-step;
+    }
+    .care-step {
+      position: relative;
+      min-height: 120px;
+      padding: 22px 20px 24px 86px;
+      border-top: 1px solid var(--line);
+      counter-increment: care-step;
+    }
+    .care-step:last-child { border-bottom: 1px solid var(--line); }
+    .care-step::before {
+      content: "0" counter(care-step);
+      position: absolute;
+      left: 0;
+      top: 22px;
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .care-step::after {
+      content: "";
+      position: absolute;
+      left: 45px;
+      top: 26px;
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--blue);
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 0 0 7px rgba(0,123,168,.08);
+    }
+    .care-step h3 {
+      margin-bottom: 8px;
+      font-size: 22px;
+      line-height: 1.25;
+    }
+    .care-step p {
+      margin: 0;
+      color: var(--ink-2);
+      line-height: 1.6;
+    }
+
+    .reading {
+      min-height: 920px;
+      padding: 110px 0;
+      position: relative;
+      color: white;
+      background: var(--deep);
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .reading::before {
+      content: "";
+      position: absolute;
+      width: 68vw;
+      aspect-ratio: 1;
+      right: -18vw;
+      top: -22vw;
+      z-index: -1;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 50%;
+      box-shadow: 0 0 0 120px rgba(0,166,200,.025), 0 0 0 240px rgba(0,166,200,.018);
+    }
+    .reading-inner {
+      width: var(--page);
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 24px;
+      align-items: center;
+    }
+    .reading-copy { grid-column: 1 / span 6; }
+    .reading .eyebrow { color: #b8dfe6; }
+    .reading .section-title { max-width: 680px; }
+    .reading-lead {
+      max-width: 580px;
+      color: rgba(255,255,255,.72);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+    .reading-principles {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(255,255,255,.2);
+    }
+    .reading-principle {
+      padding: 20px 16px 0 0;
+      color: rgba(255,255,255,.74);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .reading-principle strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--gold-soft);
+      font-size: 20px;
+    }
+    .reader-stage {
+      grid-column: 8 / -1;
+      min-height: 690px;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+    .reader-stage::before {
+      content: "";
+      position: absolute;
+      inset: 8% -8% 0;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 50%;
+    }
+    .reader-screen {
+      width: min(430px, 36vw);
+      aspect-ratio: .69;
+      overflow: hidden;
+      border-radius: 8px 8px 32px 32px;
+      background: #fff;
+      box-shadow: 0 40px 90px rgba(0,0,0,.28);
+      transform: rotate(-2.6deg);
+    }
+    .reader-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .quote-note {
+      position: absolute;
+      left: -10%;
+      bottom: 6%;
+      width: 310px;
+      padding: 26px 28px;
+      color: var(--ink);
+      background: #fffdf3;
+      border-top: 3px solid var(--gold);
+      box-shadow: 0 26px 65px rgba(0,0,0,.22);
+      transform: rotate(2deg);
+    }
+    .quote-note small {
+      display: block;
+      margin-bottom: 10px;
+      color: #a87a00;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .quote-note strong { font-size: 24px; line-height: 1.3; }
+
+    .listen {
+      padding: 112px 0;
+      background: #edf8f6;
+      overflow: hidden;
+    }
+    .listen-inner {
+      width: var(--page);
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 24px;
+      align-items: center;
+    }
+    .listen-copy { grid-column: 8 / -1; }
+    .listen-visual {
+      grid-column: 1 / span 6;
+      min-height: 580px;
+      position: relative;
+      display: grid;
+      align-items: center;
+    }
+    .audio-screen {
+      width: 420px;
+      max-width: 82%;
+      justify-self: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px 8px 30px 30px;
+      background: white;
+      box-shadow: var(--shadow);
+      transform: rotate(3deg);
+    }
+    .audio-screen img { width: 100%; }
+    .audio-screen::before,
+    .audio-screen::after {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      bottom: 4.2%;
+      width: 10.5%;
+      height: 7%;
+      background: #fff;
+      pointer-events: none;
+    }
+    .audio-screen::before { left: 0; }
+    .audio-screen::after { right: 0; }
+    .sound-ribbon {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 12%;
+      min-height: 112px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      padding: 24px 30px;
+      color: white;
+      background: rgba(0,123,168,.92);
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 8px;
+      box-shadow: 0 20px 52px rgba(0,123,168,.24);
+      backdrop-filter: blur(12px);
+    }
+    .sound-ribbon strong { min-width: 134px; font-size: 17px; line-height: 1.35; }
+    .waveform {
+      flex: 1;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .waveform i {
+      width: 4px;
+      height: var(--h);
+      border-radius: 3px;
+      background: rgba(255,255,255,.9);
+      animation: wave 1.2s ease-in-out infinite alternate;
+      animation-delay: var(--d);
+    }
+    .listen-list {
+      margin-top: 34px;
+      display: grid;
+      gap: 16px;
+    }
+    .listen-list span {
+      padding-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink-2);
+      font-weight: 720;
+    }
+    .listen-list span::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      flex: 0 0 auto;
+      background: var(--gold);
+      transform: rotate(45deg);
+    }
+
+    .library {
+      padding: 110px 0 122px;
+      background: #fff;
+    }
+    .library-head {
+      width: var(--page);
+      margin: 0 auto 54px;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 24px;
+      align-items: end;
+    }
+    .library-head .section-title {
+      grid-column: 1 / span 7;
+      margin: 0;
+    }
+    .library-head p {
+      grid-column: 9 / -1;
+      margin: 0;
+      color: var(--ink-2);
+      line-height: 1.7;
+    }
+    .topic-index {
+      width: var(--page);
+      margin: auto;
+      padding: 18px 48px;
+      position: relative;
+      background: linear-gradient(to bottom, #edf8f6, #d7eff0);
+      overflow: hidden;
+    }
+    .topic-index::before {
+      content: "";
+      position: absolute;
+      width: 520px;
+      aspect-ratio: 1;
+      right: -170px;
+      top: -210px;
+      border: 1px solid rgba(7,63,94,.14);
+      border-radius: 50%;
+      box-shadow: 0 0 0 80px rgba(255,255,255,.12);
+    }
+    .topic-row {
+      position: relative;
+      display: grid;
+      grid-template-columns: 74px minmax(220px, .75fr) 1.25fr;
+      gap: 24px;
+      align-items: center;
+      min-height: 104px;
+      border-top: 1px solid rgba(7,63,94,.16);
+    }
+    .topic-row:last-child { border-bottom: 1px solid rgba(7,63,94,.16); }
+    .topic-row b {
+      color: var(--gold);
+      font-size: 13px;
+    }
+    .topic-row strong {
+      font: 800 clamp(23px, 2.3vw, 34px)/1.15 var(--display);
+      transition: color .25s ease, transform .25s ease;
+    }
+    .topic-row p {
+      max-width: 520px;
+      margin: 0;
+      color: var(--ink-2);
+      line-height: 1.55;
+    }
+    .topic-row:hover strong {
+      color: var(--blue);
+      transform: translateX(6px);
+    }
+
+    .closing {
+      min-height: 680px;
+      padding: 100px 0;
+      display: grid;
+      place-items: center;
+      color: white;
+      text-align: center;
+      background:
+        linear-gradient(rgba(6,62,89,.94), rgba(6,62,89,.96)),
+        url("assets/gems-library-content-flat-tight.png") center 32% / cover;
+    }
+    .closing-inner { width: min(820px, calc(100% - 40px)); }
+    .closing .eyebrow { justify-content: center; color: #b8dfe6; }
+    .closing h2 {
+      margin-bottom: 24px;
+      font: 800 clamp(46px, 6vw, 82px)/1.02 var(--display);
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+    .closing p {
+      max-width: 650px;
+      margin: 0 auto 32px;
+      color: rgba(255,255,255,.76);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+    .closing .button-primary { background: var(--gold); color: #143e4f; }
+
+    footer {
+      padding: 32px 0;
+      color: #66808c;
+      background: #f7faf5;
+      font-size: 13px;
+    }
+    .footer-inner {
+      width: var(--page);
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .75s ease, transform .75s cubic-bezier(.2,.72,.2,1);
+    }
+    [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+    body.capture-mode .site-header { position: absolute; }
+    body.capture-mode [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    @keyframes float-scene {
+      0%, 100% { transform: rotate(2.4deg) translateY(0); }
+      50% { transform: rotate(1deg) translateY(-12px); }
+    }
+    @keyframes wave {
+      from { transform: scaleY(.55); opacity: .72; }
+      to { transform: scaleY(1); opacity: 1; }
+    }
+
+    @media (max-width: 1040px) {
+      :root { --page: min(920px, calc(100% - 36px)); }
+      .nav-links { display: none; }
+      .hero { min-height: auto; padding-top: 126px; }
+      .hero-copy { grid-column: 1 / span 7; }
+      .hero-scene { grid-column: 8 / -1; min-height: 560px; }
+      .scene-orbit { width: min(430px, 100%); }
+      .product-window { width: min(310px, 100%); }
+      .book-marker,
+      .scene-caption { display: none; }
+      .manifesto-intro { grid-column: 1 / span 5; }
+      .care-path { grid-column: 6 / -1; }
+      .reader-stage { grid-column: 7 / -1; }
+      .reader-screen { width: min(390px, 40vw); }
+      .quote-note { left: -2%; width: 260px; }
+      .listen-visual { grid-column: 1 / span 6; }
+      .listen-copy { grid-column: 7 / -1; }
+    }
+
+    @media (max-width: 780px) {
+      :root { --page: min(680px, calc(100% - 32px)); }
+      .site-header { inset: 12px 0 auto; }
+      .nav-shell { min-height: 56px; padding-left: 14px; }
+      .nav-shell > .button { min-height: 40px; }
+      .hero { padding: 108px 0 60px; background: linear-gradient(165deg, #f8faf4 0 42%, #e9f7f7 42.2% 100%); }
+      .hero-inner { display: block; }
+      .hero-copy { padding: 10px 0 42px; }
+      h1 { max-width: 660px; font-size: clamp(52px, 11vw, 74px); }
+      .hero-lead { max-width: 620px; }
+      .hero-scene { min-height: 580px; }
+      .scene-orbit { width: 580px; max-width: 92vw; }
+      .product-window { width: min(390px, 62vw); }
+      .book-marker { width: 170px; right: 4%; }
+      .scene-caption { left: 2%; bottom: 5%; }
+      .manifesto, .listen, .library { padding-block: 82px; }
+      .manifesto-inner, .reading-inner, .listen-inner { display: block; }
+      .manifesto-intro { margin-bottom: 46px; }
+      .care-path { max-width: 640px; }
+      .reading { min-height: auto; padding: 82px 0; }
+      .reading-copy { margin-bottom: 54px; }
+      .reader-stage { min-height: 650px; }
+      .reader-screen { width: min(400px, 68vw); }
+      .quote-note { left: 4%; }
+      .listen-inner {
+        display: flex;
+        flex-direction: column;
+      }
+      .listen-copy {
+        order: 1;
+        margin-top: 0;
+      }
+      .listen-visual {
+        order: 2;
+        margin-top: 44px;
+      }
+      .listen-visual { min-height: 540px; }
+      .audio-screen { width: min(390px, 66vw); }
+      .library-head { display: block; }
+      .library-head .section-title { margin-bottom: 22px; }
+      .library-head p { max-width: 560px; }
+      .topic-index { padding-inline: 30px; }
+      .topic-row { grid-template-columns: 54px minmax(180px, .75fr) 1.25fr; }
+    }
+
+    @media (max-width: 520px) {
+      :root { --page: calc(100% - 28px); }
+      .brand span { display: none; }
+      .nav-shell { gap: 10px; }
+      .nav-shell > .button { margin-left: auto; padding-inline: 14px; }
+      .hero { padding-top: 96px; }
+      .hero-copy { padding-bottom: 24px; }
+      h1 { margin-bottom: 20px; font-size: clamp(43px, 13vw, 58px); line-height: 1.02; }
+      .accent { white-space: normal; }
+      .hero-lead { font-size: 16px; line-height: 1.62; }
+      .hero-actions { gap: 8px; }
+      .hero-actions .button {
+        flex: 1 1 0;
+        min-height: 48px;
+        padding-inline: 9px;
+        font-size: 12.5px;
+        white-space: nowrap;
+      }
+      .hero-actions .arrow { display: none; }
+      .hero-proof {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 11px 14px;
+      }
+      .hero-proof span:last-child { grid-column: 1 / -1; }
+      .hero-scene { min-height: 330px; overflow: hidden; margin-inline: -14px; }
+      .scene-orbit { width: 390px; max-width: none; }
+      .product-window { width: min(238px, 62vw); border-radius: 8px 8px 22px 22px; }
+      .book-marker,
+      .scene-caption { display: none; }
+      .manifesto, .listen, .library { padding-block: 68px; }
+      .manifesto h2, .section-title { font-size: 40px; }
+      .care-step { padding-left: 48px; }
+      .care-step::before { display: none; }
+      .care-step::after {
+        left: 9px;
+        top: 26px;
+      }
+      .reading { padding-block: 68px; }
+      .reading-principles { grid-template-columns: 1fr; gap: 0; }
+      .reading-principle { padding-block: 16px; border-bottom: 1px solid rgba(255,255,255,.15); }
+      .reader-stage { min-height: 520px; overflow: hidden; margin-inline: -14px; }
+      .reader-screen { width: min(300px, 74vw); border-radius: 8px 8px 24px 24px; }
+      .quote-note { width: 210px; left: 1%; bottom: 2%; padding: 18px; }
+      .quote-note strong { font-size: 18px; }
+      .listen-visual { min-height: 480px; margin-inline: -14px; overflow: hidden; }
+      .audio-screen { width: min(290px, 72vw); border-radius: 8px 8px 24px 24px; }
+      .sound-ribbon { left: 14px; right: 14px; bottom: 8%; min-height: 92px; padding: 18px; gap: 14px; }
+      .sound-ribbon strong { min-width: 104px; font-size: 14px; }
+      .waveform { gap: 3px; }
+      .waveform i { width: 3px; }
+      .library-head { margin-bottom: 36px; }
+      .topic-index { padding: 8px 20px; }
+      .topic-row {
+        min-height: 122px;
+        grid-template-columns: 42px 1fr;
+        gap: 12px;
+        padding-block: 16px;
+      }
+      .topic-row p { grid-column: 2; font-size: 14px; }
+      .closing { min-height: 580px; padding-block: 70px; }
+      .closing h2 { font-size: 46px; }
+      .footer-inner { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+      [data-reveal] { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Đi đến nội dung chính</a>
+
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="Điều hướng chính">
+      <a class="brand" href="#top" aria-label="GEMS - Trang đầu">
+        <img src="assets/logo-GEMS.png" alt="">
+        <span>GEMS</span>
+      </a>
+      <div class="nav-links">
+        <a href="#phuong-phap">Cách GEMS hoạt động</a>
+        <a href="#doc">Trải nghiệm đọc</a>
+        <a href="#nghe">Trải nghiệm nghe</a>
+        <a href="#thu-vien">Thư viện</a>
+      </div>
+      <a class="button button-primary" href="#bat-dau">Khám phá GEMS <span class="arrow">→</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <div class="hero-copy" data-reveal>
+          <p class="eyebrow">Hiểu sức khỏe theo cách gần gũi hơn</p>
+          <h1>Kiến thức tốt chỉ có ý nghĩa khi bạn <span class="accent">dùng được.</span></h1>
+          <p class="hero-lead">GEMS chọn lọc những nội dung sức khỏe đáng tin cậy, diễn giải rõ ràng và giúp bạn biến điều vừa đọc thành một thay đổi nhỏ trong đời sống.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#phuong-phap">Bắt đầu khám phá <span class="arrow">→</span></a>
+            <a class="button button-secondary" href="#doc">Xem trải nghiệm đọc</a>
+          </div>
+          <div class="hero-proof" aria-label="Giá trị nổi bật">
+            <span>Nội dung được chọn lọc</span>
+            <span>Dễ hiểu, không hàn lâm</span>
+            <span>Đọc hoặc nghe linh hoạt</span>
+          </div>
+        </div>
+
+        <div class="hero-scene" aria-label="Giao diện thư viện GEMS" data-reveal>
+          <div class="scene-orbit" aria-hidden="true"></div>
+          <figure class="product-window">
+            <img src="assets/gems-library-content-flat-tight.png" alt="Thư viện nội dung sức khỏe trong ứng dụng GEMS">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="manifesto" id="phuong-phap">
+      <div class="manifesto-inner">
+        <div class="manifesto-intro" data-reveal>
+          <p class="eyebrow">Không cần biết quá nhiều</p>
+          <h2>Chỉ cần hiểu đúng điều mình đang quan tâm.</h2>
+          <p class="manifesto-copy">Thay vì đưa bạn vào một kho kiến thức khổng lồ, GEMS bắt đầu từ những câu hỏi gần với cuộc sống: ngủ thế nào để hồi phục tốt hơn, ăn uống ra sao, vận động bao nhiêu là vừa, hay làm gì để chăm sóc người thân chủ động hơn.</p>
+        </div>
+        <div class="care-path" data-reveal>
+          <article class="care-step">
+            <h3>Chọn một chủ đề gần với bạn</h3>
+            <p>Bắt đầu từ nhu cầu thật, không bắt đầu từ thuật ngữ.</p>
+          </article>
+          <article class="care-step">
+            <h3>Nắm phần quan trọng trước</h3>
+            <p>Ý chính được làm rõ để bạn hiểu nhanh mà không mất chiều sâu.</p>
+          </article>
+          <article class="care-step">
+            <h3>Giữ lại điều muốn áp dụng</h3>
+            <p>Đánh dấu, ghi chú và quay lại đúng lúc bạn cần.</p>
+          </article>
+          <article class="care-step">
+            <h3>Duy trì theo nhịp sống của mình</h3>
+            <p>Đọc khi tập trung, nghe khi bận và tiếp tục mà không mất mạch.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="reading" id="doc">
+      <div class="reading-inner">
+        <div class="reading-copy" data-reveal>
+          <p class="eyebrow">Một trải nghiệm đọc có điểm tựa</p>
+          <h2 class="section-title">Không để thuật ngữ đứng giữa bạn và điều cần hiểu.</h2>
+          <p class="reading-lead">Mỗi bài đọc được tổ chức để bạn thấy ý chính trước, mở rộng khi muốn đi sâu và lưu lại phần có thể áp dụng. GEMS giúp việc đọc sức khỏe bớt nặng nề nhưng vẫn đủ tin cậy.</p>
+          <div class="reading-principles">
+            <div class="reading-principle"><strong>01</strong>Ý chính rõ ngay từ đầu</div>
+            <div class="reading-principle"><strong>02</strong>Giải thích trong đúng ngữ cảnh</div>
+            <div class="reading-principle"><strong>03</strong>Điểm cần nhớ luôn có thể quay lại</div>
+          </div>
+        </div>
+        <div class="reader-stage" data-reveal>
+          <div class="reader-screen">
+            <img src="assets/gems-reader-content-flat-tight.png" alt="Giao diện đọc và đánh dấu nội dung trong GEMS">
+          </div>
+          <aside class="quote-note">
+            <small>Điều giữ lại hôm nay</small>
+            <strong>Một thay đổi nhỏ, đủ rõ để bắt đầu.</strong>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="listen" id="nghe">
+      <div class="listen-inner">
+        <div class="listen-visual" data-reveal>
+          <div class="audio-screen">
+            <img src="assets/gems-audio-content-flat-tight.png" alt="Giao diện nghe nội dung sức khỏe trong GEMS">
+          </div>
+          <div class="sound-ribbon" aria-hidden="true">
+            <strong>Một mạch nội dung, hai cách tiếp nhận</strong>
+            <div class="waveform">
+              <i style="--h:38%;--d:-.1s"></i><i style="--h:76%;--d:-.3s"></i>
+              <i style="--h:52%;--d:-.5s"></i><i style="--h:92%;--d:-.2s"></i>
+              <i style="--h:64%;--d:-.7s"></i><i style="--h:34%;--d:-.4s"></i>
+              <i style="--h:82%;--d:-.6s"></i><i style="--h:48%;--d:-.15s"></i>
+              <i style="--h:68%;--d:-.45s"></i><i style="--h:42%;--d:-.25s"></i>
+              <i style="--h:88%;--d:-.55s"></i><i style="--h:56%;--d:-.35s"></i>
+            </div>
+          </div>
+        </div>
+        <div class="listen-copy" data-reveal>
+          <p class="eyebrow">Kiến thức đi cùng nhịp sống</p>
+          <h2 class="section-title">Đọc khi muốn tập trung. Nghe khi cuộc sống chen vào.</h2>
+          <p class="manifesto-copy">Chuyển từ đọc sang nghe mà không phải bắt đầu lại. Nội dung vẫn liền mạch trong lúc bạn đi bộ, làm việc nhà hoặc nghỉ mắt sau một ngày dài.</p>
+          <div class="listen-list">
+            <span>Tiếp tục đúng vị trí đang đọc</span>
+            <span>Tốc độ nghe phù hợp với bạn</span>
+            <span>Nội dung được chia theo phần dễ theo dõi</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="library" id="thu-vien">
+      <header class="library-head" data-reveal>
+        <h2 class="section-title">Một thư viện dành cho những điều bạn thật sự muốn chăm sóc.</h2>
+        <p>Từ giấc ngủ, dinh dưỡng, vận động đến sức khỏe tinh thần và chăm sóc gia đình. GEMS gợi mở theo nhu cầu, không để bạn lạc giữa quá nhiều lựa chọn.</p>
+      </header>
+      <div class="topic-index" data-reveal aria-label="Các nhóm nội dung nổi bật">
+        <article class="topic-row">
+          <b>01</b>
+          <strong>Ngủ & phục hồi</strong>
+          <p>Hiểu nhịp ngủ, chất lượng nghỉ ngơi và những thay đổi nhỏ giúp cơ thể hồi phục tốt hơn.</p>
+        </article>
+        <article class="topic-row">
+          <b>02</b>
+          <strong>Dinh dưỡng</strong>
+          <p>Ăn uống có cơ sở, phù hợp với nhịp sống và không chạy theo những lời khuyên cực đoan.</p>
+        </article>
+        <article class="topic-row">
+          <b>03</b>
+          <strong>Vận động</strong>
+          <p>Tìm cách chuyển động vừa sức, đều đặn và phù hợp với thể trạng của chính bạn.</p>
+        </article>
+        <article class="topic-row">
+          <b>04</b>
+          <strong>Sức khỏe tinh thần</strong>
+          <p>Nhận biết căng thẳng, chăm sóc cảm xúc và tạo khoảng nghỉ cần thiết trong ngày.</p>
+        </article>
+        <article class="topic-row">
+          <b>05</b>
+          <strong>Chăm sóc gia đình</strong>
+          <p>Kiến thức gần gũi để bạn chủ động hơn khi chăm sóc bản thân và những người quan trọng.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="closing" id="bat-dau">
+      <div class="closing-inner" data-reveal>
+        <p class="eyebrow">Một lựa chọn nhỏ cho mỗi ngày</p>
+        <h2>Hiểu sức khỏe để sống chủ động hơn.</h2>
+        <p>Không cần thay đổi mọi thứ cùng lúc. Hãy bắt đầu bằng một chủ đề bạn quan tâm và một điều bạn có thể làm ngay hôm nay.</p>
+        <a class="button button-primary" href="#top">Khám phá GEMS <span class="arrow">→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>© 2026 GEMS. Nội dung vì một cộng đồng sống khỏe chủ động.</span>
+      <span>Kiến thức trong GEMS không thay thế tư vấn y tế chuyên môn.</span>
+    </div>
+  </footer>
+
+  <script>
+    if (new URLSearchParams(window.location.search).has("capture")) {
+      document.body.classList.add("capture-mode");
+    }
+    const revealItems = document.querySelectorAll("[data-reveal]");
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+    revealItems.forEach((item) => revealObserver.observe(item));
+  </script>
+</body>
+</html>
