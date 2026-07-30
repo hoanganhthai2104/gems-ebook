@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#f5f1e9">
-  <title>GEMS - Landing 2 | Hiểu cơ thể. Chủ động sống khỏe.</title>
+  <title>GEMS | Hiểu cơ thể. Chủ động sống khỏe.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -670,7 +670,232 @@
     .cta-copy { color:rgba(255,255,255,.78); font-size:13px; line-height:1.75; }
     .cta .button-primary { background:#fff; color:var(--ink); }
     .cta .button-secondary { border-color:rgba(255,255,255,.35); background:transparent; }
-    .footer { display:flex; justify-content:space-between; gap:20px; margin-top:96px; padding:23px 0; border-top:1px solid rgba(255,255,255,.24); color:rgba(255,255,255,.66); font-size:8px; }
+    .footer {
+      display:grid;
+      grid-template-columns:1.2fr .65fr 1fr 1.1fr .9fr;
+      gap:34px;
+      margin-top:96px;
+      padding:42px 0 0;
+      border-top:1px solid rgba(255,255,255,.24);
+      color:rgba(255,255,255,.68);
+    }
+    .footer-brand { max-width:330px; }
+    .footer .brand { color:#fff; font-size:13px; letter-spacing:.04em; }
+    .footer .brand img { width:40px; height:40px; }
+    .footer-brand p { margin-top:17px; font-size:11px; line-height:1.72; }
+    .footer-group { display:flex; align-items:flex-start; flex-direction:column; gap:10px; }
+    .footer-label {
+      margin-bottom:4px;
+      color:#d5e1f2;
+      font-size:9px;
+      font-weight:800;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+    }
+    .footer-group a,.footer-group p { overflow-wrap:anywhere; font-size:11px; line-height:1.65; }
+    .footer-group a { transition:color .25s ease,transform .25s var(--ease); }
+    .footer-group a:hover { color:#fff; transform:translateX(3px); }
+    .footer-group strong { color:#fff; font-size:15px; letter-spacing:-.02em; }
+    .footer-contact { color:#fff; font-weight:700; }
+    .footer-address { max-width:240px; }
+    .footer-bottom {
+      display:flex;
+      grid-column:1 / -1;
+      justify-content:space-between;
+      gap:24px;
+      margin-top:8px;
+      padding:22px 0 2px;
+      border-top:1px solid rgba(255,255,255,.14);
+      font-size:9px;
+      line-height:1.6;
+    }
+    .contact-dock {
+      position:fixed;
+      z-index:44;
+      right:max(24px,calc((100vw - var(--shell))/2));
+      bottom:24px;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .35s ease;
+    }
+    .contact-dock.is-visible:not(.is-suppressed) {
+      opacity:1;
+      pointer-events:auto;
+    }
+    .contact-backdrop {
+      position:fixed;
+      z-index:0;
+      inset:0;
+      padding:0;
+      border:0;
+      background:transparent;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .3s ease;
+    }
+    .contact-toggle {
+      position:relative;
+      z-index:2;
+      display:flex;
+      min-height:54px;
+      align-items:center;
+      gap:11px;
+      padding:0 18px 0 9px;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:999px;
+      background:var(--ink);
+      box-shadow:0 16px 42px rgba(23,52,95,.24);
+      color:#fff;
+      cursor:pointer;
+      font:800 10px/1 "Be Vietnam Pro",sans-serif;
+      transform:translateY(18px);
+      transition:transform .3s var(--ease),box-shadow .3s ease;
+    }
+    .contact-dock.is-visible:not(.is-suppressed) .contact-toggle { transform:translateY(0); }
+    .contact-toggle:hover { transform:translateY(-2px); box-shadow:0 20px 48px rgba(23,52,95,.3); }
+    .contact-toggle-icon {
+      display:grid;
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      background:var(--yellow);
+      color:var(--ink);
+      place-items:center;
+    }
+    .contact-toggle-icon svg { width:17px; height:17px; }
+    .contact-panel {
+      position:absolute;
+      z-index:2;
+      right:0;
+      bottom:calc(100% + 14px);
+      width:360px;
+      padding:24px;
+      border:1px solid rgba(23,52,95,.13);
+      border-radius:24px;
+      background:rgba(255,253,248,.98);
+      box-shadow:0 28px 80px rgba(23,52,95,.23);
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(14px) scale(.98);
+      transform-origin:right bottom;
+      transition:opacity .28s ease,transform .38s var(--ease),visibility .28s;
+      visibility:hidden;
+    }
+    .contact-dock.is-open .contact-panel {
+      opacity:1;
+      pointer-events:auto;
+      transform:translateY(0) scale(1);
+      visibility:visible;
+    }
+    .contact-panel-head { display:flex; align-items:flex-start; justify-content:space-between; gap:20px; }
+    .contact-kicker {
+      display:block;
+      color:var(--teal);
+      font-size:8px;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .contact-panel h2 {
+      max-width:255px;
+      margin-top:8px;
+      font-size:23px;
+      line-height:1.15;
+      letter-spacing:-.04em;
+    }
+    .contact-close {
+      display:grid;
+      width:34px;
+      height:34px;
+      flex:0 0 auto;
+      padding:0;
+      border:1px solid var(--line);
+      border-radius:50%;
+      background:transparent;
+      color:var(--ink);
+      cursor:pointer;
+      place-items:center;
+    }
+    .contact-close svg { width:14px; height:14px; }
+    .contact-lede { margin-top:12px; color:var(--muted); font-size:10px; line-height:1.65; }
+    .contact-topics { margin-top:18px; border-top:1px solid var(--line); }
+    .contact-topic {
+      display:grid;
+      width:100%;
+      min-height:43px;
+      grid-template-columns:8px 1fr auto;
+      align-items:center;
+      gap:10px;
+      padding:0;
+      border:0;
+      border-bottom:1px solid var(--line);
+      background:transparent;
+      color:#52677b;
+      cursor:pointer;
+      font:700 10px/1.4 "Be Vietnam Pro",sans-serif;
+      text-align:left;
+      transition:color .25s ease;
+    }
+    .contact-topic::before {
+      width:6px;
+      height:6px;
+      border:1px solid var(--teal);
+      border-radius:50%;
+      content:"";
+      transition:background .25s ease,box-shadow .25s ease;
+    }
+    .contact-topic span { color:var(--teal); font-size:14px; transition:transform .3s var(--ease); }
+    .contact-topic:hover,.contact-topic.is-active { color:var(--ink); }
+    .contact-topic:hover span,.contact-topic.is-active span { transform:translateX(3px); }
+    .contact-topic.is-active::before { background:var(--yellow); box-shadow:0 0 0 4px rgba(212,164,60,.14); }
+    .contact-answer {
+      margin-top:16px;
+      padding:15px 16px;
+      border-left:2px solid var(--yellow);
+      background:#edf2f5;
+    }
+    .contact-answer strong { display:block; font-size:12px; line-height:1.45; }
+    .contact-answer p { margin-top:6px; color:#5a6f81; font-size:9px; line-height:1.6; }
+    .contact-answer a {
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      margin-top:10px;
+      color:var(--teal);
+      font-size:9px;
+      font-weight:800;
+    }
+    .contact-direct-label {
+      display:block;
+      margin-top:18px;
+      color:#718191;
+      font-size:8px;
+      font-weight:800;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+    .contact-channels { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px; }
+    .contact-channel {
+      display:flex;
+      min-height:58px;
+      flex-direction:column;
+      justify-content:center;
+      padding:10px 13px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      color:var(--ink);
+      font-size:10px;
+      font-weight:800;
+      transition:transform .3s var(--ease),border-color .3s ease;
+    }
+    .contact-channel:hover { border-color:rgba(49,95,168,.42); transform:translateY(-2px); }
+    .contact-channel:first-child { border-color:var(--ink); background:var(--ink); color:#fff; }
+    .contact-channel small { margin-top:5px; color:inherit; font-size:8px; font-weight:500; opacity:.7; }
+    .contact-dock.is-open .contact-backdrop { opacity:1; pointer-events:auto; }
+    @media (max-width:1180px) and (min-width:801px) {
+      .footer { grid-template-columns:1.1fr .8fr 1fr; }
+      .footer-brand { grid-row:span 2; }
+    }
     html.js [data-reveal] {
       opacity:0;
       transform:translateY(28px);
@@ -776,7 +1001,30 @@
       .review-card { width:286px; min-height:205px; }
       .cta { padding-top:82px; }
       .cta-inner { gap:32px; }
-      .footer { align-items:flex-start; margin-top:68px; }
+      .footer { grid-template-columns:1fr 1fr; gap:34px 24px; margin-top:68px; padding-top:34px; }
+      .footer-brand,.footer-bottom { grid-column:1 / -1; }
+      .footer-brand { max-width:330px; }
+      .footer-bottom { align-items:flex-start; flex-direction:column; gap:6px; margin-top:0; }
+      .contact-dock { right:12px; bottom:max(12px,env(safe-area-inset-bottom)); }
+      .contact-toggle { min-height:50px; padding-right:15px; }
+      .contact-toggle-icon { width:34px; height:34px; }
+      .contact-backdrop { background:rgba(23,52,95,.28); backdrop-filter:blur(3px); }
+      .contact-panel {
+        position:fixed;
+        right:12px;
+        bottom:max(12px,env(safe-area-inset-bottom));
+        left:12px;
+        width:auto;
+        max-height:calc(100dvh - 24px);
+        overflow:auto;
+        transform:translateY(24px) scale(.99);
+        transform-origin:center bottom;
+      }
+      .contact-dock.is-open .contact-toggle { opacity:0; pointer-events:none; transform:translateY(10px); }
+    }
+    @media (max-width:340px) {
+      .footer { grid-template-columns:1fr; }
+      .footer-brand,.footer-bottom { grid-column:auto; }
     }
     @media (prefers-reduced-motion:reduce) {
       *,*::before,*::after { scroll-behavior:auto!important; animation:none!important; transition-duration:.01ms!important; }
@@ -887,8 +1135,71 @@
       <article class="review-card"><div class="stars">★★★★★</div><p>Phù hợp với người bận rộn và có thể duy trì việc nghe trong lúc di chuyển.</p><div class="review-person"><img src="./assets/testimonial-thu-ha.jpg" alt="" loading="lazy" decoding="async"><div><strong>Người nghe GEMS</strong><span>Chủ động mỗi ngày</span></div></div></article>
     </div></div></section>
 
-    <section class="cta" id="partners"><div class="shell"><div class="cta-inner"><div><p class="eyebrow" data-reveal>Cùng GEMS và LIMES</p><h2 data-reveal style="--delay:.08s">Để ai cũng có thể chăm sóc sức khỏe một cách chủ động.</h2></div><div class="cta-copy" data-reveal style="--delay:.16s">GEMS chào đón đơn vị xuất bản, tác giả, chuyên gia nội dung và đối tác công nghệ cùng mở rộng một thư viện sức khỏe thiết thực, được kiểm soát chuyên môn và dễ tiếp cận với người Việt.<div class="actions"><a class="button button-primary" href="mailto:hello@gems.vn">Trao đổi hợp tác <span>→</span></a><a class="button button-secondary" href="https://gems-ebook.vercel.app/">Mở ứng dụng</a></div></div></div><footer class="footer"><span>GEMS · Thư viện chăm sóc sức khỏe chủ động.</span><span>Nội dung được LIMES tuyển chọn</span></footer></div></section>
+    <section class="cta" id="partners"><div class="shell"><div class="cta-inner"><div><p class="eyebrow" data-reveal>Cùng GEMS và LIMES</p><h2 data-reveal style="--delay:.08s">Để ai cũng có thể chăm sóc sức khỏe một cách chủ động.</h2></div><div class="cta-copy" data-reveal style="--delay:.16s">GEMS chào đón đơn vị xuất bản, tác giả, chuyên gia nội dung và đối tác công nghệ cùng mở rộng một thư viện sức khỏe thiết thực, được kiểm soát chuyên môn và dễ tiếp cận với người Việt.<div class="actions"><a class="button button-primary" href="mailto:info.gemsgroupvn@gmail.com">Trao đổi hợp tác <span>→</span></a><a class="button button-secondary" href="https://gems-ebook.vercel.app/">Mở ứng dụng</a></div></div></div>
+      <footer class="footer" aria-label="Thông tin cuối trang">
+        <div class="footer-brand">
+          <a class="brand" href="#top" aria-label="Tập đoàn GEMS - Về đầu trang"><img src="./assets/logo-GEMS.png" alt="Logo Tập đoàn GEMS"><span>TẬP ĐOÀN GEMS</span></a>
+          <p>GEMS Ebook là thư viện số thuộc hệ sinh thái GEMS, giúp kiến thức chăm sóc sức khỏe trở nên gần gũi, đáng tin cậy và dễ tiếp cận hơn với người Việt.</p>
+        </div>
+        <div class="footer-group">
+          <span class="footer-label">Khám phá</span>
+          <a href="#library">Thư viện</a>
+          <a href="#trust">Kiểm chứng nội dung</a>
+          <a href="#experience">Trải nghiệm ứng dụng</a>
+        </div>
+        <div class="footer-group">
+          <span class="footer-label">Liên hệ</span>
+          <a class="footer-contact" href="tel:1900888812">1900 88 88 12</a>
+          <a class="footer-email" href="mailto:info.gemsgroupvn@gmail.com">info.<wbr>gemsgroupvn@gmail.com</a>
+          <a href="https://gemsgroup.com.vn/" target="_blank" rel="noopener">gemsgroup.com.vn ↗</a>
+        </div>
+        <div class="footer-group">
+          <span class="footer-label">Trụ sở chính</span>
+          <p class="footer-address">25 đường 37, khu đô thị Vạn Phúc, Phường Hiệp Bình, Thành phố Hồ Chí Minh</p>
+        </div>
+        <div class="footer-group">
+          <span class="footer-label">Kiểm soát chuyên môn</span>
+          <strong>LIMES</strong>
+          <p>Viện Nghiên cứu Y học Sự sống</p>
+        </div>
+        <div class="footer-bottom"><span>© 2026 Công ty Cổ phần Tập đoàn GEMS · MST 0318344838</span><span>Nội dung được LIMES tuyển chọn và định hướng chuyên môn.</span></div>
+      </footer>
+    </div></section>
   </main>
+  <div class="contact-dock" id="contact-dock">
+    <button class="contact-backdrop" type="button" tabindex="-1" aria-label="Đóng bảng hỗ trợ"></button>
+    <aside class="contact-panel" id="contact-panel" role="dialog" aria-labelledby="contact-title" aria-hidden="true" tabindex="-1" inert>
+      <div class="contact-panel-head">
+        <div><span class="contact-kicker">Trợ lý định hướng</span><h2 id="contact-title">Bạn đang cần điều gì?</h2></div>
+        <button class="contact-close" type="button" aria-label="Đóng bảng hỗ trợ">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/></svg>
+        </button>
+      </div>
+      <p class="contact-lede">Chọn một hướng. GEMS sẽ đưa bạn đến đúng nội dung hoặc đúng người hỗ trợ.</p>
+      <div class="contact-topics" aria-label="Nhu cầu hỗ trợ">
+        <button class="contact-topic is-active" type="button" data-contact-topic="library" aria-pressed="true">Tìm nội dung phù hợp <span>→</span></button>
+        <button class="contact-topic" type="button" data-contact-topic="guide" aria-pressed="false">Cách sử dụng GEMS <span>→</span></button>
+        <button class="contact-topic" type="button" data-contact-topic="partner" aria-pressed="false">Hợp tác nội dung <span>→</span></button>
+        <button class="contact-topic" type="button" data-contact-topic="advisor" aria-pressed="false">Gặp tư vấn viên <span>→</span></button>
+      </div>
+      <div class="contact-answer" aria-live="polite">
+        <strong class="contact-answer-title">Bắt đầu từ điều bạn quan tâm.</strong>
+        <p class="contact-answer-copy">Khám phá nội dung về sức khỏe, dinh dưỡng, giấc ngủ, tâm lý và lối sống chủ động.</p>
+        <a class="contact-answer-link" href="#library">Khám phá thư viện <span>→</span></a>
+      </div>
+      <span class="contact-direct-label">Kết nối trực tiếp với GEMS</span>
+      <div class="contact-channels">
+        <a class="contact-channel" href="https://zalo.me/0398180812" target="_blank" rel="noopener">Nhắn Zalo<small>0398 180 812</small></a>
+        <a class="contact-channel" href="tel:1900888812">Gọi hotline<small>1900 88 88 12</small></a>
+      </div>
+    </aside>
+    <button class="contact-toggle" type="button" aria-expanded="false" aria-controls="contact-panel">
+      <span class="contact-toggle-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 17.5 4 21l4-1.4c1.2.6 2.5.9 4 .9 4.7 0 8.5-3.5 8.5-7.8S16.7 5 12 5s-8.5 3.4-8.5 7.7c0 1.8.7 3.5 2 4.8Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.7"/><path d="M8 12.5h8M8 9.5h5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"/></svg>
+      </span>
+      <span>Hỗ trợ GEMS</span>
+    </button>
+  </div>
   <script>
     document.documentElement.classList.add('js');
     const reviewLoop=document.querySelector('.review-loop');
@@ -984,6 +1295,101 @@
         reviewLoop.style.animationPlayState=entry.isIntersecting?'running':'paused';
       },{threshold:.1});
       reviewMotionObserver.observe(voicesSection);
+    }
+    const contactDock=document.querySelector('#contact-dock');
+    if(contactDock){
+      const contactToggle=contactDock.querySelector('.contact-toggle');
+      const contactPanel=contactDock.querySelector('.contact-panel');
+      const contactClose=contactDock.querySelector('.contact-close');
+      const contactBackdrop=contactDock.querySelector('.contact-backdrop');
+      const contactTopics=[...contactDock.querySelectorAll('.contact-topic')];
+      const contactAnswerTitle=contactDock.querySelector('.contact-answer-title');
+      const contactAnswerCopy=contactDock.querySelector('.contact-answer-copy');
+      const contactAnswerLink=contactDock.querySelector('.contact-answer-link');
+      const heroSection=document.querySelector('.hero');
+      const partnerSection=document.querySelector('#partners');
+      const contactResponses={
+        library:{
+          title:'Bắt đầu từ điều bạn quan tâm.',
+          copy:'Khám phá nội dung về sức khỏe, dinh dưỡng, giấc ngủ, tâm lý và lối sống chủ động.',
+          label:'Khám phá thư viện',
+          href:'#library'
+        },
+        guide:{
+          title:'Đọc, ghi lại, rồi nghe tiếp.',
+          copy:'GEMS giữ nội dung, ghi chú và tiến trình trong cùng một hành trình để bạn không phải bắt đầu lại.',
+          label:'Xem trải nghiệm',
+          href:'#experience'
+        },
+        partner:{
+          title:'Cùng xây một thư viện đáng tin.',
+          copy:'GEMS chào đón tác giả, đơn vị xuất bản, chuyên gia và đối tác công nghệ cùng phát triển nội dung.',
+          label:'Trao đổi hợp tác',
+          href:'mailto:info.gemsgroupvn@gmail.com'
+        },
+        advisor:{
+          title:'Kết nối với đội ngũ GEMS.',
+          copy:'Nhắn Zalo để được hướng dẫn theo nhu cầu hoặc gọi hotline khi bạn muốn trao đổi trực tiếp.',
+          label:'Nhắn Zalo',
+          href:'https://zalo.me/0398180812',
+          external:true
+        }
+      };
+      let contactLastFocus=null;
+      const setContactOpen=(open,restoreFocus=true)=>{
+        contactDock.classList.toggle('is-open',open);
+        contactToggle.setAttribute('aria-expanded',open?'true':'false');
+        contactPanel.setAttribute('aria-hidden',open?'false':'true');
+        if(open){
+          contactLastFocus=document.activeElement;
+          contactPanel.removeAttribute('inert');
+          requestAnimationFrame(()=>contactPanel.focus({preventScroll:true}));
+        }else{
+          contactPanel.setAttribute('inert','');
+          if(restoreFocus&&contactLastFocus instanceof HTMLElement)contactLastFocus.focus({preventScroll:true});
+        }
+      };
+      contactToggle.addEventListener('click',()=>setContactOpen(!contactDock.classList.contains('is-open')));
+      contactClose.addEventListener('click',()=>setContactOpen(false));
+      contactBackdrop.addEventListener('click',()=>setContactOpen(false));
+      contactTopics.forEach(button=>button.addEventListener('click',()=>{
+        const response=contactResponses[button.dataset.contactTopic];
+        if(!response)return;
+        contactTopics.forEach(topic=>{
+          const active=topic===button;
+          topic.classList.toggle('is-active',active);
+          topic.setAttribute('aria-pressed',active?'true':'false');
+        });
+        contactAnswerTitle.textContent=response.title;
+        contactAnswerCopy.textContent=response.copy;
+        contactAnswerLink.firstChild.textContent=`${response.label} `;
+        contactAnswerLink.href=response.href;
+        if(response.external){
+          contactAnswerLink.target='_blank';
+          contactAnswerLink.rel='noopener';
+        }else{
+          contactAnswerLink.removeAttribute('target');
+          contactAnswerLink.removeAttribute('rel');
+        }
+      }));
+      contactAnswerLink.addEventListener('click',()=>setContactOpen(false,false));
+      addEventListener('keydown',event=>{if(event.key==='Escape'&&contactDock.classList.contains('is-open'))setContactOpen(false);});
+      let contactFrame=0;
+      const updateContactDock=()=>{
+        contactFrame=0;
+        const threshold=heroSection?Math.max(480,heroSection.offsetHeight-innerHeight*.18):560;
+        const partnerRect=partnerSection?.getBoundingClientRect();
+        const nearFooter=Boolean(partnerRect&&partnerRect.top<innerHeight*.92&&partnerRect.bottom>0);
+        contactDock.classList.toggle('is-visible',scrollY>threshold);
+        contactDock.classList.toggle('is-suppressed',nearFooter);
+        if(nearFooter&&contactDock.classList.contains('is-open'))setContactOpen(false,false);
+      };
+      const queueContactUpdate=()=>{
+        if(!contactFrame)contactFrame=requestAnimationFrame(updateContactDock);
+      };
+      addEventListener('scroll',queueContactUpdate,{passive:true});
+      addEventListener('resize',queueContactUpdate);
+      updateContactDock();
     }
     const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible');}),{threshold:.12});
     document.querySelectorAll('section:not(.hero)').forEach(section=>revealObserver.observe(section));
