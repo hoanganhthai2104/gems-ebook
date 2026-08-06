@@ -163,3 +163,50 @@ body.dark .skeleton-shimmer {
             0 25px 70px -10px rgba(0, 20, 60, 0.55) !important;
     }
 }
+
+/* Glassmorphism & Mobile Touch Enhancements */
+.glass-card-premium {
+    background: rgba(255, 255, 255, 0.82) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.45) !important;
+    box-shadow: 0 10px 30px -5px rgba(0, 40, 80, 0.08) !important;
+}
+
+body.dark .glass-card-premium {
+    background: rgba(15, 23, 42, 0.82) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4) !important;
+}
+
+.glass-modal-backdrop {
+    background: rgba(15, 23, 42, 0.65) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.touch-active-scale {
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out !important;
+}
+
+.touch-active-scale:active {
+    transform: scale(0.97) !important;
+}
+
+.safe-bottom-pad {
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 5rem) !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none !important;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+}
+
+.overflow-touch {
+    -webkit-overflow-scrolling: touch !important;
+}
+

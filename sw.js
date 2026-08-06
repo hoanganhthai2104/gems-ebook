@@ -1,11 +1,19 @@
-const CACHE_NAME = 'gems-pwa-cache-v81';
+const CACHE_NAME = 'gems-pwa-cache-v83';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/assets/logo.png',
-  '/data/books.json',
-  '/data/dictionary.json',
-  '/data/chapters.json'
+  '/css/components/theme.css',
+  '/js/modules/state.js',
+  '/js/modules/data.js',
+  '/js/modules/ui-utils.js',
+  '/js/modules/theme.js',
+  '/js/modules/quiz.js',
+  '/js/modules/dictionary.js',
+  '/js/modules/audio.js',
+  '/js/modules/nav.js',
+  '/js/modules/reader.js',
+  '/js/modules/shop.js',
+  '/js/app.js'
 ];
 
 self.addEventListener('install', event => {

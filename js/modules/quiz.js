@@ -55,26 +55,50 @@
     window.submitAnswer = function(optionIndex) {
         const state = window.currentQuizState;
         const currentQ = state.questions[state.currentIndex];
+        const optionsEl = document.getElementById('quiz-options-container');
 
-        if (optionIndex === currentQ.correctAnswer) {
+        if (optionsEl) {
+            const buttons = optionsEl.querySelectorAll('button');
+            buttons.forEach((btn, idx) => {
+                btn.disabled = true;
+                if (idx === currentQ.correctAnswer) {
+                    btn.className = "w-full text-left p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-bold mb-3 transition-all";
+                } else if (idx === optionIndex) {
+                    btn.className = "w-full text-left p-4 rounded-xl border-2 border-rose-500 bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 font-bold mb-3 transition-all";
+                }
+            });
+        }
+
+        const isCorrect = optionIndex === currentQ.correctAnswer;
+        if (isCorrect) {
             state.score += 10;
             if (typeof window.showToast === 'function') {
                 window.showToast("Chính xác! +10 GEMS Xu", "success");
             }
-        } else {
-            if (typeof window.showToast === 'function') {
-                window.showToast("Rất tiếc! " + (currentQ.explanation || "Hãy thử lại lần sau."), "warning");
-            }
+        }
+
+        let explanationCard = document.getElementById('quiz-explanation-card');
+        if (!explanationCard && optionsEl) {
+            explanationCard = document.createElement('div');
+            explanationCard.id = 'quiz-explanation-card';
+            optionsEl.appendChild(explanationCard);
+        }
+
+        if (explanationCard) {
+            explanationCard.className = `p-4 rounded-2xl border ${isCorrect ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-rose-50 border-rose-200 text-rose-900'} mt-3 mb-4 text-xs font-medium leading-relaxed animate-fade-in`;
+            explanationCard.innerHTML = `<strong>💡 Giải thích y khoa:</strong> ${currentQ.explanation || (isCorrect ? 'Đáp án hoàn toàn chính xác theo tài liệu chẩn đoán lâm sàng.' : 'Hãy tham khảo lại tài liệu chuyên môn.')}`;
         }
 
         state.userAnswers.push(optionIndex);
-        state.currentIndex++;
 
-        if (state.currentIndex < state.questions.length) {
-            window.renderQuizQuestion();
-        } else {
-            window.finishQuiz();
-        }
+        setTimeout(() => {
+            state.currentIndex++;
+            if (state.currentIndex < state.questions.length) {
+                window.renderQuizQuestion();
+            } else {
+                window.finishQuiz();
+            }
+        }, 2200);
     };
 
     window.finishQuiz = function() {

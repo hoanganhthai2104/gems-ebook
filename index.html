@@ -3094,7 +3094,59 @@
 
                             </section>
 
- 
+                            <!-- Section: Nền Y Học Sự Sống -->
+
+                            <section class="px-4 mb-8">
+
+                                <div class="flex items-center justify-between mb-3">
+
+                                    <h3 class="text-sm font-bold text-blue-900 tracking-tight uppercase flex items-center gap-2">
+
+                                        <span class="material-symbols-outlined text-blue-600 text-lg">auto_awesome</span>
+
+                                        NỀN Y HỌC SỰ SỐNG
+
+                                    </h3>
+
+                                    <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">Mới nhất</span>
+
+                                </div>
+
+                                <div class="flex gap-4 overflow-x-auto custom-scrollbar pb-4 pr-4">
+
+                                    <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('trietly_yhss')">
+
+                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.12)] border border-blue-200/50 overflow-hidden" data-book-id="trietly_yhss"></div>
+
+                                        <h4 class="text-xs font-bold text-slate-900 truncate px-0.5 mt-2.5">Triết Lý Y Học Sự Sống</h4>
+
+                                        <p class="text-[10px] text-slate-400 font-medium px-0.5">Chủ biên Hoàng Anh</p>
+
+                                    </div>
+
+                                    <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('nuoc_va_su_song')">
+
+                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.12)] border border-blue-200/50 overflow-hidden" data-book-id="nuoc_va_su_song"></div>
+
+                                        <h4 class="text-xs font-bold text-slate-900 truncate px-0.5 mt-2.5">Nước và Sự Sống</h4>
+
+                                        <p class="text-[10px] text-slate-400 font-medium px-0.5">Hydrogen Ion Kiềm</p>
+
+                                    </div>
+
+                                    <div class="group flex-shrink-0 w-44 cursor-pointer hover:-translate-y-1 hover:scale-[1.015] active:scale-95 p-0 transition-all duration-300" onclick="openBookDetails('tam_hoc_chua_lanh')">
+
+                                        <div class="gems-book-cover w-full aspect-[2/3] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.12)] border border-amber-200/50 overflow-hidden" data-book-id="tam_hoc_chua_lanh"></div>
+
+                                        <h4 class="text-xs font-bold text-slate-900 truncate px-0.5 mt-2.5">Tâm Học & Chữa Lành</h4>
+
+                                        <p class="text-[10px] text-slate-400 font-medium px-0.5">Cảm Xúc Nội Tâm</p>
+
+                                    </div>
+
+                                </div>
+
+                            </section>
 
                             <!-- Section: Dành cho bạn -->
 
@@ -9173,7 +9225,7 @@
 
                         <!-- VIEW 6.1: GHI CHÚ OVERLAY MODAL (Bottom Sheet / Overlay Drawer) -->
 
-                        <div id="reader-note-modal" onclick="closeReaderNoteModal()" class="hidden absolute inset-0 z-[300] bg-black/40 backdrop-blur-sm flex items-end justify-center">
+                        <div id="reader-note-modal" onclick="closeReaderNoteModal()" class="hidden absolute inset-0 z-[300] glass-modal-backdrop flex items-end justify-center">
 
                             <div class="bg-white w-full rounded-t-[32px] p-6 max-h-[85%] flex flex-col shadow-[0_-10px_30px_rgba(0,0,0,0.1)] select-none animate-slide-up" onclick="event.stopPropagation()">
 
@@ -12523,6 +12575,12 @@
 
             const coverURLs = {
 
+                'trietly_yhss': 'covers/trietly_yhss.png',
+
+                'nuoc_va_su_song': 'covers/nuoc_va_su_song.png',
+
+                'tam_hoc_chua_lanh': 'covers/tam_hoc_chua_lanh.png',
+
                 'chandoanykhoa': 'covers/chandoanykhoa.png',
 
                 'lamsangnoikhoa': 'covers/lamsangnoikhoa.png',
@@ -12851,9 +12909,386 @@
 
         ];
 
-
+        // === PER-BOOK QUIZ QUESTIONS MAP ===
+        const allBookQuizzes = {
+            tamthat: quizQuestions,
+            nhansam: quizQuestions, // fallback, same as tamthat for now
+            trietly_mo_dau: [
+                {
+                    question: "Y học Sự Sống (YHSS) kết hợp bao nhiêu nền y học?",
+                    desc: "Xác định số nền y học trong mô hình Y học Sự sống của Viện YHSS.",
+                    options: [
+                        { text: "A. 3 nền y học", desc: "Y học truyền thống, Y học hiện đại, Y học tâm lý." },
+                        { text: "B. 4 nền y học", desc: "Thiếu một nền y học quan trọng." },
+                        { text: "C. 5 nền y học", desc: "Kết hợp đầy đủ: Truyền thống, Hiện đại, Dinh dưỡng, Tự nhiên-Năng lượng, Sự sống." },
+                        { text: "D. 6 nền y học", desc: "Số nền y học không có trong triết lý YHSS." }
+                    ],
+                    correctIndex: 2,
+                    explanation: "Y học Sự sống kết hợp 5 nền y học: (1) Y học Truyền thống, (2) Y học Hiện đại, (3) Y học Dinh dưỡng & Môi trường, (4) Y học Tự nhiên - Năng lượng - Tâm linh, (5) Y học Sự sống tổng hợp."
+                },
+                {
+                    question: "Hành trình nghiên cứu và thực hành của tác giả cuốn sách kéo dài bao lâu?",
+                    desc: "Xác định thời gian tác giả đã cống hiến trong lĩnh vực y học.",
+                    options: [
+                        { text: "A. Hơn 10 năm", desc: "Chưa đủ theo nội dung sách." },
+                        { text: "B. Hơn 20 năm", desc: "Gần đúng nhưng chưa chính xác." },
+                        { text: "C. Hơn 30 năm", desc: "Tác giả đã dành hơn ba thập kỷ chữa bệnh, dạy học và khai mở." },
+                        { text: "D. Hơn 40 năm", desc: "Cao hơn thực tế trong sách." }
+                    ],
+                    correctIndex: 2,
+                    explanation: "Tác giả đã trải qua hơn 30 năm (ba thập kỷ) cống hiến trong lĩnh vực y học — chữa bệnh, dạy học và khai mở — trước khi phát triển triết lý Y học Sự sống."
+                },
+                {
+                    question: "Lý do cốt lõi nào thúc đẩy tác giả viết cuốn 'Triết Lý Y Học Sự Sống'?",
+                    desc: "Xác định động cơ chính dẫn đến việc ra đời cuốn sách.",
+                    options: [
+                        { text: "A. Để nổi tiếng trong giới y học", desc: "Không phải mục tiêu của cuốn sách." },
+                        { text: "B. Y học đơn thuần chưa đủ để chữa lành toàn diện con người", desc: "Y học hiện đại có thể chữa thể xác nhưng thiếu chiều sâu tâm-trí-linh." },
+                        { text: "C. Để phê phán y học Tây phương", desc: "Sách không nhằm phê phán mà tích hợp." },
+                        { text: "D. Vì bản thân tác giả bị bệnh nặng", desc: "Không phải lý do chính trong sách." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "Tác giả nhận ra rằng y học hiện đại có thể chữa trị thể chất nhưng không đủ để chữa lành hoàn toàn — cần mở rộng tầm nhìn, kết hợp tri thức cổ xưa và hiện đại, giúp con người chữa lành cả Thân-Tâm-Trí-Linh."
+                },
+                {
+                    question: "Mô hình Thân - Tâm - Trí - Linh trong Y học Sự sống mô tả điều gì?",
+                    desc: "Hiểu đúng về mô hình toàn diện của con người theo YHSS.",
+                    options: [
+                        { text: "A. 4 bộ phận giải phẫu cơ thể", desc: "Không phải phân loại giải phẫu học." },
+                        { text: "B. 4 chiều kích của sức khỏe toàn diện con người", desc: "Thể chất, cảm xúc, tư duy và tâm linh." },
+                        { text: "C. 4 giai đoạn phát triển của bệnh", desc: "Không phải mô tả tiến triển bệnh lý." },
+                        { text: "D. 4 loại thuốc y học cổ truyền", desc: "Không phải phân loại thuốc." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "Mô hình Thân-Tâm-Trí-Linh: (1) Thân = sức khỏe thể chất, (2) Tâm = cảm xúc và tâm lý, (3) Trí = trí tuệ và tư duy, (4) Linh = tâm linh và ý nghĩa sống. Y học Sự sống chữa lành cả 4 chiều kích."
+                },
+                {
+                    question: "Trong phần giới thiệu, tác giả đặt ra câu hỏi nền tảng nào cho cuốn sách?",
+                    desc: "Xác định câu hỏi cốt lõi của tác phẩm.",
+                    options: [
+                        { text: "A. Làm thế nào để kiếm tiền từ y học?", desc: "Không phải chủ đề của sách." },
+                        { text: "B. Tại sao y học hiện đại chưa đủ để chữa lành toàn diện?", desc: "Câu hỏi trung tâm của cả cuốn sách." },
+                        { text: "C. Thuốc nào chữa bệnh tốt nhất?", desc: "Không phải câu hỏi cốt lõi." },
+                        { text: "D. Nên chọn Đông y hay Tây y?", desc: "YHSS không phân biệt mà tích hợp cả hai." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "Câu hỏi nền tảng của sách là: 'Tại sao y học, dù tiên tiến đến đâu, đôi khi không đủ để chữa lành hoàn toàn cho con người?' — từ đó dẫn đến triết lý YHSS tích hợp 5 nền y học."
+                }
+            ],
+            trietly_5nen: [
+                {
+                    question: "Y học Truyền thống phương Đông được xây dựng trên nền tảng triết học nào?",
+                    desc: "Xác định hai học thuyết cơ bản của y học cổ truyền.",
+                    options: [
+                        { text: "A. Thuyết tiến hóa và di truyền", desc: "Đây là nền tảng y học hiện đại." },
+                        { text: "B. Âm dương và Ngũ hành", desc: "Hai học thuyết cốt lõi xuyên suốt y học phương Đông cổ truyền." },
+                        { text: "C. Vật lý lượng tử và hóa học", desc: "Khoa học hiện đại, không phải y học cổ truyền." },
+                        { text: "D. Tâm lý học và xã hội học", desc: "Không phải nền tảng của y học cổ truyền." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "Y học cổ truyền phương Đông dựa trên Âm dương (hai lực đối lập bổ trợ nhau) và Ngũ hành (Kim-Mộc-Thủy-Hỏa-Thổ). Sức khỏe được duy trì khi âm dương cân bằng và ngũ hành lưu thông."
+                },
+                {
+                    question: "Y học Hiện đại (Tây y) có vai trò không thể thay thế đặc biệt trong lĩnh vực nào?",
+                    desc: "Theo YHSS, thế mạnh tuyệt đối của y học hiện đại là gì?",
+                    options: [
+                        { text: "A. Chữa bệnh mãn tính và rối loạn tâm lý", desc: "YHSS cho rằng đây là điểm yếu của y học hiện đại." },
+                        { text: "B. Chẩn đoán, cấp cứu và điều trị bệnh cấp tính, ngoại khoa", desc: "Tây y vượt trội trong can thiệp nhanh và kỹ thuật cao." },
+                        { text: "C. Phòng bệnh và nâng cao sức đề kháng", desc: "Đây là thế mạnh của y học truyền thống và dinh dưỡng." },
+                        { text: "D. Chữa lành cảm xúc và tâm linh", desc: "Đây là lĩnh vực của y học tự nhiên-năng lượng-tâm linh." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "Y học Hiện đại vượt trội trong: chẩn đoán chính xác (X-quang, CT, MRI), cấp cứu nhanh chóng, phẫu thuật và điều trị bệnh cấp tính. Đây là những lĩnh vực không thể thay thế."
+                },
+                {
+                    question: "Câu 'You are what you eat' (Bạn là những gì bạn ăn) đại diện cho nền Y học nào?",
+                    desc: "Kết nối triết lý ăn uống với mô hình YHSS.",
+                    options: [
+                        { text: "A. Y học Truyền thống", desc: "Y học truyền thống nhấn mạnh kinh lạc và khí huyết hơn dinh dưỡng." },
+                        { text: "B. Y học Hiện đại", desc: "Tây y không dùng câu này như triết lý trung tâm." },
+                        { text: "C. Y học Dinh dưỡng và Môi trường", desc: "Thực phẩm là thuốc — triết lý trung tâm của nền y học thứ 3." },
+                        { text: "D. Y học Tự nhiên-Năng lượng", desc: "Nền y học này tập trung vào khí công, thiền định." }
+                    ],
+                    correctIndex: 2,
+                    explanation: "Y học Dinh dưỡng & Môi trường lấy 'Thực phẩm là thuốc' làm nền tảng. Chế độ ăn uống, môi trường sống tác động trực tiếp đến hệ gen, hệ miễn dịch và khả năng tự chữa lành của cơ thể."
+                },
+                {
+                    question: "Y học Tự nhiên - Năng lượng - Tâm linh bao gồm những phương pháp nào?",
+                    desc: "Xác định các thực hành thuộc nền y học thứ 4 trong YHSS.",
+                    options: [
+                        { text: "A. Phẫu thuật và hóa trị", desc: "Đây là phương pháp của y học hiện đại." },
+                        { text: "B. Dùng thuốc thảo dược và bấm huyệt", desc: "Gần hơn với y học truyền thống." },
+                        { text: "C. Thiền định, khí công, liệu pháp âm thanh, kết nối tâm linh", desc: "Nền y học thứ 4 làm việc với tần số năng lượng và tâm linh." },
+                        { text: "D. Kiểm tra gen và y học cá thể hóa", desc: "Đây là y học hiện đại thế hệ mới." }
+                    ],
+                    correctIndex: 2,
+                    explanation: "Y học Tự nhiên-Năng lượng-Tâm linh sử dụng: thiền định, khí công, yoga, liệu pháp âm thanh, kết nối với chân ngã. Tất cả đều tác động đến tần số rung động của cơ thể-tâm trí."
+                },
+                {
+                    question: "Điểm khác biệt cốt lõi của Y học Sự Sống (nền y học thứ 5) so với 4 nền y học còn lại là gì?",
+                    desc: "Xác định đặc điểm định nghĩa Y học Sự sống.",
+                    options: [
+                        { text: "A. Dùng nhiều thuốc hiện đại hơn", desc: "Không phải điểm khác biệt." },
+                        { text: "B. Hợp nhất và tích hợp cả 4 nền y học kia thành một hệ thống toàn diện", desc: "YHSS là 'bộ tổng hợp' kết nối tất cả trong mô hình Thân-Tâm-Trí-Linh." },
+                        { text: "C. Chỉ dùng phương pháp tự nhiên, không dùng thuốc Tây", desc: "YHSS không loại bỏ bất kỳ nền y học nào." },
+                        { text: "D. Là y học của tương lai chưa ai áp dụng được", desc: "YHSS đang được thực hành hiện nay." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "Y học Sự sống (nền y học thứ 5) là hệ thống tích hợp: (1) Y học Truyền thống + (2) Y học Hiện đại + (3) Dinh dưỡng-Môi trường + (4) Tự nhiên-Năng lượng-Tâm linh → vận hành theo mô hình Thân-Tâm-Trí-Linh."
+                }
+            ],
+            trietly_3tru: [
+                {
+                    question: "Ba trụ cột Y đức trong Y học Sự sống là gì?",
+                    desc: "Xác định ba trụ đạo đức của người thầy thuốc theo YHSS.",
+                    options: [
+                        { text: "A. Nhân - Nghĩa - Lễ", desc: "Tam cương của Nho giáo." },
+                        { text: "B. Y đức - Trí đức - Nghị lực", desc: "Ba trụ cột định hướng hành động của người thầy thuốc YHSS." },
+                        { text: "C. Tài - Đức - Dũng", desc: "Không phải 3 trụ Y đức theo YHSS." },
+                        { text: "D. Chẩn đoán - Điều trị - Phòng bệnh", desc: "Quy trình y tế, không phải Y đức." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "Ba trụ Y đức: (1) Y đức - tấm lòng phụng sự người bệnh, (2) Trí đức - tri thức và trí tuệ y học, (3) Nghị lực - bản lĩnh vượt qua cám dỗ và thử thách trong hành nghề."
+                },
+                {
+                    question: "Theo YHSS, nguyên nhân chính nào dẫn đến 'mất gốc Y đức' trong ngành y hiện đại?",
+                    desc: "Xác định tác nhân làm xói mòn đạo đức trong ngành y.",
+                    options: [
+                        { text: "A. Thiếu kiến thức y khoa", desc: "Không phải lý do cốt lõi về đạo đức." },
+                        { text: "B. Áp lực từ đồng tiền, quyền lực và danh vọng", desc: "Ba yếu tố này làm méo mó đạo đức khi trở thành mục tiêu thay vì phương tiện." },
+                        { text: "C. Học quá nhiều lý thuyết", desc: "Kiến thức không gây mất Y đức." },
+                        { text: "D. Thiếu trang thiết bị y tế", desc: "Không liên quan đến Y đức." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "Khi đồng tiền, quyền lực và danh vọng trở thành mục tiêu, bác sĩ dần biến thành 'kỹ thuật viên' thay vì thầy thuốc. Đây là nguyên nhân cốt lõi của sự suy thoái Y đức trong ngành y hiện đại."
+                },
+                {
+                    question: "Khi người bệnh mất niềm tin vào ngành y, hậu quả nào xảy ra với xã hội?",
+                    desc: "Phân tích tác động xã hội khi ngành y mất đạo đức.",
+                    options: [
+                        { text: "A. Người bệnh tự mua thuốc nhiều hơn", desc: "Đây chỉ là một biểu hiện nhỏ." },
+                        { text: "B. Xã hội mất phương hướng trong chăm sóc sức khỏe", desc: "Khi không tin bác sĩ, xã hội không còn chỗ bám víu y tế." },
+                        { text: "C. Bệnh viện đông bệnh nhân hơn", desc: "Ngược chiều với hậu quả thực tế." },
+                        { text: "D. Không có hậu quả đáng kể", desc: "Hậu quả rất nghiêm trọng theo YHSS." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "Khi người bệnh mất niềm tin vào thầy thuốc, họ quay sang phương pháp tự chữa sai lệch, tin vào quảng cáo thay vì khoa học, chia rẽ trong cách tiếp cận y tế — cả xã hội mất phương hướng."
+                },
+                {
+                    question: "Trí đức trong ba trụ Y đức có nghĩa là gì?",
+                    desc: "Xác định đúng ý nghĩa của Trí đức theo YHSS.",
+                    options: [
+                        { text: "A. Học thuộc nhiều tên thuốc và bệnh", desc: "Đây chỉ là kiến thức thuần túy, chưa phải Trí đức." },
+                        { text: "B. Kiến thức là nền tảng, trí tuệ là ngọn lửa soi đường", desc: "Trí đức kết hợp cả kiến thức và khả năng tư duy để ra quyết định đúng đắn." },
+                        { text: "C. Có bằng cấp cao", desc: "Bằng cấp là hình thức, Trí đức là thực chất." },
+                        { text: "D. Nói nhiều về y học", desc: "Không phải định nghĩa Trí đức." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "Trí đức = Kiến thức (nền tảng lý thuyết) + Trí tuệ (khả năng ứng dụng và phán đoán sáng suốt). Người có Trí đức không chỉ biết điều gì đúng mà còn biết cách ứng xử đúng trong mọi tình huống lâm sàng."
+                },
+                {
+                    question: "Viện Y học Sự sống đóng vai trò gì trong việc khôi phục Y đức?",
+                    desc: "Xác định sứ mệnh của Viện YHSS trong đào tạo nhân lực y tế.",
+                    options: [
+                        { text: "A. Bán thuốc và thiết bị y tế", desc: "Không phải sứ mệnh của Viện." },
+                        { text: "B. Đào tạo Life Doctor – Life Coach có đạo đức và kỹ năng toàn diện", desc: "Viện YHSS đào tạo thầy thuốc mới kết hợp y đức, tri thức và kỹ năng chữa lành toàn diện." },
+                        { text: "C. Cấp phát bằng chứng chỉ y khoa", desc: "Không phải mục tiêu chính." },
+                        { text: "D. Nghiên cứu thuốc mới", desc: "Không phải lĩnh vực hoạt động." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "Viện Y học Sự sống có sứ mệnh đào tạo 'Life Doctor' — thầy thuốc mới tích hợp: Y đức (tấm lòng), Trí đức (tri thức), Nghị lực (bản lĩnh), kết hợp 5 nền y học để phục vụ người bệnh toàn diện."
+                }
+            ],
+            trietly_ket_luan: [
+                {
+                    question: "Theo YHSS, Y học của tương lai cần kết hợp ba lĩnh vực nào?",
+                    desc: "Xác định ba trụ cột của nền y học tương lai theo kết luận sách.",
+                    options: [
+                        { text: "A. Công nghệ - Dược phẩm - Phẫu thuật", desc: "Đây là y học hiện đại thuần túy." },
+                        { text: "B. Khoa học - Đạo học - Nhân học", desc: "Ba trụ tạo nên y học toàn diện cho thế kỷ 21." },
+                        { text: "C. Đông y - Tây y - Thảo dược", desc: "Chỉ đề cập đến hai nền y học đầu tiên." },
+                        { text: "D. Giáo dục - Kinh tế - Chính trị", desc: "Không phải ba trụ của y học tương lai." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "Y học tương lai theo YHSS hợp nhất: (1) Khoa học — tư duy phân tích và công nghệ, (2) Đạo học — giá trị đạo đức và tâm linh, (3) Nhân học — quan tâm đến con người toàn diện trong bối cảnh xã hội."
+                },
+                {
+                    question: "Lời kêu gọi cộng đồng trong kết luận sách hướng đến điều gì?",
+                    desc: "Xác định thông điệp cuối cùng của tác giả gửi đến cộng đồng.",
+                    options: [
+                        { text: "A. Tẩy chay y học Tây phương", desc: "YHSS không tẩy chay mà tích hợp." },
+                        { text: "B. Cùng nhau chữa lành ngành Y và xã hội", desc: "Kêu gọi cộng đồng cùng tham gia tái thiết y học nhân bản." },
+                        { text: "C. Chỉ dùng thảo dược tự nhiên", desc: "Quá hẹp, không phải thông điệp của sách." },
+                        { text: "D. Nghiên cứu thêm trước khi hành động", desc: "Tác giả kêu gọi hành động ngay bây giờ." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "Tác giả kêu gọi: 'Hãy cùng nhau chữa lành ngành Y và xã hội' — từ nhà giáo y khoa đến bác sĩ, từ sinh viên đến người dân — tái thiết y đức, phục hồi nhân phẩm và lan tỏa tỉnh thức."
+                },
+                {
+                    question: "Hệ sinh thái 'Life System' trong YHSS bao gồm những thành phần nào?",
+                    desc: "Xác định cấu trúc của hệ sinh thái y học YHSS.",
+                    options: [
+                        { text: "A. Bệnh viện - Nhà thuốc - Phòng khám", desc: "Mô hình y tế truyền thống." },
+                        { text: "B. Life Doctor - Life School - Life Hospital", desc: "Bộ ba tạo nên hệ sinh thái y học sự sống toàn diện." },
+                        { text: "C. Bác sĩ - Y tá - Dược sĩ", desc: "Nhân lực y tế, không phải hệ sinh thái." },
+                        { text: "D. Nghiên cứu - Sản xuất - Phân phối thuốc", desc: "Đây là chuỗi công nghiệp dược phẩm." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "Hệ sinh thái Life System = Life Doctor (thầy thuốc toàn diện) + Life School (trường đào tạo theo triết lý YHSS) + Life Hospital (bệnh viện tích hợp 5 nền y học). Đây là tầm nhìn tương lai của Viện YHSS."
+                },
+                {
+                    question: "Life Coach và Life Consultant trong YHSS có vai trò gì?",
+                    desc: "Xác định chức năng của Life Coach trong mô hình y học mới.",
+                    options: [
+                        { text: "A. Kê đơn thuốc và phẫu thuật", desc: "Đây là vai trò của bác sĩ y học hiện đại." },
+                        { text: "B. Hướng dẫn, đồng hành và khai mở tiềm năng sức khỏe", desc: "Life Coach giúp người bệnh/khỏe mạnh phát triển toàn diện Thân-Tâm-Trí-Linh." },
+                        { text: "C. Bán thực phẩm chức năng", desc: "Không phải vai trò chuyên nghiệp của Life Coach." },
+                        { text: "D. Chẩn đoán bệnh lý", desc: "Chẩn đoán thuộc về bác sĩ." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "Life Coach trong YHSS là người hướng dẫn toàn diện: đồng hành, khai mở và nâng cao chất lượng sống của khách hàng/bệnh nhân theo mô hình Thân-Tâm-Trí-Linh, không chỉ chữa bệnh mà còn phát triển con người."
+                },
+                {
+                    question: "Thông điệp cuối cùng của tác giả qua nhiều thập kỷ chữa bệnh là gì?",
+                    desc: "Xác định bài học sâu sắc nhất tác giả rút ra từ hành trình y học.",
+                    options: [
+                        { text: "A. Bệnh nhân chỉ cần thuốc tốt là đủ", desc: "Đây là tư duy y học cũ." },
+                        { text: "B. Bệnh nhân không chỉ cần thuốc — họ cần một con người thật sự", desc: "Kết tinh của hành trình 30 năm: y học chân chính là sự kết nối người với người." },
+                        { text: "C. Công nghệ sẽ thay thế bác sĩ trong tương lai", desc: "Không phải thông điệp của YHSS." },
+                        { text: "D. Mỗi người phải tự chữa lành một mình", desc: "YHSS nhấn mạnh cộng đồng và kết nối." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "Sau 30 năm, tác giả rút ra bài học sâu sắc nhất: 'Bệnh nhân không chỉ cần thuốc — họ cần một con người thật sự lắng nghe.' Y học chân chính bắt đầu từ sự kết nối người-người, từ tấm lòng thật sự quan tâm."
+                }
+            ],
+            nuoc_va_su_song: [
+                {
+                    question: "Phân tử nước (H₂O) có cấu trúc như thế nào?",
+                    desc: "Xác định cấu trúc phân tử nước và góc liên kết.",
+                    options: [
+                        { text: "A. 2 oxy + 1 hydro, góc 180°", desc: "Sai về cả thành phần lẫn cấu trúc." },
+                        { text: "B. 1 oxy + 2 hydro, góc 104.5°", desc: "Cấu trúc chính xác tạo nên tính phân cực của nước." },
+                        { text: "C. 1 oxy + 1 hydro, góc 90°", desc: "Sai về số lượng nguyên tử." },
+                        { text: "D. 2 hydro + 2 oxy, góc 120°", desc: "Không phải công thức nước." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "Nước (H₂O) gồm 1 oxy + 2 hydro liên kết theo góc 104.5°. Góc này tạo ra tính phân cực của phân tử nước — nền tảng của mọi tính chất sinh học đặc biệt."
+                },
+                {
+                    question: "Lão Tử nói gì về nước trong câu 'Thượng thiện nhược thủy'?",
+                    desc: "Hiểu triết lý sống từ đặc tính của nước.",
+                    options: [
+                        { text: "A. Nước là loại thuốc tốt nhất", desc: "Không phải ý nghĩa của câu này." },
+                        { text: "B. Điều thiện tốt nhất giống như nước", desc: "Nước khiêm tốn, mềm mại nhưng chinh phục được mọi thứ." },
+                        { text: "C. Nước là nguồn gốc của sự giàu có", desc: "Không phải ý nghĩa triết học." },
+                        { text: "D. Nước chữa được mọi bệnh tật", desc: "Không phải triết lý Đạo Đức Kinh." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "'Thượng thiện nhược thủy' (上善若水) nghĩa là 'Điều thiện tốt nhất giống như nước'. Nước làm lợi cho muôn vật, chảy về nơi thấp, mềm mại nhưng thắng đá cứng — bài học về sự khiêm tốn và kiên nhẫn."
+                },
+                {
+                    question: "Hydrogen phân tử (H₂) có đặc tính chống oxy hóa như thế nào?",
+                    desc: "Xác định cơ chế tác dụng của H₂ trong nước Hydrogen.",
+                    options: [
+                        { text: "A. H₂ tiêu diệt vi khuẩn", desc: "H₂ không có tác dụng kháng khuẩn trực tiếp." },
+                        { text: "B. H₂ trung hòa gốc tự do Hydroxyl (•OH) → tạo H₂O", desc: "Phản ứng chống oxy hóa chọn lọc, sản phẩm vô hại." },
+                        { text: "C. H₂ tăng pH máu lên mức kiềm", desc: "H₂ không thay đổi trực tiếp pH máu." },
+                        { text: "D. H₂ cung cấp năng lượng cho tế bào", desc: "Không phải cơ chế chính." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "H₂ + •OH → H₂O. Hydrogen trung hòa gốc tự do Hydroxyl (•OH) — gốc nguy hiểm nhất gây lão hóa và ung thư — tạo ra sản phẩm duy nhất là nước. Đây là cơ chế chống oxy hóa chọn lọc và an toàn nhất."
+                },
+                {
+                    question: "Cơ thể người trưởng thành chứa bao nhiêu phần trăm nước?",
+                    desc: "Xác định tỷ lệ nước trong cơ thể người.",
+                    options: [
+                        { text: "A. 50%", desc: "Thấp hơn thực tế." },
+                        { text: "B. 60%", desc: "Gần đúng nhưng không chính xác nhất." },
+                        { text: "C. 70%", desc: "Tỷ lệ nước thực sự trong cơ thể người trưởng thành." },
+                        { text: "D. 80%", desc: "Cao hơn thực tế." }
+                    ],
+                    correctIndex: 2,
+                    explanation: "Cơ thể người trưởng thành chứa khoảng 70% nước. Não chứa 75-85%, máu 92%, cơ bắp 75%, xương 22-25%. Nước là nền tảng cho mọi phản ứng sinh hóa trong cơ thể."
+                },
+                {
+                    question: "Thủy hành trong ngũ hành liên quan đến tạng phủ nào?",
+                    desc: "Xác định mối liên kết giữa Thủy hành và các cơ quan nội tạng.",
+                    options: [
+                        { text: "A. Tim và Ruột non", desc: "Đây là Hỏa hành." },
+                        { text: "B. Gan và Túi mật", desc: "Đây là Mộc hành." },
+                        { text: "C. Thận và Bàng quang", desc: "Thủy hành cai quản thận, bàng quang và mùa đông." },
+                        { text: "D. Phổi và Ruột già", desc: "Đây là Kim hành." }
+                    ],
+                    correctIndex: 2,
+                    explanation: "Thủy hành liên quan đến Thận và Bàng quang. Thận lưu giữ 'tinh' (Jing) — bản chất di truyền và sức sống. Khi Thủy hành suy, thận yếu → đau lưng, rụng tóc, giảm sinh lý."
+                }
+            ],
+            tam_hoc_chua_lanh: [
+                {
+                    question: "Tổ chức Y tế Thế giới (WHO) mô tả stress là gì?",
+                    desc: "Xác định cách WHO định nghĩa về stress mãn tính.",
+                    options: [
+                        { text: "A. Một loại bệnh tâm thần", desc: "Stress không được phân loại như vậy." },
+                        { text: "B. Dịch bệnh của thế kỷ 21", desc: "WHO gọi stress là thách thức sức khỏe lớn nhất thế kỷ 21." },
+                        { text: "C. Một phản ứng bình thường không đáng lo", desc: "Stress mãn tính thực sự gây ra nhiều bệnh nghiêm trọng." },
+                        { text: "D. Một vấn đề chỉ của người Tây phương", desc: "Stress là vấn đề toàn cầu." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "WHO gọi stress là 'dịch bệnh của thế kỷ 21'. 75-90% tất cả các lần khám bệnh tại bệnh viện có liên quan đến stress. Cortisol từ stress phá hủy hệ miễn dịch và tăng nguy cơ ung thư."
+                },
+                {
+                    question: "Theo thang tần số cảm xúc của Hawkins, cảm xúc nào có năng lượng cao nhất?",
+                    desc: "Xác định vị trí của tình yêu thương trong thang tần số cảm xúc.",
+                    options: [
+                        { text: "A. Tức giận (150)", desc: "Tức giận vẫn ở mức thấp, dưới ngưỡng chữa lành 200." },
+                        { text: "B. Sợ hãi (100)", desc: "Sợ hãi là cảm xúc có năng lượng rất thấp." },
+                        { text: "C. Yêu thương (500)", desc: "Yêu thương là một trong những tần số cao nhất, có tác dụng chữa lành mạnh." },
+                        { text: "D. Buồn bã (75)", desc: "Buồn bã là cảm xúc năng lượng rất thấp." }
+                    ],
+                    correctIndex: 2,
+                    explanation: "Trong thang Hawkins: Yêu thương = 500, Niềm vui = 540, Bình an = 600. Ngưỡng 200 (Tự nguyện) là ranh giới chữa lành/phá hủy. Cảm xúc trên 200 hỗ trợ sức khỏe."
+                },
+                {
+                    question: "Kỹ thuật thở 4-7-8 được thực hiện như thế nào?",
+                    desc: "Xác định trình tự đúng của kỹ thuật thở 4-7-8.",
+                    options: [
+                        { text: "A. Hít 4s → Thở ra 7s → Nín 8s", desc: "Sai trình tự, không đúng kỹ thuật." },
+                        { text: "B. Hít 4s → Nín 7s → Thở ra 8s", desc: "Trình tự đúng: hít - nín - thở ra với thời gian dài hơn kích hoạt phó giao cảm." },
+                        { text: "C. Thở ra 4s → Hít 7s → Nín 8s", desc: "Sai trình tự." },
+                        { text: "D. Nín 4s → Hít 7s → Thở ra 8s", desc: "Sai trình tự." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "4-7-8: Hít vào 4s → Nín 7s → Thở ra 8s. Lặp 4 lần. Kỹ thuật này kích hoạt dây thần kinh phế vị, giảm cortisol, hạ nhịp tim trong vài phút. Phát triển bởi Dr. Andrew Weil."
+                },
+                {
+                    question: "Tại sao tha thứ lại có tác dụng chữa lành về mặt sinh lý?",
+                    desc: "Xác định cơ chế sinh học của sự tha thứ.",
+                    options: [
+                        { text: "A. Tha thứ giúp người kia cảm thấy tốt hơn", desc: "Không phải lý do về mặt sức khỏe của người tha thứ." },
+                        { text: "B. Tha thứ giảm cortisol, hạ huyết áp, tăng miễn dịch", desc: "Người tha thứ nhận được lợi ích sinh lý trực tiếp." },
+                        { text: "C. Tha thứ giúp quên đi nỗi đau", desc: "Tha thứ không có nghĩa là quên." },
+                        { text: "D. Tha thứ là nghĩa vụ đạo đức", desc: "Đây là lý do đạo đức, không phải y học." }
+                    ],
+                    correctIndex: 1,
+                    explanation: "Nghiên cứu Stanford chứng minh người tha thứ có: huyết áp thấp hơn, nhịp tim ổn hơn, miễn dịch mạnh hơn, ít trầm cảm hơn. Oán hận duy trì cortisol cao gây viêm mãn tính. Tha thứ là tự giải phóng mình."
+                },
+                {
+                    question: "Hệ limbic trong não có vai trò gì?",
+                    desc: "Xác định chức năng của hệ viền (limbic system).",
+                    options: [
+                        { text: "A. Điều khiển nhịp tim và hô hấp", desc: "Đây là chức năng của não thân (reptilian brain)." },
+                        { text: "B. Tư duy lý tính và ra quyết định", desc: "Đây là chức năng của vỏ não trước (prefrontal cortex)." },
+                        { text: "C. Trung tâm cảm xúc và ký ức cảm xúc", desc: "Hệ limbic xử lý sợ hãi, yêu thương, buồn vui và ký ức cảm xúc." },
+                        { text: "D. Điều phối vận động cơ bắp", desc: "Chức năng của tiểu não (cerebellum)." }
+                    ],
+                    correctIndex: 2,
+                    explanation: "Hệ limbic là 'trung tâm cảm xúc' của não, gồm hạch hạnh nhân (amygdala) xử lý sợ hãi, vùng hải mã (hippocampus) lưu ký ức cảm xúc, và vùng dưới đồi (hypothalamus) điều hòa nội tiết."
+                }
+            ]
+        };
 
         const bookChapters = {};
+
 
 // System Time Clock init
 
@@ -13207,7 +13642,19 @@
                 await loadBooksData();
             }
 
+            const defaultChapMap = {
+                'chandoanykhoa': 'ecg',
+                'lamsangnoikhoa': 'hetuanhoan',
+                'thaoduoc': 'tamthat',
+                'nhansam': 'nhansam',
+                'trietly_yhss': 'trietly_mo_dau',
+                'nuoc_va_su_song': 'nuoc_va_su_song',
+                'tam_hoc_chua_lanh': 'tam_hoc_chua_lanh'
+            };
+
             appState.currentBookId = bookId || 'thaoduoc';
+            // Reset currentChapter so openEreaderScreen loads the default chapter for this book
+            appState.currentChapter = defaultChapMap[bookId] || bookId || 'tamthat';
 
             const book = appState.bookData ? appState.bookData[appState.currentBookId] : null;
 
@@ -13367,32 +13814,36 @@
 
             
 
-            // Ensure appropriate chapter is loaded based on current book
+            // Map each bookId to its default/first chapter
+            const bookToDefaultChapter = {
+                'chandoanykhoa': 'ecg',
+                'lamsangnoikhoa': 'hetuanhoan',
+                'thaoduoc': 'tamthat',
+                'nhansam': 'nhansam',
+                'trietly_yhss': 'trietly_mo_dau',
+                'nuoc_va_su_song': 'nuoc_va_su_song',
+                'tam_hoc_chua_lanh': 'tam_hoc_chua_lanh'
+            };
 
-            if (appState.currentBookId === 'chandoanykhoa') {
+            const bookId = appState.currentBookId;
+            const currentChapter = appState.currentChapter;
 
-                if (appState.currentChapter !== 'tongquan' && appState.currentChapter !== 'hetuanhoan' && appState.currentChapter !== 'ecg') {
+            // Single chapter books where chapterId equals bookId
+            const singleChapterBooks = ['nuoc_va_su_song', 'tam_hoc_chua_lanh', 'lamsangnoikhoa', 'nhansam'];
 
-                    loadChapter('ecg');
+            // Check if currentChapter belongs to this book
+            const chapterBelongsToBook = (
+                (singleChapterBooks.includes(bookId) && currentChapter === bookId) ||
+                (bookId === 'chandoanykhoa' && ['tongquan', 'hetuanhoan', 'ecg'].includes(currentChapter)) ||
+                (bookId === 'thaoduoc' && ['tamthat', 'nhansam'].includes(currentChapter)) ||
+                (bookId === 'trietly_yhss' && ['trietly_mo_dau', 'trietly_5nen', 'trietly_3tru', 'trietly_ket_luan'].includes(currentChapter))
+            );
 
-                } else {
-
-                    loadChapter(appState.currentChapter);
-
-                }
-
+            if (chapterBelongsToBook) {
+                loadChapter(currentChapter);
             } else {
-
-                if (appState.currentChapter === 'tongquan' || appState.currentChapter === 'hetuanhoan' || appState.currentChapter === 'ecg') {
-
-                    loadChapter('tamthat');
-
-                } else {
-
-                    loadChapter(appState.currentChapter);
-
-                }
-
+                const defaultChapter = bookToDefaultChapter[bookId] || 'trietly_mo_dau';
+                loadChapter(defaultChapter);
             }
 
 
@@ -15028,7 +15479,7 @@
 
 
 
-        function renderEmbeddedQuiz() {
+        function renderEmbeddedQuiz(chapterId) {
 
             updateHomeQuizProgress();
 
@@ -15036,11 +15487,33 @@
 
             if (!container) return;
 
-            
+            // Pick the right quiz set for this chapter/book
+            const activeChapter = chapterId || appState.currentChapter;
+            const activeQuestions = (allBookQuizzes && allBookQuizzes[activeChapter]) ? allBookQuizzes[activeChapter] : quizQuestions;
 
             const step = appState.quizStep;
 
-            if (step >= quizQuestions.length) {
+            if (step >= activeQuestions.length) {
+
+                // Dynamic chapter name & next chapter mapping
+                const _chapterNames = {
+                    'tamthat': 'Chương 4: Tam Thất',
+                    'nhansam': 'Chương 5: Nhân Sâm',
+                    'trietly_mo_dau': 'Phần Mở Đầu: Hành Trình Tìm Lại Chân Lý Y Học',
+                    'trietly_5nen': 'Phần I: 5 Nền Y Học Hợp Nhất',
+                    'trietly_3tru': 'Phần II: 3 Trụ Cột Y Đức',
+                    'trietly_ket_luan': 'Phần Kết Luận: Nền Y Học Mới',
+                    'nuoc_va_su_song': 'Nước và Sự Sống',
+                    'tam_hoc_chua_lanh': 'Tâm Học Chữa Lành'
+                };
+                const _nextChapterMap = {
+                    'tamthat': { id: 'nhansam', label: 'Chương 5: Nhân Sâm' },
+                    'trietly_mo_dau': { id: 'trietly_5nen', label: 'Phần I: 5 Nền Y Học Hợp Nhất' },
+                    'trietly_5nen': { id: 'trietly_3tru', label: 'Phần II: 3 Trụ Cột Y Đức' },
+                    'trietly_3tru': { id: 'trietly_ket_luan', label: 'Phần Kết Luận: Nền Y Học Mới' }
+                };
+                const _curName = _chapterNames[activeChapter] || activeChapter;
+                const _next = _nextChapterMap[activeChapter] || null;
 
                 container.innerHTML = `
 
@@ -15051,16 +15524,16 @@
                         <h3 class="text-lg font-bold text-slate-800">Chương học đã hoàn thành!</h3>
 
                         <p class="text-xs text-slate-500 max-w-xs">
-
-                            Chúc mừng bạn đã trả lời đúng tất cả 5 câu hỏi ôn tập của Chương 4: Tam Thất. Bạn đã sẵn sàng khám phá chương tiếp theo.
-
+                            Chúc mừng bạn đã hoàn thành tất cả câu hỏi ôn tập của <strong>${_curName}</strong>. Bạn đã sẵn sàng khám phá thêm!
                         </p>
 
-                        <button onclick="selectChapter('nhansam')" class="w-full bg-brand-blue hover:bg-brand-blue-dark text-white font-bold py-3 px-6 rounded-xl transition-all active:scale-95 shadow-md flex items-center justify-center gap-2 text-xs">
-
-                            <span class="material-symbols-outlined text-xs">arrow_forward</span> Tiếp tục sang Chương 5: Nhân Sâm
-
-                        </button>
+                        ${_next ? `
+                        <button onclick="selectChapter('${_next.id}')" class="w-full bg-brand-blue hover:bg-brand-blue-dark text-white font-bold py-3 px-6 rounded-xl transition-all active:scale-95 shadow-md flex items-center justify-center gap-2 text-xs">
+                            <span class="material-symbols-outlined text-xs">arrow_forward</span> Tiếp tục: ${_next.label}
+                        </button>` : `
+                        <button onclick="if(typeof closeEreaderScreen==='function')closeEreaderScreen()" class="w-full bg-slate-700 hover:bg-slate-800 text-white font-bold py-3 px-6 rounded-xl transition-all active:scale-95 shadow-md flex items-center justify-center gap-2 text-xs">
+                            <span class="material-symbols-outlined text-xs">library_books</span> Về thư viện sách
+                        </button>`}
 
                     </div>
 
@@ -15072,7 +15545,7 @@
 
             
 
-            const questionData = quizQuestions[step];
+            const questionData = activeQuestions[step];
 
             
 
@@ -15172,7 +15645,49 @@
 
             const sheet = document.getElementById('toc-sheet');
 
-            if (sheet) sheet.classList.toggle('hidden');
+            if (sheet) {
+                sheet.classList.toggle('hidden');
+                if (!sheet.classList.contains('hidden')) {
+                    // Dynamically populate TOC items based on active book
+                    const listContainer = sheet.querySelector('.space-y-1');
+                    if (listContainer) {
+                        const bookChaptersMap = {
+                            'trietly_yhss': [
+                                { id: 'trietly_mo_dau', title: 'Phần Mở Đầu: Hành Trình Tìm Lại Chân Lý Y Học' },
+                                { id: 'trietly_5nen', title: 'Phần I: 5 Nền Y Học Hợp Nhất' },
+                                { id: 'trietly_3tru', title: 'Phần II: 3 Trụ Cột Y Đức' },
+                                { id: 'trietly_ket_luan', title: 'Phần Kết Luận: Nền Y Học Mới' }
+                            ],
+                            'thaoduoc': [
+                                { id: 'tamthat', title: 'Chương 4: Tam Thất - Đặc tính & Ứng dụng' },
+                                { id: 'nhansam', title: 'Chương 5: Nhân Sâm - Đại bổ nguyên khí' }
+                            ],
+                            'chandoanykhoa': [
+                                { id: 'tongquan', title: 'Chương 1: Tổng quan' },
+                                { id: 'hetuanhoan', title: 'Chương 2: Hệ tuần hoàn' },
+                                { id: 'ecg', title: 'Chương 3: Diễn giải ECG' }
+                            ]
+                        };
+
+                        const bId = appState.currentBookId || 'trietly_yhss';
+                        const chaptersList = bookChaptersMap[bId] || bookChaptersMap['trietly_yhss'];
+                        const curChap = appState.currentChapter;
+
+                        listContainer.innerHTML = chaptersList.map(ch => {
+                            const isCurrent = (ch.id === curChap);
+                            return `
+                                <button onclick="selectChapter('${ch.id}')" class="w-full text-left p-3 hover:bg-slate-50 text-slate-700 rounded-lg font-semibold flex items-center justify-between border border-slate-100 ${isCurrent ? 'bg-blue-50/60 border-blue-200' : ''}">
+                                    <div class="flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-sm ${isCurrent ? 'text-blue-700' : 'text-slate-500'}">bookmark</span>
+                                        <span class="${isCurrent ? 'text-blue-900 font-bold' : ''}">${ch.title}</span>
+                                    </div>
+                                    <span class="text-[10px] ${isCurrent ? 'text-blue-700 font-bold' : 'text-slate-450 font-medium'}">${isCurrent ? 'Đang đọc' : 'Đọc ngay'}</span>
+                                </button>
+                            `;
+                        }).join('');
+                    }
+                }
+            }
 
         }
 
@@ -15199,6 +15714,10 @@
 
 
         async function loadChapter(chapterId) {
+    if (chapterId === 'trietly_yhss') {
+        chapterId = 'trietly_mo_dau';
+    }
+
     const readerViewport = document.getElementById('reader-viewport');
     let loadingEl = document.getElementById('reader-lazy-loading');
     if (!loadingEl && readerViewport) {
@@ -15256,6 +15775,8 @@
         appState.currentBookId = 'thaoduoc';
     } else if (chapterId === 'tongquan' || chapterId === 'hetuanhoan' || chapterId === 'ecg') {
         appState.currentBookId = 'chandoanykhoa';
+    } else if (['trietly_mo_dau', 'trietly_5nen', 'trietly_3tru', 'trietly_ket_luan'].includes(chapterId)) {
+        appState.currentBookId = 'trietly_yhss';
     }
 
     const titleEl = document.getElementById('reader-book-title');
@@ -15264,27 +15785,38 @@
     const metaEl = document.querySelector('#reader-header p');
     if (metaEl) metaEl.innerText = chapter.meta;
 
-    const pages = document.querySelectorAll('.flipbook-page');
-    chapter.pages.forEach((content, idx) => {
-        const pageEl = pages[idx];
-        if (pageEl) {
-            const article = pageEl.querySelector('article');
-            if (article) {
-                article.innerHTML = content;
-                if (typeof applyHighlightsToPage === 'function') {
-                    applyHighlightsToPage(article, appState.currentBookId, chapterId, idx);
-                }
-            }
+    // Ghép TẤT CẢ các trang chapter vào page 0 (một article dài cuộn được)
+    const page0El = document.querySelector('.flipbook-page[data-page="0"]');
+    const mainArticle = page0El ? page0El.querySelector('article') : null;
+    if (mainArticle) {
+        mainArticle.innerHTML = chapter.pages.join('<div class="my-8 border-t border-slate-200 opacity-40"></div>');
+        if (typeof applyHighlightsToPage === 'function') {
+            applyHighlightsToPage(mainArticle, appState.currentBookId, chapterId, 0);
+        }
+        mainArticle.scrollTop = 0;
+    }
+    // Xóa nội dung pages 1-3 và đánh dấu là rỗng (flipPage sẽ bỏ qua)
+    ['1','2','3'].forEach(n => {
+        const pg = document.querySelector(`.flipbook-page[data-page="${n}"]`);
+        if (pg) {
+            const art = pg.querySelector('article');
+            if (art) art.innerHTML = '';
+            pg.setAttribute('data-empty', 'true');
         }
     });
+    // Reset về trang đầu
+    appState.readerCurrentPage = 0;
+    flipPage(0);
 
     setReaderFont(appState.readerFontFamily);
     document.querySelectorAll('.font-reading').forEach(el => {
         el.style.fontSize = `${appState.readerFontSize}px`;
     });
 
-    if (chapterId === 'tamthat') {
-        renderEmbeddedQuiz();
+    if (['tamthat', 'nhansam', 'trietly_mo_dau', 'trietly_5nen', 'trietly_3tru', 'trietly_ket_luan', 'nuoc_va_su_song', 'tam_hoc_chua_lanh'].includes(chapterId)) {
+        appState.quizStep = 0;
+        appState.selectedQuizOption = null;
+        renderEmbeddedQuiz(chapterId);
     } else if (chapterId === 'tongquan' || chapterId === 'hetuanhoan' || chapterId === 'ecg') {
         const quizCont = document.getElementById('quiz-container');
         if (quizCont) {
@@ -15586,7 +16118,15 @@
 
             let nextPage = appState.readerCurrentPage + dir;
 
-            
+            // Bỏ qua các trang rỗng (pages 1-3 khi đã ghép nội dung vào page 0)
+            while (nextPage > 0 && nextPage < totalPages - 1) {
+                const candidatePage = document.querySelector(`.flipbook-page[data-page="${nextPage}"]`);
+                if (candidatePage && candidatePage.getAttribute('data-empty') === 'true') {
+                    nextPage += dir > 0 ? 1 : -1;
+                } else {
+                    break;
+                }
+            }
 
             if (nextPage < 0 || nextPage >= totalPages) {
 
@@ -19348,6 +19888,7 @@ async function loadBooksData() {
                 });
                 appState.bookData = books;
                 console.log("🔥 Books data loaded from Firebase Firestore!", Object.keys(books).length, "books");
+                if (typeof renderAllBookCovers === 'function') renderAllBookCovers();
                 return;
             }
         }
@@ -19359,6 +19900,7 @@ async function loadBooksData() {
         const response = await fetch('/data/books.json');
         appState.bookData = await response.json();
         console.log("Books data loaded dynamically from local JSON!");
+        if (typeof renderAllBookCovers === 'function') renderAllBookCovers();
     } catch (err) {
         console.error("Lỗi tải danh sách sách:", err);
     }

@@ -227,6 +227,39 @@ window.GEMS.Dictionary = (function () {
         });
     }
 
+    function showGlossaryPopup(termTitle, event) {
+        let popup = document.getElementById('reader-glossary-popup');
+        if (!popup) {
+            popup = document.createElement('div');
+            popup.id = 'reader-glossary-popup';
+            popup.className = 'fixed z-[350] glass-card-premium p-4 rounded-2xl max-w-xs shadow-2xl transition-all duration-300 text-slate-800 dark:text-white select-none hidden';
+            document.body.appendChild(popup);
+        }
+
+        const dictItem = (window.DICTIONARY_DATA || []).find(d => d.term.toLowerCase().includes(termTitle.toLowerCase())) || {
+            term: termTitle,
+            category: "Thuật ngữ Y khoa",
+            definition: "Thuật ngữ chuyên ngành y khoa được sử dụng phổ biến trong lâm sàng và nghiên cứu."
+        };
+
+        popup.innerHTML = `
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300">${dictItem.category}</span>
+                <button onclick="document.getElementById('reader-glossary-popup').classList.add('hidden')" class="text-slate-400 hover:text-slate-600 text-sm font-bold ml-2">&times;</button>
+            </div>
+            <h4 class="font-black text-xs mb-1 text-slate-900 dark:text-white">${dictItem.term}</h4>
+            <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed font-medium">${dictItem.definition}</p>
+        `;
+
+        if (event) {
+            const rect = event.target.getBoundingClientRect();
+            popup.style.top = `${Math.min(rect.bottom + 8, window.innerHeight - 150)}px`;
+            popup.style.left = `${Math.max(16, Math.min(rect.left, window.innerWidth - 300))}px`;
+        }
+
+        popup.classList.remove('hidden');
+    }
+
     return {
         loadDictionaryData,
         openDictionary,
@@ -234,6 +267,7 @@ window.GEMS.Dictionary = (function () {
         handleDictionaryBack,
         openDictionaryTerm,
         closeDictionaryTerm,
+        showGlossaryPopup,
         setDictFilter,
         filterDictionary,
         get termData() { return termData; },
@@ -247,6 +281,7 @@ window.closeDictionary = window.GEMS.Dictionary.closeDictionary;
 window.handleDictionaryBack = window.GEMS.Dictionary.handleDictionaryBack;
 window.openDictionaryTerm = window.GEMS.Dictionary.openDictionaryTerm;
 window.closeDictionaryTerm = window.GEMS.Dictionary.closeDictionaryTerm;
+window.showGlossaryPopup = window.GEMS.Dictionary.showGlossaryPopup;
 window.setDictFilter = window.GEMS.Dictionary.setDictFilter;
 window.filterDictionary = window.GEMS.Dictionary.filterDictionary;
 window.loadDictionaryData = window.GEMS.Dictionary.loadDictionaryData;

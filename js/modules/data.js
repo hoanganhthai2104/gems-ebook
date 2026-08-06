@@ -73,4 +73,32 @@
     ];
 
     window.QUIZ_DATA = window.QUIZ_DATA || {};
+
+    window.syncCloudData = async function() {
+        if (!window.db) return;
+        try {
+            const booksSnap = await window.db.collection('books').get();
+            if (!booksSnap.empty) {
+                const list = [];
+                booksSnap.forEach(doc => list.push({ id: doc.id, ...doc.data() }));
+                window.BOOK_DATA = list;
+            }
+
+            const dictSnap = await window.db.collection('dictionary').get();
+            if (!dictSnap.empty) {
+                const list = [];
+                dictSnap.forEach(doc => list.push({ id: doc.id, ...doc.data() }));
+                window.DICTIONARY_DATA = list;
+            }
+            console.log("🔥 Cloud data synced with Firebase Firestore! Books:", window.BOOK_DATA.length, "Terms:", window.DICTIONARY_DATA.length);
+        } catch (err) {
+            console.warn("Using offline fallback data:", err);
+        }
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', window.syncCloudData);
+    } else {
+        window.syncCloudData();
+    }
 })();

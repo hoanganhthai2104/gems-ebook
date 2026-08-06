@@ -68,19 +68,41 @@ window.GEMS.Reader = (function () {
             window.GEMS.Audio.toggleAudioPlayback();
         }
 
+        // Map bookId to its default chapter (first chapter of each book)
+        const bookToDefaultChapter = {
+            'chandoanykhoa': 'ecg',
+            'lamsangnoikhoa': 'hetuanhoan',
+            'thaoduoc': 'tamthat',
+            'nhansam': 'nhansam',
+            'trietly_yhss': 'trietly_mo_dau',
+            'nuoc_va_su_song': 'nuoc_va_su_song',
+            'tam_hoc_chua_lanh': 'tam_hoc_chua_lanh'
+        };
+
         if (window.appState) {
-            if (window.appState.currentBookId === 'chandoanykhoa') {
-                if (window.appState.currentChapter !== 'tongquan' && window.appState.currentChapter !== 'hetuanhoan' && window.appState.currentChapter !== 'ecg') {
-                    if (typeof loadChapter === 'function') loadChapter('ecg');
-                } else {
-                    if (typeof loadChapter === 'function') loadChapter(window.appState.currentChapter);
-                }
+            const bookId = window.appState.currentBookId;
+            const currentChapter = window.appState.currentChapter;
+
+            // Check if currentChapter belongs to this book (i.e., chapters.json has this chapter AND it's for this book)
+            const chaptersData = window.bookChapters || {};
+            const singleChapterBooks = ['nuoc_va_su_song', 'tam_hoc_chua_lanh', 'lamsangnoikhoa', 'nhansam'];
+            const chapterBelongsToBook = chaptersData[currentChapter] && (
+                // For single chapter books where chapterId === bookId
+                (singleChapterBooks.includes(bookId) && currentChapter === bookId) ||
+                // For chandoanykhoa chapters
+                (bookId === 'chandoanykhoa' && ['tongquan', 'hetuanhoan', 'ecg'].includes(currentChapter)) ||
+                // For thaoduoc / nhansam chapters
+                (bookId === 'thaoduoc' && ['tamthat', 'nhansam'].includes(currentChapter)) ||
+                // For trietly_yhss chapters
+                (bookId === 'trietly_yhss' && ['trietly_mo_dau', 'trietly_5nen', 'trietly_3tru', 'trietly_ket_luan'].includes(currentChapter))
+            );
+
+            if (chapterBelongsToBook) {
+                if (typeof loadChapter === 'function') loadChapter(currentChapter);
             } else {
-                if (window.appState.currentChapter === 'tongquan' || window.appState.currentChapter === 'hetuanhoan' || window.appState.currentChapter === 'ecg') {
-                    if (typeof loadChapter === 'function') loadChapter('tamthat');
-                } else {
-                    if (typeof loadChapter === 'function') loadChapter(window.appState.currentChapter);
-                }
+                // Fall back to default chapter for this book
+                const defaultChapter = bookToDefaultChapter[bookId] || currentChapter;
+                if (typeof loadChapter === 'function') loadChapter(defaultChapter);
             }
         }
 
@@ -188,11 +210,45 @@ window.GEMS.Reader = (function () {
         closeReaderNoteModal();
     }
 
-    // Auto initialize selection listeners
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initSelectionListeners);
-    } else {
+    function updateReadingProgress() {
+        const viewport = document.getElementById('reader-viewport');
+        if (!viewport) return;
+
+        const scrollTop = viewport.scrollTop;
+        const maxScroll = viewport.scrollHeight - viewport.clientHeight;
+        const percentage = maxScroll > 0 ? Math.round((scrollTop / maxScroll) * 100) : 0;
+
+        const progressEl = document.getElementById('reader-progress-bar');
+        const textEl = document.getElementById('reader-progress-text');
+        if (progressEl) progressEl.style.width = `${percentage}%`;
+        if (textEl) textEl.textContent = `${percentage}%`;
+
+        if (window.appState) {
+            window.appState.lastReadingPosition = {
+                bookId: window.appState.currentBookId || 'cothe',
+                chapter: window.appState.currentChapter || 'tongquan',
+                percentage: percentage,
+                scrollTop: scrollTop
+            };
+            if (typeof window.saveState === 'function') {
+                window.saveState();
+            }
+        }
+    }
+
+    // Auto initialize selection listeners & reading progress scroll
+    function initAll() {
         initSelectionListeners();
+        const viewport = document.getElementById('reader-viewport');
+        if (viewport) {
+            viewport.addEventListener('scroll', updateReadingProgress, { passive: true });
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+        initAll();
     }
 
     return {
@@ -202,6 +258,7 @@ window.GEMS.Reader = (function () {
         closeReaderNoteModal,
         selectNoteColor,
         saveReaderNote,
+        updateReadingProgress,
         get selectedText() { return selectedText; },
         set selectedText(val) { selectedText = val; },
         get selectedRange() { return selectedRange; },
@@ -216,3 +273,4 @@ window.openReaderNoteModal = window.GEMS.Reader.openReaderNoteModal;
 window.closeReaderNoteModal = window.GEMS.Reader.closeReaderNoteModal;
 window.selectNoteColor = window.GEMS.Reader.selectNoteColor;
 window.saveReaderNote = window.GEMS.Reader.saveReaderNote;
+window.updateReadingProgress = window.GEMS.Reader.updateReadingProgress;

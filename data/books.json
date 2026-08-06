@@ -1,4 +1,28 @@
 {
+  "trietly_yhss": {
+    "title": "Triết Lý Y Học Sự Sống – 5 Nền Y Học & 3 Trụ Y Đức",
+    "author": "Chủ biên Hoàng Anh",
+    "rating": "5.0",
+    "reads": "28.9k",
+    "cover": "covers/trietly_yhss.png",
+    "desc": "Tác phẩm nền tảng giới thiệu triết lý Y Học Sự Sống (YHSS), kết hợp 5 nền y học lớn và 3 trụ cột Y đức giúp chăm sóc sức khỏe toàn diện Thân - Tâm - Trí - Linh."
+  },
+  "nuoc_va_su_song": {
+    "title": "Nước và Sự Sống – Thấu Hiểu Đạo Của Nước & Hydrogen Ion Kiềm",
+    "author": "Chủ biên Hoàng Anh",
+    "rating": "4.9",
+    "reads": "22.4k",
+    "cover": "covers/nuoc_va_su_song.png",
+    "desc": "Nghiên cứu vai trò sinh học của nước, đặc tính Hydrogen Ion kiềm và liệu pháp dòng nước đối với việc tái tạo tế bào và phục hồi năng lượng sống cơ thể."
+  },
+  "tam_hoc_chua_lanh": {
+    "title": "Tâm Học & Chữa Lành Cảm Xúc",
+    "author": "Chủ biên Hoàng Anh",
+    "rating": "4.9",
+    "reads": "19.8k",
+    "cover": "covers/tam_hoc_chua_lanh.png",
+    "desc": "Phương pháp giải tỏa căng thẳng, nhận diện và chữa lành cảm xúc tiêu cực, khôi phục trạng thái an tĩnh nội tâm và nâng cao năng lượng sống."
+  },
   "chandoanykhoa": {
     "title": "Cẩm nang Chẩn đoán Y khoa",
     "author": "GEMS Academic",

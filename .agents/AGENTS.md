@@ -6,7 +6,7 @@
 
 - **Browser & Testing Authority**: The agent is fully authorized to run local servers, execute URL requests, perform web searches, and interact with browser sessions to test and debug the application.
 
-- **Git Push Policy**: Chỉ thực hiện commit và push lên Git/GitHub khi có yêu cầu bằng lời nói rõ ràng từ người dùng. Tuyệt đối không tự ý stage, commit hoặc push code trong bất kỳ trường hợp nào khác.
+- **Git Push Policy & Localhost First**: Luôn luôn khởi chạy ứng dụng trên Localhost (`node server.js` tại http://localhost:8081 hoặc http://localhost:8080) để người dùng tự tay trải nghiệm và kiểm tra trực tiếp trước. Tuyệt đối KHÔNG tự ý stage, commit hoặc push code lên Git/GitHub nếu người dùng chưa xem và xác nhận đồng ý bằng lời nói rõ ràng.
 
 - **Strict Scope of Work**: Chỉ chỉnh sửa đúng những file và những dòng code cần thiết cho yêu cầu hiện tại. Các phần code khác phải giữ nguyên trạng để tránh gây lỗi dây chuyền cho các tính năng đang hoạt động bình thường khác.
 
