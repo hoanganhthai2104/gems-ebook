@@ -96,6 +96,109 @@
         }
     };
 
+    window.catalogState = {
+        category: 'all',
+        viewMode: 'grid'
+    };
+
+    window.openAllBooksCatalog = function(category = 'all') {
+        const view = document.getElementById('view-all-books-modal');
+        if (view) {
+            requestAnimationFrame(() => {
+                view.classList.remove('hidden');
+                view.classList.add('gpu-layer');
+            });
+        }
+        window.filterCatalogCategory(category);
+    };
+
+    window.closeAllBooksCatalog = function() {
+        const view = document.getElementById('view-all-books-modal');
+        if (view) {
+            requestAnimationFrame(() => {
+                view.classList.add('hidden');
+            });
+        }
+    };
+
+    window.filterCatalogCategory = function(category) {
+        window.catalogState.category = category;
+        document.querySelectorAll('#catalog-category-pills .cat-pill').forEach(btn => {
+            const attr = btn.getAttribute('onclick') || '';
+            if (attr.includes(`'${category}'`)) {
+                btn.className = 'cat-pill active px-3 py-1.5 rounded-full text-xs font-bold bg-blue-600 text-white shrink-0';
+            } else {
+                btn.className = 'cat-pill px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 shrink-0';
+            }
+        });
+        window.renderCatalogBooks();
+    };
+
+    window.setCatalogViewMode = function(mode) {
+        window.catalogState.viewMode = mode;
+        const btnGrid = document.getElementById('btn-view-grid');
+        const btnList = document.getElementById('btn-view-list');
+        if (btnGrid) btnGrid.className = mode === 'grid' ? 'p-1.5 rounded-lg bg-blue-50 text-blue-600 font-bold' : 'p-1.5 rounded-lg text-slate-400 font-bold';
+        if (btnList) btnList.className = mode === 'list' ? 'p-1.5 rounded-lg bg-blue-50 text-blue-600 font-bold' : 'p-1.5 rounded-lg text-slate-400 font-bold';
+        window.renderCatalogBooks();
+    };
+
+    window.renderCatalogBooks = function() {
+        const container = document.getElementById('catalog-books-container');
+        if (!container) return;
+        let books = window.BOOK_DATA || [];
+        if (!Array.isArray(books) && typeof books === 'object') {
+            books = Object.keys(books).map(k => ({ id: k, ...books[k] }));
+        }
+
+        const cat = window.catalogState.category;
+        if (cat && cat !== 'all') {
+            books = books.filter(b => {
+                const c = (b.category || '').toLowerCase();
+                const t = (b.title || '').toLowerCase();
+                const d = (b.desc || b.description || '').toLowerCase();
+                const id = (b.id || '').toLowerCase();
+                const fullText = `${c} ${t} ${d} ${id}`;
+
+                if (cat === 'yhss') return fullText.includes('sự sống') || fullText.includes('triết lý') || fullText.includes('yhss') || fullText.includes('chữa lành') || fullText.includes('tâm học');
+                if (cat === 'thaoduoc') return fullText.includes('dược') || fullText.includes('thảo') || fullText.includes('sâm') || fullText.includes('trà') || fullText.includes('thực dưỡng');
+                if (cat === 'giaiphau') return fullText.includes('giải phẫu') || fullText.includes('cơ thể') || fullText.includes('chẩn đoán') || fullText.includes('nội khoa') || fullText.includes('tim mạch');
+                if (cat === 'thankinh') return fullText.includes('thần kinh') || fullText.includes('tâm') || fullText.includes('não') || fullText.includes('nhận thức') || fullText.includes('miễn dịch') || fullText.includes('gen');
+                return true;
+            });
+        }
+
+        const mode = window.catalogState.viewMode;
+        if (mode === 'grid') {
+            container.className = 'flex-grow overflow-y-auto shop-scroll-container p-3 grid grid-cols-2 gap-3';
+            container.innerHTML = books.map(b => `
+                <div onclick="openBookDetails('${b.id}')" class="card-lift bg-white rounded-2xl border border-slate-100 p-2.5 flex flex-col cursor-pointer shadow-sm">
+                    <img src="${b.cover || 'covers/cothe.png'}" alt="${b.title}" class="w-full aspect-[2/3] object-cover rounded-xl mb-2 shadow-sm" loading="lazy" decoding="async" />
+                    <span class="text-[9px] font-extrabold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full w-max mb-1">${b.category || 'Y Khoa'}</span>
+                    <h4 class="font-bold text-xs text-slate-800 line-clamp-1 leading-snug">${b.title}</h4>
+                    <p class="text-[10px] text-slate-400 truncate mt-0.5">${b.author || 'GEMS Academic'}</p>
+                </div>
+            `).join('');
+        } else {
+            container.className = 'flex-grow overflow-y-auto shop-scroll-container p-3 space-y-3';
+            container.innerHTML = books.map(b => `
+                <div onclick="openBookDetails('${b.id}')" class="card-lift bg-white rounded-2xl border border-slate-100 p-3 flex gap-3 cursor-pointer shadow-sm">
+                    <img src="${b.cover || 'covers/cothe.png'}" alt="${b.title}" class="w-16 h-24 object-cover rounded-xl shrink-0 shadow-sm" loading="lazy" decoding="async" />
+                    <div class="flex-grow flex flex-col justify-between min-w-0">
+                        <div>
+                            <span class="text-[9px] font-extrabold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">${b.category || 'Y Khoa'}</span>
+                            <h4 class="font-bold text-sm text-slate-800 truncate mt-1">${b.title}</h4>
+                            <p class="text-xs text-slate-500 truncate mt-0.5">${b.author || 'GEMS Academic'}</p>
+                        </div>
+                        <div class="flex items-center gap-2 pt-2 border-t border-slate-100 text-xs font-bold text-blue-600">
+                            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">menu_book</span> Đọc ngay</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+    };
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', window.syncCloudData);
     } else {

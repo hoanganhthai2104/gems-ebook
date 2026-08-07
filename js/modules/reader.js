@@ -233,6 +233,9 @@ window.GEMS.Reader = (function () {
             if (typeof window.saveState === 'function') {
                 window.saveState();
             }
+            if (typeof window.saveStateCloud === 'function') {
+                window.saveStateCloud();
+            }
         }
     }
 

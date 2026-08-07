@@ -23,4 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof window.updateBottomNavVisibility === 'function') {
         window.updateBottomNavVisibility();
     }
+    if (typeof window.initCloudSyncListener === 'function') {
+        window.initCloudSyncListener();
+    }
 });
