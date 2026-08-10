@@ -69,7 +69,7 @@
 
     <!-- Fonts -->
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,600..900;1,600..900&display=swap" rel="stylesheet"/>
 
     <!-- Google Material Symbols -->
 
@@ -328,6 +328,43 @@
 
 
     <style>
+
+        /* === KINDLE E-INK PAPER AESTHETIC & ROYAL SERIF TYPOGRAPHY === */
+        .kindle-paper-theme {
+            background-color: #F5F2EB !important;
+            color: #1A1918 !important;
+        }
+        .font-book-body {
+            font-family: 'Lora', Georgia, serif;
+            line-height: 1.85;
+            text-align: justify;
+            font-size: 0.938rem; /* 15px */
+            letter-spacing: -0.003em;
+            color: #1F1E1D;
+        }
+        .font-book-heading {
+            font-family: 'Playfair Display', Georgia, serif;
+            letter-spacing: -0.015em;
+        }
+        .drop-cap::first-letter {
+            font-family: 'Playfair Display', Georgia, serif;
+            float: left;
+            font-size: 3.4rem;
+            line-height: 0.8;
+            padding-top: 4px;
+            padding-right: 12px;
+            color: #004275;
+            font-weight: 800;
+        }
+        .medical-callout-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+            border-left: 4px solid #004275;
+            padding: 1.1rem;
+            border-radius: 0.85rem;
+            box-shadow: 0 4px 15px -3px rgba(0,0,0,0.04);
+            margin: 1.25rem 0;
+        }
 
         /* === GLOBAL VIEWPORT LOCK === */
         html {
@@ -13449,9 +13486,11 @@
             const selectedPanel = document.getElementById(`view-${tabName}`);
 
             if (selectedPanel) {
-
                 selectedPanel.classList.remove('hidden');
+            }
 
+            if (tabName === 'book-toc') {
+                renderDynamicBookTOC();
             }
 
             if (tabName === 'shop' && !appState.shopPopupShown) {
@@ -13580,81 +13619,58 @@
 
 
 
-        // Toast notification system
+        // Toast notification system — Overwrite design (no stacking clutter)
+        let activeToastTimer = null;
 
         function showToast(message, type = 'info') {
 
             const container = document.getElementById('toast-container');
+            if (!container) return;
+
+            // Clear previous toast timer and container content so new toast overwrites in-place
+            if (activeToastTimer) {
+                clearTimeout(activeToastTimer);
+                activeToastTimer = null;
+            }
+            container.innerHTML = '';
 
             const toast = document.createElement('div');
-
-            toast.className = "p-3 rounded-xl shadow-lg border text-xs font-bold flex items-center justify-between pointer-events-auto bg-white/95 backdrop-blur-md text-slate-800 border-slate-200 transition-all duration-300 transform translate-y-2 opacity-0";
-
-            
+            toast.className = "p-3 rounded-xl shadow-xl border text-xs font-bold flex items-center justify-between pointer-events-auto bg-white/95 backdrop-blur-md text-slate-800 border-slate-200 transition-all duration-200 transform translate-y-1 opacity-0 max-w-sm mx-auto";
 
             let icon = "info";
-
             if (type === 'success') {
-
                 icon = "check_circle";
-
-                toast.classList.add('border-blue-200', 'bg-blue-50/95');
-
+                toast.classList.add('border-emerald-300', 'bg-emerald-50/95', 'text-emerald-900');
                 toast.classList.remove('text-slate-800');
-
-                toast.classList.add('text-blue-800');
-
-            } else if (type === 'warning') {
-
-                icon = "warning";
-
-                toast.classList.add('border-amber-200', 'bg-amber-50/95');
-
+            } else if (type === 'warning' || type === 'error') {
+                icon = (type === 'error') ? "cancel" : "warning";
+                toast.classList.add(type === 'error' ? 'border-rose-300' : 'border-amber-300', type === 'error' ? 'bg-rose-50/95' : 'bg-amber-50/95');
+                toast.classList.remove('text-slate-800');
+                toast.classList.add(type === 'error' ? 'text-rose-900' : 'text-amber-900');
             }
 
-            
-
             toast.innerHTML = `
-
                 <div class="flex items-center gap-2">
-
-                    <span class="material-symbols-outlined text-sm filled-icon">${icon}</span>
-
+                    <span class="material-symbols-outlined text-sm filled-icon shrink-0">${icon}</span>
                     <span>${message}</span>
-
                 </div>
-
-                <button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-slate-600 ml-2">
-
+                <button onclick="this.parentElement.remove()" class="text-slate-400 hover:text-slate-600 ml-2 shrink-0">
                     <span class="material-symbols-outlined text-xs">close</span>
-
                 </button>
-
             `;
 
             container.appendChild(toast);
 
-            
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-1', 'opacity-0');
+            });
 
-            // Animating in
-
-            setTimeout(() => {
-
-                toast.classList.remove('translate-y-2', 'opacity-0');
-
-            }, 10);
-
-            
-
-            // Auto destroy
-
-            setTimeout(() => {
-
-                toast.classList.add('translate-y-2', 'opacity-0');
-
-                setTimeout(() => toast.remove(), 300);
-
-            }, 4000);
+            activeToastTimer = setTimeout(() => {
+                toast.classList.add('opacity-0', '-translate-y-1');
+                setTimeout(() => {
+                    if (toast.parentElement) toast.remove();
+                }, 200);
+            }, 2500);
 
         }
 
@@ -13841,13 +13857,20 @@
 
             // Map each bookId to its default/first chapter
             const bookToDefaultChapter = {
-                'chandoanykhoa': 'ecg',
+                'chandoanykhoa': 'tongquan',
                 'lamsangnoikhoa': 'hetuanhoan',
+                'capnhatyvan': 'ecg',
                 'thaoduoc': 'tamthat',
                 'nhansam': 'nhansam',
                 'trietly_yhss': 'trietly_mo_dau',
                 'nuoc_va_su_song': 'nuoc_va_su_song',
-                'tam_hoc_chua_lanh': 'tam_hoc_chua_lanh'
+                'tam_hoc_chua_lanh': 'tam_hoc_chua_lanh',
+                'trathaomoc': 'nuoc_va_su_song',
+                'thucduong': 'trietly_5nen',
+                'co-the-nguoi': 'tongquan',
+                'thankinh': 'hetuanhoan',
+                'thankinhhoc': 'hetuanhoan',
+                'ditruyen': 'tongquan'
             };
 
             const bookId = appState.currentBookId;
@@ -13925,22 +13948,98 @@
 
 
 
-        function openBookTOC() {
+        function renderDynamicBookTOC() {
+            const bId = appState.currentBookId || 'trietly_yhss';
+            const curChap = appState.currentChapter;
 
-            switchTab('book-toc');
+            const bookTOCData = {
+                'trietly_yhss': {
+                    title: '[BẢN LÀM VIỆC] TRIẾT LÝ Y HỌC SỰ SỐNG',
+                    desc: '5 Nền Y Học & 3 Trụ Y Đức • Tác giả Hoàng Anh - Viện Y học Sự sống',
+                    chapters: [
+                        { id: 'trietly_mo_dau', title: 'Phần Mở Đầu: Hành Trình Tìm Lại Chân Lý Y Học', desc: 'Lời giới thiệu & Lời tự sự của tác giả trong 30 năm thực hành y học.' },
+                        { id: 'trietly_5nen', title: 'Phần I: 5 Nền Y Học Hợp Nhất', desc: 'Khám phá 5 nền Y học: Truyền thống, Hiện đại, Dinh dưỡng, Tự nhiên & Sự sống.' },
+                        { id: 'trietly_3tru', title: 'Phần II: 3 Trụ Cột Y Đức', desc: 'Nền móng đạo làm nghề: Y Đức — Trí Đức — Nghị Lực và Tái thiết y học nhân bản.' },
+                        { id: 'trietly_ket_luan', title: 'Phần Kết Luận: Nền Y Học Mới', desc: 'Tích hợp Khoa học — Đạo học — Nhân học & Phụ lục mô hình YHSS.' }
+                    ]
+                },
+                'thaoduoc': {
+                    title: 'Cẩm Nang Thảo Dược Quý Phương Đông',
+                    desc: 'Đặc tính sinh học & Ứng dụng lâm sàng các dược liệu quý phương Đông',
+                    chapters: [
+                        { id: 'tamthat', title: 'Chương 4: Tam Thất - Dược liệu quý chỉ huyết, hoạt huyết', desc: 'Cơ chế tác động hai chiều saponin nhóm Rb, Rg trong cầm máu và thông mạch.' },
+                        { id: 'nhansam', title: 'Chương 5: Nhân Sâm - Đại bổ nguyên khí', desc: 'Tác dụng đại bổ nguyên khí, tăng cường khả năng thích nghi và chống suy nhược.' }
+                    ]
+                },
+                'chandoanykhoa': {
+                    title: 'Cẩm Nang Chẩn Đoán Y Khoa Lâm Sàng',
+                    desc: 'Mục lục chi tiết & Tiến trình học kiến thức chẩn đoán y khoa',
+                    chapters: [
+                        { id: 'tongquan', title: 'Chương 1: Tổng quan Chẩn đoán Y khoa', desc: 'Các nguyên tắc cơ bản và quy trình khám bệnh lâm sàng.' },
+                        { id: 'hetuanhoan', title: 'Chương 2: Bệnh lý Hệ Tuần Hoàn', desc: 'Tăng huyết áp, xơ vữa động mạch và nhồi máu cơ tim cấp.' },
+                        { id: 'ecg', title: 'Chương 3: Nguyên lý & Diễn giải ECG', desc: 'Phân tích 12 chuyển đạo, nhịp xoang, rối loạn nhịp và ST chênh lên.' }
+                    ]
+                },
+                'nuoc_va_su_song': {
+                    title: 'Nước và Sự Sống - Thấu Hiểu Đạo Của Nước',
+                    desc: 'Triết lý Thủy hành & Ứng dụng Hydrogen Ion Kiềm (HK) trong chữa lành',
+                    chapters: [
+                        { id: 'nuoc_va_su_song', title: 'Toàn tập: Nước & Hydrogen Ion Kiềm', desc: '70% cơ thể là nước, cơ chế chống oxy hóa H2 và liệu pháp nước chữa lành.' }
+                    ]
+                },
+                'tam_hoc_chua_lanh': {
+                    title: 'Tâm Học & Chữa Lành Cảm Xúc',
+                    desc: 'Giải Phóng Cảm Xúc — Tái Lập Nội Tâm — Nâng Cao Năng Lượng Sống',
+                    chapters: [
+                        { id: 'tam_hoc_chua_lanh', title: 'Toàn tập: Tâm Học & Giải Phóng Cảm Xúc', desc: 'Hệ Limbic, Cortisol, stress mãn tính, thiền định 10 phút, thở 4-7-8 & tha thứ.' }
+                    ]
+                }
+            };
 
+            const currentBookInfo = bookTOCData[bId] || bookTOCData['trietly_yhss'];
+            const viewTocEl = document.getElementById('view-book-toc');
+            if (!viewTocEl) return;
+
+            const titleEl = viewTocEl.querySelector('h2');
+            if (titleEl) titleEl.innerText = currentBookInfo.title;
+
+            const descEl = viewTocEl.querySelector('p');
+            if (descEl) descEl.innerText = currentBookInfo.desc;
+
+            const timelineContainer = viewTocEl.querySelector('.relative.border-l-2');
+            if (timelineContainer) {
+                timelineContainer.innerHTML = currentBookInfo.chapters.map((ch, idx) => {
+                    const isCurrent = (ch.id === curChap);
+                    return `
+                        <div class="relative animate-fade-in">
+                            <div class="absolute left-0 -translate-x-[30px] top-4 w-7 h-7 rounded-full ${isCurrent ? 'bg-white border-2 border-blue-600 text-blue-600' : 'bg-blue-600 border-2 border-white text-white'} flex items-center justify-center shadow-sm">
+                                <span class="material-symbols-outlined text-[16px] font-bold">${isCurrent ? 'play_arrow' : 'check'}</span>
+                            </div>
+                            <div class="${isCurrent ? 'bg-white border-2 border-blue-600' : 'bg-slate-50/80 border border-slate-200'} rounded-2xl p-4 shadow-sm space-y-1">
+                                ${isCurrent ? '<span class="inline-block bg-blue-100 text-blue-800 text-[10px] font-black uppercase px-2 py-0.5 rounded-md">ĐANG ĐỌC</span>' : ''}
+                                <h3 class="text-xs font-black text-slate-900 mt-1">${ch.title}</h3>
+                                <p class="text-[10px] text-slate-600 leading-relaxed">${ch.desc}</p>
+                                <button onclick="readTOCChapter('${ch.id}', '${bId}')" class="inline-flex items-center gap-1 text-blue-600 text-[10px] font-extrabold mt-2 hover:underline transition-all">
+                                    ${isCurrent ? 'ĐỌC TIẾP' : 'MỞ BÀI ĐỌC'} <span class="material-symbols-outlined text-xs font-bold">arrow_forward</span>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
         }
 
+        function openBookTOC() {
+            renderDynamicBookTOC();
+            switchTab('book-toc');
+        }
 
-
-        function readTOCChapter(chapterId) {
-
-            appState.currentBookId = 'chandoanykhoa';
-
+        function readTOCChapter(chapterId, bookId) {
+            if (bookId) {
+                appState.currentBookId = bookId;
+            }
             openEreaderScreen();
-
             loadChapter(chapterId);
-
         }
 
 
@@ -15044,6 +15143,9 @@
         // Quiz checking and option active highlights
 
         function openQuizScreen() {
+            appState.quizStep = 0;
+            appState.selectedQuizOption = null;
+            appState.quizCompleted = false;
             if (typeof renderStandaloneQuiz === 'function') {
                 renderStandaloneQuiz();
             }
@@ -15143,10 +15245,10 @@
 
 
         function checkQuizResult(type = 'standalone') {
-
             const step = appState.quizStep;
-
-            const questionData = quizQuestions[step];
+            const activeChap = appState.currentChapter || 'trietly_mo_dau';
+            const activeQuestions = (allBookQuizzes && allBookQuizzes[activeChap]) ? allBookQuizzes[activeChap] : quizQuestions;
+            const questionData = activeQuestions[step] || quizQuestions[step];
 
             
 
@@ -15188,118 +15290,107 @@
 
             
 
-            if (submitBtn.innerText === "Đã hoàn thành" || submitBtn.innerText === "Hoàn thành") {
+            const nextChapterMap = {
+                'trietly_mo_dau': { id: 'trietly_5nen', label: 'Phần I: 5 Nền Y Học Hợp Nhất' },
+                'trietly_5nen': { id: 'trietly_3tru', label: 'Phần II: 3 Trụ Cột Y Đức' },
+                'trietly_3tru': { id: 'trietly_ket_luan', label: 'Phần Kết Luận & Phụ Lục' },
+                'tongquan': { id: 'hetuanhoan', label: 'Chương 2: Hệ Tuần Hoàn' },
+                'hetuanhoan': { id: 'ecg', label: 'Chương 3: Diễn Giải ECG' },
+                'tamthat': { id: 'nhansam', label: 'Chương 5: Bài thuốc từ Nhân Sâm' }
+            };
 
-                if (type === 'standalone') {
-
-                    closeQuizScreen();
-
-                    selectChapter('nhansam');
-
-                    openEreaderScreen();
-
+            if (submitBtn.innerText.includes("Đã hoàn thành") || submitBtn.innerText.includes("Tiếp tục") || submitBtn.innerText.includes("Hoàn thành")) {
+                const curChap = appState.currentChapter || 'trietly_mo_dau';
+                const nextInfo = nextChapterMap[curChap];
+                if (nextInfo) {
+                    if (type === 'standalone') {
+                        closeQuizScreen();
+                        openEreaderScreen();
+                    }
+                    selectChapter(nextInfo.id);
                 } else {
-
-                    selectChapter('nhansam');
-
+                    if (type === 'standalone') closeQuizScreen();
+                    showToast("🎉 Chúc mừng bạn đã hoàn thành toàn bộ cuốn sách!", "success");
                 }
-
                 return;
-
             }
 
-
-
             if (appState.selectedQuizOption === questionData.correctIndex) {
-
                 // Correct Answer
-
                 feedback.classList.remove('hidden');
-
-                
+                feedback.className = "bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-[10px] text-emerald-900 space-y-1 mt-2";
+                feedback.innerHTML = `
+                    <h4 class="font-bold flex items-center gap-1 text-emerald-900"><span class="material-symbols-outlined text-xs text-emerald-600">check_circle</span> Đáp án chính xác!</h4>
+                    <p class="text-slate-700 leading-relaxed text-[10px]">
+                        <strong>Giải thích y khoa:</strong> ${questionData.explanation || 'Chính xác! Bạn đã chọn đúng đáp án.'}
+                    </p>
+                `;
 
                 // Show Confetti
-
                 confetti({
-
                     particleCount: 80,
-
                     spread: 60,
-
                     origin: { y: 0.7 }
-
                 });
 
-
-
                 if (step === 4) {
-
-                    // Last question completed
-
+                    // Last question completed - unlock next section!
                     appState.quizCompleted = true;
+                    appState.completedSectionQuizzes = appState.completedSectionQuizzes || {};
+                    const activeChap = appState.currentChapter || 'trietly_mo_dau';
+                    appState.completedSectionQuizzes[activeChap] = true;
 
-                    showToast("Tuyệt vời! Bạn đã hoàn thành toàn bộ quiz ôn tập (+15 xu).", "success");
+                    const nextInfo = nextChapterMap[activeChap];
+                    const nextText = nextInfo ? `➡️ Tiếp tục đọc: ${nextInfo.label}` : "🎉 Hoàn thành cuốn sách!";
 
-                    
+                    showToast("🎉 Xuất sắc! Bạn đã trả lời đúng cả 5 câu! Đã mở khóa Phần tiếp theo.", "success");
 
-                    submitBtn.innerText = "Đã hoàn thành";
-
-                    submitBtn.className = "w-full bg-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow-sm active:scale-95 duration-100 mb-4";
+                    submitBtn.innerHTML = nextText;
+                    submitBtn.className = "w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 px-6 rounded-xl shadow-lg flex items-center justify-center gap-2 text-xs transition-all active:scale-95 animate-pulse mb-4";
 
                     if (type === 'embedded') {
-
-                        submitBtn.className = "w-full bg-blue-600 text-white font-bold py-2.5 px-6 rounded-xl active:scale-95 text-xs";
-
+                        submitBtn.className = "w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 px-6 rounded-xl shadow-lg flex items-center justify-center gap-2 text-xs transition-all active:scale-95 animate-pulse";
                     }
-
-
 
                     // Update User Coins state (only once)
-
                     if (!appState.coinsAwarded) {
-
                         appState.userCoins += 15;
-
                         appState.coinsAwarded = true;
-
                         const coinEl = document.getElementById('profile-coins');
-
                         if (coinEl) coinEl.innerText = `${appState.userCoins} xu`;
-
                         const dCoins = document.getElementById('desktop-coins');
-
                         if (dCoins) dCoins.innerText = `${appState.userCoins} xu`;
-
                     }
 
-
-
                     updateMissionsUI();
-
                     checkAllMissionsCompleted();
 
+                    // Automatically transition to summary screen after 1.5s if not clicked
+                    setTimeout(() => {
+                        if (type === 'embedded') {
+                            renderEmbeddedQuiz(activeChap);
+                        }
+                    }, 1500);
                 } else {
-
                     showToast("Chính xác! Chọn 'Câu tiếp theo' để tiếp tục.", "success");
-
                     submitBtn.innerText = "Câu tiếp theo";
-
                     submitBtn.className = "w-full bg-brand-blue text-white font-bold py-3 px-8 rounded-lg shadow-sm hover:bg-brand-blue-dark active:scale-95 duration-100 mb-4";
 
                     if (type === 'embedded') {
-
                         submitBtn.className = "w-full bg-brand-blue text-white font-bold py-2.5 px-6 rounded-xl hover:bg-brand-blue-dark active:scale-95 text-xs";
-
                     }
-
                 }
-
             } else {
-
                 // Incorrect
-
-                showToast("Đáp án chưa chính xác. Vui lòng thử lại lý luận y khoa.", "warning");
-
+                showToast("❌ Đáp án chưa chính xác. Bạn cần chọn đúng đáp án mới có thể hoàn thành!", "warning");
+                feedback.classList.remove('hidden');
+                feedback.className = "bg-rose-50 border border-rose-200 rounded-xl p-3 text-[10px] text-rose-800 space-y-1 mt-2";
+                feedback.innerHTML = `
+                    <h4 class="font-bold flex items-center gap-1 text-rose-900"><span class="material-symbols-outlined text-xs text-rose-600">cancel</span> Chưa đúng — Hãy thử chọn lại!</h4>
+                    <p class="text-slate-700 leading-relaxed text-[10px]">
+                        <strong>Gợi ý:</strong> ${questionData.desc || 'Vui lòng đọc lại gợi ý bài học và chọn đáp án chính xác.'}
+                    </p>
+                `;
             }
 
         }
@@ -15415,12 +15506,11 @@
 
 
         function renderStandaloneQuiz() {
-
             updateHomeQuizProgress();
-
             const step = appState.quizStep;
-
-            const questionData = quizQuestions[step];
+            const activeChap = appState.currentChapter || 'trietly_mo_dau';
+            const activeQuestions = (allBookQuizzes && allBookQuizzes[activeChap]) ? allBookQuizzes[activeChap] : quizQuestions;
+            const questionData = activeQuestions[step] || quizQuestions[step];
 
             
 
@@ -15504,6 +15594,51 @@
 
 
 
+        function renderAll5QuestionsView(chapterId) {
+            const container = document.getElementById('quiz-container');
+            if (!container) return;
+
+            const activeChapter = chapterId || appState.currentChapter;
+            const activeQuestions = (allBookQuizzes && allBookQuizzes[activeChapter]) ? allBookQuizzes[activeChapter] : quizQuestions;
+
+            container.innerHTML = `
+                <div class="flex flex-col h-full space-y-4 p-2 overflow-y-auto">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                        <div>
+                            <h3 class="text-sm font-black text-blue-900">Danh Sách 5 Câu Hỏi Ôn Tập</h3>
+                            <p class="text-[10px] text-slate-500">Xem trước toàn bộ 5 câu hỏi trắc nghiệm của phần này</p>
+                        </div>
+                        <button onclick="appState.quizStep=0; renderEmbeddedQuiz('${activeChapter}')" class="bg-blue-600 text-white text-[10px] font-bold py-1.5 px-3 rounded-lg hover:bg-blue-700 transition-all shadow-sm">
+                            Làm từng câu (1/5)
+                        </button>
+                    </div>
+                    <div class="space-y-4 flex-1">
+                        ${activeQuestions.map((q, qIdx) => `
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <span class="bg-blue-700 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">Câu ${qIdx + 1}/5</span>
+                                    <span class="text-[10px] text-slate-400 font-medium">100 điểm</span>
+                                </div>
+                                <h4 class="text-xs font-bold text-slate-900 leading-snug">${q.question}</h4>
+                                <p class="text-[10px] text-slate-500">${q.desc}</p>
+                                <div class="space-y-1.5 mt-2">
+                                    ${q.options.map((opt, oIdx) => `
+                                        <div class="p-2 rounded-lg text-xs font-medium border ${oIdx === q.correctIndex ? 'bg-emerald-50 border-emerald-300 text-emerald-900 font-bold' : 'bg-white border-slate-200 text-slate-700'}">
+                                            ${opt.text} — <span class="text-[10px] opacity-80 font-normal">${opt.desc}</span>
+                                            ${oIdx === q.correctIndex ? ' <span class="text-emerald-700 font-bold ml-1">✓ (Đáp án chính xác)</span>' : ''}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <div class="bg-blue-50/80 p-2 rounded-lg text-[10px] text-blue-800 border border-blue-100">
+                                    <strong>💡 Giải thích:</strong> ${q.explanation}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
         function renderEmbeddedQuiz(chapterId) {
 
             updateHomeQuizProgress();
@@ -15582,11 +15717,15 @@
 
                         <span class="font-label-md text-xs font-bold text-slate-450 uppercase tracking-wider">Ôn tập: Câu ${step + 1}/5</span>
 
-                        <div class="flex-grow mx-4 h-2 bg-slate-100 rounded-full overflow-hidden">
+                        <div class="flex-grow mx-3 h-2 bg-slate-100 rounded-full overflow-hidden">
 
                             <div class="h-full bg-blue-700 rounded-full transition-all duration-300" style="width: ${(step + 1) * 20}%;"></div>
 
                         </div>
+
+                        <button onclick="renderAll5QuestionsView('${activeChapter}')" class="text-[10px] font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-1 rounded-md hover:bg-blue-100 shrink-0">
+                            📋 Xem 5 câu
+                        </button>
 
                     </div>
 
@@ -15729,11 +15868,37 @@
 
 
         function selectChapter(chapterId) {
+            const reqPrevMap = {
+                'trietly_5nen': { reqId: 'trietly_mo_dau', name: 'Phần Mở Đầu' },
+                'trietly_3tru': { reqId: 'trietly_5nen', name: 'Phần I: 5 Nền Y Học Hợp Nhất' },
+                'trietly_ket_luan': { reqId: 'trietly_3tru', name: 'Phần II: 3 Trụ Cột Y Đức' },
+                'hetuanhoan': { reqId: 'tongquan', name: 'Chương 1: Tổng quan' },
+                'ecg': { reqId: 'hetuanhoan', name: 'Chương 2: Hệ tuần hoàn' },
+                'nhansam': { reqId: 'tamthat', name: 'Chương 4: Tam Thất' }
+            };
+
+            appState.completedSectionQuizzes = appState.completedSectionQuizzes || {};
+
+            if (reqPrevMap[chapterId]) {
+                const req = reqPrevMap[chapterId];
+                if (!appState.completedSectionQuizzes[req.reqId]) {
+                    showToast(`🔒 Bạn bắt buộc phải trả lời đúng 5/5 câu hỏi ôn tập của ${req.name} mới được mở khóa Phần tiếp theo!`, "warning");
+                    closeTOCSheet();
+                    loadChapter(req.reqId);
+                    // Jump to quiz page on that required chapter
+                    setTimeout(() => {
+                        const pages = document.querySelectorAll('.flipbook-page');
+                        if (pages.length > 0) {
+                            appState.readerCurrentPage = pages.length - 1;
+                            flipPage(0);
+                        }
+                    }, 300);
+                    return;
+                }
+            }
 
             closeTOCSheet();
-
             loadChapter(chapterId);
-
         }
 
 
@@ -15810,25 +15975,40 @@
     const metaEl = document.querySelector('#reader-header p');
     if (metaEl) metaEl.innerText = chapter.meta;
 
-    // Ghép TẤT CẢ các trang chapter vào page 0 (một article dài cuộn được)
-    const page0El = document.querySelector('.flipbook-page[data-page="0"]');
-    const mainArticle = page0El ? page0El.querySelector('article') : null;
-    if (mainArticle) {
-        mainArticle.innerHTML = chapter.pages.join('<div class="my-8 border-t border-slate-200 opacity-40"></div>');
-        if (typeof applyHighlightsToPage === 'function') {
-            applyHighlightsToPage(mainArticle, appState.currentBookId, chapterId, 0);
+    // Dynamically build flipbook-container with ALL pages of this chapter/section
+    const flipContainer = document.getElementById('flipbook-container');
+    if (flipContainer) {
+        const pagesToRender = [...chapter.pages];
+        const hasQuizContainer = pagesToRender.some(p => p && p.includes('id="quiz-container"'));
+        if (!hasQuizContainer) {
+            pagesToRender.push(`<div class="h-full overflow-y-auto bg-white px-5 py-6" id="quiz-container"></div>`);
         }
-        mainArticle.scrollTop = 0;
+
+        flipContainer.innerHTML = pagesToRender.map((content, idx) => {
+            const transform = idx === 0 ? 'translateX(0%)' : 'translateX(100%)';
+            if (content && content.includes('id="quiz-container"')) {
+                return `<div class="flipbook-page absolute inset-0 overflow-hidden" data-page="${idx}" style="transform: ${transform};">
+                    ${content}
+                </div>`;
+            } else {
+                return `<div class="flipbook-page absolute inset-0 overflow-hidden" data-page="${idx}" style="transform: ${transform};">
+                    <article class="page-container h-full p-6 md:p-8 max-w-2xl mx-auto overflow-y-auto font-book-body transition-colors duration-300" style="background-color: var(--page-bg, #F5F2EB); color: var(--text-main, #1A1918);">
+                        ${content}
+                    </article>
+                </div>`;
+            }
+        }).join('');
+
+        // Apply highlights if any
+        const pages = flipContainer.querySelectorAll('.flipbook-page');
+        pages.forEach((pageEl, idx) => {
+            const article = pageEl.querySelector('article');
+            if (article && typeof applyHighlightsToPage === 'function') {
+                applyHighlightsToPage(article, appState.currentBookId, chapterId, idx);
+            }
+        });
     }
-    // Xóa nội dung pages 1-3 và đánh dấu là rỗng (flipPage sẽ bỏ qua)
-    ['1','2','3'].forEach(n => {
-        const pg = document.querySelector(`.flipbook-page[data-page="${n}"]`);
-        if (pg) {
-            const art = pg.querySelector('article');
-            if (art) art.innerHTML = '';
-            pg.setAttribute('data-empty', 'true');
-        }
-    });
+
     // Reset về trang đầu
     appState.readerCurrentPage = 0;
     flipPage(0);
@@ -16136,37 +16316,52 @@
         // 1. Page Turn Management
 
         function flipPage(dir) {
-
             const pages = document.querySelectorAll('.flipbook-page');
-
             const totalPages = pages.length;
-
             let nextPage = appState.readerCurrentPage + dir;
 
-            // Bỏ qua các trang rỗng (pages 1-3 khi đã ghép nội dung vào page 0)
-            while (nextPage > 0 && nextPage < totalPages - 1) {
-                const candidatePage = document.querySelector(`.flipbook-page[data-page="${nextPage}"]`);
-                if (candidatePage && candidatePage.getAttribute('data-empty') === 'true') {
-                    nextPage += dir > 0 ? 1 : -1;
-                } else {
-                    break;
-                }
-            }
-
             if (nextPage < 0 || nextPage >= totalPages) {
-
-                if (nextPage < 0) {
-
+                if (dir < 0) {
                     showToast("Đây là trang đầu tiên.");
-
                 } else {
+                    // Map next chapter for seamless continuous reading
+                    const nextChapterMap = {
+                        'trietly_mo_dau': { nextId: 'trietly_5nen', label: 'Phần I: 5 Nền Y Học Hợp Nhất' },
+                        'trietly_5nen': { nextId: 'trietly_3tru', label: 'Phần II: 3 Trụ Cột Y Đức' },
+                        'trietly_3tru': { nextId: 'trietly_ket_luan', label: 'Phần Kết Luận & Phụ Lục' },
+                        'tongquan': { nextId: 'hetuanhoan', label: 'Chương 2: Hệ Tuần Hoàn' },
+                        'hetuanhoan': { nextId: 'ecg', label: 'Chương 3: Diễn Giải ECG' },
+                        'tamthat': { nextId: 'nhansam', label: 'Chương 5: Bài thuốc từ Nhân Sâm' }
+                    };
 
-                    showToast("Đã đọc hết chương này.");
+                    const curChap = appState.currentChapter;
+                    if (nextChapterMap[curChap]) {
+                        const nextInfo = nextChapterMap[curChap];
+                        appState.completedSectionQuizzes = appState.completedSectionQuizzes || {};
 
+                        if (!appState.completedSectionQuizzes[curChap]) {
+                            showToast("⚠️ Bạn bắt buộc phải trả lời đúng cả 5 câu hỏi ôn tập của phần này mới được mở khóa Phần tiếp theo!", "warning");
+                            appState.readerCurrentPage = totalPages - 1;
+                            pages.forEach((page) => {
+                                const pageNum = parseInt(page.getAttribute('data-page'));
+                                if (pageNum < appState.readerCurrentPage) {
+                                    page.style.transform = 'translateX(-100%)';
+                                } else if (pageNum > appState.readerCurrentPage) {
+                                    page.style.transform = 'translateX(100%)';
+                                } else {
+                                    page.style.transform = 'translateX(0%)';
+                                }
+                            });
+                            return;
+                        }
+
+                        showToast(`Đang chuyển sang ${nextInfo.label}...`, "success");
+                        selectChapter(nextInfo.nextId);
+                    } else {
+                        showToast("🎉 Chúc mừng bạn đã hoàn thành toàn bộ cuốn sách!", "success");
+                    }
                 }
-
                 return;
-
             }
 
             

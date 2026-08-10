@@ -8,3 +8,7 @@ ebook gems group/
 
 .vercel
 .env*
+.superpowers/
+index_backup_*.html
+hunk_inspect.txt
+lines_inspect.txt

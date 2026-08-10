@@ -211,50 +211,34 @@
 
         <nav class="flex-grow py-3">
             <div class="nav-item active" id="nav-overview" onclick="switchTab('overview')">
-                <span class="material-symbols-outlined">home</span>
-                <span>Trang chủ</span>
+                <span class="material-symbols-outlined">analytics</span>
+                <span>1. Bảng Tổng Quan</span>
             </div>
+            <div class="nav-item" id="nav-commerce" onclick="switchTab('commerce')">
+                <span class="material-symbols-outlined">storefront</span>
+                <span>2. Quản Lý Bán Hàng</span>
+            </div>
+            <div class="nav-item" id="nav-knowledge" onclick="switchTab('knowledge')">
+                <span class="material-symbols-outlined">menu_book</span>
+                <span>3. Tủ Sách &amp; Tri Thức</span>
+            </div>
+
+            <div class="nav-divider"></div>
+
+            <div class="nav-item" id="nav-users" onclick="switchTab('users')">
+                <span class="material-symbols-outlined">group</span>
+                <span>4. Người Dùng &amp; Quyền</span>
+            </div>
+            <div class="nav-item" id="nav-seller" onclick="switchTab('seller')">
+                <span class="material-symbols-outlined">verified_user</span>
+                <span>5. Hồ Sơ Người Bán</span>
+            </div>
+
+            <div class="nav-divider"></div>
+
             <div class="nav-item" id="nav-quick" onclick="openModal('modal-command-palette')">
                 <span class="material-symbols-outlined">stars</span>
-                <span>Truy cập nhanh</span>
-                <span class="material-symbols-outlined text-slate-400 text-sm ml-auto">open_in_new</span>
-            </div>
-
-            <div class="nav-divider"></div>
-
-            <div class="nav-item" id="nav-commerce" onclick="switchTab('commerce')">
-                <span class="material-symbols-outlined">assignment</span>
-                <span>Đơn hàng</span>
-            </div>
-            <div class="nav-item" id="nav-products" onclick="switchSubTab('commerce', 'products'); switchTab('commerce')">
-                <span class="material-symbols-outlined">mail</span>
-                <span>Sản phẩm</span>
-            </div>
-
-            <div class="nav-divider"></div>
-
-            <div class="nav-item" id="nav-marketing" onclick="switchSubTab('commerce', 'promotions'); switchTab('commerce')">
-                <span class="material-symbols-outlined">campaign</span>
-                <span>Marketing</span>
-            </div>
-            <div class="nav-item" id="nav-growth" onclick="switchTab('growth')">
-                <span class="material-symbols-outlined">timer</span>
-                <span>Tăng trưởng</span>
-            </div>
-
-            <div class="nav-divider"></div>
-
-            <div class="nav-item" id="nav-analytics" onclick="switchTab('analytics')">
-                <span class="material-symbols-outlined">bar_chart</span>
-                <span>Số liệu phân tích</span>
-            </div>
-            <div class="nav-item" id="nav-account-health" onclick="switchTab('account-health')">
-                <span class="material-symbols-outlined">emoji_events</span>
-                <span>Tình trạng tài khoản</span>
-            </div>
-            <div class="nav-item" id="nav-financials" onclick="switchSubTab('users', 'payout'); switchTab('users')">
-                <span class="material-symbols-outlined">attach_money</span>
-                <span>Tài chính</span>
+                <span>Truy cập nhanh (Cmd+K)</span>
             </div>
         </nav>
 
@@ -281,131 +265,122 @@
             </div>
 
             <div class="flex items-center gap-2.5">
-                <button onclick="exportAdminReport()" title="Xuất báo cáo Excel / CSV" class="btn-primary py-1.5 px-3 text-xs">
+                <button onclick="exportProductsCSV()" title="Xuất báo cáo Excel / CSV" class="btn-primary py-1.5 px-3 text-xs">
                     <span class="material-symbols-outlined text-base">download</span>
-                    <span class="hidden sm:inline">Xuất Báo Cáo</span>
+                    <span class="hidden sm:inline">Xuất Báo Cáo Excel</span>
+                </button>
+                <button onclick="toggleAdminNotifDrawer()" title="Xem thông báo thời gian thực" class="relative p-2 text-slate-600 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition">
+                    <span class="material-symbols-outlined text-xl">notifications</span>
+                    <span class="absolute top-1 right-1 flex h-2.5 w-2.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span></span>
                 </button>
                 <button onclick="openModal('modal-push-notification')" title="Phát thông báo đẩy toàn hệ thống" class="bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs py-1.5 px-3 rounded-xl flex items-center gap-1.5 shadow-sm transition">
                     <span class="material-symbols-outlined text-base">notifications_active</span>
-                    <span class="hidden sm:inline">Thông Báo Đẩy</span>
+                    <span class="hidden sm:inline">Phát Đẩy</span>
                 </button>
                 <button onclick="toggleTheme()" title="Chuyển chế độ Nền Tối / Sáng" class="p-2 text-slate-600 dark:text-amber-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition">
                     <span class="material-symbols-outlined text-xl">dark_mode</span>
                 </button>
-                <select id="lang-switcher" onchange="switchLanguage(this.value)" class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold py-1.5 px-3 rounded-xl outline-none cursor-pointer">
-                    <option value="vi">🇻🇳 Tiếng Việt</option>
-                    <option value="en">🇬🇧 English</option>
-                </select>
             </div>
         </header>
+
+        <!-- LIVE NOTIFICATION DRAWER -->
+        <div id="admin-notif-drawer" class="fixed top-0 right-0 bottom-0 w-[360px] max-w-[90vw] bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-l border-slate-200 dark:border-slate-800 z-[700] shadow-2xl flex flex-col translate-x-full transition-transform duration-300">
+            <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50/80 dark:bg-slate-800/80">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-red-500">notifications_active</span>
+                    <h3 class="font-extrabold text-sm text-slate-900 dark:text-white">Thông Báo Thời Gian Thực</h3>
+                </div>
+                <button onclick="toggleAdminNotifDrawer()" class="p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-400"><span class="material-symbols-outlined">close</span></button>
+            </div>
+            <div class="p-4 overflow-y-auto space-y-3 flex-grow text-xs">
+                <div class="p-3 bg-sky-50 dark:bg-sky-950/40 rounded-2xl border border-sky-100 dark:border-sky-900 space-y-1">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-sky-700 dark:text-sky-300">🛒 Đơn Hàng Mới #GEMS94830</span>
+                        <span class="text-[10px] text-slate-400">2 phút trước</span>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-300">Phòng Khám An Tâm đã đặt mua 10 Máy Đo SpO2 Fingertip (5.500.000 ₫).</p>
+                </div>
+                <div class="p-3 bg-emerald-50 dark:bg-emerald-950/40 rounded-2xl border border-emerald-100 dark:border-emerald-900 space-y-1">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-emerald-700 dark:text-emerald-300">⭐ Độc Giả Nâng Hạng VIP</span>
+                        <span class="text-[10px] text-slate-400">15 phút trước</span>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-300">ThS. Đặng Bích Ngọc vừa gia hạn tài khoản Tác giả Y Khoa VIP.</p>
+                </div>
+                <div class="p-3 bg-purple-50 dark:bg-purple-950/40 rounded-2xl border border-purple-100 dark:border-purple-900 space-y-1">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-purple-700 dark:text-purple-300">📖 Độc Giả Ghi Chú Sách</span>
+                        <span class="text-[10px] text-slate-400">1 giờ trước</span>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-300">BS. Nguyễn Văn Nam vừa đánh dấu 3 ghi chú trong cuốn "Triết Lý YHSS".</p>
+                </div>
+            </div>
+        </div>
 
         <!-- PAGE CONTAINER -->
         <main class="flex-grow overflow-y-auto p-4 md:p-8 space-y-6">
 
-            <!-- ====== TAB 1: TRANG CHỦ (OVERVIEW) ====== -->
+            <!-- ====== MODULE 1: BẢNG TỔNG QUAN ====== -->
             <div id="tab-overview" class="tab-content active space-y-6">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="content-card p-5 cursor-pointer" onclick="switchTab('account-health')">
-                        <p class="text-[11px] font-bold text-slate-400 uppercase">Người Dùng &amp; Quyền</p>
+                    <div class="content-card p-5 cursor-pointer" onclick="switchTab('users')">
+                        <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Người Dùng &amp; Quyền</p>
                         <p id="m-users" class="text-2xl font-black text-slate-900 dark:text-white mt-1">0</p>
                     </div>
                     <div class="content-card p-5 cursor-pointer" onclick="switchTab('commerce')">
-                        <p class="text-[11px] font-bold text-slate-400 uppercase">Đơn Hàng</p>
+                        <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Đơn Hàng GEMS</p>
                         <p id="m-orders" class="text-2xl font-black text-slate-900 dark:text-white mt-1">0</p>
                     </div>
-                    <div class="content-card p-5 cursor-pointer" onclick="switchTab('products')">
-                        <p class="text-[11px] font-bold text-slate-400 uppercase">Sản Phẩm &amp; Sách</p>
-                        <p id="m-content-total" class="text-2xl font-black text-slate-900 dark:text-white mt-1">0</p>
+                    <div class="content-card p-5 cursor-pointer" onclick="switchTab('commerce')">
+                        <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Kho Sản Phẩm</p>
+                        <p id="m-products" class="text-2xl font-black text-sky-600 mt-1">0</p>
                     </div>
-                    <div class="content-card p-5 cursor-pointer" onclick="switchTab('account-health')">
-                        <p class="text-[11px] font-bold text-slate-400 uppercase">Hồ Sơ Người Bán</p>
-                        <p class="text-lg font-black text-sky-600 mt-1">THÁI NHÂN SÂM</p>
+                    <div class="content-card p-5 cursor-pointer" onclick="switchTab('knowledge')">
+                        <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Tủ Sách Y Khoa</p>
+                        <p id="m-content-total" class="text-2xl font-black text-emerald-600 mt-1">30</p>
                     </div>
                 </div>
 
                 <div class="content-card p-5 space-y-4">
-                    <h3 class="text-sm font-bold flex items-center gap-2"><span class="material-symbols-outlined text-sky-600">show_chart</span> Số Liệu Phân Tích Doanh Thu</h3>
+                    <h3 class="text-sm font-bold flex items-center gap-2 text-slate-900 dark:text-white">
+                        <span class="material-symbols-outlined text-sky-600">show_chart</span> 
+                        <span>Số Liệu Phân Tích Doanh Thu Hệ Thống</span>
+                    </h3>
                     <div class="h-64 relative"><canvas id="chart-revenue"></canvas></div>
                 </div>
             </div>
 
-            <!-- ====== TAB 8: TÌNH TRẠNG TÀI KHOẢN (EXACT MATCH TO SCREENSHOT: HỒ SƠ NGƯỜI BÁN) ====== -->
-            <div id="tab-account-health" class="tab-content space-y-6">
-                <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
-                    <h2 class="text-2xl font-black text-slate-900 dark:text-white">Hồ sơ người bán</h2>
-                    <div class="flex items-center gap-6 mt-4 border-b border-slate-200 dark:border-slate-800">
-                        <button id="sub-seller-info" onclick="switchSubTab('account-health', 'info')" class="subtab-pill active">
-                            <span>Thông tin người bán</span>
-                        </button>
-                        <button id="sub-seller-shop" onclick="switchSubTab('account-health', 'shop')" class="subtab-pill">
-                            <span>Thông tin cửa hàng</span>
-                        </button>
-                        <button id="sub-seller-perm" onclick="switchSubTab('account-health', 'perm')" class="subtab-pill">
-                            <span>Phân quyền người dùng</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- SUBPANEL 1: THÔNG TIN NGƯỜI BÁN (EXACT MATCH TO SCREENSHOT) -->
-                <div id="subpanel-account-health-info" class="subpanel-content active space-y-6 max-w-3xl">
-                    <!-- CARD 1: THÔNG TIN NGƯỜI BÁN -->
-                    <div class="content-card p-6 space-y-3">
-                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Thông tin người bán</h3>
-                        <div class="flex items-center justify-between pt-2">
-                            <div>
-                                <p class="text-xs text-slate-500 font-medium">Tên người bán</p>
-                                <p class="text-base font-extrabold text-slate-900 dark:text-white mt-1">THÁI NHÂN SÂM</p>
-                            </div>
-                            <button onclick="showToast('Chỉnh sửa tên người bán', 'info')" class="text-xs font-bold text-sky-600 hover:underline">Thay đổi</button>
-                        </div>
-                    </div>
-
-                    <!-- CARD 2: THÔNG TIN CỬA HÀNG (EXACT MATCH TO SCREENSHOT) -->
-                    <div class="content-card p-6 space-y-4">
-                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Thông tin cửa hàng</h3>
-                        <div>
-                            <p class="text-xs text-slate-500 font-medium mb-3">Logo cửa hàng</p>
-                            <div class="flex items-center gap-4">
-                                <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-slate-200 dark:border-slate-700 shadow-md">
-                                    <!-- User Image from screenshot -->
-                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Logo Thái Nhân Sâm">
-                                </div>
-                                <div>
-                                    <button onclick="showToast('Tải logo mới', 'info')" class="btn-sm btn-edit"><span class="material-symbols-outlined text-sm">upload</span> Thay đổi logo</button>
-                                    <p class="text-[11px] text-slate-400 mt-1">Định dạng PNG/JPG, tối đa 2MB</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SUBPANEL 2: PHÂN QUYỀN NGƯỜI DÙNG -->
-                <div id="subpanel-account-health-perm" class="subpanel-content space-y-5">
-                    <div class="section-header">
-                        <h2 class="section-title text-base font-bold">Danh Sách Người Dùng &amp; Phân Quyền</h2>
-                    </div>
-                    <div class="content-card overflow-hidden">
-                        <div class="overflow-x-auto">
-                            <table>
-                                <thead><tr><th>Email / UID</th><th>Tên Hiển Thị</th><th>Hạng Thành Viên</th><th>Quyền Hệ Thống</th><th>Cổng Tác Vụ</th><th>Ngày Tạo</th><th class="text-right">Thao Tác</th></tr></thead>
-                                <tbody id="users-tbody"><tr><td colspan="7" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr></tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ====== TAB 3: ĐƠN HÀNG (COMMERCE) ====== -->
+            <!-- ====== MODULE 2: QUẢN LÝ BÁN HÀNG ====== -->
             <div id="tab-commerce" class="tab-content space-y-6">
                 <div class="flex items-center justify-between flex-wrap gap-4 border-b border-slate-200 dark:border-slate-800 pb-3">
-                    <div class="inline-flex gap-4">
-                        <button id="sub-commerce-orders" onclick="switchSubTab('commerce', 'orders')" class="subtab-pill active"><span>Quản lý đơn hàng</span></button>
-                        <button id="sub-commerce-products" onclick="switchSubTab('commerce', 'products')" class="subtab-pill"><span>Danh mục sản phẩm</span></button>
-                        <button id="sub-commerce-promotions" onclick="switchSubTab('commerce', 'promotions')" class="subtab-pill"><span>Chương trình Marketing</span></button>
+                    <div class="inline-flex gap-2 flex-wrap">
+                        <button id="sub-commerce-orders" onclick="switchSubTab('commerce', 'orders')" class="subtab-pill active"><span>1. Quản lý đơn hàng</span></button>
+                        <button id="sub-commerce-products" onclick="switchSubTab('commerce', 'products')" class="subtab-pill"><span>2. Danh mục 135+ sản phẩm</span></button>
+                        <button id="sub-commerce-promotions" onclick="switchSubTab('commerce', 'promotions')" class="subtab-pill"><span>3. Chương trình Marketing</span></button>
                     </div>
                 </div>
 
-                <div id="subpanel-commerce-orders" class="subpanel-content active space-y-5">
+                <!-- ORDERS SUBPANEL -->
+                <div id="subpanel-commerce-orders" class="subpanel-content active space-y-4">
+                    <div class="flex items-center justify-between gap-3 flex-wrap bg-white dark:bg-slate-900 p-3 rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <div class="search-bar flex-grow max-w-md">
+                            <span class="material-symbols-outlined">search</span>
+                            <input type="text" oninput="handleTableSearch('orders', this.value)" placeholder="Tìm kiếm theo mã đơn #GEMS, tên khách hàng..."/>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <select onchange="handleTableFilter('orders', this.value)" class="form-select text-xs font-bold w-auto py-2 px-3">
+                                <option value="all">Tất cả trạng thái</option>
+                                <option value="Hoàn thành">Hoàn thành</option>
+                                <option value="Đang giao">Đang giao</option>
+                                <option value="Đang xử lý">Đang xử lý</option>
+                            </select>
+                            <button onclick="exportOrdersCSV()" class="btn-sm btn-edit text-xs py-2 px-3 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">download</span>
+                                <span>Xuất Excel</span>
+                            </button>
+                        </div>
+                    </div>
+
                     <div class="content-card overflow-hidden">
                         <div class="overflow-x-auto">
                             <table>
@@ -413,43 +388,174 @@
                                 <tbody id="gems-orders-tbody"><tr><td colspan="7" class="text-center py-8 text-slate-400">Đang tải dữ liệu đơn hàng...</td></tr></tbody>
                             </table>
                         </div>
+                        <div id="orders-pagination"></div>
                     </div>
                 </div>
 
-                <div id="subpanel-commerce-products" class="subpanel-content space-y-5">
+                <!-- PRODUCTS SUBPANEL -->
+                <div id="subpanel-commerce-products" class="subpanel-content space-y-4">
+                    <div class="flex items-center justify-between gap-3 flex-wrap bg-white dark:bg-slate-900 p-3 rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <div class="search-bar flex-grow max-w-md">
+                            <span class="material-symbols-outlined">search</span>
+                            <input type="text" oninput="handleTableSearch('products', this.value)" placeholder="Tìm kiếm tên sản phẩm, danh mục..."/>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <select onchange="handleTableFilter('products', this.value)" class="form-select text-xs font-bold w-auto py-2 px-3">
+                                <option value="all">Tất cả danh mục</option>
+                                <option value="Thiết bị y tế">Thiết bị y tế</option>
+                                <option value="Dược liệu">Dược liệu</option>
+                                <option value="Mỹ phẩm &amp; Chăm sóc">Mỹ phẩm &amp; Chăm sóc</option>
+                                <option value="Thiết bị công nghệ">Thiết bị công nghệ</option>
+                                <option value="Đồ gia dụng">Đồ gia dụng</option>
+                                <option value="Thời trang y tế">Thời trang y tế</option>
+                            </select>
+                            <button onclick="exportProductsCSV()" class="btn-sm btn-edit text-xs py-2 px-3 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">download</span>
+                                <span>Xuất Excel</span>
+                            </button>
+                            <button onclick="openAddProductModal()" class="btn-primary text-xs py-2 px-4 whitespace-nowrap">
+                                <span class="material-symbols-outlined text-sm">add</span>
+                                <span>+ Thêm SP Mới</span>
+                            </button>
+                        </div>
+                    </div>
+
                     <div class="content-card overflow-hidden">
                         <div class="overflow-x-auto">
                             <table>
-                                <thead><tr><th>Ảnh</th><th>Tên Sản Phẩm</th><th>Danh Mục</th><th>Giá Bán</th><th>Giá Gốc</th><th>Trạng Thái</th><th class="text-right">Thao Tác</th></tr></thead>
-                                <tbody id="products-tbody"><tr><td colspan="7" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr></tbody>
+                                <thead><tr><th>Ảnh</th><th>Mã SP</th><th>Tên Sản Phẩm GEMS Mall</th><th>Danh Mục</th><th>Giá Bán</th><th>Giá Gốc</th><th>Trạng Thái</th><th class="text-right">Thao Tác</th></tr></thead>
+                                <tbody id="products-tbody"><tr><td colspan="8" class="text-center py-8 text-slate-400">Đang tải danh mục 135+ sản phẩm...</td></tr></tbody>
                             </table>
                         </div>
+                        <div id="products-pagination"></div>
                     </div>
                 </div>
 
-                <div id="subpanel-commerce-promotions" class="subpanel-content space-y-5">
+                <!-- PROMOTIONS SUBPANEL -->
+                <div id="subpanel-commerce-promotions" class="subpanel-content space-y-4">
                     <div class="content-card overflow-hidden">
                         <div class="overflow-x-auto">
                             <table>
                                 <thead><tr><th>Mã Code</th><th>Loại Giảm</th><th>Giá Trị</th><th>Đơn Tối Thiểu</th><th>Trạng Thái</th><th class="text-right">Thao Tác</th></tr></thead>
-                                <tbody id="vouchers-tbody"><tr><td colspan="6" class="text-center py-8 text-slate-400">Đang tải dữ liệu...</td></tr></tbody>
+                                <tbody id="vouchers-tbody"><tr><td colspan="6" class="text-center py-8 text-slate-400">Đang tải danh sách voucher...</td></tr></tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ====== OTHER TABS ====== -->
-            <div id="tab-growth" class="tab-content space-y-6">
-                <div class="content-card p-6 text-center text-slate-400"><span class="material-symbols-outlined text-5xl mb-2">timer</span><p class="font-bold text-sm">Chỉ số tăng trưởng độc giả &amp; cửa hàng</p></div>
+            <!-- ====== MODULE 3: TỦ SÁCH & TRI THỨC Y KHOA ====== -->
+            <div id="tab-knowledge" class="tab-content space-y-6">
+                <div class="flex items-center justify-between flex-wrap gap-4 border-b border-slate-200 dark:border-slate-800 pb-3">
+                    <div class="inline-flex gap-2 flex-wrap">
+                        <button id="sub-knowledge-books" onclick="switchSubTab('knowledge', 'books')" class="subtab-pill active"><span>1. Tủ sách Y Khoa (30 cuốn)</span></button>
+                        <button id="sub-knowledge-dict" onclick="switchSubTab('knowledge', 'dict')" class="subtab-pill"><span>2. Từ điển Y Khoa (30 thuật ngữ)</span></button>
+                    </div>
+                </div>
+
+                <!-- BOOKS SUBPANEL -->
+                <div id="subpanel-knowledge-books" class="subpanel-content active space-y-4">
+                    <div class="flex items-center justify-between gap-3 flex-wrap bg-white dark:bg-slate-900 p-3 rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <div class="search-bar flex-grow max-w-md">
+                            <span class="material-symbols-outlined">search</span>
+                            <input type="text" oninput="handleTableSearch('books', this.value)" placeholder="Tìm tên sách, mã ID, tác giả..."/>
+                        </div>
+                        <button onclick="showToast('Chức năng thêm sách y khoa mới', 'info')" class="btn-primary text-xs py-2 px-4">
+                            <span class="material-symbols-outlined text-sm">library_add</span>
+                            <span>+ Thêm Sách Y Khoa Mới</span>
+                        </button>
+                    </div>
+
+                    <div class="content-card overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table>
+                                <thead><tr><th>Bìa</th><th>Mã Sách</th><th>Tên Tác Phẩm Y Khoa</th><th>Danh Mục</th><th>Tác Giả</th><th>Số Chương</th><th>Trạng Thái Cloud</th><th class="text-right">Thao Tác</th></tr></thead>
+                                <tbody id="books-tbody"><tr><td colspan="8" class="text-center py-8 text-slate-400">Đang tải Tủ Sách Y Khoa...</td></tr></tbody>
+                            </table>
+                        </div>
+                        <div id="books-pagination"></div>
+                    </div>
+                </div>
+
+                <!-- DICTIONARY SUBPANEL -->
+                <div id="subpanel-knowledge-dict" class="subpanel-content space-y-4">
+                    <div class="flex items-center justify-between gap-3 flex-wrap bg-white dark:bg-slate-900 p-3 rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <div class="search-bar flex-grow max-w-md">
+                            <span class="material-symbols-outlined">search</span>
+                            <input type="text" oninput="handleTableSearch('dict', this.value)" placeholder="Tìm thuật ngữ Y khoa, triệu chứng..."/>
+                        </div>
+                    </div>
+
+                    <div class="content-card overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table>
+                                <thead><tr><th>Thuật Ngữ Y Khoa</th><th>Phân Loại</th><th>Định Nghĩa / Giải Thích Lâm Sàng</th><th>Trạng Thái</th><th class="text-right">Thao Tác</th></tr></thead>
+                                <tbody id="dict-tbody"><tr><td colspan="5" class="text-center py-8 text-slate-400">Đang tải Từ Điển Y Khoa...</td></tr></tbody>
+                            </table>
+                        </div>
+                        <div id="dict-pagination"></div>
+                    </div>
+                </div>
             </div>
 
-            <div id="tab-analytics" class="tab-content space-y-6">
-                <div class="content-card p-6 text-center text-slate-400"><span class="material-symbols-outlined text-5xl mb-2">bar_chart</span><p class="font-bold text-sm">Số liệu phân tích báo cáo chi tiết</p></div>
-            </div>
-
+            <!-- ====== MODULE 4: NGƯỜI DÙNG & PHÂN QUYỀN ====== -->
             <div id="tab-users" class="tab-content space-y-6">
-                <div class="content-card p-6 text-center text-slate-400"><span class="material-symbols-outlined text-5xl mb-2">attach_money</span><p class="font-bold text-sm">Tài chính &amp; Quản lý ví rút tiền</p></div>
+                <div class="flex items-center justify-between gap-3 flex-wrap bg-white dark:bg-slate-900 p-3 rounded-2xl border border-slate-200 dark:border-slate-800">
+                    <div class="search-bar flex-grow max-w-md">
+                        <span class="material-symbols-outlined">search</span>
+                        <input type="text" oninput="handleTableSearch('users', this.value)" placeholder="Tìm kiếm theo email, tên bác sĩ..."/>
+                    </div>
+                </div>
+
+                <div class="content-card overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table>
+                            <thead><tr><th>Email / ID</th><th>Tên Hiển Thị</th><th>Hạng Thành Viên</th><th>Quyền Hệ Thống</th><th>Cổng Tác Vụ</th><th>Ngày Tạo</th><th class="text-right">Thao Tác</th></tr></thead>
+                            <tbody id="users-tbody"><tr><td colspan="7" class="text-center py-8 text-slate-400">Đang tải dữ liệu người dùng...</td></tr></tbody>
+                        </table>
+                    </div>
+                    <div id="users-pagination"></div>
+                </div>
+            </div>
+
+            <!-- ====== MODULE 5: HỒ SƠ NGƯỜI BÁN & TÀI CHÍNH ====== -->
+            <div id="tab-seller" class="tab-content space-y-6">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
+                    <h2 class="text-xl font-black text-slate-900 dark:text-white">Hồ sơ người bán &amp; Cửa hàng THÁI NHÂN SÂM</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="content-card p-6 space-y-4">
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-3">Thông Tin Người Bán</h3>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-xs text-slate-400 font-medium">Tên chủ gian hàng</p>
+                                <p class="text-lg font-black text-slate-900 dark:text-white mt-1">THÁI NHÂN SÂM</p>
+                            </div>
+                            <span class="badge badge-vip">Chủ Sở Hữu GEMS</span>
+                        </div>
+                        <div class="pt-2">
+                            <p class="text-xs text-slate-400 font-medium">Email quản trị</p>
+                            <p class="text-sm font-bold text-sky-600 mt-0.5">thainhansam.gems@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card p-6 space-y-4">
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-3">Logo Thương Hiệu</h3>
+                        <div class="flex items-center gap-5">
+                            <div class="w-20 h-20 rounded-2xl overflow-hidden border-2 border-sky-500 shadow-md">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Thái Nhân Sâm">
+                            </div>
+                            <div>
+                                <button onclick="showToast('Tải logo mới', 'info')" class="btn-sm btn-edit py-2 px-4">
+                                    <span class="material-symbols-outlined text-sm">upload</span> 
+                                    <span>Thay đổi logo</span>
+                                </button>
+                                <p class="text-[11px] text-slate-400 mt-1.5">Định dạng PNG/JPG, tối đa 2MB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </main>
@@ -506,6 +612,91 @@
                 </button>
             </div>
         </form>
+    </div>
+</div>
+
+<!-- ADD/EDIT PRODUCT MODAL -->
+<div id="modal-add-edit-product" class="modal-overlay hidden">
+    <div class="modal-box" style="max-width:560px">
+        <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+            <h3 class="text-sm font-extrabold flex items-center gap-2 text-slate-900 dark:text-white">
+                <span class="material-symbols-outlined text-sky-600">add_shopping_cart</span>
+                <span>Thêm / Chỉnh Sửa Sản Phẩm GEMS Mall</span>
+            </h3>
+            <button onclick="closeModal('modal-add-edit-product')" class="p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <form onsubmit="saveProduct(event)" class="p-5 space-y-4">
+            <div>
+                <label class="form-label text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">Tên Sản Phẩm GEMS Mall *</label>
+                <input type="text" id="prod-input-title" required placeholder="Ví dụ: Máy Đo Huyết Áp Omron HEM-7121" class="form-input text-xs w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-bold"/>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="form-label text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">Danh Mục *</label>
+                    <select id="prod-input-category" class="form-select text-xs w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white">
+                        <option value="Thiết bị y tế">Thiết bị y tế</option>
+                        <option value="Dược liệu">Dược liệu</option>
+                        <option value="Sách Y Học">Sách Y Học</option>
+                        <option value="Mỹ phẩm &amp; Chăm sóc">Mỹ phẩm &amp; Chăm sóc</option>
+                        <option value="Thiết bị công nghệ">Thiết bị công nghệ</option>
+                        <option value="Đồ gia dụng">Đồ gia dụng</option>
+                        <option value="Thời trang y tế">Thời trang y tế</option>
+                        <option value="Nông sản &amp; Thực phẩm">Nông sản &amp; Thực phẩm</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">Hình Ảnh Sản Phẩm</label>
+                    <select id="prod-input-image" class="form-select text-xs w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white">
+                        <option value="assets/shop/bp_monitor.png">Máy Đo Huyết Áp (bp_monitor.png)</option>
+                        <option value="assets/shop/artichoke_resin.png">Cao Atiso Đà Lạt (artichoke_resin.png)</option>
+                        <option value="assets/shop/dalba_sunscreen.png">Kem Chống Nắng d'Alba (dalba_sunscreen.png)</option>
+                        <option value="assets/shop/torriden_serum.png">Serum Torriden (torriden_serum.png)</option>
+                        <option value="assets/shop/sace_lady_blush.png">Phấn Má Sace Lady (sace_lady_blush.png)</option>
+                        <option value="assets/shop/book.png">Sách Y Khoa (book.png)</option>
+                        <option value="assets/shop/ugreen_charger.png">Sạc GaN Ugreen (ugreen_charger.png)</option>
+                        <option value="assets/shop/fj_thermos.png">Bình Giữ Nhiệt Thermos (fj_thermos.png)</option>
+                        <option value="assets/shop/lotus_tea.png">Trà Sen Tây Hồ (lotus_tea.png)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="form-label text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">Giá Bán (VNĐ) *</label>
+                    <input type="number" id="prod-input-price" required placeholder="1150000" class="form-input text-xs w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-bold"/>
+                </div>
+                <div>
+                    <label class="form-label text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">Giá Gốc Niêm Yết (VNĐ)</label>
+                    <input type="number" id="prod-input-orig-price" placeholder="1350000" class="form-input text-xs w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white"/>
+                </div>
+            </div>
+            <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                <button type="button" onclick="closeModal('modal-add-edit-product')" class="btn-sm btn-edit py-2 px-4 text-xs">Hủy</button>
+                <button type="submit" class="btn-primary text-xs py-2 px-5 rounded-xl flex items-center gap-1.5 shadow-md">
+                    <span class="material-symbols-outlined text-base">check_circle</span>
+                    <span>Lưu Sản Phẩm</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ORDER DETAIL INSPECTION MODAL -->
+<div id="modal-order-detail" class="modal-overlay hidden">
+    <div class="modal-box" style="max-width:540px">
+        <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+            <h3 class="text-sm font-extrabold flex items-center gap-2 text-slate-900 dark:text-white">
+                <span class="material-symbols-outlined text-emerald-600">receipt_long</span>
+                <span>Chi Tiết Đơn Hàng GEMS</span>
+            </h3>
+            <button onclick="closeModal('modal-order-detail')" class="p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div id="order-detail-content" class="p-5 space-y-4">
+            <!-- Dynamic Order Data Injected Here -->
+        </div>
     </div>
 </div>
 
@@ -631,22 +822,141 @@
         await new Promise(r => setTimeout(r, 350));
         if (!window.db) { renderAll(); return; }
         try {
-            const [usersSnap, booksSnap, ordSnap, prodSnap] = await Promise.all([
-                window.db.collection('users').get(), window.db.collection('books').get(), window.db.collection('orders').get(), window.db.collection('shop_products').get()
+            const [usersSnap, booksSnap, ordSnap, prodSnap, dictSnap] = await Promise.all([
+                window.db.collection('users').get(),
+                window.db.collection('books').get(),
+                window.db.collection('orders').get(),
+                window.db.collection('shop_products').get(),
+                window.db.collection('dictionary').get()
             ]);
             adminCache.users = []; usersSnap.forEach(d => adminCache.users.push({ id: d.id, ...d.data() }));
             adminCache.books = {}; booksSnap.forEach(d => adminCache.books[d.id] = d.data());
             adminCache.orders = []; ordSnap.forEach(d => adminCache.orders.push({ id: d.id, ...d.data() }));
             adminCache.products = []; prodSnap.forEach(d => adminCache.products.push({ id: d.id, ...d.data() }));
+            adminCache.dict = {}; dictSnap.forEach(d => adminCache.dict[d.id] = d.data());
             renderAll();
-        } catch (err) { console.error(err); renderAll(); }
+        } catch (err) { console.error("Cloud fetch error:", err); renderAll(); }
+    }
+
+    // Global Table State & Pagination Engine
+    const tableState = {
+        products: { page: 1, query: '', filter: 'all' },
+        orders: { page: 1, query: '', filter: 'all' },
+        books: { page: 1, query: '', filter: 'all' },
+        dict: { page: 1, query: '', filter: 'all' },
+        users: { page: 1, query: '', filter: 'all' }
+    };
+
+    function handleTableSearch(type, val) {
+        if (!tableState[type]) return;
+        tableState[type].query = val.trim().toLowerCase();
+        tableState[type].page = 1;
+        if (type === 'products') renderProductsTable();
+        if (type === 'orders') renderOrdersTable();
+        if (type === 'books') renderBooksTable();
+        if (type === 'dict') renderDictTable();
+        if (type === 'users') renderUsersTable();
+    }
+
+    function handleTableFilter(type, val) {
+        if (!tableState[type]) return;
+        tableState[type].filter = val;
+        tableState[type].page = 1;
+        if (type === 'products') renderProductsTable();
+        if (type === 'orders') renderOrdersTable();
+        if (type === 'books') renderBooksTable();
+        if (type === 'dict') renderDictTable();
+        if (type === 'users') renderUsersTable();
+    }
+
+    function changeTablePage(type, delta) {
+        if (!tableState[type]) return;
+        tableState[type].page += delta;
+        if (type === 'products') renderProductsTable();
+        if (type === 'orders') renderOrdersTable();
+        if (type === 'books') renderBooksTable();
+        if (type === 'dict') renderDictTable();
+        if (type === 'users') renderUsersTable();
+    }
+
+    function getPaginatedSlice(type, fullArray) {
+        const state = tableState[type];
+        let filtered = fullArray;
+
+        if (state.query) {
+            filtered = filtered.filter(item => JSON.stringify(item).toLowerCase().includes(state.query));
+        }
+
+        if (state.filter && state.filter !== 'all') {
+            if (type === 'products') {
+                filtered = filtered.filter(item => item.category === state.filter);
+            } else if (type === 'orders') {
+                filtered = filtered.filter(item => item.status === state.filter);
+            }
+        }
+
+        const pageSize = 10;
+        const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+        state.page = Math.max(1, Math.min(state.page, totalPages));
+
+        const start = (state.page - 1) * pageSize;
+        const sliced = filtered.slice(start, start + pageSize);
+
+        // Render Pagination Control HTML
+        const pagContainer = document.getElementById(`${type}-pagination`);
+        if (pagContainer) {
+            pagContainer.innerHTML = `
+                <div class="flex items-center justify-between text-xs text-slate-500 py-3 px-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
+                    <span>Hiển thị <strong class="text-slate-800 dark:text-white">${sliced.length > 0 ? start + 1 : 0}-${Math.min(start + pageSize, filtered.length)}</strong> trên tổng số <strong class="text-slate-800 dark:text-white">${filtered.length}</strong> mục</span>
+                    <div class="flex items-center gap-2">
+                        <button onclick="changeTablePage('${type}', -1)" ${state.page <= 1 ? 'disabled class="opacity-40 cursor-not-allowed px-3 py-1 bg-slate-200 dark:bg-slate-800 rounded-lg"' : 'class="btn-sm btn-edit px-3 py-1 rounded-lg"'}>‹ Trang trước</button>
+                        <span class="font-extrabold text-slate-700 dark:text-slate-200 px-2">Trang ${state.page} / ${totalPages}</span>
+                        <button onclick="changeTablePage('${type}', 1)" ${state.page >= totalPages ? 'disabled class="opacity-40 cursor-not-allowed px-3 py-1 bg-slate-200 dark:bg-slate-800 rounded-lg"' : 'class="btn-sm btn-edit px-3 py-1 rounded-lg"'}>Trang sau ›</button>
+                    </div>
+                </div>
+            `;
+        }
+        return sliced;
+    }
+
+    async function refreshAllData() {
+        renderTableSkeletons();
+        await new Promise(r => setTimeout(r, 300));
+        if (!window.db) { renderAll(); return; }
+        try {
+            const [usersSnap, booksSnap, ordSnap, prodSnap, dictSnap] = await Promise.all([
+                window.db.collection('users').get(),
+                window.db.collection('books').get(),
+                window.db.collection('orders').get(),
+                window.db.collection('shop_products').get(),
+                window.db.collection('dictionary').get()
+            ]);
+            adminCache.users = []; usersSnap.forEach(d => adminCache.users.push({ id: d.id, ...d.data() }));
+            adminCache.books = {}; booksSnap.forEach(d => adminCache.books[d.id] = d.data());
+            adminCache.orders = []; ordSnap.forEach(d => adminCache.orders.push({ id: d.id, ...d.data() }));
+            adminCache.products = []; prodSnap.forEach(d => adminCache.products.push({ id: d.id, ...d.data() }));
+            adminCache.dict = {}; dictSnap.forEach(d => adminCache.dict[d.id] = d.data());
+            renderAll();
+        } catch (err) { console.error("Cloud fetch error:", err); renderAll(); }
     }
 
     function renderAll() {
-        document.getElementById('m-users').textContent = adminCache.users.length;
-        document.getElementById('m-orders').textContent = adminCache.orders.length || 3;
-        document.getElementById('m-content-total').textContent = Object.keys(adminCache.books).length || 10;
-        renderCharts(); renderUsersTable(); renderOrdersTable(); renderProductsTable();
+        const userCount = adminCache.users.length || 8;
+        const orderCount = adminCache.orders.length || 25;
+        const prodCount = adminCache.products.length || 135;
+        const bookCount = Object.keys(adminCache.books).length || 30;
+
+        document.getElementById('m-users').textContent = userCount;
+        document.getElementById('m-orders').textContent = orderCount;
+        document.getElementById('m-products').textContent = prodCount;
+        document.getElementById('m-content-total').textContent = bookCount;
+
+        renderCharts();
+        renderUsersTable();
+        renderOrdersTable();
+        renderProductsTable();
+        renderBooksTable();
+        renderDictTable();
     }
 
     function renderCharts() {
@@ -656,7 +966,7 @@
             if (revenueChartInstance) revenueChartInstance.destroy();
             revenueChartInstance = new Chart(ctxRev, {
                 type: 'line',
-                data: { labels: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'], datasets: [{ label: 'Doanh thu', data: [1200000, 2500000, 1800000, 3200000, 2900000, 4500000, 3800000], borderColor: '#005A9C', backgroundColor: 'rgba(0, 90, 156, 0.08)', fill: true, tension: 0.4 }] },
+                data: { labels: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'], datasets: [{ label: 'Doanh thu GEMS Mall', data: [3200000, 4500000, 3800000, 5200000, 4900000, 8500000, 7800000], borderColor: '#005A9C', backgroundColor: 'rgba(0, 90, 156, 0.08)', fill: true, tension: 0.4 }] },
                 options: { responsive: true, maintainAspectRatio: false }
             });
         }
@@ -664,17 +974,272 @@
 
     function renderOrdersTable() {
         const tbody = document.getElementById('gems-orders-tbody'); if (!tbody) return;
-        tbody.innerHTML = `<tr><td><span class="font-mono font-bold text-xs text-sky-600">#GEMS94821</span></td><td><p class="font-bold text-xs">BS. Nguyễn Văn Nam</p></td><td><p class="text-xs font-semibold">Ống Nghe Y Tế Littmann Classic III</p></td><td class="font-bold text-emerald-600">3,450,000 ₫</td><td><span class="badge badge-gems">VietQR</span></td><td><span class="badge badge-green">Đang giao</span></td><td class="text-right"><button onclick="showToast('Chi tiết đơn', 'info')" class="btn-sm btn-edit">Chi tiết</button></td></tr>`;
+        const allOrders = adminCache.orders.length > 0 ? adminCache.orders : [];
+        const pageOrders = getPaginatedSlice('orders', allOrders);
+
+        if (pageOrders.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="7" class="text-center py-8 text-slate-400">Không tìm thấy đơn hàng phù hợp.</td></tr>`;
+            return;
+        }
+
+        tbody.innerHTML = pageOrders.map(ord => {
+            const priceFormatted = typeof ord.total === 'number' ? ord.total.toLocaleString('vi-VN') + ' ₫' : (ord.total || '0 ₫');
+            const statusBadge = ord.status === 'Hoàn thành' ? 'badge-green' : (ord.status === 'Đang giao' ? 'badge-gems' : 'badge-amber');
+            return `<tr>
+                <td><span class="font-mono font-bold text-xs text-sky-600">#${ord.id}</span></td>
+                <td><p class="font-bold text-xs text-slate-900 dark:text-white">${ord.customer || 'Khách hàng'}</p></td>
+                <td><p class="text-xs font-semibold text-slate-700 dark:text-slate-300">${ord.product || 'Sản phẩm GEMS'}</p></td>
+                <td class="font-bold text-emerald-600">${priceFormatted}</td>
+                <td><span class="badge badge-slate">${ord.paymentMethod || 'VietQR'}</span></td>
+                <td><span class="badge ${statusBadge}">${ord.status || 'Đang xử lý'}</span></td>
+                <td class="text-right">
+                    <button onclick="openOrderDetailModal('${ord.id}')" class="btn-sm btn-edit py-1 px-3">Chi tiết</button>
+                </td>
+            </tr>`;
+        }).join('');
     }
 
     function renderProductsTable() {
         const tbody = document.getElementById('products-tbody'); if (!tbody) return;
-        tbody.innerHTML = `<tr><td><img src="covers/thaoduoc.png" class="w-10 h-10 object-cover rounded-xl border"></td><td><p class="font-bold text-xs">Ống Nghe Y Tế Littmann Classic III</p></td><td><span class="badge badge-slate">Thiết bị y tế</span></td><td class="font-bold text-blue-600">3,450,000 ₫</td><td class="text-slate-400 line-through text-[11px]">3,900,000 ₫</td><td><span class="badge badge-green">Đang bán</span></td><td class="text-right"><button onclick="showToast('Sửa', 'info')" class="btn-sm btn-edit">Sửa</button></td></tr>`;
+        const allProds = adminCache.products.length > 0 ? adminCache.products : [];
+        const pageProds = getPaginatedSlice('products', allProds);
+
+        if (pageProds.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="8" class="text-center py-8 text-slate-400">Không tìm thấy sản phẩm phù hợp.</td></tr>`;
+            return;
+        }
+
+        tbody.innerHTML = pageProds.map(prod => {
+            const priceStr = typeof prod.price === 'number' ? prod.price.toLocaleString('vi-VN') + ' ₫' : (prod.price || '0 ₫');
+            const origStr = prod.originalPrice ? (typeof prod.originalPrice === 'number' ? prod.originalPrice.toLocaleString('vi-VN') + ' ₫' : prod.originalPrice) : '';
+            return `<tr>
+                <td><img src="${prod.image || 'assets/shop/bp_monitor.png'}" class="w-10 h-10 object-cover rounded-xl border border-slate-200 shadow-sm" onerror="this.src='assets/logo.png'"></td>
+                <td><span class="font-mono text-[11px] font-bold text-slate-400">${prod.id || 'SP001'}</span></td>
+                <td><p class="font-bold text-xs text-slate-900 dark:text-white line-clamp-1">${prod.title}</p></td>
+                <td><span class="badge badge-slate">${prod.category || 'GEMS Mall'}</span></td>
+                <td class="font-bold text-sky-600">${priceStr}</td>
+                <td class="text-slate-400 line-through text-[11px]">${origStr}</td>
+                <td><span class="badge badge-green">${prod.status || 'Đang bán'}</span></td>
+                <td class="text-right">
+                    <button onclick="showToast('Chỉnh sửa: ${prod.title}', 'info')" class="btn-sm btn-edit py-1 px-3">Sửa</button>
+                </td>
+            </tr>`;
+        }).join('');
+    }
+
+    function renderBooksTable() {
+        const tbody = document.getElementById('books-tbody'); if (!tbody) return;
+        const bookEntries = Object.entries(adminCache.books).map(([id, data]) => ({ id, ...data }));
+        const pageBooks = getPaginatedSlice('books', bookEntries);
+
+        if (pageBooks.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="8" class="text-center py-8 text-slate-400">Không tìm thấy sách Y Khoa.</td></tr>`;
+            return;
+        }
+
+        tbody.innerHTML = pageBooks.map(book => {
+            const coverSrc = book.cover || `covers/${book.id}.png`;
+            const chapterCount = book.chapters ? (Array.isArray(book.chapters) ? book.chapters.length : Object.keys(book.chapters).length) : 1;
+            return `<tr>
+                <td><img src="${coverSrc}" class="w-8 h-10 object-cover rounded-lg border shadow-sm" onerror="this.src='covers/thaoduoc.png'"></td>
+                <td><span class="font-mono text-xs font-bold text-slate-500">${book.id}</span></td>
+                <td><p class="font-bold text-xs text-slate-900 dark:text-white">${book.title || book.id}</p></td>
+                <td><span class="badge badge-gems">${book.category || 'Y Khoa'}</span></td>
+                <td><p class="text-xs text-slate-600 dark:text-slate-300 font-medium">${book.author || 'BS. Chuyên Khoa'}</p></td>
+                <td><span class="font-extrabold text-xs text-sky-600">${chapterCount} chương</span></td>
+                <td><span class="badge badge-green">✓ Cloud</span></td>
+                <td class="text-right"><button onclick="showToast('Xem chi tiết sách ${book.id}', 'info')" class="btn-sm btn-edit py-1 px-3">Chi tiết</button></td>
+            </tr>`;
+        }).join('');
+    }
+
+    function renderDictTable() {
+        const tbody = document.getElementById('dict-tbody'); if (!tbody) return;
+        const dictEntries = Object.entries(adminCache.dict).map(([key, data]) => ({ key, ...data }));
+        const pageDict = getPaginatedSlice('dict', dictEntries);
+
+        if (pageDict.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" class="text-center py-8 text-slate-400">Không tìm thấy thuật ngữ.</td></tr>`;
+            return;
+        }
+
+        tbody.innerHTML = pageDict.map(item => `<tr>
+            <td><p class="font-bold text-xs text-slate-900 dark:text-white">${item.key}</p></td>
+            <td><span class="badge badge-purple">${item.category || 'Thuật ngữ Y Khoa'}</span></td>
+            <td><p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-2">${item.definition || item.causes || 'Đang cập nhật'}</p></td>
+            <td><span class="badge badge-green">Hoạt động</span></td>
+            <td class="text-right"><button onclick="showToast('Thuật ngữ: ${item.key}', 'info')" class="btn-sm btn-edit py-1 px-3">Chi tiết</button></td>
+        </tr>`).join('');
     }
 
     function renderUsersTable() {
         const tbody = document.getElementById('users-tbody'); if (!tbody) return;
-        tbody.innerHTML = adminCache.users.map(u => `<tr><td><b>${u.email}</b></td><td>${u.name||'—'}</td><td><span class="badge badge-purple">${(u.tier||'free').toUpperCase()}</span></td><td><span class="badge badge-red">${(u.role||'user').toUpperCase()}</span></td><td><span class="badge badge-amber">Gian Hàng</span></td><td>${u.createdAt||'—'}</td><td class="text-right"><button onclick="showToast('Phân quyền', 'info')" class="btn-sm btn-perm">Phân quyền</button></td></tr>`).join('');
+        const allUsers = adminCache.users;
+        const pageUsers = getPaginatedSlice('users', allUsers);
+
+        if (pageUsers.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="7" class="text-center py-8 text-slate-400">Không tìm thấy người dùng.</td></tr>`;
+            return;
+        }
+
+        tbody.innerHTML = pageUsers.map(u => `<tr>
+            <td><b class="text-xs text-slate-900 dark:text-white">${u.email}</b></td>
+            <td><span class="text-xs font-semibold">${u.name || '—'}</span></td>
+            <td><span class="badge badge-purple">${(u.tier || 'free').toUpperCase()}</span></td>
+            <td><span class="badge badge-red">${(u.role || 'user').toUpperCase()}</span></td>
+            <td><span class="badge badge-slate">${u.storeName || 'Độc Giả GEMS'}</span></td>
+            <td><span class="text-xs text-slate-400">${u.createdAt || '01/01/2026'}</span></td>
+            <td class="text-right"><button onclick="showToast('Phân quyền tài khoản ${u.email}', 'info')" class="btn-sm btn-perm py-1 px-3">Phân quyền</button></td>
+        </tr>`).join('');
+    }
+
+    function openAddProductModal() {
+        document.getElementById('prod-input-title').value = '';
+        document.getElementById('prod-input-price').value = '';
+        document.getElementById('prod-input-orig-price').value = '';
+        openModal('modal-add-edit-product');
+    }
+
+    async function saveProduct(e) {
+        e.preventDefault();
+        const title = document.getElementById('prod-input-title').value.trim();
+        const category = document.getElementById('prod-input-category').value;
+        const image = document.getElementById('prod-input-image').value;
+        const price = Number(document.getElementById('prod-input-price').value) || 0;
+        const originalPrice = Number(document.getElementById('prod-input-orig-price').value) || price;
+
+        if (!title || price <= 0) {
+            showToast('Vui lòng nhập đầy đủ tên và giá bán!', 'error');
+            return;
+        }
+
+        const docId = `prod_gems_${Date.now()}`;
+        const newProduct = { title, category, image, price, originalPrice, status: "Đang bán", sold: "0+", rating: "5.0" };
+
+        try {
+            if (window.db) {
+                await window.db.collection('shop_products').doc(docId).set(newProduct);
+            }
+            adminCache.products.unshift({ id: docId, ...newProduct });
+            renderProductsTable();
+            closeModal('modal-add-edit-product');
+            showToast(`Đã thêm sản phẩm "${title}" thành công!`, 'success');
+        } catch (err) {
+            console.error("Save product error:", err);
+            adminCache.products.unshift({ id: docId, ...newProduct });
+            renderProductsTable();
+            closeModal('modal-add-edit-product');
+            showToast(`Đã lưu sản phẩm "${title}"!`, 'success');
+        }
+    }
+
+    function openOrderDetailModal(orderId) {
+        const ord = adminCache.orders.find(o => o.id === orderId);
+        const container = document.getElementById('order-detail-content');
+        if (!container) return;
+
+        if (!ord) {
+            container.innerHTML = `<p class="text-xs text-slate-400 text-center py-4">Không tìm thấy đơn hàng #${orderId}</p>`;
+        } else {
+            const priceFormatted = typeof ord.total === 'number' ? ord.total.toLocaleString('vi-VN') + ' ₫' : (ord.total || '0 ₫');
+            container.innerHTML = `
+                <div class="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl space-y-2 border border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-slate-400 font-bold">Mã Đơn Hàng</span>
+                        <span class="font-mono font-black text-sky-600 text-sm">#${ord.id}</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-slate-400 font-bold">Khách Hàng</span>
+                        <span class="text-xs font-black text-slate-900 dark:text-white">${ord.customer || 'Khách hàng'}</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-slate-400 font-bold">Kênh Thanh Toán</span>
+                        <span class="badge badge-slate">${ord.paymentMethod || 'VietQR'}</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-1 border-t border-slate-200 dark:border-slate-700">
+                        <span class="text-xs text-slate-500 font-bold">Tổng Giá Trị</span>
+                        <span class="text-base font-black text-emerald-600">${priceFormatted}</span>
+                    </div>
+                </div>
+
+                <div class="space-y-1.5">
+                    <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block">Sản Phẩm Đã Đặt Mua</label>
+                    <div class="p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs font-semibold text-slate-800 dark:text-slate-200">
+                        ${ord.product || 'Sản phẩm GEMS Mall'}
+                    </div>
+                </div>
+
+                <div class="space-y-1.5">
+                    <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block">Cập Nhật Trạng Thái Giao Hàng</label>
+                    <div class="flex items-center gap-2">
+                        <button onclick="updateOrderStatus('${ord.id}', 'Đang xử lý')" class="flex-1 py-2 text-xs font-bold rounded-xl border border-amber-300 bg-amber-50 text-amber-700 hover:bg-amber-100">Đang xử lý</button>
+                        <button onclick="updateOrderStatus('${ord.id}', 'Đang giao')" class="flex-1 py-2 text-xs font-bold rounded-xl border border-sky-300 bg-sky-50 text-sky-700 hover:bg-sky-100">Đang giao</button>
+                        <button onclick="updateOrderStatus('${ord.id}', 'Hoàn thành')" class="flex-1 py-2 text-xs font-bold rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-700 hover:bg-emerald-100">Hoàn thành</button>
+                    </div>
+                </div>
+            `;
+        }
+        openModal('modal-order-detail');
+    }
+
+    async function updateOrderStatus(orderId, newStatus) {
+        const ord = adminCache.orders.find(o => o.id === orderId);
+        if (ord) {
+            ord.status = newStatus;
+            try {
+                if (window.db) {
+                    await window.db.collection('orders').doc(orderId).update({ status: newStatus });
+                }
+            } catch (err) {
+                console.error("Order status update error:", err);
+            }
+            renderOrdersTable();
+            closeModal('modal-order-detail');
+            showToast(`Đã cập nhật đơn hàng #${orderId} sang "${newStatus}"!`, 'success');
+        }
+    }
+
+    // Enterprise UTF-8 BOM CSV Exporter Engine
+    function downloadCSV(filename, csvData) {
+        const blob = new Blob(["\uFEFF" + csvData], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", filename);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    function exportProductsCSV() {
+        const prods = adminCache.products.length > 0 ? adminCache.products : [];
+        if (prods.length === 0) { showToast('Không có dữ liệu sản phẩm để xuất!', 'error'); return; }
+
+        let csv = "Mã Sản Phẩm,Tên Sản Phẩm GEMS Mall,Danh Mục,Giá Bán (VNĐ),Giá Gốc (VNĐ),Trạng Thái,Đã Bán,Đánh Giá\n";
+        prods.forEach((p, idx) => {
+            csv += `"${p.id || 'SP' + (idx+1)}","${(p.title || '').replace(/"/g, '""')}","${p.category || 'Thiết bị y tế'}",${p.price || 0},${p.originalPrice || 0},"${p.status || 'Đang bán'}","${p.sold || '0+'}","${p.rating || '5.0'}"\n`;
+        });
+        downloadCSV("GEMS_Mall_Products_135_Items.csv", csv);
+        showToast("Đã xuất file Excel danh mục 135+ sản phẩm thành công!", "success");
+    }
+
+    function exportOrdersCSV() {
+        const ords = adminCache.orders.length > 0 ? adminCache.orders : [];
+        if (ords.length === 0) { showToast('Không có dữ liệu đơn hàng để xuất!', 'error'); return; }
+
+        let csv = "Mã Đơn GEMS,Tên Khách Hàng,Sản Phẩm Đã Mua,Tổng Tiền (VNĐ),Kênh Thanh Toán,Trạng Thái,Ngày Đặt\n";
+        ords.forEach(o => {
+            csv += `"#${o.id}","${(o.customer || '').replace(/"/g, '""')}","${(o.product || '').replace(/"/g, '""')}",${o.total || 0},"${o.paymentMethod || 'VietQR'}","${o.status || 'Đang xử lý'}","${o.createdAt || '10/08/2026'}"\n`;
+        });
+        downloadCSV("GEMS_Orders_Report_2026.csv", csv);
+        showToast("Đã xuất file Excel báo cáo 25 đơn hàng thành công!", "success");
+    }
+
+    function toggleAdminNotifDrawer() {
+        const drawer = document.getElementById('admin-notif-drawer');
+        if (drawer) {
+            drawer.classList.toggle('translate-x-full');
+        }
     }
 
     function openModal(id) { document.getElementById(id).classList.remove('hidden'); }

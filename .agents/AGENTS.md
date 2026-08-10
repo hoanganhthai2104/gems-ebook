@@ -27,3 +27,5 @@
 - **Selection Toolbar Behavior**: The floating selection toolbar (`#selection-toolbar`) appears when the user selects/highlights text inside the e-reader viewport. It must only be dismissed when clicking OUTSIDE the reader viewport — not when clicking inside `#reader-note-modal`.
 
 \n- **JavaScript Template Literal Backslash Safety**: Khi biên dịch hoặc ghi mã JavaScript động bằng Python scripts vào file HTML, tuyệt đối KHÔNG được chèn ký tự gạch chéo ngược `\\` đứng trước ký tự đô-la `$` (ví dụ: `\\${...}`). Điều này sẽ làm hỏng cú pháp nội suy chuỗi của JavaScript, dẫn đến lỗi cú pháp nghiêm trọng làm dừng ứng dụng ở màn hình chào mừng (splash screen). Hãy luôn kiểm tra kỹ các file sau khi ghi đè để đảm bảo không có lỗi `\\$`.
+
+- **Google Drive Books Storage Link**: Link thư mục Google Drive chứa tài liệu nguồn toàn bộ các cuốn sách: https://drive.google.com/drive/u/0/folders/1aOx0hSuLGX85KI_Pu_9wvUM3KM6mFRy9 (Đã lưu cố định tại `data/google_drive_books_link.txt` và `AGENTS.md`).

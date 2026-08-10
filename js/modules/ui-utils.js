@@ -1,6 +1,30 @@
 /* js/modules/ui-utils.js - Toast Notifications, Scroll Handlers & Modal Helpers */
 (function() {
+    window.triggerHaptic = function(type = 'light') {
+        if (!('vibrate' in navigator)) return;
+        try {
+            switch (type) {
+                case 'light':
+                    navigator.vibrate(10);
+                    break;
+                case 'medium':
+                    navigator.vibrate(25);
+                    break;
+                case 'success':
+                    navigator.vibrate([15, 50, 20]);
+                    break;
+                default:
+                    navigator.vibrate(10);
+            }
+        } catch (e) {
+            // Ignore silent vibration failures
+        }
+    };
+
     window.showToast = function(msg, type = 'info') {
+        const hapticType = type === 'success' ? 'success' : (type === 'error' || type === 'warning' ? 'medium' : 'light');
+        if (typeof window.triggerHaptic === 'function') window.triggerHaptic(hapticType);
+
         let container = document.getElementById('toast-container');
         if (!container) {
             container = document.createElement('div');
