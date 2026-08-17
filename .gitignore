@@ -12,3 +12,6 @@ ebook gems group/
 index_backup_*.html
 hunk_inspect.txt
 lines_inspect.txt
+
+# Backup original covers before WebP conversion
+covers/originals/

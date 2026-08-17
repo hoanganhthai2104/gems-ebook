@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="vi" class="light">
 
@@ -28,15 +28,23 @@
 
     <!-- Tailwind CSS with Forms plugin -->
 
+    <!-- Resource Hints: Preconnect to critical origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 
-    <!-- Firebase Web SDKs (Compat mode) -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <!-- Firebase Web SDKs (Compat mode) - defer to not block render -->
+    <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 
     <script>
-      const firebaseConfig = {
+      // Store config early; actual init runs after deferred Firebase SDKs load
+      window._firebaseConfig = {
         apiKey: "AIzaSyBqYwumJNkRogUIjCY965OQQv28nGeHI_o",
         authDomain: "gems-ebook.firebaseapp.com",
         projectId: "gems-ebook",
@@ -44,11 +52,15 @@
         messagingSenderId: "531668800970",
         appId: "1:531668800970:web:0985471a02361fcf0e6b33"
       };
-      if (typeof firebase !== 'undefined') {
-        firebase.initializeApp(firebaseConfig);
-        window.db = firebase.firestore();
-        console.log("🔥 Firebase initialized successfully!");
-      }
+      window.initFirebase = function() {
+        if (typeof firebase !== 'undefined' && !firebase.apps.length) {
+          firebase.initializeApp(window._firebaseConfig);
+          window.db = firebase.firestore();
+          console.log("🔥 Firebase initialized successfully!");
+        }
+      };
+      // Fallback: init on DOMContentLoaded (after deferred scripts run)
+      document.addEventListener('DOMContentLoaded', window.initFirebase);
     </script>
 
     <!-- Application Styles -->
@@ -67,15 +79,14 @@
     <script src="js/modules/shop.js"></script>
     <script src="js/app.js"></script>
 
-    <!-- Fonts -->
+    <!-- Fonts - preconnect above ensures these load fast -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,600..900;1,600..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,600..900;1,600..900&display=swap" rel="stylesheet"/>
+    <!-- Google Material Symbols - load async -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"></noscript>
 
-    <!-- Google Material Symbols -->
-
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
-
-    
 
     <!-- Canvas Confetti Library -->
 
@@ -2065,6 +2076,50 @@
 
         }
 
+        /* ======================================================
+           PERFORMANCE OPTIMIZATIONS
+           ====================================================== */
+
+        /* GPU-accelerated animated elements */
+        .card-lift,
+        .card-lift:hover,
+        .nav-icon-wrapper,
+        .gems-book-cover,
+        #splash-screen,
+        #view-reader,
+        #article-detail-modal {
+            will-change: transform;
+        }
+
+        /* Defer layout of off-screen view panels */
+        .view-panel {
+            content-visibility: auto;
+            contain-intrinsic-size: 0 800px;
+        }
+
+        /* Smooth image rendering for scaled images */
+        img {
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        /* Reduce paint cost for glass-blur elements — only compute when visible */
+        .glass-header,
+        .glass-nav {
+            will-change: backdrop-filter;
+        }
+
+        /* Contain layout/paint for heavy scroll containers */
+        .overflow-y-auto,
+        .overflow-x-auto {
+            contain: layout style;
+        }
+
+        /* Snap scrolling acceleration */
+        .snap-x {
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: auto; /* let snap handle it, avoid forced-smooth lag */
+        }
+
     </style>
 
 </head>
@@ -2716,7 +2771,7 @@
 
                                     <div class="relative w-40 h-24 shrink-0 snap-start rounded-2xl overflow-hidden shadow-[0_4px_10px_rgba(0,0,0,0.04)] border border-slate-100/80 cursor-pointer group active:scale-[0.99] transition-all" onclick="openArticleDetail('timmach2024')">
 
-                                        <img src="covers/hospital_corridor.png" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500 pointer-events-none select-none" alt="News Image 1" draggable="false" loading="lazy" decoding="async">
+                                        <img src="covers/hospital_corridor.webp" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500 pointer-events-none select-none" alt="News Image 1" draggable="false" loading="lazy" decoding="async">
 
                                         <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
 
@@ -2738,7 +2793,7 @@
 
                                     <div class="relative w-40 h-24 shrink-0 snap-start rounded-2xl overflow-hidden shadow-[0_4px_10px_rgba(0,0,0,0.04)] border border-slate-100/80 cursor-pointer group active:scale-[0.99] transition-all" onclick="openArticleDetail('ungthu2024')">
 
-                                        <img src="covers/immunotherapy_lab.png" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500 pointer-events-none select-none" alt="News Image 2" draggable="false" loading="lazy" decoding="async">
+                                        <img src="covers/immunotherapy_lab.webp" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500 pointer-events-none select-none" alt="News Image 2" draggable="false" loading="lazy" decoding="async">
 
                                         <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
 
@@ -2758,7 +2813,7 @@
 
                                     <div class="relative w-40 h-24 shrink-0 snap-start rounded-2xl overflow-hidden shadow-[0_4px_10px_rgba(0,0,0,0.04)] border border-slate-100/80 cursor-pointer group active:scale-[0.99] transition-all" onclick="openArticleDetail('ai_y_khoa')">
 
-                                        <img src="covers/digital_health_data.png" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500 pointer-events-none select-none" alt="News Image 3" draggable="false" loading="lazy" decoding="async">
+                                        <img src="covers/digital_health_data.webp" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500 pointer-events-none select-none" alt="News Image 3" draggable="false" loading="lazy" decoding="async">
 
                                         <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
 
@@ -3629,7 +3684,7 @@
 
                                                 <div class="absolute right-6 top-1/2 -translate-y-1/2 h-[80%] aspect-[3/4] rounded-lg overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.5)] ring-1 ring-white/10 group-hover:scale-105 transition-transform duration-500">
 
-                                                    <img src="covers/thankinh.png" class="w-full h-full object-cover" alt="Thần kinh học" loading="lazy" decoding="async">
+                                                    <img src="covers/thankinh.webp" class="w-full h-full object-cover" alt="Thần kinh học" loading="lazy" decoding="async">
 
                                                 </div>
 
@@ -3667,7 +3722,7 @@
 
                                                 <div class="absolute right-6 top-1/2 -translate-y-1/2 h-[80%] aspect-[3/4] rounded-lg overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.5)] ring-1 ring-white/10 group-hover:scale-105 transition-transform duration-500">
 
-                                                    <img src="covers/thaoduoc.png" class="w-full h-full object-cover" alt="Thảo dược" loading="lazy" decoding="async">
+                                                    <img src="covers/thaoduoc.webp" class="w-full h-full object-cover" alt="Thảo dược" loading="lazy" decoding="async">
 
                                                 </div>
 
@@ -3703,7 +3758,7 @@
 
                                                 <div class="absolute right-6 top-1/2 -translate-y-1/2 h-[80%] aspect-[3/4] rounded-lg overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.5)] ring-1 ring-white/10 group-hover:scale-105 transition-transform duration-500">
 
-                                                    <img src="covers/lamsangnoikhoa.png" class="w-full h-full object-cover" alt="Lâm sàng Nội khoa" loading="lazy" decoding="async">
+                                                    <img src="covers/lamsangnoikhoa.webp" class="w-full h-full object-cover" alt="Lâm sàng Nội khoa" loading="lazy" decoding="async">
 
                                                 </div>
 
@@ -3783,7 +3838,7 @@
 
                                             <div class="w-full aspect-[2/3] rounded-xl overflow-hidden shadow-sm mb-2 group-hover:scale-[1.02] transition-transform duration-300">
 
-                                                <img src="covers/thankinh.png" class="w-full h-full object-cover" alt="Thần kinh học cơ bản" loading="lazy" decoding="async">
+                                                <img src="covers/thankinh.webp" class="w-full h-full object-cover" alt="Thần kinh học cơ bản" loading="lazy" decoding="async">
 
                                             </div>
 
@@ -3807,7 +3862,7 @@
 
                                             <div class="w-full aspect-[2/3] rounded-xl overflow-hidden shadow-sm mb-2 group-hover:scale-[1.02] transition-transform duration-300">
 
-                                                <img src="covers/lamsangnoikhoa.png" class="w-full h-full object-cover" alt="Lâm sàng Nội khoa" loading="lazy" decoding="async">
+                                                <img src="covers/lamsangnoikhoa.webp" class="w-full h-full object-cover" alt="Lâm sàng Nội khoa" loading="lazy" decoding="async">
 
                                             </div>
 
@@ -3831,7 +3886,7 @@
 
                                             <div class="w-full aspect-[2/3] rounded-xl overflow-hidden shadow-sm mb-2 group-hover:scale-[1.02] transition-transform duration-300">
 
-                                                <img src="covers/capnhatyvan.png" class="w-full h-full object-cover" alt="Cập nhật Y văn" loading="lazy" decoding="async">
+                                                <img src="covers/capnhatyvan.webp" class="w-full h-full object-cover" alt="Cập nhật Y văn" loading="lazy" decoding="async">
 
                                             </div>
 
@@ -3855,7 +3910,7 @@
 
                                             <div class="w-full aspect-[2/3] rounded-xl overflow-hidden shadow-sm mb-2 group-hover:scale-[1.02] transition-transform duration-300">
 
-                                                <img src="covers/ditruyen.png" class="w-full h-full object-cover" alt="Y học Di truyền" loading="lazy" decoding="async">
+                                                <img src="covers/ditruyen.webp" class="w-full h-full object-cover" alt="Y học Di truyền" loading="lazy" decoding="async">
 
                                             </div>
 
@@ -3879,7 +3934,7 @@
 
                                             <div class="w-full aspect-[2/3] rounded-xl overflow-hidden shadow-sm mb-2 group-hover:scale-[1.02] transition-transform duration-300">
 
-                                                <img src="covers/baoche.png" class="w-full h-full object-cover" alt="Bào chế Dược" loading="lazy" decoding="async">
+                                                <img src="covers/baoche.webp" class="w-full h-full object-cover" alt="Bào chế Dược" loading="lazy" decoding="async">
 
                                             </div>
 
@@ -3903,7 +3958,7 @@
 
                                             <div class="w-full aspect-[2/3] rounded-xl overflow-hidden shadow-sm mb-2 group-hover:scale-[1.02] transition-transform duration-300">
 
-                                                <img src="covers/nhansam.png" class="w-full h-full object-cover" alt="Nhân Sâm" loading="lazy" decoding="async">
+                                                <img src="covers/nhansam.webp" class="w-full h-full object-cover" alt="Nhân Sâm" loading="lazy" decoding="async">
 
                                             </div>
 
@@ -3945,7 +4000,7 @@
 
                                             <div class="w-10 h-14 rounded-lg overflow-hidden shrink-0 border border-slate-100 shadow-sm">
 
-                                                <img src="covers/capnhatyvan.png" class="w-full h-full object-cover" alt="Cập nhật Lâm sàng" loading="lazy" decoding="async">
+                                                <img src="covers/capnhatyvan.webp" class="w-full h-full object-cover" alt="Cập nhật Lâm sàng" loading="lazy" decoding="async">
 
                                             </div>
 
@@ -3973,7 +4028,7 @@
 
                                             <div class="w-10 h-14 rounded-lg overflow-hidden shrink-0 border border-slate-100 shadow-sm">
 
-                                                <img src="covers/ditruyen.png" class="w-full h-full object-cover" alt="Y học Di truyền" loading="lazy" decoding="async">
+                                                <img src="covers/ditruyen.webp" class="w-full h-full object-cover" alt="Y học Di truyền" loading="lazy" decoding="async">
 
                                             </div>
 
@@ -4053,7 +4108,7 @@
 
                                                 <div class="absolute top-2 left-2 z-10 bg-brand-blue text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full shadow">Nổi bật</div>
 
-                                                <img src="covers/immunotherapy_lab.png" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" alt="Phác đồ Ung thư Nâng cao" loading="lazy" decoding="async">
+                                                <img src="covers/immunotherapy_lab.webp" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" alt="Phác đồ Ung thư Nâng cao" loading="lazy" decoding="async">
 
                                             </div>
 
@@ -4101,7 +4156,7 @@
 
                                             <div class="relative w-full aspect-[2.1/1] overflow-hidden">
 
-                                                <img src="covers/sinhlythankinh.png" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" alt="Đánh giá Tính dẻo Synap" loading="lazy" decoding="async">
+                                                <img src="covers/sinhlythankinh.webp" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" alt="Đánh giá Tính dẻo Synap" loading="lazy" decoding="async">
 
                                             </div>
 
@@ -4139,7 +4194,7 @@
 
                                             <div class="relative w-full aspect-[2.1/1] overflow-hidden">
 
-                                                <img src="covers/hospital_corridor.png" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" alt="Ranh giới Dịch tễ học" loading="lazy" decoding="async">
+                                                <img src="covers/hospital_corridor.webp" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" alt="Ranh giới Dịch tễ học" loading="lazy" decoding="async">
 
                                             </div>
 
@@ -4177,7 +4232,7 @@
 
                                             <div class="relative w-full aspect-[2.1/1] overflow-hidden">
 
-                                                <img src="covers/tamly.png" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" alt="Diễn đàn Đạo đức sinh học" loading="lazy" decoding="async">
+                                                <img src="covers/tamly.webp" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" alt="Diễn đàn Đạo đức sinh học" loading="lazy" decoding="async">
 
                                             </div>
 
@@ -4215,7 +4270,7 @@
 
                                             <div class="relative w-full aspect-[2.1/1] overflow-hidden">
 
-                                                <img src="covers/digital_health_data.png" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" alt="Tin học Y tế" loading="lazy" decoding="async">
+                                                <img src="covers/digital_health_data.webp" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" alt="Tin học Y tế" loading="lazy" decoding="async">
 
                                             </div>
 
@@ -4350,7 +4405,7 @@
 
                                     <div class="w-full shrink-0 snap-start flex flex-col cursor-pointer blog-slide-item" data-category="lam-sang" onclick="openArticleDetail('timmach2024')">
 
-                                        <img src="covers/hospital_corridor.png" class="w-full h-44 rounded-2xl object-cover mb-3 shadow-sm" alt="Featured Cardiac" loading="lazy" decoding="async">
+                                        <img src="covers/hospital_corridor.webp" class="w-full h-44 rounded-2xl object-cover mb-3 shadow-sm" alt="Featured Cardiac" loading="lazy" decoding="async">
 
                                         <div class="flex items-center gap-1.5 text-[10px] font-bold text-blue-600 uppercase tracking-wider">
 
@@ -4372,7 +4427,7 @@
 
                                     <div class="w-full shrink-0 snap-start flex flex-col cursor-pointer blog-slide-item" data-category="nghien-cuu" onclick="openArticleDetail('ungthu2024')">
 
-                                        <img src="covers/immunotherapy_lab.png" class="w-full h-44 rounded-2xl object-cover mb-3 shadow-sm" alt="Featured Immunotherapy" loading="lazy" decoding="async">
+                                        <img src="covers/immunotherapy_lab.webp" class="w-full h-44 rounded-2xl object-cover mb-3 shadow-sm" alt="Featured Immunotherapy" loading="lazy" decoding="async">
 
                                         <div class="flex items-center gap-1.5 text-[10px] font-bold text-blue-600 uppercase tracking-wider">
 
@@ -4394,7 +4449,7 @@
 
                                     <div class="w-full shrink-0 snap-start flex flex-col cursor-pointer blog-slide-item" data-category="tin-y-te" onclick="openArticleDetail('ai_y_khoa')">
 
-                                        <img src="covers/digital_health_data.png" class="w-full h-44 rounded-2xl object-cover mb-3 shadow-sm" alt="Featured Health Data" loading="lazy" decoding="async">
+                                        <img src="covers/digital_health_data.webp" class="w-full h-44 rounded-2xl object-cover mb-3 shadow-sm" alt="Featured Health Data" loading="lazy" decoding="async">
 
                                         <div class="flex items-center gap-1.5 text-[10px] font-bold text-blue-600 uppercase tracking-wider">
 
@@ -4458,7 +4513,7 @@
 
                                         </div>
 
-                                        <img src="covers/immunotherapy_lab.png" class="w-20 h-20 rounded-xl object-cover shrink-0" alt="News Thumbnail 1" loading="lazy" decoding="async">
+                                        <img src="covers/immunotherapy_lab.webp" class="w-20 h-20 rounded-xl object-cover shrink-0" alt="News Thumbnail 1" loading="lazy" decoding="async">
 
                                     </div>
 
@@ -4482,7 +4537,7 @@
 
                                         </div>
 
-                                        <img src="covers/digital_health_data.png" class="w-20 h-20 rounded-xl object-cover shrink-0" alt="News Thumbnail 2" loading="lazy" decoding="async">
+                                        <img src="covers/digital_health_data.webp" class="w-20 h-20 rounded-xl object-cover shrink-0" alt="News Thumbnail 2" loading="lazy" decoding="async">
 
                                     </div>
 
@@ -10891,7 +10946,7 @@
 
                             <div class="bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.02)] rounded-3xl p-5 flex flex-col items-center">
 
-                                <img id="knowledge-book-cover" src="covers/chandoanykhoa.png" class="w-28 aspect-[2/3] rounded-xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] border border-slate-100 object-cover mb-4" alt="Book Cover" loading="lazy" decoding="async" />
+                                <img id="knowledge-book-cover" src="covers/chandoanykhoa.webp" class="w-28 aspect-[2/3] rounded-xl shadow-[0_8px_24px_rgba(0,0,0,0.08)] border border-slate-100 object-cover mb-4" alt="Book Cover" loading="lazy" decoding="async" />
 
                                 <h2 id="knowledge-book-title" class="text-sm font-bold text-slate-800 text-center leading-tight mb-1">Cẩm nang Chẩn đoán Y khoa</h2>
 
@@ -11998,7 +12053,7 @@
                                 <span>•</span>
                                 <span id="article-detail-time">Thời gian</span>
                             </div>
-                            <img id="article-detail-image" src="covers/hospital_corridor.png" class="w-full h-48 object-cover rounded-2xl shadow-sm border border-slate-100" alt="Article Cover">
+                            <img id="article-detail-image" src="covers/hospital_corridor.webp" class="w-full h-48 object-cover rounded-2xl shadow-sm border border-slate-100" alt="Article Cover">
                             <div id="article-detail-body" class="prose prose-slate max-w-none text-slate-700 text-sm space-y-3 leading-relaxed">
                                 Nội dung bài viết...
                             </div>
@@ -12052,7 +12107,7 @@
 
                             <div class="relative w-full aspect-[21/9] bg-slate-200 overflow-hidden shrink-0">
 
-                                <img src="covers/hospital_corridor.png" class="w-full h-full object-cover" alt="Group Banner" loading="lazy" decoding="async">
+                                <img src="covers/hospital_corridor.webp" class="w-full h-full object-cover" alt="Group Banner" loading="lazy" decoding="async">
 
                             </div>
 
@@ -12290,7 +12345,7 @@
 
                                     <div class="my-1 border border-slate-100 rounded-xl overflow-hidden cursor-zoom-in group shadow-sm bg-white" onclick="openHighresViewer(event)">
 
-                                        <img src="covers/immunotherapy_lab.png" class="w-full aspect-[21/9] object-cover group-hover:scale-102 transition-transform duration-300" alt="Cardiology Post Image" loading="lazy" decoding="async" />
+                                        <img src="covers/immunotherapy_lab.webp" class="w-full aspect-[21/9] object-cover group-hover:scale-102 transition-transform duration-300" alt="Cardiology Post Image" loading="lazy" decoding="async" />
 
                                     </div>
 
@@ -12726,77 +12781,77 @@
 
             const coverURLs = {
 
-                'trietly_yhss': 'covers/trietly_yhss.png',
+                'trietly_yhss': 'covers/trietly_yhss.webp',
 
-                'nuoc_va_su_song': 'covers/nuoc_va_su_song.png',
+                'nuoc_va_su_song': 'covers/nuoc_va_su_song.webp',
 
-                'tam_hoc_chua_lanh': 'covers/tam_hoc_chua_lanh.png',
+                'tam_hoc_chua_lanh': 'covers/tam_hoc_chua_lanh.webp',
 
-                'chandoanykhoa': 'covers/chandoanykhoa.png',
+                'chandoanykhoa': 'covers/chandoanykhoa.webp',
 
-                'lamsangnoikhoa': 'covers/lamsangnoikhoa.png',
+                'lamsangnoikhoa': 'covers/lamsangnoikhoa.webp',
 
-                'capnhatyvan': 'covers/capnhatyvan.png',
+                'capnhatyvan': 'covers/capnhatyvan.webp',
 
-                'thaoduoc': 'covers/thaoduoc.png',
+                'thaoduoc': 'covers/thaoduoc.webp',
 
-                'trathaomoc': 'covers/trathaomoc.png',
+                'trathaomoc': 'covers/trathaomoc.webp',
 
-                'thucduong': 'covers/thucduong.png',
+                'thucduong': 'covers/thucduong.webp',
 
-                'co-the-nguoi': 'covers/cothe.png',
+                'co-the-nguoi': 'covers/cothe.webp',
 
-                'thankinh': 'covers/thankinh.png',
+                'thankinh': 'covers/thankinh.webp',
 
-                'thankinhhoc': 'covers/thankinh.png',
+                'thankinhhoc': 'covers/thankinh.webp',
 
-                'ditruyen': 'covers/ditruyen.png',
+                'ditruyen': 'covers/ditruyen.webp',
 
                 // Herbal books diversified
 
-                'baoche': 'covers/baoche.png',
+                'baoche': 'covers/baoche.webp',
 
-                'nhansam': 'covers/nhansam.png',
+                'nhansam': 'covers/nhansam.webp',
 
-                'dongydieuphuong': 'covers/dongydieuphuong.png',
+                'dongydieuphuong': 'covers/dongydieuphuong.webp',
 
-                'namduocthanhieu': 'covers/namduocthanhieu.png',
+                'namduocthanhieu': 'covers/namduocthanhieu.webp',
 
                 // Anatomy books diversified
 
-                'giaiphau': 'covers/giaiphau.png',
+                'giaiphau': 'covers/giaiphau.webp',
 
-                'cohoc': 'covers/cohoc.png',
+                'cohoc': 'covers/cohoc.webp',
 
-                'xuongkhop': 'covers/cothe.png',
+                'xuongkhop': 'covers/cothe.webp',
 
-                'giaiphauthanhinh': 'covers/aneurysm_diagram.png',
+                'giaiphauthanhinh': 'covers/aneurysm_diagram.webp',
 
-                'atlasgiaiphau': 'covers/atlasgiaiphau.png',
+                'atlasgiaiphau': 'covers/atlasgiaiphau.webp',
 
                 // Neurology books diversified
 
-                'sinhlythankinh': 'covers/sinhlythankinh.png',
+                'sinhlythankinh': 'covers/sinhlythankinh.webp',
 
-                'naobo': 'covers/naobo.png',
+                'naobo': 'covers/naobo.webp',
 
-                'benhthanhinh': 'covers/brain_cover.png',
+                'benhthanhinh': 'covers/brain_cover.webp',
 
-                'taibienmachmau': 'covers/taibienmachmau.png',
+                'taibienmachmau': 'covers/taibienmachmau.webp',
 
-                'tamly': 'covers/tamly.png',
+                'tamly': 'covers/tamly.webp',
 
                 // Genetics books diversified
 
-                'ditruyenphantu': 'covers/ditruyenphantu.png',
+                'ditruyenphantu': 'covers/ditruyenphantu.webp',
 
-                'dotbiengene': 'covers/digital_health_data.png',
+                'dotbiengene': 'covers/digital_health_data.webp',
 
-                'ditruyentebao': 'covers/ditruyentebao.png',
+                'ditruyentebao': 'covers/ditruyentebao.webp',
 
-                'kythuatditruyen': 'covers/kythuatditruyen.png',
+                'kythuatditruyen': 'covers/kythuatditruyen.webp',
 
-                'genkhoa': 'covers/genkhoa.png'
+                'genkhoa': 'covers/genkhoa.webp'
 
             };
 
@@ -20045,7 +20100,7 @@
 
                 author: 'TS. Nguyễn Văn A & ThS. Trần Thị B',
 
-                cover: 'covers/chandoanykhoa.png',
+                cover: 'covers/chandoanykhoa.webp',
 
                 mastery: 84,
 
@@ -20121,7 +20176,7 @@
 
                 author: 'GS. TS. Nguyễn Văn Anh',
 
-                cover: 'covers/thaoduoc.png',
+                cover: 'covers/thaoduoc.webp',
 
                 mastery: 65,
 
@@ -21783,7 +21838,7 @@ let currentActiveBookId = 'chandoanykhoa';
                 category: 'Lâm sàng',
                 time: '3 giờ trước',
                 author: 'PGS. TS. BS. Nguyễn Văn Minh',
-                image: 'covers/hospital_corridor.png',
+                image: 'covers/hospital_corridor.webp',
                 content: `
                     <p class="text-sm text-slate-700 leading-relaxed font-sans mb-4">
                         Hiệp hội Tim mạch Học Châu Âu (ESC) vừa chính thức phát hành bản Cập nhật Hướng dẫn Lâm sàng 2024 về Quản lý và Điều trị Bệnh Tim mạch Thể tăng áp và Suy tim Cấp. Đây là tài liệu cốt lõi tổng hợp từ hơn 45 thử nghiệm lâm sàng ngẫu nhiên có đối chứng (RCT) mới nhất.
@@ -21809,7 +21864,7 @@ let currentActiveBookId = 'chandoanykhoa';
                 category: 'Nghiên cứu',
                 time: '5 phút trước',
                 author: 'TS. BS. Trần Thị Hoàng Anh',
-                image: 'covers/immunotherapy_lab.png',
+                image: 'covers/immunotherapy_lab.webp',
                 content: `
                     <p class="text-sm text-slate-700 leading-relaxed font-sans mb-4">
                         Một liệu pháp miễn dịch kết hợp mới (Anti-PD-1 cộng với kháng thể kép thế hệ mới) vừa đạt bước tiến ngoạn mục trong thử nghiệm lâm sàng Phase III, kéo dài thời gian sống thêm không tiến triển bệnh (PFS) lên gấp đôi ở bệnh nhân ung thư phổi tế bào không nhỏ.
@@ -21825,7 +21880,7 @@ let currentActiveBookId = 'chandoanykhoa';
                 category: 'Công nghệ Y học',
                 time: '1 ngày trước',
                 author: 'BS. Chuyên khoa II Lê Hoàng',
-                image: 'covers/hospital_corridor.png',
+                image: 'covers/hospital_corridor.webp',
                 content: `
                     <p class="text-sm text-slate-700 leading-relaxed font-sans mb-4">
                         Trí tuệ nhân tạo (AI) đang chuyển mình từ một công cụ hỗ trợ đọc phim thành trợ lý chẩn đoán thời gian thực đối với chụp CT lồng ngực và MRI sọ đóng vai trò quan trọng tại các trung tâm y khoa tuyến đầu.
@@ -22683,11 +22738,11 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 specs: { "Tác giả": "GEMS Academic", "Số trang": "320 trang", "Ngôn ngữ": "Tiếng Việt", "Bảo hành": "1 đổi 1" },
 
-                images: ["covers/chandoanykhoa.png"],
+                images: ["covers/chandoanykhoa.webp"],
 
                 variants: [
 
-                    { id: "ecg_print", name: "Bản In Bìa Mềm", price: 240000, originalPrice: 320000, image: "covers/chandoanykhoa.png", stock: 150 }
+                    { id: "ecg_print", name: "Bản In Bìa Mềm", price: 240000, originalPrice: 320000, image: "covers/chandoanykhoa.webp", stock: 150 }
 
                 ],
 
@@ -22845,11 +22900,11 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 specs: { "Tác giả": "Hội đồng Y học GEMS", "NXB": "NXB Y học", "Số trang": "480 trang", "Năm XB": "2026" },
 
-                images: ["covers/baoche.png"],
+                images: ["covers/baoche.webp"],
 
                 variants: [
 
-                    { id: "pharm_soft", name: "Bìa Mềm Thường", price: 304000, originalPrice: 380000, image: "covers/baoche.png", stock: 120 }
+                    { id: "pharm_soft", name: "Bìa Mềm Thường", price: 304000, originalPrice: 380000, image: "covers/baoche.webp", stock: 120 }
 
                 ],
 
@@ -23311,7 +23366,7 @@ let currentActiveBookId = 'chandoanykhoa';
                 if (lower.includes('tủ quần') || lower.includes('tủ vải') || lower.includes('kệ') || lower.includes('wardrobe')) return 'assets/shop/leego_wardrobe.png';
 
                 // ── BOOKS & STATIONERY ────────────────────────────────────────────────
-                if (lower.includes('điện tâm đồ') || lower.includes('ecg') || lower.includes('lâm sàng') || lower.includes('dược lý') || lower.includes('y khoa')) return 'covers/chandoanykhoa.png';
+                if (lower.includes('điện tâm đồ') || lower.includes('ecg') || lower.includes('lâm sàng') || lower.includes('dược lý') || lower.includes('y khoa')) return 'covers/chandoanykhoa.webp';
                 if (lower.includes('sách') || lower.includes('book') || lower.includes('cẩm nang') || lower.includes('từ điển') || lower.includes('atlas') || lower.includes('tư duy')) return 'assets/shop/book.png';
                 if (lower.includes('bút') || lower.includes('sổ tay') || lower.includes('gel pen') || lower.includes('gelpen')) return 'assets/shop/gelpen.png';
 
