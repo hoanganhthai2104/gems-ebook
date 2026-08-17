@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="vi" class="light">
 
@@ -1176,7 +1176,71 @@
 
             --text-main: #eae8e7;
 
+            background-color: #1a1b1b !important;
+
+            color: #eae8e7 !important;
+
         }
+
+        .kindle-dark .reader-page-paper,
+        .kindle-dark #reader-viewport,
+        .kindle-dark .reader-content-body {
+
+            background-color: #1a1b1b !important;
+
+            color: #eae8e7 !important;
+
+        }
+
+        .kindle-dark .reader-page-paper h1,
+        .kindle-dark .reader-page-paper h2,
+        .kindle-dark .reader-page-paper h3,
+        .kindle-dark .reader-page-paper h4,
+        .kindle-dark .reader-page-paper h5,
+        .kindle-dark .reader-page-paper h6,
+        .kindle-dark .reader-page-paper p,
+        .kindle-dark .reader-page-paper span:not(.material-symbols-outlined),
+        .kindle-dark .reader-page-paper li,
+        .kindle-dark .reader-page-paper blockquote {
+
+            color: #eae8e7 !important;
+
+        }
+
+        .kindle-dark .reader-page-paper .text-slate-900,
+        .kindle-dark .reader-page-paper .text-slate-800,
+        .kindle-dark .reader-page-paper .text-slate-700,
+        .kindle-dark .reader-page-paper .text-slate-600,
+        .kindle-dark .reader-page-paper .text-slate-500,
+        .kindle-dark .reader-page-paper .text-black,
+        .kindle-dark .reader-page-paper .text-amber-900,
+        .kindle-dark .reader-page-paper .text-stone-800,
+        .kindle-dark .reader-page-paper .text-stone-900 {
+
+            color: #eae8e7 !important;
+
+        }
+
+        .kindle-dark .reader-page-paper .bg-amber-50,
+        .kindle-dark .reader-page-paper .bg-slate-50,
+        .kindle-dark .reader-page-paper .bg-slate-100,
+        .kindle-dark .reader-page-paper .bg-stone-50,
+        .kindle-dark .reader-page-paper .bg-white {
+
+            background-color: #262626 !important;
+
+            border-color: #3f3f46 !important;
+
+        }
+
+        .kindle-dark .reader-page-paper .border-slate-100,
+        .kindle-dark .reader-page-paper .border-slate-200,
+        .kindle-dark .reader-page-paper .border-amber-200 {
+
+            border-color: #3f3f46 !important;
+
+        }
+
 
         .kindle-white {
 
@@ -2608,9 +2672,9 @@
 
                                     <div class="grid grid-cols-2 gap-3 pt-1">
 
-                                        <button onclick="openBookDetails('chandoanykhoa')" class="bg-primary hover:bg-primary-container text-white font-bold text-xs py-2 rounded-xl shadow-md shadow-primary/10 hover:shadow-lg transition-all active:scale-95 duration-100">Tiếp tục đọc</button>
+                                        <button onclick="continueReadingBook('chandoanykhoa')" class="bg-primary hover:bg-primary-container text-white font-bold text-xs py-2 min-h-[44px] rounded-xl shadow-md shadow-primary/10 hover:shadow-lg transition-all active:scale-95 duration-100 flex items-center justify-center">Tiếp tục đọc</button>
 
-                                        <button onclick="openAISummaryModal()" class="bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold text-xs py-2 rounded-xl flex items-center justify-center gap-1.5 active:scale-95 duration-100 transition-all">
+                                        <button onclick="openAISummaryModal()" class="bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold text-xs py-2 min-h-[44px] rounded-xl flex items-center justify-center gap-1.5 active:scale-95 duration-100 transition-all">
 
                                             <span class="material-symbols-outlined text-xs filled-icon" style="font-variation-settings:'FILL' 1">auto_awesome</span> Tóm tắt AI
 
@@ -2650,7 +2714,7 @@
 
                                     <!-- Card 1 -->
 
-                                    <div class="relative w-40 h-24 shrink-0 snap-start rounded-2xl overflow-hidden shadow-[0_4px_10px_rgba(0,0,0,0.04)] border border-slate-100/80 cursor-pointer group active:scale-[0.99] transition-all" onclick="openBlogView()">
+                                    <div class="relative w-40 h-24 shrink-0 snap-start rounded-2xl overflow-hidden shadow-[0_4px_10px_rgba(0,0,0,0.04)] border border-slate-100/80 cursor-pointer group active:scale-[0.99] transition-all" onclick="openArticleDetail('timmach2024')">
 
                                         <img src="covers/hospital_corridor.png" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500 pointer-events-none select-none" alt="News Image 1" draggable="false" loading="lazy" decoding="async">
 
@@ -2672,7 +2736,7 @@
 
                                     <!-- Card 2 -->
 
-                                    <div class="relative w-40 h-24 shrink-0 snap-start rounded-2xl overflow-hidden shadow-[0_4px_10px_rgba(0,0,0,0.04)] border border-slate-100/80 cursor-pointer group active:scale-[0.99] transition-all" onclick="openBlogView()">
+                                    <div class="relative w-40 h-24 shrink-0 snap-start rounded-2xl overflow-hidden shadow-[0_4px_10px_rgba(0,0,0,0.04)] border border-slate-100/80 cursor-pointer group active:scale-[0.99] transition-all" onclick="openArticleDetail('ungthu2024')">
 
                                         <img src="covers/immunotherapy_lab.png" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500 pointer-events-none select-none" alt="News Image 2" draggable="false" loading="lazy" decoding="async">
 
@@ -3021,7 +3085,7 @@
 
                                     <!-- Book 1 (Cơ thể người) -->
 
-                                    <div class="card-lift flex-shrink-0 w-64 bg-white rounded-2xl border border-slate-100 p-3 flex gap-3 cursor-pointer shadow-[0_8px_30px_rgb(0,0,0,0.03)]" onclick="openBookDetails('co-the-nguoi')">
+                                    <div class="card-lift flex-shrink-0 w-64 bg-white rounded-2xl border border-slate-100 p-3 flex gap-3 cursor-pointer shadow-[0_8px_30px_rgb(0,0,0,0.03)]" onclick="continueReadingBook('co-the-nguoi')">
 
                                         <div class="gems-book-cover w-16 h-24 shrink-0 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.08)] border border-slate-100 overflow-hidden" data-book-id="co-the-nguoi"></div>
 
@@ -4284,7 +4348,7 @@
 
                                     <!-- Slide 1: Tim mạch -->
 
-                                    <div class="w-full shrink-0 snap-start flex flex-col cursor-pointer blog-slide-item" data-category="lam-sang" onclick="showToast('Đang mở bài viết: Cập nhật hướng dẫn điều trị tim mạch 2024')">
+                                    <div class="w-full shrink-0 snap-start flex flex-col cursor-pointer blog-slide-item" data-category="lam-sang" onclick="openArticleDetail('timmach2024')">
 
                                         <img src="covers/hospital_corridor.png" class="w-full h-44 rounded-2xl object-cover mb-3 shadow-sm" alt="Featured Cardiac" loading="lazy" decoding="async">
 
@@ -4306,7 +4370,7 @@
 
                                     <!-- Slide 2: Điều trị miễn dịch -->
 
-                                    <div class="w-full shrink-0 snap-start flex flex-col cursor-pointer blog-slide-item" data-category="nghien-cuu" onclick="showToast('Đang mở bài viết: Đột phá trong điều trị miễn dịch ung thư phổi')">
+                                    <div class="w-full shrink-0 snap-start flex flex-col cursor-pointer blog-slide-item" data-category="nghien-cuu" onclick="openArticleDetail('ungthu2024')">
 
                                         <img src="covers/immunotherapy_lab.png" class="w-full h-44 rounded-2xl object-cover mb-3 shadow-sm" alt="Featured Immunotherapy" loading="lazy" decoding="async">
 
@@ -4328,7 +4392,7 @@
 
                                     <!-- Slide 3: Dữ liệu y tế -->
 
-                                    <div class="w-full shrink-0 snap-start flex flex-col cursor-pointer blog-slide-item" data-category="tin-y-te" onclick="showToast('Đang mở bài viết: Quy định mới về quản lý dữ liệu y tế điện tử')">
+                                    <div class="w-full shrink-0 snap-start flex flex-col cursor-pointer blog-slide-item" data-category="tin-y-te" onclick="openArticleDetail('ai_y_khoa')">
 
                                         <img src="covers/digital_health_data.png" class="w-full h-44 rounded-2xl object-cover mb-3 shadow-sm" alt="Featured Health Data" loading="lazy" decoding="async">
 
@@ -4376,7 +4440,7 @@
 
                                     <!-- Item 1 -->
 
-                                    <div onclick="showToast('Đang mở bài viết: Đột phá trong điều trị miễn dịch ung thư phổi')" data-category="nghien-cuu" class="card-lift blog-list-item flex items-center gap-4 bg-white border border-slate-100 p-3 rounded-2xl cursor-pointer shadow-sm hover:shadow active:scale-[0.99] transition-all">
+                                    <div onclick="openArticleDetail('ungthu2024')" data-category="nghien-cuu" class="card-lift blog-list-item flex items-center gap-4 bg-white border border-slate-100 p-3 rounded-2xl cursor-pointer shadow-sm hover:shadow active:scale-[0.99] transition-all">
 
                                         <div class="flex-grow min-w-0">
 
@@ -4400,7 +4464,7 @@
 
                                     <!-- Item 2 -->
 
-                                    <div onclick="showToast('Đang mở bài viết: Quy định mới về quản lý dữ liệu y tế điện tử')" data-category="tin-y-te" class="card-lift blog-list-item flex items-center gap-4 bg-white border border-slate-100 p-3 rounded-2xl cursor-pointer shadow-sm hover:shadow active:scale-[0.99] transition-all">
+                                    <div onclick="openArticleDetail('ai_y_khoa')" data-category="tin-y-te" class="card-lift blog-list-item flex items-center gap-4 bg-white border border-slate-100 p-3 rounded-2xl cursor-pointer shadow-sm hover:shadow active:scale-[0.99] transition-all">
 
                                         <div class="flex-grow min-w-0">
 
@@ -11915,7 +11979,32 @@
 
                 </div>
 
-
+                <!-- ARTICLE DETAIL MODAL OVERLAY -->
+                <div id="article-detail-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[250] flex flex-col justify-end sm:items-center sm:justify-center p-0 sm:p-4">
+                    <div class="bg-white w-full sm:max-w-[500px] h-[90vh] sm:h-[85vh] rounded-t-3xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col border border-slate-100 transition-all duration-300">
+                        <header class="px-4 py-3 bg-white/90 backdrop-blur-md border-b border-slate-100 flex items-center justify-between shrink-0 sticky top-0 z-10">
+                            <button onclick="closeArticleDetail()" class="text-slate-600 hover:bg-slate-100 p-2 rounded-full flex items-center justify-center min-h-[44px] min-w-[44px]">
+                                <span class="material-symbols-outlined text-xl">arrow_back</span>
+                            </button>
+                            <span id="article-detail-category" class="text-xs font-extrabold text-blue-600 bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider">Tin Y Tế</span>
+                            <button onclick="showToast('Đã sao chép liên kết bài viết!')" class="text-slate-600 hover:bg-slate-100 p-2 rounded-full flex items-center justify-center min-h-[44px] min-w-[44px]">
+                                <span class="material-symbols-outlined text-xl">share</span>
+                            </button>
+                        </header>
+                        <div class="flex-grow overflow-y-auto px-5 py-4 space-y-4">
+                            <h2 id="article-detail-title" class="text-lg font-black text-slate-900 leading-snug">Tiêu đề bài viết</h2>
+                            <div class="flex items-center gap-2 text-xs text-slate-500 font-medium border-b border-slate-100 pb-3">
+                                <span id="article-detail-author" class="font-bold text-slate-700">Tác giả</span>
+                                <span>•</span>
+                                <span id="article-detail-time">Thời gian</span>
+                            </div>
+                            <img id="article-detail-image" src="covers/hospital_corridor.png" class="w-full h-48 object-cover rounded-2xl shadow-sm border border-slate-100" alt="Article Cover">
+                            <div id="article-detail-body" class="prose prose-slate max-w-none text-slate-700 text-sm space-y-3 leading-relaxed">
+                                Nội dung bài viết...
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                     <!-- ============================================== -->
 
@@ -13836,6 +13925,14 @@
         }
 
 
+
+        // Helper to jump directly into reader at current saved position
+        function continueReadingBook(bookId) {
+            if (bookId) {
+                appState.currentBookId = bookId;
+            }
+            openEreaderScreen();
+        }
 
         // E-reader view screen opening
 
@@ -21678,6 +21775,91 @@ let currentActiveBookId = 'chandoanykhoa';
         }
 
 
+
+        // News & Blog Articles Data & Detail Modal Logic
+        const newsArticlesData = {
+            'timmach2024': {
+                title: 'Cập nhật hướng dẫn điều trị tim mạch 2024: Những thay đổi quan trọng',
+                category: 'Lâm sàng',
+                time: '3 giờ trước',
+                author: 'PGS. TS. BS. Nguyễn Văn Minh',
+                image: 'covers/hospital_corridor.png',
+                content: `
+                    <p class="text-sm text-slate-700 leading-relaxed font-sans mb-4">
+                        Hiệp hội Tim mạch Học Châu Âu (ESC) vừa chính thức phát hành bản Cập nhật Hướng dẫn Lâm sàng 2024 về Quản lý và Điều trị Bệnh Tim mạch Thể tăng áp và Suy tim Cấp. Đây là tài liệu cốt lõi tổng hợp từ hơn 45 thử nghiệm lâm sàng ngẫu nhiên có đối chứng (RCT) mới nhất.
+                    </p>
+                    <h3 class="text-base font-bold text-slate-900 mt-5 mb-2">1. Thay đổi ngưỡng huyết áp mục tiêu</h3>
+                    <p class="text-sm text-slate-700 leading-relaxed mb-4">
+                        Khác với khuyến cáo cũ, ngưỡng khởi đầu điều trị thuốc hạ áp đối với bệnh nhân nguy cơ cao đã được điều chỉnh giảm xuống <strong>130/80 mmHg</strong> (thay vì 140/90 mmHg). Việc đưa huyết áp tâm thu về mức 120-129 mmHg ở đa số bệnh nhân dưới 70 tuổi cho thấy làm giảm 22% biến cố biến chứng mạch não.
+                    </p>
+                    <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r-xl my-4">
+                        <p class="text-xs font-bold text-blue-900 uppercase tracking-wider mb-1">Khuyến cáo lâm sàng quan trọng:</p>
+                        <p class="text-xs text-blue-800 leading-relaxed">
+                            Ưu tiên phối hợp 2 thuốc trong 1 viên nén duy nhất (Single Pill Combination - SPC) ngay từ liều khởi đầu cho bệnh nhân tăng huyết áp Độ 1 có nguy cơ kèm theo.
+                        </p>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 mt-5 mb-2">2. Vai trò của thuốc nhóm SGLT2i trong Suy tim</h3>
+                    <p class="text-sm text-slate-700 leading-relaxed mb-4">
+                        Nhóm thuốc ức chế SGLT2 (Dapagliflozin, Empagliflozin) được nâng hạng Khuyến cáo Nhóm IA cho toàn bộ dải phân suất tống máu (EF giảm, EF bảo tồn và EF giảm nhẹ).
+                    </p>
+                `
+            },
+            'ungthu2024': {
+                title: 'Đột phá trong điều trị miễn dịch cho bệnh nhân ung thư phổi giai đoạn cuối',
+                category: 'Nghiên cứu',
+                time: '5 phút trước',
+                author: 'TS. BS. Trần Thị Hoàng Anh',
+                image: 'covers/immunotherapy_lab.png',
+                content: `
+                    <p class="text-sm text-slate-700 leading-relaxed font-sans mb-4">
+                        Một liệu pháp miễn dịch kết hợp mới (Anti-PD-1 cộng với kháng thể kép thế hệ mới) vừa đạt bước tiến ngoạn mục trong thử nghiệm lâm sàng Phase III, kéo dài thời gian sống thêm không tiến triển bệnh (PFS) lên gấp đôi ở bệnh nhân ung thư phổi tế bào không nhỏ.
+                    </p>
+                    <h3 class="text-base font-bold text-slate-900 mt-5 mb-2">Cơ chế tác động phân tử</h3>
+                    <p class="text-sm text-slate-700 leading-relaxed mb-4">
+                        Khác với liệu pháp đơn trị liệu trước đây, phân tử mới này có khả năng kích hoạt đồng thời tế bào T Cytotoxic và giải áp chế môi trường vi mô khối u, giúp cơ thể tự nhận diện và tiêu diệt tế bào ác tính hiệu quả gấp 3 lần.
+                    </p>
+                `
+            },
+            'ai_y_khoa': {
+                title: 'Ứng dụng AI trong chẩn đoán hình ảnh: Cơ hội và thách thức',
+                category: 'Công nghệ Y học',
+                time: '1 ngày trước',
+                author: 'BS. Chuyên khoa II Lê Hoàng',
+                image: 'covers/hospital_corridor.png',
+                content: `
+                    <p class="text-sm text-slate-700 leading-relaxed font-sans mb-4">
+                        Trí tuệ nhân tạo (AI) đang chuyển mình từ một công cụ hỗ trợ đọc phim thành trợ lý chẩn đoán thời gian thực đối với chụp CT lồng ngực và MRI sọ đóng vai trò quan trọng tại các trung tâm y khoa tuyến đầu.
+                    </p>
+                `
+            }
+        };
+
+        function openArticleDetail(articleId) {
+            const article = newsArticlesData[articleId] || newsArticlesData['timmach2024'];
+            const modal = document.getElementById('article-detail-modal');
+            if (!modal) return;
+
+            const titleEl = document.getElementById('article-detail-title');
+            const catEl = document.getElementById('article-detail-category');
+            const timeEl = document.getElementById('article-detail-time');
+            const authorEl = document.getElementById('article-detail-author');
+            const imgEl = document.getElementById('article-detail-image');
+            const bodyEl = document.getElementById('article-detail-body');
+
+            if (titleEl) titleEl.innerText = article.title;
+            if (catEl) catEl.innerText = article.category;
+            if (timeEl) timeEl.innerText = article.time;
+            if (authorEl) authorEl.innerText = article.author;
+            if (imgEl) imgEl.src = article.image;
+            if (bodyEl) bodyEl.innerHTML = article.content;
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeArticleDetail() {
+            const modal = document.getElementById('article-detail-modal');
+            if (modal) modal.classList.add('hidden');
+        }
 
         function openBlogView() {
 
