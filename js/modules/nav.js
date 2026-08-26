@@ -32,10 +32,21 @@ window.GEMS.Nav = (function () {
         const tStart = performance.now();
 
         if (window.appState && !window.appState.isLoggedIn) {
-            const loginView = document.getElementById('view-login');
-            if (loginView && loginView.classList.contains('hidden')) {
-                loginView.classList.remove('hidden');
-                if (typeof initLoginCanvas === 'function') initLoginCanvas();
+            const hasSeenOnboarding = localStorage.getItem('gems_onboarding_completed') === 'true';
+            if (!hasSeenOnboarding) {
+                const onboardingView = document.getElementById('view-onboarding');
+                if (onboardingView && onboardingView.classList.contains('hidden')) {
+                    onboardingView.classList.remove('hidden');
+                    if (window.GEMS && window.GEMS.Onboarding) {
+                        window.GEMS.Onboarding.init();
+                    }
+                }
+            } else {
+                const loginView = document.getElementById('view-login');
+                if (loginView && loginView.classList.contains('hidden')) {
+                    loginView.classList.remove('hidden');
+                    if (typeof initLoginCanvas === 'function') initLoginCanvas();
+                }
             }
             const appNav = document.getElementById('app-bottom-nav');
             if (appNav) appNav.classList.add('hidden');
