@@ -15,3 +15,11 @@
 - Focus: Vietnamese health knowledge, LIMES content governance, continuous reading and listening experience.
 - Added: official GEMS Group footer and the guided GEMS support panel with Zalo and hotline.
 
+## Landing 3
+
+- Route: `/landing-3/`
+- Mobile preview: `/landing-3/mobile-preview`
+- Snapshot date: 2026-08-26
+- Based on: local Landing 2 iteration before publishing Landing 3.
+- Focus: desktop section-by-section mandatory scroll, compact visual frames, refined GEMS support dock, balanced CTA/footer, and clearer GEMS Group logo treatment.
+

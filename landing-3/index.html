@@ -1,0 +1,1733 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f5f1e9">
+  <title>GEMS | Hiểu cơ thể. Chủ động sống khỏe.</title>
+  <meta name="description" content="GEMS là ứng dụng đọc và nghe kiến thức sức khỏe tiếng Việt, giúp bạn hiểu cơ thể, chăm sóc dinh dưỡng, giấc ngủ, vận động và tinh thần chủ động hơn mỗi ngày.">
+  <link rel="canonical" href="https://gems-ebook.vercel.app/landing-3/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GEMS">
+  <meta property="og:title" content="GEMS | Hiểu cơ thể. Chủ động sống khỏe.">
+  <meta property="og:description" content="Ứng dụng đọc và nghe kiến thức sức khỏe tiếng Việt, được tuyển chọn để đồng hành cùng thói quen chăm sóc sức khỏe chủ động.">
+  <meta property="og:url" content="https://gems-ebook.vercel.app/landing-3/">
+  <meta property="og:image" content="https://gems-ebook.vercel.app/landing-3/assets/gems-hero-knowledge-in-life.jpg">
+  <meta property="og:image:width" content="1672">
+  <meta property="og:image:height" content="941">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GEMS | Hiểu cơ thể. Chủ động sống khỏe.">
+  <meta name="twitter:description" content="Đọc và nghe kiến thức sức khỏe tiếng Việt trong một hành trình gần gũi, dễ duy trì.">
+  <meta name="twitter:image" content="https://gems-ebook.vercel.app/landing-3/assets/gems-hero-knowledge-in-life.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "GEMS",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Web",
+      "url": "https://gems-ebook.vercel.app/landing-3/",
+      "description": "GEMS là ứng dụng đọc và nghe kiến thức sức khỏe tiếng Việt, giúp người dùng chăm sóc sức khỏe chủ động qua nội dung được tuyển chọn."
+    }
+  </script>
+  <style>
+    :root {
+      --brand-blue:#315fa8;
+      --brand-blue-deep:#22468b;
+      --brand-blue-soft:#9cb4d8;
+      --brand-gold:#d4a43c;
+      --ink:#17345f;
+      --teal:var(--brand-blue);
+      --teal-light:var(--brand-blue-soft);
+      --paper:#f5f1e9;
+      --cream:#fffdf8;
+      --sage:#e4e8e3;
+      --yellow:var(--brand-gold);
+      --muted:#607080;
+      --line:rgba(23,52,95,.14);
+      --shell:1240px;
+      --ease:cubic-bezier(.22,1,.36,1);
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0;
+      overflow-x:hidden;
+      color:var(--ink);
+      background:var(--paper);
+      font-family:"Be Vietnam Pro",sans-serif;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    body::before {
+      position:fixed;
+      z-index:50;
+      top:0;
+      left:0;
+      width:100%;
+      height:3px;
+      background:var(--yellow);
+      content:"";
+      transform:scaleX(var(--progress,0));
+      transform-origin:left;
+    }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    h1,h2,h3,p { margin:0; }
+    h1,h2,h3,.topic-label strong,.journey-step strong,.purpose-quote { text-wrap:balance; }
+    p,.section-intro,.cta-copy,.review-card > p { text-wrap:pretty; }
+    section { position:relative; overflow:hidden; }
+    .shell { width:min(calc(100% - 64px),var(--shell)); margin:0 auto; }
+    .eyebrow {
+      color:var(--teal);
+      font-size:10px;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .site-header {
+      position:fixed;
+      z-index:30;
+      top:0;
+      left:0;
+      width:100%;
+      border-bottom:1px solid rgba(23,52,95,.08);
+      background:rgba(245,241,233,.88);
+      backdrop-filter:blur(18px);
+    }
+    .header-inner {
+      display:flex;
+      height:76px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .brand { display:flex; align-items:center; gap:10px; font-size:13px; font-weight:800; }
+    .brand img { width:36px; height:36px; object-fit:contain; }
+    .nav { display:flex; align-items:center; gap:28px; color:#5b6c7d; font-size:10px; font-weight:700; }
+    .nav a { position:relative; padding:10px 0; transition:color .25s ease; }
+    .nav a::after {
+      position:absolute;
+      right:0;
+      bottom:4px;
+      left:0;
+      height:1px;
+      background:var(--teal);
+      content:"";
+      transform:scaleX(0);
+      transform-origin:right;
+      transition:transform .35s var(--ease);
+    }
+    .nav a:hover,.nav a.is-active { color:var(--teal); }
+    .nav a:hover::after,.nav a.is-active::after { transform:scaleX(1); transform-origin:left; }
+    .header-cta {
+      padding:12px 18px;
+      border-radius:999px;
+      background:var(--ink);
+      color:#fff;
+      font-size:10px;
+      font-weight:800;
+    }
+    .hero { min-height:920px; background:#ece9e1; }
+    .hero-media { position:absolute; inset:0; }
+    .hero-media img { width:100%; height:100%; object-fit:cover; object-position:center; }
+    .hero-media::after {
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg,rgba(245,241,233,.99) 0%,rgba(245,241,233,.93) 27%,rgba(245,241,233,.34) 52%,transparent 72%);
+      content:"";
+    }
+    .hero-inner {
+      position:relative;
+      z-index:2;
+      display:flex;
+      min-height:920px;
+      align-items:center;
+      padding-top:76px;
+    }
+    .hero-copy { width:62%; max-width:760px; }
+    .hero h1 {
+      max-width:760px;
+      margin-top:24px;
+      font-size:clamp(58px,5.6vw,74px);
+      line-height:1.06;
+      letter-spacing:-.052em;
+    }
+    .hero h1 em { display:block; color:var(--teal); font-style:normal; text-wrap:balance; }
+    .hero-lede { max-width:590px; margin-top:28px; color:#586b7d; font-size:15px; line-height:1.78; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:32px; }
+    .button {
+      display:inline-flex;
+      min-height:52px;
+      align-items:center;
+      justify-content:center;
+      gap:13px;
+      padding:0 22px;
+      border:1px solid transparent;
+      border-radius:999px;
+      font-size:10px;
+      font-weight:800;
+      transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+    }
+    .button:hover { transform:translateY(-3px); }
+    .button-primary { background:var(--teal); color:#fff; box-shadow:0 16px 35px rgba(49,95,168,.22); }
+    .button-secondary { border-color:var(--line); background:rgba(255,255,255,.58); }
+    .hero-note {
+      max-width:590px;
+      margin-top:44px;
+      padding-top:18px;
+      border-top:1px solid var(--line);
+      color:#5e7080;
+      font-size:10px;
+      font-weight:700;
+      line-height:1.65;
+    }
+    .world { padding:132px 0; background:var(--cream); }
+    .section-head { display:grid; grid-template-columns:1.05fr .75fr; align-items:end; gap:90px; }
+    h2 { font-size:clamp(44px,4.6vw,66px); line-height:1.1; letter-spacing:-.042em; }
+    .section-head h2 { max-width:760px; margin-top:20px; }
+    .section-intro { max-width:500px; color:var(--muted); font-size:14px; line-height:1.78; }
+    .topic-film {
+      display:grid;
+      height:610px;
+      grid-template-columns:1.18fr .82fr .82fr;
+      grid-template-rows:1fr 1fr;
+      gap:12px;
+      margin-top:72px;
+    }
+    .topic {
+      position:relative;
+      overflow:hidden;
+      background:#dfe5eb;
+    }
+    .topic:first-child { grid-row:1 / 3; }
+    .topic:nth-child(2) { grid-column:2 / 4; }
+    .topic img { width:100%; height:100%; object-fit:cover; transition:transform .8s var(--ease); }
+    .topic:hover img { transform:scale(1.035); }
+    .topic::after { position:absolute; inset:45% 0 0; background:linear-gradient(transparent,rgba(4,34,47,.72)); content:""; }
+    .topic-label { position:absolute; z-index:2; right:22px; bottom:20px; left:22px; color:#fff; }
+    .topic-label span { display:block; color:#cbd9ed; font-size:8px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+    .topic-label strong { display:block; margin-top:7px; font-size:20px; letter-spacing:-.035em; }
+    .library {
+      padding:132px 0 0;
+      background:
+        radial-gradient(circle at 78% 40%,rgba(105,142,199,.2),transparent 32%),
+        linear-gradient(135deg,#102849,#173d6a 58%,#23558d);
+      color:#fff;
+    }
+    .library-grid { display:grid; grid-template-columns:.78fr 1.22fr; align-items:center; gap:72px; }
+    .library-copy h2 { max-width:690px; margin-top:20px; font-size:clamp(42px,4vw,58px); }
+    .library .eyebrow { color:#b1c7e7; }
+    .library-copy > p:not(.eyebrow) { max-width:560px; margin-top:26px; color:rgba(255,255,255,.68); font-size:14px; line-height:1.78; }
+    .selection-list { margin-top:38px; border-top:1px solid rgba(255,255,255,.16); }
+    .selection-row { display:flex; align-items:center; justify-content:space-between; gap:30px; padding:18px 0; border-bottom:1px solid var(--line); }
+    .selection-row strong { font-size:14px; }
+    .library .selection-row { border-color:rgba(255,255,255,.16); }
+    .selection-row span { color:var(--yellow); font-size:8px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    .book-editorial {
+      position:relative;
+      min-height:620px;
+      isolation:isolate;
+      perspective:1200px;
+    }
+    .book-editorial::before {
+      position:absolute;
+      z-index:-1;
+      top:10%;
+      left:50%;
+      width:520px;
+      height:520px;
+      border:1px solid rgba(156,180,216,.24);
+      border-radius:50%;
+      content:"";
+      transform:translateX(-50%);
+    }
+    .book-editorial::after {
+      position:absolute;
+      z-index:-2;
+      bottom:8%;
+      left:50%;
+      width:500px;
+      height:105px;
+      border-radius:50%;
+      background:rgba(4,17,40,.42);
+      filter:blur(22px);
+      content:"";
+      transform:translateX(-50%);
+    }
+    .book-count {
+      position:absolute;
+      z-index:8;
+      top:12px;
+      right:0;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:#fff;
+      font-size:30px;
+      font-weight:800;
+      line-height:1;
+      letter-spacing:-.055em;
+      user-select:none;
+    }
+    .book-count::before {
+      width:42px;
+      height:1px;
+      background:var(--yellow);
+      content:"";
+    }
+    .book-count span {
+      display:block;
+      max-width:132px;
+      margin:0;
+      color:#b8cae4;
+      font-size:8px;
+      line-height:1.4;
+      letter-spacing:.14em;
+      text-align:left;
+      text-transform:uppercase;
+    }
+    .book-deck {
+      position:absolute;
+      inset:58px 0 64px;
+      perspective:1300px;
+      transform-style:preserve-3d;
+    }
+    .book-card {
+      position:absolute;
+      top:50%;
+      left:50%;
+      width:min(15vw,196px);
+      padding:0;
+      border:0;
+      border-radius:5px;
+      outline:none;
+      background:transparent;
+      cursor:default;
+      opacity:.28;
+      filter:saturate(.58) brightness(.76);
+      pointer-events:none;
+      transform-style:preserve-3d;
+      transition:transform 1s var(--ease),opacity .75s ease,filter .75s ease;
+      will-change:transform,opacity;
+    }
+    .book-card img {
+      width:100%;
+      height:auto;
+      aspect-ratio:2 / 3;
+      border-radius:4px;
+      object-fit:cover;
+      box-shadow:0 34px 52px rgba(0,14,24,.4);
+      pointer-events:none;
+    }
+    .book-card[data-slot="0"] {
+      z-index:6;
+      opacity:1;
+      filter:none;
+      transform:translate(-50%,-50%) translateZ(80px) scale(1.12);
+    }
+    .book-card[data-slot="1"] {
+      z-index:4;
+      opacity:.78;
+      filter:saturate(.82) brightness(.88);
+      transform:translate(calc(-50% + 190px),calc(-50% + 34px)) rotate(8deg) scale(.82);
+    }
+    .book-card[data-slot="2"] {
+      z-index:2;
+      transform:translate(calc(-50% + 250px),calc(-50% + 58px)) rotate(13deg) scale(.62);
+    }
+    .book-card[data-slot="3"] {
+      z-index:1;
+      opacity:.16;
+      transform:translate(-50%,calc(-50% - 54px)) scale(.55);
+    }
+    .book-card[data-slot="4"] {
+      z-index:2;
+      transform:translate(calc(-50% - 250px),calc(-50% + 58px)) rotate(-13deg) scale(.62);
+    }
+    .book-card[data-slot="5"] {
+      z-index:4;
+      opacity:.78;
+      filter:saturate(.82) brightness(.88);
+      transform:translate(calc(-50% - 190px),calc(-50% + 34px)) rotate(-8deg) scale(.82);
+    }
+    .book-card:focus-visible::after {
+      position:absolute;
+      inset:-8px;
+      border:2px solid var(--yellow);
+      border-radius:8px;
+      content:"";
+    }
+    .book-focus {
+      position:absolute;
+      right:4%;
+      bottom:0;
+      left:4%;
+      display:grid;
+      grid-template-columns:auto 1fr auto auto;
+      align-items:center;
+      gap:14px;
+      color:rgba(255,255,255,.72);
+      font-size:9px;
+      font-weight:700;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+    .book-focus::before { width:46px; height:1px; background:var(--yellow); content:""; }
+    .book-focus-index { color:var(--yellow); font-variant-numeric:tabular-nums; }
+    .book-nav { display:flex; gap:6px; }
+    .book-arrow {
+      display:grid;
+      width:28px;
+      height:28px;
+      padding:0;
+      border:1px solid rgba(255,255,255,.25);
+      border-radius:50%;
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      font:inherit;
+      place-items:center;
+      cursor:pointer;
+      transition:background .25s ease,border-color .25s ease;
+    }
+    .book-arrow:hover,.book-arrow:focus-visible { border-color:var(--yellow); outline:none; background:rgba(240,196,77,.12); }
+    .book-caption {
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+    .library-ticker {
+      overflow:hidden;
+      margin-top:54px;
+      border-top:1px solid rgba(255,255,255,.14);
+      border-bottom:1px solid rgba(255,255,255,.14);
+      white-space:nowrap;
+    }
+    .library-ticker-track {
+      display:flex;
+      width:max-content;
+      animation:libraryTicker 28s linear infinite;
+    }
+    .library-ticker-set {
+      display:flex;
+      min-width:100vw;
+      flex:none;
+      align-items:center;
+      justify-content:space-around;
+    }
+    .library-ticker span {
+      display:flex;
+      flex:none;
+      min-height:64px;
+      align-items:center;
+      color:rgba(255,255,255,.68);
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+    .library-ticker span::after {
+      width:5px;
+      height:5px;
+      margin:0 32px;
+      border-radius:50%;
+      background:var(--yellow);
+      content:"";
+    }
+    @keyframes libraryTicker { to { transform:translateX(-50%); } }
+    .trust {
+      padding:126px 0 112px;
+      background:
+        radial-gradient(circle at 88% 18%,rgba(91,130,190,.14),transparent 24%),
+        var(--cream);
+    }
+    .trust-grid { display:grid; grid-template-columns:1.2fr .52fr; align-items:end; gap:92px; }
+    .trust-mark {
+      position:relative;
+      display:grid;
+      min-height:214px;
+      grid-template-columns:116px 1fr;
+      align-items:center;
+      gap:24px;
+      padding:28px;
+      border:1px solid rgba(23,52,95,.14);
+      background:rgba(255,255,255,.54);
+      text-align:left;
+      box-shadow:0 24px 55px rgba(23,52,95,.08);
+    }
+    .trust-mark::before {
+      position:absolute;
+      top:-1px;
+      right:-1px;
+      width:54px;
+      height:54px;
+      border-top:2px solid var(--yellow);
+      border-right:2px solid var(--yellow);
+      content:"";
+    }
+    .trust-logo-wrap {
+      position:relative;
+      width:116px;
+      height:116px;
+      margin:0 auto;
+      padding:5px;
+      border:1px solid rgba(23,52,95,.18);
+      border-radius:50%;
+      background:#fff;
+      box-shadow:0 14px 32px rgba(23,52,95,.12);
+    }
+    .trust-logo {
+      width:100%;
+      height:100%;
+      border-radius:50%;
+      object-fit:cover;
+      clip-path:circle(49% at 50% 50%);
+    }
+    .trust-sign { min-width:0; }
+    .trust-mark span { display:block; max-width:260px; margin-top:8px; font-size:13px; font-weight:700; line-height:1.55; }
+    .trust-mark small { display:block; color:var(--teal); font-size:8px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; }
+    .trust-mark strong { display:block; margin-top:5px; color:var(--ink); font-size:29px; line-height:1; letter-spacing:-.045em; }
+    .trust-copy { order:-1; }
+    .trust-copy h2 { max-width:780px; margin-top:20px; }
+    .trust-copy > p:not(.eyebrow) { max-width:660px; margin-top:25px; color:var(--muted); font-size:14px; line-height:1.78; }
+    .trust-flow {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:0;
+      margin-top:52px;
+      padding:0;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      color:#41586f;
+      font-size:10px;
+      font-weight:800;
+    }
+    .trust-flow span {
+      position:relative;
+      min-height:82px;
+      padding:30px 22px 20px 0;
+      border-right:1px solid var(--line);
+    }
+    .trust-flow span:last-of-type { border-right:0; padding-left:22px; }
+    .trust-flow span:not(:first-child) { padding-left:22px; }
+    .trust-flow span::before {
+      position:absolute;
+      top:-4px;
+      left:0;
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:var(--yellow);
+      content:"";
+    }
+    .trust-flow span:not(:first-child)::before { left:22px; }
+    .trust-flow i { display:none; }
+    .evidence-band { display:grid; grid-template-columns:repeat(3,1fr); margin-top:44px; border-top:0; border-bottom:1px solid var(--line); }
+    .evidence-item { min-height:150px; padding:26px 28px; border-right:1px solid var(--line); }
+    .evidence-item:last-child { border-right:0; }
+    .evidence-item strong { display:block; color:var(--teal); font-size:30px; letter-spacing:-.045em; }
+    .evidence-item span { display:block; max-width:260px; margin-top:10px; color:var(--muted); font-size:10px; line-height:1.6; }
+    .experience {
+      padding:132px 0;
+      background:
+        radial-gradient(circle at 76% 42%,rgba(71,111,180,.3),transparent 29%),
+        linear-gradient(135deg,#0f294b,#1a4777);
+      color:#fff;
+    }
+    .experience .eyebrow { color:#b8cae4; }
+    .journey-stage {
+      display:grid;
+      min-height:780px;
+      grid-template-columns:.9fr 1.1fr;
+      align-items:center;
+      border-top:1px solid rgba(255,255,255,.16);
+      border-bottom:1px solid rgba(255,255,255,.16);
+    }
+    .journey-copy { padding:70px 64px 70px 0; }
+    .journey-copy h2 { max-width:620px; margin-top:20px; font-size:clamp(48px,4.5vw,56px); }
+    .journey-copy h2 span { color:var(--yellow); }
+    .journey-lede { max-width:540px; margin-top:24px; color:rgba(255,255,255,.68); font-size:14px; line-height:1.76; }
+    .journey-steps { margin-top:48px; border-top:1px solid rgba(255,255,255,.16); }
+    .journey-step {
+      display:grid;
+      width:100%;
+      grid-template-columns:52px 1fr;
+      gap:16px;
+      padding:20px 0;
+      border:0;
+      border-bottom:1px solid rgba(255,255,255,.16);
+      outline:none;
+      background:none;
+      color:rgba(255,255,255,.42);
+      font:inherit;
+      text-align:left;
+      cursor:pointer;
+      transition:color .4s ease,padding-left .5s var(--ease);
+    }
+    .journey-step > span { padding-top:4px; color:#a9bfdf; font-size:8px; font-weight:800; letter-spacing:.1em; }
+    .journey-step strong { display:block; font-size:17px; letter-spacing:-.025em; }
+    .journey-step p { max-width:420px; margin-top:7px; font-size:10px; line-height:1.6; }
+    .journey-step.is-active { padding-left:12px; color:#fff; }
+    .journey-step.is-active > span { color:var(--yellow); }
+    .journey-step:focus-visible { box-shadow:inset 3px 0 var(--yellow); }
+    .journey-visual {
+      position:relative;
+      min-height:780px;
+      overflow:hidden;
+      border-left:1px solid rgba(255,255,255,.16);
+      isolation:isolate;
+    }
+    .journey-visual::before,.journey-visual::after {
+      position:absolute;
+      z-index:-1;
+      top:50%;
+      left:50%;
+      border:1px solid rgba(156,180,216,.22);
+      border-radius:50%;
+      content:"";
+      transform:translate(-50%,-50%);
+    }
+    .journey-visual::before { width:590px; height:590px; }
+    .journey-visual::after { width:440px; height:440px; }
+    .journey-device {
+      position:absolute;
+      top:50%;
+      left:50%;
+      width:min(25vw,320px);
+      aspect-ratio:412 / 860;
+      transform:translate(-50%,-50%);
+      transition:rotate 1s var(--ease);
+    }
+    .journey-stage[data-scene="0"] .journey-device { rotate:-1.2deg; }
+    .journey-stage[data-scene="1"] .journey-device { rotate:0deg; }
+    .journey-stage[data-scene="2"] .journey-device { rotate:1.2deg; }
+    .journey-device::before,.journey-device::after {
+      position:absolute;
+      top:5%;
+      bottom:5%;
+      width:100%;
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:42px;
+      content:"";
+    }
+    .journey-device::before { left:-64%; transform:rotate(-9deg) scale(.82); }
+    .journey-device::after { right:-64%; transform:rotate(9deg) scale(.82); }
+    .journey-screen {
+      position:absolute;
+      z-index:2;
+      inset:0;
+      width:100%;
+      height:100%;
+      border-radius:10% / 4.8%;
+      object-fit:cover;
+      opacity:0;
+      filter:saturate(.76) blur(1px) drop-shadow(0 42px 42px rgba(0,0,0,.35));
+      transform-origin:50% 72%;
+      transform:translateY(32px) scale(.96) rotate(2deg);
+      transition:opacity .65s ease,transform 1s var(--ease),filter .8s ease;
+    }
+    .journey-screen.is-active {
+      z-index:3;
+      opacity:1;
+      filter:saturate(1) blur(0) drop-shadow(0 42px 42px rgba(0,0,0,.35));
+      transform:translateY(0) scale(1) rotate(-1deg);
+    }
+    .journey-status {
+      position:absolute;
+      right:34px;
+      bottom:30px;
+      display:flex;
+      min-width:176px;
+      align-items:center;
+      gap:10px;
+      overflow:hidden;
+      padding-bottom:10px;
+      color:#b8cae4;
+      font-size:8px;
+      font-weight:800;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+    .journey-status::before { width:6px; height:6px; border-radius:50%; background:var(--yellow); content:""; }
+    .journey-status::after {
+      position:absolute;
+      bottom:0;
+      left:0;
+      width:33.333%;
+      height:2px;
+      background:var(--yellow);
+      content:"";
+      transition:width .8s var(--ease);
+    }
+    .journey-stage[data-scene="1"] .journey-status::after { width:66.666%; }
+    .journey-stage[data-scene="2"] .journey-status::after { width:100%; }
+    .purpose { padding:132px 0; background:var(--paper); }
+    .purpose-grid { display:grid; grid-template-columns:1.08fr .92fr; align-items:start; gap:110px; }
+    .purpose h2 { max-width:730px; margin-top:20px; }
+    .purpose h2 em { color:var(--teal); font-style:normal; }
+    .purpose-lede { max-width:570px; margin-top:27px; color:var(--muted); font-size:14px; line-height:1.78; }
+    .purpose-quote {
+      padding:38px 0;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      font-size:clamp(26px,2.4vw,36px);
+      font-weight:700;
+      line-height:1.3;
+      letter-spacing:-.04em;
+    }
+    .purpose-quote span { display:block; margin-top:22px; color:var(--teal); font-size:9px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    .voices { padding:124px 0; background:var(--cream); }
+    .voices-head { text-align:center; }
+    .voices h2 { max-width:760px; margin:20px auto 0; }
+    .review-marquee { width:100%; margin-top:62px; overflow:hidden; mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); }
+    .review-loop { display:flex; width:max-content; gap:16px; padding:8px 0 30px; animation:reviews 32s linear infinite; will-change:transform; }
+    .review-marquee:hover .review-loop { animation-play-state:paused; }
+    .review-card { display:flex; width:340px; min-height:215px; flex-direction:column; padding:26px; border:1px solid var(--line); background:#fff; }
+    .stars { color:#d2a13a; font-size:12px; letter-spacing:.1em; }
+    .review-card > p { margin-top:19px; color:#40556d; font-size:13px; line-height:1.72; }
+    .review-person { display:flex; align-items:center; gap:11px; margin-top:auto; padding-top:22px; }
+    .review-person img { width:38px; height:38px; border-radius:50%; object-fit:cover; }
+    .review-person strong,.review-person span { display:block; }
+    .review-person strong { font-size:10px; }
+    .review-person span { margin-top:3px; color:var(--muted); font-size:8px; }
+    @keyframes reviews { to { transform:translateX(calc(-50% - 8px)); } }
+    .cta { padding:124px 0 38px; background:var(--teal); color:#fff; }
+    .cta-inner { display:grid; grid-template-columns:1fr .72fr; align-items:end; gap:90px; }
+    .cta .eyebrow { color:#d5e1f2; }
+    .cta h2 { max-width:800px; margin-top:20px; }
+    .cta-copy { color:rgba(255,255,255,.78); font-size:13px; line-height:1.75; }
+    .cta .button-primary { background:#fff; color:var(--ink); }
+    .cta .button-secondary { border-color:rgba(255,255,255,.35); background:transparent; }
+    .footer {
+      display:grid;
+      grid-template-columns:1.2fr .65fr 1fr 1.1fr .9fr;
+      gap:34px;
+      margin-top:96px;
+      padding:42px 0 0;
+      border-top:1px solid rgba(255,255,255,.24);
+      color:rgba(255,255,255,.68);
+    }
+    .footer-brand { max-width:330px; }
+    .footer .brand { color:#fff; font-size:13px; letter-spacing:.04em; }
+    .footer .brand img { width:40px; height:40px; }
+    .footer-brand p { margin-top:17px; font-size:11px; line-height:1.72; }
+    .footer-group { display:flex; align-items:flex-start; flex-direction:column; gap:10px; }
+    .footer-label {
+      margin-bottom:4px;
+      color:#d5e1f2;
+      font-size:9px;
+      font-weight:800;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+    }
+    .footer-group a,.footer-group p { overflow-wrap:anywhere; font-size:11px; line-height:1.65; }
+    .footer-group a { transition:color .25s ease,transform .25s var(--ease); }
+    .footer-group a:hover { color:#fff; transform:translateX(3px); }
+    .footer-group strong { color:#fff; font-size:15px; letter-spacing:-.02em; }
+    .footer-contact { color:#fff; font-weight:700; }
+    .footer-address { max-width:240px; }
+    .footer-bottom {
+      display:flex;
+      grid-column:1 / -1;
+      justify-content:space-between;
+      gap:24px;
+      margin-top:8px;
+      padding:22px 0 2px;
+      border-top:1px solid rgba(255,255,255,.14);
+      font-size:9px;
+      line-height:1.6;
+    }
+    .contact-dock {
+      position:fixed;
+      z-index:44;
+      right:max(24px,calc((100vw - var(--shell))/2));
+      bottom:24px;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .35s ease;
+    }
+    .contact-dock.is-visible:not(.is-suppressed) {
+      opacity:1;
+      pointer-events:auto;
+    }
+    .contact-backdrop {
+      position:fixed;
+      z-index:0;
+      inset:0;
+      padding:0;
+      border:0;
+      background:transparent;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .3s ease;
+    }
+    .contact-toggle {
+      position:relative;
+      z-index:2;
+      display:flex;
+      min-height:54px;
+      align-items:center;
+      gap:11px;
+      padding:0 18px 0 9px;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:999px;
+      background:var(--ink);
+      box-shadow:0 16px 42px rgba(23,52,95,.24);
+      color:#fff;
+      cursor:pointer;
+      font:800 10px/1 "Be Vietnam Pro",sans-serif;
+      transform:translateY(18px);
+      transition:transform .3s var(--ease),box-shadow .3s ease;
+    }
+    .contact-dock.is-visible:not(.is-suppressed) .contact-toggle { transform:translateY(0); }
+    .contact-toggle:hover { transform:translateY(-2px); box-shadow:0 20px 48px rgba(23,52,95,.3); }
+    .contact-toggle-icon {
+      display:grid;
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      background:var(--yellow);
+      color:var(--ink);
+      place-items:center;
+    }
+    .contact-toggle-icon svg { width:17px; height:17px; }
+    .contact-panel {
+      position:absolute;
+      z-index:2;
+      right:0;
+      bottom:calc(100% + 14px);
+      width:360px;
+      padding:24px;
+      border:1px solid rgba(23,52,95,.13);
+      border-radius:24px;
+      background:rgba(255,253,248,.98);
+      box-shadow:0 28px 80px rgba(23,52,95,.23);
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(14px) scale(.98);
+      transform-origin:right bottom;
+      transition:opacity .28s ease,transform .38s var(--ease),visibility .28s;
+      visibility:hidden;
+    }
+    .contact-dock.is-open .contact-panel {
+      opacity:1;
+      pointer-events:auto;
+      transform:translateY(0) scale(1);
+      visibility:visible;
+    }
+    .contact-panel-head { display:flex; align-items:flex-start; justify-content:space-between; gap:20px; }
+    .contact-kicker {
+      display:block;
+      color:var(--teal);
+      font-size:8px;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .contact-panel h2 {
+      max-width:255px;
+      margin-top:8px;
+      font-size:23px;
+      line-height:1.15;
+      letter-spacing:-.04em;
+    }
+    .contact-close {
+      display:grid;
+      width:34px;
+      height:34px;
+      flex:0 0 auto;
+      padding:0;
+      border:1px solid var(--line);
+      border-radius:50%;
+      background:transparent;
+      color:var(--ink);
+      cursor:pointer;
+      place-items:center;
+    }
+    .contact-close svg { width:14px; height:14px; }
+    .contact-lede { margin-top:12px; color:var(--muted); font-size:10px; line-height:1.65; }
+    .contact-topics { margin-top:18px; border-top:1px solid var(--line); }
+    .contact-topic {
+      display:grid;
+      width:100%;
+      min-height:43px;
+      grid-template-columns:8px 1fr auto;
+      align-items:center;
+      gap:10px;
+      padding:0;
+      border:0;
+      border-bottom:1px solid var(--line);
+      background:transparent;
+      color:#52677b;
+      cursor:pointer;
+      font:700 10px/1.4 "Be Vietnam Pro",sans-serif;
+      text-align:left;
+      transition:color .25s ease;
+    }
+    .contact-topic::before {
+      width:6px;
+      height:6px;
+      border:1px solid var(--teal);
+      border-radius:50%;
+      content:"";
+      transition:background .25s ease,box-shadow .25s ease;
+    }
+    .contact-topic span { color:var(--teal); font-size:14px; transition:transform .3s var(--ease); }
+    .contact-topic:hover,.contact-topic.is-active { color:var(--ink); }
+    .contact-topic:hover span,.contact-topic.is-active span { transform:translateX(3px); }
+    .contact-topic.is-active::before { background:var(--yellow); box-shadow:0 0 0 4px rgba(212,164,60,.14); }
+    .contact-answer {
+      margin-top:16px;
+      padding:15px 16px;
+      border-left:2px solid var(--yellow);
+      background:#edf2f5;
+    }
+    .contact-answer strong { display:block; font-size:12px; line-height:1.45; }
+    .contact-answer p { margin-top:6px; color:#5a6f81; font-size:9px; line-height:1.6; }
+    .contact-answer a {
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      margin-top:10px;
+      color:var(--teal);
+      font-size:9px;
+      font-weight:800;
+    }
+    .contact-direct-label {
+      display:block;
+      margin-top:18px;
+      color:#718191;
+      font-size:8px;
+      font-weight:800;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+    .contact-channels { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px; }
+    .contact-channel {
+      display:flex;
+      min-height:58px;
+      flex-direction:column;
+      justify-content:center;
+      padding:10px 13px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      color:var(--ink);
+      font-size:10px;
+      font-weight:800;
+      transition:transform .3s var(--ease),border-color .3s ease;
+    }
+    .contact-channel:hover { border-color:rgba(49,95,168,.42); transform:translateY(-2px); }
+    .contact-channel:first-child { border-color:var(--ink); background:var(--ink); color:#fff; }
+    .contact-channel small { margin-top:5px; color:inherit; font-size:8px; font-weight:500; opacity:.7; }
+    .contact-dock.is-open .contact-backdrop { opacity:1; pointer-events:auto; }
+    @media (max-width:1180px) and (min-width:801px) {
+      .library-grid { grid-template-columns:.82fr 1fr; gap:36px; }
+      .book-editorial { min-height:560px; }
+      .book-editorial::before { width:440px; height:440px; }
+      .book-editorial::after { width:390px; }
+      .book-card { width:150px; }
+      .book-card[data-slot="0"] { transform:translate(-50%,-50%) translateZ(58px) scale(1.05); }
+      .book-card[data-slot="1"] { transform:translate(calc(-50% + 130px),calc(-50% + 30px)) rotate(7deg) scale(.76); }
+      .book-card[data-slot="2"] { transform:translate(calc(-50% + 170px),calc(-50% + 48px)) rotate(11deg) scale(.56); }
+      .book-card[data-slot="3"] { transform:translate(-50%,calc(-50% - 42px)) scale(.48); }
+      .book-card[data-slot="4"] { transform:translate(calc(-50% - 170px),calc(-50% + 48px)) rotate(-11deg) scale(.56); }
+      .book-card[data-slot="5"] { transform:translate(calc(-50% - 130px),calc(-50% + 30px)) rotate(-7deg) scale(.76); }
+      .book-count { right:20px; }
+      .journey-stage { grid-template-columns:1fr .9fr; }
+      .journey-copy { padding-right:38px; }
+      .journey-device { left:47%; width:270px; }
+      .journey-device::before { left:-42%; }
+      .journey-device::after { right:-42%; }
+      .footer { grid-template-columns:1.1fr .8fr 1fr; }
+      .footer-brand { grid-row:span 2; }
+    }
+    @media (min-width:1024px) and (prefers-reduced-motion:no-preference) {
+      html {
+        scroll-padding-top:0;
+        scroll-snap-type:y mandatory;
+      }
+      main > section {
+        min-height:100svh;
+        scroll-snap-align:start;
+        scroll-snap-stop:normal;
+      }
+      .hero,
+      .hero-inner {
+        min-height:100svh;
+      }
+      .hero h1 {
+        font-size:clamp(50px,5vw,62px);
+      }
+      .hero-lede {
+        margin-top:20px;
+      }
+      .hero-note {
+        margin-top:28px;
+        padding-top:14px;
+      }
+      .world {
+        padding:92px 0 48px;
+      }
+      h2 {
+        font-size:clamp(34px,3.25vw,48px);
+      }
+      .section-head {
+        align-items:center;
+        gap:56px;
+      }
+      .section-head h2 {
+        max-width:680px;
+        margin-top:12px;
+      }
+      .section-intro {
+        max-width:560px;
+        line-height:1.62;
+      }
+      .topic-film {
+        height:390px;
+        margin-top:34px;
+      }
+      .topic-label strong {
+        font-size:18px;
+      }
+      .library {
+        padding:72px 0 0;
+      }
+      .library-grid {
+        gap:44px;
+      }
+      .library-copy h2 {
+        font-size:clamp(38px,3.5vw,48px);
+        margin-top:14px;
+      }
+      .library-copy > p:not(.eyebrow) {
+        margin-top:18px;
+        line-height:1.62;
+      }
+      .selection-list {
+        margin-top:24px;
+      }
+      .selection-row {
+        padding:12px 0;
+      }
+      .book-editorial {
+        min-height:480px;
+      }
+      .book-editorial::before {
+        width:430px;
+        height:430px;
+      }
+      .book-editorial::after {
+        width:410px;
+      }
+      .book-card {
+        width:min(13vw,170px);
+      }
+      .library-ticker {
+        margin-top:22px;
+      }
+      .library-ticker span {
+        min-height:46px;
+      }
+      .trust {
+        padding:94px 0 50px;
+      }
+      .trust-grid {
+        grid-template-columns:1.05fr .58fr;
+        align-items:center;
+        gap:50px;
+      }
+      .trust-copy h2 {
+        max-width:710px;
+        font-size:clamp(36px,3.35vw,50px);
+        line-height:1.06;
+      }
+      .trust-copy h2 {
+        margin-top:14px;
+      }
+      .trust-copy > p:not(.eyebrow) {
+        margin-top:18px;
+        line-height:1.62;
+      }
+      .trust-flow {
+        margin-top:32px;
+      }
+      .trust-flow span {
+        min-height:66px;
+        padding-top:22px;
+        padding-bottom:14px;
+      }
+      .trust-mark {
+        min-height:162px;
+        padding:24px;
+      }
+      .evidence-band {
+        margin-top:26px;
+      }
+      .evidence-item {
+        min-height:102px;
+        padding:18px 22px;
+      }
+      .evidence-item strong {
+        font-size:26px;
+      }
+      .evidence-item span {
+        margin-top:8px;
+        line-height:1.5;
+      }
+      .experience {
+        padding:88px 0 42px;
+      }
+      .journey-stage,
+      .journey-visual {
+        min-height:560px;
+      }
+      .journey-copy {
+        padding:40px 44px 40px 0;
+      }
+      .journey-copy h2 {
+        font-size:clamp(36px,3.3vw,46px);
+        margin-top:14px;
+      }
+      .journey-lede {
+        margin-top:18px;
+        line-height:1.62;
+      }
+      .journey-steps {
+        margin-top:24px;
+      }
+      .journey-step {
+        padding:12px 0;
+      }
+      .journey-device {
+        width:min(18vw,235px);
+      }
+      .journey-device::before {
+        left:-50%;
+      }
+      .journey-device::after {
+        right:-50%;
+      }
+      .purpose {
+        padding:118px 0 86px;
+      }
+      .purpose-grid {
+        gap:92px;
+        align-items:center;
+      }
+      .purpose h2 {
+        max-width:760px;
+        font-size:clamp(38px,3.45vw,52px);
+      }
+      .purpose h2 {
+        margin-top:14px;
+      }
+      .purpose-lede {
+        margin-top:20px;
+        line-height:1.62;
+      }
+      .purpose-quote {
+        padding:34px 0;
+        font-size:clamp(28px,2.35vw,38px);
+      }
+      .voices {
+        display:flex;
+        min-height:100svh;
+        flex-direction:column;
+        justify-content:center;
+        padding:84px 0 72px;
+      }
+      .voices h2 {
+        max-width:860px;
+        margin-top:14px;
+        font-size:clamp(38px,3.35vw,52px);
+      }
+      .review-marquee {
+        margin-top:48px;
+      }
+      .review-card {
+        width:320px;
+        min-height:185px;
+        padding:22px 24px;
+      }
+      .cta {
+        display:flex;
+        min-height:100svh;
+        align-items:center;
+        padding:64px 0 30px;
+      }
+      .cta-inner {
+        grid-template-columns:minmax(0,1.05fr) minmax(360px,.58fr);
+        align-items:center;
+        gap:72px;
+      }
+      .cta h2 {
+        max-width:780px;
+        margin-top:14px;
+        font-size:clamp(38px,3.6vw,56px);
+        line-height:1.08;
+      }
+      .cta-copy {
+        max-width:560px;
+        align-self:center;
+        line-height:1.7;
+      }
+      .footer {
+        grid-template-columns:1.2fr .72fr .9fr 1.05fr;
+        gap:30px 42px;
+        margin-top:54px;
+        padding-top:30px;
+      }
+      .footer-brand {
+        max-width:370px;
+      }
+      .footer .brand {
+        gap:14px;
+        font-size:14px;
+      }
+      .footer .brand img {
+        width:50px;
+        height:50px;
+        padding:6px;
+        border-radius:50%;
+        background:rgba(255,255,255,.88);
+        box-shadow:0 12px 30px rgba(10,37,82,.18);
+      }
+      .footer-brand p {
+        margin-top:16px;
+        line-height:1.62;
+      }
+      .footer-group.footer-expertise {
+        grid-column:4;
+      }
+      .footer-label {
+        color:#fff;
+      }
+      .footer-group a,
+      .footer-group p {
+        line-height:1.58;
+      }
+      .footer-bottom {
+        margin-top:10px;
+        padding-top:18px;
+      }
+      .contact-dock {
+        right:max(18px,calc((100vw - var(--shell))/2 - 210px));
+        bottom:18px;
+      }
+      .contact-toggle {
+        min-height:48px;
+        padding-right:15px;
+      }
+      .contact-toggle-icon {
+        width:34px;
+        height:34px;
+      }
+    }
+    html.js [data-reveal] {
+      opacity:0;
+      transform:translateY(28px);
+      transition:opacity .85s var(--ease) var(--delay,0s),transform .85s var(--ease) var(--delay,0s);
+    }
+    html.js section.visible [data-reveal],html.js .hero [data-reveal] { opacity:1; transform:translateY(0); }
+    @media (prefers-reduced-motion:no-preference) {
+      .hero-media img { animation:hero-image 1.4s var(--ease) both; }
+      .journey-device { animation:device-breathe 6.5s ease-in-out infinite; }
+      @keyframes hero-image { from { opacity:.2; transform:scale(1.035); } }
+      @keyframes device-breathe { 50% { translate:0 -8px; } }
+    }
+    @media (max-width:800px) {
+      .shell { width:min(calc(100% - 32px),var(--shell)); }
+      .header-inner { height:70px; }
+      .nav { display:none; }
+      .header-cta { padding:10px 14px; }
+      .hero { min-height:980px; background:var(--paper); }
+      .hero-media { top:auto; height:440px; }
+      .hero-media img { object-position:66% center; }
+      .hero-media::after { background:linear-gradient(180deg,var(--paper) 0%,rgba(245,241,233,.1) 32%,transparent 60%); }
+      .hero-inner { min-height:980px; align-items:flex-start; padding-top:118px; }
+      .hero-copy { width:100%; }
+      .hero h1 { max-width:100%; font-size:44px; line-height:1.08; letter-spacing:-.045em; }
+      .hero-lede { max-width:350px; font-size:13px; }
+      .hero-note { max-width:340px; margin-top:28px; font-size:8px; }
+      .button { min-height:48px; padding:0 17px; }
+      .world,.experience,.purpose,.voices { padding:82px 0; }
+      .library { padding:82px 0 0; }
+      .section-head,.library-grid,.purpose-grid,.cta-inner { grid-template-columns:1fr; gap:42px; }
+      h2 { font-size:38px; line-height:1.12; letter-spacing:-.035em; }
+      .section-intro,.library-copy > p:not(.eyebrow),.purpose-lede { font-size:13px; }
+      .topic-film { display:grid; height:auto; grid-template-columns:1fr 1fr; grid-template-rows:300px 210px 210px; gap:8px; margin-top:44px; }
+      .topic:first-child { grid-column:1 / 3; grid-row:auto; }
+      .topic:nth-child(2) { grid-column:1 / 3; }
+      .topic-label { right:14px; bottom:13px; left:14px; }
+      .topic-label strong { font-size:15px; }
+      .library-grid { gap:30px; }
+      .selection-list { margin-top:28px; }
+      .selection-row { padding:16px 0; }
+      .book-editorial { min-height:470px; }
+      .book-editorial::before { top:13%; left:50%; width:340px; height:340px; transform:translateX(-50%); }
+      .book-editorial::after { bottom:10%; left:50%; width:90%; transform:translateX(-50%); }
+      .book-count { top:0; right:0; gap:8px; font-size:23px; }
+      .book-count::before { width:24px; }
+      .book-count span { max-width:96px; font-size:7px; }
+      .book-deck { inset:52px 0 60px; }
+      .book-card { width:128px; }
+      .book-card[data-slot="0"] { transform:translate(-50%,-50%) translateZ(50px) scale(1.08); }
+      .book-card[data-slot="1"] { transform:translate(calc(-50% + 95px),calc(-50% + 30px)) rotate(8deg) scale(.72); }
+      .book-card[data-slot="2"] { transform:translate(calc(-50% + 130px),calc(-50% + 50px)) rotate(13deg) scale(.52); }
+      .book-card[data-slot="3"] { transform:translate(-50%,calc(-50% - 36px)) scale(.5); }
+      .book-card[data-slot="4"] { transform:translate(calc(-50% - 130px),calc(-50% + 50px)) rotate(-13deg) scale(.52); }
+      .book-card[data-slot="5"] { transform:translate(calc(-50% - 95px),calc(-50% + 30px)) rotate(-8deg) scale(.72); }
+      .book-focus { right:0; bottom:2%; left:0; grid-template-columns:24px 1fr auto auto; gap:7px; font-size:7px; }
+      .book-focus::before { width:24px; }
+      .book-arrow { width:25px; height:25px; }
+      .library-ticker { margin-top:24px; }
+      .library-ticker-set { min-width:max-content; }
+      .library-ticker span { min-height:54px; font-size:8px; }
+      .library-ticker span::after { margin:0 22px; }
+      .trust { padding:82px 0; }
+      .trust-grid { grid-template-columns:1fr; gap:48px; }
+      .trust-mark { min-height:0; grid-template-columns:88px 1fr; gap:18px; padding:22px; }
+      .trust-logo-wrap { width:88px; height:88px; }
+      .trust-mark strong { font-size:25px; }
+      .trust-mark span { margin-top:6px; font-size:11px; }
+      .trust-copy > p:not(.eyebrow) { font-size:13px; }
+      .trust-flow { grid-template-columns:1fr 1fr; margin-top:38px; line-height:1.45; }
+      .trust-flow span { min-height:76px; padding:25px 15px 16px 0; }
+      .trust-flow span:not(:first-child) { padding-left:15px; }
+      .trust-flow span:nth-of-type(2) { border-right:0; }
+      .trust-flow span:nth-of-type(n+3) { border-top:1px solid var(--line); }
+      .trust-flow span:nth-of-type(3) { padding-left:0; }
+      .trust-flow span:not(:first-child)::before { left:15px; }
+      .trust-flow span:nth-of-type(3)::before { left:0; }
+      .evidence-band { grid-template-columns:1fr; margin-top:48px; }
+      .evidence-item { min-height:0; padding:20px 0; border-right:0; border-bottom:1px solid var(--line); }
+      .evidence-item:last-child { border-bottom:0; }
+      .journey-stage { min-height:0; grid-template-columns:1fr; }
+      .journey-copy { padding:56px 0 42px; }
+      .journey-copy h2 { font-size:40px; }
+      .journey-lede { font-size:13px; }
+      .journey-steps { display:grid; grid-template-columns:repeat(3,1fr); margin-top:34px; }
+      .journey-step { display:block; min-height:86px; padding:15px 10px 12px 0; border-right:1px solid rgba(255,255,255,.16); }
+      .journey-step:last-child { border-right:0; padding-left:10px; }
+      .journey-step:not(:first-child) { padding-left:10px; }
+      .journey-step.is-active { padding-left:10px; }
+      .journey-step > span { display:block; padding:0 0 8px; }
+      .journey-step strong { font-size:12px; line-height:1.35; }
+      .journey-step p { display:none; }
+      .journey-visual { min-height:610px; border-top:1px solid rgba(255,255,255,.16); border-left:0; }
+      .journey-visual::before { width:420px; height:420px; }
+      .journey-visual::after { width:310px; height:310px; }
+      .journey-device { width:245px; }
+      .journey-device::before { left:-46%; }
+      .journey-device::after { right:-46%; }
+      .journey-status { right:16px; bottom:18px; }
+      .purpose-grid { gap:48px; }
+      .purpose-quote { font-size:25px; }
+      .review-marquee { margin-top:44px; }
+      .review-loop { gap:12px; animation-duration:26s; }
+      .review-card { width:286px; min-height:205px; }
+      .cta { padding-top:82px; }
+      .cta-inner { gap:32px; }
+      .footer { grid-template-columns:1fr 1fr; gap:34px 24px; margin-top:68px; padding-top:34px; }
+      .footer-brand,.footer-bottom { grid-column:1 / -1; }
+      .footer-brand { max-width:330px; }
+      .footer-bottom { align-items:flex-start; flex-direction:column; gap:6px; margin-top:0; }
+      .contact-dock { right:12px; bottom:max(12px,env(safe-area-inset-bottom)); }
+      .contact-toggle { min-height:50px; padding-right:15px; }
+      .contact-toggle-icon { width:34px; height:34px; }
+      .contact-backdrop { background:rgba(23,52,95,.28); backdrop-filter:blur(3px); }
+      .contact-panel {
+        position:fixed;
+        right:12px;
+        bottom:max(12px,env(safe-area-inset-bottom));
+        left:12px;
+        width:auto;
+        max-height:calc(100dvh - 24px);
+        overflow:auto;
+        transform:translateY(24px) scale(.99);
+        transform-origin:center bottom;
+      }
+      .contact-dock.is-open .contact-toggle { opacity:0; pointer-events:none; transform:translateY(10px); }
+    }
+    @media (max-width:340px) {
+      .footer { grid-template-columns:1fr; }
+      .footer-brand,.footer-bottom { grid-column:auto; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { scroll-behavior:auto!important; animation:none!important; transition-duration:.01ms!important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header"><div class="shell header-inner">
+    <a class="brand" href="#top"><img src="./assets/logo-GEMS.png" alt="" width="968" height="968"><span>GEMS</span></a>
+    <nav class="nav" aria-label="Điều hướng chính"><a href="#world">Chủ đề</a><a href="#library">Thư viện</a><a href="#trust">Kiểm chứng</a><a href="#experience">Trải nghiệm</a></nav>
+    <a class="header-cta" href="https://gems-ebook.vercel.app/">Mở ứng dụng</a>
+  </div></header>
+  <main>
+    <section class="hero visible" id="top">
+      <div class="hero-media"><img src="./assets/gems-hero-knowledge-in-life.jpg" alt="GEMS đồng hành trong đời sống chăm sóc sức khỏe chủ động" width="1672" height="941" fetchpriority="high" decoding="async"></div>
+      <div class="shell hero-inner"><div class="hero-copy">
+        <p class="eyebrow" data-reveal>Ứng dụng đọc sách về chăm sóc sức khỏe chủ động</p>
+        <h1 data-reveal style="--delay:.08s">Hiểu cơ thể.<em>Chủ động sống khỏe.</em></h1>
+        <p class="hero-lede" data-reveal style="--delay:.16s">GEMS đưa sách và kiến thức tiếng Việt đến gần đời sống hằng ngày, để mỗi người có thể hiểu đúng hơn về dinh dưỡng, lối sống và cách chăm sóc bản thân.</p>
+        <div class="actions" data-reveal style="--delay:.24s"><a class="button button-primary" href="#experience">Xem hành trình GEMS <span>→</span></a><a class="button button-secondary" href="#partners">Dành cho đối tác</a></div>
+        <p class="hero-note" data-reveal style="--delay:.3s">Kiến thức tiếng Việt · Được LIMES tuyển chọn · Đọc và nghe trong một hành trình</p>
+      </div></div>
+    </section>
+
+    <section class="world" id="world"><div class="shell">
+      <div class="section-head"><div><p class="eyebrow" data-reveal>Kiến thức gần với đời sống</p><h2 data-reveal style="--delay:.08s">Sống khỏe bắt đầu từ những điều gần gũi.</h2></div><p class="section-intro" data-reveal style="--delay:.16s">Không chỉ đọc khi có vấn đề. GEMS giúp người đọc tiếp cận kiến thức từ những lựa chọn diễn ra mỗi ngày: ăn gì, ngủ thế nào, vận động ra sao và chăm sóc tinh thần của mình.</p></div>
+      <div class="topic-film">
+        <article class="topic" data-reveal><img src="./assets/topic-nutrition.jpg" alt="Bữa ăn cân bằng" width="1000" height="560" loading="lazy" decoding="async"><div class="topic-label"><span>Dinh dưỡng</span><strong>Hiểu điều mình ăn mỗi ngày.</strong></div></article>
+        <article class="topic" data-reveal style="--delay:.08s"><img src="./assets/topic-movement.jpg" alt="Vận động chủ động" width="1000" height="560" loading="lazy" decoding="async"><div class="topic-label"><span>Vận động</span><strong>Một cơ thể được chăm sóc bằng chuyển động.</strong></div></article>
+        <article class="topic" data-reveal style="--delay:.14s"><img src="./assets/topic-sleep.jpg" alt="Giấc ngủ lành mạnh" width="1000" height="560" loading="lazy" decoding="async"><div class="topic-label"><span>Giấc ngủ</span><strong>Nghỉ ngơi cũng là chăm sóc.</strong></div></article>
+        <article class="topic" data-reveal style="--delay:.2s"><img src="./assets/topic-mind.jpg" alt="Sức khỏe tinh thần" width="1000" height="560" loading="lazy" decoding="async"><div class="topic-label"><span>Tinh thần</span><strong>Lắng nghe chính mình.</strong></div></article>
+      </div>
+    </div></section>
+
+    <section class="library" id="library"><div class="shell library-grid">
+      <div class="library-copy"><p class="eyebrow" data-reveal>Thư viện chăm sóc sức khỏe chủ động</p><h2 data-reveal style="--delay:.08s">Một thư viện để mỗi người bắt đầu từ điều mình quan tâm.</h2><p data-reveal style="--delay:.16s">Từ dinh dưỡng, giấc ngủ đến tâm lý và lối sống, GEMS tổ chức nội dung theo những mối quan tâm gần gũi để việc chăm sóc sức khỏe không còn là một khái niệm xa vời.</p>
+        <div class="selection-list" data-reveal style="--delay:.22s"><div class="selection-row"><strong>Dinh dưỡng &amp; chuyển hóa</strong><span>Hiểu đúng</span></div><div class="selection-row"><strong>Giấc ngủ &amp; phục hồi</strong><span>Cân bằng</span></div><div class="selection-row"><strong>Tâm lý &amp; lối sống</strong><span>Chủ động</span></div></div>
+      </div>
+      <div class="book-editorial" data-reveal style="--delay:.14s">
+        <div class="book-count" aria-hidden="true">100+<span>đầu sách được tuyển chọn</span></div>
+        <div class="book-deck" aria-label="Các chủ đề nổi bật trong thư viện GEMS">
+          <button class="book-card" type="button" data-title="Dinh dưỡng chủ động" aria-label="Xem bìa Dinh dưỡng chủ động"><img src="./assets/gems-cover-dinh-duong-v1.webp" alt="Dinh dưỡng chủ động" loading="lazy" decoding="async"></button>
+          <button class="book-card" type="button" data-title="Giấc ngủ và nhịp sống" aria-label="Xem bìa Giấc ngủ và nhịp sống"><img src="./assets/gems-cover-giac-ngu-v1.webp" alt="Giấc ngủ và nhịp sống" loading="lazy" decoding="async"></button>
+          <button class="book-card" type="button" data-title="Tâm lý khỏe mạnh" aria-label="Xem bìa Tâm lý khỏe mạnh"><img src="./assets/gems-cover-tam-ly-v1.webp" alt="Tâm lý khỏe mạnh" loading="lazy" decoding="async"></button>
+          <button class="book-card" type="button" data-title="Vận động mỗi ngày" aria-label="Xem bìa Vận động mỗi ngày"><img src="./assets/gems-cover-van-dong-v1.webp" alt="Vận động mỗi ngày" loading="lazy" decoding="async"></button>
+          <button class="book-card" type="button" data-title="Sức khỏe đường ruột" aria-label="Xem bìa Sức khỏe đường ruột"><img src="./assets/gems-cover-duong-ruot-v1.webp" alt="Sức khỏe đường ruột" loading="lazy" decoding="async"></button>
+          <button class="book-card" type="button" data-title="Thở sâu, sống chậm" aria-label="Xem bìa Thở sâu, sống chậm"><img src="./assets/gems-cover-tho-sau-v1.webp" alt="Thở sâu, sống chậm" loading="lazy" decoding="async"></button>
+        </div>
+        <div class="book-focus">
+          <span class="book-caption" aria-live="polite">Dinh dưỡng chủ động</span>
+          <span class="book-focus-index">01 / 06</span>
+          <div class="book-nav" aria-label="Điều khiển bộ sưu tập bìa sách">
+            <button class="book-arrow" type="button" data-book-direction="-1" aria-label="Xem bìa trước">&larr;</button>
+            <button class="book-arrow" type="button" data-book-direction="1" aria-label="Xem bìa tiếp theo">&rarr;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="library-ticker" aria-hidden="true"><div class="library-ticker-track">
+      <div class="library-ticker-set"><span>Đọc để hiểu</span><span>Hiểu để lựa chọn</span><span>Lựa chọn để sống chủ động</span><span>GEMS</span></div>
+      <div class="library-ticker-set"><span>Đọc để hiểu</span><span>Hiểu để lựa chọn</span><span>Lựa chọn để sống chủ động</span><span>GEMS</span></div>
+    </div></div></section>
+
+    <section class="trust" id="trust"><div class="shell">
+      <div class="trust-grid">
+        <div class="trust-mark" data-reveal>
+          <div class="trust-logo-wrap"><img class="trust-logo" src="./assets/logo-LIMES-official.jpg" alt="Logo Viện Nghiên cứu Y học Sự sống LIMES" width="500" height="500" loading="lazy" decoding="async"></div>
+          <div class="trust-sign"><small>Được tuyển chọn bởi</small><strong>LIMES</strong><span>Viện Nghiên cứu Y học Sự sống</span></div>
+        </div>
+        <div class="trust-copy"><p class="eyebrow" data-reveal>Nền tảng chuyên môn phía sau GEMS</p><h2 data-reveal style="--delay:.08s">Mỗi đầu sách đều đi qua một quy trình kiểm soát trước khi đến tay người đọc.</h2><p data-reveal style="--delay:.16s">Thư viện được LIMES tuyển chọn. Nội dung tiếp tục được các ban chuyên môn gồm giáo sư, tiến sĩ của Viện kiểm soát để bảo đảm tính phù hợp, giá trị sử dụng và định hướng chăm sóc sức khỏe chủ động.</p><div class="trust-flow" data-reveal style="--delay:.22s"><span>Đề xuất nội dung</span><i></i><span>LIMES tuyển chọn</span><i></i><span>Ban chuyên môn kiểm soát</span><i></i><span>Xuất bản trên GEMS</span></div></div>
+      </div>
+      <div class="evidence-band" data-reveal style="--delay:.18s"><div class="evidence-item"><strong>TIẾNG VIỆT</strong><span>Nội dung gần với bối cảnh và thói quen chăm sóc sức khỏe của người Việt.</span></div><div class="evidence-item"><strong>LIMES</strong><span>Đơn vị tuyển chọn và định hướng nền tảng nội dung.</span></div><div class="evidence-item"><strong>GS · TS</strong><span>Các ban chuyên môn của Viện tham gia kiểm soát nội dung.</span></div></div>
+    </div></section>
+
+    <section class="experience" id="experience"><div class="shell">
+      <div class="journey-stage" data-reveal>
+        <div class="journey-copy">
+          <p class="eyebrow">Một hành trình không đứt đoạn</p>
+          <h2>Một nội dung.<br><span>Ba nhịp tiếp nhận.</span></h2>
+          <p class="journey-lede">GEMS không đặt từng công cụ cạnh nhau. Ứng dụng nối việc tìm sách, đọc sâu và nghe tiếp thành một trải nghiệm liền mạch.</p>
+          <div class="journey-steps" aria-label="Hành trình trải nghiệm GEMS">
+            <button class="journey-step is-active" type="button" aria-pressed="true" data-scene="0"><span>Tìm</span><div><strong>Tìm điều cần hiểu</strong><p>Khám phá nội dung theo những chủ đề sức khỏe gần với đời sống.</p></div></button>
+            <button class="journey-step" type="button" aria-pressed="false" data-scene="1"><span>Đọc</span><div><strong>Đọc để hiểu sâu</strong><p>Tập trung trên trang sách, đánh dấu và giữ lại đúng ngữ cảnh.</p></div></button>
+            <button class="journey-step" type="button" aria-pressed="false" data-scene="2"><span>Nghe</span><div><strong>Nghe để đi tiếp</strong><p>Tiếp tục nội dung khi di chuyển hoặc tạm rời màn hình.</p></div></button>
+          </div>
+        </div>
+        <div class="journey-visual" aria-live="polite">
+          <div class="journey-device">
+            <img class="journey-screen is-active" src="./assets/gems-library-story-polished.png" alt="Kho sách điện tử trong ứng dụng GEMS" loading="lazy" decoding="async">
+            <img class="journey-screen" src="./assets/gems-reader-story-polished.png" alt="Trang đọc sách điện tử trong ứng dụng GEMS" loading="lazy" decoding="async">
+            <img class="journey-screen" src="./assets/gems-audio-story-polished.png" alt="Nội dung nói trong ứng dụng GEMS" loading="lazy" decoding="async">
+          </div>
+          <div class="journey-status">Kho tri thức · Đang mở</div>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="purpose" id="purpose"><div class="shell purpose-grid">
+      <div><p class="eyebrow" data-reveal>Điều GEMS muốn thay đổi</p><h2 data-reveal style="--delay:.08s">Mục tiêu không phải đọc nhiều hơn. <em>Là hiểu đúng để sống chủ động hơn.</em></h2><p class="purpose-lede" data-reveal style="--delay:.16s">GEMS hướng đến một thư viện số gần gũi, nơi kiến thức đáng tin cậy trở thành một phần tự nhiên trong thói quen chăm sóc bản thân.</p></div>
+      <blockquote class="purpose-quote" data-reveal style="--delay:.2s">“Kiến thức chỉ thật sự có giá trị khi giúp một người đưa ra lựa chọn tốt hơn cho sức khỏe của mình.”<span>Tầm nhìn GEMS</span></blockquote>
+    </div></section>
+
+    <section class="voices" id="voices"><div class="shell voices-head"><p class="eyebrow" data-reveal>Tiếng nói từ người đọc</p><h2 data-reveal style="--delay:.08s">Một thói quen tốt được bắt đầu từ trải nghiệm dễ chịu.</h2></div><div class="review-marquee"><div class="review-loop">
+      <article class="review-card"><div class="stars">★★★★★</div><p>“Cám ơn những người đã tạo ra GEMS.”</p><div class="review-person"><img src="./assets/testimonial-minh-chau.jpg" alt="" width="320" height="320" loading="lazy" decoding="async"><div><strong>Người đọc GEMS</strong><span>Quan tâm sức khỏe chủ động</span></div></div></article>
+      <article class="review-card"><div class="stars">★★★★★</div><p>Giao diện bắt mắt, sách được tuyển chọn tốt và giọng đọc tạo cảm giác dễ nghe.</p><div class="review-person"><img src="./assets/testimonial-hoang-minh.jpg" alt="" width="320" height="320" loading="lazy" decoding="async"><div><strong>Người đọc GEMS</strong><span>Duy trì thói quen đọc</span></div></div></article>
+      <article class="review-card"><div class="stars">★★★★★</div><p>“Giọng đọc hay. Lôi cuốn.”</p><div class="review-person"><img src="./assets/testimonial-mai-anh.jpg" alt="" width="320" height="320" loading="lazy" decoding="async"><div><strong>Người nghe GEMS</strong><span>Nghe khi di chuyển</span></div></div></article>
+      <article class="review-card"><div class="stars">★★★★★</div><p>Nhiều đầu sách mới, trải nghiệm phù hợp với người Việt sống xa quê hương.</p><div class="review-person"><img src="./assets/testimonial-quoc-huy.jpg" alt="" width="320" height="320" loading="lazy" decoding="async"><div><strong>Người đọc GEMS</strong><span>Sống xa Việt Nam</span></div></div></article>
+      <article class="review-card"><div class="stars">★★★★★</div><p>Phù hợp với người bận rộn và có thể duy trì việc nghe trong lúc di chuyển.</p><div class="review-person"><img src="./assets/testimonial-thu-ha.jpg" alt="" width="320" height="320" loading="lazy" decoding="async"><div><strong>Người nghe GEMS</strong><span>Chủ động mỗi ngày</span></div></div></article>
+    </div></div></section>
+
+    <section class="cta" id="partners"><div class="shell"><div class="cta-inner"><div><p class="eyebrow" data-reveal>Cùng GEMS và LIMES</p><h2 data-reveal style="--delay:.08s">Để ai cũng có thể chăm sóc sức khỏe một cách chủ động.</h2></div><div class="cta-copy" data-reveal style="--delay:.16s">GEMS chào đón đơn vị xuất bản, tác giả, chuyên gia nội dung và đối tác công nghệ cùng mở rộng một thư viện sức khỏe thiết thực, được kiểm soát chuyên môn và dễ tiếp cận với người Việt.<div class="actions"><a class="button button-primary" href="mailto:info.gemsgroupvn@gmail.com">Trao đổi hợp tác <span>→</span></a><a class="button button-secondary" href="https://gems-ebook.vercel.app/">Mở ứng dụng</a></div></div></div>
+      <footer class="footer" aria-label="Thông tin cuối trang">
+        <div class="footer-brand">
+          <a class="brand" href="#top" aria-label="Tập đoàn GEMS - Về đầu trang"><img src="./assets/logo-GEMS.png" alt="Logo Tập đoàn GEMS" width="968" height="968"><span>TẬP ĐOÀN GEMS</span></a>
+          <p>GEMS Ebook là thư viện số thuộc hệ sinh thái GEMS, giúp kiến thức chăm sóc sức khỏe trở nên gần gũi, đáng tin cậy và dễ tiếp cận hơn với người Việt.</p>
+        </div>
+        <div class="footer-group">
+          <span class="footer-label">Khám phá</span>
+          <a href="#library">Thư viện</a>
+          <a href="#trust">Kiểm chứng nội dung</a>
+          <a href="#experience">Trải nghiệm ứng dụng</a>
+        </div>
+        <div class="footer-group">
+          <span class="footer-label">Liên hệ</span>
+          <a class="footer-contact" href="tel:1900888812">1900 88 88 12</a>
+          <a class="footer-email" href="mailto:info.gemsgroupvn@gmail.com">info.<wbr>gemsgroupvn@gmail.com</a>
+          <a href="https://gemsgroup.com.vn/" target="_blank" rel="noopener noreferrer">gemsgroup.com.vn ↗</a>
+        </div>
+        <div class="footer-group">
+          <span class="footer-label">Trụ sở chính</span>
+          <p class="footer-address">25 đường 37, khu đô thị Vạn Phúc, Phường Hiệp Bình, Thành phố Hồ Chí Minh</p>
+        </div>
+        <div class="footer-group footer-expertise">
+          <span class="footer-label">Kiểm soát chuyên môn</span>
+          <strong>LIMES</strong>
+          <p>Viện Nghiên cứu Y học Sự sống</p>
+        </div>
+        <div class="footer-bottom"><span>© 2026 Công ty Cổ phần Tập đoàn GEMS · MST 0318344838</span><span>Nội dung được LIMES tuyển chọn và định hướng chuyên môn.</span></div>
+      </footer>
+    </div></section>
+  </main>
+  <div class="contact-dock" id="contact-dock">
+    <button class="contact-backdrop" type="button" tabindex="-1" aria-label="Đóng bảng hỗ trợ"></button>
+    <aside class="contact-panel" id="contact-panel" role="dialog" aria-labelledby="contact-title" aria-hidden="true" tabindex="-1" inert>
+      <div class="contact-panel-head">
+        <div><span class="contact-kicker">Trợ lý định hướng</span><h2 id="contact-title">Bạn đang cần điều gì?</h2></div>
+        <button class="contact-close" type="button" aria-label="Đóng bảng hỗ trợ">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/></svg>
+        </button>
+      </div>
+      <p class="contact-lede">Chọn một hướng. GEMS sẽ đưa bạn đến đúng nội dung hoặc đúng người hỗ trợ.</p>
+      <div class="contact-topics" aria-label="Nhu cầu hỗ trợ">
+        <button class="contact-topic is-active" type="button" data-contact-topic="library" aria-pressed="true">Tìm nội dung phù hợp <span>→</span></button>
+        <button class="contact-topic" type="button" data-contact-topic="guide" aria-pressed="false">Cách sử dụng GEMS <span>→</span></button>
+        <button class="contact-topic" type="button" data-contact-topic="partner" aria-pressed="false">Hợp tác nội dung <span>→</span></button>
+        <button class="contact-topic" type="button" data-contact-topic="advisor" aria-pressed="false">Gặp tư vấn viên <span>→</span></button>
+      </div>
+      <div class="contact-answer" aria-live="polite">
+        <strong class="contact-answer-title">Bắt đầu từ điều bạn quan tâm.</strong>
+        <p class="contact-answer-copy">Khám phá nội dung về sức khỏe, dinh dưỡng, giấc ngủ, tâm lý và lối sống chủ động.</p>
+        <a class="contact-answer-link" href="#library">Khám phá thư viện <span>→</span></a>
+      </div>
+      <span class="contact-direct-label">Kết nối trực tiếp với GEMS</span>
+      <div class="contact-channels">
+        <a class="contact-channel" href="https://zalo.me/0398180812" target="_blank" rel="noopener noreferrer">Nhắn Zalo<small>0398 180 812</small></a>
+        <a class="contact-channel" href="tel:1900888812">Gọi hotline<small>1900 88 88 12</small></a>
+      </div>
+    </aside>
+    <button class="contact-toggle" type="button" aria-expanded="false" aria-controls="contact-panel">
+      <span class="contact-toggle-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 17.5 4 21l4-1.4c1.2.6 2.5.9 4 .9 4.7 0 8.5-3.5 8.5-7.8S16.7 5 12 5s-8.5 3.4-8.5 7.7c0 1.8.7 3.5 2 4.8Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.7"/><path d="M8 12.5h8M8 9.5h5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"/></svg>
+      </span>
+      <span>Hỗ trợ GEMS</span>
+    </button>
+  </div>
+  <script>
+    document.documentElement.classList.add('js');
+    const reviewLoop=document.querySelector('.review-loop');
+    if(reviewLoop)[...reviewLoop.children].forEach(card=>{const copy=card.cloneNode(true);copy.setAttribute('aria-hidden','true');reviewLoop.appendChild(copy);});
+    const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const librarySection=document.querySelector('#library');
+    const bookDeck=document.querySelector('.book-deck');
+    const bookCards=[...document.querySelectorAll('.book-card')];
+    const bookCaption=document.querySelector('.book-caption');
+    const bookIndexLabel=document.querySelector('.book-focus-index');
+    let activeBook=0;
+    let bookTimer;
+    let bookInView=false;
+    const renderBooks=()=>{
+      bookCards.forEach((card,index)=>{
+        const slot=(index-activeBook+bookCards.length)%bookCards.length;
+        card.dataset.slot=slot;
+        card.setAttribute('aria-pressed',slot===0?'true':'false');
+        card.tabIndex=-1;
+      });
+      if(bookCaption)bookCaption.textContent=bookCards[activeBook]?.dataset.title||'';
+      if(bookIndexLabel)bookIndexLabel.textContent=`${String(activeBook+1).padStart(2,'0')} / ${String(bookCards.length).padStart(2,'0')}`;
+    };
+    const startBookRotation=()=>{
+      clearInterval(bookTimer);
+      if(!reduceMotion&&bookInView)bookTimer=setInterval(()=>{activeBook=(activeBook+1)%bookCards.length;renderBooks();},3600);
+    };
+    document.querySelectorAll('.book-arrow').forEach(button=>button.addEventListener('click',()=>{
+      activeBook=(activeBook+Number(button.dataset.bookDirection)+bookCards.length)%bookCards.length;
+      renderBooks();
+      startBookRotation();
+    }));
+    if(bookDeck){
+      bookDeck.addEventListener('pointerenter',()=>clearInterval(bookTimer));
+      bookDeck.addEventListener('pointerleave',startBookRotation);
+      bookDeck.addEventListener('focusin',()=>clearInterval(bookTimer));
+      bookDeck.addEventListener('focusout',startBookRotation);
+      renderBooks();
+      if('IntersectionObserver' in window&&librarySection){
+        const bookMotionObserver=new IntersectionObserver(([entry])=>{
+          bookInView=entry.isIntersecting;
+          if(bookInView)startBookRotation();
+          else clearInterval(bookTimer);
+        },{threshold:.18});
+        bookMotionObserver.observe(librarySection);
+      }else{
+        bookInView=true;
+        startBookRotation();
+      }
+    }
+    const journeySteps=[...document.querySelectorAll('.journey-step')];
+    const journeyScreens=[...document.querySelectorAll('.journey-screen')];
+    const journeyStatus=document.querySelector('.journey-status');
+    const journeyStage=document.querySelector('.journey-stage');
+    const journeyLabels=['Tìm nội dung','Đọc tập trung','Nghe tiếp'];
+    let activeJourney=0;
+    let journeyTimer;
+    let journeyInView=false;
+    const renderJourney=index=>{
+      activeJourney=index;
+      if(journeyStage)journeyStage.dataset.scene=String(index);
+      journeySteps.forEach((step,i)=>{const active=i===index;step.classList.toggle('is-active',active);step.setAttribute('aria-pressed',active?'true':'false');});
+      journeyScreens.forEach((screen,i)=>screen.classList.toggle('is-active',i===index));
+      if(journeyStatus)journeyStatus.textContent=journeyLabels[index];
+    };
+    const startJourney=()=>{
+      clearInterval(journeyTimer);
+      if(!reduceMotion&&journeyInView)journeyTimer=setInterval(()=>renderJourney((activeJourney+1)%journeySteps.length),4400);
+    };
+    journeySteps.forEach((step,index)=>step.addEventListener('click',()=>{renderJourney(index);startJourney();}));
+    if(journeyStage){
+      journeyStage.addEventListener('pointerenter',()=>clearInterval(journeyTimer));
+      journeyStage.addEventListener('pointerleave',startJourney);
+      journeyStage.addEventListener('focusin',()=>clearInterval(journeyTimer));
+      journeyStage.addEventListener('focusout',startJourney);
+      renderJourney(0);
+      if('IntersectionObserver' in window){
+        const journeyMotionObserver=new IntersectionObserver(([entry])=>{
+          journeyInView=entry.isIntersecting;
+          if(journeyInView)startJourney();
+          else clearInterval(journeyTimer);
+        },{threshold:.18});
+        journeyMotionObserver.observe(journeyStage);
+      }else{
+        journeyInView=true;
+        startJourney();
+      }
+    }
+    const voicesSection=document.querySelector('.voices');
+    if(reviewLoop&&voicesSection&&!reduceMotion){
+      reviewLoop.style.animationPlayState='paused';
+      const reviewMotionObserver=new IntersectionObserver(([entry])=>{
+        reviewLoop.style.animationPlayState=entry.isIntersecting?'running':'paused';
+      },{threshold:.1});
+      reviewMotionObserver.observe(voicesSection);
+    }
+    const contactDock=document.querySelector('#contact-dock');
+    if(contactDock){
+      const contactToggle=contactDock.querySelector('.contact-toggle');
+      const contactPanel=contactDock.querySelector('.contact-panel');
+      const contactClose=contactDock.querySelector('.contact-close');
+      const contactBackdrop=contactDock.querySelector('.contact-backdrop');
+      const contactTopics=[...contactDock.querySelectorAll('.contact-topic')];
+      const contactAnswerTitle=contactDock.querySelector('.contact-answer-title');
+      const contactAnswerCopy=contactDock.querySelector('.contact-answer-copy');
+      const contactAnswerLink=contactDock.querySelector('.contact-answer-link');
+      const heroSection=document.querySelector('.hero');
+      const partnerSection=document.querySelector('#partners');
+      const contactResponses={
+        library:{
+          title:'Bắt đầu từ điều bạn quan tâm.',
+          copy:'Khám phá nội dung về sức khỏe, dinh dưỡng, giấc ngủ, tâm lý và lối sống chủ động.',
+          label:'Khám phá thư viện',
+          href:'#library'
+        },
+        guide:{
+          title:'Đọc, ghi lại, rồi nghe tiếp.',
+          copy:'GEMS giữ nội dung, ghi chú và tiến trình trong cùng một hành trình để bạn không phải bắt đầu lại.',
+          label:'Xem trải nghiệm',
+          href:'#experience'
+        },
+        partner:{
+          title:'Cùng xây một thư viện đáng tin.',
+          copy:'GEMS chào đón tác giả, đơn vị xuất bản, chuyên gia và đối tác công nghệ cùng phát triển nội dung.',
+          label:'Trao đổi hợp tác',
+          href:'mailto:info.gemsgroupvn@gmail.com'
+        },
+        advisor:{
+          title:'Kết nối với đội ngũ GEMS.',
+          copy:'Nhắn Zalo để được hướng dẫn theo nhu cầu hoặc gọi hotline khi bạn muốn trao đổi trực tiếp.',
+          label:'Nhắn Zalo',
+          href:'https://zalo.me/0398180812',
+          external:true
+        }
+      };
+      let contactLastFocus=null;
+      const setContactOpen=(open,restoreFocus=true)=>{
+        contactDock.classList.toggle('is-open',open);
+        contactToggle.setAttribute('aria-expanded',open?'true':'false');
+        contactPanel.setAttribute('aria-hidden',open?'false':'true');
+        if(open){
+          contactLastFocus=document.activeElement;
+          contactPanel.removeAttribute('inert');
+          requestAnimationFrame(()=>contactPanel.focus({preventScroll:true}));
+        }else{
+          contactPanel.setAttribute('inert','');
+          if(restoreFocus&&contactLastFocus instanceof HTMLElement)contactLastFocus.focus({preventScroll:true});
+        }
+      };
+      contactToggle.addEventListener('click',()=>setContactOpen(!contactDock.classList.contains('is-open')));
+      contactClose.addEventListener('click',()=>setContactOpen(false));
+      contactBackdrop.addEventListener('click',()=>setContactOpen(false));
+      contactTopics.forEach(button=>button.addEventListener('click',()=>{
+        const response=contactResponses[button.dataset.contactTopic];
+        if(!response)return;
+        contactTopics.forEach(topic=>{
+          const active=topic===button;
+          topic.classList.toggle('is-active',active);
+          topic.setAttribute('aria-pressed',active?'true':'false');
+        });
+        contactAnswerTitle.textContent=response.title;
+        contactAnswerCopy.textContent=response.copy;
+        contactAnswerLink.firstChild.textContent=`${response.label} `;
+        contactAnswerLink.href=response.href;
+        if(response.external){
+          contactAnswerLink.target='_blank';
+          contactAnswerLink.rel='noopener noreferrer';
+        }else{
+          contactAnswerLink.removeAttribute('target');
+          contactAnswerLink.removeAttribute('rel');
+        }
+      }));
+      contactAnswerLink.addEventListener('click',()=>setContactOpen(false,false));
+      addEventListener('keydown',event=>{if(event.key==='Escape'&&contactDock.classList.contains('is-open'))setContactOpen(false);});
+      let contactFrame=0;
+      const updateContactDock=()=>{
+        contactFrame=0;
+        const threshold=heroSection?Math.max(480,heroSection.offsetHeight-innerHeight*.18):560;
+        const partnerRect=partnerSection?.getBoundingClientRect();
+        const nearFooter=Boolean(partnerRect&&partnerRect.top<innerHeight*.92&&partnerRect.bottom>0);
+        contactDock.classList.toggle('is-visible',scrollY>threshold);
+        contactDock.classList.toggle('is-suppressed',nearFooter);
+        if(nearFooter&&contactDock.classList.contains('is-open'))setContactOpen(false,false);
+      };
+      const queueContactUpdate=()=>{
+        if(!contactFrame)contactFrame=requestAnimationFrame(updateContactDock);
+      };
+      addEventListener('scroll',queueContactUpdate,{passive:true});
+      addEventListener('resize',queueContactUpdate);
+      updateContactDock();
+    }
+    const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible');}),{threshold:.12});
+    document.querySelectorAll('section:not(.hero)').forEach(section=>revealObserver.observe(section));
+    const navLinks=[...document.querySelectorAll('.nav a')];
+    const navTargets=navLinks.map(link=>document.querySelector(link.getAttribute('href'))).filter(Boolean);
+    const updateNavigation=()=>{const marker=scrollY+innerHeight*.36;let current=navTargets[0];navTargets.forEach(section=>{if(section.offsetTop<=marker)current=section;});navLinks.forEach(link=>link.classList.toggle('is-active',current&&link.getAttribute('href')===`#${current.id}`));};
+    addEventListener('scroll',()=>{const max=document.documentElement.scrollHeight-innerHeight;document.body.style.setProperty('--progress',max?scrollY/max:0);updateNavigation();},{passive:true});
+    updateNavigation();
+  </script>
+</body>
+</html>

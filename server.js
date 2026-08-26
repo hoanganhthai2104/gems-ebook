@@ -9,6 +9,7 @@ const mimeTypes = {
     '.json': 'application/json; charset=utf-8',
     '.png': 'image/png',
     '.jpg': 'image/jpeg',
+    '.webp': 'image/webp',
     '.gif': 'image/gif',
     '.svg': 'image/svg+xml',
     '.ico': 'image/x-icon',
@@ -21,6 +22,9 @@ const server = http.createServer((req, res) => {
     // Strip query parameters from req.url to prevent file-not-found errors for static assets with cache busters
     const cleanUrl = req.url.split('?')[0];
     let filePath = cleanUrl === '/' ? './index.html' : '.' + decodeURIComponent(cleanUrl);
+    if (cleanUrl.endsWith('/')) {
+        filePath = path.join('.' + decodeURIComponent(cleanUrl), 'index.html');
+    }
     
     // Resolve absolute path to ensure we are within workspace
     const absolutePath = path.resolve(filePath);
