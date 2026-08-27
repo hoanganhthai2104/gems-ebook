@@ -64,21 +64,21 @@
     </script>
 
     <!-- Application Styles -->
-    <link rel="stylesheet" href="css/components/theme.css" />
+    <link rel="stylesheet" href="css/components/theme.css?v=20260827_subhub_v3" />
 
     <!-- Application Modules -->
-    <script src="js/modules/state.js?v=20260827_3"></script>
-    <script src="js/modules/data.js?v=20260827_3"></script>
-    <script src="js/modules/ui-utils.js?v=20260827_3"></script>
-    <script src="js/modules/theme.js?v=20260827_3"></script>
-    <script src="js/modules/quiz.js?v=20260827_3"></script>
-    <script src="js/modules/dictionary.js?v=20260827_3"></script>
-    <script src="js/modules/audio.js?v=20260827_3"></script>
-    <script src="js/modules/nav.js?v=20260827_3"></script>
-    <script src="js/modules/reader.js?v=20260827_3"></script>
-    <script src="js/modules/shop.js?v=20260827_3"></script>
-    <script src="js/modules/onboarding.js?v=20260827_3"></script>
-    <script src="js/app.js?v=20260827_3"></script>
+    <script src="js/modules/state.js?v=20260827_subhub_v3"></script>
+    <script src="js/modules/data.js?v=20260827_subhub_v3"></script>
+    <script src="js/modules/ui-utils.js?v=20260827_subhub_v3"></script>
+    <script src="js/modules/theme.js?v=20260827_subhub_v3"></script>
+    <script src="js/modules/quiz.js?v=20260827_subhub_v3"></script>
+    <script src="js/modules/dictionary.js?v=20260827_subhub_v3"></script>
+    <script src="js/modules/audio.js?v=20260827_subhub_v3"></script>
+    <script src="js/modules/nav.js?v=20260827_subhub_v3"></script>
+    <script src="js/modules/reader.js?v=20260827_subhub_v3"></script>
+    <script src="js/modules/shop.js?v=20260827_subhub_v3"></script>
+    <script src="js/modules/onboarding.js?v=20260827_subhub_v3"></script>
+    <script src="js/app.js?v=20260827_subhub_v3"></script>
 
     <!-- Fonts - preconnect above ensures these load fast -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,600..900;1,600..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -3468,17 +3468,16 @@
                             <section class="px-4 mb-8">
 
                                 <div class="flex items-center justify-between mb-3">
-
-                                    <h3 class="text-sm font-bold text-blue-900 tracking-tight uppercase flex items-center gap-2">
-
+                                    <h3 onclick="openAllBooksCatalog('yhss')" class="text-sm font-bold text-blue-900 tracking-tight uppercase flex items-center gap-2 cursor-pointer hover:text-blue-600 transition-colors">
                                         <span class="material-symbols-outlined text-blue-600 text-lg">auto_awesome</span>
-
                                         NỀN Y HỌC SỰ SỐNG
-
                                     </h3>
-
-                                    <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">Mới nhất</span>
-
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">Mới nhất</span>
+                                        <button onclick="openAllBooksCatalog('yhss')" class="text-slate-400 hover:text-blue-600 transition-colors flex items-center p-1" title="Xem tất cả Nền Y Học Sự Sống">
+                                            <span class="material-symbols-outlined text-[16px]">arrow_forward_ios</span>
+                                        </button>
+                                    </div>
                                 </div>
 
                                 <div class="flex gap-4 overflow-x-auto custom-scrollbar pb-4 pr-4">
@@ -4528,27 +4527,20 @@
                     <!-- VIEW: KHO SÁCH Y KHOA ĐẦY ĐỦ (Full Ebook Catalog Modal) -->
                     <!-- ============================================== -->
                     <div id="view-all-books-modal" class="absolute inset-0 z-[150] bg-surface text-on-surface flex flex-col overflow-hidden hidden select-none animate-fade-in">
-                        <header class="glass-header w-full top-0 sticky flex items-center justify-between px-3 py-3 z-50 shrink-0 border-b border-slate-100">
-                            <button onclick="closeAllBooksCatalog()" class="text-slate-700 hover:bg-slate-100 rounded-full p-2 flex items-center justify-center">
+                        <header class="glass-header w-full top-0 sticky flex items-center justify-between px-3 py-2.5 z-50 shrink-0 border-b border-slate-100 bg-white/90 backdrop-blur-md">
+                            <button onclick="closeAllBooksCatalog()" class="text-slate-700 hover:bg-slate-100 rounded-full p-2 flex items-center justify-center transition-colors">
                                 <span class="material-symbols-outlined text-xl">arrow_back</span>
                             </button>
-                            <h1 class="font-sans text-sm font-black tracking-tight text-slate-900 mx-auto text-center truncate">Kho Sách Y Khoa GEMS</h1>
-                            <div class="flex items-center gap-1">
-                                <button id="btn-view-grid" onclick="setCatalogViewMode('grid')" class="p-1.5 rounded-lg bg-blue-50 text-blue-600 font-bold"><span class="material-symbols-outlined text-sm">grid_view</span></button>
-                                <button id="btn-view-list" onclick="setCatalogViewMode('list')" class="p-1.5 rounded-lg text-slate-400 font-bold"><span class="material-symbols-outlined text-sm">view_list</span></button>
+                            <h1 id="catalog-header-title" class="font-sans text-xs font-black tracking-tight text-slate-900 mx-auto text-center truncate uppercase">Kho Sách Y Khoa LIMES</h1>
+                            <div class="flex items-center gap-1 bg-slate-100/80 p-1 rounded-2xl border border-slate-200/50">
+                                <button id="btn-view-hub" onclick="setCatalogViewMode('hub')" class="p-1.5 rounded-xl bg-blue-600 text-white shadow-sm font-bold transition-all" title="Chế độ Netflix Hub"><span class="material-symbols-outlined text-sm">dashboard</span></button>
+                                <button id="btn-view-grid" onclick="setCatalogViewMode('grid')" class="p-1.5 rounded-xl bg-transparent text-slate-500 hover:text-slate-700 font-bold transition-all" title="Chế độ Lưới"><span class="material-symbols-outlined text-sm">grid_view</span></button>
+                                <button id="btn-view-list" onclick="setCatalogViewMode('list')" class="p-1.5 rounded-xl bg-transparent text-slate-500 hover:text-slate-700 font-bold transition-all" title="Chế độ Danh sách"><span class="material-symbols-outlined text-sm">view_list</span></button>
                             </div>
                         </header>
 
-                        <div class="bg-surface px-3 py-2 flex gap-2 overflow-x-auto scrollbar-none border-b border-slate-100 shrink-0" id="catalog-category-pills">
-                            <button onclick="filterCatalogCategory('all')" class="cat-pill active px-3 py-1.5 rounded-full text-xs font-bold bg-blue-600 text-white shrink-0">Tất cả (30)</button>
-                            <button onclick="filterCatalogCategory('yhss')" class="cat-pill px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 shrink-0">Nền Y Học Sự Sống</button>
-                            <button onclick="filterCatalogCategory('thaoduoc')" class="cat-pill px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 shrink-0">Dược Liệu & Thảo Dược</button>
-                            <button onclick="filterCatalogCategory('giaiphau')" class="cat-pill px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 shrink-0">Giải Phẫu Học</button>
-                            <button onclick="filterCatalogCategory('thankinh')" class="cat-pill px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 shrink-0">Thần Kinh & Tâm Học</button>
-                        </div>
-
                         <div class="flex-grow overflow-y-auto shop-scroll-container p-3 space-y-4" id="catalog-books-container">
-                            <!-- Rendered books -->
+                            <!-- Rendered by window.renderCatalogBooks() -->
                         </div>
                     </div>
 
