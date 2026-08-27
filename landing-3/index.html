@@ -4,21 +4,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#f5f1e9">
-  <title>GEMS | Hiểu cơ thể. Chủ động sống khỏe.</title>
-  <meta name="description" content="GEMS là ứng dụng đọc và nghe kiến thức sức khỏe tiếng Việt, giúp bạn hiểu cơ thể, chăm sóc dinh dưỡng, giấc ngủ, vận động và tinh thần chủ động hơn mỗi ngày.">
-  <link rel="canonical" href="https://gems-ebook.vercel.app/landing-3/">
+  <title>LIMES | Hiểu cơ thể. Chủ động sống khỏe.</title>
+  <meta name="description" content="LIMES là ứng dụng đọc và nghe kiến thức sức khỏe tiếng Việt thuộc hệ sinh thái GEMS, giúp bạn hiểu cơ thể, chăm sóc dinh dưỡng, giấc ngủ, vận động và tinh thần chủ động hơn mỗi ngày.">
+  <link rel="canonical" href="./">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="GEMS">
-  <meta property="og:title" content="GEMS | Hiểu cơ thể. Chủ động sống khỏe.">
+  <meta property="og:site_name" content="LIMES">
+  <meta property="og:title" content="LIMES | Hiểu cơ thể. Chủ động sống khỏe.">
   <meta property="og:description" content="Ứng dụng đọc và nghe kiến thức sức khỏe tiếng Việt, được tuyển chọn để đồng hành cùng thói quen chăm sóc sức khỏe chủ động.">
-  <meta property="og:url" content="https://gems-ebook.vercel.app/landing-3/">
-  <meta property="og:image" content="https://gems-ebook.vercel.app/landing-3/assets/gems-hero-knowledge-in-life.jpg">
+  <meta property="og:url" content="./">
+  <meta property="og:image" content="./assets/gems-hero-knowledge-in-life.jpg">
   <meta property="og:image:width" content="1672">
   <meta property="og:image:height" content="941">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="GEMS | Hiểu cơ thể. Chủ động sống khỏe.">
+  <meta name="twitter:title" content="LIMES | Hiểu cơ thể. Chủ động sống khỏe.">
   <meta name="twitter:description" content="Đọc và nghe kiến thức sức khỏe tiếng Việt trong một hành trình gần gũi, dễ duy trì.">
-  <meta name="twitter:image" content="https://gems-ebook.vercel.app/landing-3/assets/gems-hero-knowledge-in-life.jpg">
+  <meta name="twitter:image" content="./assets/gems-hero-knowledge-in-life.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -26,11 +26,11 @@
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "GEMS",
+      "name": "LIMES",
       "applicationCategory": "HealthApplication",
-      "operatingSystem": "Web",
-      "url": "https://gems-ebook.vercel.app/landing-3/",
-      "description": "GEMS là ứng dụng đọc và nghe kiến thức sức khỏe tiếng Việt, giúp người dùng chăm sóc sức khỏe chủ động qua nội dung được tuyển chọn."
+      "operatingSystem": "iOS, Android",
+      "url": "./",
+      "description": "LIMES là ứng dụng đọc và nghe kiến thức sức khỏe tiếng Việt thuộc hệ sinh thái GEMS, giúp người dùng chăm sóc sức khỏe chủ động qua nội dung được tuyển chọn."
     }
   </script>
   <style>
@@ -48,17 +48,17 @@
       --yellow:var(--brand-gold);
       --muted:#607080;
       --line:rgba(23,52,95,.14);
-      --shell:1240px;
+      --shell:1440px;
       --ease:cubic-bezier(.22,1,.36,1);
     }
     * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
+    html { scroll-behavior:smooth; scroll-padding-top:76px; }
     body {
       margin:0;
       overflow-x:hidden;
       color:var(--ink);
       background:var(--paper);
-      font-family:"Be Vietnam Pro",sans-serif;
+      font-family:"Be Vietnam Pro","Segoe UI",Arial,sans-serif;
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
     }
@@ -74,19 +74,33 @@
       transform:scaleX(var(--progress,0));
       transform-origin:left;
     }
+    @supports (animation-timeline:scroll()) {
+      body::before {
+        transform:scaleX(0);
+        animation:page-progress linear both;
+        animation-timeline:scroll(root block);
+      }
+      @keyframes page-progress { to { transform:scaleX(1); } }
+    }
     a { color:inherit; text-decoration:none; }
     img { display:block; max-width:100%; }
     h1,h2,h3,p { margin:0; }
     h1,h2,h3,.topic-label strong,.journey-step strong,.purpose-quote { text-wrap:balance; }
     p,.section-intro,.cta-copy,.review-card > p { text-wrap:pretty; }
     section { position:relative; overflow:hidden; }
-    .shell { width:min(calc(100% - 64px),var(--shell)); margin:0 auto; }
+    .shell { width:min(calc(100% - 48px),var(--shell)); margin:0 auto; }
     .eyebrow {
       color:var(--teal);
       font-size:10px;
       font-weight:800;
       letter-spacing:.12em;
       text-transform:uppercase;
+    }
+    .section-kicker {
+      color:var(--teal);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:0;
     }
     .site-header {
       position:fixed;
@@ -104,9 +118,16 @@
       align-items:center;
       justify-content:space-between;
     }
-    .brand { display:flex; align-items:center; gap:10px; font-size:13px; font-weight:800; }
+    .brand { display:flex; align-items:center; gap:10px; font-size:14px; font-weight:800; }
     .brand img { width:36px; height:36px; object-fit:contain; }
-    .nav { display:flex; align-items:center; gap:28px; color:#5b6c7d; font-size:10px; font-weight:700; }
+    .site-header .brand img {
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      object-fit:cover;
+      clip-path:circle(49% at 50% 50%);
+    }
+    .nav { display:flex; align-items:center; gap:30px; color:#5b6c7d; font-size:11px; font-weight:700; }
     .nav a { position:relative; padding:10px 0; transition:color .25s ease; }
     .nav a::after {
       position:absolute;
@@ -152,11 +173,11 @@
       max-width:760px;
       margin-top:24px;
       font-size:clamp(58px,5.6vw,74px);
-      line-height:1.06;
+      line-height:1.12;
       letter-spacing:-.052em;
     }
     .hero h1 em { display:block; color:var(--teal); font-style:normal; text-wrap:balance; }
-    .hero-lede { max-width:590px; margin-top:28px; color:#586b7d; font-size:15px; line-height:1.78; }
+    .hero-lede { max-width:640px; margin-top:28px; color:#586b7d; font-size:16px; line-height:1.72; }
     .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:32px; }
     .button {
       display:inline-flex;
@@ -184,18 +205,18 @@
       font-weight:700;
       line-height:1.65;
     }
-    .world { padding:132px 0; background:var(--cream); }
-    .section-head { display:grid; grid-template-columns:1.05fr .75fr; align-items:end; gap:90px; }
-    h2 { font-size:clamp(44px,4.6vw,66px); line-height:1.1; letter-spacing:-.042em; }
+    .world { padding:112px 0; background:var(--cream); }
+    .section-head { display:grid; grid-template-columns:1.05fr .78fr; align-items:end; gap:56px; }
+    h2 { font-size:clamp(44px,4.6vw,66px); line-height:1.14; letter-spacing:-.042em; }
     .section-head h2 { max-width:760px; margin-top:20px; }
-    .section-intro { max-width:500px; color:var(--muted); font-size:14px; line-height:1.78; }
+    .section-intro { max-width:560px; color:var(--muted); font-size:15px; line-height:1.72; }
     .topic-film {
       display:grid;
       height:610px;
       grid-template-columns:1.18fr .82fr .82fr;
       grid-template-rows:1fr 1fr;
       gap:12px;
-      margin-top:72px;
+      margin-top:56px;
     }
     .topic {
       position:relative;
@@ -211,16 +232,17 @@
     .topic-label span { display:block; color:#cbd9ed; font-size:8px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
     .topic-label strong { display:block; margin-top:7px; font-size:20px; letter-spacing:-.035em; }
     .library {
-      padding:132px 0 0;
+      padding:112px 0 0;
       background:
         radial-gradient(circle at 78% 40%,rgba(105,142,199,.2),transparent 32%),
         linear-gradient(135deg,#102849,#173d6a 58%,#23558d);
       color:#fff;
     }
-    .library-grid { display:grid; grid-template-columns:.78fr 1.22fr; align-items:center; gap:72px; }
+    .library-grid { display:grid; grid-template-columns:.82fr 1.18fr; align-items:center; gap:60px; }
     .library-copy h2 { max-width:690px; margin-top:20px; font-size:clamp(42px,4vw,58px); }
     .library .eyebrow { color:#b1c7e7; }
-    .library-copy > p:not(.eyebrow) { max-width:560px; margin-top:26px; color:rgba(255,255,255,.68); font-size:14px; line-height:1.78; }
+    .library .section-kicker { color:#b1c7e7; }
+    .library-copy > p:not(.eyebrow) { max-width:610px; margin-top:24px; color:rgba(255,255,255,.72); font-size:15px; line-height:1.72; }
     .selection-list { margin-top:38px; border-top:1px solid rgba(255,255,255,.16); }
     .selection-row { display:flex; align-items:center; justify-content:space-between; gap:30px; padding:18px 0; border-bottom:1px solid var(--line); }
     .selection-row strong { font-size:14px; }
@@ -438,12 +460,12 @@
     }
     @keyframes libraryTicker { to { transform:translateX(-50%); } }
     .trust {
-      padding:126px 0 112px;
+      padding:108px 0 96px;
       background:
         radial-gradient(circle at 88% 18%,rgba(91,130,190,.14),transparent 24%),
         var(--cream);
     }
-    .trust-grid { display:grid; grid-template-columns:1.2fr .52fr; align-items:end; gap:92px; }
+    .trust-grid { display:grid; grid-template-columns:1.18fr .58fr; align-items:end; gap:64px; }
     .trust-mark {
       position:relative;
       display:grid;
@@ -491,7 +513,7 @@
     .trust-mark strong { display:block; margin-top:5px; color:var(--ink); font-size:29px; line-height:1; letter-spacing:-.045em; }
     .trust-copy { order:-1; }
     .trust-copy h2 { max-width:780px; margin-top:20px; }
-    .trust-copy > p:not(.eyebrow) { max-width:660px; margin-top:25px; color:var(--muted); font-size:14px; line-height:1.78; }
+    .trust-copy > p:not(.eyebrow) { max-width:720px; margin-top:24px; color:var(--muted); font-size:15px; line-height:1.72; }
     .trust-flow {
       display:grid;
       grid-template-columns:repeat(4,1fr);
@@ -663,11 +685,11 @@
     }
     .journey-stage[data-scene="1"] .journey-status::after { width:66.666%; }
     .journey-stage[data-scene="2"] .journey-status::after { width:100%; }
-    .purpose { padding:132px 0; background:var(--paper); }
-    .purpose-grid { display:grid; grid-template-columns:1.08fr .92fr; align-items:start; gap:110px; }
+    .purpose { padding:112px 0; background:var(--paper); }
+    .purpose-grid { display:grid; grid-template-columns:1.1fr .9fr; align-items:start; gap:72px; }
     .purpose h2 { max-width:730px; margin-top:20px; }
     .purpose h2 em { color:var(--teal); font-style:normal; }
-    .purpose-lede { max-width:570px; margin-top:27px; color:var(--muted); font-size:14px; line-height:1.78; }
+    .purpose-lede { max-width:630px; margin-top:24px; color:var(--muted); font-size:15px; line-height:1.72; }
     .purpose-quote {
       padding:38px 0;
       border-top:1px solid var(--line);
@@ -678,51 +700,115 @@
       letter-spacing:-.04em;
     }
     .purpose-quote span { display:block; margin-top:22px; color:var(--teal); font-size:9px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
-    .voices { padding:124px 0; background:var(--cream); }
+    .voices { padding:108px 0; background:var(--cream); }
     .voices-head { text-align:center; }
     .voices h2 { max-width:760px; margin:20px auto 0; }
     .review-marquee { width:100%; margin-top:62px; overflow:hidden; mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); }
     .review-loop { display:flex; width:max-content; gap:16px; padding:8px 0 30px; animation:reviews 32s linear infinite; will-change:transform; }
     .review-marquee:hover .review-loop { animation-play-state:paused; }
-    .review-card { display:flex; width:340px; min-height:215px; flex-direction:column; padding:26px; border:1px solid var(--line); background:#fff; }
+    .review-card { display:flex; width:360px; min-height:220px; flex-direction:column; padding:28px; border:1px solid var(--line); background:#fff; }
     .stars { color:#d2a13a; font-size:12px; letter-spacing:.1em; }
-    .review-card > p { margin-top:19px; color:#40556d; font-size:13px; line-height:1.72; }
+    .review-card > p { margin-top:19px; color:#40556d; font-size:14px; line-height:1.68; }
     .review-person { display:flex; align-items:center; gap:11px; margin-top:auto; padding-top:22px; }
     .review-person img { width:38px; height:38px; border-radius:50%; object-fit:cover; }
     .review-person strong,.review-person span { display:block; }
     .review-person strong { font-size:10px; }
     .review-person span { margin-top:3px; color:var(--muted); font-size:8px; }
     @keyframes reviews { to { transform:translateX(calc(-50% - 8px)); } }
-    .cta { padding:124px 0 38px; background:var(--teal); color:#fff; }
-    .cta-inner { display:grid; grid-template-columns:1fr .72fr; align-items:end; gap:90px; }
+    .cta { padding:90px 0 30px; background:var(--teal); color:#fff; }
+    .cta-inner { display:grid; grid-template-columns:minmax(0,1fr) minmax(320px,.68fr); align-items:center; gap:64px; }
     .cta .eyebrow { color:#d5e1f2; }
-    .cta h2 { max-width:800px; margin-top:20px; }
-    .cta-copy { color:rgba(255,255,255,.78); font-size:13px; line-height:1.75; }
+    .cta .section-kicker { color:#d5e1f2; }
+    .cta h2 { max-width:760px; margin-top:16px; }
+    .cta-copy { max-width:620px; color:rgba(255,255,255,.82); font-size:15px; line-height:1.68; }
     .cta .button-primary { background:#fff; color:var(--ink); }
     .cta .button-secondary { border-color:rgba(255,255,255,.35); background:transparent; }
+    .download-panel {
+      display:grid;
+      grid-template-columns:.68fr 1.32fr;
+      align-items:center;
+      gap:42px;
+      margin-top:34px;
+      padding:28px 32px;
+      border:1px solid rgba(255,255,255,.22);
+      background:rgba(255,255,255,.1);
+    }
+    .download-brand { display:flex; align-items:flex-start; gap:18px; }
+    .download-brand img {
+      width:62px;
+      height:62px;
+      flex:0 0 auto;
+      border-radius:50%;
+      background:#fff;
+      object-fit:cover;
+      box-shadow:0 16px 36px rgba(10,37,82,.2);
+    }
+    .download-panel h3 { max-width:500px; color:#fff; font-size:28px; line-height:1.16; letter-spacing:-.035em; }
+    .download-panel p { max-width:520px; margin-top:10px; color:rgba(255,255,255,.76); font-size:13px; line-height:1.62; }
+    .store-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+    .store-badge {
+      display:flex;
+      min-height:86px;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:18px 22px;
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:16px;
+      background:#fff;
+      color:var(--ink);
+      font:inherit;
+      text-align:left;
+    }
+    .store-badge:disabled { cursor:not-allowed; }
+    .store-badge small,.store-badge strong { display:block; }
+    .store-badge small { color:#697b8c; font-size:10px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; }
+    .store-badge strong { margin-top:4px; font-size:20px; letter-spacing:-.02em; }
+    .store-status {
+      flex:0 0 auto;
+      padding:7px 9px;
+      border-radius:999px;
+      background:#edf2f8;
+      color:var(--teal);
+      font-size:9px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .download-note {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      margin-top:16px;
+      color:rgba(255,255,255,.7);
+      font-size:12px;
+      line-height:1.6;
+    }
+    .download-note a { color:#fff; font-weight:800; text-decoration:underline; text-underline-offset:4px; }
     .footer {
       display:grid;
-      grid-template-columns:1.2fr .65fr 1fr 1.1fr .9fr;
-      gap:34px;
-      margin-top:96px;
-      padding:42px 0 0;
+      grid-template-columns:1.3fr .72fr .9fr 1.08fr;
+      gap:32px 44px;
+      margin-top:42px;
+      padding:30px 0 0;
       border-top:1px solid rgba(255,255,255,.24);
       color:rgba(255,255,255,.68);
     }
     .footer-brand { max-width:330px; }
-    .footer .brand { color:#fff; font-size:13px; letter-spacing:.04em; }
-    .footer .brand img { width:40px; height:40px; }
-    .footer-brand p { margin-top:17px; font-size:11px; line-height:1.72; }
+    .footer .brand { color:#fff; font-size:14px; letter-spacing:.04em; }
+    .footer .brand img { width:46px; height:46px; }
+    .footer-brand p { margin-top:16px; font-size:13px; line-height:1.62; }
     .footer-group { display:flex; align-items:flex-start; flex-direction:column; gap:10px; }
     .footer-label {
       margin-bottom:4px;
       color:#d5e1f2;
-      font-size:9px;
+      font-size:10px;
       font-weight:800;
       letter-spacing:.11em;
       text-transform:uppercase;
     }
-    .footer-group a,.footer-group p { overflow-wrap:anywhere; font-size:11px; line-height:1.65; }
+    .footer-group a,.footer-group p { overflow-wrap:anywhere; font-size:13px; line-height:1.58; }
     .footer-group a { transition:color .25s ease,transform .25s var(--ease); }
     .footer-group a:hover { color:#fff; transform:translateX(3px); }
     .footer-group strong { color:#fff; font-size:15px; letter-spacing:-.02em; }
@@ -736,7 +822,7 @@
       margin-top:8px;
       padding:22px 0 2px;
       border-top:1px solid rgba(255,255,255,.14);
-      font-size:9px;
+      font-size:10px;
       line-height:1.6;
     }
     .contact-dock {
@@ -945,13 +1031,7 @@
     }
     @media (min-width:1024px) and (prefers-reduced-motion:no-preference) {
       html {
-        scroll-padding-top:0;
-        scroll-snap-type:y mandatory;
-      }
-      main > section {
-        min-height:100svh;
-        scroll-snap-align:start;
-        scroll-snap-stop:normal;
+        scroll-padding-top:76px;
       }
       .hero,
       .hero-inner {
@@ -981,10 +1061,7 @@
         max-width:680px;
         margin-top:12px;
       }
-      .section-intro {
-        max-width:560px;
-        line-height:1.62;
-      }
+      .section-intro { max-width:620px; font-size:15px; line-height:1.62; }
       .topic-film {
         height:390px;
         margin-top:34px;
@@ -1002,10 +1079,7 @@
         font-size:clamp(38px,3.5vw,48px);
         margin-top:14px;
       }
-      .library-copy > p:not(.eyebrow) {
-        margin-top:18px;
-        line-height:1.62;
-      }
+      .library-copy > p:not(.eyebrow) { margin-top:18px; font-size:15px; line-height:1.62; }
       .selection-list {
         margin-top:24px;
       }
@@ -1042,15 +1116,12 @@
       .trust-copy h2 {
         max-width:710px;
         font-size:clamp(36px,3.35vw,50px);
-        line-height:1.06;
+        line-height:1.14;
       }
       .trust-copy h2 {
         margin-top:14px;
       }
-      .trust-copy > p:not(.eyebrow) {
-        margin-top:18px;
-        line-height:1.62;
-      }
+      .trust-copy > p:not(.eyebrow) { margin-top:18px; font-size:15px; line-height:1.62; }
       .trust-flow {
         margin-top:32px;
       }
@@ -1091,10 +1162,7 @@
         font-size:clamp(36px,3.3vw,46px);
         margin-top:14px;
       }
-      .journey-lede {
-        margin-top:18px;
-        line-height:1.62;
-      }
+      .journey-lede { margin-top:18px; font-size:15px; line-height:1.62; }
       .journey-steps {
         margin-top:24px;
       }
@@ -1110,13 +1178,8 @@
       .journey-device::after {
         right:-50%;
       }
-      .purpose {
-        padding:118px 0 86px;
-      }
-      .purpose-grid {
-        gap:92px;
-        align-items:center;
-      }
+      .purpose { padding:104px 0 80px; }
+      .purpose-grid { gap:68px; align-items:center; }
       .purpose h2 {
         max-width:760px;
         font-size:clamp(38px,3.45vw,52px);
@@ -1124,21 +1187,12 @@
       .purpose h2 {
         margin-top:14px;
       }
-      .purpose-lede {
-        margin-top:20px;
-        line-height:1.62;
-      }
+      .purpose-lede { margin-top:20px; font-size:15px; line-height:1.62; }
       .purpose-quote {
         padding:34px 0;
         font-size:clamp(28px,2.35vw,38px);
       }
-      .voices {
-        display:flex;
-        min-height:100svh;
-        flex-direction:column;
-        justify-content:center;
-        padding:84px 0 72px;
-      }
+      .voices { padding:86px 0 68px; }
       .voices h2 {
         max-width:860px;
         margin-top:14px;
@@ -1147,37 +1201,25 @@
       .review-marquee {
         margin-top:48px;
       }
-      .review-card {
-        width:320px;
-        min-height:185px;
-        padding:22px 24px;
-      }
-      .cta {
-        display:flex;
-        min-height:100svh;
-        align-items:center;
-        padding:64px 0 30px;
-      }
+      .review-card { width:350px; min-height:210px; padding:26px; }
+      .cta { display:block; padding:90px 0 28px; }
       .cta-inner {
-        grid-template-columns:minmax(0,1.05fr) minmax(360px,.58fr);
+        grid-template-columns:minmax(0,1fr) minmax(380px,.62fr);
         align-items:center;
-        gap:72px;
+        gap:62px;
       }
       .cta h2 {
         max-width:780px;
         margin-top:14px;
         font-size:clamp(38px,3.6vw,56px);
-        line-height:1.08;
+        line-height:1.14;
       }
-      .cta-copy {
-        max-width:560px;
-        align-self:center;
-        line-height:1.7;
-      }
+      .cta-copy { max-width:620px; font-size:15px; line-height:1.66; }
+      .download-panel { margin-top:34px; }
       .footer {
         grid-template-columns:1.2fr .72fr .9fr 1.05fr;
         gap:30px 42px;
-        margin-top:54px;
+        margin-top:42px;
         padding-top:30px;
       }
       .footer-brand {
@@ -1199,9 +1241,6 @@
         margin-top:16px;
         line-height:1.62;
       }
-      .footer-group.footer-expertise {
-        grid-column:4;
-      }
       .footer-label {
         color:#fff;
       }
@@ -1210,7 +1249,7 @@
         line-height:1.58;
       }
       .footer-bottom {
-        margin-top:10px;
+        margin-top:6px;
         padding-top:18px;
       }
       .contact-dock {
@@ -1228,10 +1267,14 @@
     }
     html.js [data-reveal] {
       opacity:0;
-      transform:translateY(28px);
-      transition:opacity .85s var(--ease) var(--delay,0s),transform .85s var(--ease) var(--delay,0s);
+      transform:translate3d(0,26px,0);
+      transition:opacity .75s var(--ease) var(--delay,0s),transform .75s var(--ease) var(--delay,0s);
     }
-    html.js section.visible [data-reveal],html.js .hero [data-reveal] { opacity:1; transform:translateY(0); }
+    html.js [data-reveal].is-visible,
+    html.js .hero [data-reveal] {
+      opacity:1;
+      transform:translate3d(0,0,0);
+    }
     @media (prefers-reduced-motion:no-preference) {
       .hero-media img { animation:hero-image 1.4s var(--ease) both; }
       .journey-device { animation:device-breathe 6.5s ease-in-out infinite; }
@@ -1249,14 +1292,18 @@
       .hero-media::after { background:linear-gradient(180deg,var(--paper) 0%,rgba(245,241,233,.1) 32%,transparent 60%); }
       .hero-inner { min-height:980px; align-items:flex-start; padding-top:118px; }
       .hero-copy { width:100%; }
-      .hero h1 { max-width:100%; font-size:44px; line-height:1.08; letter-spacing:-.045em; }
+      .hero h1 { max-width:100%; font-size:44px; line-height:1.14; letter-spacing:-.045em; }
       .hero-lede { max-width:350px; font-size:13px; }
       .hero-note { max-width:340px; margin-top:28px; font-size:8px; }
       .button { min-height:48px; padding:0 17px; }
       .world,.experience,.purpose,.voices { padding:82px 0; }
       .library { padding:82px 0 0; }
       .section-head,.library-grid,.purpose-grid,.cta-inner { grid-template-columns:1fr; gap:42px; }
-      h2 { font-size:38px; line-height:1.12; letter-spacing:-.035em; }
+      .download-panel { grid-template-columns:1fr; gap:24px; padding:22px; }
+      .download-brand img { width:54px; height:54px; }
+      .store-list { grid-template-columns:1fr; }
+      .download-note { align-items:flex-start; flex-direction:column; }
+      h2 { font-size:38px; line-height:1.16; letter-spacing:-.035em; }
       .section-intro,.library-copy > p:not(.eyebrow),.purpose-lede { font-size:13px; }
       .topic-film { display:grid; height:auto; grid-template-columns:1fr 1fr; grid-template-rows:300px 210px 210px; gap:8px; margin-top:44px; }
       .topic:first-child { grid-column:1 / 3; grid-row:auto; }
@@ -1329,9 +1376,9 @@
       .review-marquee { margin-top:44px; }
       .review-loop { gap:12px; animation-duration:26s; }
       .review-card { width:286px; min-height:205px; }
-      .cta { padding-top:82px; }
+      .cta { padding-top:76px; }
       .cta-inner { gap:32px; }
-      .footer { grid-template-columns:1fr 1fr; gap:34px 24px; margin-top:68px; padding-top:34px; }
+      .footer { grid-template-columns:1fr 1fr; gap:28px 24px; margin-top:46px; padding-top:28px; }
       .footer-brand,.footer-bottom { grid-column:1 / -1; }
       .footer-brand { max-width:330px; }
       .footer-bottom { align-items:flex-start; flex-direction:column; gap:6px; margin-top:0; }
@@ -1363,24 +1410,24 @@
 </head>
 <body>
   <header class="site-header"><div class="shell header-inner">
-    <a class="brand" href="#top"><img src="./assets/logo-GEMS.png" alt="" width="968" height="968"><span>GEMS</span></a>
+    <a class="brand" href="#top"><img src="./assets/logo-LIMES-app.jpg" alt="" width="1024" height="1024"><span>LIMES</span></a>
     <nav class="nav" aria-label="Điều hướng chính"><a href="#world">Chủ đề</a><a href="#library">Thư viện</a><a href="#trust">Kiểm chứng</a><a href="#experience">Trải nghiệm</a></nav>
-    <a class="header-cta" href="https://gems-ebook.vercel.app/">Mở ứng dụng</a>
+    <a class="header-cta" href="#download">Tải ứng dụng</a>
   </div></header>
   <main>
     <section class="hero visible" id="top">
-      <div class="hero-media"><img src="./assets/gems-hero-knowledge-in-life.jpg" alt="GEMS đồng hành trong đời sống chăm sóc sức khỏe chủ động" width="1672" height="941" fetchpriority="high" decoding="async"></div>
+      <div class="hero-media"><img src="./assets/gems-hero-knowledge-in-life.jpg" alt="LIMES đồng hành trong đời sống chăm sóc sức khỏe chủ động" width="1672" height="941" fetchpriority="high" decoding="async"></div>
       <div class="shell hero-inner"><div class="hero-copy">
-        <p class="eyebrow" data-reveal>Ứng dụng đọc sách về chăm sóc sức khỏe chủ động</p>
+        <p class="eyebrow" data-reveal>Ứng dụng LIMES về chăm sóc sức khỏe chủ động</p>
         <h1 data-reveal style="--delay:.08s">Hiểu cơ thể.<em>Chủ động sống khỏe.</em></h1>
-        <p class="hero-lede" data-reveal style="--delay:.16s">GEMS đưa sách và kiến thức tiếng Việt đến gần đời sống hằng ngày, để mỗi người có thể hiểu đúng hơn về dinh dưỡng, lối sống và cách chăm sóc bản thân.</p>
-        <div class="actions" data-reveal style="--delay:.24s"><a class="button button-primary" href="#experience">Xem hành trình GEMS <span>→</span></a><a class="button button-secondary" href="#partners">Dành cho đối tác</a></div>
+        <p class="hero-lede" data-reveal style="--delay:.16s">LIMES đưa sách và kiến thức tiếng Việt đến gần đời sống hằng ngày, để mỗi người có thể hiểu đúng hơn về dinh dưỡng, lối sống và cách chăm sóc bản thân.</p>
+        <div class="actions" data-reveal style="--delay:.24s"><a class="button button-primary" href="#experience">Xem hành trình LIMES <span>→</span></a><a class="button button-secondary" href="#partners">Dành cho đối tác</a></div>
         <p class="hero-note" data-reveal style="--delay:.3s">Kiến thức tiếng Việt · Được LIMES tuyển chọn · Đọc và nghe trong một hành trình</p>
       </div></div>
     </section>
 
     <section class="world" id="world"><div class="shell">
-      <div class="section-head"><div><p class="eyebrow" data-reveal>Kiến thức gần với đời sống</p><h2 data-reveal style="--delay:.08s">Sống khỏe bắt đầu từ những điều gần gũi.</h2></div><p class="section-intro" data-reveal style="--delay:.16s">Không chỉ đọc khi có vấn đề. GEMS giúp người đọc tiếp cận kiến thức từ những lựa chọn diễn ra mỗi ngày: ăn gì, ngủ thế nào, vận động ra sao và chăm sóc tinh thần của mình.</p></div>
+      <div class="section-head"><div><p class="section-kicker" data-reveal>Kiến thức gần với đời sống</p><h2 data-reveal style="--delay:.08s">Sống khỏe bắt đầu từ những điều gần gũi.</h2></div><p class="section-intro" data-reveal style="--delay:.16s">Không chỉ đọc khi có vấn đề. LIMES giúp người đọc tiếp cận kiến thức từ những lựa chọn diễn ra mỗi ngày: ăn gì, ngủ thế nào, vận động ra sao và chăm sóc tinh thần của mình.</p></div>
       <div class="topic-film">
         <article class="topic" data-reveal><img src="./assets/topic-nutrition.jpg" alt="Bữa ăn cân bằng" width="1000" height="560" loading="lazy" decoding="async"><div class="topic-label"><span>Dinh dưỡng</span><strong>Hiểu điều mình ăn mỗi ngày.</strong></div></article>
         <article class="topic" data-reveal style="--delay:.08s"><img src="./assets/topic-movement.jpg" alt="Vận động chủ động" width="1000" height="560" loading="lazy" decoding="async"><div class="topic-label"><span>Vận động</span><strong>Một cơ thể được chăm sóc bằng chuyển động.</strong></div></article>
@@ -1390,18 +1437,18 @@
     </div></section>
 
     <section class="library" id="library"><div class="shell library-grid">
-      <div class="library-copy"><p class="eyebrow" data-reveal>Thư viện chăm sóc sức khỏe chủ động</p><h2 data-reveal style="--delay:.08s">Một thư viện để mỗi người bắt đầu từ điều mình quan tâm.</h2><p data-reveal style="--delay:.16s">Từ dinh dưỡng, giấc ngủ đến tâm lý và lối sống, GEMS tổ chức nội dung theo những mối quan tâm gần gũi để việc chăm sóc sức khỏe không còn là một khái niệm xa vời.</p>
+      <div class="library-copy"><p class="section-kicker" data-reveal>Thư viện chăm sóc sức khỏe chủ động</p><h2 data-reveal style="--delay:.08s">Một thư viện để mỗi người bắt đầu từ điều mình quan tâm.</h2><p data-reveal style="--delay:.16s">Từ dinh dưỡng, giấc ngủ đến tâm lý và lối sống, LIMES tổ chức nội dung theo những mối quan tâm gần gũi để việc chăm sóc sức khỏe không còn là một khái niệm xa vời.</p>
         <div class="selection-list" data-reveal style="--delay:.22s"><div class="selection-row"><strong>Dinh dưỡng &amp; chuyển hóa</strong><span>Hiểu đúng</span></div><div class="selection-row"><strong>Giấc ngủ &amp; phục hồi</strong><span>Cân bằng</span></div><div class="selection-row"><strong>Tâm lý &amp; lối sống</strong><span>Chủ động</span></div></div>
       </div>
       <div class="book-editorial" data-reveal style="--delay:.14s">
         <div class="book-count" aria-hidden="true">100+<span>đầu sách được tuyển chọn</span></div>
-        <div class="book-deck" aria-label="Các chủ đề nổi bật trong thư viện GEMS">
-          <button class="book-card" type="button" data-title="Dinh dưỡng chủ động" aria-label="Xem bìa Dinh dưỡng chủ động"><img src="./assets/gems-cover-dinh-duong-v1.webp" alt="Dinh dưỡng chủ động" loading="lazy" decoding="async"></button>
-          <button class="book-card" type="button" data-title="Giấc ngủ và nhịp sống" aria-label="Xem bìa Giấc ngủ và nhịp sống"><img src="./assets/gems-cover-giac-ngu-v1.webp" alt="Giấc ngủ và nhịp sống" loading="lazy" decoding="async"></button>
-          <button class="book-card" type="button" data-title="Tâm lý khỏe mạnh" aria-label="Xem bìa Tâm lý khỏe mạnh"><img src="./assets/gems-cover-tam-ly-v1.webp" alt="Tâm lý khỏe mạnh" loading="lazy" decoding="async"></button>
-          <button class="book-card" type="button" data-title="Vận động mỗi ngày" aria-label="Xem bìa Vận động mỗi ngày"><img src="./assets/gems-cover-van-dong-v1.webp" alt="Vận động mỗi ngày" loading="lazy" decoding="async"></button>
-          <button class="book-card" type="button" data-title="Sức khỏe đường ruột" aria-label="Xem bìa Sức khỏe đường ruột"><img src="./assets/gems-cover-duong-ruot-v1.webp" alt="Sức khỏe đường ruột" loading="lazy" decoding="async"></button>
-          <button class="book-card" type="button" data-title="Thở sâu, sống chậm" aria-label="Xem bìa Thở sâu, sống chậm"><img src="./assets/gems-cover-tho-sau-v1.webp" alt="Thở sâu, sống chậm" loading="lazy" decoding="async"></button>
+        <div class="book-deck" aria-label="Các chủ đề nổi bật trong thư viện LIMES">
+          <button class="book-card" type="button" data-title="Dinh dưỡng chủ động" aria-label="Xem bìa Dinh dưỡng chủ động"><img src="./assets/gems-cover-dinh-duong-v1.webp" alt="Dinh dưỡng chủ động" width="640" height="910" loading="lazy" decoding="async"></button>
+          <button class="book-card" type="button" data-title="Giấc ngủ và nhịp sống" aria-label="Xem bìa Giấc ngủ và nhịp sống"><img src="./assets/gems-cover-giac-ngu-v1.webp" alt="Giấc ngủ và nhịp sống" width="640" height="910" loading="lazy" decoding="async"></button>
+          <button class="book-card" type="button" data-title="Tâm lý khỏe mạnh" aria-label="Xem bìa Tâm lý khỏe mạnh"><img src="./assets/gems-cover-tam-ly-v1.webp" alt="Tâm lý khỏe mạnh" width="640" height="910" loading="lazy" decoding="async"></button>
+          <button class="book-card" type="button" data-title="Vận động mỗi ngày" aria-label="Xem bìa Vận động mỗi ngày"><img src="./assets/gems-cover-van-dong-v1.webp" alt="Vận động mỗi ngày" width="640" height="910" loading="lazy" decoding="async"></button>
+          <button class="book-card" type="button" data-title="Sức khỏe đường ruột" aria-label="Xem bìa Sức khỏe đường ruột"><img src="./assets/gems-cover-duong-ruot-v1.webp" alt="Sức khỏe đường ruột" width="640" height="910" loading="lazy" decoding="async"></button>
+          <button class="book-card" type="button" data-title="Thở sâu, sống chậm" aria-label="Xem bìa Thở sâu, sống chậm"><img src="./assets/gems-cover-tho-sau-v1.webp" alt="Thở sâu, sống chậm" width="640" height="910" loading="lazy" decoding="async"></button>
         </div>
         <div class="book-focus">
           <span class="book-caption" aria-live="polite">Dinh dưỡng chủ động</span>
@@ -1414,8 +1461,8 @@
       </div>
     </div>
     <div class="library-ticker" aria-hidden="true"><div class="library-ticker-track">
-      <div class="library-ticker-set"><span>Đọc để hiểu</span><span>Hiểu để lựa chọn</span><span>Lựa chọn để sống chủ động</span><span>GEMS</span></div>
-      <div class="library-ticker-set"><span>Đọc để hiểu</span><span>Hiểu để lựa chọn</span><span>Lựa chọn để sống chủ động</span><span>GEMS</span></div>
+      <div class="library-ticker-set"><span>Đọc để hiểu</span><span>Hiểu để lựa chọn</span><span>Lựa chọn để sống chủ động</span><span>LIMES</span></div>
+      <div class="library-ticker-set"><span>Đọc để hiểu</span><span>Hiểu để lựa chọn</span><span>Lựa chọn để sống chủ động</span><span>LIMES</span></div>
     </div></div></section>
 
     <section class="trust" id="trust"><div class="shell">
@@ -1424,7 +1471,7 @@
           <div class="trust-logo-wrap"><img class="trust-logo" src="./assets/logo-LIMES-official.jpg" alt="Logo Viện Nghiên cứu Y học Sự sống LIMES" width="500" height="500" loading="lazy" decoding="async"></div>
           <div class="trust-sign"><small>Được tuyển chọn bởi</small><strong>LIMES</strong><span>Viện Nghiên cứu Y học Sự sống</span></div>
         </div>
-        <div class="trust-copy"><p class="eyebrow" data-reveal>Nền tảng chuyên môn phía sau GEMS</p><h2 data-reveal style="--delay:.08s">Mỗi đầu sách đều đi qua một quy trình kiểm soát trước khi đến tay người đọc.</h2><p data-reveal style="--delay:.16s">Thư viện được LIMES tuyển chọn. Nội dung tiếp tục được các ban chuyên môn gồm giáo sư, tiến sĩ của Viện kiểm soát để bảo đảm tính phù hợp, giá trị sử dụng và định hướng chăm sóc sức khỏe chủ động.</p><div class="trust-flow" data-reveal style="--delay:.22s"><span>Đề xuất nội dung</span><i></i><span>LIMES tuyển chọn</span><i></i><span>Ban chuyên môn kiểm soát</span><i></i><span>Xuất bản trên GEMS</span></div></div>
+        <div class="trust-copy"><p class="eyebrow" data-reveal>Nền tảng chuyên môn phía sau LIMES</p><h2 data-reveal style="--delay:.08s">Mỗi đầu sách đều đi qua một quy trình kiểm soát trước khi đến tay người đọc.</h2><p data-reveal style="--delay:.16s">Thư viện được LIMES tuyển chọn. Nội dung tiếp tục được các ban chuyên môn gồm giáo sư, tiến sĩ của Viện kiểm soát để bảo đảm tính phù hợp, giá trị sử dụng và định hướng chăm sóc sức khỏe chủ động.</p><div class="trust-flow" data-reveal style="--delay:.22s"><span>Đề xuất nội dung</span><i></i><span>LIMES tuyển chọn</span><i></i><span>Ban chuyên môn kiểm soát</span><i></i><span>Xuất bản trên LIMES</span></div></div>
       </div>
       <div class="evidence-band" data-reveal style="--delay:.18s"><div class="evidence-item"><strong>TIẾNG VIỆT</strong><span>Nội dung gần với bối cảnh và thói quen chăm sóc sức khỏe của người Việt.</span></div><div class="evidence-item"><strong>LIMES</strong><span>Đơn vị tuyển chọn và định hướng nền tảng nội dung.</span></div><div class="evidence-item"><strong>GS · TS</strong><span>Các ban chuyên môn của Viện tham gia kiểm soát nội dung.</span></div></div>
     </div></section>
@@ -1432,10 +1479,10 @@
     <section class="experience" id="experience"><div class="shell">
       <div class="journey-stage" data-reveal>
         <div class="journey-copy">
-          <p class="eyebrow">Một hành trình không đứt đoạn</p>
+          <p class="section-kicker">Một hành trình không đứt đoạn</p>
           <h2>Một nội dung.<br><span>Ba nhịp tiếp nhận.</span></h2>
-          <p class="journey-lede">GEMS không đặt từng công cụ cạnh nhau. Ứng dụng nối việc tìm sách, đọc sâu và nghe tiếp thành một trải nghiệm liền mạch.</p>
-          <div class="journey-steps" aria-label="Hành trình trải nghiệm GEMS">
+          <p class="journey-lede">LIMES không đặt từng công cụ cạnh nhau. Ứng dụng nối việc tìm sách, đọc sâu và nghe tiếp thành một trải nghiệm liền mạch.</p>
+          <div class="journey-steps" aria-label="Hành trình trải nghiệm LIMES">
             <button class="journey-step is-active" type="button" aria-pressed="true" data-scene="0"><span>Tìm</span><div><strong>Tìm điều cần hiểu</strong><p>Khám phá nội dung theo những chủ đề sức khỏe gần với đời sống.</p></div></button>
             <button class="journey-step" type="button" aria-pressed="false" data-scene="1"><span>Đọc</span><div><strong>Đọc để hiểu sâu</strong><p>Tập trung trên trang sách, đánh dấu và giữ lại đúng ngữ cảnh.</p></div></button>
             <button class="journey-step" type="button" aria-pressed="false" data-scene="2"><span>Nghe</span><div><strong>Nghe để đi tiếp</strong><p>Tiếp tục nội dung khi di chuyển hoặc tạm rời màn hình.</p></div></button>
@@ -1443,9 +1490,9 @@
         </div>
         <div class="journey-visual" aria-live="polite">
           <div class="journey-device">
-            <img class="journey-screen is-active" src="./assets/gems-library-story-polished.png" alt="Kho sách điện tử trong ứng dụng GEMS" loading="lazy" decoding="async">
-            <img class="journey-screen" src="./assets/gems-reader-story-polished.png" alt="Trang đọc sách điện tử trong ứng dụng GEMS" loading="lazy" decoding="async">
-            <img class="journey-screen" src="./assets/gems-audio-story-polished.png" alt="Nội dung nói trong ứng dụng GEMS" loading="lazy" decoding="async">
+            <img class="journey-screen is-active" src="./assets/gems-library-story-polished.png" alt="Kho sách điện tử trong ứng dụng LIMES" width="410" height="860" loading="lazy" decoding="async">
+            <img class="journey-screen" src="./assets/gems-reader-story-polished.png" alt="Trang đọc sách điện tử trong ứng dụng LIMES" width="410" height="860" loading="lazy" decoding="async">
+            <img class="journey-screen" src="./assets/gems-audio-story-polished.png" alt="Nội dung nói trong ứng dụng LIMES" width="410" height="860" loading="lazy" decoding="async">
           </div>
           <div class="journey-status">Kho tri thức · Đang mở</div>
         </div>
@@ -1453,23 +1500,40 @@
     </div></section>
 
     <section class="purpose" id="purpose"><div class="shell purpose-grid">
-      <div><p class="eyebrow" data-reveal>Điều GEMS muốn thay đổi</p><h2 data-reveal style="--delay:.08s">Mục tiêu không phải đọc nhiều hơn. <em>Là hiểu đúng để sống chủ động hơn.</em></h2><p class="purpose-lede" data-reveal style="--delay:.16s">GEMS hướng đến một thư viện số gần gũi, nơi kiến thức đáng tin cậy trở thành một phần tự nhiên trong thói quen chăm sóc bản thân.</p></div>
-      <blockquote class="purpose-quote" data-reveal style="--delay:.2s">“Kiến thức chỉ thật sự có giá trị khi giúp một người đưa ra lựa chọn tốt hơn cho sức khỏe của mình.”<span>Tầm nhìn GEMS</span></blockquote>
+      <div><p class="section-kicker" data-reveal>Điều LIMES muốn thay đổi</p><h2 data-reveal style="--delay:.08s">Mục tiêu không phải đọc nhiều hơn. <em>Là hiểu đúng để sống chủ động hơn.</em></h2><p class="purpose-lede" data-reveal style="--delay:.16s">LIMES hướng đến một thư viện số gần gũi, nơi kiến thức đáng tin cậy trở thành một phần tự nhiên trong thói quen chăm sóc bản thân.</p></div>
+      <blockquote class="purpose-quote" data-reveal style="--delay:.2s">“Kiến thức chỉ thật sự có giá trị khi giúp một người đưa ra lựa chọn tốt hơn cho sức khỏe của mình.”<span>Tầm nhìn LIMES</span></blockquote>
     </div></section>
 
-    <section class="voices" id="voices"><div class="shell voices-head"><p class="eyebrow" data-reveal>Tiếng nói từ người đọc</p><h2 data-reveal style="--delay:.08s">Một thói quen tốt được bắt đầu từ trải nghiệm dễ chịu.</h2></div><div class="review-marquee"><div class="review-loop">
-      <article class="review-card"><div class="stars">★★★★★</div><p>“Cám ơn những người đã tạo ra GEMS.”</p><div class="review-person"><img src="./assets/testimonial-minh-chau.jpg" alt="" width="320" height="320" loading="lazy" decoding="async"><div><strong>Người đọc GEMS</strong><span>Quan tâm sức khỏe chủ động</span></div></div></article>
-      <article class="review-card"><div class="stars">★★★★★</div><p>Giao diện bắt mắt, sách được tuyển chọn tốt và giọng đọc tạo cảm giác dễ nghe.</p><div class="review-person"><img src="./assets/testimonial-hoang-minh.jpg" alt="" width="320" height="320" loading="lazy" decoding="async"><div><strong>Người đọc GEMS</strong><span>Duy trì thói quen đọc</span></div></div></article>
-      <article class="review-card"><div class="stars">★★★★★</div><p>“Giọng đọc hay. Lôi cuốn.”</p><div class="review-person"><img src="./assets/testimonial-mai-anh.jpg" alt="" width="320" height="320" loading="lazy" decoding="async"><div><strong>Người nghe GEMS</strong><span>Nghe khi di chuyển</span></div></div></article>
-      <article class="review-card"><div class="stars">★★★★★</div><p>Nhiều đầu sách mới, trải nghiệm phù hợp với người Việt sống xa quê hương.</p><div class="review-person"><img src="./assets/testimonial-quoc-huy.jpg" alt="" width="320" height="320" loading="lazy" decoding="async"><div><strong>Người đọc GEMS</strong><span>Sống xa Việt Nam</span></div></div></article>
-      <article class="review-card"><div class="stars">★★★★★</div><p>Phù hợp với người bận rộn và có thể duy trì việc nghe trong lúc di chuyển.</p><div class="review-person"><img src="./assets/testimonial-thu-ha.jpg" alt="" width="320" height="320" loading="lazy" decoding="async"><div><strong>Người nghe GEMS</strong><span>Chủ động mỗi ngày</span></div></div></article>
+    <section class="voices" id="voices"><div class="shell voices-head"><p class="section-kicker" data-reveal>Tiếng nói từ người đọc</p><h2 data-reveal style="--delay:.08s">Một thói quen tốt được bắt đầu từ trải nghiệm dễ chịu.</h2></div><div class="review-marquee"><div class="review-loop">
+      <article class="review-card"><div class="stars">★★★★★</div><p>“Cám ơn những người đã tạo ra LIMES.”</p><div class="review-person"><img src="./assets/testimonial-minh-chau.jpg" alt="" width="320" height="320" loading="lazy" decoding="async"><div><strong>Người đọc LIMES</strong><span>Quan tâm sức khỏe chủ động</span></div></div></article>
+      <article class="review-card"><div class="stars">★★★★★</div><p>Giao diện bắt mắt, sách được tuyển chọn tốt và giọng đọc tạo cảm giác dễ nghe.</p><div class="review-person"><img src="./assets/testimonial-hoang-minh.jpg" alt="" width="320" height="320" loading="lazy" decoding="async"><div><strong>Người đọc LIMES</strong><span>Duy trì thói quen đọc</span></div></div></article>
+      <article class="review-card"><div class="stars">★★★★★</div><p>“Giọng đọc hay. Lôi cuốn.”</p><div class="review-person"><img src="./assets/testimonial-mai-anh.jpg" alt="" width="320" height="320" loading="lazy" decoding="async"><div><strong>Người nghe LIMES</strong><span>Nghe khi di chuyển</span></div></div></article>
+      <article class="review-card"><div class="stars">★★★★★</div><p>Nhiều đầu sách mới, trải nghiệm phù hợp với người Việt sống xa quê hương.</p><div class="review-person"><img src="./assets/testimonial-quoc-huy.jpg" alt="" width="320" height="320" loading="lazy" decoding="async"><div><strong>Người đọc LIMES</strong><span>Sống xa Việt Nam</span></div></div></article>
+      <article class="review-card"><div class="stars">★★★★★</div><p>Phù hợp với người bận rộn và có thể duy trì việc nghe trong lúc di chuyển.</p><div class="review-person"><img src="./assets/testimonial-thu-ha.jpg" alt="" width="320" height="320" loading="lazy" decoding="async"><div><strong>Người nghe LIMES</strong><span>Chủ động mỗi ngày</span></div></div></article>
     </div></div></section>
 
-    <section class="cta" id="partners"><div class="shell"><div class="cta-inner"><div><p class="eyebrow" data-reveal>Cùng GEMS và LIMES</p><h2 data-reveal style="--delay:.08s">Để ai cũng có thể chăm sóc sức khỏe một cách chủ động.</h2></div><div class="cta-copy" data-reveal style="--delay:.16s">GEMS chào đón đơn vị xuất bản, tác giả, chuyên gia nội dung và đối tác công nghệ cùng mở rộng một thư viện sức khỏe thiết thực, được kiểm soát chuyên môn và dễ tiếp cận với người Việt.<div class="actions"><a class="button button-primary" href="mailto:info.gemsgroupvn@gmail.com">Trao đổi hợp tác <span>→</span></a><a class="button button-secondary" href="https://gems-ebook.vercel.app/">Mở ứng dụng</a></div></div></div>
+    <section class="cta" id="partners"><div class="shell"><div class="cta-inner"><div><p class="section-kicker" data-reveal>Cùng LIMES trong hệ sinh thái GEMS</p><h2 data-reveal style="--delay:.08s">Để ai cũng có thể chăm sóc sức khỏe một cách chủ động.</h2></div><div class="cta-copy" data-reveal style="--delay:.16s">LIMES chào đón đơn vị xuất bản, tác giả, chuyên gia nội dung và đối tác công nghệ cùng mở rộng một thư viện sức khỏe thiết thực, được kiểm soát chuyên môn và dễ tiếp cận với người Việt.<div class="actions"><a class="button button-primary" href="mailto:info.gemsgroupvn@gmail.com">Trao đổi hợp tác <span>→</span></a><a class="button button-secondary" href="#download">Tải ứng dụng</a></div></div></div>
+      <div class="download-panel" id="download" data-reveal style="--delay:.2s">
+        <div class="download-brand">
+          <img src="./assets/logo-LIMES-app.jpg" alt="Logo ứng dụng LIMES" width="1024" height="1024" loading="lazy" decoding="async">
+          <div>
+            <p class="eyebrow">LIMES trên di động</p>
+            <h3>Tải ứng dụng LIMES khi phát hành trên iOS và Android.</h3>
+            <p>Khi có link store chính thức, hai nút bên dưới sẽ dẫn thẳng đến trang tải ứng dụng trên thiết bị của người đọc.</p>
+          </div>
+        </div>
+        <div>
+          <div class="store-list" aria-label="Kênh tải ứng dụng LIMES">
+            <button class="store-badge" type="button" disabled><span><small>Tải trên</small><strong>App Store</strong></span><span class="store-status">Sắp có</span></button>
+            <button class="store-badge" type="button" disabled><span><small>Tải trên</small><strong>Google Play</strong></span><span class="store-status">Sắp có</span></button>
+          </div>
+          <div class="download-note"><span>Để nhận link tải sớm hoặc cập nhật tiến độ phát hành, liên hệ đội LIMES.</span><a href="mailto:info.gemsgroupvn@gmail.com">Nhận thông báo</a></div>
+        </div>
+      </div>
       <footer class="footer" aria-label="Thông tin cuối trang">
         <div class="footer-brand">
           <a class="brand" href="#top" aria-label="Tập đoàn GEMS - Về đầu trang"><img src="./assets/logo-GEMS.png" alt="Logo Tập đoàn GEMS" width="968" height="968"><span>TẬP ĐOÀN GEMS</span></a>
-          <p>GEMS Ebook là thư viện số thuộc hệ sinh thái GEMS, giúp kiến thức chăm sóc sức khỏe trở nên gần gũi, đáng tin cậy và dễ tiếp cận hơn với người Việt.</p>
+          <p>LIMES là ứng dụng thư viện số thuộc hệ sinh thái GEMS, giúp kiến thức chăm sóc sức khỏe trở nên gần gũi, đáng tin cậy và dễ tiếp cận hơn với người Việt.</p>
         </div>
         <div class="footer-group">
           <span class="footer-label">Khám phá</span>
@@ -1487,11 +1551,6 @@
           <span class="footer-label">Trụ sở chính</span>
           <p class="footer-address">25 đường 37, khu đô thị Vạn Phúc, Phường Hiệp Bình, Thành phố Hồ Chí Minh</p>
         </div>
-        <div class="footer-group footer-expertise">
-          <span class="footer-label">Kiểm soát chuyên môn</span>
-          <strong>LIMES</strong>
-          <p>Viện Nghiên cứu Y học Sự sống</p>
-        </div>
         <div class="footer-bottom"><span>© 2026 Công ty Cổ phần Tập đoàn GEMS · MST 0318344838</span><span>Nội dung được LIMES tuyển chọn và định hướng chuyên môn.</span></div>
       </footer>
     </div></section>
@@ -1505,10 +1564,10 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/></svg>
         </button>
       </div>
-      <p class="contact-lede">Chọn một hướng. GEMS sẽ đưa bạn đến đúng nội dung hoặc đúng người hỗ trợ.</p>
+      <p class="contact-lede">Chọn một hướng. LIMES sẽ đưa bạn đến đúng nội dung hoặc đúng người hỗ trợ.</p>
       <div class="contact-topics" aria-label="Nhu cầu hỗ trợ">
         <button class="contact-topic is-active" type="button" data-contact-topic="library" aria-pressed="true">Tìm nội dung phù hợp <span>→</span></button>
-        <button class="contact-topic" type="button" data-contact-topic="guide" aria-pressed="false">Cách sử dụng GEMS <span>→</span></button>
+        <button class="contact-topic" type="button" data-contact-topic="guide" aria-pressed="false">Cách sử dụng LIMES <span>→</span></button>
         <button class="contact-topic" type="button" data-contact-topic="partner" aria-pressed="false">Hợp tác nội dung <span>→</span></button>
         <button class="contact-topic" type="button" data-contact-topic="advisor" aria-pressed="false">Gặp tư vấn viên <span>→</span></button>
       </div>
@@ -1517,7 +1576,7 @@
         <p class="contact-answer-copy">Khám phá nội dung về sức khỏe, dinh dưỡng, giấc ngủ, tâm lý và lối sống chủ động.</p>
         <a class="contact-answer-link" href="#library">Khám phá thư viện <span>→</span></a>
       </div>
-      <span class="contact-direct-label">Kết nối trực tiếp với GEMS</span>
+      <span class="contact-direct-label">Kết nối trực tiếp với LIMES</span>
       <div class="contact-channels">
         <a class="contact-channel" href="https://zalo.me/0398180812" target="_blank" rel="noopener noreferrer">Nhắn Zalo<small>0398 180 812</small></a>
         <a class="contact-channel" href="tel:1900888812">Gọi hotline<small>1900 88 88 12</small></a>
@@ -1527,7 +1586,7 @@
       <span class="contact-toggle-icon">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 17.5 4 21l4-1.4c1.2.6 2.5.9 4 .9 4.7 0 8.5-3.5 8.5-7.8S16.7 5 12 5s-8.5 3.4-8.5 7.7c0 1.8.7 3.5 2 4.8Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.7"/><path d="M8 12.5h8M8 9.5h5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"/></svg>
       </span>
-      <span>Hỗ trợ GEMS</span>
+      <span>Hỗ trợ LIMES</span>
     </button>
   </div>
   <script>
@@ -1647,18 +1706,18 @@
         },
         guide:{
           title:'Đọc, ghi lại, rồi nghe tiếp.',
-          copy:'GEMS giữ nội dung, ghi chú và tiến trình trong cùng một hành trình để bạn không phải bắt đầu lại.',
+          copy:'LIMES giữ nội dung, ghi chú và tiến trình trong cùng một hành trình để bạn không phải bắt đầu lại.',
           label:'Xem trải nghiệm',
           href:'#experience'
         },
         partner:{
           title:'Cùng xây một thư viện đáng tin.',
-          copy:'GEMS chào đón tác giả, đơn vị xuất bản, chuyên gia và đối tác công nghệ cùng phát triển nội dung.',
+          copy:'LIMES chào đón tác giả, đơn vị xuất bản, chuyên gia và đối tác công nghệ cùng phát triển nội dung.',
           label:'Trao đổi hợp tác',
           href:'mailto:info.gemsgroupvn@gmail.com'
         },
         advisor:{
-          title:'Kết nối với đội ngũ GEMS.',
+          title:'Kết nối với đội ngũ LIMES.',
           copy:'Nhắn Zalo để được hướng dẫn theo nhu cầu hoặc gọi hotline khi bạn muốn trao đổi trực tiếp.',
           label:'Nhắn Zalo',
           href:'https://zalo.me/0398180812',
@@ -1704,30 +1763,53 @@
       }));
       contactAnswerLink.addEventListener('click',()=>setContactOpen(false,false));
       addEventListener('keydown',event=>{if(event.key==='Escape'&&contactDock.classList.contains('is-open'))setContactOpen(false);});
-      let contactFrame=0;
-      const updateContactDock=()=>{
-        contactFrame=0;
-        const threshold=heroSection?Math.max(480,heroSection.offsetHeight-innerHeight*.18):560;
-        const partnerRect=partnerSection?.getBoundingClientRect();
-        const nearFooter=Boolean(partnerRect&&partnerRect.top<innerHeight*.92&&partnerRect.bottom>0);
-        contactDock.classList.toggle('is-visible',scrollY>threshold);
-        contactDock.classList.toggle('is-suppressed',nearFooter);
-        if(nearFooter&&contactDock.classList.contains('is-open'))setContactOpen(false,false);
+      let contactPastHero=false;
+      let contactNearFooter=false;
+      const renderContactDock=()=>{
+        contactDock.classList.toggle('is-visible',contactPastHero);
+        contactDock.classList.toggle('is-suppressed',contactNearFooter);
+        if(contactNearFooter&&contactDock.classList.contains('is-open'))setContactOpen(false,false);
       };
-      const queueContactUpdate=()=>{
-        if(!contactFrame)contactFrame=requestAnimationFrame(updateContactDock);
-      };
-      addEventListener('scroll',queueContactUpdate,{passive:true});
-      addEventListener('resize',queueContactUpdate);
-      updateContactDock();
+      if('IntersectionObserver' in window){
+        if(heroSection){
+          new IntersectionObserver(([entry])=>{
+            contactPastHero=!entry.isIntersecting;
+            renderContactDock();
+          },{rootMargin:'-76px 0px 0px 0px',threshold:0}).observe(heroSection);
+        }else{
+          contactPastHero=true;
+        }
+        if(partnerSection){
+          new IntersectionObserver(([entry])=>{
+            contactNearFooter=entry.isIntersecting;
+            renderContactDock();
+          },{rootMargin:'0px 0px -8% 0px',threshold:0}).observe(partnerSection);
+        }
+      }
+      renderContactDock();
     }
-    const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible');}),{threshold:.12});
-    document.querySelectorAll('section:not(.hero)').forEach(section=>revealObserver.observe(section));
+    const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    }),{rootMargin:'0px 0px -12% 0px',threshold:.16});
+    document.querySelectorAll('main section:not(.hero) [data-reveal]').forEach(element=>revealObserver.observe(element));
     const navLinks=[...document.querySelectorAll('.nav a')];
     const navTargets=navLinks.map(link=>document.querySelector(link.getAttribute('href'))).filter(Boolean);
-    const updateNavigation=()=>{const marker=scrollY+innerHeight*.36;let current=navTargets[0];navTargets.forEach(section=>{if(section.offsetTop<=marker)current=section;});navLinks.forEach(link=>link.classList.toggle('is-active',current&&link.getAttribute('href')===`#${current.id}`));};
-    addEventListener('scroll',()=>{const max=document.documentElement.scrollHeight-innerHeight;document.body.style.setProperty('--progress',max?scrollY/max:0);updateNavigation();},{passive:true});
-    updateNavigation();
+    const setActiveNav=section=>{
+      navLinks.forEach(link=>link.classList.toggle('is-active',section&&link.getAttribute('href')===`#${section.id}`));
+    };
+    if('IntersectionObserver' in window&&navTargets.length){
+      const navObserver=new IntersectionObserver(entries=>{
+        const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+        if(visible)setActiveNav(visible.target);
+      },{rootMargin:'-34% 0px -52% 0px',threshold:[0,.2,.5,.8]});
+      navTargets.forEach(section=>navObserver.observe(section));
+    }else{
+      setActiveNav(navTargets[0]);
+    }
   </script>
 </body>
 </html>
+
