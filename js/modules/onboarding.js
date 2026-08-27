@@ -1,5 +1,5 @@
 /**
- * GEMS Ebook App - Mobile Onboarding Flow Module
+ * LIMES Ebook App - Mobile Onboarding Flow Module
  * Provides an interactive 3-step carousel, touch/mouse swipe gesture support,
  * state persistence, and smooth transition to the Login/Registration screen.
  */
@@ -160,7 +160,15 @@ window.GEMS.Onboarding = (function () {
     function completeOnboarding(skipToApp = false) {
         localStorage.setItem('gems_onboarding_completed', 'true');
         const onboardingView = document.getElementById('view-onboarding');
+        const loginView = document.getElementById('view-login');
         
+        if (!skipToApp && loginView) {
+            // Unhide loginView immediately directly underneath onboardingView (z-[9998] over z-[9995])
+            // to completely eliminate the brief flash of the underlying home screen
+            loginView.classList.remove('hidden', 'opacity-0');
+            if (typeof initLoginCanvas === 'function') initLoginCanvas();
+        }
+
         if (onboardingView) {
             onboardingView.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
             setTimeout(() => {
@@ -170,12 +178,6 @@ window.GEMS.Onboarding = (function () {
                 if (skipToApp) {
                     if (typeof enterMainApp === 'function') {
                         enterMainApp();
-                    }
-                } else {
-                    const loginView = document.getElementById('view-login');
-                    if (loginView) {
-                        loginView.classList.remove('hidden');
-                        if (typeof initLoginCanvas === 'function') initLoginCanvas();
                     }
                 }
             }, 400);
@@ -203,6 +205,12 @@ window.GEMS.Onboarding = (function () {
 
     // Auto-check on page load
     document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('onboarding') || urlParams.has('reset')) {
+            localStorage.removeItem('gems_onboarding_completed');
+            localStorage.removeItem('gems_logged_in');
+        }
+
         const hasSeenOnboarding = localStorage.getItem('gems_onboarding_completed') === 'true';
         const onboardingView = document.getElementById('view-onboarding');
         const loginView = document.getElementById('view-login');
@@ -258,3 +266,64 @@ window.resetAndShowOnboarding = function() {
     localStorage.removeItem('gems_logged_in');
     location.reload();
 };
+
+// Interactive Demo Handlers for Ebook Onboarding Slides
+window.setDemoReaderTheme = function(theme) {
+    const card = document.getElementById('onboarding-reader-demo-card');
+    const header = document.getElementById('onboarding-demo-header');
+    const text = document.getElementById('onboarding-demo-text');
+    const bLight = document.getElementById('demo-btn-light');
+    const bSepia = document.getElementById('demo-btn-sepia');
+    const bDark = document.getElementById('demo-btn-dark');
+    if (!card || !header || !text) return;
+
+    [bLight, bSepia, bDark].forEach(b => {
+        if (b) {
+            b.classList.remove('ring-2', 'ring-brand-blue', 'ring-amber-600', 'ring-sky-400', 'font-bold', 'scale-105');
+            b.classList.add('opacity-70');
+        }
+    });
+
+    if (theme === 'light') {
+        card.style.backgroundColor = '#ffffff';
+        card.style.borderColor = 'rgba(226, 232, 240, 0.9)';
+        header.style.color = '#64748b';
+        text.style.color = '#1e293b';
+        if (bLight) {
+            bLight.classList.add('ring-2', 'ring-brand-blue', 'font-bold', 'scale-105');
+            bLight.classList.remove('opacity-70');
+        }
+    } else if (theme === 'sepia') {
+        card.style.backgroundColor = '#fbf0d9';
+        card.style.borderColor = 'rgba(217, 119, 6, 0.3)';
+        header.style.color = '#8c6d48';
+        text.style.color = '#45321f';
+        if (bSepia) {
+            bSepia.classList.add('ring-2', 'ring-amber-600', 'font-bold', 'scale-105');
+            bSepia.classList.remove('opacity-70');
+        }
+    } else if (theme === 'dark') {
+        card.style.backgroundColor = '#0f172a';
+        card.style.borderColor = 'rgba(51, 65, 85, 0.9)';
+        header.style.color = '#94a3b8';
+        text.style.color = '#e2e8f0';
+        if (bDark) {
+            bDark.classList.add('ring-2', 'ring-sky-400', 'font-bold', 'scale-105');
+            bDark.classList.remove('opacity-70');
+        }
+    }
+};
+
+window.setDemoHighlightColor = function(color) {
+    const hl = document.getElementById('onboarding-demo-highlight');
+    if (!hl) return;
+    hl.className = 'p-2.5 rounded-xl text-[10.5px] leading-relaxed font-medium transition-all duration-300 border-l-[3px] ';
+    if (color === 'yellow') {
+        hl.className += 'bg-amber-100/90 text-amber-950 border-amber-500';
+    } else if (color === 'blue') {
+        hl.className += 'bg-sky-100/90 text-sky-950 border-sky-500';
+    } else if (color === 'green') {
+        hl.className += 'bg-emerald-100/90 text-emerald-950 border-emerald-500';
+    }
+};
+

@@ -1,5 +1,5 @@
 /**
- * GEMS Ebook App - Shop & Store Module
+ * LIMES Ebook App - Shop & Store Module
  * Encapsulated Shop listing, cart, checkout & product details module.
  */
 
@@ -67,8 +67,8 @@ window.GEMS.Shop = (function () {
         const container = document.getElementById('shop-orders-container');
         if (!container) return;
         const mockOrders = [
-            { id: "GEMS-88231", title: "Sách Giải Phẫu Học 3D", status: "Đang vận chuyển", step: 3, date: "07/08/2026", price: "250.000đ" },
-            { id: "GEMS-77109", title: "Voucher Bệnh Viện Y Dược 100K", status: "Đã hoàn thành", step: 4, date: "05/08/2026", price: "0đ (50 GEMS Xu)" }
+            { id: "LIMES-88231", title: "Sách Giải Phẫu Học 3D", status: "Đang vận chuyển", step: 3, date: "07/08/2026", price: "250.000đ" },
+            { id: "LIMES-77109", title: "Voucher Bệnh Viện Y Dược 100K", status: "Đã hoàn thành", step: 4, date: "05/08/2026", price: "0đ (50 LIMES Xu)" }
         ];
 
         container.innerHTML = mockOrders.map(ord => `

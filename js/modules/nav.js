@@ -1,5 +1,5 @@
 /**
- * GEMS Ebook App - Navigation & Screen Router Module
+ * LIMES Ebook App - Navigation & Screen Router Module
  * Encapsulated bottom navigation, tab routing, and z-index visibility management.
  */
 

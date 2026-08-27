@@ -66,22 +66,22 @@ function generateHundredsOfProducts() {
         { name: "Má Hồng Dạng Kem Sace Lady Lâu Trôi", cat: "Mỹ phẩm & Chăm sóc", price: 56520, orig: 157000, img: "assets/shop/sace_lady_blush.png" },
         { name: "Nước Tẩy Trang Micellar Cosnori Sạch Sâu", cat: "Mỹ phẩm & Chăm sóc", price: 210000, orig: 280000, img: "assets/shop/cosnori_remover.png" },
         { name: "Kem Dưỡng Sáng Da Olay Regenerist 50g", cat: "Mỹ phẩm & Chăm sóc", price: 380000, orig: 490000, img: "assets/shop/olay_cream.png" },
-        { name: "Nước Hoa Unisex GEMS Essential Eau De Parfum 50ml", cat: "Mỹ phẩm & Chăm sóc", price: 650000, orig: 850000, img: "assets/shop/perfume_bottle.png" },
-        { name: "Đồng Hồ Thông Minh GEMS Watch Pro Fit", cat: "Thiết bị công nghệ", price: 1250000, orig: 1650000, img: "assets/shop/smartwatch.png" },
+        { name: "Nước Hoa Unisex LIMES Essential Eau De Parfum 50ml", cat: "Mỹ phẩm & Chăm sóc", price: 650000, orig: 850000, img: "assets/shop/perfume_bottle.png" },
+        { name: "Đồng Hồ Thông Minh LIMES Watch Pro Fit", cat: "Thiết bị công nghệ", price: 1250000, orig: 1650000, img: "assets/shop/smartwatch.png" },
         { name: "Tai Nghe Bluetooth Chống Ồn Active ANC X1", cat: "Thiết bị công nghệ", price: 890000, orig: 1200000, img: "assets/shop/headphones_black.png" },
         { name: "Củ Sạc Nhanh Ugreen GaN 65W 3 Cổng Type-C", cat: "Thiết bị công nghệ", price: 374000, orig: 680000, img: "assets/shop/ugreen_charger.png" },
-        { name: "Bàn Phím Cơ Không Dây GEMS Tactile Switch", cat: "Thiết bị công nghệ", price: 790000, orig: 990000, img: "assets/shop/keyboard.png" },
+        { name: "Bàn Phím Cơ Không Dây LIMES Tactile Switch", cat: "Thiết bị công nghệ", price: 790000, orig: 990000, img: "assets/shop/keyboard.png" },
         { name: "Ốp Lưng Từ Tính MagSafe Nhám Mờ Chống Bẩn", cat: "Thiết bị công nghệ", price: 150000, orig: 220000, img: "assets/shop/magnetic_phone_case.png" },
         { name: "Ấm Siêu Tốc Inox 304 Cảm Biến Nhiệt 1.8L", cat: "Đồ gia dụng", price: 420000, orig: 550000, img: "assets/shop/electric_kettle.png" },
-        { name: "Đèn Học Chống Cận Thị GEMS LED Eye-Care", cat: "Đồ gia dụng", price: 350000, orig: 450000, img: "assets/shop/desklamp.png" },
+        { name: "Đèn Học Chống Cận Thị LIMES LED Eye-Care", cat: "Đồ gia dụng", price: 350000, orig: 450000, img: "assets/shop/desklamp.png" },
         { name: "Bình Giữ Nhiệt Thép Không Gỉ FJ Thermos 750ml", cat: "Đồ gia dụng", price: 290000, orig: 390000, img: "assets/shop/fj_thermos.png" },
         { name: "Ấm Trà Gốm Sứ Bát Tràng Men Hỏa Biến", cat: "Đồ gia dụng", price: 580000, orig: 750000, img: "assets/shop/battrang_teapot.png" },
         { name: "Tủ Quần Áo Vải Khung Thép 3 Buồng LEEGO", cat: "Đồ gia dụng", price: 294680, orig: 556000, img: "assets/shop/leego_wardrobe.png" },
         { name: "Bộ Nồi Chảo Chống Dính Vân Đá Y Tế Cookware", cat: "Đồ gia dụng", price: 850000, orig: 1100000, img: "assets/shop/cookware.png" },
         { name: "Áo Hoodies Nỉ Bông GEMS Oversized Unisex", cat: "Thời trang y tế", price: 350000, orig: 480000, img: "assets/shop/hoodie_black.png" },
-        { name: "Giày Sneaker Thể Thao Đệm Khí GEMS Runner", cat: "Thời trang y tế", price: 690000, orig: 950000, img: "assets/shop/sneaker_premium.png" },
-        { name: "Áo Thun Cotton 100% GEMS Medical Alumni", cat: "Thời trang y tế", price: 180000, orig: 250000, img: "assets/shop/tshirt_cotton.png" },
-        { name: "Balo Chuyên Dụng Bác Sĩ Chống Nước GEMS Doctor", cat: "Thời trang y tế", price: 490000, orig: 650000, img: "assets/shop/backpack.png" },
+        { name: "Giày Sneaker Thể Thao Đệm Khí LIMES Runner", cat: "Thời trang y tế", price: 690000, orig: 950000, img: "assets/shop/sneaker_premium.png" },
+        { name: "Áo Thun Cotton 100% LIMES Medical Alumni", cat: "Thời trang y tế", price: 180000, orig: 250000, img: "assets/shop/tshirt_cotton.png" },
+        { name: "Balo Chuyên Dụng Bác Sĩ Chống Nước LIMES Doctor", cat: "Thời trang y tế", price: 490000, orig: 650000, img: "assets/shop/backpack.png" },
         { name: "Vòng Tay Bạc S925 Y Học Biểu Tượng Caduceus", cat: "Trang sức & Quà tặng", price: 420000, orig: 580000, img: "assets/shop/silver_bracelet.png" },
         { name: "Mật Hoa Dừa Sokfarm Hữu Cơ 250g", cat: "Nông sản & Thực phẩm", price: 180000, orig: 220000, img: "assets/shop/honey_sokfarm.png" },
         { name: "Trà Sen Tây Hồ Chưng Sấy Truyền Thống 100g", cat: "Nông sản & Thực phẩm", price: 450000, orig: 550000, img: "assets/shop/lotus_tea.png" },
@@ -89,7 +89,7 @@ function generateHundredsOfProducts() {
         { name: "Tinh Dầu Tràm Huế Nguyên Chất GEMS 50ml", cat: "Dược liệu", price: 260000, orig: 320000, img: "assets/shop/essential_oil_hue.png" },
         { name: "Sữa Bột Dinh Dưỡng Phục Hồi Y Tế Nutifood 900g", cat: "Nông sản & Thực phẩm", price: 480000, orig: 560000, img: "assets/shop/milk_powder.png" },
         { name: "Thảm Tập Yoga TPE 2 Lớp Định Tuyến Chống Trượt", cat: "Thể thao & Sức khỏe", price: 320000, orig: 420000, img: "assets/shop/yoga_mat.png" },
-        { name: "Tạ Đơn Bọc Cao Su GEMS Rubber Dumbbell 5kg", cat: "Thể thao & Sức khỏe", price: 250000, orig: 320000, img: "assets/shop/dumbbell.png" },
+        { name: "Tạ Đơn Bọc Cao Su LIMES Rubber Dumbbell 5kg", cat: "Thể thao & Sức khỏe", price: 250000, orig: 320000, img: "assets/shop/dumbbell.png" },
         { name: "Dây Tập Kháng Lực Đa Năng Resistance Band Set", cat: "Thể thao & Sức khỏe", price: 190000, orig: 250000, img: "assets/shop/resistance_band.png" },
         { name: "Bóng Rổ Thể Thao Molten Chống Mòn", cat: "Thể thao & Sức khỏe", price: 380000, orig: 480000, img: "assets/shop/basketball.png" },
         { name: "Vợt Cầu Lông Carbon Siêu Nhẹ Yonex Astrox", cat: "Thể thao & Sức khỏe", price: 1250000, orig: 1550000, img: "assets/shop/badminton_racket.png" },
@@ -192,9 +192,9 @@ async function runSeeding() {
     for (let i = 1; i <= 25; i++) {
         const id = `GEMS948${20 + i}`;
         const customers = ["BS. Nguyễn Văn Nam", "Thái Nhân Sâm", "Dr. Elena Rostova", "BS. Trần Hoàng Duy", "SV. Phạm Thu Thảo", "BS. Lê Quốc Bảo", "Dược sĩ Vũ Minh Tuấn", "ThS. Đặng Bích Ngọc"];
-        const prods = ["Ống Nghe Y Tế Littmann Classic III", "Thái Nhân Sâm Dược Liệu Quý 500g", "Cẩm Nang Bào Chế Dược Phẩm", "Máy Đo Huyết Áp Omron HEM-7121", "Bộ Thẻ Flashcard Y Khoa", "Mô Hình Giải Phẫu Cơ Thể 3D", "Kem Chống Nắng D'Alba", "Đồng Hồ Thông Minh GEMS Watch Pro"];
+        const prods = ["Ống Nghe Y Tế Littmann Classic III", "Thái Nhân Sâm Dược Liệu Quý 500g", "Cẩm Nang Bào Chế Dược Phẩm", "Máy Đo Huyết Áp Omron HEM-7121", "Bộ Thẻ Flashcard Y Khoa", "Mô Hình Giải Phẫu Cơ Thể 3D", "Kem Chống Nắng D'Alba", "Đồng Hồ Thông Minh LIMES Watch Pro"];
         const statuses = ["Hoàn thành", "Đang giao", "Đang xử lý", "Hoàn thành"];
-        const payments = ["VietQR", "MoMo", "Ví GEMS Xu", "Thẻ Quốc Tế", "Chuyển khoản"];
+        const payments = ["VietQR", "MoMo", "Ví LIMES Xu", "Thẻ Quốc Tế", "Chuyển khoản"];
 
         comprehensiveOrders[id] = {
             customer: customers[i % customers.length],
@@ -213,13 +213,13 @@ async function runSeeding() {
 
     // 5. Seed Users (15 Users)
     const comprehensiveUsers = {
-        'admin_thainhansam': { email: "thainhansam.gems@gmail.com", name: "THÁI NHÂN SÂM (Admin)", role: "admin", tier: "vip", storeName: "Gian Hàng Dược Liệu GEMS", createdAt: "01/01/2026" },
+        'admin_thainhansam': { email: "thainhansam.limes@gmail.com", name: "THÁI NHÂN SÂM (Admin)", role: "admin", tier: "vip", storeName: "Gian Hàng Dược Liệu GEMS", createdAt: "01/01/2026" },
         'user_bsnam': { email: "nguyenvannam.md@gmail.com", name: "BS. Nguyễn Văn Nam", role: "user", tier: "pro", storeName: "Bác Sĩ Khám Bệnh", createdAt: "15/03/2026" },
         'user_elenarostova': { email: "elena.rostova@gems-med.org", name: "Dr. Elena Rostova", role: "author", tier: "vip", storeName: "Viện Sinh Lý Tim Mạch", createdAt: "20/02/2026" },
         'user_trinhoangduy': { email: "hoangduy.med@gmail.com", name: "BS. Trần Hoàng Duy", role: "user", tier: "pro", storeName: "Chuyên Khoa Thần Kinh", createdAt: "10/04/2026" },
         'user_phamthuthao': { email: "thuthao.student@hmp.edu.vn", name: "SV. Phạm Thu Thảo", role: "user", tier: "free", storeName: "Sinh Viên Y Hà Nội", createdAt: "02/05/2026" },
         'user_lequocbao': { email: "lequocbao.surgery@gmail.com", name: "BS. Lê Quốc Bảo", role: "user", tier: "pro", storeName: "Ngoại Khoa Cấp Cứu", createdAt: "18/05/2026" },
-        'user_vuminhtuan': { email: "vuminhtuan.pharma@gmail.com", name: "Dược sĩ Vũ Minh Tuấn", role: "partner", tier: "vip", storeName: "Nhà Thuốc GEMS Pharma", createdAt: "01/06/2026" },
+        'user_vuminhtuan': { email: "vuminhtuan.pharma@gmail.com", name: "Dược sĩ Vũ Minh Tuấn", role: "partner", tier: "vip", storeName: "Nhà Thuốc LIMES Pharma", createdAt: "01/06/2026" },
         'user_dangbichngoc': { email: "bichngoc.anatomy@gmail.com", name: "ThS. Đặng Bích Ngọc", role: "author", tier: "pro", storeName: "Giải Phẫu Học Y Hà Nội", createdAt: "12/06/2026" }
     };
     console.log(`\n👥 Seeding Users collection (${Object.keys(comprehensiveUsers).length} users)...`);

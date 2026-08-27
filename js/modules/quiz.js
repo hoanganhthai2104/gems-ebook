@@ -73,7 +73,7 @@
         if (isCorrect) {
             state.score += 10;
             if (typeof window.showToast === 'function') {
-                window.showToast("Chính xác! +10 GEMS Xu", "success");
+                window.showToast("Chính xác! +10 LIMES Xu", "success");
             }
         }
 
@@ -115,7 +115,7 @@
         }
 
         if (typeof window.showToast === 'function') {
-            window.showToast(`Hoàn thành Quiz! Bạn nhận được ${state.score} GEMS Xu`, "success");
+            window.showToast(`Hoàn thành Quiz! Bạn nhận được ${state.score} LIMES Xu`, "success");
         }
 
         const quizModal = document.getElementById('view-quiz-modal');

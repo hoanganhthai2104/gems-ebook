@@ -1,4 +1,4 @@
-# GEMS Medical E-Reader 📚
+# LIMES Medical E-Reader 📚
 
 Ứng dụng đọc sách y khoa trực tuyến với giao diện Liquid Glass hiện đại.
 
@@ -7,7 +7,7 @@
 - **Thư viện sách y khoa** với 3D Carousel và bộ lọc chuyên khoa
 - **Trình đọc E-Reader** với lật trang, đánh dấu, highlight văn bản
 - **Kiểm tra kiến thức** sau mỗi chương với hệ thống quiz tương tác
-- **Nhiệm vụ hàng ngày** và hệ thống GEMS Xu gamification
+- **Nhiệm vụ hàng ngày** và hệ thống LIMES Xu gamification
 - **Hồ sơ tác giả** chi tiết với tiểu sử và thành tựu
 - **Giao diện đa theme** (Trắng, Sepia, Tối) cho trình đọc
 
@@ -62,4 +62,4 @@ EBOOK GEMS/
 
 ## 📄 License
 
-ISC © GEMS Group
+ISC © LIMES

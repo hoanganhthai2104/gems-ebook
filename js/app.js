@@ -1,8 +1,9 @@
 /**
- * GEMS Ebook App - Main Application Orchestrator & State Bridge
+ * LIMES Ebook App - Main Application Orchestrator & State Bridge
  */
 
 window.GEMS = window.GEMS || {};
+window.LIMES = window.GEMS;
 
 // Initialize App State
 window.appState = window.appState || {
@@ -19,7 +20,7 @@ window.appState = window.appState || {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("🚀 GEMS Application Initialized cleanly with Modular Architecture!");
+    console.log("🚀 LIMES Application Initialized cleanly with Modular Architecture!");
     if (typeof window.updateBottomNavVisibility === 'function') {
         window.updateBottomNavVisibility();
     }

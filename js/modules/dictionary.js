@@ -1,5 +1,5 @@
 /**
- * GEMS Ebook App - Medical Dictionary Module
+ * LIMES Ebook App - Medical Dictionary Module
  * Encapsulated medical dictionary module to prevent global scope contamination and side-effects.
  */
 

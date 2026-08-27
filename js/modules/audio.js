@@ -1,5 +1,5 @@
 /**
- * GEMS Ebook App - Audiobook Player Module
+ * LIMES Ebook App - Audiobook Player Module
  * Encapsulated audio player & library filtering module.
  */
 
@@ -69,7 +69,7 @@ window.GEMS.Audio = (function () {
                 'thaoduoc': 'GS. TS. Nguyễn Văn Anh',
                 'lamsangnoikhoa': 'Dr. Elena Rostova',
                 'thankinh': 'Dr. Michael Chen',
-                'baoche': 'GEMS Academic',
+                'baoche': 'LIMES Academic',
                 'nhansam': 'Viện Dược liệu GEMS'
             };
             book = {

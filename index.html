@@ -8,7 +8,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0"/>
 
-    <title>GEMS - Medical E-Reader App</title>
+    <title>LIMES - Medical E-Reader App</title>
 
     
 
@@ -18,13 +18,13 @@
 
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="apple-touch-icon" href="assets/logo.png">
+    <link rel="apple-touch-icon" href="assets/logo.png?v=20260827_4">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
 
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-    <meta name="apple-mobile-web-app-title" content="GEMS">
+    <meta name="apple-mobile-web-app-title" content="LIMES">
 
     <!-- Tailwind CSS with Forms plugin -->
 
@@ -67,18 +67,18 @@
     <link rel="stylesheet" href="css/components/theme.css" />
 
     <!-- Application Modules -->
-    <script src="js/modules/state.js"></script>
-    <script src="js/modules/data.js"></script>
-    <script src="js/modules/ui-utils.js"></script>
-    <script src="js/modules/theme.js"></script>
-    <script src="js/modules/quiz.js"></script>
-    <script src="js/modules/dictionary.js"></script>
-    <script src="js/modules/audio.js"></script>
-    <script src="js/modules/nav.js"></script>
-    <script src="js/modules/reader.js"></script>
-    <script src="js/modules/shop.js"></script>
-    <script src="js/modules/onboarding.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/modules/state.js?v=20260827_3"></script>
+    <script src="js/modules/data.js?v=20260827_3"></script>
+    <script src="js/modules/ui-utils.js?v=20260827_3"></script>
+    <script src="js/modules/theme.js?v=20260827_3"></script>
+    <script src="js/modules/quiz.js?v=20260827_3"></script>
+    <script src="js/modules/dictionary.js?v=20260827_3"></script>
+    <script src="js/modules/audio.js?v=20260827_3"></script>
+    <script src="js/modules/nav.js?v=20260827_3"></script>
+    <script src="js/modules/reader.js?v=20260827_3"></script>
+    <script src="js/modules/shop.js?v=20260827_3"></script>
+    <script src="js/modules/onboarding.js?v=20260827_3"></script>
+    <script src="js/app.js?v=20260827_3"></script>
 
     <!-- Fonts - preconnect above ensures these load fast -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,600..900;1,600..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -2033,7 +2033,7 @@
 
 
 
-        /* Custom styles for GEMS Shop */
+        /* Custom styles for LIMES Shop */
 
         .custom-scrollbar::-webkit-scrollbar {
 
@@ -2209,7 +2209,7 @@
 
                 <div id="splash-logo" class="relative z-10 flex flex-col items-center animate-logo-premium opacity-0">
 
-                    <img src="assets/logo.png" alt="GEMS Logo" class="w-48 h-48 object-contain"  loading="lazy" decoding="async" />
+                    <img src="assets/logo.png?v=20260827_4" alt="LIMES Logo" class="w-48 h-48 object-contain"  loading="lazy" decoding="async" />
 
                 </div>
 
@@ -2217,130 +2217,178 @@
 
 
 
-            <!-- ONBOARDING SCREEN (Mobile Interactive Carousel & FTUE) -->
-            <div id="view-onboarding" class="absolute inset-0 z-[9998] mesh-bg text-slate-800 flex flex-col justify-between p-5 sm:p-6 select-none overflow-hidden transition-all duration-500">
-                <!-- Ambient Top & Bottom Glows -->
-                <div class="absolute top-0 right-0 w-64 h-64 bg-blue-400/15 rounded-full blur-[70px] pointer-events-none"></div>
-                <div class="absolute bottom-0 left-0 w-64 h-64 bg-amber-400/15 rounded-full blur-[70px] pointer-events-none"></div>
+            <!-- ONBOARDING SCREEN (Mobile Interactive Carousel & FTUE - WOW Ebook Experience) -->
+            <div id="view-onboarding" class="absolute inset-0 z-[9998] bg-gradient-to-b from-slate-50 via-white to-slate-50 text-slate-800 flex flex-col justify-between p-5 sm:p-6 select-none overflow-hidden transition-all duration-500">
+                <!-- Ambient Subtle Depth Glows -->
+                <div class="absolute -top-16 -right-16 w-80 h-80 bg-blue-500/10 rounded-full blur-[90px] pointer-events-none"></div>
+                <div class="absolute -bottom-16 -left-16 w-80 h-80 bg-sky-400/10 rounded-full blur-[90px] pointer-events-none"></div>
 
                 <!-- Top Bar: Logo & Skip Action -->
                 <div class="relative z-10 flex items-center justify-between pt-1">
                     <div class="flex items-center gap-2">
-                        <div class="w-8 h-8 rounded-xl bg-white shadow-sm border border-slate-100 flex items-center justify-center p-1">
-                            <img src="assets/logo.png" alt="GEMS" class="w-full h-full object-contain" />
+                        <div class="w-8 h-8 rounded-xl bg-white shadow-sm border border-slate-200/80 flex items-center justify-center p-1.5">
+                            <img src="assets/logo.png?v=20260827_4" alt="LIMES" class="w-full h-full object-contain" />
                         </div>
-                        <span class="text-xs font-black tracking-tight text-slate-700">GEMS Ebook</span>
+                        <span class="text-xs font-black tracking-tight text-slate-800">LIMES Ebook</span>
                     </div>
 
                     <!-- Skip Button -->
-                    <button onclick="skipOnboarding()" class="text-[11px] font-bold text-slate-400 hover:text-brand-blue active:scale-95 transition-all flex items-center gap-0.5 px-2.5 py-1 rounded-full hover:bg-slate-100">
+                    <button onclick="skipOnboarding()" class="text-xs font-semibold text-slate-400 hover:text-brand-blue active:scale-95 transition-all flex items-center gap-0.5 px-3 py-1.5 rounded-full hover:bg-slate-100/80">
                         <span>Bỏ qua</span>
-                        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+                        <span class="material-symbols-outlined text-[16px]">chevron_right</span>
                     </button>
                 </div>
 
                 <!-- Main Carousel Container -->
-                <div id="onboarding-carousel" class="relative z-10 flex-1 flex flex-col justify-center overflow-hidden my-2 cursor-grab active:cursor-grabbing">
+                <div id="onboarding-carousel" class="relative z-10 flex-1 flex flex-col justify-center overflow-hidden my-auto py-1 cursor-grab active:cursor-grabbing">
                     <div id="onboarding-track" class="flex w-full h-full transition-transform duration-500 ease-out">
                         
-                        <!-- SLIDE 1 -->
-                        <div class="w-full h-full flex-shrink-0 flex flex-col items-center justify-center text-center px-2 py-4">
-                            <!-- Visual Graphic Orb -->
-                            <div class="relative w-44 h-44 mb-6 flex items-center justify-center">
-                                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-sky-400/15 to-transparent rounded-full blur-xl animate-pulse"></div>
-                                <div class="relative w-36 h-36 rounded-3xl bg-white/80 backdrop-blur-xl border border-white shadow-[0_15px_35px_-5px_rgba(0,90,156,0.15)] flex flex-col items-center justify-center p-4">
-                                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-blue to-blue-600 flex items-center justify-center text-white shadow-md shadow-brand-blue/30 mb-2">
-                                        <span class="material-symbols-outlined text-3xl">auto_stories</span>
-                                    </div>
-                                    <div class="flex items-center gap-1 text-[10px] font-bold text-brand-blue bg-blue-50 px-2 py-0.5 rounded-full">
-                                        <span class="material-symbols-outlined text-[12px]">verified</span>
-                                        <span>Chuẩn Y Khoa</span>
+                        <!-- SLIDE 1: 3D Stack of Real Medical Books -->
+                        <div class="w-full h-full flex-shrink-0 flex flex-col items-center justify-center text-center px-3 py-1">
+                            <!-- 3D Book Showcase -->
+                            <div class="relative w-full max-w-[320px] h-48 mb-5 flex items-center justify-center">
+                                <!-- Ambient Glow Under Books -->
+                                <div class="absolute inset-x-8 bottom-0 h-10 bg-brand-blue/15 rounded-full blur-xl"></div>
+
+                                <!-- Left Book (Tilted Back) -->
+                                <div class="absolute -translate-x-16 translate-y-2 -rotate-12 transition-transform duration-300 hover:-rotate-6 hover:scale-105 z-0">
+                                    <div class="w-24 h-36 rounded-lg overflow-hidden shadow-[-10px_15px_25px_rgba(0,0,0,0.18)] border border-slate-200/60 bg-white">
+                                        <img src="covers/nuoc_va_su_song.webp" alt="Nước và Sự Sống" class="w-full h-full object-cover" />
                                     </div>
                                 </div>
-                                <!-- Floating Mini Badges -->
-                                <div class="absolute -top-1 -right-1 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-slate-100 shadow-md text-[9px] font-black text-slate-700 flex items-center gap-1 animate-bounce duration-1000">
-                                    <span>📚 500+ Sách</span>
+
+                                <!-- Right Book (Tilted Back) -->
+                                <div class="absolute translate-x-16 translate-y-2 rotate-12 transition-transform duration-300 hover:rotate-6 hover:scale-105 z-0">
+                                    <div class="w-24 h-36 rounded-lg overflow-hidden shadow-[10px_15px_25px_rgba(0,0,0,0.18)] border border-slate-200/60 bg-white">
+                                        <img src="covers/chandoanykhoa.webp" alt="Chẩn đoán Y khoa" class="w-full h-full object-cover" />
+                                    </div>
                                 </div>
-                                <div class="absolute -bottom-2 -left-2 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-slate-100 shadow-md text-[9px] font-black text-emerald-600 flex items-center gap-1">
-                                    <span>⚡ Cập nhật 2026</span>
+
+                                <!-- Center Hero Book (Front 3D Presence) -->
+                                <div class="relative z-10 -translate-y-1 transition-transform duration-300 hover:scale-105">
+                                    <div class="w-28 h-40 rounded-xl overflow-hidden shadow-[0_20px_40px_-8px_rgba(15,23,42,0.3)] border-2 border-white bg-white relative">
+                                        <img src="covers/trietly_yhss.webp" alt="Triết Lý YHSS" class="w-full h-full object-cover" />
+                                        
+                                        <!-- Realistic Bookmark Ribbon -->
+                                        <div class="absolute -top-0.5 right-3 w-3.5 h-8 bg-rose-600 shadow-md rounded-b-[2px]"></div>
+                                    </div>
+
+                                    <!-- Quality Badge Tag -->
+                                    <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-slate-900/90 backdrop-blur-md text-white text-[9.5px] font-bold px-3 py-1 rounded-full shadow-lg border border-slate-700/80 flex items-center gap-1.5 whitespace-nowrap">
+                                        <span class="material-symbols-outlined text-[13px] text-amber-400">auto_stories</span>
+                                        <span>50+ Đầu Sách Chuyên Khảo</span>
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- Content -->
                             <div class="max-w-xs space-y-2">
-                                <h2 class="text-xl font-black text-slate-800 tracking-tight leading-tight">
-                                    Kho Tri Thức <span class="text-brand-blue">Chuyên Sâu</span>
+                                <h2 class="text-xl font-black text-slate-900 tracking-tight leading-snug">
+                                    Thư Viện Ebook Y Khoa.<br><span class="text-brand-blue">Toàn Văn & Chuẩn Mực.</span>
                                 </h2>
                                 <p class="text-xs text-slate-500 leading-relaxed">
-                                    Tiếp cận hàng trăm đầu sách và tài liệu Y khoa tuyển chọn, trình bày chuẩn mực tối ưu cho việc đọc trên di động.
+                                    Tiếp cận toàn bộ sách chuyên khảo, phác đồ lâm sàng và công trình nghiên cứu Y Học Sự Sống chọn lọc, tối ưu cho di động.
                                 </p>
                             </div>
                         </div>
 
-                        <!-- SLIDE 2 -->
-                        <div class="w-full h-full flex-shrink-0 flex flex-col items-center justify-center text-center px-2 py-4">
-                            <!-- Visual Graphic Orb -->
-                            <div class="relative w-44 h-44 mb-6 flex items-center justify-center">
-                                <div class="absolute inset-0 bg-gradient-to-br from-amber-500/20 via-yellow-400/15 to-transparent rounded-full blur-xl animate-pulse"></div>
-                                <div class="relative w-36 h-36 rounded-3xl bg-white/80 backdrop-blur-xl border border-white shadow-[0_15px_35px_-5px_rgba(234,179,8,0.2)] flex flex-col items-center justify-center p-4">
-                                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center text-white shadow-md shadow-amber-500/30 mb-2">
-                                        <span class="material-symbols-outlined text-3xl">border_color</span>
+                        <!-- SLIDE 2: Interactive E-Reader & Ambient Theme Engine -->
+                        <div class="w-full h-full flex-shrink-0 flex flex-col items-center justify-center text-center px-3 py-1">
+                            <!-- Visual Component: Interactive Mini Reader -->
+                            <div class="relative w-full max-w-[300px] mb-5 flex flex-col items-center">
+                                <div class="absolute -inset-1.5 bg-gradient-to-br from-brand-blue/15 to-sky-400/5 rounded-3xl blur-lg"></div>
+
+                                <!-- Mini Reader Mockup Card with Dynamic Live Theme -->
+                                <div id="onboarding-reader-demo-card" class="relative w-full rounded-2xl bg-white border border-slate-200/90 shadow-[0_12px_30px_-10px_rgba(15,23,42,0.12)] p-4 text-left transition-all duration-300">
+                                    <!-- Reader Header Bar -->
+                                    <div id="onboarding-demo-header" class="flex items-center justify-between border-b border-slate-200/60 pb-2 mb-2 text-[9px] font-bold text-slate-400 uppercase tracking-wider transition-colors duration-300">
+                                        <span class="flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-[13px]">format_size</span>
+                                            Sinh Lý Não Bộ
+                                        </span>
+                                        <span class="text-[9px] font-mono">Trang 88</span>
                                     </div>
-                                    <div class="flex items-center gap-1 text-[10px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">
-                                        <span class="material-symbols-outlined text-[12px]">translate</span>
-                                        <span>Tra Từ Điển 1-Chạm</span>
+
+                                    <!-- Real Reading Text Snippet -->
+                                    <p id="onboarding-demo-text" class="text-[11px] text-slate-700 leading-relaxed transition-colors duration-300">
+                                        "Cơ chế tự điều hòa lưu lượng tuần hoàn não duy trì ổn định trong khoảng huyết áp trung bình từ 60 đến 140 mmHg nhằm bảo vệ nhu mô..."
+                                    </p>
+
+                                    <!-- Interactive Theme Filter Switcher -->
+                                    <div class="mt-3 pt-2.5 border-t border-slate-200/60 flex items-center justify-between">
+                                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Chế độ đọc:</span>
+                                        <div class="flex items-center gap-1.5">
+                                            <button id="demo-btn-light" onclick="setDemoReaderTheme('light')" class="px-2 py-0.5 rounded-lg text-[9.5px] font-bold bg-white text-slate-800 border border-slate-200 shadow-sm transition-all active:scale-95 ring-2 ring-brand-blue scale-105">
+                                                ☀️ Sáng
+                                            </button>
+                                            <button id="demo-btn-sepia" onclick="setDemoReaderTheme('sepia')" class="px-2 py-0.5 rounded-lg text-[9.5px] font-bold bg-[#fbf0d9] text-amber-900 border border-amber-300 shadow-sm transition-all active:scale-95 opacity-70">
+                                                📜 Sepia
+                                            </button>
+                                            <button id="demo-btn-dark" onclick="setDemoReaderTheme('dark')" class="px-2 py-0.5 rounded-lg text-[9.5px] font-bold bg-slate-900 text-slate-100 border border-slate-700 shadow-sm transition-all active:scale-95 opacity-70">
+                                                🌙 Đêm
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- Floating Mini Badges -->
-                                <div class="absolute -top-1 -left-1 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-slate-100 shadow-md text-[9px] font-black text-amber-600 flex items-center gap-1">
-                                    <span>✍️ Highlight Vàng</span>
-                                </div>
-                                <div class="absolute -bottom-2 -right-1 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-slate-100 shadow-md text-[9px] font-black text-slate-700 flex items-center gap-1">
-                                    <span>🎧 Audiobook AI</span>
                                 </div>
                             </div>
 
                             <!-- Content -->
                             <div class="max-w-xs space-y-2">
-                                <h2 class="text-xl font-black text-slate-800 tracking-tight leading-tight">
-                                    Đọc & Ghi Chú <span class="text-amber-600">Thông Minh</span>
+                                <h2 class="text-xl font-black text-slate-900 tracking-tight leading-snug">
+                                    Đọc Sách Chuyên Sâu.<br><span class="text-brand-blue">Chống Mỏi Mắt Tuyệt Đối.</span>
                                 </h2>
                                 <p class="text-xs text-slate-500 leading-relaxed">
-                                    Bôi vàng highlight những điểm cốt lõi, lưu ghi chú cá nhân và tra cứu thuật ngữ chuyên ngành tức thì ngay khi đọc.
+                                    Tùy biến typography, dãn dòng chuẩn mực và bộ lọc nền Sepia/OLED bảo vệ thị lực trong các ca trực đêm kéo dài.
                                 </p>
                             </div>
                         </div>
 
-                        <!-- SLIDE 3 -->
-                        <div class="w-full h-full flex-shrink-0 flex flex-col items-center justify-center text-center px-2 py-4">
-                            <!-- Visual Graphic Orb -->
-                            <div class="relative w-44 h-44 mb-6 flex items-center justify-center">
-                                <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-teal-400/15 to-transparent rounded-full blur-xl animate-pulse"></div>
-                                <div class="relative w-36 h-36 rounded-3xl bg-white/80 backdrop-blur-xl border border-white shadow-[0_15px_35px_-5px_rgba(16,185,129,0.2)] flex flex-col items-center justify-center p-4">
-                                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-md shadow-emerald-500/30 mb-2">
-                                        <span class="material-symbols-outlined text-3xl">psychology</span>
+                        <!-- SLIDE 3: Smart Annotations & 1-Tap Medical Glossary -->
+                        <div class="w-full h-full flex-shrink-0 flex flex-col items-center justify-center text-center px-3 py-1">
+                            <!-- Visual Component: Interactive Annotation Toolbar & Glossary -->
+                            <div class="relative w-full max-w-[300px] mb-5 flex flex-col items-center">
+                                <div class="absolute -inset-1.5 bg-gradient-to-br from-amber-500/15 to-sky-400/5 rounded-3xl blur-lg"></div>
+
+                                <!-- Card with Highlight Tool & Glossary -->
+                                <div class="relative w-full rounded-2xl bg-white border border-slate-200/90 shadow-[0_12px_30px_-10px_rgba(15,23,42,0.12)] p-4 text-left">
+                                    <!-- Mini Selection Toolbar -->
+                                    <div class="flex items-center justify-between border-b border-slate-100 pb-2 mb-2">
+                                        <div class="flex items-center gap-1.5">
+                                            <span class="text-[9px] font-bold text-slate-400 uppercase">Màu bút:</span>
+                                            <button onclick="setDemoHighlightColor('yellow')" class="w-3.5 h-3.5 rounded-full bg-amber-400 hover:scale-110 active:scale-95 transition-transform ring-1 ring-amber-500/50"></button>
+                                            <button onclick="setDemoHighlightColor('blue')" class="w-3.5 h-3.5 rounded-full bg-sky-400 hover:scale-110 active:scale-95 transition-transform ring-1 ring-sky-500/50"></button>
+                                            <button onclick="setDemoHighlightColor('green')" class="w-3.5 h-3.5 rounded-full bg-emerald-400 hover:scale-110 active:scale-95 transition-transform ring-1 ring-emerald-500/50"></button>
+                                        </div>
+                                        <span class="text-[8.5px] font-bold text-brand-blue bg-blue-50 px-2 py-0.5 rounded-full flex items-center gap-0.5">
+                                            <span class="material-symbols-outlined text-[10px]">translate</span> Tra từ điển 1-chạm
+                                        </span>
                                     </div>
-                                    <div class="flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
-                                        <span class="material-symbols-outlined text-[12px]">cloud_sync</span>
-                                        <span>Đồng Bộ Cloud</span>
+
+                                    <!-- Highlight Snippet -->
+                                    <div id="onboarding-demo-highlight" class="p-2.5 rounded-xl bg-amber-100/90 text-amber-950 border-l-[3px] border-amber-500 text-[10.5px] leading-relaxed font-medium transition-all duration-300">
+                                        "Chỉ định can thiệp mạch vành qua da (PCI) khẩn cấp trong vòng 90 phút từ lúc tiếp cận y tế..."
                                     </div>
-                                </div>
-                                <!-- Floating Mini Badges -->
-                                <div class="absolute -top-1 -right-1 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-slate-100 shadow-md text-[9px] font-black text-teal-700 flex items-center gap-1 animate-bounce duration-1000">
-                                    <span>🧠 Quiz & Flashcard</span>
-                                </div>
-                                <div class="absolute -bottom-2 -left-2 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-slate-100 shadow-md text-[9px] font-black text-slate-700 flex items-center gap-1">
-                                    <span>📱 Đa thiết bị</span>
+
+                                    <!-- Glossary Tooltip Popover -->
+                                    <div class="mt-2.5 p-2 rounded-xl bg-slate-900 text-white shadow-md border border-slate-800 text-left">
+                                        <div class="flex items-center justify-between text-[10px] font-bold text-sky-400 mb-0.5">
+                                            <span>PCI - Can Thiệp Mạch Vành Qua Da</span>
+                                            <span class="text-[8.5px] text-slate-400 font-normal font-mono">[ˌpɜː.kjuːˈteɪ.ni.əs]</span>
+                                        </div>
+                                        <div class="text-[9px] text-slate-300 leading-snug">
+                                            Thủ thuật nong và đặt stent tái thông dòng chảy mạch vành bị tắc nghẽn cấp.
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- Content -->
                             <div class="max-w-xs space-y-2">
-                                <h2 class="text-xl font-black text-slate-800 tracking-tight leading-tight">
-                                    Ôn Luyện & <span class="text-emerald-600">Đồng Bộ Liền Mạch</span>
+                                <h2 class="text-xl font-black text-slate-900 tracking-tight leading-snug">
+                                    Ghi Chú Thông Minh.<br><span class="text-brand-blue">Tra Cứu Thuật Ngữ 1-Chạm.</span>
                                 </h2>
                                 <p class="text-xs text-slate-500 leading-relaxed">
-                                    Tự động tạo Flashcard ôn thi, làm trắc nghiệm nâng cao và giữ tiến trình đọc an toàn trên mọi thiết bị của bạn.
+                                    Tự động dịch thuật ngữ Y khoa khi bôi đen, đính kèm ghi chú lâm sàng và đồng bộ an toàn dữ liệu trên đám mây.
                                 </p>
                             </div>
                         </div>
@@ -2360,20 +2408,20 @@
                     <!-- Action Buttons -->
                     <div class="w-full max-w-xs">
                         <!-- Next Button (Slides 1 & 2) -->
-                        <button id="onboarding-next-btn" onclick="nextOnboardingSlide()" class="w-full rounded-2xl bg-brand-blue hover:bg-brand-blue-dark text-white font-bold text-xs py-3.5 transition-all duration-200 active:scale-95 shadow-md shadow-brand-blue/15 flex items-center justify-center gap-2">
+                        <button id="onboarding-next-btn" onclick="nextOnboardingSlide()" class="w-full rounded-2xl bg-brand-blue hover:bg-brand-blue-dark text-white font-bold text-xs py-3.5 transition-all duration-200 active:scale-95 shadow-md shadow-brand-blue/20 flex items-center justify-center gap-2">
                             <span>Tiếp theo</span>
                             <span class="material-symbols-outlined text-sm font-bold">arrow_forward</span>
                         </button>
 
                         <!-- Finish CTA Button (Slide 3) -->
-                        <button id="onboarding-finish-btn" onclick="completeOnboarding(false)" class="hidden w-full rounded-2xl bg-gradient-to-r from-brand-blue via-blue-600 to-indigo-600 hover:opacity-95 text-white font-bold text-xs py-3.5 transition-all duration-200 active:scale-95 shadow-lg shadow-brand-blue/25 flex items-center justify-center gap-2 btn-shimmer">
-                            <span>Bắt đầu ngay</span>
-                            <span class="material-symbols-outlined text-sm font-bold">rocket_launch</span>
+                        <button id="onboarding-finish-btn" onclick="completeOnboarding(false)" class="hidden w-full rounded-2xl bg-brand-blue hover:bg-brand-blue-dark text-white font-bold text-xs py-3.5 transition-all duration-200 active:scale-95 shadow-lg shadow-brand-blue/25 flex items-center justify-center gap-2">
+                            <span>Khám phá thư viện ngay</span>
+                            <span class="material-symbols-outlined text-sm font-bold">arrow_forward</span>
                         </button>
 
                         <!-- Guest Mode Link (Slide 3) -->
                         <div id="onboarding-guest-link" class="hidden text-center mt-3">
-                            <button onclick="completeOnboarding(true)" class="text-[11px] font-bold text-slate-400 hover:text-slate-600 transition-colors">
+                            <button onclick="completeOnboarding(true)" class="text-[11px] font-bold text-slate-400 hover:text-slate-700 transition-colors">
                                 Khám phá ngay (Không cần đăng nhập)
                             </button>
                         </div>
@@ -2397,9 +2445,9 @@
                         <!-- App Logo & Branding -->
                         <div class="flex flex-col items-center mb-6">
                             <div class="w-16 h-16 rounded-3xl bg-white border border-slate-100 flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.04)] mb-3 p-2.5">
-                                <img src="assets/logo.png" alt="GEMS Logo" class="w-full h-full object-contain"  loading="lazy" decoding="async" />
+                                <img src="assets/logo.png?v=20260827_4" alt="LIMES Logo" class="w-full h-full object-contain"  loading="lazy" decoding="async" />
                             </div>
-                            <h1 class="text-xl font-black text-slate-800 tracking-tight leading-none">GEMS Group</h1>
+                            <h1 class="text-xl font-black text-slate-800 tracking-tight leading-none">LIMES</h1>
                         </div>
                         <div class="space-y-4">
                             <!-- Email or Phone input -->
@@ -2410,7 +2458,7 @@
                                     <input 
                                         type="text" 
                                         id="login-username-input"
-                                        placeholder="bacsi.gems@gmail.com hoặc 090..."
+                                        placeholder="bacsi.limes@gmail.com hoặc 090..."
                                         class="w-full bg-white text-slate-800 border border-slate-200 focus:border-brand-blue/50 focus:ring-1 focus:ring-brand-blue/50 rounded-2xl py-3 pl-11 pr-4 text-xs placeholder-slate-400 focus:outline-none transition-all shadow-sm"
                                         required
                                     />
@@ -2487,18 +2535,12 @@
                             </button>
                         </div>
                         
-                        <!-- Footer Sign up prompt & Onboarding trigger -->
-                        <div class="relative z-10 text-center pt-4 bg-transparent w-full space-y-2">
+                        <!-- Footer Sign up prompt -->
+                        <div class="relative z-10 text-center pt-4 bg-transparent w-full">
                             <p class="text-[10px] text-slate-500 font-bold">
                                 Bạn chưa có tài khoản? 
                                 <a href="#" onclick="showToast('Chức năng đăng ký đang được tích hợp.')" class="text-brand-blue hover:underline">Đăng ký ngay</a>
                             </p>
-                            <div>
-                                <button type="button" onclick="openOnboardingFlow()" class="text-[10.5px] font-semibold text-slate-400 hover:text-brand-blue transition-colors inline-flex items-center gap-1 py-1 px-2.5 rounded-full hover:bg-slate-100">
-                                    <span class="material-symbols-outlined text-[13px]">auto_stories</span>
-                                    <span>Xem giới thiệu ứng dụng (Onboarding)</span>
-                                </button>
-                            </div>
                         </div>
                     </div>
 
@@ -2547,7 +2589,7 @@
                     <div id="login-step-success" class="w-full space-y-6 transition-all duration-300 ease-out transform translate-x-4 opacity-0 hidden flex flex-col items-center">
                         <div class="space-y-1.5 text-center">
                             <h1 class="text-2xl font-black leading-tight tracking-tight text-slate-800">Đăng nhập thành công!</h1>
-                            <p class="text-[11px] text-slate-500 font-medium">Chào mừng bạn quay lại hệ thống GEMS</p>
+                            <p class="text-[11px] text-slate-500 font-medium">Chào mừng bạn quay lại hệ thống LIMES</p>
                         </div>
 
                         <!-- Pulse blue animated check badge -->
@@ -2566,7 +2608,7 @@
 
             </div>
 
-            <!-- GEMS Shop Campaign Pop-up Modal -->
+            <!-- LIMES Shop Campaign Pop-up Modal -->
             <div id="shop-campaign-popup" class="absolute inset-0 z-[250] bg-black/75 backdrop-blur-sm flex items-center justify-center hidden opacity-0 transition-opacity duration-200 ease-out select-none">
                 
                 <!-- Outer Wrapper to support overflow-visible for the half-outside button -->
@@ -2627,7 +2669,7 @@
 
                         <!-- Footnote text -->
                         <p class="relative z-10 text-[6.5px] text-white/70 text-center max-w-[210px] leading-tight mb-2 drop-shadow-md">
-                            * Chi tiết chương trình áp dụng cho các sản phẩm mua sắm trực tiếp trên GEMS Group.
+                            * Chi tiết chương trình áp dụng cho các sản phẩm mua sắm trực tiếp trên LIMES.
                         </p>
                     </div>
 
@@ -2656,7 +2698,7 @@
 
                             <div class="w-10"></div>
 
-                            <img src="assets/logo.png" alt="GEMS" class="h-7 w-auto object-contain mx-auto drop-shadow-sm"  loading="lazy" decoding="async" />
+                            <img src="assets/logo.png?v=20260827_4" alt="LIMES" class="h-7 w-auto object-contain mx-auto drop-shadow-sm"  loading="lazy" decoding="async" />
 
                             <div class="flex items-center w-10 justify-end">
 
@@ -3173,7 +3215,7 @@
 
                             <div class="w-10"></div>
 
-                            <img id="library-header-title" src="assets/logo.png" alt="GEMS" class="h-7 w-auto object-contain mx-auto drop-shadow-sm"  loading="lazy" decoding="async" />
+                            <img id="library-header-title" src="assets/logo.png?v=20260827_4" alt="LIMES" class="h-7 w-auto object-contain mx-auto drop-shadow-sm"  loading="lazy" decoding="async" />
 
                             <div class="flex items-center w-10 justify-end">
 
@@ -4756,7 +4798,7 @@
 
                             </div>
 
-                            <img src="assets/logo.png" alt="GEMS" class="h-7 w-auto object-contain mx-auto drop-shadow-sm"  loading="lazy" decoding="async" />
+                            <img src="assets/logo.png?v=20260827_4" alt="LIMES" class="h-7 w-auto object-contain mx-auto drop-shadow-sm"  loading="lazy" decoding="async" />
 
                             <div class="flex items-center w-10 justify-end">
 
@@ -4958,7 +5000,7 @@
 
                     <!-- ============================================== -->
 
-                    <!-- VIEW: CỬA HÀNG (GEMS Shop - E-Commerce Mall)   -->
+                    <!-- VIEW: CỬA HÀNG (LIMES Shop - E-Commerce Mall)   -->
 
                     <!-- ============================================== -->
 
@@ -5116,7 +5158,7 @@
 
                                             <span class="bg-yellow-400 text-[8px] font-black text-slate-900 px-2 py-0.5 rounded-full uppercase">⚡ Super Brand Day</span>
 
-                                            <span class="text-white/60 text-[8px] font-bold">GEMS Mall</span>
+                                            <span class="text-white/60 text-[8px] font-bold">LIMES Mall</span>
 
                                         </div>
 
@@ -5210,7 +5252,7 @@
                                         <span class="text-[9px] font-bold text-slate-600 text-center whitespace-nowrap">Free Ship</span>
                                     </div>
 
-                                    <!-- GEMS Mall -->
+                                    <!-- LIMES Mall -->
                                     <div onclick="openShopMall()" class="relative flex flex-col items-center gap-1.5 cursor-pointer select-none active:scale-95 transition-transform">
                                         <div class="w-[44px] h-[44px] bg-slate-50 border border-slate-100 rounded-full flex items-center justify-center shadow-sm">
                                             <span class="bg-gradient-to-b from-[#ffd800] to-[#ffa600] text-[#005a9c] text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wide border border-[#e09000]/20 shadow-sm leading-none">MALL</span>
@@ -6060,7 +6102,7 @@
                             </div>
 
 
-                            <!-- GEMS Xu Loyalty Option -->
+                            <!-- LIMES Xu Loyalty Option -->
 
                             <div class="bg-white p-4 flex items-center justify-between border-y border-slate-150 select-none">
 
@@ -6076,7 +6118,7 @@
 
                                         <div class="flex items-center gap-1.5">
 
-                                            <span class="text-xs font-black text-slate-800">Dùng GEMS Xu</span>
+                                            <span class="text-xs font-black text-slate-800">Dùng LIMES Xu</span>
 
                                             <span id="checkout-coins-balance" class="text-[9px] font-extrabold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/80">Đang có: 2.450 xu</span>
 
@@ -6203,7 +6245,7 @@
 
                                     <div id="checkout-coins-row" class="flex justify-between text-amber-600 font-extrabold hidden">
 
-                                        <span>Trừ GEMS Xu</span>
+                                        <span>Trừ LIMES Xu</span>
 
                                         <span id="checkout-coins-discount">-0đ</span>
 
@@ -6267,7 +6309,7 @@
 
                         <h2 class="text-lg font-black text-slate-900 mb-2 text-center">Đặt Hàng Thành Công!</h2>
 
-                        <p class="text-xs text-slate-500 text-center max-w-[280px] leading-relaxed mb-8">Cảm ơn bạn đã mua sắm tại GEMS Shop. Đơn hàng của bạn đang được xử lý và sẽ sớm được giao.</p>
+                        <p class="text-xs text-slate-500 text-center max-w-[280px] leading-relaxed mb-8">Cảm ơn bạn đã mua sắm tại LIMES Shop. Đơn hàng của bạn đang được xử lý và sẽ sớm được giao.</p>
 
                         
 
@@ -6277,7 +6319,7 @@
 
                                 <span class="font-bold">Mã đơn hàng:</span>
 
-                                <span class="font-extrabold text-slate-800" id="success-order-id">GEMS-8392182</span>
+                                <span class="font-extrabold text-slate-800" id="success-order-id">LIMES-8392182</span>
 
                             </div>
 
@@ -6550,7 +6592,7 @@
                             <!-- Top Header -->
                             <header class="w-full flex items-center justify-between px-4 py-3.5 border-b border-slate-100 shrink-0">
                                 <div class="w-6"></div>
-                                <h1 class="font-sans text-sm font-black tracking-tight text-slate-900 mx-auto text-center truncate">Giảm giá từ GEMS Shop</h1>
+                                <h1 class="font-sans text-sm font-black tracking-tight text-slate-900 mx-auto text-center truncate">Giảm giá từ LIMES Shop</h1>
                                 <button onclick="closeCheckoutVoucherSelector()" aria-label="Close" class="text-slate-400 hover:text-slate-700 transition-colors p-1 flex items-center justify-center">
                                     <span class="material-symbols-outlined text-xl">close</span>
                                 </button>
@@ -6706,7 +6748,7 @@
 
                             <button onclick="changeVoucherTab('shipping')" data-tab="shipping" class="voucher-tab flex-1 py-3 text-[11px] font-bold text-slate-500 border-b-2 border-transparent text-center whitespace-nowrap">Vận chuyển</button>
 
-                            <button onclick="changeVoucherTab('gems')" data-tab="gems" class="voucher-tab flex-1 py-3 text-[11px] font-bold text-slate-500 border-b-2 border-transparent text-center whitespace-nowrap">GEMS Mall</button>
+                            <button onclick="changeVoucherTab('gems')" data-tab="gems" class="voucher-tab flex-1 py-3 text-[11px] font-bold text-slate-500 border-b-2 border-transparent text-center whitespace-nowrap">LIMES Mall</button>
 
                         </div>
 
@@ -6758,7 +6800,7 @@
 
                                 <!-- Conversation item 1 -->
 
-                                <div onclick="openShopChatDetail('GEMS Tech Store', 'store')" class="flex items-center gap-3 bg-white px-4 py-3 cursor-pointer active:bg-slate-50 transition-colors">
+                                <div onclick="openShopChatDetail('LIMES Tech Store', 'store')" class="flex items-center gap-3 bg-white px-4 py-3 cursor-pointer active:bg-slate-50 transition-colors">
 
                                     <div class="relative shrink-0">
 
@@ -6776,7 +6818,7 @@
 
                                         <div class="flex justify-between items-center">
 
-                                            <span class="text-[11px] font-black text-slate-800">GEMS Tech Store</span>
+                                            <span class="text-[11px] font-black text-slate-800">LIMES Tech Store</span>
 
                                             <span class="text-[9px] text-slate-400 font-bold shrink-0 ml-2">10:32</span>
 
@@ -6792,7 +6834,7 @@
 
                                 <!-- Conversation item 2 -->
 
-                                <div onclick="openShopChatDetail('GEMS Fashion House', 'checkroom')" class="flex items-center gap-3 bg-white px-4 py-3 cursor-pointer active:bg-slate-50 transition-colors">
+                                <div onclick="openShopChatDetail('LIMES Fashion House', 'checkroom')" class="flex items-center gap-3 bg-white px-4 py-3 cursor-pointer active:bg-slate-50 transition-colors">
 
                                     <div class="relative shrink-0">
 
@@ -6808,7 +6850,7 @@
 
                                         <div class="flex justify-between items-center">
 
-                                            <span class="text-[11px] font-black text-slate-800">GEMS Fashion House</span>
+                                            <span class="text-[11px] font-black text-slate-800">LIMES Fashion House</span>
 
                                             <span class="text-[9px] text-slate-400 font-bold shrink-0 ml-2">Hôm qua</span>
 
@@ -6822,7 +6864,7 @@
 
                                 <!-- Conversation item 3 -->
 
-                                <div onclick="openShopChatDetail('GEMS Books & Education', 'menu_book')" class="flex items-center gap-3 bg-white px-4 py-3 cursor-pointer active:bg-slate-50 transition-colors">
+                                <div onclick="openShopChatDetail('LIMES Books & Education', 'menu_book')" class="flex items-center gap-3 bg-white px-4 py-3 cursor-pointer active:bg-slate-50 transition-colors">
 
                                     <div class="relative shrink-0">
 
@@ -6838,7 +6880,7 @@
 
                                         <div class="flex justify-between items-center">
 
-                                            <span class="text-[11px] font-black text-slate-800">GEMS Books & Education</span>
+                                            <span class="text-[11px] font-black text-slate-800">LIMES Books & Education</span>
 
                                             <span class="text-[9px] text-slate-400 font-bold shrink-0 ml-2">2 ngày</span>
 
@@ -6887,7 +6929,7 @@
                                     <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full"></span>
                                 </div>
                                 <div class="flex flex-col min-w-0">
-                                    <h1 id="chat-detail-title" class="font-sans text-xs font-black text-slate-900 truncate max-w-[160px]">GEMS Tech Store</h1>
+                                    <h1 id="chat-detail-title" class="font-sans text-xs font-black text-slate-900 truncate max-w-[160px]">LIMES Tech Store</h1>
                                     <span class="text-[8.5px] text-emerald-600 font-bold flex items-center gap-1">Đang hoạt động</span>
                                 </div>
                             </div>
@@ -6895,7 +6937,7 @@
                                 <button onclick="showToast('Đang gọi cho nhà bán hàng...', 'info')" class="p-2 text-slate-600 hover:bg-slate-100 rounded-full flex items-center justify-center">
                                     <span class="material-symbols-outlined text-lg">call</span>
                                 </button>
-                                <button onclick="showToast('Thông tin shop GEMS Mall', 'info')" class="p-2 text-slate-600 hover:bg-slate-100 rounded-full flex items-center justify-center">
+                                <button onclick="showToast('Thông tin shop LIMES Mall', 'info')" class="p-2 text-slate-600 hover:bg-slate-100 rounded-full flex items-center justify-center">
                                     <span class="material-symbols-outlined text-lg">more_vert</span>
                                 </button>
                             </div>
@@ -7080,7 +7122,7 @@
                                         <h3 class="text-[10px] font-black uppercase tracking-wider bg-gradient-to-r from-emerald-700 via-teal-600 to-[#005A9C] bg-clip-text text-transparent">Top Nhà Bán Hàng OCOP tiêu biểu</h3>
                                     </div>
                                     
-                                    <!-- 2 Rows of 5 circular seller icons (Total 10 sellers matching GEMS Shop) -->
+                                    <!-- 2 Rows of 5 circular seller icons (Total 10 sellers matching LIMES Shop) -->
                                     <div class="grid grid-cols-5 gap-y-4 gap-x-1.5">
                                         <!-- Seller 1: Aikomi -->
                                         <div onclick="showToast('Xem gian hàng Aikomi OCOP')" class="flex flex-col items-center gap-1 cursor-pointer active:scale-90 transition-transform">
@@ -7397,7 +7439,7 @@
                                         <!-- Mini Card 1 -->
                                         <div class="bg-white rounded-xl p-2.5 text-slate-800 flex flex-col justify-between shrink-0 w-[125px] h-[75px] shadow-sm relative border border-blue-100">
                                             <div>
-                                                <p class="text-[6.5px] uppercase font-black text-primary">GEMS Bookstore</p>
+                                                <p class="text-[6.5px] uppercase font-black text-primary">LIMES Bookstore</p>
                                                 <p class="text-xs font-black text-slate-800 mt-0.5">Giảm 20%</p>
                                                 <p class="text-[6.5px] text-slate-400 font-bold mt-0.5">Đơn tối thiểu 99K</p>
                                             </div>
@@ -7408,7 +7450,7 @@
                                         <!-- Mini Card 2 -->
                                         <div class="bg-white rounded-xl p-2.5 text-slate-800 flex flex-col justify-between shrink-0 w-[125px] h-[75px] shadow-sm relative border border-blue-100">
                                             <div>
-                                                <p class="text-[6.5px] uppercase font-black text-primary">GEMS Bookstore</p>
+                                                <p class="text-[6.5px] uppercase font-black text-primary">LIMES Bookstore</p>
                                                 <p class="text-xs font-black text-slate-800 mt-0.5">Giảm 40K</p>
                                                 <p class="text-[6.5px] text-slate-400 font-bold mt-0.5">Đơn tối thiểu 200K</p>
                                             </div>
@@ -7419,7 +7461,7 @@
                                         <!-- Mini Card 3 -->
                                         <div class="bg-white rounded-xl p-2.5 text-slate-800 flex flex-col justify-between shrink-0 w-[125px] h-[75px] shadow-sm relative border border-blue-100">
                                             <div>
-                                                <p class="text-[6.5px] uppercase font-black text-primary">GEMS Bookstore</p>
+                                                <p class="text-[6.5px] uppercase font-black text-primary">LIMES Bookstore</p>
                                                 <p class="text-xs font-black text-slate-800 mt-0.5">Giảm 15%</p>
                                                 <p class="text-[6.5px] text-slate-400 font-bold mt-0.5">Đơn tối thiểu 150K</p>
                                             </div>
@@ -7522,7 +7564,7 @@
                                     <!-- Countdown & Tag -->
                                     <div class="flex items-center justify-between w-full">
                                         <div class="bg-white/20 text-white text-[7.5px] font-black uppercase px-2.5 py-1 rounded-full tracking-wider border border-white/20 leading-none">
-                                            Siêu Hội GEMS Mall
+                                            Siêu Hội LIMES Mall
                                         </div>
                                         <!-- Countdown -->
                                         <div class="flex items-center gap-1 bg-black/40 backdrop-blur-sm text-[8px] px-2.5 py-1 rounded-full text-amber-300 font-bold border border-white/10 select-none" id="mall-campaign-timer">
@@ -8187,7 +8229,7 @@
 
                             <div class="w-10"></div>
 
-                            <img src="assets/logo.png" alt="GEMS" class="h-7 w-auto object-contain mx-auto drop-shadow-sm"  loading="lazy" decoding="async" />
+                            <img src="assets/logo.png?v=20260827_4" alt="LIMES" class="h-7 w-auto object-contain mx-auto drop-shadow-sm"  loading="lazy" decoding="async" />
 
                             <div class="flex items-center w-10 justify-end">
 
@@ -8229,7 +8271,7 @@
 
 
 
-                            <!-- GEMS Xu (Coins) -->
+                            <!-- LIMES Xu (Coins) -->
 
                             <section class="card-lift glass-card rounded-2xl p-4 flex items-center justify-between">
 
@@ -8243,7 +8285,7 @@
 
                                     <div>
 
-                                        <h3 class="text-sm font-bold text-slate-800">GEMS Xu</h3>
+                                        <h3 class="text-sm font-bold text-slate-800">LIMES Xu</h3>
 
                                         <p id="profile-coins" class="text-xs text-yellow-600 font-bold mt-0.5">2450 xu</p>
 
@@ -8859,7 +8901,7 @@
 
                                     <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed text-xs text-slate-600 mt-2">
 
-                                        GS. TS. Nguyễn Văn Anh có hơn 40 năm kinh nghiệm trong nghiên cứu giảng dạy dược học cổ truyền Việt Nam. Ông đã công bố hơn 120 bài báo khoa học quốc tế về chiết xuất hoạt chất saponin. Hiện là cố vấn cao cấp ban dược lý GEMS Group.
+                                        GS. TS. Nguyễn Văn Anh có hơn 40 năm kinh nghiệm trong nghiên cứu giảng dạy dược học cổ truyền Việt Nam. Ông đã công bố hơn 120 bài báo khoa học quốc tế về chiết xuất hoạt chất saponin. Hiện là cố vấn cao cấp ban dược lý LIMES.
 
                                     </p>
 
@@ -9501,7 +9543,7 @@
 
                                 <div class="bg-slate-850 p-2.5 rounded-xl border border-slate-800 leading-relaxed text-slate-500">
 
-                                    Chào bạn, tôi là <b>Trợ lý Y Khoa GEMS AI</b>. Bạn muốn tôi làm rõ thuật ngữ hay tóm tắt bài viết này?
+                                    Chào bạn, tôi là <b>Trợ lý Y Khoa LIMES AI</b>. Bạn muốn tôi làm rõ thuật ngữ hay tóm tắt bài viết này?
 
                                 </div>
 
@@ -11424,7 +11466,7 @@
 
                             <div class="w-10 flex justify-end">
 
-                                <button onclick="showToast('Thực hiện bài Quiz hoặc mua hàng để nhận thêm GEMS Xu!', 'info')" class="p-2 text-amber-600 hover:bg-amber-50 rounded-full flex items-center justify-center">
+                                <button onclick="showToast('Thực hiện bài Quiz hoặc mua hàng để nhận thêm LIMES Xu!', 'info')" class="p-2 text-amber-600 hover:bg-amber-50 rounded-full flex items-center justify-center">
 
                                     <span class="material-symbols-outlined text-lg">help_outline</span>
 
@@ -12254,7 +12296,7 @@
 
                             </div>
 
-                            <img src="assets/logo.png" alt="GEMS" class="h-7 w-auto object-contain mx-auto drop-shadow-sm"  loading="lazy" decoding="async" />
+                            <img src="assets/logo.png?v=20260827_4" alt="LIMES" class="h-7 w-auto object-contain mx-auto drop-shadow-sm"  loading="lazy" decoding="async" />
 
                             <div class="flex items-center w-10 justify-end">
 
@@ -15423,7 +15465,7 @@
 
             const desktopChat = document.getElementById('desktop-ai-chat');
 
-            const answer = `Chào bạn, câu hỏi về '<b>${query}</b>' của bạn đang được GEMS AI tra cứu y văn. Các hoạt chất chính Saponin nhóm Rb trong Tam Thất chủ yếu giúp cầm máu và làm tan huyết khối. Bạn có cần hướng dẫn liều lượng cụ thể không?`;
+            const answer = `Chào bạn, câu hỏi về '<b>${query}</b>' của bạn đang được LIMES AI tra cứu y văn. Các hoạt chất chính Saponin nhóm Rb trong Tam Thất chủ yếu giúp cầm máu và làm tan huyết khối. Bạn có cần hướng dẫn liều lượng cụ thể không?`;
 
 
 
@@ -15451,7 +15493,7 @@
 
             const desktopChat = document.getElementById('desktop-ai-chat');
 
-            const answer = `Chào bạn, câu hỏi về '<b>${query}</b>' của bạn đang được GEMS AI tra cứu y văn. Các hoạt chất chính Saponin nhóm Rb trong Tam Thất chủ yếu giúp cầm máu và làm tan huyết khối. Bạn có cần hướng dẫn liều lượng cụ thể không?`;
+            const answer = `Chào bạn, câu hỏi về '<b>${query}</b>' của bạn đang được LIMES AI tra cứu y văn. Các hoạt chất chính Saponin nhóm Rb trong Tam Thất chủ yếu giúp cầm máu và làm tan huyết khối. Bạn có cần hướng dẫn liều lượng cụ thể không?`;
 
 
 
@@ -16404,13 +16446,13 @@
 
             
 
-            const voucherCode = 'GEMS-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+            const voucherCode = 'LIMES-' + Math.random().toString(36).substring(2, 8).toUpperCase();
 
             const newVoucher = {
                 id: voucherCode,
                 type: 'exclusive',
                 badge: 'Độc quyền',
-                subBadge: 'Từ GEMS Shop',
+                subBadge: 'Từ LIMES Shop',
                 title: 'Giảm giá 30K',
                 desc: 'áp dụng cho mọi đơn hàng',
                 validity: 'HSD: 30 ngày sau khi nhận',
@@ -16418,7 +16460,7 @@
                 color: 'amber',
                 qty: ''
             };
-            GEMS_COUPONS.push(newVoucher);
+            LIMES_COUPONS.push(newVoucher);
 
             showToast(`Đổi Voucher thành công! Mã của bạn: ${voucherCode}`, "success");
 
@@ -17906,7 +17948,7 @@
                     'thaoduoc': 'GS. TS. Nguyễn Văn Anh',
                     'lamsangnoikhoa': 'Dr. Elena Rostova',
                     'thankinh': 'Dr. Michael Chen',
-                    'baoche': 'GEMS Academic',
+                    'baoche': 'LIMES Academic',
                     'nhansam': 'Viện Dược liệu GEMS'
                 };
                 book = {
@@ -19124,7 +19166,7 @@
             // 2. Direct matched product title sub-strings
             for (const p of matches) {
                 let title = p.title;
-                title = title.replace(/GEMS-\w+-\d+/gi, '').trim();
+                title = title.replace(/LIMES-\w+-\d+/gi, '').trim();
                 if (title.length > 30) {
                     title = title.substring(0, 30).trim();
                 }
@@ -19141,7 +19183,7 @@
                 "giá rẻ freeship",
                 "chính hãng GEMS",
                 "mẫu mới nhất",
-                "cao cấp GEMS Mall",
+                "cao cấp LIMES Mall",
                 "miễn phí vận chuyển",
                 "ưu đãi tốt nhất"
             ];
@@ -22443,73 +22485,54 @@ let currentActiveBookId = 'chandoanykhoa';
 
 
 
-            // Wait 1.5s for the user to see the logo
+            // Setup initial screen visibility immediately on DOMContentLoaded (underneath splash)
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('onboarding') || urlParams.has('reset')) {
+                localStorage.removeItem('gems_onboarding_completed');
+                localStorage.removeItem('gems_logged_in');
+            }
 
+            const hasSeenOnboarding = localStorage.getItem('gems_onboarding_completed') === 'true';
+            const appNav = document.getElementById('app-bottom-nav');
+            const loginView = document.getElementById('view-login');
+            const onboardingView = document.getElementById('view-onboarding');
+
+            if (!hasSeenOnboarding) {
+                if (appNav) appNav.classList.add('hidden');
+                if (loginView) loginView.classList.add('hidden');
+                if (onboardingView) {
+                    onboardingView.classList.remove('hidden', 'opacity-0', 'scale-95', 'pointer-events-none');
+                    if (window.GEMS && window.GEMS.Onboarding) window.GEMS.Onboarding.init();
+                }
+            } else if (!appState.isLoggedIn) {
+                if (appNav) appNav.classList.add('hidden');
+                if (onboardingView) onboardingView.classList.add('hidden');
+                if (loginView) {
+                    loginView.classList.remove('hidden', 'opacity-0');
+                    if (typeof initLoginCanvas === 'function') initLoginCanvas();
+                }
+            } else {
+                if (appNav) appNav.classList.remove('hidden');
+                if (onboardingView) onboardingView.classList.add('hidden');
+                if (loginView) loginView.classList.add('hidden');
+            }
+
+            // Wait 1.2s for splash logo
             setTimeout(() => {
-
-                logo.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-
+                logo.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
                 logo.style.transform = 'scale(0.95)';
-
                 logo.style.opacity = '0';
-
                 
-
                 // Fade out the entire splash screen
-
                 setTimeout(() => {
-
                     splash.style.opacity = '0';
-
                     splash.style.pointerEvents = 'none';
 
-                    
-
-                    // Check onboarding & login state
-                    const hasSeenOnboarding = localStorage.getItem('gems_onboarding_completed') === 'true';
-
-                    if (!hasSeenOnboarding) {
-                        const appNav = document.getElementById('app-bottom-nav');
-                        if (appNav) appNav.classList.add('hidden');
-                        const loginView = document.getElementById('view-login');
-                        if (loginView) loginView.classList.add('hidden');
-
-                        if (window.GEMS && window.GEMS.Onboarding) {
-                            window.GEMS.Onboarding.openOnboardingFlow();
-                        } else {
-                            const onboardingView = document.getElementById('view-onboarding');
-                            if (onboardingView) onboardingView.classList.remove('hidden');
-                        }
-                    } else if (!appState.isLoggedIn) {
-                        const appNav = document.getElementById('app-bottom-nav');
-                        if (appNav) appNav.classList.add('hidden');
-
-                        const loginView = document.getElementById('view-login');
-                        if (loginView) {
-                            loginView.classList.remove('hidden');
-                            initLoginCanvas();
-                        }
-                    } else {
-                        const appNav = document.getElementById('app-bottom-nav');
-                        if (appNav) appNav.classList.remove('hidden');
-                    }
-
-                    
-
-                    // Remove from DOM
-
                     setTimeout(() => {
-
                         splash.style.display = 'none';
-
-                    }, 800);
-
-                }, 400);
-
-                
-
-            }, 1800);
-
+                    }, 500);
+                }, 300);
+            }, 1200);
         });
 
 
@@ -22526,7 +22549,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 id: "bluetooth_headphones",
 
-                title: "Tai Nghe Bluetooth GEMS AirPods Max",
+                title: "Tai Nghe Bluetooth LIMES AirPods Max",
 
                 category: "tech",
 
@@ -22540,7 +22563,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 shippingFee: 0,
 
-                shopName: "GEMS Tech Store",
+                shopName: "LIMES Tech Store",
 
                 desc: "Tai nghe không dây cao cấp với công nghệ chống ồn chủ động ANC thế hệ mới. Âm bass sâu, treble trong trẻo, pin sử dụng liên tục 40 giờ. Kết nối Bluetooth 5.3 ổn định, hỗ trợ codec LDAC/AAC. Đệm tai memory foam siêu êm, thiết kế gập gọn tiện lợi mang theo.",
 
@@ -22588,7 +22611,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 shippingFee: 30000,
 
-                shopName: "GEMS Tech Store",
+                shopName: "LIMES Tech Store",
 
                 desc: "Bàn phím cơ gaming/văn phòng với switch hot-swap, LED RGB per-key 16.8 triệu màu. Keycap PBT double-shot bền bỉ, kết nối 3 chế độ (USB-C, Bluetooth, 2.4GHz). Thiết kế gasket mount giảm tiếng ồn, typing feel mượt màng.",
 
@@ -22618,7 +22641,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 id: "hoodie_streetwear",
 
-                title: "Áo Hoodie Unisex GEMS Streetwear Premium",
+                title: "Áo Hoodie Unisex LIMES Streetwear Premium",
 
                 category: "fashion",
 
@@ -22632,7 +22655,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 shippingFee: 20000,
 
-                shopName: "GEMS Fashion House",
+                shopName: "LIMES Fashion House",
 
                 desc: "Áo hoodie unisex chất liệu cotton French Terry 100% cao cấp, mềm mịn và giữ ấm tốt. In logo thêu nổi GEMS tinh tế. Form oversize trend, phù hợp mặc đi học, đi chơi hay layer outfit. Co giãn nhẹ, không xù lông sau giặt.",
 
@@ -22680,7 +22703,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 shippingFee: 0,
 
-                shopName: "GEMS Fashion House",
+                shopName: "LIMES Fashion House",
 
                 desc: "Giày sneaker thiết kế phối màu hiện đại, đế cao su non siêu nhẹ êm chân. Lớp lót mesh thoáng khí chống hôi. Đế ngoài chống trượt ma sát cao, phù hợp chạy bộ nhẹ và đi bộ hàng ngày. Dây giày dạng rút nhanh tiện lợi.",
 
@@ -22712,7 +22735,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 id: "cookware_set",
 
-                title: "Bộ Nồi Chống Dính GEMS HomeChef 5 Món",
+                title: "Bộ Nồi Chống Dính LIMES HomeChef 5 Món",
 
                 category: "home",
 
@@ -22726,7 +22749,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 shippingFee: 40000,
 
-                shopName: "GEMS Home & Living",
+                shopName: "LIMES Home & Living",
 
                 desc: "Bộ nồi chống dính 5 lớp công nghệ Hàn Quốc, an toàn cho sức khỏe không chứa PFOA. Gồm: 1 nồi lớn 24cm, 1 nồi nhỏ 20cm, 1 chảo chiên 26cm, 1 nồi quánh 18cm và 1 nắp kính cường lực. Thích hợp mọi loại bếp (gas, từ, hồng ngoại).",
 
@@ -22770,7 +22793,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 shippingFee: 25000,
 
-                shopName: "GEMS Home & Living",
+                shopName: "LIMES Home & Living",
 
                 desc: "Đèn bàn LED chống cận thị với công nghệ flicker-free và blue light filter. 5 chế độ ánh sáng (đọc sách, làm việc, nghỉ ngơi, ngủ, tự động), 10 cấp độ sáng. Cổng sạc USB-C tích hợp, hẹn giờ tắt tự động 30/60 phút. Thiết kế tối giản phong cách Scandinavian.",
 
@@ -22816,7 +22839,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 shippingFee: 15000,
 
-                shopName: "GEMS Bookstore",
+                shopName: "LIMES Bookstore",
 
                 desc: "Phiên bản đặc biệt bìa cứng có bookmark kèm theo. Cuốn sách kinh điển của Nobel Kinh tế Daniel Kahneman về hai hệ thống tư duy của con người — Hệ thống 1 (nhanh, trực giác) và Hệ thống 2 (chậm, logic). Giúp bạn hiểu rõ cách ra quyết định và tránh những thiên kiến nhận thức.",
 
@@ -22862,7 +22885,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 shippingFee: 10000,
 
-                shopName: "GEMS Bookstore",
+                shopName: "LIMES Bookstore",
 
                 desc: "Bộ 12 bút gel cao cấp với mực gel Nhật Bản chảy mượt, không lem, khô nhanh. Thân bút thiết kế tam giác chống mỏi tay, grip cao su mềm. Đầu kim 0.5mm cho nét viết thanh mảnh sắc nét. Hộp đựng trong suốt tiện mang theo.",
 
@@ -22906,11 +22929,11 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 shippingFee: 0,
 
-                shopName: "GEMS Bookstore",
+                shopName: "LIMES Bookstore",
 
                 desc: "Hướng dẫn thực hành đọc điện tâm đồ lâm sàng từ cơ bản đến nâng cao. Tích hợp hơn 150 bản ghi ECG thực tế kèm phân tích chi tiết. Rất phù hợp cho sinh viên y khoa và bác sĩ trẻ.",
 
-                specs: { "Tác giả": "GEMS Academic", "Số trang": "320 trang", "Ngôn ngữ": "Tiếng Việt", "Bảo hành": "1 đổi 1" },
+                specs: { "Tác giả": "LIMES Academic", "Số trang": "320 trang", "Ngôn ngữ": "Tiếng Việt", "Bảo hành": "1 đổi 1" },
 
                 images: ["covers/chandoanykhoa.webp"],
 
@@ -22932,7 +22955,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 id: "smart_watch_fit",
 
-                title: "Đồng Hồ Thông Minh GEMS Watch Fit Pro",
+                title: "Đồng Hồ Thông Minh LIMES Watch Fit Pro",
 
                 category: "tech",
 
@@ -22946,7 +22969,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 shippingFee: 0,
 
-                shopName: "GEMS Tech Store",
+                shopName: "LIMES Tech Store",
 
                 desc: "Theo dõi nhịp tim 24/7, đo nồng độ oxy SpO2, đo huyết áp và phân tích giấc ngủ khoa học. Hơn 100 chế độ tập luyện thể thao chuyên nghiệp. Pin bền bỉ tới 14 ngày, chống nước IP68.",
 
@@ -22972,7 +22995,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 id: "tshirt_essential",
 
-                title: "Áo Thun Unisex GEMS Essential Tee Cotton",
+                title: "Áo Thun Unisex LIMES Essential Tee Cotton",
 
                 category: "fashion",
 
@@ -22986,7 +23009,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 shippingFee: 15000,
 
-                shopName: "GEMS Fashion House",
+                shopName: "LIMES Fashion House",
 
                 desc: "Áo thun basic 100% cotton định lượng 250gsm dày dặn, đứng form cực đẹp. Thấm hút mồ hôi hiệu quả, không bai nhão hay xơ vải sau nhiều lần giặt. Form oversize phù hợp cả nam và nữ.",
 
@@ -23028,7 +23051,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 shippingFee: 30000,
 
-                shopName: "GEMS Home & Living",
+                shopName: "LIMES Home & Living",
 
                 desc: "Thân ấm làm bằng thủy tinh borosilicate chịu nhiệt cao cấp, không bám cặn. Hệ thống đèn LED đổi màu theo nhiệt độ nước thông minh. Công suất 1800W đun sôi cực nhanh, tự động ngắt khi sôi hoặc cạn nước.",
 
@@ -23068,7 +23091,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 shippingFee: 15000,
 
-                shopName: "GEMS Bookstore",
+                shopName: "LIMES Bookstore",
 
                 desc: "Tổng hợp cơ chế tác dụng, chỉ định, chống chỉ định và tương tác thuốc lâm sàng của các nhóm dược phẩm phổ biến. Bản cập nhật hướng dẫn điều trị mới nhất của Bộ Y tế. Thích hợp cho sinh viên y dược.",
 
@@ -23108,7 +23131,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                 shippingFee: 20000,
 
-                shopName: "GEMS Fashion House",
+                shopName: "LIMES Fashion House",
 
                 desc: "Thiết kế khóa kéo ẩn thông minh chống trộm. Chất liệu vải Oxford chống thấm nước và chống sờn rách hiệu quả. Tích hợp cổng sạc USB ngoài tiện dụng. Nhiều ngăn phân loại khoa học cho laptop 15.6 inch và phụ kiện.",
 
@@ -23221,7 +23244,7 @@ let currentActiveBookId = 'chandoanykhoa';
                 discount: 20,
                 shippingFee: 0,
                 shopName: "BITEX Văn Phòng Phẩm",
-                desc: "Hộp 12 bút gel viết chữ đẹp thương hiệu GEMS sản xuất bởi Bitex. Mực ra đều, êm mượt, nhanh khô và không lem. Thiết kế vừa tay có nắp đậy, phù hợp cho học sinh và văn phòng.",
+                desc: "Hộp 12 bút gel viết chữ đẹp thương hiệu LIMES sản xuất bởi Bitex. Mực ra đều, êm mượt, nhanh khô và không lem. Thiết kế vừa tay có nắp đậy, phù hợp cho học sinh và văn phòng.",
                 specs: { "Số lượng": "12 bút/hộp", "Cỡ ngòi": "0.5mm", "Màu mực": "Xanh / Đen", "Hãng sản xuất": "Bitex" },
                 images: ["assets/shop/gelpen.png"],
                 variants: [
@@ -23548,7 +23571,7 @@ let currentActiveBookId = 'chandoanykhoa';
                 if (lower.includes('bình giữ nhiệt') || lower.includes('bình nước') || lower.includes('thermos') || lower.includes('vacuum flask')) return 'assets/shop/fj_thermos.png';
 
                 // Category-based fallbacks
-                let fallbacks = ['assets/logo.png'];
+                let fallbacks = ['assets/logo.png?v=20260827_4'];
                 const catStr = String(category).toLowerCase();
                 
                 if (catStr === 'fashion') {
@@ -23656,7 +23679,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Áo Khoác Gió GEMS Sportswear Chống Nước",
                         basePrice: 550000,
                         discount: 35,
-                        shopName: "GEMS Fashion House",
+                        shopName: "LIMES Fashion House",
                         desc: "Áo khoác gió cao cấp cản gió chống nước hiệu quả. Phù hợp chạy bộ dạo phố ngày mưa lạnh.",
                         specs: { "Chất liệu": "Polyester chống nước", "Form": "Regular", "Xuất xứ": "Việt Nam" },
                         images: ["assets/shop/hoodie_black.png"],
@@ -23666,7 +23689,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Quần Jean Nam Slimfit GEMS Co Giãn",
                         basePrice: 650000,
                         discount: 40,
-                        shopName: "GEMS Fashion House",
+                        shopName: "LIMES Fashion House",
                         desc: "Quần jean nam chất bò denim dày dặn co giãn nhẹ cực ôm dáng và thoải mái di chuyển.",
                         specs: { "Chất liệu": "Denim Cotton", "Form": "Slimfit", "Xuất xứ": "Việt Nam" },
                         images: ["assets/shop/hoodie_sage.png"],
@@ -23678,7 +23701,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Chuột Không Dây GEMS Silent Click X1",
                         basePrice: 350000,
                         discount: 30,
-                        shopName: "GEMS Tech Store",
+                        shopName: "LIMES Tech Store",
                         desc: "Chuột silent click không gây tiếng ồn khi làm việc ban đêm. Kết nối wireless 2.4GHz nhạy bén.",
                         specs: { "Độ phân giải": "1600 DPI", "Kết nối": "USB Receiver 2.4G", "Pin": "1x AA" },
                         images: ["assets/shop/keyboard.png"],
@@ -23688,7 +23711,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Củ Sạc Nhanh GaN GEMS 65W Pro 3 Cổng",
                         basePrice: 680000,
                         discount: 45,
-                        shopName: "GEMS Tech Store",
+                        shopName: "LIMES Tech Store",
                         desc: "Sạc nhanh GaN công suất lớn 65W cho laptop, điện thoại. Tích hợp 2 cổng USB-C và 1 cổng USB-A.",
                         specs: { "Công suất": "65W Max", "Công nghệ": "GaN Tech", "Cổng ra": "2x Type-C, 1x USB-A" },
                         images: ["assets/shop/ugreen_charger.png"],
@@ -23698,7 +23721,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Loa Bluetooth Di Động GEMS SoundBar Mini",
                         basePrice: 850000,
                         discount: 25,
-                        shopName: "GEMS Tech Store",
+                        shopName: "LIMES Tech Store",
                         desc: "Loa di động âm thanh vòm sống động, bass trầm ấm. Chống nước nhẹ IPX5 thích hợp dã ngoại.",
                         specs: { "Công suất": "10W", "Pin": "8 giờ", "Kết nối": "Bluetooth 5.2 / AUX" },
                         images: ["assets/shop/headphones_blue.png"],
@@ -23708,7 +23731,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Đế Sạc Không Dây 3 Trong 1 GEMS Dock",
                         basePrice: 950000,
                         discount: 38,
-                        shopName: "GEMS Tech Store",
+                        shopName: "LIMES Tech Store",
                         desc: "Đế sạc đa năng tích hợp sạc đồng thời điện thoại, đồng hồ và tai nghe không dây cực gọn gàng.",
                         specs: { "Đầu ra": "15W / 5W / 3W", "Cổng vào": "USB-C", "Chuẩn sạc": "Qi Wireless" },
                         images: ["assets/shop/magnetic_phone_case.png"],
@@ -23718,7 +23741,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Cáp Sạc Nhanh C To C Bọc Dù GEMS Tough",
                         basePrice: 150000,
                         discount: 20,
-                        shopName: "GEMS Tech Store",
+                        shopName: "LIMES Tech Store",
                         desc: "Dây cáp sạc nhanh Type-C to Type-C bọc dù siêu bền chống gãy đứt gập. Hỗ trợ truyền dữ liệu tốc độ cao.",
                         specs: { "Chiều dài": "2m", "Công suất": "100W PD", "Chất liệu": "Nylon bọc dù" },
                         images: ["assets/shop/ugreen_charger.png"],
@@ -23727,10 +23750,10 @@ let currentActiveBookId = 'chandoanykhoa';
                 ],
                 books: [
                     {
-                        title: "Sách Đắc Nhân Tâm GEMS Premium Edition",
+                        title: "Sách Đắc Nhân Tâm LIMES Premium Edition",
                         basePrice: 120000,
                         discount: 15,
-                        shopName: "GEMS Bookstore",
+                        shopName: "LIMES Bookstore",
                         desc: "Cuốn sách nghệ thuật thu phục lòng người kinh điển mọi thời đại bản in bìa mềm cao cấp.",
                         specs: { "Tác giả": "Dale Carnegie", "Số trang": "320 trang", "Ngôn ngữ": "Tiếng Việt" },
                         images: ["assets/shop/book.png"],
@@ -23740,7 +23763,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Bút Dạ Quang Highlight GEMS Pastel 6 Màu",
                         basePrice: 60000,
                         discount: 20,
-                        shopName: "GEMS Bookstore",
+                        shopName: "LIMES Bookstore",
                         desc: "Bộ 6 bút dạ quang tông màu pastel nhẹ dịu mắt, không gây lóa trang giấy khi đánh dấu.",
                         specs: { "Số lượng": "6 bút / bộ", "Màu sắc": "Pastel đa dạng", "Ngòi": "Vát xéo" },
                         images: ["assets/shop/gelpen.png"],
@@ -23750,7 +23773,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Vở Vẽ Lò Xo Chuyên Nghiệp GEMS Sketchbook",
                         basePrice: 90000,
                         discount: 25,
-                        shopName: "GEMS Bookstore",
+                        shopName: "LIMES Bookstore",
                         desc: "Sổ vẽ lò xo định lượng giấy 160gsm chuyên dùng phác thảo chì, màu nước nhẹ và vẽ mỹ thuật.",
                         specs: { "Khổ giấy": "A4", "Số trang": "80 trang", "Định lượng": "160gsm" },
                         images: ["assets/shop/book.png"],
@@ -23760,7 +23783,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Hộp Màu Nước Chuyên Nghiệp GEMS Art 24 Màu",
                         basePrice: 280000,
                         discount: 30,
-                        shopName: "GEMS Bookstore",
+                        shopName: "LIMES Bookstore",
                         desc: "Hộp màu nước dạng nén kèm khay pha màu và cọ chuyên nghiệp. Màu sắc rực rỡ, độ loang tốt.",
                         specs: { "Số lượng": "24 màu nén", "Phụ kiện": "1 cọ nước + khay", "Hộp đựng": "Sắt" },
                         images: ["assets/shop/gelpen.png"],
@@ -23770,7 +23793,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Sổ Tay Planner GEMS Daily Organizer",
                         basePrice: 150000,
                         discount: 10,
-                        shopName: "GEMS Bookstore",
+                        shopName: "LIMES Bookstore",
                         desc: "Sổ tay lập kế hoạch công việc hàng ngày, bìa da PU cao cấp sang trọng tích hợp lịch 2026.",
                         specs: { "Bìa": "Da PU", "Số trang": "200 trang", "Giấy": "80gsm chống thấm" },
                         images: ["assets/shop/book.png"],
@@ -23884,7 +23907,7 @@ let currentActiveBookId = 'chandoanykhoa';
                 ],
                 sports: [
                     {
-                        title: "Thảm Tập Yoga TPE GEMS Fit Chống Trượt",
+                        title: "Thảm Tập Yoga TPE LIMES Fit Chống Trượt",
                         basePrice: 350000,
                         discount: 25,
                         shopName: "GEMS Sportswear",
@@ -23986,7 +24009,7 @@ let currentActiveBookId = 'chandoanykhoa';
                 ],
                 food: [
                     {
-                        title: "Hạt Điều Rang Muối GEMS Premium Nut 500g",
+                        title: "Hạt Điều Rang Muối LIMES Premium Nut 500g",
                         basePrice: 180000,
                         discount: 15,
                         shopName: "GEMS Food & Living",
@@ -24091,7 +24114,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Viên Sủi Vitamin C GEMS Multivitamins",
                         basePrice: 80000,
                         discount: 20,
-                        shopName: "GEMS Pharmacy",
+                        shopName: "LIMES Pharmacy",
                         desc: "Viên sủi bổ sung Vitamin C và khoáng chất thiết yếu hỗ trợ tăng cường sức đề kháng và giảm mệt mỏi.",
                         specs: { "Quy cách": "Tuýp 20 viên", "Hàm lượng C": "1000mg", "Xuất xứ": "Đức" },
                         images: ["assets/shop/vitamin_supplement.png"],
@@ -24101,7 +24124,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Khẩu Trang Y Tế 4 Lớp GEMS Mask Kháng Khuẩn",
                         basePrice: 50000,
                         discount: 10,
-                        shopName: "GEMS Pharmacy",
+                        shopName: "LIMES Pharmacy",
                         desc: "Hộp 50 chiếc khẩu trang y tế 4 lớp dày dặn ôm sát mặt kháng khuẩn và chống bụi mịn siêu tốt.",
                         specs: { "Số lượng": "50 chiếc / hộp", "Độ lọc khuẩn": "BFE ≥ 99%", "Màu sắc": "Xanh y tế" },
                         images: ["assets/shop/face_mask.png"],
@@ -24111,7 +24134,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Nước Rửa Tay Diệt Khuẩn GEMS Clean Gel",
                         basePrice: 90000,
                         discount: 15,
-                        shopName: "GEMS Pharmacy",
+                        shopName: "LIMES Pharmacy",
                         desc: "Nước rửa tay dạng gel làm sạch nhanh không cần nước hương trà xanh thơm mát dịu nhẹ cho da tay.",
                         specs: { "Dung tích": "500ml", "Tính năng": "Khử trùng 99.9%", "Mùi hương": "Trà xanh tự nhiên" },
                         images: ["assets/shop/cosnori_remover.png"],
@@ -24121,7 +24144,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Dầu Xoa Bóp Thảo Dược GEMS Relief Oil",
                         basePrice: 150000,
                         discount: 25,
-                        shopName: "GEMS Pharmacy",
+                        shopName: "LIMES Pharmacy",
                         desc: "Dầu xoa bóp nóng chiết xuất từ thảo mộc thiên nhiên làm dịu các cơn đau khớp, mỏi cơ tức thì.",
                         specs: { "Dung tích": "100ml", "Thành phần": "Bạc hà, đinh hương, quế", "Quy cách": "Chai lăn" },
                         images: ["assets/shop/essential_oil_hue.png"],
@@ -24131,7 +24154,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Băng Cá Nhân Co Giãn GEMS Plaster 100 Miếng",
                         basePrice: 70000,
                         discount: 30,
-                        shopName: "GEMS Pharmacy",
+                        shopName: "LIMES Pharmacy",
                         desc: "Hộp 100 miếng băng cá nhân vải co giãn có lỗ thông khí bảo vệ vết thương nhỏ trầy xước nhẹ.",
                         specs: { "Số lượng": "100 miếng / hộp", "Chất liệu": "Vải co giãn thông khí", "Chống thấm nước": "Có" },
                         images: ["assets/shop/face_mask.png"],
@@ -24141,7 +24164,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Máy Đo Huyết Áp Bắp Tay Tự Động GEMS BP",
                         basePrice: 890000,
                         discount: 35,
-                        shopName: "GEMS Medical Equipment",
+                        shopName: "LIMES Medical Equipment",
                         desc: "Máy đo huyết áp điện tử tự động đo bắp tay chính xác cao có giọng nói tiếng Việt dễ sử dụng cho người già.",
                         specs: { "Công nghệ": "Intellisense đo nhanh", "Nguồn": "Pin AA hoặc sạc USB", "Bảo hành": "36 tháng" },
                         images: ["assets/shop/bp_monitor.png"],
@@ -24151,7 +24174,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Nhiệt Kế Hồng Ngoại Đo Trán GEMS Temp",
                         basePrice: 550000,
                         discount: 28,
-                        shopName: "GEMS Medical Equipment",
+                        shopName: "LIMES Medical Equipment",
                         desc: "Nhiệt kế đo trán hồng ngoại không chạm, đo nhiệt độ chính xác cực nhanh chỉ trong 1 giây.",
                         specs: { "Khoảng cách đo": "1 - 3 cm", "Tốc độ": "1 giây", "Độ chính xác": "±0.2°C" },
                         images: ["assets/shop/infrared_thermometer.png"],
@@ -24161,7 +24184,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Dầu Cá Omega-3 GEMS Fish Oil 1000mg",
                         basePrice: 380000,
                         discount: 22,
-                        shopName: "GEMS Pharmacy",
+                        shopName: "LIMES Pharmacy",
                         desc: "Viên uống dầu cá hàm lượng cao Omega-3 tự nhiên tốt cho tim mạch, tăng cường thị lực và trí não.",
                         specs: { "Quy cách": "Hũ 100 viên nang", "Hàm lượng": "1000mg", "Xuất xứ": "Úc" },
                         images: ["assets/shop/vitamin_supplement.png"],
@@ -24171,7 +24194,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Men Vi Sinh Hỗ Trợ Tiêu Hóa GEMS Probiotics",
                         basePrice: 250000,
                         discount: 15,
-                        shopName: "GEMS Pharmacy",
+                        shopName: "LIMES Pharmacy",
                         desc: "Men vi sinh bổ sung lợi khuẩn đường ruột hỗ trợ hệ tiêu hóa khỏe mạnh, giảm đầy hơi khó tiêu.",
                         specs: { "Quy cách": "Hộp 30 gói bột", "Lượng lợi khuẩn": "10 tỷ CFU / gói", "Sản xuất": "Hàn Quốc" },
                         images: ["assets/shop/vitamin_supplement.png"],
@@ -24181,7 +24204,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Trà Thảo Mộc Thanh Lọc Giải Độc GEMS Herbal",
                         basePrice: 180000,
                         discount: 12,
-                        shopName: "GEMS Pharmacy",
+                        shopName: "LIMES Pharmacy",
                         desc: "Trà thảo mộc kết hợp hoa cúc, kim ngân hoa thanh lọc mát gan, hỗ trợ ngủ ngon sâu giấc.",
                         specs: { "Khối lượng": "20 gói túi lọc", "Thành phần": "Atiso, Hoa cúc, Trà xanh", "Xuất xứ": "Đà Lạt" },
                         images: ["assets/shop/lotus_tea.png"],
@@ -24190,100 +24213,100 @@ let currentActiveBookId = 'chandoanykhoa';
                 ],
                 mom_baby: [
                     {
-                        title: "Tã Dán Siêu Thấm Hút GEMS Baby Soft Size M",
+                        title: "Tã Dán Siêu Thấm Hút LIMES Baby Soft Size M",
                         basePrice: 350000,
                         discount: 20,
-                        shopName: "GEMS Baby Care",
+                        shopName: "LIMES Baby Care",
                         desc: "Tã dán em bé công nghệ hạt gel khóa nước thông minh chống tràn, mềm mại thông thoáng mông bé.",
-                        specs: { "Quy cách": "Gói 46 miếng", "Size": "M (trẻ từ 6-11kg)", "Thương hiệu": "GEMS Baby" },
+                        specs: { "Quy cách": "Gói 46 miếng", "Size": "M (trẻ từ 6-11kg)", "Thương hiệu": "LIMES Baby" },
                         images: ["assets/shop/baby_diapers.png"],
                         variants: [{ id: "baby_diapers_m", name: "Bịch 46 miếng", price: 280000, originalPrice: 350000, image: "assets/shop/baby_diapers.png", stock: 140 }]
                     },
                     {
-                        title: "Khăn Ướt Không Mùi Dịu Nhẹ GEMS Baby Wipes",
+                        title: "Khăn Ướt Không Mùi Dịu Nhẹ LIMES Baby Wipes",
                         basePrice: 40000,
                         discount: 15,
-                        shopName: "GEMS Baby Care",
+                        shopName: "LIMES Baby Care",
                         desc: "Khăn ướt trẻ em chiết xuất lô hội tự nhiên, không chứa cồn hay paraben an toàn tuyệt đối cho bé.",
                         specs: { "Số lượng": "100 tờ / gói", "Tính chất": "Không mùi, không cồn", "Chất liệu": "Vải không dệt dày" },
                         images: ["assets/shop/face_mask.png"],
                         variants: [{ id: "baby_wipes_100c", name: "Gói 100 tờ", price: 34000, originalPrice: 40000, image: "assets/shop/face_mask.png", stock: 400 }]
                     },
                     {
-                        title: "Sữa Tắm Gội Thảo Dược GEMS Baby Wash 2in1",
+                        title: "Sữa Tắm Gội Thảo Dược LIMES Baby Wash 2in1",
                         basePrice: 220000,
                         discount: 10,
-                        shopName: "GEMS Baby Care",
+                        shopName: "LIMES Baby Care",
                         desc: "Sữa tắm gội 2 trong 1 thảo dược cúc la mã dịu nhẹ không cay mắt, giúp ngăn ngừa rôm sảy.",
                         specs: { "Dung tích": "250ml", "Độ cay mắt": "Không cay", "Thành phần": "Cúc la mã tự nhiên" },
                         images: ["assets/shop/cosnori_remover.png"],
                         variants: [{ id: "baby_wash_250", name: "Chai vòi xịt", price: 198000, originalPrice: 220000, image: "assets/shop/cosnori_remover.png", stock: 130 }]
                     },
                     {
-                        title: "Núm Ti Silicon Siêu Mềm GEMS Baby Núm Tròn",
+                        title: "Núm Ti Silicon Siêu Mềm LIMES Baby Núm Tròn",
                         basePrice: 80000,
                         discount: 15,
-                        shopName: "GEMS Baby Care",
+                        shopName: "LIMES Baby Care",
                         desc: "Núm ti silicon cấp thực phẩm mô phỏng ti mẹ siêu mềm dẻo dai, thiết kế chống sặc sữa đầy hơi.",
                         specs: { "Số lượng": "Hộp 2 cái", "Size núm": "S (cho trẻ 0-3 tháng)", "Chất liệu": "Silicon y tế" },
                         images: ["assets/shop/fj_thermos.png"],
                         variants: [{ id: "baby_nipple_s", name: "Vỉ 2 Cái Size S", price: 68000, originalPrice: 80000, image: "assets/shop/fj_thermos.png", stock: 180 }]
                     },
                     {
-                        title: "Máy Hâm Sữa Tiệt Trùng GEMS Baby Care Dual",
+                        title: "Máy Hâm Sữa Tiệt Trùng LIMES Baby Care Dual",
                         basePrice: 650000,
                         discount: 30,
-                        shopName: "GEMS Baby Care",
+                        shopName: "LIMES Baby Care",
                         desc: "Máy hâm sữa đôi đa năng tiệt trùng bằng hơi nước nóng, giữ ấm sữa ở nhiệt độ chuẩn 40°C.",
                         specs: { "Công suất": "200W", "Tính năng": "Hâm sữa, rã đông, tiệt trùng", "Số lượng ngăn": "2 bình cổ rộng" },
                         images: ["assets/shop/cookware.png"],
                         variants: [{ id: "baby_warmer_machine", name: "Máy Hâm Đôi", price: 455000, originalPrice: 650000, image: "assets/shop/cookware.png", stock: 50 }]
                     },
                     {
-                        title: "Bộ Bát Ăn Dặm Silicon GEMS Baby Hít Chân Không",
+                        title: "Bộ Bát Ăn Dặm Silicon LIMES Baby Hít Chân Không",
                         basePrice: 190000,
                         discount: 25,
-                        shopName: "GEMS Baby Care",
+                        shopName: "LIMES Baby Care",
                         desc: "Bộ bát ăn dặm kèm thìa chất liệu silicon an toàn có đế hút bám chặt mặt bàn chống đổ ngã.",
                         specs: { "Chất liệu": "Silicon cấp thực phẩm", "Đặc tính": "Hít chặt mặt bàn", "Chịu nhiệt": "-40°C đến 220°C" },
                         images: ["assets/shop/cookware.png"],
                         variants: [{ id: "baby_bowl_spoon", name: "Màu Cam Pastel", price: 142500, originalPrice: 190000, image: "assets/shop/cookware.png", stock: 120 }]
                     },
                     {
-                        title: "Thanh Chặn Cửa Cầu Thang An Toàn GEMS Baby",
+                        title: "Thanh Chặn Cửa Cầu Thang An Toàn LIMES Baby",
                         basePrice: 450000,
                         discount: 20,
-                        shopName: "GEMS Baby Care",
+                        shopName: "LIMES Baby Care",
                         desc: "Thanh chặn cửa cầu thang khung sắt chịu lực lắp đặt không cần khoan đục bảo vệ bé an toàn.",
                         specs: { "Chất liệu": "Khung thép tĩnh điện", "Chiều rộng": "Chỉnh từ 75-85 cm", "Khóa": "Khóa kép an toàn" },
                         images: ["assets/shop/leego_wardrobe.png"],
                         variants: [{ id: "baby_gate_guard", name: "Thanh Chặn Trắng", price: 360000, originalPrice: 450000, image: "assets/shop/leego_wardrobe.png", stock: 40 }]
                     },
                     {
-                        title: "Xe Đẩy Gấp Gọn Du Lịch GEMS Baby Stroller",
+                        title: "Xe Đẩy Gấp Gọn Du Lịch LIMES Baby Stroller",
                         basePrice: 1200000,
                         discount: 35,
-                        shopName: "GEMS Baby Care",
+                        shopName: "LIMES Baby Care",
                         desc: "Xe đẩy em bé siêu nhẹ gấp cực gọn tiện mang lên máy bay, ô tô. Khung xe nhôm chắc chắn giảm xóc êm ái.",
                         specs: { "Trọng lượng xe": "4.8kg", "Tải trọng": "25kg", "Độ nghiêng lưng": "Điều chỉnh 3 tư thế" },
                         images: ["assets/shop/baby_stroller.png"],
                         variants: [{ id: "baby_stroller_light", name: "Xe Đẩy Xám", price: 780000, originalPrice: 1200000, image: "assets/shop/baby_stroller.png", stock: 25 }]
                     },
                     {
-                        title: "Phao Đỡ Cổ Tập Bơi GEMS Baby Neck Float",
+                        title: "Phao Đỡ Cổ Tập Bơi LIMES Baby Neck Float",
                         basePrice: 150000,
                         discount: 10,
-                        shopName: "GEMS Baby Care",
+                        shopName: "LIMES Baby Care",
                         desc: "Phao cổ tập bơi cho bé có tay cầm thiết kế thông minh nâng đỡ đầu an toàn không gây khó chịu cho bé.",
                         specs: { "Đường kính trong": "9.5cm", "Độ tuổi": "Trẻ 3-18 tháng", "Khóa": "Khóa cài an toàn" },
                         images: ["assets/shop/swim_goggles.png"],
                         variants: [{ id: "baby_neck_float", name: "Phao Cổ Hồng", price: 135000, originalPrice: 150000, image: "assets/shop/swim_goggles.png", stock: 95 }]
                     },
                     {
-                        title: "Bộ Xếp Hình Khối Gỗ Giáo Dục GEMS Baby Toy",
+                        title: "Bộ Xếp Hình Khối Gỗ Giáo Dục LIMES Baby Toy",
                         basePrice: 280000,
                         discount: 15,
-                        shopName: "GEMS Baby Care",
+                        shopName: "LIMES Baby Care",
                         desc: "Bộ xếp hình 50 khối gỗ sơn nước tự nhiên an toàn giúp bé nhận biết hình khối và phát triển tư duy logic.",
                         specs: { "Số lượng": "50 khối gỗ", "Sơn": "Sơn nước an toàn", "Hộp đựng": "Xô nhựa tròn" },
                         images: ["assets/shop/wooden_toy.png"],
@@ -24295,7 +24318,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Kính Mát Thời Trang UV400 GEMS Glasses",
                         basePrice: 380000,
                         discount: 40,
-                        shopName: "GEMS Accessories",
+                        shopName: "LIMES Accessories",
                         desc: "Kính mát thời trang thiết kế mắt vuông sang trọng, tròng kính chống tia cực tím UV400 bảo vệ mắt tối đa.",
                         specs: { "Chống UV": "UV400 chuẩn", "Gọng kính": "Nhựa Acetate dẻo dai", "Tròng kính": "Phân cực chống chói" },
                         images: ["assets/shop/sunglasses.png"],
@@ -24305,7 +24328,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Vòng Tay Bạc Ý S925 Đính Đá GEMS Jewelry",
                         basePrice: 450000,
                         discount: 25,
-                        shopName: "GEMS Accessories",
+                        shopName: "LIMES Accessories",
                         desc: "Vòng tay bạc ý S925 đính đá pha lê lấp lánh sang trọng, thiết kế thanh mảnh tôn dáng cổ tay.",
                         specs: { "Chất liệu": "Bạc S925 chuẩn", "Đá đính": "Zirconia nhân tạo", "Chiều dài": "16cm + 3cm nối" },
                         images: ["assets/shop/silver_bracelet.png"],
@@ -24315,7 +24338,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Thắt Lưng Da Nam Khóa Tự Động GEMS Belt",
                         basePrice: 350000,
                         discount: 30,
-                        shopName: "GEMS Accessories",
+                        shopName: "LIMES Accessories",
                         desc: "Thắt lưng da bò thật cao cấp nguyên tấm siêu bền, mặt khóa hợp kim chống rỉ sét thiết kế tự động tiện dụng.",
                         specs: { "Chất liệu": "Da bò thật", "Mặt khóa": "Khóa tự động hợp kim", "Bản dây": "3.5 cm" },
                         images: ["assets/shop/wallet.png"],
@@ -24325,7 +24348,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Mũ Lưỡi Trai Unisex GEMS Cap Thêu Logo",
                         basePrice: 150000,
                         discount: 20,
-                        shopName: "GEMS Accessories",
+                        shopName: "LIMES Accessories",
                         desc: "Mũ lưỡi trai vải cotton 100% dày dặn đứng form thêu logo GEMS tinh tế. Khóa kim loại điều chỉnh độ rộng sau gáy.",
                         specs: { "Chất liệu": "Cotton 100%", "Form": "Lưỡi trai unisex", "Khóa gáy": "Kim loại điều chỉnh" },
                         images: ["assets/shop/cap.png"],
@@ -24335,7 +24358,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Ví Da Nam Cầm Tay GEMS Mini Wallet",
                         basePrice: 280000,
                         discount: 15,
-                        shopName: "GEMS Accessories",
+                        shopName: "LIMES Accessories",
                         desc: "Ví da nam thiết kế nhỏ gọn mini đựng thẻ tiện dụng, chất da saffiano chống trầy xước nước hiệu quả.",
                         specs: { "Kích thước": "11 x 8 cm", "Chất da": "Saffiano nhân tạo", "Sức chứa": "8 ngăn thẻ & tiền mặt" },
                         images: ["assets/shop/wallet.png"],
@@ -24345,7 +24368,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Dây Chuyền Titan Nam GEMS Chain Necklace",
                         basePrice: 190000,
                         discount: 10,
-                        shopName: "GEMS Accessories",
+                        shopName: "LIMES Accessories",
                         desc: "Dây chuyền titan mắt xích kiểu cuban cực ngầu, không gỉ không kích ứng da phù hợp phong cách streetwear.",
                         specs: { "Chất liệu": "Titan không gỉ", "Kiểu dáng": "Mắt xích Cuban", "Chiều dài": "55 cm" },
                         images: ["assets/shop/silver_bracelet.png"],
@@ -24355,7 +24378,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Bông Tai Bạc Nữ GEMS Earrings Nụ Đá",
                         basePrice: 120000,
                         discount: 15,
-                        shopName: "GEMS Accessories",
+                        shopName: "LIMES Accessories",
                         desc: "Khuyên tai bạc nụ đính đá nhỏ xinh, thiết kế tối giản trẻ trung phù hợp đeo hàng ngày đi học đi chơi.",
                         specs: { "Chất liệu": "Bạc S925", "Đá đính": "Cz lấp lánh", "Dạng khóa": "Khóa chốt đẩy" },
                         images: ["assets/shop/silver_bracelet.png"],
@@ -24365,7 +24388,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Khăn Choàng Cổ Len Thu Đông GEMS Scarf",
                         basePrice: 250000,
                         discount: 25,
-                        shopName: "GEMS Accessories",
+                        shopName: "LIMES Accessories",
                         desc: "Khăn quàng cổ chất liệu len tăm dệt mịn, dày dặn giữ ấm cổ cực tốt trong những ngày đông giá lạnh.",
                         specs: { "Chất liệu": "Len tăm dệt mịn", "Kích thước": "180 x 30 cm", "Màu sắc": "Xám lông chuột" },
                         images: ["assets/shop/hoodie_sage.png"],
@@ -24375,7 +24398,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Móc Khóa Da Handmade GEMS Keyring",
                         basePrice: 90000,
                         discount: 10,
-                        shopName: "GEMS Accessories",
+                        shopName: "LIMES Accessories",
                         desc: "Móc khóa da thật khâu tay handmade tỉ mỉ, móc khóa kim loại chắc chắn tiện đeo đai quần balo.",
                         specs: { "Chất liệu": "Da thuộc thảo mộc (Veg-tan)", "Móc treo": "Hợp kim đồng thau", "Sản xuất": "Thủ công Việt Nam" },
                         images: ["assets/shop/wallet.png"],
@@ -24385,7 +24408,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         title: "Ô Dù Gấp Gọn Tự Động Che Mưa GEMS Umbrella",
                         basePrice: 280000,
                         discount: 30,
-                        shopName: "GEMS Accessories",
+                        shopName: "LIMES Accessories",
                         desc: "Dù gấp gọn đóng mở tự động 1 nút bấm thông minh. Vải dù 2 lớp chống thấm nước và chống tia cực tím UV cực tốt.",
                         specs: { "Đóng mở": "Tự động 1 nút nhấn", "Màng chắn": "Phủ lớp keo đen chống UV", "Xương ô": "10 nan thép cứng cáp" },
                         images: ["assets/shop/umbrella.png"],
@@ -24444,54 +24467,54 @@ let currentActiveBookId = 'chandoanykhoa';
             const categoriesData = [
                 {
                     id: 'fashion',
-                    shop: 'GEMS Fashion House',
+                    shop: 'LIMES Fashion House',
                     namePatterns: ["Áo hoodie", "Quần jogger", "Áo khoác gió", "Giày sneaker", "Áo thun polo", "Quần short", "Áo nỉ sweater", "Mũ lưỡi trai", "Balo du lịch", "Thắt lưng da"],
-                    adjectives: ["cao cấp", "năng động", "co giãn", "chống nước", "GEMS Premium", "Ultra Fit", "Basic", "oversize", "phong cách", "cotton"],
+                    adjectives: ["cao cấp", "năng động", "co giãn", "chống nước", "LIMES Premium", "Ultra Fit", "Basic", "oversize", "phong cách", "cotton"],
                     descs: ["Trang phục thời trang năng động, phù hợp mọi hoạt động hàng ngày.", "Chất vải tuyển chọn dày dặn, giặt không phai màu hay nhão vải.", "Form dáng chuẩn tôn nét khỏe khoắn trẻ trung."],
                     basePrices: [180000, 250000, 380000, 450000, 580000, 750000],
                     images: ['assets/shop/hoodie_black.png', 'assets/shop/hoodie_sage.png', 'assets/shop/sneaker_black.png']
                 },
                 {
                     id: 'tech',
-                    shop: 'GEMS Tech Store',
+                    shop: 'LIMES Tech Store',
                     namePatterns: ["Tai nghe không dây", "Chuột silent click", "Bàn phím cơ", "Sạc nhanh GaN", "Cáp sạc USB-C", "Đồng hồ thông minh", "Loa bluetooth mini", "Đế sạc không dây", "Pin dự phòng", "Giá đỡ điện thoại"],
                     adjectives: ["Pro", "Max", "Ultra", "thế hệ 5", "chống ồn chủ động", "GaN 65W", "chống nước IP67", "siêu mỏng", "công thái học", "đa năng"],
-                    descs: ["Sản phẩm công nghệ hiện đại hỗ trợ tối đa cho học tập và làm việc.", "Thiết kế sang trọng, pin bền bỉ cùng nhiều tính năng vượt trội.", "Cam kết hàng chính hãng GEMS Tech, bảo hành 12 tháng."],
+                    descs: ["Sản phẩm công nghệ hiện đại hỗ trợ tối đa cho học tập và làm việc.", "Thiết kế sang trọng, pin bền bỉ cùng nhiều tính năng vượt trội.", "Cam kết hàng chính hãng LIMES Tech, bảo hành 12 tháng."],
                     basePrices: [350000, 580000, 850000, 1250000, 2500000, 180000],
                     images: ['assets/shop/keyboard.png', 'assets/shop/ugreen_charger.png', 'assets/shop/headphones_black.png']
                 },
                 {
                     id: 'home',
-                    shop: 'GEMS Home & Living',
+                    shop: 'LIMES Home & Living',
                     namePatterns: ["Tinh dầu thiên nhiên", "Máy xông tinh dầu", "Đèn ngủ thông minh", "Hộp đựng thực phẩm", "Bình giữ nhiệt GEMS", "Kệ sách mini", "Gối tựa đầu", "Đèn bàn chống cận", "Thảm chùi chân", "Cốc sứ GEMS"],
-                    adjectives: ["cao cấp", "tiện lợi", "nhỏ gọn", "kháng khuẩn", "gỗ tự nhiên", "xoay 360", "cảm ứng", "chống đổ", "GEMS Home", "bản đặc biệt"],
+                    adjectives: ["cao cấp", "tiện lợi", "nhỏ gọn", "kháng khuẩn", "gỗ tự nhiên", "xoay 360", "cảm ứng", "chống đổ", "LIMES Home", "bản đặc biệt"],
                     descs: ["Vật dụng gia đình tiện ích giúp không gian sống thêm phần ấm cúng và hiện đại.", "Chất liệu thân thiện với môi trường, bền bỉ và dễ dàng vệ sinh.", "Thiết kế thông minh tối ưu diện tích và công năng sử dụng."],
                     basePrices: [95000, 145000, 220000, 350000, 420000, 680000],
                     images: ['assets/shop/essential_oil_hue.png', 'assets/shop/campaign_banner_bg.png']
                 },
                 {
                     id: 'books',
-                    shop: 'GEMS Medical Books',
+                    shop: 'LIMES Medical Books',
                     namePatterns: ["Sách Giải phẫu học", "Sinh lý học lâm sàng", "Cẩm nang Nội khoa", "Ngoại khoa cơ bản", "Từ điển Y khoa", "Dược lý học thực hành", "Atlas Giải phẫu", "Sách Sinh hóa", "Cấp cứu ban đầu", "Nhi khoa lâm sàng"],
                     adjectives: ["tập 1", "tập 2", "phiên bản mới nhất", "dịch chuẩn", "chuyên sâu", "hướng dẫn lâm sàng", "tóm tắt nhanh", "Atlas màu", "tự học", "cập nhật mới"],
                     descs: ["Tài liệu học tập và tra cứu y khoa chính thống cho sinh viên và bác sĩ.", "Hình ảnh minh họa màu sắc nét, nội dung khoa học dễ hiểu.", "Biên soạn bởi hội đồng chuyên gia y khoa GEMS."],
                     basePrices: [120000, 180000, 240000, 350000, 420000, 480000],
-                    images: ['assets/logo.png']
+                    images: ['assets/logo.png?v=20260827_4']
                 },
                 {
                     id: 'beauty',
-                    shop: 'GEMS Dermatology',
+                    shop: 'LIMES Dermatology',
                     namePatterns: ["Kem chống nắng", "Sữa rửa mặt dịu nhẹ", "Serum cấp nước HA", "Kem dưỡng phục hồi B5", "Tẩy trang micellar", "Son dưỡng y tế", "Mặt nạ đất sét", "Kem dưỡng ẩm", "Serum Vitamin C", "Tẩy tế bào chết"],
-                    adjectives: ["cho da nhạy cảm", "SPF 50+", "cấp ẩm sâu", "B5 phục hồi", "GEMS Derma", "không cồn", "dịu mát da", "se khít lỗ chân lông", "chính hãng", "công thức bác sĩ"],
+                    adjectives: ["cho da nhạy cảm", "SPF 50+", "cấp ẩm sâu", "B5 phục hồi", "LIMES Derma", "không cồn", "dịu mát da", "se khít lỗ chân lông", "chính hãng", "công thức bác sĩ"],
                     descs: ["Dược mỹ phẩm chăm sóc da khoa học, an toàn lành tính tuyệt đối.", "Giúp bảo vệ và nuôi dưỡng làn da khỏe mạnh từ sâu bên trong.", "Được các bác sĩ da liễu khuyên dùng cho mọi loại da."],
                     basePrices: [120000, 250000, 380000, 450000, 620000, 750000],
-                    images: ['assets/shop/essential_oil_hue.png', 'assets/logo.png']
+                    images: ['assets/shop/essential_oil_hue.png', 'assets/logo.png?v=20260827_4']
                 },
                 {
                     id: 'sports',
                     shop: 'GEMS Sports & Fitness',
                     namePatterns: ["Thảm tập yoga GEMS", "Dây kháng lực", "Tạ tay cao su", "Dây nhảy thể thao", "Con lăn tập bụng", "Bình nước thể thao", "Băng bảo vệ đầu gối", "Găng tay tập gym", "Túi thể thao GEMS", "Thảm tập cao cấp"],
-                    adjectives: ["chống trượt TPE", "nhựa Tritan an toàn", "nhiều cấp độ", "tự động", "siêu bền", "GEMS Fit", "chuyên dụng", "siêu bám", "thoáng khí", "gập gọn"],
+                    adjectives: ["chống trượt TPE", "nhựa Tritan an toàn", "nhiều cấp độ", "tự động", "siêu bền", "LIMES Fit", "chuyên dụng", "siêu bám", "thoáng khí", "gập gọn"],
                     descs: ["Dụng cụ hỗ trợ luyện tập thể thao nâng cao sức khỏe tại nhà và phòng gym.", "Chất liệu cao cấp an toàn cho da, chịu lực tốt chịu mài mòn.", "Đồng hành cùng bạn trên hành trình kiến tạo vóc dáng khỏe đẹp."],
                     basePrices: [90000, 160000, 280000, 350000, 480000, 70000],
                     images: ['assets/shop/yoga_mat.png', 'assets/shop/basketball.png', 'assets/shop/swim_goggles.png', 'assets/shop/gym_bag.png', 'assets/shop/badminton_racket.png', 'assets/shop/dumbbell.png', 'assets/shop/stopwatch.png', 'assets/shop/resistance_band.png']
@@ -24507,10 +24530,10 @@ let currentActiveBookId = 'chandoanykhoa';
                 },
                 {
                     id: 'health',
-                    shop: 'GEMS Health & Medical',
+                    shop: 'LIMES Health & Medical',
                     namePatterns: ["Khẩu trang y tế 4 lớp", "Nước rửa tay sát khuẩn", "Cồn y tế 70 độ", "Bông băng gạc", "Nhiệt kế hồng ngoại", "Máy đo huyết áp", "Máy đo SpO2", "Búa phản xạ", "Kính bảo hộ y tế", "Túi chườm nóng lạnh"],
-                    adjectives: ["kháng khuẩn", "cao cấp", "chuyên dụng", "chính xác cao", "GEMS Medical", "tiện lợi", "thế hệ mới", "chuẩn Bộ Y Tế", "an toàn", "nhập khẩu"],
-                    descs: ["Sản phẩm y tế hỗ trợ theo dõi và chăm sóc sức khỏe gia đình tiện lợi.", "Được chứng nhận an toàn, dễ sử dụng cho mọi thành viên.", "Sản phẩm chính hãng chất lượng cao từ GEMS Health."],
+                    adjectives: ["kháng khuẩn", "cao cấp", "chuyên dụng", "chính xác cao", "LIMES Medical", "tiện lợi", "thế hệ mới", "chuẩn Bộ Y Tế", "an toàn", "nhập khẩu"],
+                    descs: ["Sản phẩm y tế hỗ trợ theo dõi và chăm sóc sức khỏe gia đình tiện lợi.", "Được chứng nhận an toàn, dễ sử dụng cho mọi thành viên.", "Sản phẩm chính hãng chất lượng cao từ LIMES Health."],
                     basePrices: [45000, 85000, 150000, 350000, 680000, 1200000],
                     images: ['assets/shop/bp_monitor.png', 'assets/shop/infrared_thermometer.png', 'assets/shop/face_mask.png', 'assets/shop/essential_oil_hue.png', 'assets/shop/cosnori_remover.png']
                 },
@@ -24518,16 +24541,16 @@ let currentActiveBookId = 'chandoanykhoa';
                     id: 'mom_baby',
                     shop: 'GEMS Mom & Baby',
                     namePatterns: ["Sữa hạt dinh dưỡng cho bé", "Khăn ướt dịu nhẹ", "Tã giấy em bé", "Sữa tắm gội cho bé", "Bình sữa chống đầy hơi", "Kem hăm tã", "Đồ chơi gỗ thông minh", "Sách vải cho bé", "Nhiệt kế đo nước tắm", "Bông tai em bé"],
-                    adjectives: ["cho trẻ sơ sinh", "hữu cơ tự nhiên", "siêu thấm hút", "không cay mắt", "silicon an toàn", "GEMS Baby", "phát triển tư duy", "mềm mại", "kháng khuẩn", "nhỏ gọn"],
+                    adjectives: ["cho trẻ sơ sinh", "hữu cơ tự nhiên", "siêu thấm hút", "không cay mắt", "silicon an toàn", "LIMES Baby", "phát triển tư duy", "mềm mại", "kháng khuẩn", "nhỏ gọn"],
                     descs: ["Sản phẩm chăm sóc mẹ và bé toàn diện, đảm bảo an toàn tuyệt đối.", "Thành phần tự nhiên, dịu nhẹ và không gây kích ứng cho làn da của bé.", "Giúp bé phát triển khỏe mạnh và thông minh mỗi ngày."],
                     basePrices: [65000, 115000, 245000, 380000, 480000, 520000],
                     images: ['assets/shop/baby_stroller.png', 'assets/shop/wooden_toy.png', 'assets/shop/fj_thermos.png', 'assets/shop/cosnori_remover.png']
                 },
                 {
                     id: 'accessories',
-                    shop: 'GEMS Accessories',
+                    shop: 'LIMES Accessories',
                     namePatterns: ["Huy hiệu Pin GEMS", "Móc khóa ống nghe", "Bút gel GEMS", "Sổ tay da", "Dây đeo thẻ", "Kẹp tài liệu GEMS", "Túi tote", "Hộp bút y khoa", "Ví đựng thẻ da thật", "Sticker y khoa"],
-                    adjectives: ["dễ thương", "mạ vàng", "bằng da thật", "GEMS Classic", "chống nước", "tiện lợi", "thiết kế độc quyền", "bản đặc biệt", "handmade", "nhỏ xinh"],
+                    adjectives: ["dễ thương", "mạ vàng", "bằng da thật", "LIMES Classic", "chống nước", "tiện lợi", "thiết kế độc quyền", "bản đặc biệt", "handmade", "nhỏ xinh"],
                     descs: ["Phụ kiện y khoa xinh xắn dành riêng cho các chiến binh áo trắng.", "Món quà ý nghĩa tặng đồng nghiệp và người thân ngành y.", "Chất liệu thân thiện với môi trường, thiết kế độc quyền GEMS."],
                     basePrices: [25000, 45000, 65000, 95000, 120000, 180000],
                     images: ['assets/shop/sunglasses.png', 'assets/shop/silver_bracelet.png', 'assets/shop/wallet.png', 'assets/shop/cap.png', 'assets/shop/umbrella.png', 'assets/shop/gelpen.png']
@@ -24538,7 +24561,7 @@ let currentActiveBookId = 'chandoanykhoa';
                 for (let i = 1; i <= 100; i++) {
                     const pattern = cat.namePatterns[(i - 1) % cat.namePatterns.length];
                     const adj = cat.adjectives[Math.floor(Math.random() * cat.adjectives.length)];
-                    const title = `${pattern} ${adj} GEMS-${cat.id.toUpperCase()}-${i}`;
+                    const title = `${pattern} ${adj} LIMES-${cat.id.toUpperCase()}-${i}`;
                     
                     const basePrice = cat.basePrices[(i - 1) % cat.basePrices.length] + (i * 2000);
                     const discount = 10 + ((i * 3) % 40); // 10% to 50%
@@ -24551,13 +24574,13 @@ let currentActiveBookId = 'chandoanykhoa';
                     const globalCategory = (i % 2 === 0 ? 'shipping' : 'brands');
                     
                     const descIndex = (i - 1) % cat.descs.length;
-                    const desc = `${cat.descs[descIndex]} Đây là sản phẩm mã số ${i} thuộc dòng ${pattern} của hệ thống GEMS.`;
+                    const desc = `${cat.descs[descIndex]} Đây là sản phẩm mã số ${i} thuộc dòng ${pattern} của hệ thống LIMES.`;
                     
                     const image = window._getMatchingImage ? window._getMatchingImage(title, cat.id) : cat.images[(i - 1) % cat.images.length];
                     
                     const specs = {
-                        "Mã số": `GEMS-${cat.id.toUpperCase()}-${i}`,
-                        "Thương hiệu": "GEMS",
+                        "Mã số": `LIMES-${cat.id.toUpperCase()}-${i}`,
+                        "Thương hiệu": "LIMES",
                         "Ngành hàng": cat.id
                     };
 
@@ -24597,7 +24620,7 @@ let currentActiveBookId = 'chandoanykhoa';
                             }
                         })(),
                         reviews: [
-                            { user: "Khách hàng GEMS", avatar: "KH", stars: 5, text: "Sản phẩm chất lượng tuyệt vời, rất đáng mua!", date: "14/07/2026", hasImg: false }
+                            { user: "khách hàng LIMES", avatar: "KH", stars: 5, text: "Sản phẩm chất lượng tuyệt vời, rất đáng mua!", date: "14/07/2026", hasImg: false }
                         ]
                     };
                     
@@ -25349,7 +25372,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
                             <h4 class="text-xs font-black text-slate-800">${product.shopName}</h4>
 
-                            <p class="text-[9px] text-slate-400 font-bold uppercase mt-0.5">Thành viên GEMS Mall</p>
+                            <p class="text-[9px] text-slate-400 font-bold uppercase mt-0.5">Thành viên LIMES Mall</p>
 
                         </div>
 
@@ -25513,7 +25536,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
             if (!currentSelectedProduct.variants || !Array.isArray(currentSelectedProduct.variants) || currentSelectedProduct.variants.length === 0) {
                 const dp = Math.round((currentSelectedProduct.basePrice || 100000) * (1 - (currentSelectedProduct.discount || 0) / 100));
-                const img = (currentSelectedProduct.images && currentSelectedProduct.images[0]) ? currentSelectedProduct.images[0] : 'assets/logo.png';
+                const img = (currentSelectedProduct.images && currentSelectedProduct.images[0]) ? currentSelectedProduct.images[0] : 'assets/logo.png?v=20260827_4';
                 currentSelectedProduct.variants = [{
                     id: `v_${currentSelectedProduct.id || 'def'}_1`,
                     name: "Mặc định",
@@ -26419,12 +26442,12 @@ let currentActiveBookId = 'chandoanykhoa';
             let shippingDiscount = 0;
             let productDiscount = 0;
 
-            const activeShipVoucher = GEMS_COUPONS.find(v => v.id === selectedShippingVoucherCode && v.claimed);
+            const activeShipVoucher = LIMES_COUPONS.find(v => v.id === selectedShippingVoucherCode && v.claimed);
             if (activeShipVoucher && subtotal >= getCouponMinSpend(activeShipVoucher)) {
                 shippingDiscount = Math.min(totalShipping, getCouponValue(activeShipVoucher, subtotal));
             }
 
-            const activeDiscVoucher = GEMS_COUPONS.find(v => v.id === selectedDiscountVoucherCode && v.claimed);
+            const activeDiscVoucher = LIMES_COUPONS.find(v => v.id === selectedDiscountVoucherCode && v.claimed);
             if (activeDiscVoucher && subtotal >= getCouponMinSpend(activeDiscVoucher)) {
                 productDiscount = getCouponValue(activeDiscVoucher, subtotal);
             }
@@ -26433,7 +26456,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
             const grandtotalBeforeCoins = Math.max(0, subtotal + totalShipping - voucherDiscount);
 
-            // GEMS Xu Discount calculation
+            // LIMES Xu Discount calculation
             let coinsDiscount = 0;
             let userCoins = appState.userCoins || 0;
             const coinsBalanceEl = document.getElementById('checkout-coins-balance');
@@ -26615,7 +26638,7 @@ let currentActiveBookId = 'chandoanykhoa';
             let shippingCount = 0;
             let discountCount = 0;
 
-            const claimedCoupons = GEMS_COUPONS.filter(v => v.claimed);
+            const claimedCoupons = LIMES_COUPONS.filter(v => v.claimed);
 
             claimedCoupons.forEach(v => {
                 const minSpend = getCouponMinSpend(v);
@@ -26638,7 +26661,7 @@ let currentActiveBookId = 'chandoanykhoa';
                     card.onclick = () => selectVoucherOption(v.type, v.id);
                 }
 
-                const badgeText = v.type === 'shipping' ? 'Từ GEMS Shop' : 'Flash Sale';
+                const badgeText = v.type === 'shipping' ? 'Từ LIMES Shop' : 'Flash Sale';
                 const badgeColor = v.type === 'shipping' ? 'bg-[#e0f4ff] text-primary' : 'bg-amber-50 text-amber-600';
                 const icon = v.type === 'shipping' ? 'local_shipping' : 'confirmation_number';
                 
@@ -26726,19 +26749,19 @@ let currentActiveBookId = 'chandoanykhoa';
                 return;
             }
 
-            const existed = GEMS_COUPONS.some(v => v.id === code);
+            const existed = LIMES_COUPONS.some(v => v.id === code);
             if (existed) {
                 showToast("Mã khuyến mãi này đã có trong ví của bạn.", "warning");
                 return;
             }
 
             let newVoucher = null;
-            if (code === 'GEMS100K' || code === 'GEMS100') {
+            if (code === 'LIMES100K' || code === 'LIMES100') {
                 newVoucher = {
                     id: code,
                     type: 'exclusive',
                     badge: 'Độc quyền',
-                    subBadge: 'Từ GEMS Shop',
+                    subBadge: 'Từ LIMES Shop',
                     title: 'Giảm giá 100K',
                     desc: 'áp dụng cho mọi đơn hàng',
                     validity: 'HSD: 1 ngày sau khi nhận',
@@ -26752,7 +26775,7 @@ let currentActiveBookId = 'chandoanykhoa';
                     id: code,
                     type: 'exclusive',
                     badge: 'Khuyến mãi',
-                    subBadge: 'Từ GEMS Shop',
+                    subBadge: 'Từ LIMES Shop',
                     title: `Giảm giá ${val/1000}K`,
                     desc: 'áp dụng cho mọi đơn hàng',
                     validity: 'HSD: 1 ngày sau khi nhận',
@@ -26765,7 +26788,7 @@ let currentActiveBookId = 'chandoanykhoa';
                 return;
             }
 
-            GEMS_COUPONS.push(newVoucher);
+            LIMES_COUPONS.push(newVoucher);
             promoInput.value = '';
             
             tempSelectedDiscountCode = newVoucher.id;
@@ -26825,7 +26848,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
             const amountText = amount.toLocaleString('vi-VN') + 'đ';
             if (amountEl) amountEl.textContent = amountText;
-            if (memoEl) memoEl.textContent = `GEMS SHOP ${orderId.replace('GEMS-', '')}`;
+            if (memoEl) memoEl.textContent = `GEMS SHOP ${orderId.replace('LIMES-', '')}`;
 
             if (method === 'momo') {
                 if (header) header.className = "bg-[#a50064] text-white p-4 flex items-center justify-between";
@@ -26842,7 +26865,7 @@ let currentActiveBookId = 'chandoanykhoa';
                 if (bankName) bankName.textContent = "MB Bank (Quân Đội)";
                 if (labelAccount) labelAccount.textContent = "Số tài khoản:";
                 if (accountNo) accountNo.textContent = "19028392182";
-                if (image) image.src = `https://api.vietqr.io/image/970422-19028392182-Y9Z3aC8.jpg?accountName=GEMS%20GROUP&amount=${amount}&addInfo=GEMS%20${orderId}`;
+                if (image) image.src = `https://api.vietqr.io/image/970422-19028392182-Y9Z3aC8.jpg?accountName=LIMES&amount=${amount}&addInfo=GEMS%20${orderId}`;
             }
 
             modal.classList.remove('hidden');
@@ -26999,7 +27022,7 @@ let currentActiveBookId = 'chandoanykhoa';
             localStorage.setItem('gems_shop_cart', JSON.stringify(ShopCart));
             updateCartBadge();
 
-            // Deduct GEMS Xu if applied
+            // Deduct LIMES Xu if applied
             if (isCheckoutCoinsApplied && (appState.userCoins || 0) > 0) {
                 const grandTotalEl = document.getElementById('checkout-grandtotal');
                 const finalPaid = parseInt(grandTotalEl ? grandTotalEl.textContent.replace(/\D/g, '') : '0') || 0;
@@ -27030,7 +27053,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
         function placeOrderAction() {
             const subtotalText = document.getElementById('checkout-grandtotal').textContent;
-            const randomId = 'GEMS-' + Math.floor(1000000 + Math.random() * 9000000);
+            const randomId = 'LIMES-' + Math.floor(1000000 + Math.random() * 9000000);
             const totalVal = parseInt(subtotalText.replace(/\D/g, ''));
             
             const orderItems = SelectedCheckoutItems.map(i => ({
@@ -27045,7 +27068,7 @@ let currentActiveBookId = 'chandoanykhoa';
                 id: randomId,
                 date: new Date().toLocaleDateString('vi-VN'),
                 status: 'pending_ship',
-                shopName: SelectedCheckoutItems[0]?.product.shopName || "GEMS Shop",
+                shopName: SelectedCheckoutItems[0]?.product.shopName || "LIMES Shop",
                 items: orderItems,
                 total: totalVal,
                 paymentMethod: currentPaymentMethod
@@ -27083,7 +27106,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
         // ======================================================
 
-        // ORDERS & VOUCHERS SCREEN FUNCTIONALITY (GEMS Shop Style)
+        // ORDERS & VOUCHERS SCREEN FUNCTIONALITY (LIMES Shop Style)
 
         // ======================================================
 
@@ -27154,19 +27177,19 @@ let currentActiveBookId = 'chandoanykhoa';
 
                     {
 
-                        id: "GEMS-4829103",
+                        id: "LIMES-4829103",
 
                         date: "07/07/2026",
 
                         status: "delivered",
 
-                        shopName: "GEMS Tech Store",
+                        shopName: "LIMES Tech Store",
 
                         items: [
 
                             {
 
-                                title: "Tai Nghe Bluetooth GEMS AirPods Max",
+                                title: "Tai Nghe Bluetooth LIMES AirPods Max",
 
                                 variantName: "Đen Midnight",
 
@@ -27186,19 +27209,19 @@ let currentActiveBookId = 'chandoanykhoa';
 
                     {
 
-                        id: "GEMS-2940182",
+                        id: "LIMES-2940182",
 
                         date: "05/07/2026",
 
                         status: "shipping",
 
-                        shopName: "GEMS Fashion House",
+                        shopName: "LIMES Fashion House",
 
                         items: [
 
                             {
 
-                                title: "Áo Hoodie Unisex GEMS Streetwear Premium",
+                                title: "Áo Hoodie Unisex LIMES Streetwear Premium",
 
                                 variantName: "Kem - Size L",
 
@@ -27532,7 +27555,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
         const shopVouchers = [
 
-            { id: "v_1", type: "gems", typeText: "GIẢM", valText: "50K", title: "Voucher GEMS Mall đặc biệt", condition: "Đơn tối thiểu 300K", expiry: "Hạn dùng: Còn 2 ngày" },
+            { id: "v_1", type: "gems", typeText: "GIẢM", valText: "50K", title: "Voucher LIMES Mall đặc biệt", condition: "Đơn tối thiểu 300K", expiry: "Hạn dùng: Còn 2 ngày" },
 
             { id: "v_2", type: "shipping", typeText: "FREE", valText: "SHIP", title: "Miễn phí vận chuyển toàn quốc", condition: "Đơn tối thiểu 100K", expiry: "Hạn dùng: Còn 5 ngày" },
 
@@ -27686,7 +27709,7 @@ let currentActiveBookId = 'chandoanykhoa';
         const mockRewardCatalog = [
             {
                 id: 'rw-1',
-                title: 'Voucher Giảm 30K GEMS Shop',
+                title: 'Voucher Giảm 30K LIMES Shop',
                 category: 'voucher',
                 cost: 300,
                 icon: 'confirmation_number',
@@ -27726,7 +27749,7 @@ let currentActiveBookId = 'chandoanykhoa';
             },
             {
                 id: 'rw-5',
-                title: 'Voucher Giảm 100K GEMS Mall',
+                title: 'Voucher Giảm 100K LIMES Mall',
                 category: 'voucher',
                 cost: 1500,
                 icon: 'loyalty',
@@ -27821,7 +27844,7 @@ let currentActiveBookId = 'chandoanykhoa';
             const userCoins = appState.userCoins || 0;
             if (userCoins < cost) {
                 const diff = cost - userCoins;
-                showToast(`Bạn cần tích thêm ${diff.toLocaleString()} GEMS Xu nữa để đổi món quà này!`, "warning");
+                showToast(`Bạn cần tích thêm ${diff.toLocaleString()} LIMES Xu nữa để đổi món quà này!`, "warning");
                 return;
             }
 
@@ -27870,19 +27893,19 @@ let currentActiveBookId = 'chandoanykhoa';
         }
 
         // ============ CHAT DETAIL LOGIC ============
-        let activeChatShop = 'GEMS Tech Store';
+        let activeChatShop = 'LIMES Tech Store';
         const mockChatHistory = {
-            'GEMS Tech Store': [
-                { sender: 'shop', text: 'Xin chào! Cảm ơn bạn đã ghé thăm GEMS Tech Store. Shop có thể hỗ trợ gì cho bạn hôm nay?', time: '10:30' },
+            'LIMES Tech Store': [
+                { sender: 'shop', text: 'Xin chào! Cảm ơn bạn đã ghé thăm LIMES Tech Store. Shop có thể hỗ trợ gì cho bạn hôm nay?', time: '10:30' },
                 { sender: 'shop', text: 'Đơn hàng tai nghe Bluetooth của bạn đã được xác nhận và đang chuẩn bị đóng gói nhé!', time: '10:32' }
             ],
-            'GEMS Fashion House': [
-                { sender: 'shop', text: 'Chào bạn! GEMS Fashion House xin chào. Bạn cần tư vấn chọn size áo hay chất liệu vải ạ?', time: 'Hôm qua' },
+            'LIMES Fashion House': [
+                { sender: 'shop', text: 'Chào bạn! LIMES Fashion House xin chào. Bạn cần tư vấn chọn size áo hay chất liệu vải ạ?', time: 'Hôm qua' },
                 { sender: 'user', text: 'Cảm ơn shop nhé, sản phẩm áo Hoodie đợt trước rất đẹp!', time: 'Hôm qua' },
                 { sender: 'shop', text: 'Dạ shop cảm ơn bạn nhiều ạ! Chúc bạn mặc đẹp và tiếp tục ủng hộ shop nhé ❤️', time: 'Hôm qua' }
             ],
-            'GEMS Books & Education': [
-                { sender: 'shop', text: 'Xin chào! Bạn đang quan tâm đến dòng sách Y khoa hay tài liệu lâm sàng nào của GEMS Books ạ?', time: '2 ngày trước' }
+            'LIMES Books & Education': [
+                { sender: 'shop', text: 'Xin chào! Bạn đang quan tâm đến dòng sách Y khoa hay tài liệu lâm sàng nào của LIMES Books ạ?', time: '2 ngày trước' }
             ]
         };
 
@@ -28726,7 +28749,7 @@ let currentActiveBookId = 'chandoanykhoa';
                                 ${heroProduct.title}
                             </h3>
                             <p class="text-[7.5px] text-slate-300 font-medium line-clamp-2 leading-relaxed">
-                                ${heroProduct.description || 'Sản phẩm mới ra mắt độc quyền tại GEMS Mall với chất lượng và mức giá ưu đãi nhất.'}
+                                ${heroProduct.description || 'Sản phẩm mới ra mắt độc quyền tại LIMES Mall với chất lượng và mức giá ưu đãi nhất.'}
                             </p>
                             
                             <div class="pt-1 flex items-baseline gap-1.5 flex-wrap">
@@ -28956,12 +28979,12 @@ let currentActiveBookId = 'chandoanykhoa';
         // ============ COUPON HUB STATE & LOGIC ============
         let activeCouponHubTab = 'all';
 
-        const GEMS_COUPONS = [
+        const LIMES_COUPONS = [
             {
                 id: 'fs-500k',
                 type: 'shipping',
                 badge: 'Freeship',
-                subBadge: 'Từ GEMS Shop',
+                subBadge: 'Từ LIMES Shop',
                 title: 'Miễn phí ship 500K',
                 desc: 'áp dụng cho đơn từ 1đ',
                 validity: 'HSD: 1 ngày sau khi nhận',
@@ -28973,7 +28996,7 @@ let currentActiveBookId = 'chandoanykhoa';
                 id: 'fs-40k',
                 type: 'shipping',
                 badge: 'Freeship',
-                subBadge: 'Từ GEMS Shop',
+                subBadge: 'Từ LIMES Shop',
                 title: 'Miễn phí ship 40K',
                 desc: 'áp dụng cho đơn từ 1đ',
                 validity: 'HSD: 1 ngày sau khi nhận',
@@ -28985,7 +29008,7 @@ let currentActiveBookId = 'chandoanykhoa';
                 id: 'fs-30d',
                 type: 'shipping',
                 badge: 'Freeship',
-                subBadge: 'Từ GEMS Shop',
+                subBadge: 'Từ LIMES Shop',
                 title: 'Giảm ship 30đ',
                 desc: 'áp dụng cho đơn từ 30đ',
                 validity: 'HSD: 1 ngày sau khi nhận',
@@ -28997,7 +29020,7 @@ let currentActiveBookId = 'chandoanykhoa';
                 id: 'ex-20pct-1',
                 type: 'exclusive',
                 badge: 'Độc quyền',
-                subBadge: 'Từ GEMS Shop',
+                subBadge: 'Từ LIMES Shop',
                 title: 'Giảm giá 20%',
                 desc: 'áp dụng cho đơn từ 99K',
                 validity: 'HSD: 2 giờ sau khi nhận',
@@ -29009,7 +29032,7 @@ let currentActiveBookId = 'chandoanykhoa';
                 id: 'ex-20pct-2',
                 type: 'exclusive',
                 badge: 'Độc quyền',
-                subBadge: 'Từ GEMS Shop',
+                subBadge: 'Từ LIMES Shop',
                 title: 'Giảm giá 20%',
                 desc: 'áp dụng cho đơn từ 99K',
                 validity: 'HSD: 07/11/2026 - 07/31/2026',
@@ -29021,7 +29044,7 @@ let currentActiveBookId = 'chandoanykhoa';
                 id: 'ex-9pct',
                 type: 'exclusive',
                 badge: 'Siêu độc quyền',
-                subBadge: 'Từ GEMS Shop',
+                subBadge: 'Từ LIMES Shop',
                 title: 'Giảm giá 9%',
                 desc: 'áp dụng cho đơn từ 100K',
                 validity: 'HSD: 2 giờ sau khi nhận',
@@ -29123,8 +29146,8 @@ let currentActiveBookId = 'chandoanykhoa';
             container.innerHTML = '';
             let htmlContent = '';
             
-            const shippingCoupons = GEMS_COUPONS.filter(c => c.type === 'shipping');
-            const exclusiveCoupons = GEMS_COUPONS.filter(c => c.type === 'exclusive');
+            const shippingCoupons = LIMES_COUPONS.filter(c => c.type === 'shipping');
+            const exclusiveCoupons = LIMES_COUPONS.filter(c => c.type === 'exclusive');
             
             // 1. Render Shipping Vouchers Section
             if (activeCouponHubTab === 'all' || activeCouponHubTab === 'shipping') {
@@ -29162,7 +29185,7 @@ let currentActiveBookId = 'chandoanykhoa';
         }
 
         function claimHubCouponDirect(id, btn) {
-            const coupon = GEMS_COUPONS.find(c => c.id === id);
+            const coupon = LIMES_COUPONS.find(c => c.id === id);
             if (!coupon) return;
             
             coupon.claimed = true;
@@ -29171,7 +29194,7 @@ let currentActiveBookId = 'chandoanykhoa';
         }
 
         function claimSingleHubCoupon(id, btn) {
-            const coupon = GEMS_COUPONS.find(c => c.id === id);
+            const coupon = LIMES_COUPONS.find(c => c.id === id);
             if (coupon) {
                 coupon.claimed = true;
             }
@@ -29184,13 +29207,13 @@ let currentActiveBookId = 'chandoanykhoa';
         }
 
         function claimAllHubCoupons() {
-            GEMS_COUPONS.forEach(c => c.claimed = true);
+            LIMES_COUPONS.forEach(c => c.claimed = true);
             showToast("Thu thập tất cả Voucher Xtra thành công! 🎟️", "success");
             renderCouponHubList();
         }
 
         function claimAllTypeHub(type) {
-            GEMS_COUPONS.forEach(c => {
+            LIMES_COUPONS.forEach(c => {
                 if (c.type === type) {
                     c.claimed = true;
                 }
@@ -29336,7 +29359,7 @@ let currentActiveBookId = 'chandoanykhoa';
             }
             
             if (filtered.length === 0) {
-                container.innerHTML = `<div class="text-center py-8 text-xs text-slate-400">Không có sản phẩm GEMS Mall nào phù hợp</div>`;
+                container.innerHTML = `<div class="text-center py-8 text-xs text-slate-400">Không có sản phẩm LIMES Mall nào phù hợp</div>`;
                 return;
             }
             
@@ -29412,7 +29435,7 @@ let currentActiveBookId = 'chandoanykhoa';
             
             showToast(`Lưu voucher giảm ${value} thành công! 🎟️`, "success");
             
-            // Add custom voucher object to GEMS_COUPONS
+            // Add custom voucher object to LIMES_COUPONS
             const newVoucher = {
                 id: 'GLOBAL-' + value.replace(/[^a-zA-Z0-9]/g, ''),
                 type: 'global',
@@ -29425,7 +29448,7 @@ let currentActiveBookId = 'chandoanykhoa';
                 color: 'teal',
                 qty: ''
             };
-            GEMS_COUPONS.push(newVoucher);
+            LIMES_COUPONS.push(newVoucher);
             
             btn.innerText = 'Đã Lưu';
             btn.disabled = true;
@@ -29453,7 +29476,7 @@ let currentActiveBookId = 'chandoanykhoa';
                         color: 'teal',
                         qty: ''
                     };
-                    GEMS_COUPONS.push(newVoucher);
+                    LIMES_COUPONS.push(newVoucher);
                 }
             });
             
@@ -29831,7 +29854,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
             } else if (activeFlashCategory === 'mall') {
 
-                fsProducts = fsProducts.filter(p => p.shopName.includes('GEMS Tech') || p.shopName.includes('GEMS Home'));
+                fsProducts = fsProducts.filter(p => p.shopName.includes('LIMES Tech') || p.shopName.includes('LIMES Home'));
 
             } else if (activeFlashCategory === 'hot-trend') {
 
@@ -30228,7 +30251,7 @@ let currentActiveBookId = 'chandoanykhoa';
 
             }
             
-            // GEMS Mall cart badge
+            // LIMES Mall cart badge
             const badgeMall = document.getElementById('mall-shop-cart-badge');
             if (badgeMall) {
                 badgeMall.textContent = String(totalQty);

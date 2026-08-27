@@ -1,5 +1,5 @@
 /**
- * GEMS Ebook App - E-Reader & Note Modal Module
+ * LIMES Ebook App - E-Reader & Note Modal Module
  * Encapsulated E-Reader, text selection, note modal & bookmark management module.
  */
 
@@ -307,7 +307,7 @@ window.GEMS.Reader = (function () {
         initAll();
     }
 
-    // GEMS AI Copilot Functions
+    // LIMES AI Copilot Functions
     function toggleGemsAIDrawer() {
         const drawer = document.getElementById('gems-ai-drawer');
         if (drawer) {
@@ -324,16 +324,16 @@ window.GEMS.Reader = (function () {
 
         if (promptType === 'summary') {
             userMsg = '💡 Tóm tắt chương sách này';
-            aiMsg = '<strong>[GEMS AI Medical Summary]</strong><br/>• <strong>Nội dung chính:</strong> Chương sách trình bày tác dụng của Tam Thất (<em>Panax pseudoginseng</em>) trong y học cổ truyền và lâm sàng hiện đại.<br/>• <strong>Hoạt chất sinh học:</strong> Chứa hàm lượng Saponin triterpenoid dồi dào giúp tiêu thũng, chỉ huyết (cầm máu), giảm đau và tăng sức bền thành mạch.<br/>• <strong>Lưu ý lâm sàng:</strong> Cần thận trọng khi dùng cho phụ nữ có thai và bệnh nhân đang dùng thuốc chống đông máu.';
+            aiMsg = '<strong>[LIMES AI Medical Summary]</strong><br/>• <strong>Nội dung chính:</strong> Chương sách trình bày tác dụng của Tam Thất (<em>Panax pseudoginseng</em>) trong y học cổ truyền và lâm sàng hiện đại.<br/>• <strong>Hoạt chất sinh học:</strong> Chứa hàm lượng Saponin triterpenoid dồi dào giúp tiêu thũng, chỉ huyết (cầm máu), giảm đau và tăng sức bền thành mạch.<br/>• <strong>Lưu ý lâm sàng:</strong> Cần thận trọng khi dùng cho phụ nữ có thai và bệnh nhân đang dùng thuốc chống đông máu.';
         } else if (promptType === 'dict') {
             userMsg = '📖 Giải thích thuật ngữ Y khoa';
-            aiMsg = '<strong>[GEMS AI Dictionary Analysis]</strong><br/>1. <strong>Panax pseudoginseng:</strong> Tên khoa học của Tam Thất họ Nhân Sâm.<br/>2. <strong>Chỉ huyết (止血):</strong> Thuật ngữ đông y chỉ tác dụng cầm máu.<br/>3. <strong>Saponin:</strong> Phức hợp Glycoside sinh học giúp hạ mỡ máu và kháng viêm.';
+            aiMsg = '<strong>[LIMES AI Dictionary Analysis]</strong><br/>1. <strong>Panax pseudoginseng:</strong> Tên khoa học của Tam Thất họ Nhân Sâm.<br/>2. <strong>Chỉ huyết (止血):</strong> Thuật ngữ đông y chỉ tác dụng cầm máu.<br/>3. <strong>Saponin:</strong> Phức hợp Glycoside sinh học giúp hạ mỡ máu và kháng viêm.';
         } else if (promptType === 'quiz') {
             userMsg = '❓ Tạo 5 câu trắc nghiệm';
-            aiMsg = '<strong>[GEMS AI Quiz Generator - 5 Câu Trắc Nghiệm]</strong><br/><strong>Câu 1:</strong> Tam Thất thuộc họ thực vật nào?<br/>A. Họ Gừng &nbsp;&nbsp;<b>B. Họ Nhân Sâm (Araliaceae)</b><br/><br/><strong>Câu 2:</strong> Tác dụng chủ yếu của Tam Thất trong y học cổ truyền?<br/><b>A. Tán ứ, chỉ huyết, định thống</b> &nbsp;&nbsp;B. Thanh nhiệt, giải độc<br/><br/><i>✓ Đã lưu 5 câu trắc nghiệm vào bộ Flashcard kiến thức!</i>';
+            aiMsg = '<strong>[LIMES AI Quiz Generator - 5 Câu Trắc Nghiệm]</strong><br/><strong>Câu 1:</strong> Tam Thất thuộc họ thực vật nào?<br/>A. Họ Gừng &nbsp;&nbsp;<b>B. Họ Nhân Sâm (Araliaceae)</b><br/><br/><strong>Câu 2:</strong> Tác dụng chủ yếu của Tam Thất trong y học cổ truyền?<br/><b>A. Tán ứ, chỉ huyết, định thống</b> &nbsp;&nbsp;B. Thanh nhiệt, giải độc<br/><br/><i>✓ Đã lưu 5 câu trắc nghiệm vào bộ Flashcard kiến thức!</i>';
         } else {
             userMsg = 'Phân tích ca lâm sàng';
-            aiMsg = 'GEMS AI đang phân tích dữ liệu lâm sàng y khoa...';
+            aiMsg = 'LIMES AI đang phân tích dữ liệu lâm sàng y khoa...';
         }
 
         // Render user message
@@ -345,7 +345,7 @@ window.GEMS.Reader = (function () {
         // Render AI response container with typing effect
         const aiDiv = document.createElement('div');
         aiDiv.className = 'p-3 bg-sky-50 dark:bg-sky-950/40 rounded-2xl border border-sky-100 dark:border-sky-900 text-sky-950 dark:text-sky-200 text-[11px] shadow-sm leading-relaxed';
-        aiDiv.innerHTML = '<span class="animate-pulse">GEMS AI đang suy nghĩ...</span>';
+        aiDiv.innerHTML = '<span class="animate-pulse">LIMES AI đang suy nghĩ...</span>';
         container.appendChild(aiDiv);
         container.scrollTop = container.scrollHeight;
 

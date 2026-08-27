@@ -1,7 +1,7 @@
 {
-  "name": "GEMS Ebook Ecosystem",
-  "short_name": "GEMS",
-  "description": "Nền tảng Y khoa GEMS",
+  "name": "LIMES Ebook Ecosystem",
+  "short_name": "LIMES",
+  "description": "Nền tảng Y khoa LIMES",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

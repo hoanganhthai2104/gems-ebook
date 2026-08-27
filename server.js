@@ -79,7 +79,7 @@ const server = http.createServer((req, res) => {
 function startServer(port) {
     server.listen(port, () => {
         console.log(`\n======================================================`);
-        console.log(`🚀 GEMS Medical E-Reader App is running locally!`);
+        console.log(`🚀 LIMES Medical E-Reader App is running locally!`);
         console.log(`👉 Access URL: http://localhost:${port}`);
         console.log(`======================================================\n`);
     });

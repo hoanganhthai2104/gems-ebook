@@ -176,7 +176,7 @@
                     <img src="${b.cover || 'covers/cothe.png'}" alt="${b.title}" class="w-full aspect-[2/3] object-cover rounded-xl mb-2 shadow-sm" loading="lazy" decoding="async" />
                     <span class="text-[9px] font-extrabold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full w-max mb-1">${b.category || 'Y Khoa'}</span>
                     <h4 class="font-bold text-xs text-slate-800 line-clamp-1 leading-snug">${b.title}</h4>
-                    <p class="text-[10px] text-slate-400 truncate mt-0.5">${b.author || 'GEMS Academic'}</p>
+                    <p class="text-[10px] text-slate-400 truncate mt-0.5">${b.author || 'LIMES Academic'}</p>
                 </div>
             `).join('');
         } else {
@@ -188,7 +188,7 @@
                         <div>
                             <span class="text-[9px] font-extrabold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">${b.category || 'Y Khoa'}</span>
                             <h4 class="font-bold text-sm text-slate-800 truncate mt-1">${b.title}</h4>
-                            <p class="text-xs text-slate-500 truncate mt-0.5">${b.author || 'GEMS Academic'}</p>
+                            <p class="text-xs text-slate-500 truncate mt-0.5">${b.author || 'LIMES Academic'}</p>
                         </div>
                         <div class="flex items-center gap-2 pt-2 border-t border-slate-100 text-xs font-bold text-blue-600">
                             <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">menu_book</span> Đọc ngay</span>
