@@ -1,0 +1,255 @@
+{
+  "all": {
+    "id": "all",
+    "title": "Kho Sách Y Khoa LIMES",
+    "tagline": "Toàn bộ 30+ tác phẩm y học chuyên sâu & triết lý sự sống",
+    "themeGradient": "from-[#080e20] via-[#0f1933] to-[#060a17]",
+    "glowColor": "rgba(59, 130, 246, 0.3)",
+    "accentBadge": "bg-blue-500/20 text-blue-300 border-blue-400/40",
+    "spotlightId": "trietly_yhss",
+    "spotlightBadge": "⭐ MASTERPIECE TUYỂN CHỌN SỐ 1",
+    "shelves": [
+      {
+        "title": "Tác Phẩm Nền Tảng & Triết Lý YHSS",
+        "subtitle": "5 nền Y học lớn, 3 trụ cột Y đức và năng lượng sống",
+        "bookIds": [
+          "trietly_yhss",
+          "nuoc_va_su_song",
+          "tam_hoc_chua_lanh",
+          "thucduong"
+        ]
+      },
+      {
+        "title": "Dược Liệu & Thảo Dược Quý Phương Đông",
+        "subtitle": "Cẩm nang thảo dược, phương thuốc bí truyền và trà trị liệu",
+        "bookIds": [
+          "thaoduoc",
+          "nhansam",
+          "namduocthanhieu",
+          "baoche",
+          "dongydieuphuong",
+          "trathaomoc"
+        ]
+      },
+      {
+        "title": "Giải Phẫu Học & Chẩn Đoán Lâm Sàng",
+        "subtitle": "Atlas toàn diện, giải phẫu cơ quan và sổ tay nội khoa",
+        "bookIds": [
+          "atlasgiaiphau",
+          "co-the-nguoi",
+          "xuongkhop",
+          "chandoanykhoa",
+          "lamsangnoikhoa",
+          "capnhatyvan"
+        ]
+      },
+      {
+        "title": "Thần Kinh Học & Tâm Thần Học",
+        "subtitle": "Khám phá não bộ, phục hồi nhận thức và tâm lý lâm sàng",
+        "bookIds": [
+          "thankinhhoc",
+          "naobo",
+          "sinhlythankinh",
+          "taibienmachmau",
+          "benhthanhinh",
+          "tamly"
+        ]
+      },
+      {
+        "title": "Di Truyền Học & Công Nghệ Sinh Học",
+        "subtitle": "Đột biến phân tử, kỹ thuật CRISPR-Cas9 và y học chính xác",
+        "bookIds": [
+          "ditruyen",
+          "kythuatditruyen",
+          "ditruyenphantu",
+          "dotbiengene",
+          "ditruyentebao",
+          "genkhoa"
+        ]
+      }
+    ]
+  },
+  "yhss": {
+    "id": "yhss",
+    "title": "Nền Y Học Sự Sống (YHSS)",
+    "tagline": "Hợp nhất 5 nền Y học lớn, khơi thông năng lượng tự chữa lành Thân - Tâm - Trí",
+    "themeGradient": "from-[#050e26] via-[#0a1b46] to-[#03081a]",
+    "glowColor": "rgba(99, 102, 241, 0.4)",
+    "accentBadge": "bg-amber-400/20 text-amber-300 border-amber-400/50",
+    "spotlightId": "trietly_yhss",
+    "spotlightBadge": "🔥 TÁC PHẨM CỐT LÕI YHSS",
+    "shelves": [
+      {
+        "title": "Bộ 3 Tác Phẩm Kinh Điển YHSS",
+        "subtitle": "Giáo trình nền tảng độc quyền của Chủ biên Hoàng Anh",
+        "bookIds": [
+          "trietly_yhss",
+          "nuoc_va_su_song",
+          "tam_hoc_chua_lanh"
+        ]
+      },
+      {
+        "title": "Liệu Pháp Dinh Dưỡng & Nước Sinh Học",
+        "subtitle": "Đạo của nước, Hydrogen Ion Kiềm & thực dưỡng nguyên bản",
+        "bookIds": [
+          "nuoc_va_su_song",
+          "thucduong",
+          "trathaomoc"
+        ]
+      },
+      {
+        "title": "Chữa Lành Tâm Thể & Năng Lượng Sống",
+        "subtitle": "Giải tỏa stress, chuyển hóa cảm xúc và an định nội tâm",
+        "bookIds": [
+          "tam_hoc_chua_lanh",
+          "tamly",
+          "naobo"
+        ]
+      }
+    ]
+  },
+  "thaoduoc": {
+    "id": "thaoduoc",
+    "title": "Dược Liệu & Thảo Dược Quý",
+    "tagline": "Kho tàng cây thuốc nam, phương pháp sao tẩm bào chế & bài thuốc trị liệu",
+    "themeGradient": "from-[#02170f] via-[#052b1d] to-[#01110b]",
+    "glowColor": "rgba(16, 185, 129, 0.4)",
+    "accentBadge": "bg-emerald-400/20 text-emerald-300 border-emerald-400/50",
+    "spotlightId": "thaoduoc",
+    "spotlightBadge": "🌿 CẨM NANG DƯỢC LIỆU KINH ĐIỂN",
+    "shelves": [
+      {
+        "title": "Thảo Dược & Cây Thuốc Dân Gian",
+        "subtitle": "Các vị thuốc quý núi rừng phía Bắc và thảo mộc đất Việt",
+        "bookIds": [
+          "thaoduoc",
+          "nhansam",
+          "namduocthanhieu"
+        ]
+      },
+      {
+        "title": "Kỹ Thuật Bào Chế & Phương Dược Bí Truyền",
+        "subtitle": "Phương pháp sao tẩm cao thảo dược và bài thuốc gia truyền",
+        "bookIds": [
+          "baoche",
+          "dongydieuphuong",
+          "capnhatyvan"
+        ]
+      },
+      {
+        "title": "Trà Trị Liệu & Dinh Dưỡng Phục Hồi",
+        "subtitle": "Công thức thảo mộc thanh lọc cơ thể và cải thiện giấc ngủ",
+        "bookIds": [
+          "trathaomoc",
+          "thucduong"
+        ]
+      }
+    ]
+  },
+  "giaiphau": {
+    "id": "giaiphau",
+    "title": "Giải Phẫu & Lâm Sàng Toàn Diện",
+    "tagline": "Atlas trực quan, sơ đồ hệ cơ xương khớp và quy trình chẩn đoán y khoa",
+    "themeGradient": "from-[#05112c] via-[#0a2052] to-[#030b1e]",
+    "glowColor": "rgba(14, 165, 233, 0.4)",
+    "accentBadge": "bg-cyan-400/20 text-cyan-300 border-cyan-400/50",
+    "spotlightId": "atlasgiaiphau",
+    "spotlightBadge": "🫀 ATLAS BẢN ĐỒ GIẢI PHẪU 3D",
+    "shelves": [
+      {
+        "title": "Atlas & Sơ Đồ Cơ Thể Người",
+        "subtitle": "Bản đồ chi tiết hệ tuần hoàn, hô hấp và cơ quan nội tạng",
+        "bookIds": [
+          "atlasgiaiphau",
+          "co-the-nguoi",
+          "giaiphauthanhinh"
+        ]
+      },
+      {
+        "title": "Hệ Cơ Xương Khớp & Vận Động Học",
+        "subtitle": "Giải phẫu chi tiết khớp xương và điều trị thoái hóa lâm sàng",
+        "bookIds": [
+          "xuongkhop",
+          "co-the-nguoi"
+        ]
+      },
+      {
+        "title": "Sổ Tay Chẩn Đoán & Sinh Lý Bệnh",
+        "subtitle": "Cẩm nang xử trí triệu chứng và sinh lý bệnh tim mạch",
+        "bookIds": [
+          "chandoanykhoa",
+          "lamsangnoikhoa",
+          "capnhatyvan"
+        ]
+      }
+    ]
+  },
+  "thankinh": {
+    "id": "thankinh",
+    "title": "Thần Kinh & Não Bộ Lâm Sàng",
+    "tagline": "Cơ chế xung điện thần kinh, nhận thức não bộ, miễn dịch và cấp cứu đột quỵ",
+    "themeGradient": "from-[#0f0724] via-[#1c0f42] to-[#080414]",
+    "glowColor": "rgba(168, 85, 247, 0.4)",
+    "accentBadge": "bg-purple-400/20 text-purple-300 border-purple-400/50",
+    "spotlightId": "thankinhhoc",
+    "spotlightBadge": "🧠 NGHIÊN CỨU NÃO BỘ ĐỈNH CAO",
+    "shelves": [
+      {
+        "title": "Chức Năng Não Bộ & Nhận Thức",
+        "subtitle": "Trung khu não bộ, dẫn truyền xung điện và phản xạ thần kinh",
+        "bookIds": [
+          "thankinhhoc",
+          "naobo",
+          "sinhlythankinh"
+        ]
+      },
+      {
+        "title": "Cấp Cứu Tai Biến & Bệnh Lý Thần Kinh",
+        "subtitle": "Quy trình xử trí đột quỵ sớm và điều trị bệnh thần kinh",
+        "bookIds": [
+          "taibienmachmau",
+          "benhthanhinh",
+          "thankinh"
+        ]
+      },
+      {
+        "title": "Tâm Lý Học & Miễn Dịch Nâng Cao",
+        "subtitle": "Trị liệu tâm thần, kiểm soát trầm cảm và kháng thể tự nhiên",
+        "bookIds": [
+          "tamly",
+          "tam_hoc_chua_lanh"
+        ]
+      }
+    ]
+  },
+  "ditruyen": {
+    "id": "ditruyen",
+    "title": "Di Truyền Học & Công Nghệ Sinh Học",
+    "tagline": "Bản đồ gen, công nghệ CRISPR-Cas9, đột biến tế bào và y học cá thể hóa",
+    "themeGradient": "from-[#021822] via-[#052d3f] to-[#01111a]",
+    "glowColor": "rgba(6, 182, 212, 0.4)",
+    "accentBadge": "bg-cyan-400/20 text-cyan-300 border-cyan-400/50",
+    "spotlightId": "ditruyen",
+    "spotlightBadge": "🧬 CÔNG NGHỆ CHỈNH SỬA GENE",
+    "shelves": [
+      {
+        "title": "Di Truyền Y Khoa & Phân Tử",
+        "subtitle": "Cấu trúc ADN, ARN và cơ chế phiên mã dịch mã tế bào",
+        "bookIds": [
+          "ditruyen",
+          "ditruyenphantu",
+          "ditruyentebao"
+        ]
+      },
+      {
+        "title": "Kỹ Thuật Thao Tác & Chỉnh Sửa Gene",
+        "subtitle": "Công nghệ PCR, NGS và CRISPR-Cas9 trong y học hiện đại",
+        "bookIds": [
+          "kythuatditruyen",
+          "dotbiengene",
+          "genkhoa"
+        ]
+      }
+    ]
+  }
+}

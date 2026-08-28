@@ -1,0 +1,20 @@
+[
+  {
+    "id": "term-01",
+    "term": "Monoclonal Antibody (Kháng thể đơn dòng)",
+    "category": "Dược Lý",
+    "definition": "Kháng thể nhân tạo được sản xuất từ một dòng tế bào duy nhất, có khả năng gắn kết đặc hiệu với một epitope duy nhất trên nhân nguyên."
+  },
+  {
+    "id": "term-02",
+    "term": "Action Potential (Điện thế hoạt động)",
+    "category": "Thần Kinh",
+    "definition": "Sự biến đổi nhanh chóng của điện thế màng tế bào thần kinh hoặc cơ khi kích thích đạt ngưỡng."
+  },
+  {
+    "id": "term-03",
+    "term": "CRISPR-Cas9",
+    "category": "Di Truyền",
+    "definition": "Công nghệ chỉnh sửa gen chính xác cho phép cắt và thay thế các đoạn DNA cụ thể trong bộ gen."
+  }
+]
