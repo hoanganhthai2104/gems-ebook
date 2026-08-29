@@ -53,6 +53,18 @@ EBOOK GEMS/
 └── .gitignore          # Git ignore rules
 ```
 
+## 📱 Bản mobile (React Native)
+
+Bản React Native của ứng dụng nằm trong thư mục [`mobile/`](./mobile) — Expo SDK 57 + expo-router, dùng chung dữ liệu sách và chung project Firebase với web.
+
+```bash
+cd mobile
+npm install
+npx expo start   # quét QR bằng Expo Go
+```
+
+Chi tiết kiến trúc, phạm vi đã migrate và cách hoạt động của e-reader: xem [`mobile/README.md`](./mobile/README.md).
+
 ## 🛠 Công nghệ
 
 - **HTML5** + **JavaScript** (Vanilla)

@@ -1,0 +1,457 @@
+{
+  "trietly_yhss": {
+    "id": "trietly_yhss",
+    "title": "Triết Lý Y Học Sự Sống – 5 Nền Y Học & 3 Trụ Y Đức",
+    "author": "Chủ biên Hoàng Anh",
+    "rating": "5.0",
+    "reads": "28.9k",
+    "category": "Nền Y Học Sự Sống",
+    "cover": "covers/trietly_yhss.png",
+    "desc": "Tác phẩm nền tảng giới thiệu triết lý Y Học Sự Sống (YHSS), kết hợp 5 nền y học lớn và 3 trụ cột Y đức giúp chăm sóc sức khỏe toàn diện Thân - Tâm - Trí - Linh.",
+    "tags": [
+      "yhss",
+      "trietly",
+      "nen-tang",
+      "featured"
+    ]
+  },
+  "nuoc_va_su_song": {
+    "id": "nuoc_va_su_song",
+    "title": "Nước và Sự Sống – Thấu Hiểu Đạo Của Nước & Hydrogen Ion Kiềm",
+    "author": "Chủ biên Hoàng Anh",
+    "rating": "4.9",
+    "reads": "22.4k",
+    "category": "Nền Y Học Sự Sống",
+    "cover": "covers/nuoc_va_su_song.png",
+    "desc": "Nghiên cứu vai trò sinh học của nước, đặc tính Hydrogen Ion kiềm và liệu pháp dòng nước đối với việc tái tạo tế bào và phục hồi năng lượng sống cơ thể.",
+    "tags": [
+      "yhss",
+      "nuoc",
+      "hydrogen",
+      "te-bao"
+    ]
+  },
+  "tam_hoc_chua_lanh": {
+    "id": "tam_hoc_chua_lanh",
+    "title": "Tâm Học & Chữa Lành Cảm Xúc",
+    "author": "Chủ biên Hoàng Anh",
+    "rating": "4.9",
+    "reads": "19.8k",
+    "category": "Nền Y Học Sự Sống",
+    "cover": "covers/tam_hoc_chua_lanh.png",
+    "desc": "Phương pháp giải tỏa căng thẳng, nhận diện và chữa lành cảm xúc tiêu cực, khôi phục trạng thái an tĩnh nội tâm và nâng cao năng lượng sống.",
+    "tags": [
+      "yhss",
+      "tamhoc",
+      "chua-lanh",
+      "cam-xuc"
+    ]
+  },
+  "thaoduoc": {
+    "id": "thaoduoc",
+    "title": "Cẩm nang Thảo dược Quý Phương Đông",
+    "author": "GS. TS. Nguyễn Văn Anh",
+    "rating": "4.8",
+    "reads": "12.5k",
+    "category": "Dược Liệu & Thảo Dược",
+    "cover": "covers/thaoduoc.png",
+    "desc": "Kết tinh hơn 30 năm nghiên cứu thực địa về các loài thảo dược quý vùng núi phía Bắc. Hướng dẫn nhận dạng, công dụng và cách bào chế các phương thuốc nam.",
+    "tags": [
+      "thaoduoc",
+      "caythuoc",
+      "thuocnam",
+      "featured"
+    ]
+  },
+  "nhansam": {
+    "id": "nhansam",
+    "title": "Nhân Sâm: Đại Bổ Nguyên Khí",
+    "author": "GS. TS. Nguyễn Văn Anh",
+    "rating": "4.9",
+    "reads": "10.2k",
+    "category": "Dược Liệu & Thảo Dược",
+    "cover": "covers/nhansam.png",
+    "desc": "Nghiên cứu toàn diện về Nhân Sâm (Panax ginseng) và các hợp chất ginsenoside có tác dụng đại bổ nguyên khí, ích huyết, sinh tân, an thần.",
+    "tags": [
+      "thaoduoc",
+      "caythuoc",
+      "nhansam",
+      "quy"
+    ]
+  },
+  "namduocthanhieu": {
+    "id": "namduocthanhieu",
+    "title": "Nam Dược Thần Hiệu",
+    "author": "Thiền sư Tuệ Tĩnh",
+    "rating": "4.9",
+    "reads": "15.6k",
+    "category": "Dược Liệu & Thảo Dược",
+    "cover": "covers/namduocthanhieu.png",
+    "desc": "Tác phẩm y học kinh điển của thiền sư Tuệ Tĩnh về các vị thuốc nam bản địa trị bệnh cho người Việt theo phương châm Nam dược trị Nam nhân.",
+    "tags": [
+      "thaoduoc",
+      "thuocnam",
+      "kinh-dien"
+    ]
+  },
+  "baoche": {
+    "id": "baoche",
+    "title": "Kỹ Thuật Bào Chế Dược Liệu",
+    "author": "GS. TS. Nguyễn Văn Anh",
+    "rating": "4.8",
+    "reads": "6.2k",
+    "category": "Dược Liệu & Thảo Dược",
+    "cover": "covers/baoche.png",
+    "desc": "Hướng dẫn chi tiết phương pháp sao tẩm, chưng cất và bào chế các loại cao thảo dược quý Đông y kết hợp kỹ thuật hiện đại.",
+    "tags": [
+      "thaoduoc",
+      "baoche",
+      "ky-thuat"
+    ]
+  },
+  "dongydieuphuong": {
+    "id": "dongydieuphuong",
+    "title": "Đông Y Diệu Phương",
+    "author": "PGS. TS. Hoàng Tích Huyền",
+    "rating": "4.8",
+    "reads": "4.1k",
+    "category": "Dược Liệu & Thảo Dược",
+    "cover": "covers/dongydieuphuong.png",
+    "desc": "Tổng hợp các bài thuốc bí truyền từ cung đình đến dân gian, kết hợp chẩn trị y học hiện đại và phân tích dược lý sinh hóa học.",
+    "tags": [
+      "thaoduoc",
+      "baoche",
+      "dongy"
+    ]
+  },
+  "trathaomoc": {
+    "id": "trathaomoc",
+    "title": "Trà Thảo Mộc & Trị Liệu",
+    "author": "BS. Vũ Thị F",
+    "rating": "4.7",
+    "reads": "8.2k",
+    "category": "Dược Liệu & Thảo Dược",
+    "cover": "covers/trathaomoc.png",
+    "desc": "Phân tích khoa học và công thức chưng cất chè, thảo mộc chữa trị các bệnh nhẹ, an thần cải thiện giấc ngủ và hỗ trợ thanh lọc độc tố.",
+    "tags": [
+      "thaoduoc",
+      "tra",
+      "tri-lieu"
+    ]
+  },
+  "thucduong": {
+    "id": "thucduong",
+    "title": "Dinh Dưỡng & Thực Dưỡng Toàn Diện",
+    "author": "TS.BS Phạm Văn E",
+    "rating": "4.6",
+    "reads": "5.4k",
+    "category": "Dinh Dưỡng & YHSS",
+    "cover": "covers/thucduong.png",
+    "desc": "Nguyên lý ăn uống theo khoa học dinh dưỡng phương Đông kết hợp hiện đại. Cách sử dụng ngũ cốc nguyên cám tái lập hệ miễn dịch tự nhiên.",
+    "tags": [
+      "yhss",
+      "thucduong",
+      "dinh-duong"
+    ]
+  },
+  "atlasgiaiphau": {
+    "id": "atlasgiaiphau",
+    "title": "Atlas Giải Phẫu Cơ Thể Người",
+    "author": "BS. Nguyễn Quang Quyền",
+    "rating": "4.9",
+    "reads": "21.4k",
+    "category": "Giải Phẫu & Lâm Sàng",
+    "cover": "covers/atlasgiaiphau.png",
+    "desc": "Tập bản đồ giải phẫu đầy đủ nhất, cung cấp cái nhìn trực quan 3D và hệ thống danh pháp giải phẫu quốc tế chuẩn hóa.",
+    "tags": [
+      "giaiphau",
+      "atlas",
+      "featured"
+    ]
+  },
+  "co-the-nguoi": {
+    "id": "co-the-nguoi",
+    "title": "Cơ Thể Người: Phân Tích Chi Tiết",
+    "author": "PGS. TS. Lê Thu",
+    "rating": "4.8",
+    "reads": "9.1k",
+    "category": "Giải Phẫu & Lâm Sàng",
+    "cover": "covers/cothe.png",
+    "desc": "Cẩm nang sơ đồ giải phẫu đầy đủ với hình minh họa sinh động. Phân tích chi tiết các hệ tuần hoàn, hô hấp, cơ xương khớp.",
+    "tags": [
+      "giaiphau",
+      "heco",
+      "cothe"
+    ]
+  },
+  "xuongkhop": {
+    "id": "xuongkhop",
+    "title": "Giải Phẫu Hệ Xương Khớp & Vận Động",
+    "author": "BS. Nguyễn Minh Tuấn",
+    "rating": "4.7",
+    "reads": "3.1k",
+    "category": "Giải Phẫu & Lâm Sàng",
+    "cover": "covers/cothe.png",
+    "desc": "Phân tích cơ xương khớp lâm sàng và các phác đồ xử trí bệnh lý thoái hóa khớp ở người trưởng thành.",
+    "tags": [
+      "giaiphau",
+      "heco",
+      "xuongkhop"
+    ]
+  },
+  "giaiphauthanhinh": {
+    "id": "giaiphauthanhinh",
+    "title": "Giải Phẫu Hệ Thần Kinh Ngoại Vi",
+    "author": "GS. Trịnh Bình",
+    "rating": "4.7",
+    "reads": "5.2k",
+    "category": "Giải Phẫu & Lâm Sàng",
+    "cover": "covers/cothe.png",
+    "desc": "Khảo sát cấu trúc chi tiết của tủy sống, não bộ, hệ thần kinh ngoại vi và các bó dẫn truyền vận động cảm giác chính.",
+    "tags": [
+      "giaiphau",
+      "heco",
+      "thankinh"
+    ]
+  },
+  "chandoanykhoa": {
+    "id": "chandoanykhoa",
+    "title": "Cẩm Nang Chẩn Đoán Y Khoa Lâm Sàng",
+    "author": "LIMES Academic",
+    "rating": "4.8",
+    "reads": "15.6k",
+    "category": "Giải Phẫu & Lâm Sàng",
+    "cover": "covers/chandoanykhoa.png",
+    "desc": "Sách cẩm nang chẩn đoán y khoa lâm sàng toàn diện, cung cấp quy trình phân tích từ triệu chứng cơ năng đến bệnh lý chi tiết.",
+    "tags": [
+      "giaiphau",
+      "noikhoa",
+      "chandoan"
+    ]
+  },
+  "lamsangnoikhoa": {
+    "id": "lamsangnoikhoa",
+    "title": "Sinh Lý Bệnh & Lâm Sàng Nội Khoa",
+    "author": "Dr. Elena Rostova",
+    "rating": "4.9",
+    "reads": "11.4k",
+    "category": "Giải Phẫu & Lâm Sàng",
+    "cover": "covers/lamsangnoikhoa.png",
+    "desc": "Sổ tay hướng dẫn chi tiết lâm sàng nội khoa, sinh lý bệnh tim mạch và các ca bệnh thực tế dành cho bác sĩ.",
+    "tags": [
+      "giaiphau",
+      "noikhoa",
+      "lamsang"
+    ]
+  },
+  "capnhatyvan": {
+    "id": "capnhatyvan",
+    "title": "Dược Lý Lâm Sàng & Cập Nhật Y Văn",
+    "author": "Dr. Robert H.",
+    "rating": "4.7",
+    "reads": "9.2k",
+    "category": "Giải Phẫu & Lâm Sàng",
+    "cover": "covers/capnhatyvan.png",
+    "desc": "Tập hợp các nghiên cứu y khoa, phác đồ dùng thuốc và hướng dẫn điều trị mới nhất được cập nhật trên thế giới.",
+    "tags": [
+      "giaiphau",
+      "noikhoa",
+      "duocly"
+    ]
+  },
+  "thankinhhoc": {
+    "id": "thankinhhoc",
+    "title": "Thần Kinh Học & Nhận Thức Nâng Cao",
+    "author": "Dr. Sarah Jenkins",
+    "rating": "4.9",
+    "reads": "14.5k",
+    "category": "Thần Kinh & Não Bộ",
+    "cover": "covers/brain_cover.png",
+    "desc": "Nghiên cứu nâng cao về thần kinh học, các trung khu chức năng não bộ và ứng dụng phục hồi chức năng nhận thức lâm sàng.",
+    "tags": [
+      "thankinh",
+      "naobo",
+      "featured"
+    ]
+  },
+  "naobo": {
+    "id": "naobo",
+    "title": "Não Bộ & Hành Vi Con Người",
+    "author": "TS. Đỗ Quyên",
+    "rating": "4.6",
+    "reads": "1.8k",
+    "category": "Thần Kinh & Não Bộ",
+    "cover": "covers/naobo.png",
+    "desc": "Nghiên cứu về mối liên hệ giữa các thùy não bộ, chất dẫn truyền thần kinh và hành vi tâm lý trong y học tâm thần.",
+    "tags": [
+      "thankinh",
+      "naobo",
+      "tamly"
+    ]
+  },
+  "sinhlythankinh": {
+    "id": "sinhlythankinh",
+    "title": "Sinh Lý Học Thần Kinh",
+    "author": "GS. Phạm Hoàng Nam",
+    "rating": "4.8",
+    "reads": "2.5k",
+    "category": "Thần Kinh & Não Bộ",
+    "cover": "covers/sinhlythankinh.png",
+    "desc": "Cơ chế dẫn truyền xung điện màng tế bào thần kinh, điện thế hoạt động và các cung phản xạ sinh lý của con người.",
+    "tags": [
+      "thankinh",
+      "naobo",
+      "sinhly"
+    ]
+  },
+  "taibienmachmau": {
+    "id": "taibienmachmau",
+    "title": "Tai Biến Mạch Máu Não & Đột Quỵ",
+    "author": "GS. Lê Đức Hinh",
+    "rating": "4.8",
+    "reads": "6.7k",
+    "category": "Thần Kinh & Não Bộ",
+    "cover": "covers/taibienmachmau.png",
+    "desc": "Hướng dẫn chẩn đoán nhanh đột quỵ giờ vàng, điều trị cấp cứu nội khoa và các liệu pháp phục hồi chức năng sau tai biến.",
+    "tags": [
+      "thankinh",
+      "dotquy",
+      "capcuu"
+    ]
+  },
+  "benhthanhinh": {
+    "id": "benhthanhinh",
+    "title": "Bệnh Học Thần Kinh Lâm Sàng",
+    "author": "PGS. TS. Nguyễn Chương",
+    "rating": "4.8",
+    "reads": "3.9k",
+    "category": "Thần Kinh & Não Bộ",
+    "cover": "covers/thankinh.png",
+    "desc": "Chẩn đoán và xử trí các bệnh lý thần kinh thường gặp: đau nửa đầu migraine, động kinh, bệnh thần kinh ngoại biên và nhược cơ.",
+    "tags": [
+      "thankinh",
+      "dotquy",
+      "benhhoc"
+    ]
+  },
+  "thankinh": {
+    "id": "thankinh",
+    "title": "Miễn Dịch Học Thần Kinh Nâng Cao",
+    "author": "Dr. Michael Chen",
+    "rating": "4.8",
+    "reads": "8.9k",
+    "category": "Thần Kinh & Não Bộ",
+    "cover": "covers/thankinh.png",
+    "desc": "Nghiên cứu cốt lõi về cơ chế miễn dịch tự nhiên, hàng rào máu não và kháng thể phòng ngừa các bệnh tự miễn y khoa.",
+    "tags": [
+      "thankinh",
+      "miendich",
+      "khangthe"
+    ]
+  },
+  "tamly": {
+    "id": "tamly",
+    "title": "Tâm Lý Học Lâm Sàng & Trị Liệu",
+    "author": "ThS. Ngô Anh Tuấn",
+    "rating": "4.7",
+    "reads": "3.8k",
+    "category": "Thần Kinh & Não Bộ",
+    "cover": "covers/tamly.png",
+    "desc": "Giáo trình tâm lý học lâm sàng ứng dụng trong y khoa, chẩn đoán rối loạn lo âu, trầm cảm và liệu pháp trị liệu nhận thức hành vi.",
+    "tags": [
+      "thankinh",
+      "tamly",
+      "chua-lanh"
+    ]
+  },
+  "ditruyen": {
+    "id": "ditruyen",
+    "title": "Di Truyền Học Y Khoa Toàn Diện",
+    "author": "PGS. TS. Trần Hải",
+    "rating": "4.8",
+    "reads": "3.7k",
+    "category": "Di Truyền & Gen",
+    "cover": "covers/ditruyen.png",
+    "desc": "Nghiên cứu ADN, đột biến gene di truyền sinh học tế bào gốc và định hướng y học chính xác cá thể hóa.",
+    "tags": [
+      "ditruyen",
+      "phantu",
+      "featured"
+    ]
+  },
+  "kythuatditruyen": {
+    "id": "kythuatditruyen",
+    "title": "Kỹ Thuật Di Truyền & Chỉnh Sửa Gene",
+    "author": "PGS. TS. Đinh Đoàn Long",
+    "rating": "4.8",
+    "reads": "4.8k",
+    "category": "Di Truyền & Gen",
+    "cover": "covers/kythuatditruyen.png",
+    "desc": "Các công nghệ cốt lõi: phản ứng PCR, giải trình tự gen thế hệ mới (NGS) và công nghệ chỉnh sửa gen CRISPR-Cas9.",
+    "tags": [
+      "ditruyen",
+      "crispr",
+      "congnghe"
+    ]
+  },
+  "ditruyenphantu": {
+    "id": "ditruyenphantu",
+    "title": "Di Truyền Học Phân Tử Tế Bào",
+    "author": "PGS. Lê Huy",
+    "rating": "4.7",
+    "reads": "2.9k",
+    "category": "Di Truyền & Gen",
+    "cover": "covers/ditruyenphantu.png",
+    "desc": "Cấu trúc ADN và ARN, cơ chế nhân đôi, phiên mã và dịch mã sinh học phân tử tế bào ứng dụng trong y học.",
+    "tags": [
+      "ditruyen",
+      "phantu",
+      "tebao"
+    ]
+  },
+  "dotbiengene": {
+    "id": "dotbiengene",
+    "title": "Đột Biến Gene Lâm Sàng",
+    "author": "TS. Nguyễn Thị Trang",
+    "rating": "4.9",
+    "reads": "3.5k",
+    "category": "Di Truyền & Gen",
+    "cover": "covers/ditruyen.png",
+    "desc": "Các dạng đột biến cấu trúc nhiễm sắc thể gây ra hội chứng bệnh lý hiếm gặp và giải pháp chẩn đoán trước sinh.",
+    "tags": [
+      "ditruyen",
+      "dotbien",
+      "lamsang"
+    ]
+  },
+  "ditruyentebao": {
+    "id": "ditruyentebao",
+    "title": "Di Truyền Tế Bào Học",
+    "author": "GS. Phan Cự Nhân",
+    "rating": "4.6",
+    "reads": "2.3k",
+    "category": "Di Truyền & Gen",
+    "cover": "covers/ditruyentebao.png",
+    "desc": "Khảo sát bộ nhiễm sắc thể, phân bào và các bất thường NST liên quan đến dị tật bẩm sinh và ung thư di truyền.",
+    "tags": [
+      "ditruyen",
+      "phantu",
+      "nhiemsacthe"
+    ]
+  },
+  "genkhoa": {
+    "id": "genkhoa",
+    "title": "Gen Và Bệnh Học Lâm Sàng",
+    "author": "TS. Vũ Thị Lan",
+    "rating": "4.7",
+    "reads": "2.6k",
+    "category": "Di Truyền & Gen",
+    "cover": "covers/genkhoa.png",
+    "desc": "Mối liên hệ giữa biến thể gen và các bệnh mạn tính, phân tích GWAS và ứng dụng di truyền dược lý điều trị đích.",
+    "tags": [
+      "ditruyen",
+      "dotbien",
+      "benhhoc"
+    ]
+  }
+}
